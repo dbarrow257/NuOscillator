@@ -1,6 +1,6 @@
 INCS = -I. -I.. 
 LIBS = -L/usr/lib64 -L/usr/lib
-CXXFLAGS = -Wall -fPIC -fcommon -O3 -g -std=c++11
+CXXFLAGS = -Wall -fPIC -O3 -g -std=c++11
 
 all: Analysis.exe
 
