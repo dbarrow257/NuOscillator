@@ -1,6 +1,6 @@
 INCS = -I. -I.. 
 LIBS = -L/usr/lib64 -L/usr/lib
-CXXFLAGS = -Wall -fPIC -O3 -g -std=c++11
+CXXFLAGS = -Wall -fPIC -fopenmp -O3 -g -std=c++11
 
 all: Analysis.exe
 
@@ -14,6 +14,6 @@ Analysis.exe: OscillatorBase.o OscillatorCUDAProb3.o
 	g++ ${CXXFLAGS} ${LIBS} ${INCS} Analysis.cpp OscillatorCUDAProb3.o OscillatorBase.o -o Analysis.exe
 
 clean:
-	rm *.o
-	rm *.exe
-	rm *~
+	rm -f *.o
+	rm -f *.exe
+	rm -f *~

@@ -5,7 +5,7 @@
 
 #include <memory>
 
-template<typename T> class Propagator;
+namespace cudaprob3 { template<typename T> class Propagator; }
 
 class OscillatorCUDAProb3 : public OscillatorBase {
  public:
@@ -14,7 +14,7 @@ class OscillatorCUDAProb3 : public OscillatorBase {
 
  private:
   void InitialisePropagator();
-  std::unique_ptr< Propagator< FLOAT_T > > propagator;
+  std::unique_ptr< cudaprob3::Propagator< FLOAT_T > > propagator;
 };
 
 #endif
