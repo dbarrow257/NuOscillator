@@ -1,0 +1,5 @@
+<map id="OscProbCalcerProbGPULinear" name="OscProbCalcerProbGPULinear">
+<area shape="rect" id="Node000001" title="Oscillation calculation engine for linear propagation in ProbGPU." alt="" coords="5,79,207,105"/>
+<area shape="rect" id="Node000002" href="$classOscProbCalcerBase.html" title="Oscillation calculation engine (CUDAProb3, ProbGPU, Prob3++, etc.) implementation agnostic base class..." alt="" coords="36,5,176,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="109,46,109,79,103,79,103,46"/>
+</map>
