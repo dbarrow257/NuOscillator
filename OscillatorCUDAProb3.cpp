@@ -1,5 +1,13 @@
 #include "OscillatorCUDAProb3.h"
 
+#include "CUDAProb3/constants.hpp"
+#include "CUDAProb3/propagator.hpp"
+#include "CUDAProb3/physics.hpp"
+
+#include "CUDAProb3/cpupropagator.hpp"
+
+using namespace cudaprob3;
+
 OscillatorCUDAProb3::OscillatorCUDAProb3() : OscillatorBase(){}
 
 void OscillatorCUDAProb3::WhoAmI() {
