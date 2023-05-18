@@ -1,0 +1,5 @@
+<map id="NuOscillator::OscillationProbability" name="NuOscillator::OscillationProbability">
+<area shape="rect" id="Node000001" title="Structure to contain all information about the neutrino type, oscillation channel,..." alt="" coords="5,109,166,150"/>
+<area shape="rect" id="Node000002" href="$structNuOscillator_1_1OscillationChannel.html" title="Structure which defines the oscillation channel generated and detected neutrino flavours." alt="" coords="5,5,166,46"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="88,62,88,109,83,109,83,62"/>
+</map>
