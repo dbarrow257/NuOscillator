@@ -1,17 +1,68 @@
-INCS = -I. -I.. 
+INCS = -I.
 LIBS = -L/usr/lib64 -L/usr/lib
-CXXFLAGS = -Wall -fPIC -fopenmp -O3 -g -std=c++11
+CXXFLAGS = -Wall -fPIC -fopenmp -O3 -std=c++11
+
+MultiThreadFlags = 
+ifdef MULTITHREAD
+	MultiThreadFlags = -DUseMultithread=1
+endif
+
+CUDAProb3Lib =
+CUDAProb3Inc =
+CUDAProb3Obj =
+CUDAProb3Flags =
+ifdef UseCUDAProb3
+        CUDAProb3Lib = 
+        CUDAProb3Inc = -I../CUDAProb3
+        CUDAProb3Obj = OscProbCalcer_CUDAProb3.o
+        CUDAProb3Flags = -DUseCUDAProb3=1
+endif
+
+ProbGPULinearLib =
+ProbGPULinearInc =
+ProbGPULinearObj =
+ProbGPULinearFlags =
+ifdef UseProbGPULinear
+	ProbGPULinearLib = -L../ProbGPU -lProbGPU
+	ProbGPULinearInc = -I../ProbGPU
+	ProbGPULinearObj = OscProbCalcer_ProbGPULinear.o
+	ProbGPULinearFlags = -DUseProbGPULinear=1
+endif
+
+Prob3ppLinearLib =
+Prob3ppLinearInc =
+Prob3ppLinearObj = 
+Prob3ppLinearFlags =
+ifdef UseProb3ppLinear
+	Prob3ppLinearLib = -L../Prob3 -lThreeProb_3.20
+	Prob3ppLinearInc = -I../Prob3
+        Prob3ppLinearObj = OscProbCalcer_Prob3ppLinear.o
+        Prob3ppLinearFlags = -DUseProb3ppLinear=1
+endif
+
+TARLIBS = ${CUDAProb3Lib} ${ProbGPULinearLib} ${Prob3ppLinearLib}
+TARINCS = ${CUDAProb3Inc} ${ProbGPULinearInc} ${Prob3ppLinearInc}
+TAROBJS = ${CUDAProb3Obj} ${ProbGPULinearObj} ${Prob3ppLinearObj}
+TARFLAGS = ${CUDAProb3Flags} ${ProbGPULinearFlags} ${Prob3ppLinearFlags}
+
+FLOAT_TFLAGS = -DUsingDoubles=1
 
 all: Analysis.exe
 
-OscillatorBase.o : OscillatorBase.cpp
-	g++ $(CXXFLAGS) ${LIBS} ${INCS} -o OscillatorBase.o -c OscillatorBase.cpp
+OscProbCalcerBase.o : OscProbCalcerBase.cpp
+	g++ $(CXXFLAGS) ${LIBS} ${INCS} -o OscProbCalcerBase.o -c OscProbCalcerBase.cpp ${FLOAT_TFLAGS}
 
-OscillatorCUDAProb3.o : OscillatorBase.o OscillatorCUDAProb3.cpp
-	g++ ${CXXFLAGS} ${LIBS} ${INCS} -o OscillatorCUDAProb3.o -c OscillatorCUDAProb3.cpp
+OscProbCalcer_CUDAProb3.o : OscProbCalcerBase.o OscProbCalcer_CUDAProb3.cpp
+	g++ ${CXXFLAGS} ${LIBS} ${CUDAProb3Lib} ${INCS} ${CUDAProb3Inc} -o OscProbCalcer_CUDAProb3.o -c OscProbCalcer_CUDAProb3.cpp ${CUDAProb3Flags} ${FLOAT_TFLAGS} ${MultiThreadFlags}
 
-Analysis.exe: OscillatorBase.o OscillatorCUDAProb3.o
-	g++ ${CXXFLAGS} ${LIBS} ${INCS} Analysis.cpp OscillatorCUDAProb3.o OscillatorBase.o -o Analysis.exe
+OscProbCalcer_ProbGPULinear.o : OscProbCalcerBase.o OscProbCalcer_ProbGPULinear.cpp
+	g++ ${CXXFLAGS} ${LIBS} ${ProbGPULinearLib} ${INCS} ${ProbGPULinearInc} -o OscProbCalcer_ProbGPULinear.o -c OscProbCalcer_ProbGPULinear.cpp ${ProbGPULinearFlags} ${FLOAT_TFLAGS}
+
+OscProbCalcer_Prob3ppLinear.o : OscProbCalcerBase.o OscProbCalcer_Prob3ppLinear.cpp
+	g++ ${CXXFLAGS} ${LIBS} ${Prob3ppLinearLib} ${INCS} ${Prob3ppLinearInc} -o OscProbCalcer_Prob3ppLinear.o -c OscProbCalcer_Prob3ppLinear.cpp ${Prob3ppLinearFlags} ${FLOAT_TFLAGS}
+
+Analysis.exe: OscProbCalcerBase.o ${TAROBJS}
+	g++ ${CXXFLAGS} ${LIBS} ${TARLIBS} ${INCS} ${TARINCS} Analysis.cpp ${TAROBJS} OscProbCalcerBase.o -o Analysis.exe ${TARFLAGS} ${FLOAT_TFLAGS}
 
 clean:
 	rm -f *.o
