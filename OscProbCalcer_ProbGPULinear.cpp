@@ -53,7 +53,7 @@ void OscProbCalcerProbGPULinear::CalculateProbabilities(std::vector<FLOAT_T> Osc
 
 }
 
-const FLOAT_T* OscProbCalcerProbGPULinear::ReturnPointer(FLOAT_T Energy, FLOAT_T CosineZ) {
+const FLOAT_T* OscProbCalcerProbGPULinear::ReturnPointer(int InitNuFlav, int FinalNuFlav, FLOAT_T Energy, FLOAT_T CosineZ) {
   return NULL;
 }
 

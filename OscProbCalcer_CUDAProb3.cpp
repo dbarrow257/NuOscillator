@@ -124,8 +124,85 @@ void OscProbCalcerCUDAProb3::CalculateProbabilities(std::vector<FLOAT_T> OscPara
   delete[] CopyArr;
 }
 
-const FLOAT_T* OscProbCalcerCUDAProb3::ReturnPointer(FLOAT_T Energy, FLOAT_T CosineZ) {
-  return NULL;
+const FLOAT_T* OscProbCalcerCUDAProb3::ReturnPointer(int InitNuFlav, int FinalNuFlav, FLOAT_T Energy, FLOAT_T CosineZ) {
+  //DB Lets move all of this into the base class
+
+  int NuType = (InitNuFlav > 0) - (InitNuFlav < 0); //Calculates the sign of InitNuFlav
+
+  NeutrinoType NuIndex = Neutrino;
+  if (NuType < 0) {
+    NuIndex = Antineutrino;
+  }
+
+  int InitNuIndex = -1;
+  if (fabs(InitNuFlav)==1) {
+    InitNuIndex = 0; //electron
+  } else if (fabs(InitNuFlav)==2) {
+    InitNuIndex = 1; //muon
+  } else if (fabs(InitNuFlav)==3) {
+    InitNuIndex = 2; //tau
+  } else {
+    std::cerr << "Unknown initial neutrino flavour:" << InitNuFlav << std::endl;
+    throw;
+  }
+
+  int FinalNuIndex = -1;
+  if (fabs(FinalNuFlav)==1) {
+    FinalNuIndex = 0; //electron
+  } else if (fabs(FinalNuFlav)==2) {
+    FinalNuIndex = 1; //muon
+  } else if (fabs(FinalNuFlav)==3) {
+    FinalNuIndex = 2; //tau
+  } else {
+    std::cerr << "Unknown final neutrino flavour:" << FinalNuFlav << std::endl;
+    throw;
+  }
+
+  if (InitNuIndex >= nInitialFlavours) {
+    std::cerr << "Requested Initial Neutrino flavour is outside expected range!" << std::endl;
+    std::cerr << "InitNuFlav:" << InitNuFlav << std::endl;
+    std::cerr << "InitNuIndex:" << InitNuIndex << std::endl;
+    std::cerr << "nInitialFlavours:" << nInitialFlavours << std::endl;
+    throw;
+  }
+
+  if (FinalNuIndex >= nFinalFlavours) {
+    std::cerr << "Requested Final Neutrino flavour is outside expected range!" << std::endl;
+    std::cerr << "FinalNuFlav:" << FinalNuFlav << std::endl;
+    std::cerr << "FinalNuIndex:" << FinalNuIndex << std::endl;
+    std::cerr << "nFinalialFlavours:" << nFinalFlavours << std::endl;
+    throw;
+  }
+
+  int CosineZIndex = -1;
+  for (size_t iCosineZ=0;iCosineZ<fCosineZArray.size();iCosineZ++) {
+    if (CosineZ == fCosineZArray[iCosineZ]) {
+      CosineZIndex = iCosineZ;
+      break;
+    }
+  }
+  if (CosineZIndex == -1) {
+    std::cerr << "Did not find CosineZ in the array used in calculating oscillation probabilities" << std::endl;
+    std::cerr << "Requested CosineZ:" << CosineZ << std::endl;
+    throw;
+  }
+
+  int EnergyIndex = -1;
+  for (size_t iEnergy=0;iEnergy<fEnergyArray.size();iEnergy++) {
+    if (Energy == fEnergyArray[iEnergy]) {
+      EnergyIndex = iEnergy;
+      break;
+    }
+  }
+  if (EnergyIndex == -1) {
+    std::cerr << "Did not find Energy in the array used in calculating oscillation probabilities" << std::endl;
+    std::cerr << "Requested Energy:" << Energy << std::endl;
+    throw;
+  }
+
+  int IndexToReturn = NuIndex*nInitialFlavours*nFinalFlavours*fNCosineZPoints*fNEnergyPoints + InitNuIndex*nFinalFlavours*fNCosineZPoints*fNEnergyPoints + FinalNuIndex*fNCosineZPoints*fNEnergyPoints + CosineZIndex*fNEnergyPoints + EnergyIndex;
+
+  return &(fWeightArray[IndexToReturn]);
 }
 
 void OscProbCalcerCUDAProb3::IntiailiseWeightArray() {

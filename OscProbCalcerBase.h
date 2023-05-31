@@ -23,7 +23,7 @@ class OscProbCalcerBase {
   void SetCosineZArray(std::vector<FLOAT_T> CosineZArray);
 
   // Return pointer to the weight array for a specific energy (and cosine)
-  const FLOAT_T* ReturnPointerToWeight(FLOAT_T Energy, FLOAT_T CosineZ=DUMMYVAL);
+  const FLOAT_T* ReturnPointerToWeight(int InitNuFlav, int FinalNuFlav, FLOAT_T Energy, FLOAT_T CosineZ=DUMMYVAL);
 
   // General function used to call the oscillation probability calculation
   void Reweight(std::vector<FLOAT_T> OscParams);
@@ -69,7 +69,7 @@ class OscProbCalcerBase {
   virtual void SetupPropagator() = 0;
 
   // Return pointer to the weight array for a specific energy
-  virtual const FLOAT_T* ReturnPointer(FLOAT_T Energy, FLOAT_T CosineZ=DUMMYVAL) = 0;
+  virtual const FLOAT_T* ReturnPointer(int InitNuFlav, int FinalNuFlav, FLOAT_T Energy, FLOAT_T CosineZ=DUMMYVAL) = 0;
 
   // Initialise the array in which the oscillation probabilities will be stored. This is implementation specific because some propagators calculate all
   // oscillation channels together, whilst others calculate only a single oscillation channel. 

@@ -18,7 +18,7 @@ class OscProbCalcerCUDAProb3 : public OscProbCalcerBase {
   // Functions which need implementation specific code
   void SetupPropagator();
   void CalculateProbabilities(std::vector<FLOAT_T> OscParams);
-  const FLOAT_T* ReturnPointer(FLOAT_T Energy, FLOAT_T CosineZ);
+  const FLOAT_T* ReturnPointer(int InitNuFlav, int FinalNuFlav, FLOAT_T Energy, FLOAT_T CosineZ);
   void IntiailiseWeightArray();
   
   //========================================================================================================================================================================

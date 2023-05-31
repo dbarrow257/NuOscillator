@@ -63,8 +63,16 @@ void OscProbCalcerBase::Setup() {
   SanityCheck();
 }
 
-const FLOAT_T* OscProbCalcerBase::ReturnPointerToWeight(FLOAT_T Energy, FLOAT_T CosineZ) {
-  return ReturnPointer(Energy,CosineZ);
+const FLOAT_T* OscProbCalcerBase::ReturnPointerToWeight(int InitNuFlav, int FinalNuFlav, FLOAT_T Energy, FLOAT_T CosineZ) {
+  int Product = InitNuFlav*FinalNuFlav;
+  if (Product < 0) {
+    std::cerr << "Initial neutrino flavour and final neutrino flavour are different Neutrino types (one is positive integer and the other is negative)" << std::endl;
+    std::cerr << "InitNuFlav:" << InitNuFlav << std::endl;
+    std::cerr << "FinalNuFlav:" << FinalNuFlav << std::endl;
+    throw;
+  }
+  
+  return ReturnPointer(InitNuFlav,FinalNuFlav,Energy,CosineZ);
 }
 
 void OscProbCalcerBase::Reweight(std::vector<FLOAT_T> OscParams) {
