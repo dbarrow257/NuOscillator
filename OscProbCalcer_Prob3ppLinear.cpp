@@ -7,19 +7,26 @@ OscProbCalcerProb3ppLinear::OscProbCalcerProb3ppLinear() : OscProbCalcerBase()
   //Base variables
   fNOscParams = kNOscParams;
 
+  nNeutrinoTypes = 2;
+  NeutrinoTypes.resize(nNeutrinoTypes);
+  NeutrinoTypes[0] = Nu;
+  NeutrinoTypes[1] = Nubar;
+
+  nInitialFlavours = 2;
+  InitialFlavours.resize(nInitialFlavours);
+  InitialFlavours[0] = Electron;
+  InitialFlavours[1] = Muon;
+
+  nFinalFlavours = 2;
+  FinalFlavours.resize(nFinalFlavours);
+  FinalFlavours[0] = Electron;
+  FinalFlavours[1] = Muon;
+
   //This implementation only considers linear propagation, thus no requirement to set cosineZ array
-  fCosineZArraySet = true;
+  IgnoreCosineZBinning(true);
 
   //Implementation specific variables
   doubled_angle = true;
-
-  nNeutrinoSigns = kNNeutrinoTypes;
-  nInitialFlavours = 2; // =2 if excluding taus, =3 if including taus
-  nFinalFlavours = 3; // =2 if excluding taus, =3 if including taus
-
-  NeutrinoTypes.resize(nNeutrinoSigns);
-  NeutrinoTypes[0] = Neutrino;
-  NeutrinoTypes[1] = AntiNeutrino;
 }
 
 void OscProbCalcerProb3ppLinear::SetupPropagator() {
@@ -27,14 +34,11 @@ void OscProbCalcerProb3ppLinear::SetupPropagator() {
    bNu->UseMassEigenstates(false);
    bNu->SetOneMassScaleMode(false);
    bNu->SetWarningSuppression(true); 
-
-   fPropagatorSet = true;
 }
 
 void OscProbCalcerProb3ppLinear::CalculateProbabilities(std::vector<FLOAT_T> OscParams) {
   // Prob3++ calculates oscillation probabilites for each NeutrinoType and each energy, so need to copy them from the calculator into fWeightArray
-
-  for (int iNuType=0;iNuType<nNeutrinoSigns;iNuType++) {
+  for (int iNuType=0;iNuType<nNeutrinoTypes;iNuType++) {
     for (int iInitFlav=0;iInitFlav<nInitialFlavours;iInitFlav++) {
       for (int iFinalFlav=0;iFinalFlav<nFinalFlavours;iFinalFlav++) {
 
@@ -52,14 +56,12 @@ void OscProbCalcerProb3ppLinear::CalculateProbabilities(std::vector<FLOAT_T> Osc
 
 }
 
-const FLOAT_T* OscProbCalcerProb3ppLinear::ReturnPointer(int InitNuFlav, int FinalNuFlav, FLOAT_T Energy, FLOAT_T CosineZ) {
-  return NULL;
+int OscProbCalcerProb3ppLinear::ReturnWeightArrayIndex(int NuTypeIndex, int InitNuIndex, int FinalNuIndex, int EnergyIndex, int CosineZIndex) {
+  int IndexToReturn = NuTypeIndex*nInitialFlavours*nFinalFlavours*fNEnergyPoints + InitNuIndex*nFinalFlavours*fNEnergyPoints + FinalNuIndex*fNEnergyPoints + EnergyIndex;
+  return IndexToReturn;
 }
 
-void OscProbCalcerProb3ppLinear::IntiailiseWeightArray() {
-  int nCalculationPoints = fNEnergyPoints * nInitialFlavours * nFinalFlavours * nNeutrinoSigns;
-  std::cout << "Creating weight array with " << nCalculationPoints << " entries" << std::endl;
-
-  fWeightArray = std::vector<FLOAT_T>(nCalculationPoints,DUMMYVAL);
-  fWeightArrayInit = true;
+int OscProbCalcerProb3ppLinear::DefineWeightArraySize() {
+  int nCalculationPoints = fNEnergyPoints * nInitialFlavours * nFinalFlavours * nNeutrinoTypes;
+  return nCalculationPoints;
 }

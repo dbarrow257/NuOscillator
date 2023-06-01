@@ -1,5 +1,7 @@
 #include "OscProbCalcerBase.h"
 
+#include <math.h>
+
 #include <iostream>
 #include <iomanip>
 
@@ -13,6 +15,9 @@ OscProbCalcerBase::OscProbCalcerBase() {
   fNCosineZPoints = -1;
   fEnergyArray = std::vector<FLOAT_T>();
   fCosineZArray = std::vector<FLOAT_T>();
+
+  nWeights = -1;
+  fWeightArray = std::vector<FLOAT_T>();
 
   fNOscParams = -1;
   fOscParamsCurr = std::vector<FLOAT_T>();
@@ -46,6 +51,12 @@ void OscProbCalcerBase::SetCosineZArray(std::vector<FLOAT_T> CosineZArray) {
   fCosineZArraySet = true;
 }
 
+void OscProbCalcerBase::IgnoreCosineZBinning(bool Ignore) {
+  if (Ignore) {
+    fCosineZArraySet = true;
+  }
+}
+
 void OscProbCalcerBase::Setup() {
   if (!fEnergyArraySet) {
     std::cerr << "Must call OscProbCalcerBase::SetEnergyArray(std::vector<FLOAT_T> EnergyArray) before trying to initialise propagator" << std::endl;
@@ -58,11 +69,16 @@ void OscProbCalcerBase::Setup() {
   }
 
   ResetCurrOscParams();
-  IntiailiseWeightArray();
+  IntialiseWeightArray();
+
   SetupPropagator();
+  fPropagatorSet = true;
+
   SanityCheck();
 }
 
+// Neutrinos and antineutrinos are separated based on the sign of the flavour (Thus need to check whether the sign of both flavours is consistent)
+// No other requirements are made based on the flavours
 const FLOAT_T* OscProbCalcerBase::ReturnPointerToWeight(int InitNuFlav, int FinalNuFlav, FLOAT_T Energy, FLOAT_T CosineZ) {
   int Product = InitNuFlav*FinalNuFlav;
   if (Product < 0) {
@@ -71,8 +87,22 @@ const FLOAT_T* OscProbCalcerBase::ReturnPointerToWeight(int InitNuFlav, int Fina
     std::cerr << "FinalNuFlav:" << FinalNuFlav << std::endl;
     throw;
   }
-  
-  return ReturnPointer(InitNuFlav,FinalNuFlav,Energy,CosineZ);
+
+  int NuTypeIndex = ReturnNuTypeFromFlavour(InitNuFlav);
+  int InitNuIndex = ReturnInitialIndexFromFlavour(InitNuFlav);
+  int FinalNuIndex = ReturnFinalIndexFromFlavour(FinalNuFlav);
+  int CosineZIndex = ReturnCosineZIndexFromValue(CosineZ);
+  int EnergyIndex = ReturnEnergyIndexFromValue(Energy);
+
+  int WeightArrayIndex = ReturnWeightArrayIndex(NuTypeIndex,InitNuIndex,FinalNuIndex,EnergyIndex,CosineZIndex);
+  if (WeightArrayIndex < 0 || WeightArrayIndex >= (int)fWeightArray.size()) {
+    std::cerr << "Array index in fWeightArray is outside of the array size. This indicates that the implementation of ReturnWeightArrayIndex is incorrect." << std::endl;
+    std::cerr << "WeightArrayIndex:" << WeightArrayIndex << std::endl;
+    std::cerr << "fWeightArray.size():" << fWeightArray.size() << std::endl;
+    throw;
+  }
+
+  return &(fWeightArray[WeightArrayIndex]);
 }
 
 void OscProbCalcerBase::Reweight(std::vector<FLOAT_T> OscParams) {
@@ -119,6 +149,98 @@ void OscProbCalcerBase::PrintWeights() {
       throw;
     }
   }
+}
+
+int OscProbCalcerBase::ReturnEnergyIndexFromValue(FLOAT_T EnergyVal) {
+  if (!fEnergyArraySet) {
+    std::cerr << "Can not find Energy index as Energy array has not been set" << std::endl;
+    throw;
+  }
+
+  int EnergyIndex = -1;
+  for (size_t iEnergy=0;iEnergy<fEnergyArray.size();iEnergy++) {
+    if (EnergyVal == fEnergyArray[iEnergy]) {
+      EnergyIndex = iEnergy;
+      break;
+    }
+  }
+  if (EnergyIndex == -1) {
+    std::cerr << "Did not find Energy in the array used in calculating oscillation probabilities" << std::endl;
+    std::cerr << "Requested Energy:" << EnergyVal << std::endl;
+    throw;
+  }
+
+  return EnergyIndex;
+}
+
+int OscProbCalcerBase::ReturnCosineZIndexFromValue(FLOAT_T CosineZVal) {
+  if (!fCosineZArraySet) {
+    std::cerr << "Can not find CosineZ index as CosineZ array has not been set" << std::endl;
+    throw;
+  }
+
+  int CosineZIndex = -1;
+  for (size_t iCosineZ=0;iCosineZ<fCosineZArray.size();iCosineZ++) {
+    if (CosineZVal == fCosineZArray[iCosineZ]) {
+      CosineZIndex = iCosineZ;
+      break;
+    }
+  }
+  if (CosineZIndex == -1) {
+    std::cerr << "Did not find CosineZ in the array used in calculating oscillation probabilities" << std::endl;
+    std::cerr << "Requested CosineZ:" << CosineZVal << std::endl;
+    throw;
+  }
+
+  return CosineZIndex;
+}
+
+int OscProbCalcerBase::ReturnInitialIndexFromFlavour(int InitFlav) {
+  for (size_t iFlav=0;iFlav<InitialFlavours.size();iFlav++) {
+    if (fabs(InitFlav) == InitialFlavours[iFlav]) {
+      return iFlav;
+    }
+  }
+
+  std::cerr << "Requested Initial Neutrino flavour is not defined within the InitialFlavour map!" << std::endl;
+  std::cerr << "InitNuFlav:" << InitFlav << std::endl;
+  std::cerr << "nInitialFlavours:" << nInitialFlavours << std::endl;
+  throw;
+}
+
+int OscProbCalcerBase::ReturnFinalIndexFromFlavour(int FinalFlav) {
+  for (size_t iFlav=0;iFlav<FinalFlavours.size();iFlav++) {
+    if (fabs(FinalFlav) == FinalFlavours[iFlav]) {
+      return iFlav;
+    }
+  }
+
+  std::cerr << "Requested Final Neutrino flavour is not defined within the FinalFlavour map!" << std::endl;
+  std::cerr << "InitNuFlav:" << FinalFlav << std::endl;
+  std::cerr << "nFinalFlavours:" << nFinalFlavours << std::endl;
+  throw;
+}
+
+int OscProbCalcerBase::ReturnNuTypeFromFlavour(int NuFlav) {
+  int NuType = (NuFlav > 0) - (NuFlav < 0); //Calculates the sign of NuFlav
+  
+  for (int iType=0;iType<nNeutrinoTypes;iType++) {
+    if (NuType == NeutrinoTypes[iType]) {
+      return iType;
+    }
+  }
+
+  std::cerr << "Requested Neutrino type is not defined within the NeutrinoType map!" << std::endl;
+  std::cerr << "NuFlav:" << NuFlav << std::endl;
+  std::cerr << "Associated NuType:" << NuType << std::endl;
+  throw;
+}
+
+void OscProbCalcerBase::IntialiseWeightArray() {
+  nWeights = DefineWeightArraySize();
+  std::cout << "Creating weight array with " << nWeights << " entries" << std::endl;
+  fWeightArray = std::vector<FLOAT_T>(nWeights,DUMMYVAL);  
+  fWeightArrayInit = true;
 }
 
 void OscProbCalcerBase::SanityCheck() {

@@ -18,8 +18,8 @@ class OscProbCalcerCUDAProb3 : public OscProbCalcerBase {
   // Functions which need implementation specific code
   void SetupPropagator();
   void CalculateProbabilities(std::vector<FLOAT_T> OscParams);
-  const FLOAT_T* ReturnPointer(int InitNuFlav, int FinalNuFlav, FLOAT_T Energy, FLOAT_T CosineZ);
-  void IntiailiseWeightArray();
+  int ReturnWeightArrayIndex(int NuTypeIndex, int InitNuIndex, int FinalNuIndex, int EnergyIndex, int CosineZIndex=-1);
+  int DefineWeightArraySize();
   
   //========================================================================================================================================================================
   //Functions which help setup implementation specific code
@@ -27,14 +27,10 @@ class OscProbCalcerCUDAProb3 : public OscProbCalcerBase {
   //========================================================================================================================================================================
   // Variables which are needed for implementation specific code
   enum OscParams{kTH12, kTH23, kTH13, kDM12, kDM23, kDCP, kPRODH, kNOscParams};
-
-  int nNeutrinoSigns;
-  int nInitialFlavours;
-  int nFinalFlavours;
+  enum NuType{Nubar=-1, Nu=1};
+  enum NuFlav{Electron=1, Muon=2, Tau=3};
 
   std::vector< std::vector<int> > OscChannels;
-  std::vector<int> NeutrinoTypes;
-
   int nThreads;
 
   std::unique_ptr< cudaprob3::Propagator< FLOAT_T > > propagator;

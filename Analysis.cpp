@@ -80,7 +80,7 @@ int main() {
       throw;
     }
 
-    OscProbCalcers[iCalcer]->PrintWeights();
+    //OscProbCalcers[iCalcer]->PrintWeights();
   }
 }
 

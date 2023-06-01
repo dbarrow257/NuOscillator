@@ -50,14 +50,31 @@ class OscProbCalcerBase {
   //========================================================================================================================================================================
   // Protected functions which are calculation implementation agnostic  
 
+  //DB
+  void IgnoreCosineZBinning(bool Ignore);
+
   // Check whether the oscillation parameters have changed since their previous value
   bool AreOscParamsChanged(std::vector<FLOAT_T> OscParamsToCheck);
 
   // Save the oscillation parameters which have been requested
   void SetCurrOscParams(std::vector<FLOAT_T> OscParamsToCheck);
 
-  // Reet the saved oscillation parameters
+  // Reset the saved oscillation parameters
   void ResetCurrOscParams();
+
+  // Return the index in fCosineZArray for a particular value of CosineZ. If it's not found, throws an error
+  int ReturnCosineZIndexFromValue(FLOAT_T CosineZVal);
+
+  // Return the index in fCosineZArray for a particular value of CosineZ. If it's not found, throws an error
+  int ReturnEnergyIndexFromValue(FLOAT_T EnergyVal);
+
+  //DB
+  int ReturnInitialIndexFromFlavour(int InitFlav);
+  int ReturnFinalIndexFromFlavour(int FinalFlav);
+  int ReturnNuTypeFromFlavour(int NuFlav);
+
+  // Initialise the array in which the oscillation probabilities will be stored.
+  void IntialiseWeightArray();
 
   //========================================================================================================================================================================
   // Protected virtual functions which are calculation implementation agnostic
@@ -68,22 +85,24 @@ class OscProbCalcerBase {
   // Setup any implementation specific variables/functions
   virtual void SetupPropagator() = 0;
 
-  // Return pointer to the weight array for a specific energy
-  virtual const FLOAT_T* ReturnPointer(int InitNuFlav, int FinalNuFlav, FLOAT_T Energy, FLOAT_T CosineZ=DUMMYVAL) = 0;
+  // Return the index in the weight array for a specific combination of neutrino oscillation channel, energy and cosine zenith
+  virtual int ReturnWeightArrayIndex(int NuTypeIndex, int InitNuIndex, int FinalNuIndex, int EnergyIndex, int CosineZIndex=-1) = 0;
 
-  // Initialise the array in which the oscillation probabilities will be stored. This is implementation specific because some propagators calculate all
+  // Define the size of fWeightArray. This is implementation specific because some propagators calculate all
   // oscillation channels together, whilst others calculate only a single oscillation channel. 
-  virtual void IntiailiseWeightArray() = 0;
-
-  //========================================================================================================================================================================
-  // Sanity check variables
-  bool fEnergyArraySet;
-  bool fCosineZArraySet;
-  bool fPropagatorSet;
-  bool fWeightArrayInit;
+  virtual int DefineWeightArraySize() = 0;
 
   //========================================================================================================================================================================
   // Basic variables required for oscillation probability calculation
+
+  // Enums to define the mappings below. Each implementation is expected to define a mapping of which initial and neutrino flavours are considered, along with whether
+  // neutrinos and antineutrinos are considered
+  int nNeutrinoTypes;
+  std::vector<int> NeutrinoTypes;
+  int nInitialFlavours;
+  std::vector<int> InitialFlavours;
+  int nFinalFlavours;
+  std::vector<int> FinalFlavours;
 
   // Store energy and cosine points which will be used when calculating oscillation probabilities
   int fNEnergyPoints;
@@ -92,6 +111,7 @@ class OscProbCalcerBase {
   std::vector<FLOAT_T> fCosineZArray;
 
   // Place to store the oscillation probabilities
+  int nWeights;
   std::vector<FLOAT_T> fWeightArray;
 
   // Store the oscillation parameter set used to calculate the previous and current probabilities
@@ -99,6 +119,15 @@ class OscProbCalcerBase {
   // If they haven't don't update the already calculated probabilities
   int fNOscParams;
   std::vector<FLOAT_T> fOscParamsCurr;
+
+ private:
+  //========================================================================================================================================================================
+  // Sanity check variables
+  bool fEnergyArraySet;
+  bool fCosineZArraySet;
+  bool fPropagatorSet;
+  bool fWeightArrayInit;
+
 };
 
 #endif
