@@ -11,6 +11,8 @@ OscProbCalcerBase::OscProbCalcerBase() {
   fPropagatorSet = false;
   fWeightArrayInit = false;
 
+  
+
   fNEnergyPoints = -1;
   fNCosineZPoints = -1;
   fEnergyArray = std::vector<FLOAT_T>();
@@ -30,10 +32,16 @@ void OscProbCalcerBase::SetEnergyArray(std::vector<FLOAT_T> EnergyArray) {
   }
 
   fEnergyArray = EnergyArray;
+  for (size_t iEnergy=0;iEnergy<fEnergyArray.size();iEnergy++) {
+    if (fEnergyArray[iEnergy] <= 0) {
+      std::cerr << "Found a negative neutrino energy. This indicates a problem in the array passed to: void OscProbCalcerBase::SetEnergyArray(std::vector<FLOAT_T> EnergyArray)" << std::endl;
+      std::cerr << "iEnergy:" << iEnergy << std::endl;
+      std::cerr << "fEnergyArray[iEnergy]:" << fEnergyArray[iEnergy] << std::endl;
+      throw;
+    }
+  }
+
   fNEnergyPoints = EnergyArray.size();
-
-  //DB Could probably do some manipulation of the vector to see if they are meaningful values (i.e. positive)
-
   fEnergyArraySet = true;
 }
 
@@ -44,10 +52,16 @@ void OscProbCalcerBase::SetCosineZArray(std::vector<FLOAT_T> CosineZArray) {
   }
 
   fCosineZArray = CosineZArray;
+  for (size_t iCosineZ=0;iCosineZ<fCosineZArray.size();iCosineZ++) {
+    if (fCosineZArray[iCosineZ] < -1.0 || fCosineZArray[iCosineZ] > 1.0) {
+      std::cerr<< "Found a CosineZ outside of [-1.0,1.0]. This indicates a problem in the array passed to: void OscProbCalcerBase::SetCosineZArray(std::vector<FLOAT_T> CosineZArray)" << std::endl;
+      std::cerr << "iCosineZ:" << iCosineZ << std::endl;
+      std::cerr << "fCosineZArray[iCosineZ]:" << fCosineZArray[iCosineZ] << std::endl;
+      throw;
+    }
+  }
+
   fNCosineZPoints = CosineZArray.size();
-
-  //DB Could probably do some manipulation of the vector to see if they are meaningful values (i.e. between -1. and 1.)
-
   fCosineZArraySet = true;
 }
 
@@ -222,7 +236,7 @@ int OscProbCalcerBase::ReturnFinalIndexFromFlavour(int FinalFlav) {
 }
 
 int OscProbCalcerBase::ReturnNuTypeFromFlavour(int NuFlav) {
-  int NuType = (NuFlav > 0) - (NuFlav < 0); //Calculates the sign of NuFlav
+  int NuType = (NuFlav > 0) - (NuFlav < 0); // Calculates the sign of NuFlav
   
   for (int iType=0;iType<nNeutrinoTypes;iType++) {
     if (NuType == NeutrinoTypes[iType]) {
@@ -244,6 +258,8 @@ void OscProbCalcerBase::IntialiseWeightArray() {
 }
 
 void OscProbCalcerBase::SanityCheck() {
+  //DB Check that required variables are sensible
+
   bool IsSane = fEnergyArraySet && fCosineZArraySet && fPropagatorSet && fWeightArrayInit;
   
   if (!IsSane) {

@@ -15,7 +15,7 @@ class OscProbCalcerBase {
  public:
   OscProbCalcerBase();
 
-  //========================================================================================================================================================================
+  // ========================================================================================================================================================================
   // Public functions which are calculation implementation agnostic
   
   // Define the energies and cosines which will be used when calculating the oscillation probabilities
@@ -37,17 +37,17 @@ class OscProbCalcerBase {
   // Print values of fWeightArray
   void PrintWeights();
 
-  //Getters
+  // Getters
   int ReturnExpectedNOscParams() {return fNOscParams;}
   int ReturnNEnergyPoints() {return fNEnergyPoints;}
   int ReturnNCosineZPoints() {return fNCosineZPoints;}
 
-  //========================================================================================================================================================================
+  // ========================================================================================================================================================================
   // Public virtual functions which need calculater specific implementations
 
  protected:
 
-  //========================================================================================================================================================================
+  // ========================================================================================================================================================================
   // Protected functions which are calculation implementation agnostic  
 
   //DB
@@ -76,7 +76,7 @@ class OscProbCalcerBase {
   // Initialise the array in which the oscillation probabilities will be stored.
   void IntialiseWeightArray();
 
-  //========================================================================================================================================================================
+  // ========================================================================================================================================================================
   // Protected virtual functions which are calculation implementation agnostic
 
   // Calculate some oscillation probabilities for a particular oscillation parameter set
@@ -90,9 +90,9 @@ class OscProbCalcerBase {
 
   // Define the size of fWeightArray. This is implementation specific because some propagators calculate all
   // oscillation channels together, whilst others calculate only a single oscillation channel. 
-  virtual int DefineWeightArraySize() = 0;
+  virtual long DefineWeightArraySize() = 0;
 
-  //========================================================================================================================================================================
+  // ========================================================================================================================================================================
   // Basic variables required for oscillation probability calculation
 
   // Enums to define the mappings below. Each implementation is expected to define a mapping of which initial and neutrino flavours are considered, along with whether
@@ -121,7 +121,7 @@ class OscProbCalcerBase {
   std::vector<FLOAT_T> fOscParamsCurr;
 
  private:
-  //========================================================================================================================================================================
+  // ========================================================================================================================================================================
   // Sanity check variables
   bool fEnergyArraySet;
   bool fCosineZArraySet;

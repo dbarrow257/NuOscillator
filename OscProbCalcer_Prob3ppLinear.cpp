@@ -4,7 +4,7 @@
 
 OscProbCalcerProb3ppLinear::OscProbCalcerProb3ppLinear() : OscProbCalcerBase()
 {
-  //Base variables
+  // Required variables
   fNOscParams = kNOscParams;
 
   nNeutrinoTypes = 2;
@@ -22,10 +22,10 @@ OscProbCalcerProb3ppLinear::OscProbCalcerProb3ppLinear() : OscProbCalcerBase()
   FinalFlavours[0] = Electron;
   FinalFlavours[1] = Muon;
 
-  //This implementation only considers linear propagation, thus no requirement to set cosineZ array
+  // This implementation only considers linear propagation, thus no requirement to set cosineZ array
   IgnoreCosineZBinning(true);
 
-  //Implementation specific variables
+  // Implementation specific variables
   doubled_angle = true;
 }
 
@@ -61,7 +61,7 @@ int OscProbCalcerProb3ppLinear::ReturnWeightArrayIndex(int NuTypeIndex, int Init
   return IndexToReturn;
 }
 
-int OscProbCalcerProb3ppLinear::DefineWeightArraySize() {
-  int nCalculationPoints = fNEnergyPoints * nInitialFlavours * nFinalFlavours * nNeutrinoTypes;
+long OscProbCalcerProb3ppLinear::DefineWeightArraySize() {
+  long nCalculationPoints = fNEnergyPoints * nInitialFlavours * nFinalFlavours * nNeutrinoTypes;
   return nCalculationPoints;
 }

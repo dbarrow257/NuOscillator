@@ -7,7 +7,7 @@ extern "C" void GetProb(int Alpha, int Beta, double Path, double Density, double
 
 OscProbCalcerProbGPULinear::OscProbCalcerProbGPULinear() : OscProbCalcerBase()
 {
-  //Base variables
+  // Required variables
   fNOscParams = kNOscParams;
 
   nNeutrinoTypes = 2;
@@ -25,15 +25,15 @@ OscProbCalcerProbGPULinear::OscProbCalcerProbGPULinear() : OscProbCalcerBase()
   FinalFlavours[0] = Electron;
   FinalFlavours[1] = Muon;
 
-  //This implementation only considers linear propagation, thus no requirement to set cosineZ array
+  // This implementation only considers linear propagation, thus no requirement to set cosineZ array
   IgnoreCosineZBinning(true);
 
-  //Implementation specific variables
+  // Implementation specific variables
   doubled_angle = true;
 }
 
 void OscProbCalcerProbGPULinear::SetupPropagator() {
-  //This implementation doesn't really need to do anything in the setup due to probGPU's horrific implementation
+  // This implementation doesn't really need to do anything in the setup due to probGPU's horrific implementation
 }
 
 void OscProbCalcerProbGPULinear::CalculateProbabilities(std::vector<FLOAT_T> OscParams) {
@@ -63,7 +63,7 @@ int OscProbCalcerProbGPULinear::ReturnWeightArrayIndex(int NuTypeIndex, int Init
   return IndexToReturn;
 }
 
-int OscProbCalcerProbGPULinear::DefineWeightArraySize() {
-  int nCalculationPoints = fNEnergyPoints * nInitialFlavours * nFinalFlavours * nNeutrinoTypes;
+long OscProbCalcerProbGPULinear::DefineWeightArraySize() {
+  long nCalculationPoints = fNEnergyPoints * nInitialFlavours * nFinalFlavours * nNeutrinoTypes;
   return nCalculationPoints;
 }

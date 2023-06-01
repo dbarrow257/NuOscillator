@@ -11,7 +11,7 @@ using namespace cudaprob3;
 
 OscProbCalcerCUDAProb3::OscProbCalcerCUDAProb3() : OscProbCalcerBase()
 {
-  //Base variables
+  // Required variables
   fNOscParams = kNOscParams;
 
   nNeutrinoTypes = 2;
@@ -30,7 +30,7 @@ OscProbCalcerCUDAProb3::OscProbCalcerCUDAProb3() : OscProbCalcerBase()
   FinalFlavours[1] = Muon;
   FinalFlavours[2] = Tau;
 
-  //Implementation specific variables
+  // Implementation specific variables
   OscChannels.resize(nInitialFlavours);
   for (int i=0;i<nInitialFlavours;i++) {
     OscChannels[i].resize(nFinalFlavours);
@@ -139,7 +139,7 @@ int OscProbCalcerCUDAProb3::ReturnWeightArrayIndex(int NuTypeIndex, int InitNuIn
   return IndexToReturn;
 }
 
-int OscProbCalcerCUDAProb3::DefineWeightArraySize() {
-  int nCalculationPoints = fNEnergyPoints * fNCosineZPoints * nInitialFlavours * nFinalFlavours * nNeutrinoTypes;
+long OscProbCalcerCUDAProb3::DefineWeightArraySize() {
+  long nCalculationPoints = fNEnergyPoints * fNCosineZPoints * nInitialFlavours * nFinalFlavours * nNeutrinoTypes;
   return nCalculationPoints;
 }

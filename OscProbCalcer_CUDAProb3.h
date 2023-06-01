@@ -3,28 +3,28 @@
 
 #include "OscProbCalcerBase.h"
 
-//==================================================================
+// ==================================================================
 // Includes specific to CUDAProb3 implementation
 #include <memory>
 namespace cudaprob3 { template<typename T> class Propagator;}
-//==================================================================
+// ==================================================================
 
 class OscProbCalcerCUDAProb3 : public OscProbCalcerBase {
  public:
   OscProbCalcerCUDAProb3();
 
  private:
-  //========================================================================================================================================================================
+  // ========================================================================================================================================================================
   // Functions which need implementation specific code
   void SetupPropagator();
   void CalculateProbabilities(std::vector<FLOAT_T> OscParams);
   int ReturnWeightArrayIndex(int NuTypeIndex, int InitNuIndex, int FinalNuIndex, int EnergyIndex, int CosineZIndex=-1);
-  int DefineWeightArraySize();
+  long DefineWeightArraySize();
   
-  //========================================================================================================================================================================
+  // ========================================================================================================================================================================
   //Functions which help setup implementation specific code
 
-  //========================================================================================================================================================================
+  // ========================================================================================================================================================================
   // Variables which are needed for implementation specific code
   enum OscParams{kTH12, kTH23, kTH13, kDM12, kDM23, kDCP, kPRODH, kNOscParams};
   enum NuType{Nubar=-1, Nu=1};

@@ -9,17 +9,17 @@ class OscProbCalcerProb3ppLinear : public OscProbCalcerBase {
  public:
   OscProbCalcerProb3ppLinear();
 
-  //========================================================================================================================================================================
+  // ========================================================================================================================================================================
   // Functions which need implementation specific code
   void SetupPropagator();
   void CalculateProbabilities(std::vector<FLOAT_T> OscParams);
   int ReturnWeightArrayIndex(int NuTypeIndex, int InitNuIndex, int FinalNuIndex, int EnergyIndex, int CosineZIndex=-1);
-  int DefineWeightArraySize();
+  long DefineWeightArraySize();
 
-  //========================================================================================================================================================================
-  //Functions which help setup implementation specific code
+  // ========================================================================================================================================================================
+  // Functions which help setup implementation specific code
 
-  //========================================================================================================================================================================
+  // ========================================================================================================================================================================
   // Variables which are needed for implementation specific code
   enum OscParams{kTH12, kTH23, kTH13, kDM12, kDM23, kDCP, kPATHL, kDENS, kNOscParams};
   enum NuType{Nubar=-1, Nu=1};
