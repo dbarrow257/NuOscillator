@@ -8,20 +8,23 @@ extern "C" void GetProb(int Alpha, int Beta, double Path, double Density, double
 OscProbCalcerProbGPULinear::OscProbCalcerProbGPULinear() : OscProbCalcerBase()
 {
   // Required variables
+  Verbose = INFO;
+  ImplementationName = "ProbGPU";
+
   fNOscParams = kNOscParams;
 
   nNeutrinoTypes = 2;
-  NeutrinoTypes.resize(nNeutrinoTypes);
+  InitialiseNeutrinoTypesArray(nNeutrinoTypes);
   NeutrinoTypes[0] = Nu;
   NeutrinoTypes[1] = Nubar;
 
   nInitialFlavours = 2;
-  InitialFlavours.resize(nInitialFlavours);
+  InitialiseInitialFlavoursArray(nInitialFlavours);
   InitialFlavours[0] = Electron;
   InitialFlavours[1] = Muon;
 
   nFinalFlavours = 2;
-  FinalFlavours.resize(nFinalFlavours);
+  InitialiseFinalFlavoursArray(nFinalFlavours);
   FinalFlavours[0] = Electron;
   FinalFlavours[1] = Muon;
 

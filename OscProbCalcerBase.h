@@ -10,6 +10,7 @@ using FLOAT_T = float;
 #endif
 
 #include <vector>
+#include <string>
 
 class OscProbCalcerBase {
  public:
@@ -50,7 +51,7 @@ class OscProbCalcerBase {
   // ========================================================================================================================================================================
   // Protected functions which are calculation implementation agnostic  
 
-  //DB
+  // Some implementations don't care about the CosineZ values, so this is a method to set fCosineZArraySet to true in those cases
   void IgnoreCosineZBinning(bool Ignore);
 
   // Check whether the oscillation parameters have changed since their previous value
@@ -68,10 +69,18 @@ class OscProbCalcerBase {
   // Return the index in fCosineZArray for a particular value of CosineZ. If it's not found, throws an error
   int ReturnEnergyIndexFromValue(FLOAT_T EnergyVal);
 
-  //DB
+  // Calculate the index in the NuType/NuFlav mapping for a given value 
   int ReturnInitialIndexFromFlavour(int InitFlav);
   int ReturnFinalIndexFromFlavour(int FinalFlav);
   int ReturnNuTypeFromFlavour(int NuFlav);
+
+  // Initialise the mapping arrays to a particular size with dummy values
+  void InitialiseNeutrinoTypesArray(int Size);
+  void InitialiseInitialFlavoursArray(int Size);
+  void InitialiseFinalFlavoursArray(int Size);
+
+  // Check that the NuType/NuFlav mapping is set correctly based on the inputs from the particular implementation
+  void CheckNuFlavourMapping();
 
   // Initialise the array in which the oscillation probabilities will be stored.
   void IntialiseWeightArray();
@@ -120,6 +129,13 @@ class OscProbCalcerBase {
   int fNOscParams;
   std::vector<FLOAT_T> fOscParamsCurr;
 
+  // Set some verbosity for console output
+  int Verbose;
+  enum Verbosity{NONE,INFO,CRITICAL,FATAL};
+
+  // Define the implementation name - Could be used for recasting later (similar to TObject::InheritsFrom() etc.)
+  std::string ImplementationName;
+
  private:
   // ========================================================================================================================================================================
   // Sanity check variables
@@ -127,7 +143,7 @@ class OscProbCalcerBase {
   bool fCosineZArraySet;
   bool fPropagatorSet;
   bool fWeightArrayInit;
-
+  bool fNuMappingSet;
 };
 
 #endif

@@ -5,20 +5,23 @@
 OscProbCalcerProb3ppLinear::OscProbCalcerProb3ppLinear() : OscProbCalcerBase()
 {
   // Required variables
+  Verbose = INFO;
+  ImplementationName = "Prob3pp";
+
   fNOscParams = kNOscParams;
 
   nNeutrinoTypes = 2;
-  NeutrinoTypes.resize(nNeutrinoTypes);
+  InitialiseNeutrinoTypesArray(nNeutrinoTypes);
   NeutrinoTypes[0] = Nu;
   NeutrinoTypes[1] = Nubar;
 
   nInitialFlavours = 2;
-  InitialFlavours.resize(nInitialFlavours);
+  InitialiseInitialFlavoursArray(nInitialFlavours);
   InitialFlavours[0] = Electron;
   InitialFlavours[1] = Muon;
 
   nFinalFlavours = 2;
-  FinalFlavours.resize(nFinalFlavours);
+  InitialiseFinalFlavoursArray(nFinalFlavours);
   FinalFlavours[0] = Electron;
   FinalFlavours[1] = Muon;
 

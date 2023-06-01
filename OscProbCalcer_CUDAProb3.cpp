@@ -9,23 +9,28 @@
 #include <iostream>
 using namespace cudaprob3;
 
-OscProbCalcerCUDAProb3::OscProbCalcerCUDAProb3() : OscProbCalcerBase()
+OscProbCalcerCUDAProb3::OscProbCalcerCUDAProb3(std::string ConfigName_) : OscProbCalcerBase()
 {
+  ConfigName = ConfigName_; //DB Create yaml style config once built in MaCh3
+
   // Required variables
+  ImplementationName = "CUDAProb3";
+  Verbose = INFO; //DB Get From Config
+
   fNOscParams = kNOscParams;
 
   nNeutrinoTypes = 2;
-  NeutrinoTypes.resize(nNeutrinoTypes);
+  InitialiseNeutrinoTypesArray(nNeutrinoTypes);
   NeutrinoTypes[0] = Nu;
   NeutrinoTypes[1] = Nubar;
 
   nInitialFlavours = 2;
-  InitialFlavours.resize(nInitialFlavours);
+  InitialiseInitialFlavoursArray(nInitialFlavours);
   InitialFlavours[0] = Electron;
   InitialFlavours[1] = Muon;
 
   nFinalFlavours = 3;
-  FinalFlavours.resize(nFinalFlavours);
+  InitialiseFinalFlavoursArray(nFinalFlavours);
   FinalFlavours[0] = Electron;
   FinalFlavours[1] = Muon;
   FinalFlavours[2] = Tau;
@@ -43,15 +48,13 @@ OscProbCalcerCUDAProb3::OscProbCalcerCUDAProb3() : OscProbCalcerBase()
   OscChannels[1][2] = m_t;
 
   nThreads = 0;
-  EarthDensityFile = std::string();
-  //DB Should grab from some kind of config manager
-  EarthDensityFile = "../CUDAProb3/models/PREM_4layer.dat";
+  EarthDensityFile = "../CUDAProb3/models/PREM_4layer.dat"; //DB Get From Config
 }
 
 void OscProbCalcerCUDAProb3::SetupPropagator() {
 
 #ifdef UseGPU
-  std::cout << "Using GPU CUDAProb3 propagaator" << std::endl;
+  if (Verbose >= INFO) {std::cout << "Using GPU CUDAProb3 propagaator" << std::endl;}
   propagator = std::unique_ptr<Propagator<FLOAT_T>> ( new CudaPropagatorSingle<FLOAT_T>(0,nCosine, nEnergy)); // Single-GPU propagator
 #else
 
@@ -64,13 +67,15 @@ void OscProbCalcerCUDAProb3::SetupPropagator() {
   }
 #endif
 
-  std::cout << "Using CPU CUDAProb3 propagator with " << nThreads << " threads" << std::endl;
+  if (Verbose >= INFO) {std::cout << "Using CPU CUDAProb3 propagator with " << nThreads << " threads" << std::endl;}
   propagator = std::unique_ptr< Propagator< FLOAT_T > > ( new CpuPropagator<FLOAT_T>(fNCosineZPoints, fNEnergyPoints, nThreads)); // MultiThread CPU propagator
 #endif
 
   propagator->setEnergyList(fEnergyArray);
   propagator->setCosineList(fCosineZArray);
   propagator->setDensityFromFile(EarthDensityFile);
+
+  if (Verbose >= INFO) {std::cout << "Setup CUDAProb3 oscillation probability calculater" << std::endl;}
 }
  
 void OscProbCalcerCUDAProb3::CalculateProbabilities(std::vector<FLOAT_T> OscParams) {

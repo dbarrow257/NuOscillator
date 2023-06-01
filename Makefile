@@ -1,6 +1,6 @@
 INCS = -I.
 LIBS = -L/usr/lib64 -L/usr/lib
-CXXFLAGS = -Wall -fPIC -fopenmp -O3 -std=c++11
+CXXFLAGS = -Wall -fPIC -fopenmp -O3 -std=c++11 -g
 
 MultiThreadFlags = 
 ifdef MULTITHREAD

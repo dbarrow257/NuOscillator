@@ -11,7 +11,7 @@ namespace cudaprob3 { template<typename T> class Propagator;}
 
 class OscProbCalcerCUDAProb3 : public OscProbCalcerBase {
  public:
-  OscProbCalcerCUDAProb3();
+  OscProbCalcerCUDAProb3(std::string ConfigName_="");
 
  private:
   // ========================================================================================================================================================================
@@ -30,9 +30,10 @@ class OscProbCalcerCUDAProb3 : public OscProbCalcerBase {
   enum NuType{Nubar=-1, Nu=1};
   enum NuFlav{Electron=1, Muon=2, Tau=3};
 
+  std::string ConfigName;
+
   std::vector< std::vector<int> > OscChannels;
   int nThreads;
-
   std::unique_ptr< cudaprob3::Propagator< FLOAT_T > > propagator;
   std::string EarthDensityFile;
 };

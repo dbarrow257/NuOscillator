@@ -25,8 +25,6 @@ class OscProbCalcerProb3ppLinear : public OscProbCalcerBase {
   enum NuType{Nubar=-1, Nu=1};
   enum NuFlav{Electron=1, Muon=2, Tau=3};
 
-  std::vector<int> NeutrinoTypes;
-
   bool doubled_angle;
 
   BargerPropagator *bNu;
