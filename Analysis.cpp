@@ -38,6 +38,9 @@ int main() {
   OscParams_Beam[6] = 250.0;
   OscParams_Beam[7] = 2.6;
 
+  std::cout << "========================================================" << std::endl;
+  std::cout << "Starting setup in executable" << std::endl;
+
   std::vector<OscProbCalcerBase*> OscProbCalcers;
 
 #ifdef UseCUDAProb3
@@ -55,8 +58,15 @@ int main() {
   OscProbCalcers.push_back((OscProbCalcerBase*)ProbGPULinear);
 #endif
 
+  /*
   std::vector<FLOAT_T> EnergyArray = logspace(0.01,100,1000);
   std::vector<FLOAT_T> CosineZArray = linspace(-1.0,1.0,10);
+  */
+
+  std::vector<FLOAT_T> EnergyArray;
+  EnergyArray.push_back(10);
+  std::vector<FLOAT_T> CosineZArray;
+  CosineZArray.push_back(0.);
 
   // Setup propagators
   for (size_t iCalcer=0;iCalcer<OscProbCalcers.size();iCalcer++) {
@@ -64,6 +74,9 @@ int main() {
     OscProbCalcers[iCalcer]->SetCosineZArray(CosineZArray); 
     OscProbCalcers[iCalcer]->Setup();
   }
+  std::cout << "Finished setup in executable" << std::endl;
+  std::cout << "========================================================" << std::endl;
+  std::cout << "Starting reweight in executable" << std::endl;
 
   // Reweight and calculate oscillation probabilities
   for (size_t iCalcer=0;iCalcer<OscProbCalcers.size();iCalcer++) {
@@ -80,8 +93,11 @@ int main() {
       throw;
     }
 
-    //OscProbCalcers[iCalcer]->PrintWeights();
+    OscProbCalcers[iCalcer]->PrintWeights();
   }
+
+  std::cout << "Finished reweight in executable" << std::endl;
+  std::cout << "========================================================" << std::endl;
 }
 
 std::vector<FLOAT_T> logspace(FLOAT_T Emin, FLOAT_T  Emax, int nDiv) {

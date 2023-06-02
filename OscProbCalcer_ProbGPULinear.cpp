@@ -8,8 +8,8 @@ extern "C" void GetProb(int Alpha, int Beta, double Path, double Density, double
 OscProbCalcerProbGPULinear::OscProbCalcerProbGPULinear() : OscProbCalcerBase()
 {
   // Required variables
-  Verbose = INFO;
-  ImplementationName = "ProbGPU";
+  fVerbose = INFO;
+  fImplementationName = "ProbGPU";
 
   fNOscParams = kNOscParams;
 
@@ -40,7 +40,7 @@ void OscProbCalcerProbGPULinear::SetupPropagator() {
 }
 
 void OscProbCalcerProbGPULinear::CalculateProbabilities(std::vector<FLOAT_T> OscParams) {
-  setMNS(OscParams[kTH12], OscParams[kTH23], OscParams[kTH13], OscParams[kDM12], OscParams[kDM23], OscParams[kDCP], doubled_angle);
+  setMNS(OscParams[kTH12], OscParams[kTH13], OscParams[kTH23], OscParams[kDM12], OscParams[kDM23], OscParams[kDCP], doubled_angle);
 
   // ProbGPULinear calculates oscillation probabilites for each NeutrinoType, so need to copy them from the calculator into fWeightArray
   int CopyArrSize = fNEnergyPoints;
@@ -49,7 +49,7 @@ void OscProbCalcerProbGPULinear::CalculateProbabilities(std::vector<FLOAT_T> Osc
   for (int iNuType=0;iNuType<nNeutrinoTypes;iNuType++) {
     for (int iInitFlav=0;iInitFlav<nInitialFlavours;iInitFlav++) {
       for (int iFinalFlav=0;iFinalFlav<nFinalFlavours;iFinalFlav++) {
-	GetProb(NeutrinoTypes[iNuType]*iInitFlav, NeutrinoTypes[iNuType]*iFinalFlav, OscParams[kPATHL], OscParams[kDENS], fEnergyArray.data(), fNEnergyPoints, CopyArr);
+	GetProb(NeutrinoTypes[iNuType]*InitialFlavours[iInitFlav], NeutrinoTypes[iNuType]*FinalFlavours[iFinalFlav], OscParams[kPATHL], OscParams[kDENS], fEnergyArray.data(), fNEnergyPoints, CopyArr);
 
         // Mapping which links the oscillation channel, neutrino type and energy index to the fWeightArray index
         int IndexToFill = iNuType*nInitialFlavours*nFinalFlavours*CopyArrSize + iInitFlav*nFinalFlavours*CopyArrSize + iFinalFlav*CopyArrSize;

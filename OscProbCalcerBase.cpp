@@ -1,5 +1,6 @@
 #include "OscProbCalcerBase.h"
 
+#include <cmath>
 #include <math.h>
 
 #include <iostream>
@@ -7,8 +8,8 @@
 
 OscProbCalcerBase::OscProbCalcerBase() {
   // Set deafult values of all variables within this base object
-  Verbose = NONE;
-  ImplementationName = std::string();
+  fVerbose = NONE;
+  fImplementationName = std::string();
 
   nNeutrinoTypes = DUMMYVAL;
   NeutrinoTypes = std::vector<int>();
@@ -22,7 +23,7 @@ OscProbCalcerBase::OscProbCalcerBase() {
   fEnergyArray = std::vector<FLOAT_T>();
   fCosineZArray = std::vector<FLOAT_T>();
 
-  nWeights = DUMMYVAL;
+  fNWeights = DUMMYVAL;
   fWeightArray = std::vector<FLOAT_T>();
 
   fNOscParams = DUMMYVAL;
@@ -38,7 +39,7 @@ OscProbCalcerBase::OscProbCalcerBase() {
 void OscProbCalcerBase::SetEnergyArray(std::vector<FLOAT_T> EnergyArray) {
   if (fEnergyArraySet) {
     // Already defined the Energy array, or the implementation is designed such not to care about it
-    if (Verbose >= INFO) {std::cout << "EnergyArray was already found to be set in implementation:" << ImplementationName << std::endl;}
+    if (fVerbose >= INFO) {std::cout << "EnergyArray was already found to be set in implementation:" << fImplementationName << std::endl;}
     return;
   }
 
@@ -54,13 +55,13 @@ void OscProbCalcerBase::SetEnergyArray(std::vector<FLOAT_T> EnergyArray) {
 
   fNEnergyPoints = EnergyArray.size();
   fEnergyArraySet = true;
-  if (Verbose >= INFO) {std::cout << "Set EnergyArray in implementation:" << ImplementationName << std::endl;}
+  if (fVerbose >= INFO) {std::cout << "Set EnergyArray in implementation:" << fImplementationName << std::endl;}
 }
 
 void OscProbCalcerBase::SetCosineZArray(std::vector<FLOAT_T> CosineZArray) {
   if (fCosineZArraySet) {
     // Already defined the CosineZ array, or the implementation is designed such not to care about it
-    if (Verbose >= INFO) {std::cout << "CosineZArray was already found to be set in implementation:" << ImplementationName << std::endl;}
+    if (fVerbose >= INFO) {std::cout << "CosineZArray was already found to be set in implementation:" << fImplementationName << std::endl;}
     return;
   }
 
@@ -76,13 +77,15 @@ void OscProbCalcerBase::SetCosineZArray(std::vector<FLOAT_T> CosineZArray) {
 
   fNCosineZPoints = CosineZArray.size();
   fCosineZArraySet = true;
-  if (Verbose >= INFO) {std::cout << "Set CosineZArray in implementation:" << ImplementationName << std::endl;}
+  if (fVerbose >= INFO) {std::cout << "Set CosineZArray in implementation:" << fImplementationName << std::endl;}
 }
 
 void OscProbCalcerBase::IgnoreCosineZBinning(bool Ignore) {
+  //DB Add an actual ignore flag which can then be interrogated from a getter
+
   if (Ignore) {
     fCosineZArraySet = true;
-    if (Verbose >= INFO) {std::cout << "Ignoring CosineZArray in implementation:" << ImplementationName << std::endl;}
+    if (fVerbose >= INFO) {std::cout << "Ignoring CosineZArray in implementation:" << fImplementationName << std::endl;}
   }
 }
 
@@ -106,7 +109,6 @@ void OscProbCalcerBase::Setup() {
   CheckNuFlavourMapping();
 
   SanityCheck();
-  if (Verbose >= INFO) {std::cout << "Implementation:" << ImplementationName << " passed SanityCheck" << std::endl;}
 }
 
 // Neutrinos and antineutrinos are separated based on the sign of the flavour (Thus need to check whether the sign of both flavours is consistent)
@@ -134,11 +136,13 @@ const FLOAT_T* OscProbCalcerBase::ReturnPointerToWeight(int InitNuFlav, int Fina
     throw;
   }
 
-  if (Verbose >= INFO) {std::cout << "Implementation:" << ImplementationName << " returned pointer to index " << WeightArrayIndex << std::endl;}
+  if (fVerbose >= INFO) {std::cout << "Implementation:" << fImplementationName << " returned pointer to index " << WeightArrayIndex << std::endl;}
   return &(fWeightArray[WeightArrayIndex]);
 }
 
 void OscProbCalcerBase::Reweight(std::vector<FLOAT_T> OscParams) {
+  if (fVerbose >= INFO) {std::cout << "Implementation:" << fImplementationName << " starting reweight" << std::endl;}
+
   if ((int)OscParams.size() != fNOscParams) {
     std::cerr << "Number of oscillation parameters passed to calculater does not match that expected by the implementation" << std::endl;
     std::cerr << "OscParams.size():" << OscParams.size() << std::endl;
@@ -152,17 +156,29 @@ void OscProbCalcerBase::Reweight(std::vector<FLOAT_T> OscParams) {
   SetCurrOscParams(OscParams);
 
   CalculateProbabilities(OscParams);
-  if (Verbose >= INFO) {std::cout << "Implementation:" << ImplementationName << " completed reweight" << std::endl;}
+  SanitiseProbabilities();
+  if (fVerbose >= INFO) {std::cout << "Implementation:" << fImplementationName << " completed reweight and was found to have sensible oscillation weights" << std::endl;}
+}
+
+void OscProbCalcerBase::SanitiseProbabilities() {
+  for (int iWeight=0;iWeight<fNWeights;iWeight++) {
+    if (std::isnan(fWeightArray[iWeight]) || fWeightArray[iWeight] < 0.0 || fWeightArray[iWeight] > 1.0) {
+      std::cerr << "Found unreasonable weight in fWeightArray" << std::endl;
+      std::cerr << "iWeight:" << iWeight << std::endl;
+      std::cerr << "fWeightArray[iWeight]:" << fWeightArray[iWeight] << std::endl;
+      throw;
+    }
+  }
 }
 
 bool OscProbCalcerBase::AreOscParamsChanged(std::vector<FLOAT_T> OscParamsToCheck) {
   for (int iParam=0;iParam<fNOscParams;iParam++) {
     if (OscParamsToCheck[iParam] != fOscParamsCurr[iParam]) {
-      if (Verbose >= INFO) {std::cout << "Implementation:" << ImplementationName << " was found to have different oscillation parameters than the previous calculation" << std::endl;}
+      if (fVerbose >= INFO) {std::cout << "Implementation:" << fImplementationName << " was found to have different oscillation parameters than the previous calculation" << std::endl;}
       return true;
     }
   }
-  if (Verbose >= INFO) {std::cout << "Implementation:" << ImplementationName << " was found to have the same oscillation parameters than the previous calculation" << std::endl;}
+  if (fVerbose >= INFO) {std::cout << "Implementation:" << fImplementationName << " was found to have the same oscillation parameters than the previous calculation" << std::endl;}
   return false;
 }
 
@@ -174,11 +190,11 @@ void OscProbCalcerBase::SetCurrOscParams(std::vector<FLOAT_T> OscParamsToSave) {
   for (int iParam=0;iParam<fNOscParams;iParam++) {
     fOscParamsCurr[iParam] = OscParamsToSave[iParam];
   }
-  if (Verbose >= INFO) {std::cout << "Saved oscillation parameters in Implementation:" << ImplementationName << std::endl;}
+  if (fVerbose >= INFO) {std::cout << "Saved oscillation parameters in Implementation:" << fImplementationName << std::endl;}
 }
 
 void OscProbCalcerBase::PrintWeights() {
-  if (Verbose >= INFO) {std::cout << "Printing weights in Implementation:" << ImplementationName << std::endl;}
+  if (fVerbose >= INFO) {std::cout << "Printing weights in Implementation:" << fImplementationName << std::endl;}
   for (size_t i=0;i<fWeightArray.size();i++) {
     std::cout << std::setw(10) << i << " | " << fWeightArray[i] << std::endl;
     if (fWeightArray[i] == DUMMYVAL) {
@@ -208,7 +224,7 @@ int OscProbCalcerBase::ReturnEnergyIndexFromValue(FLOAT_T EnergyVal) {
     throw;
   }
 
-  if (Verbose >= INFO) {std::cout << "Returning Energy index:" << EnergyIndex << " for Energy value:" << EnergyVal << " in Implementation:" << ImplementationName << std::endl;}
+  if (fVerbose >= INFO) {std::cout << "Returning Energy index:" << EnergyIndex << " for Energy value:" << EnergyVal << " in Implementation:" << fImplementationName << std::endl;}
   return EnergyIndex;
 }
 
@@ -231,14 +247,14 @@ int OscProbCalcerBase::ReturnCosineZIndexFromValue(FLOAT_T CosineZVal) {
     throw;
   }
 
-  if (Verbose >= INFO) {std::cout << "Returning CosineZ index:" << CosineZIndex << " for CosineZ value:" << CosineZVal << " in Implementation:" << ImplementationName << std::endl;}
+  if (fVerbose >= INFO) {std::cout << "Returning CosineZ index:" << CosineZIndex << " for CosineZ value:" << CosineZVal << " in Implementation:" << fImplementationName << std::endl;}
   return CosineZIndex;
 }
 
 int OscProbCalcerBase::ReturnInitialIndexFromFlavour(int InitFlav) {
   for (size_t iFlav=0;iFlav<InitialFlavours.size();iFlav++) {
     if (fabs(InitFlav) == InitialFlavours[iFlav]) {
-      if (Verbose >= INFO) {std::cout << "Returning index:" << iFlav << " for InitFlav:" << InitFlav << " in Implementation:" << ImplementationName << std::endl;}
+      if (fVerbose >= INFO) {std::cout << "Returning index:" << iFlav << " for InitFlav:" << InitFlav << " in Implementation:" << fImplementationName << std::endl;}
       return iFlav;
     }
   }
@@ -252,7 +268,7 @@ int OscProbCalcerBase::ReturnInitialIndexFromFlavour(int InitFlav) {
 int OscProbCalcerBase::ReturnFinalIndexFromFlavour(int FinalFlav) {
   for (size_t iFlav=0;iFlav<FinalFlavours.size();iFlav++) {
     if (fabs(FinalFlav) == FinalFlavours[iFlav]) {
-      if (Verbose >= INFO) {std::cout << "Returning index:" << iFlav << " for FinalFlav:" << FinalFlav << " in Implementation:" << ImplementationName << std::endl;}
+      if (fVerbose >= INFO) {std::cout << "Returning index:" << iFlav << " for FinalFlav:" << FinalFlav << " in Implementation:" << fImplementationName << std::endl;}
       return iFlav;
     }
   }
@@ -268,7 +284,7 @@ int OscProbCalcerBase::ReturnNuTypeFromFlavour(int NuFlav) {
   
   for (int iType=0;iType<nNeutrinoTypes;iType++) {
     if (NuType == NeutrinoTypes[iType]) {
-      if (Verbose >= INFO) {std::cout << "Returning type:" << iType << " for NuFlav:" << NuFlav << " in Implementation:" << ImplementationName << std::endl;}
+      if (fVerbose >= INFO) {std::cout << "Returning type:" << iType << " for NuFlav:" << NuFlav << " in Implementation:" << fImplementationName << std::endl;}
       return iType;
     }
   }
@@ -280,10 +296,10 @@ int OscProbCalcerBase::ReturnNuTypeFromFlavour(int NuFlav) {
 }
 
 void OscProbCalcerBase::IntialiseWeightArray() {
-  nWeights = DefineWeightArraySize();
-  fWeightArray = std::vector<FLOAT_T>(nWeights,DUMMYVAL);  
+  fNWeights = DefineWeightArraySize();
+  fWeightArray = std::vector<FLOAT_T>(fNWeights,DUMMYVAL);  
   fWeightArrayInit = true;
-  if (Verbose >= INFO) {std::cout << "Initialising fWeightArray to be of size:" << nWeights << " in Implementation:" << ImplementationName << std::endl;}
+  if (fVerbose >= INFO) {std::cout << "Initialising fWeightArray to be of size:" << fNWeights << " in Implementation:" << fImplementationName << std::endl;}
 }
 
 void OscProbCalcerBase::InitialiseNeutrinoTypesArray(int Size) {
@@ -292,7 +308,7 @@ void OscProbCalcerBase::InitialiseNeutrinoTypesArray(int Size) {
     throw;
   }
   NeutrinoTypes = std::vector<int>(Size,DUMMYVAL);
-  if (Verbose >= INFO) {std::cout << "Initialising NeutrinoTypes to be of size:" << Size << " in Implementation:" << ImplementationName << std::endl;}
+  if (fVerbose >= INFO) {std::cout << "Initialising NeutrinoTypes to be of size:" << Size << " in Implementation:" << fImplementationName << std::endl;}
 }
 
 void OscProbCalcerBase::InitialiseInitialFlavoursArray(int Size) {
@@ -300,7 +316,7 @@ void OscProbCalcerBase::InitialiseInitialFlavoursArray(int Size) {
     std::cerr << "Attempting to initialise InitialFlavours array with size:" << Size << std::endl;
     throw;
   }
-  if (Verbose >= INFO) {std::cout << "Initialising InitialFlavours to be of size:" << Size << " in Implementation:" << ImplementationName << std::endl;}
+  if (fVerbose >= INFO) {std::cout << "Initialising InitialFlavours to be of size:" << Size << " in Implementation:" << fImplementationName << std::endl;}
   InitialFlavours = std::vector<int>(Size,DUMMYVAL);
 }
 
@@ -309,7 +325,7 @@ void OscProbCalcerBase::InitialiseFinalFlavoursArray(int Size) {
     std::cerr << "Attempting to initialise FinalFlavours array with size:" << Size << std::endl;
     throw;
   }
-  if (Verbose >= INFO) {std::cout << "Initialising FinalFlavours to be of size:" << Size << " in Implementation:" << ImplementationName << std::endl;}
+  if (fVerbose >= INFO) {std::cout << "Initialising FinalFlavours to be of size:" << Size << " in Implementation:" << fImplementationName << std::endl;}
   FinalFlavours = std::vector<int>(Size,DUMMYVAL);
 }
 
@@ -365,7 +381,7 @@ void OscProbCalcerBase::CheckNuFlavourMapping() {
     }
   }
 
-  if (Verbose >= INFO) {std::cout << "NeutrinoType and NeutrinoFlavour mapping was found to be OK in Implementation:" << ImplementationName << std::endl;}
+  if (fVerbose >= INFO) {std::cout << "NeutrinoType and NeutrinoFlavour mapping was found to be OK in Implementation:" << fImplementationName << std::endl;}
   fNuMappingSet = true;
 }
 
@@ -381,6 +397,6 @@ void OscProbCalcerBase::SanityCheck() {
     std::cerr << "fNuMappingSet:" << fNuMappingSet << std::endl;
     throw; 
   } else {
-    if (Verbose >= INFO) {std::cout << "OscProbCalcerBase object has been found to be 'sane'" << std::endl;}
+    if (fVerbose >= INFO) {std::cout << "Implementation:" << fImplementationName << " passed SanityCheck" << std::endl;}
   }
 }

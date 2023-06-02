@@ -85,6 +85,9 @@ class OscProbCalcerBase {
   // Initialise the array in which the oscillation probabilities will be stored.
   void IntialiseWeightArray();
 
+  // Ensure that the oscillation probabilities are within [0.,1.] range
+  void SanitiseProbabilities();
+
   // ========================================================================================================================================================================
   // Protected virtual functions which are calculation implementation agnostic
 
@@ -106,6 +109,8 @@ class OscProbCalcerBase {
 
   // Enums to define the mappings below. Each implementation is expected to define a mapping of which initial and neutrino flavours are considered, along with whether
   // neutrinos and antineutrinos are considered
+
+  //DB fXXX these parameters
   int nNeutrinoTypes;
   std::vector<int> NeutrinoTypes;
   int nInitialFlavours;
@@ -120,7 +125,7 @@ class OscProbCalcerBase {
   std::vector<FLOAT_T> fCosineZArray;
 
   // Place to store the oscillation probabilities
-  int nWeights;
+  int fNWeights;
   std::vector<FLOAT_T> fWeightArray;
 
   // Store the oscillation parameter set used to calculate the previous and current probabilities
@@ -130,11 +135,11 @@ class OscProbCalcerBase {
   std::vector<FLOAT_T> fOscParamsCurr;
 
   // Set some verbosity for console output
-  int Verbose;
-  enum Verbosity{NONE,INFO,CRITICAL,FATAL};
+  int fVerbose;
+  enum Verbosity{NONE,INFO};
 
   // Define the implementation name - Could be used for recasting later (similar to TObject::InheritsFrom() etc.)
-  std::string ImplementationName;
+  std::string fImplementationName;
 
  private:
   // ========================================================================================================================================================================

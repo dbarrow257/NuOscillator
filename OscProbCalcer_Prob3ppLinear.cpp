@@ -5,8 +5,8 @@
 OscProbCalcerProb3ppLinear::OscProbCalcerProb3ppLinear() : OscProbCalcerBase()
 {
   // Required variables
-  Verbose = INFO;
-  ImplementationName = "Prob3pp";
+  fVerbose = INFO;
+  fImplementationName = "Prob3pp";
 
   fNOscParams = kNOscParams;
 
@@ -36,7 +36,7 @@ void OscProbCalcerProb3ppLinear::SetupPropagator() {
    bNu = new BargerPropagator();
    bNu->UseMassEigenstates(false);
    bNu->SetOneMassScaleMode(false);
-   bNu->SetWarningSuppression(true); 
+   bNu->SetWarningSuppression(true);
 }
 
 void OscProbCalcerProb3ppLinear::CalculateProbabilities(std::vector<FLOAT_T> OscParams) {
@@ -49,9 +49,9 @@ void OscProbCalcerProb3ppLinear::CalculateProbabilities(std::vector<FLOAT_T> Osc
         int IndexToFill = iNuType*nInitialFlavours*nFinalFlavours*fNEnergyPoints + iInitFlav*nFinalFlavours*fNEnergyPoints + iFinalFlav*fNEnergyPoints;
 
         for (int iOscProb=0;iOscProb<fNEnergyPoints;iOscProb++) {
-	  bNu->SetMNS(OscParams[kTH12], OscParams[kTH23], OscParams[kTH13], OscParams[kDM12], OscParams[kDM23], OscParams[kDCP], fEnergyArray[iOscProb], doubled_angle);
-	  bNu->propagateLinear(NeutrinoTypes[iNuType]*iInitFlav, OscParams[kPATHL], OscParams[kDENS]);
-          fWeightArray[IndexToFill+iOscProb] = bNu->GetProb(NeutrinoTypes[iNuType]*iInitFlav, NeutrinoTypes[iNuType]*iFinalFlav);
+	  bNu->SetMNS(OscParams[kTH12], OscParams[kTH13], OscParams[kTH23], OscParams[kDM12], OscParams[kDM23], OscParams[kDCP], fEnergyArray[iOscProb], doubled_angle, NeutrinoTypes[iNuType]);
+	  bNu->propagateLinear(NeutrinoTypes[iNuType]*InitialFlavours[iInitFlav], OscParams[kPATHL], OscParams[kDENS]);
+          fWeightArray[IndexToFill+iOscProb] = bNu->GetProb(NeutrinoTypes[iNuType]*InitialFlavours[iInitFlav], NeutrinoTypes[iNuType]*FinalFlavours[iFinalFlav]);
         }
       }
     }

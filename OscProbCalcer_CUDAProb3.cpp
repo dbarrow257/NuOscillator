@@ -14,8 +14,8 @@ OscProbCalcerCUDAProb3::OscProbCalcerCUDAProb3(std::string ConfigName_) : OscPro
   ConfigName = ConfigName_; //DB Create yaml style config once built in MaCh3
 
   // Required variables
-  ImplementationName = "CUDAProb3";
-  Verbose = INFO; //DB Get From Config
+  fImplementationName = "CUDAProb3";
+  fVerbose = INFO; //DB Get From Config
 
   fNOscParams = kNOscParams;
 
@@ -54,7 +54,7 @@ OscProbCalcerCUDAProb3::OscProbCalcerCUDAProb3(std::string ConfigName_) : OscPro
 void OscProbCalcerCUDAProb3::SetupPropagator() {
 
 #ifdef UseGPU
-  if (Verbose >= INFO) {std::cout << "Using GPU CUDAProb3 propagaator" << std::endl;}
+  if (fVerbose >= INFO) {std::cout << "Using GPU CUDAProb3 propagaator" << std::endl;}
   propagator = std::unique_ptr<Propagator<FLOAT_T>> ( new CudaPropagatorSingle<FLOAT_T>(0,nCosine, nEnergy)); // Single-GPU propagator
 #else
 
@@ -67,7 +67,7 @@ void OscProbCalcerCUDAProb3::SetupPropagator() {
   }
 #endif
 
-  if (Verbose >= INFO) {std::cout << "Using CPU CUDAProb3 propagator with " << nThreads << " threads" << std::endl;}
+  if (fVerbose >= INFO) {std::cout << "Using CPU CUDAProb3 propagator with " << nThreads << " threads" << std::endl;}
   propagator = std::unique_ptr< Propagator< FLOAT_T > > ( new CpuPropagator<FLOAT_T>(fNCosineZPoints, fNEnergyPoints, nThreads)); // MultiThread CPU propagator
 #endif
 
@@ -75,7 +75,7 @@ void OscProbCalcerCUDAProb3::SetupPropagator() {
   propagator->setCosineList(fCosineZArray);
   propagator->setDensityFromFile(EarthDensityFile);
 
-  if (Verbose >= INFO) {std::cout << "Setup CUDAProb3 oscillation probability calculater" << std::endl;}
+  if (fVerbose >= INFO) {std::cout << "Setup CUDAProb3 oscillation probability calculater" << std::endl;}
 }
  
 void OscProbCalcerCUDAProb3::CalculateProbabilities(std::vector<FLOAT_T> OscParams) {
