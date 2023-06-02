@@ -62,10 +62,10 @@ OscProbCalcer_Prob3ppLinear.o : OscProbCalcerBase.o
 	g++ ${CXXFLAGS} ${LIBS} ${Prob3ppLinearLib} ${INCS} ${Prob3ppLinearInc} -o OscProbCalcer_Prob3ppLinear.o -c OscProbCalcer_Prob3ppLinear.cpp ${Prob3ppLinearFlags} ${FLOAT_TFLAGS}
 
 OscillatorBase.o : ${TAROBJS}
-	g++ ${CXXFLAGS} ${LIBS} ${TARLIBS} ${INCS} ${TARINCS} OscillatorBase.cpp ${TAROBJS} -o OscillatorBase.o ${TARFLAGS} ${FLOAT_TFLAGS}
+	g++ ${CXXFLAGS} ${LIBS} ${TARLIBS} ${INCS} ${TARINCS} -o OscillatorBase.o -c OscillatorBase.cpp ${TARFLAGS} ${FLOAT_TFLAGS}
 
 Analysis.exe: OscillatorBase.o
-	g++ ${CXXFLAGS} ${LIBS} ${TARLIBS} ${INCS} ${TARINCS} Analysis.cpp OscillatorBase.o -o Analysis.exe ${TARFLAGS} ${FLOAT_TFLAGS}
+	g++ ${CXXFLAGS} ${LIBS} ${TARLIBS} ${INCS} ${TARINCS} Analysis.cpp OscProbCalcerBase.o ${TAROBJS} OscillatorBase.o -o Analysis.exe ${TARFLAGS} ${FLOAT_TFLAGS}
 
 clean:
 	rm -f *.o

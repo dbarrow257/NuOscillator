@@ -7,7 +7,7 @@
 
 class OscProbCalcerProb3ppLinear : public OscProbCalcerBase {
  public:
-  OscProbCalcerProb3ppLinear();
+  OscProbCalcerProb3ppLinear(int Verbosity_=NONE);
 
   // ========================================================================================================================================================================
   // Functions which need implementation specific code

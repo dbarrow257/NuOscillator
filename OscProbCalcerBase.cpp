@@ -392,7 +392,7 @@ void OscProbCalcerBase::CheckNuFlavourMapping() {
   fNuMappingSet = true;
 }
 
-void OscProbCalcerBase::SanityCheck() {
+bool OscProbCalcerBase::SanityCheck() {
   bool IsSane = fEnergyArraySet && fCosineZArraySet && fPropagatorSet && fWeightArrayInit && fNuMappingSet;
   
   if (!IsSane) {
@@ -406,4 +406,6 @@ void OscProbCalcerBase::SanityCheck() {
   } else {
     if (fVerbose >= INFO) {std::cout << "Implementation:" << fImplementationName << " passed SanityCheck" << std::endl;}
   }
+
+  return IsSane;
 }

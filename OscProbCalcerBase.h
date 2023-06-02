@@ -33,16 +33,22 @@ class OscProbCalcerBase {
   void Setup();
 
   // Does my instance of OscProbCalcerBase pass all the sanity check;
-  void SanityCheck();
+  bool SanityCheck();
 
   // Print values of fWeightArray
   void PrintWeights();
 
   // Getters
-  int ReturnExpectedNOscParams() {return fNOscParams;}
+  int ReturnNOscParams() {return fNOscParams;}
+  std::vector<FLOAT_T> ReturnOscParamsCurr() {return fOscParamsCurr;}
   int ReturnNEnergyPoints() {return fNEnergyPoints;}
   int ReturnNCosineZPoints() {return fNCosineZPoints;}
+  std::vector<FLOAT_T> ReturnEnergyArray() {return fEnergyArray;}
+  std::vector<FLOAT_T> ReturnCosineZArray() {return fCosineZArray;}
   std::string ReturnImplementationName() {return fImplementationName;}
+  bool ReturnCosineZIgnored() {return fCosineZIgnored;}
+  int ReturnNWeights() {return fNWeights;}
+  std::vector<FLOAT_T> ReturnWeightArray() {return fWeightArray;}
 
   // ========================================================================================================================================================================
   // Public virtual functions which need calculater specific implementations

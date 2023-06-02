@@ -5,10 +5,10 @@ extern "C" void GetProb(int Alpha, int Beta, double Path, double Density, double
 
 #include <iostream>
 
-OscProbCalcerProbGPULinear::OscProbCalcerProbGPULinear() : OscProbCalcerBase()
+OscProbCalcerProbGPULinear::OscProbCalcerProbGPULinear(int Verbosity_) : OscProbCalcerBase()
 {
   // Required variables
-  fVerbose = INFO;
+  fVerbose = Verbosity_;
   fImplementationName = "ProbGPU";
 
   fNOscParams = kNOscParams;

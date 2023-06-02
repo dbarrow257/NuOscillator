@@ -15,23 +15,20 @@
 #include <iostream>
 
 OscillatorBase::OscillatorBase() {
-  InitialiseOscProbCalcer();
-}
-
-void OscillatorBase::InitialiseOscProbCalcer() {
+  fVerbose = NONE;
 
 #ifdef UseCUDAProb3
-  OscProbCalcerCUDAProb3* CUDAProb3 = new OscProbCalcerCUDAProb3();
+  OscProbCalcerCUDAProb3* CUDAProb3 = new OscProbCalcerCUDAProb3("",fVerbose);
   OPCalcer = (OscProbCalcerBase*)CUDAProb3;
 #endif
 
 #ifdef UseProb3ppLinear
-  OscProbCalcerProb3ppLinear* Prob3ppLinear = new OscProbCalcerProb3ppLinear();
+  OscProbCalcerProb3ppLinear* Prob3ppLinear = new OscProbCalcerProb3ppLinear(fVerbose);
   OPCalcer = (OscProbCalcerBase*)Prob3ppLinear;
 #endif
 
 #ifdef UseProbGPULinear
-  OscProbCalcerProbGPULinear* ProbGPULinear = new OscProbCalcerProbGPULinear();
+  OscProbCalcerProbGPULinear* ProbGPULinear = new OscProbCalcerProbGPULinear(fVerbose);
   OPCalcer = (OscProbCalcerBase*)ProbGPULinear;
 #endif
 }

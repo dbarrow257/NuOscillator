@@ -9,13 +9,13 @@
 #include <iostream>
 using namespace cudaprob3;
 
-OscProbCalcerCUDAProb3::OscProbCalcerCUDAProb3(std::string ConfigName_) : OscProbCalcerBase()
+OscProbCalcerCUDAProb3::OscProbCalcerCUDAProb3(std::string ConfigName_, int Verbosity_) : OscProbCalcerBase()
 {
   ConfigName = ConfigName_; //DB Create yaml style config once built in MaCh3
 
   // Required variables
   fImplementationName = "CUDAProb3";
-  fVerbose = INFO; //DB Get From Config
+  fVerbose = Verbosity_; //DB Get from config and remove from constructor
 
   fNOscParams = kNOscParams;
 
@@ -48,7 +48,7 @@ OscProbCalcerCUDAProb3::OscProbCalcerCUDAProb3(std::string ConfigName_) : OscPro
   OscChannels[1][2] = m_t;
 
   nThreads = 0;
-  EarthDensityFile = "../CUDAProb3/models/PREM_4layer.dat"; //DB Get From Config
+  EarthDensityFile = "../CUDAProb3/models/PREM_4layer.dat"; //DB Get from config
 }
 
 void OscProbCalcerCUDAProb3::SetupPropagator() {

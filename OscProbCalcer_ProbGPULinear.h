@@ -5,7 +5,7 @@
 
 class OscProbCalcerProbGPULinear : public OscProbCalcerBase {
  public:
-  OscProbCalcerProbGPULinear();
+  OscProbCalcerProbGPULinear(int Verbosity_=NONE);
 
   // ========================================================================================================================================================================
   // Functions which need implementation specific code

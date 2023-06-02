@@ -1,5 +1,7 @@
 #include "OscillatorBase.h"
 
+#include <iostream>
+
 int main() {
   std::cout << "========================================================" << std::endl;
   std::cout << "Starting setup in executable" << std::endl;

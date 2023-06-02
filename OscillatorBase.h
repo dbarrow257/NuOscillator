@@ -20,8 +20,6 @@ class OscillatorBase {
   // ========================================================================================================================================================================
   // Protected functions which are calculation implementation agnostic  
 
-  void InitialiseOscProbCalcer();
-
   // ========================================================================================================================================================================
   // Protected virtual functions which are calculation implementation agnostic
 
@@ -29,6 +27,9 @@ class OscillatorBase {
   // Basic protected variables required for oscillation probability calculation
 
   OscProbCalcerBase* OPCalcer;
+
+  int fVerbose;
+  enum Verbosity{NONE,INFO};
 
  private:
   // ========================================================================================================================================================================

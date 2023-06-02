@@ -11,7 +11,7 @@ namespace cudaprob3 { template<typename T> class Propagator;}
 
 class OscProbCalcerCUDAProb3 : public OscProbCalcerBase {
  public:
-  OscProbCalcerCUDAProb3(std::string ConfigName_="");
+  OscProbCalcerCUDAProb3(std::string ConfigName_="", int Verbosity_=NONE);
 
  private:
   // ========================================================================================================================================================================

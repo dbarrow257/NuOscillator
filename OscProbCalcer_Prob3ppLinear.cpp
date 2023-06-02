@@ -2,10 +2,10 @@
 
 #include <iostream>
 
-OscProbCalcerProb3ppLinear::OscProbCalcerProb3ppLinear() : OscProbCalcerBase()
+OscProbCalcerProb3ppLinear::OscProbCalcerProb3ppLinear(int Verbosity_) : OscProbCalcerBase()
 {
   // Required variables
-  fVerbose = INFO;
+  fVerbose = Verbosity_;
   fImplementationName = "Prob3pp";
 
   fNOscParams = kNOscParams;
