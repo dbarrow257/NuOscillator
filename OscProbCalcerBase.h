@@ -1,5 +1,5 @@
-#ifndef __OSCILLATOR_BASE_H__
-#define __OSCILLATOR_BASE_H__
+#ifndef __OSCPROBCALCER_BASE_H__
+#define __OSCPROBCALCER_BASE_H__
 
 #define DUMMYVAL -999
 
@@ -42,6 +42,7 @@ class OscProbCalcerBase {
   int ReturnExpectedNOscParams() {return fNOscParams;}
   int ReturnNEnergyPoints() {return fNEnergyPoints;}
   int ReturnNCosineZPoints() {return fNCosineZPoints;}
+  std::string ReturnImplementationName() {return fImplementationName;}
 
   // ========================================================================================================================================================================
   // Public virtual functions which need calculater specific implementations

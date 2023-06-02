@@ -49,20 +49,23 @@ FLOAT_TFLAGS = -DUsingDoubles=1
 
 all: Analysis.exe
 
-OscProbCalcerBase.o : OscProbCalcerBase.cpp
+OscProbCalcerBase.o : 
 	g++ $(CXXFLAGS) ${LIBS} ${INCS} -o OscProbCalcerBase.o -c OscProbCalcerBase.cpp ${FLOAT_TFLAGS}
 
-OscProbCalcer_CUDAProb3.o : OscProbCalcerBase.o OscProbCalcer_CUDAProb3.cpp
+OscProbCalcer_CUDAProb3.o : OscProbCalcerBase.o
 	g++ ${CXXFLAGS} ${LIBS} ${CUDAProb3Lib} ${INCS} ${CUDAProb3Inc} -o OscProbCalcer_CUDAProb3.o -c OscProbCalcer_CUDAProb3.cpp ${CUDAProb3Flags} ${FLOAT_TFLAGS} ${MultiThreadFlags}
 
-OscProbCalcer_ProbGPULinear.o : OscProbCalcerBase.o OscProbCalcer_ProbGPULinear.cpp
+OscProbCalcer_ProbGPULinear.o : OscProbCalcerBase.o
 	g++ ${CXXFLAGS} ${LIBS} ${ProbGPULinearLib} ${INCS} ${ProbGPULinearInc} -o OscProbCalcer_ProbGPULinear.o -c OscProbCalcer_ProbGPULinear.cpp ${ProbGPULinearFlags} ${FLOAT_TFLAGS}
 
-OscProbCalcer_Prob3ppLinear.o : OscProbCalcerBase.o OscProbCalcer_Prob3ppLinear.cpp
+OscProbCalcer_Prob3ppLinear.o : OscProbCalcerBase.o
 	g++ ${CXXFLAGS} ${LIBS} ${Prob3ppLinearLib} ${INCS} ${Prob3ppLinearInc} -o OscProbCalcer_Prob3ppLinear.o -c OscProbCalcer_Prob3ppLinear.cpp ${Prob3ppLinearFlags} ${FLOAT_TFLAGS}
 
-Analysis.exe: OscProbCalcerBase.o ${TAROBJS}
-	g++ ${CXXFLAGS} ${LIBS} ${TARLIBS} ${INCS} ${TARINCS} Analysis.cpp ${TAROBJS} OscProbCalcerBase.o -o Analysis.exe ${TARFLAGS} ${FLOAT_TFLAGS}
+OscillatorBase.o : ${TAROBJS}
+	g++ ${CXXFLAGS} ${LIBS} ${TARLIBS} ${INCS} ${TARINCS} OscillatorBase.cpp ${TAROBJS} -o OscillatorBase.o ${TARFLAGS} ${FLOAT_TFLAGS}
+
+Analysis.exe: OscillatorBase.o
+	g++ ${CXXFLAGS} ${LIBS} ${TARLIBS} ${INCS} ${TARINCS} Analysis.cpp OscillatorBase.o -o Analysis.exe ${TARFLAGS} ${FLOAT_TFLAGS}
 
 clean:
 	rm -f *.o

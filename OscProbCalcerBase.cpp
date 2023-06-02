@@ -89,8 +89,6 @@ void OscProbCalcerBase::SetCosineZArray(std::vector<FLOAT_T> CosineZArray) {
 }
 
 void OscProbCalcerBase::IgnoreCosineZBinning(bool Ignore) {
-  //DB Add an actual ignore flag which can then be interrogated from a getter
-
   if (Ignore) {
     fCosineZArraySet = true;
     fCosineZIgnored = true;
