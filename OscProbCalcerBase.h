@@ -110,13 +110,12 @@ class OscProbCalcerBase {
   // Enums to define the mappings below. Each implementation is expected to define a mapping of which initial and neutrino flavours are considered, along with whether
   // neutrinos and antineutrinos are considered
 
-  //DB fXXX these parameters
-  int nNeutrinoTypes;
-  std::vector<int> NeutrinoTypes;
-  int nInitialFlavours;
-  std::vector<int> InitialFlavours;
-  int nFinalFlavours;
-  std::vector<int> FinalFlavours;
+  int fNNeutrinoTypes;
+  std::vector<int> fNeutrinoTypes;
+  int fNInitialFlavours;
+  std::vector<int> fInitialFlavours;
+  int fNFinalFlavours;
+  std::vector<int> fFinalFlavours;
 
   // Store energy and cosine points which will be used when calculating oscillation probabilities
   int fNEnergyPoints;
@@ -140,6 +139,9 @@ class OscProbCalcerBase {
 
   // Define the implementation name - Could be used for recasting later (similar to TObject::InheritsFrom() etc.)
   std::string fImplementationName;
+
+  // Flag to define whether the CosineZ binning has been ignored in the specific implementation
+  bool fCosineZIgnored;
 
  private:
   // ========================================================================================================================================================================

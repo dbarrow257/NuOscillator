@@ -11,12 +11,12 @@ OscProbCalcerBase::OscProbCalcerBase() {
   fVerbose = NONE;
   fImplementationName = std::string();
 
-  nNeutrinoTypes = DUMMYVAL;
-  NeutrinoTypes = std::vector<int>();
-  nInitialFlavours = DUMMYVAL;
-  InitialFlavours = std::vector<int>();
-  nFinalFlavours = DUMMYVAL;
-  FinalFlavours = std::vector<int>();
+  fNNeutrinoTypes = DUMMYVAL;
+  fNeutrinoTypes = std::vector<int>();
+  fNInitialFlavours = DUMMYVAL;
+  fInitialFlavours = std::vector<int>();
+  fNFinalFlavours = DUMMYVAL;
+  fFinalFlavours = std::vector<int>();
 
   fNEnergyPoints = DUMMYVAL;
   fNCosineZPoints = DUMMYVAL;
@@ -28,6 +28,8 @@ OscProbCalcerBase::OscProbCalcerBase() {
 
   fNOscParams = DUMMYVAL;
   fOscParamsCurr = std::vector<FLOAT_T>();
+
+  fCosineZIgnored = false;
 
   fEnergyArraySet = false;
   fCosineZArraySet = false;
@@ -59,6 +61,12 @@ void OscProbCalcerBase::SetEnergyArray(std::vector<FLOAT_T> EnergyArray) {
 }
 
 void OscProbCalcerBase::SetCosineZArray(std::vector<FLOAT_T> CosineZArray) {
+  if (fCosineZIgnored) {
+    // The implementation is designed such not to care about it
+    if (fVerbose >= INFO) {std::cout << "CosineZArray is ignored in implementation:" << fImplementationName << std::endl;}
+    return;
+  }
+
   if (fCosineZArraySet) {
     // Already defined the CosineZ array, or the implementation is designed such not to care about it
     if (fVerbose >= INFO) {std::cout << "CosineZArray was already found to be set in implementation:" << fImplementationName << std::endl;}
@@ -85,6 +93,7 @@ void OscProbCalcerBase::IgnoreCosineZBinning(bool Ignore) {
 
   if (Ignore) {
     fCosineZArraySet = true;
+    fCosineZIgnored = true;
     if (fVerbose >= INFO) {std::cout << "Ignoring CosineZArray in implementation:" << fImplementationName << std::endl;}
   }
 }
@@ -252,8 +261,8 @@ int OscProbCalcerBase::ReturnCosineZIndexFromValue(FLOAT_T CosineZVal) {
 }
 
 int OscProbCalcerBase::ReturnInitialIndexFromFlavour(int InitFlav) {
-  for (size_t iFlav=0;iFlav<InitialFlavours.size();iFlav++) {
-    if (fabs(InitFlav) == InitialFlavours[iFlav]) {
+  for (size_t iFlav=0;iFlav<fInitialFlavours.size();iFlav++) {
+    if (fabs(InitFlav) == fInitialFlavours[iFlav]) {
       if (fVerbose >= INFO) {std::cout << "Returning index:" << iFlav << " for InitFlav:" << InitFlav << " in Implementation:" << fImplementationName << std::endl;}
       return iFlav;
     }
@@ -261,13 +270,13 @@ int OscProbCalcerBase::ReturnInitialIndexFromFlavour(int InitFlav) {
 
   std::cerr << "Requested Initial Neutrino flavour is not defined within the InitialFlavour map!" << std::endl;
   std::cerr << "InitNuFlav:" << InitFlav << std::endl;
-  std::cerr << "nInitialFlavours:" << nInitialFlavours << std::endl;
+  std::cerr << "fNInitialFlavours:" << fNInitialFlavours << std::endl;
   throw;
 }
 
 int OscProbCalcerBase::ReturnFinalIndexFromFlavour(int FinalFlav) {
-  for (size_t iFlav=0;iFlav<FinalFlavours.size();iFlav++) {
-    if (fabs(FinalFlav) == FinalFlavours[iFlav]) {
+  for (size_t iFlav=0;iFlav<fFinalFlavours.size();iFlav++) {
+    if (fabs(FinalFlav) == fFinalFlavours[iFlav]) {
       if (fVerbose >= INFO) {std::cout << "Returning index:" << iFlav << " for FinalFlav:" << FinalFlav << " in Implementation:" << fImplementationName << std::endl;}
       return iFlav;
     }
@@ -275,15 +284,15 @@ int OscProbCalcerBase::ReturnFinalIndexFromFlavour(int FinalFlav) {
 
   std::cerr << "Requested Final Neutrino flavour is not defined within the FinalFlavour map!" << std::endl;
   std::cerr << "InitNuFlav:" << FinalFlav << std::endl;
-  std::cerr << "nFinalFlavours:" << nFinalFlavours << std::endl;
+  std::cerr << "fNFinalFlavours:" << fNFinalFlavours << std::endl;
   throw;
 }
 
 int OscProbCalcerBase::ReturnNuTypeFromFlavour(int NuFlav) {
   int NuType = (NuFlav > 0) - (NuFlav < 0); // Calculates the sign of NuFlav
   
-  for (int iType=0;iType<nNeutrinoTypes;iType++) {
-    if (NuType == NeutrinoTypes[iType]) {
+  for (int iType=0;iType<fNNeutrinoTypes;iType++) {
+    if (NuType == fNeutrinoTypes[iType]) {
       if (fVerbose >= INFO) {std::cout << "Returning type:" << iType << " for NuFlav:" << NuFlav << " in Implementation:" << fImplementationName << std::endl;}
       return iType;
     }
@@ -304,78 +313,78 @@ void OscProbCalcerBase::IntialiseWeightArray() {
 
 void OscProbCalcerBase::InitialiseNeutrinoTypesArray(int Size) {
   if (Size <= 0) {
-    std::cerr << "Attempting to initialise NeutrinoTypes array with size:" << Size << std::endl;
+    std::cerr << "Attempting to initialise fNeutrinoTypes array with size:" << Size << std::endl;
     throw;
   }
-  NeutrinoTypes = std::vector<int>(Size,DUMMYVAL);
-  if (fVerbose >= INFO) {std::cout << "Initialising NeutrinoTypes to be of size:" << Size << " in Implementation:" << fImplementationName << std::endl;}
+  fNeutrinoTypes = std::vector<int>(Size,DUMMYVAL);
+  if (fVerbose >= INFO) {std::cout << "Initialising fNeutrinoTypes to be of size:" << Size << " in Implementation:" << fImplementationName << std::endl;}
 }
 
 void OscProbCalcerBase::InitialiseInitialFlavoursArray(int Size) {
   if (Size <= 0) {
-    std::cerr << "Attempting to initialise InitialFlavours array with size:" << Size << std::endl;
+    std::cerr << "Attempting to initialise fInitialFlavours array with size:" << Size << std::endl;
     throw;
   }
-  if (fVerbose >= INFO) {std::cout << "Initialising InitialFlavours to be of size:" << Size << " in Implementation:" << fImplementationName << std::endl;}
-  InitialFlavours = std::vector<int>(Size,DUMMYVAL);
+  if (fVerbose >= INFO) {std::cout << "Initialising fInitialFlavours to be of size:" << Size << " in Implementation:" << fImplementationName << std::endl;}
+  fInitialFlavours = std::vector<int>(Size,DUMMYVAL);
 }
 
 void OscProbCalcerBase::InitialiseFinalFlavoursArray(int Size) {
   if (Size <= 0) {
-    std::cerr << "Attempting to initialise FinalFlavours array with size:" << Size << std::endl;
+    std::cerr << "Attempting to initialise fFinalFlavours array with size:" << Size << std::endl;
     throw;
   }
-  if (fVerbose >= INFO) {std::cout << "Initialising FinalFlavours to be of size:" << Size << " in Implementation:" << fImplementationName << std::endl;}
-  FinalFlavours = std::vector<int>(Size,DUMMYVAL);
+  if (fVerbose >= INFO) {std::cout << "Initialising fFinalFlavours to be of size:" << Size << " in Implementation:" << fImplementationName << std::endl;}
+  fFinalFlavours = std::vector<int>(Size,DUMMYVAL);
 }
 
 void OscProbCalcerBase::CheckNuFlavourMapping() {
-  if (nNeutrinoTypes == DUMMYVAL || nInitialFlavours == DUMMYVAL || nFinalFlavours == DUMMYVAL) {
+  if (fNNeutrinoTypes == DUMMYVAL || fNInitialFlavours == DUMMYVAL || fNFinalFlavours == DUMMYVAL) {
     std::cerr << "Number of neutrino types or flavours have not been correctly defined:" << std::endl;
-    std::cerr << "nNeutrinoTypes:" << nNeutrinoTypes << std::endl;
-    std::cerr << "nInitialFlavours:" << nInitialFlavours << std::endl;
-    std::cerr << "nFinalFlavours:" << nFinalFlavours << std::endl;
+    std::cerr << "fNNeutrinoTypes:" << fNNeutrinoTypes << std::endl;
+    std::cerr << "fNInitialFlavours:" << fNInitialFlavours << std::endl;
+    std::cerr << "fNFinalFlavours:" << fNFinalFlavours << std::endl;
     std::cerr << "DUMMYVAL:" << DUMMYVAL << std::endl;
     throw;
   }
 
-  if (nNeutrinoTypes != (int)NeutrinoTypes.size()) {
-    std::cerr << "NeutrinoTypes array not equal in size to nNeutrinoTypes" << std::endl;
-    std::cerr << "nNeutrinoTypes:" << nNeutrinoTypes << std::endl;
-    std::cerr << "NeutrinoTypes.size():" << NeutrinoTypes.size() << std::endl;
+  if (fNNeutrinoTypes != (int)fNeutrinoTypes.size()) {
+    std::cerr << "fNeutrinoTypes array not equal in size to fNNeutrinoTypes" << std::endl;
+    std::cerr << "fNNeutrinoTypes:" << fNNeutrinoTypes << std::endl;
+    std::cerr << "fNeutrinoTypes.size():" << fNeutrinoTypes.size() << std::endl;
     throw;
   }
-  for (int iNuType=0;iNuType<nNeutrinoTypes;iNuType++) {
-    if (NeutrinoTypes[iNuType]==DUMMYVAL) {
-      std::cerr << "Found DUMMYVAL in NeutrinoTypes" << std::endl;
+  for (int iNuType=0;iNuType<fNNeutrinoTypes;iNuType++) {
+    if (fNeutrinoTypes[iNuType]==DUMMYVAL) {
+      std::cerr << "Found DUMMYVAL in fNeutrinoTypes" << std::endl;
       std::cerr << "iNuType:" << iNuType << std::endl;
       throw;
     }
   }
 
-  if (nInitialFlavours != (int)InitialFlavours.size()) {
-    std::cerr << "InitialFlavours array not equal in size to nInitialFlavours" << std::endl;
-    std::cerr << "nInitialFlavours:" << nInitialFlavours << std::endl;
-    std::cerr << "InitialFlavours.size():" << InitialFlavours.size() << std::endl;
+  if (fNInitialFlavours != (int)fInitialFlavours.size()) {
+    std::cerr << "fInitialFlavours array not equal in size to fNInitialFlavours" << std::endl;
+    std::cerr << "fNInitialFlavours:" << fNInitialFlavours << std::endl;
+    std::cerr << "fInitialFlavours.size():" << fInitialFlavours.size() << std::endl;
     throw;
   }
-  for (int iNuFlav=0;iNuFlav<nInitialFlavours;iNuFlav++) {
-    if (InitialFlavours[iNuFlav]==DUMMYVAL) {
-      std::cerr << "Found DUMMYVAL in InitialFlavours" << std::endl;
+  for (int iNuFlav=0;iNuFlav<fNInitialFlavours;iNuFlav++) {
+    if (fInitialFlavours[iNuFlav]==DUMMYVAL) {
+      std::cerr << "Found DUMMYVAL in fInitialFlavours" << std::endl;
       std::cerr << "iNuFlav:" << iNuFlav << std::endl;
       throw;
     }
   }
 
-  if (nFinalFlavours != (int)FinalFlavours.size()) {
-    std::cerr << "FinalFlavours array not equal in size to nFinalFlavours" << std::endl;
-    std::cerr << "nFinalFlavours:" << nFinalFlavours << std::endl;
-    std::cerr << "FinalFlavours.size():" << FinalFlavours.size() << std::endl;
+  if (fNFinalFlavours != (int)fFinalFlavours.size()) {
+    std::cerr << "fFinalFlavours array not equal in size to fNFinalFlavours" << std::endl;
+    std::cerr << "fNFinalFlavours:" << fNFinalFlavours << std::endl;
+    std::cerr << "fFinalFlavours.size():" << fFinalFlavours.size() << std::endl;
     throw;
   }
-  for (int iNuFlav=0;iNuFlav<nFinalFlavours;iNuFlav++) {
-    if (FinalFlavours[iNuFlav]==DUMMYVAL) {
-      std::cerr << "Found DUMMYVAL in FinalFlavours" << std::endl;
+  for (int iNuFlav=0;iNuFlav<fNFinalFlavours;iNuFlav++) {
+    if (fFinalFlavours[iNuFlav]==DUMMYVAL) {
+      std::cerr << "Found DUMMYVAL in fFinalFlavours" << std::endl;
       std::cerr << "iNuFlav:" << iNuFlav << std::endl;
       throw;
     }

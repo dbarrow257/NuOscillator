@@ -13,20 +13,20 @@ OscProbCalcerProbGPULinear::OscProbCalcerProbGPULinear() : OscProbCalcerBase()
 
   fNOscParams = kNOscParams;
 
-  nNeutrinoTypes = 2;
-  InitialiseNeutrinoTypesArray(nNeutrinoTypes);
-  NeutrinoTypes[0] = Nu;
-  NeutrinoTypes[1] = Nubar;
+  fNNeutrinoTypes = 2;
+  InitialiseNeutrinoTypesArray(fNNeutrinoTypes);
+  fNeutrinoTypes[0] = Nu;
+  fNeutrinoTypes[1] = Nubar;
 
-  nInitialFlavours = 2;
-  InitialiseInitialFlavoursArray(nInitialFlavours);
-  InitialFlavours[0] = Electron;
-  InitialFlavours[1] = Muon;
+  fNInitialFlavours = 2;
+  InitialiseInitialFlavoursArray(fNInitialFlavours);
+  fInitialFlavours[0] = Electron;
+  fInitialFlavours[1] = Muon;
 
-  nFinalFlavours = 2;
-  InitialiseFinalFlavoursArray(nFinalFlavours);
-  FinalFlavours[0] = Electron;
-  FinalFlavours[1] = Muon;
+  fNFinalFlavours = 2;
+  InitialiseFinalFlavoursArray(fNFinalFlavours);
+  fFinalFlavours[0] = Electron;
+  fFinalFlavours[1] = Muon;
 
   // This implementation only considers linear propagation, thus no requirement to set cosineZ array
   IgnoreCosineZBinning(true);
@@ -46,13 +46,13 @@ void OscProbCalcerProbGPULinear::CalculateProbabilities(std::vector<FLOAT_T> Osc
   int CopyArrSize = fNEnergyPoints;
   FLOAT_T* CopyArr = new FLOAT_T[CopyArrSize];
 
-  for (int iNuType=0;iNuType<nNeutrinoTypes;iNuType++) {
-    for (int iInitFlav=0;iInitFlav<nInitialFlavours;iInitFlav++) {
-      for (int iFinalFlav=0;iFinalFlav<nFinalFlavours;iFinalFlav++) {
-	GetProb(NeutrinoTypes[iNuType]*InitialFlavours[iInitFlav], NeutrinoTypes[iNuType]*FinalFlavours[iFinalFlav], OscParams[kPATHL], OscParams[kDENS], fEnergyArray.data(), fNEnergyPoints, CopyArr);
+  for (int iNuType=0;iNuType<fNNeutrinoTypes;iNuType++) {
+    for (int iInitFlav=0;iInitFlav<fNInitialFlavours;iInitFlav++) {
+      for (int iFinalFlav=0;iFinalFlav<fNFinalFlavours;iFinalFlav++) {
+	GetProb(fNeutrinoTypes[iNuType]*fInitialFlavours[iInitFlav], fNeutrinoTypes[iNuType]*fFinalFlavours[iFinalFlav], OscParams[kPATHL], OscParams[kDENS], fEnergyArray.data(), fNEnergyPoints, CopyArr);
 
         // Mapping which links the oscillation channel, neutrino type and energy index to the fWeightArray index
-        int IndexToFill = iNuType*nInitialFlavours*nFinalFlavours*CopyArrSize + iInitFlav*nFinalFlavours*CopyArrSize + iFinalFlav*CopyArrSize;
+        int IndexToFill = iNuType*fNInitialFlavours*fNFinalFlavours*CopyArrSize + iInitFlav*fNFinalFlavours*CopyArrSize + iFinalFlav*CopyArrSize;
         for (int iOscProb=0;iOscProb<CopyArrSize;iOscProb++) {
           fWeightArray[IndexToFill+iOscProb] = CopyArr[iOscProb];
         }
@@ -62,11 +62,11 @@ void OscProbCalcerProbGPULinear::CalculateProbabilities(std::vector<FLOAT_T> Osc
 }
 
 int OscProbCalcerProbGPULinear::ReturnWeightArrayIndex(int NuTypeIndex, int InitNuIndex, int FinalNuIndex, int EnergyIndex, int CosineZIndex) {
-  int IndexToReturn = NuTypeIndex*nInitialFlavours*nFinalFlavours*fNEnergyPoints + InitNuIndex*nFinalFlavours*fNEnergyPoints + FinalNuIndex*fNEnergyPoints + EnergyIndex;
+  int IndexToReturn = NuTypeIndex*fNInitialFlavours*fNFinalFlavours*fNEnergyPoints + InitNuIndex*fNFinalFlavours*fNEnergyPoints + FinalNuIndex*fNEnergyPoints + EnergyIndex;
   return IndexToReturn;
 }
 
 long OscProbCalcerProbGPULinear::DefineWeightArraySize() {
-  long nCalculationPoints = fNEnergyPoints * nInitialFlavours * nFinalFlavours * nNeutrinoTypes;
+  long nCalculationPoints = fNEnergyPoints * fNInitialFlavours * fNFinalFlavours * fNNeutrinoTypes;
   return nCalculationPoints;
 }
