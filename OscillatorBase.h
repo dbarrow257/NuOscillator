@@ -3,6 +3,12 @@
 
 #include "OscProbCalcerBase.h"
 
+/**
+ * \brief Oscillation calculation technique (binned, unbinned, etc.) implementation agnostic base class\
+ * 
+ * Some detailed information
+ */
+
 class OscillatorBase {
  public:
 
