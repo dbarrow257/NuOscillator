@@ -2,9 +2,12 @@
 
 #include <iostream>
 
-OscillatorUnbinned::OscillatorUnbinned(std::vector<std::string> OscProbCalcerImplementationToCreate, bool fCosineZIgnored_) : OscillatorBase(OscProbCalcerImplementationToCreate) {
-  //DB Grab this from the config manager
-  fCosineZIgnored = fCosineZIgnored_;
+OscillatorUnbinned::OscillatorUnbinned(std::vector<std::string> OscProbCalcerImplementationToCreate, int Verbosity_, bool CosineZIgnored_) : OscillatorBase(OscProbCalcerImplementationToCreate) {
+  //=======
+  //DB Grab the following from config manager - Currently brought through via constructor
+  fVerbose = Verbosity_;
+  fCosineZIgnored = CosineZIgnored_;
+  //=======
 }
 
 const FLOAT_T* OscillatorUnbinned::ReturnWeightPointer(int InitNuFlav, int FinalNuFlav, FLOAT_T EnergyVal, FLOAT_T CosineZVal) {
@@ -17,4 +20,12 @@ const FLOAT_T* OscillatorUnbinned::ReturnWeightPointer(int InitNuFlav, int Final
   }
 
   return OPCalcers[CalcerIndex]->ReturnPointerToWeight(InitNuFlav,FinalNuFlav,EnergyVal,CosineZVal);
+}
+
+void OscillatorUnbinned::SetEnergyArray(std::vector<FLOAT_T> Array) {
+  SetEnergyArrayInCalcer(Array);
+}
+
+void OscillatorUnbinned::SetCosineZArray(std::vector<FLOAT_T> Array) {
+  SetCosineZArrayInCalcer(Array);
 }

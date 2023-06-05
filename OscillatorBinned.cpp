@@ -2,18 +2,18 @@
 
 #include <iostream>
 
-OscillatorBinned::OscillatorBinned(std::vector<std::string> OscProbCalcerImplementationToCreate, bool fCosineZIgnored_) : OscillatorBase(OscProbCalcerImplementationToCreate) {
+OscillatorBinned::OscillatorBinned(std::vector<std::string> OscProbCalcerImplementationToCreate, int Verbose_, bool CosineZIgnored_, std::string FileName_, std::string EnergyAxisHistName_, std::string CosineZAxisHistName_) : OscillatorBase(OscProbCalcerImplementationToCreate) {
   EnergyAxisBinEdges = std::vector<FLOAT_T>();
   CosineZAxisBinEdges = std::vector<FLOAT_T>();
 
   //=======
-  //DB Grab the following from config manager - Currently hardcoded to be 2D Binned
-  fVerbose = INFO;
-  fCosineZIgnored = fCosineZIgnored_;
+  //DB Grab the following from config manager - Currently brought through via constructor
+  fVerbose = Verbose_;
+  fCosineZIgnored = CosineZIgnored_;
 
-  FileName = "MyFile";
-  EnergyAxisHistName = "MyEnergyBinEdges";
-  CosineZAxisHistName = "MyCosineZBinEdges";
+  FileName = FileName_;
+  EnergyAxisHistName = EnergyAxisHistName_;
+  CosineZAxisHistName = CosineZAxisHistName_;
   //=======
 
   EnergyAxisBinEdges = ReadBinEdgesFromFile(FileName,EnergyAxisHistName);
@@ -37,9 +37,9 @@ OscillatorBinned::OscillatorBinned(std::vector<std::string> OscProbCalcerImpleme
 std::vector<FLOAT_T> OscillatorBinned::ReadBinEdgesFromFile(std::string FileName, std::string HistogramName) {
   std::vector<FLOAT_T> BinEdges;
 
-  //DB Once ROOT is linked up, use TH1
+  //DB Once ROOT is linked up, use TH1 - Assumes each axis is independently binned (Could be changed with another implementation)
   /*
-  TFile* File = new TFile(FileName);
+  TFile* File = new TFile(FileName); 
   if (!File || File->IsZombie()) {
     std::cerr << "Could not find file:" << FileName << std::endl;
     throw;

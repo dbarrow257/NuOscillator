@@ -9,15 +9,15 @@ class OscillatorBase {
   // ========================================================================================================================================================================
   // Public functions which are calculation implementation agnostic
   
-  //DB
+  //DB Info in header
   void SanityCheck();
   void PrintImplementationName(int CalcerIndex=0);
-  void SetEnergyArrayInCalcer(std::vector<FLOAT_T> Array, int CalcerIndex=0);
-  void SetCosineZArrayInCalcer(std::vector<FLOAT_T> Array, int CalcerIndex=0);
   void CalculateProbabilities(std::vector<FLOAT_T> OscParams);
-  void Setup();
   int ReturnNOscParams(int CalcerIndex=0);
   void PrintWeights(int CalcerIndex=0);
+
+  // Setup function has to be public so Unbinned approach can do it's thing
+  void Setup();
 
   // ========================================================================================================================================================================
   // Public virtual functions which need calculater specific implementations
@@ -30,13 +30,15 @@ class OscillatorBase {
   // ========================================================================================================================================================================
   // Protected functions which are calculation implementation agnostic  
 
+  void SetEnergyArrayInCalcer(std::vector<FLOAT_T> Array, int CalcerIndex=0);
+  void SetCosineZArrayInCalcer(std::vector<FLOAT_T> Array, int CalcerIndex=0);
+
   // ========================================================================================================================================================================
   // Protected virtual functions which are calculation implementation agnostic
 
   // ========================================================================================================================================================================
   // Basic protected variables required for oscillation probability calculation
 
-  //DB 
   bool fCosineZIgnored;
 
   // This is a vector object to accomodate any implementations which require multiple calculators to perform the reweight

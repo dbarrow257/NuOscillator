@@ -8,7 +8,9 @@ std::vector<FLOAT_T> logspace(FLOAT_T Emin, FLOAT_T  Emax, int nDiv);
 std::vector<FLOAT_T> linspace(FLOAT_T Emin, FLOAT_T Emax, int nDiv);
 
 int main() {
-
+  enum Verbosity{NONE,INFO};
+  int Verbose = NONE;
+  
   std::vector<FLOAT_T> OscParams_Atm(7);
   OscParams_Atm[0] = 3.07e-1;
   OscParams_Atm[1] = 5.28e-1;
@@ -38,22 +40,31 @@ int main() {
 
   std::vector<OscillatorBase*> Oscillators;
 
+  //Binned approaches take binning from TFile,TH1
   std::vector<std::string> CUDAProb3_Vector{"CUDAProb3"};
-  OscillatorBinned* Oscillator_CUDAProb3 = new OscillatorBinned(CUDAProb3_Vector);
+  int CUDAProb3Linear_Verbosity = Verbose;
+  int CUDAProb3Linear_IgnoreCosineZ = false;
+  OscillatorBinned* Oscillator_CUDAProb3 = new OscillatorBinned(CUDAProb3_Vector,CUDAProb3Linear_Verbosity,CUDAProb3Linear_IgnoreCosineZ);
   Oscillators.push_back((OscillatorBase*)Oscillator_CUDAProb3);
 
+  //Unbinned approaches need the binning to be set after constructor
   std::vector<std::string> ProbGPULinear_Vector{"ProbGPULinear"};
-  OscillatorUnbinned* Oscillator_ProbGPULinear = new OscillatorUnbinned(ProbGPULinear_Vector,true);
+  int ProbGPULinear_Verbosity = Verbose;
+  int ProbGPULinear_IgnoreCosineZ = true;
+  OscillatorUnbinned* Oscillator_ProbGPULinear = new OscillatorUnbinned(ProbGPULinear_Vector,ProbGPULinear_Verbosity,ProbGPULinear_IgnoreCosineZ);
+  Oscillator_ProbGPULinear->SetEnergyArray(EnergyArray);
   Oscillators.push_back((OscillatorBase*)Oscillator_ProbGPULinear);
 
+  //Unbinned approaches need the binning to be set after constructor
   std::vector<std::string> Prob3ppLinear_Vector{"Prob3ppLinear"};
-  OscillatorUnbinned* Oscillator_Prob3ppLinear = new OscillatorUnbinned(Prob3ppLinear_Vector,true);
+  int Prob3ppLinear_Verbosity = Verbose;
+  int Prob3ppLinear_IgnoreCosineZ = true;
+  OscillatorUnbinned* Oscillator_Prob3ppLinear = new OscillatorUnbinned(Prob3ppLinear_Vector,Prob3ppLinear_Verbosity,Prob3ppLinear_IgnoreCosineZ);
+  Oscillator_Prob3ppLinear->SetEnergyArray(EnergyArray);
   Oscillators.push_back((OscillatorBase*)Oscillator_Prob3ppLinear);
 
   // Setup propagators
   for (size_t iOsc=0;iOsc<Oscillators.size();iOsc++) {
-    Oscillators[iOsc]->SetEnergyArrayInCalcer(EnergyArray);
-    Oscillators[iOsc]->SetCosineZArrayInCalcer(CosineZArray); 
     Oscillators[iOsc]->Setup();
   }
 
@@ -64,7 +75,7 @@ int main() {
   // Reweight and calculate oscillation probabilities
   for (size_t iOsc=0;iOsc<Oscillators.size();iOsc++) {
     // These don't have to be explicilty beam or atmospheric specific, all they have to be is equal to the number of oscillation parameters expected by the implementation
-    // If you have some NSI calculater, then it will work providing tthe length of the vector of oscillation parameters is equal to the number of expected oscillation parameters
+    // If you have some NSI calculater, then it will work providing the length of the vector of oscillation parameters is equal to the number of expected oscillation parameters
     if (Oscillators[iOsc]->ReturnNOscParams() == (int)OscParams_Beam.size()) {
       Oscillators[iOsc]->CalculateProbabilities(OscParams_Beam); 
     } else if (Oscillators[iOsc]->ReturnNOscParams() == (int)OscParams_Atm.size()) {

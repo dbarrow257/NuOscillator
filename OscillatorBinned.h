@@ -5,7 +5,7 @@
 
 class OscillatorBinned : public OscillatorBase {
  public:
-  OscillatorBinned(std::vector<std::string> OscProbCalcerImplementationToCreate, bool fCosineZIgnored_=false);
+  OscillatorBinned(std::vector<std::string> OscProbCalcerImplementationToCreate, int Verbose_=INFO, bool CosineZIgnored_=false, std::string FileName_="MyFile", std::string EnergyAxisHistName_="EnergyHistName", std::string CosineZAxisHistName_="CosineZHistName");
 
   // ========================================================================================================================================================================
   // Public functions which are calculation implementation agnostic
