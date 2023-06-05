@@ -64,8 +64,14 @@ OscProbCalcer_Prob3ppLinear.o : OscProbCalcerBase.o
 OscillatorBase.o : ${TAROBJS}
 	g++ ${CXXFLAGS} ${LIBS} ${TARLIBS} ${INCS} ${TARINCS} -o OscillatorBase.o -c OscillatorBase.cpp ${TARFLAGS} ${FLOAT_TFLAGS}
 
-Analysis.exe: OscillatorBase.o
-	g++ ${CXXFLAGS} ${LIBS} ${TARLIBS} ${INCS} ${TARINCS} Analysis.cpp OscProbCalcerBase.o ${TAROBJS} OscillatorBase.o -o Analysis.exe ${TARFLAGS} ${FLOAT_TFLAGS}
+OscillatorUnbinned.o : OscillatorBase.o
+	g++ ${CXXFLAGS} ${LIBS} ${TARLIBS} ${INCS} ${TARINCS} -o OscillatorUnbinned.o -c OscillatorUnbinned.cpp ${TARFLAGS} ${FLOAT_TFLAGS}
+
+OscillatorBinned.o : OscillatorBase.o
+	g++ ${CXXFLAGS} ${LIBS} ${TARLIBS} ${INCS} ${TARINCS} -o OscillatorBinned.o -c OscillatorBinned.cpp ${TARFLAGS} ${FLOAT_TFLAGS}
+
+Analysis.exe: OscillatorUnbinned.o OscillatorBinned.o
+	g++ ${CXXFLAGS} ${LIBS} ${TARLIBS} ${INCS} ${TARINCS} Analysis.cpp OscProbCalcerBase.o ${TAROBJS} OscillatorBase.o OscillatorUnbinned.o OscillatorBinned.o -o Analysis.exe ${TARFLAGS} ${FLOAT_TFLAGS}
 
 clean:
 	rm -f *.o

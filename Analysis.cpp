@@ -1,4 +1,5 @@
-#include "OscillatorBase.h"
+#include "OscillatorBinned.h"
+#include "OscillatorUnbinned.h"
 
 #include <iostream>
 #include <math.h>
@@ -38,16 +39,16 @@ int main() {
   std::vector<OscillatorBase*> Oscillators;
 
   std::vector<std::string> CUDAProb3_Vector{"CUDAProb3"};
-  OscillatorBase* Oscillator_CUDAProb3 = new OscillatorBase(CUDAProb3_Vector);
-  Oscillators.push_back(Oscillator_CUDAProb3);
+  OscillatorUnbinned* Oscillator_CUDAProb3 = new OscillatorUnbinned(CUDAProb3_Vector);
+  Oscillators.push_back((OscillatorBase*)Oscillator_CUDAProb3);
 
   std::vector<std::string> ProbGPULinear_Vector{"ProbGPULinear"};
-  OscillatorBase* Oscillator_ProbGPULinear = new OscillatorBase(ProbGPULinear_Vector);
-  Oscillators.push_back(Oscillator_ProbGPULinear);
+  OscillatorUnbinned* Oscillator_ProbGPULinear = new OscillatorUnbinned(ProbGPULinear_Vector);
+  Oscillators.push_back((OscillatorBase*)Oscillator_ProbGPULinear);
 
   std::vector<std::string> Prob3ppLinear_Vector{"Prob3ppLinear"};
-  OscillatorBase* Oscillator_Prob3ppLinear = new OscillatorBase(Prob3ppLinear_Vector);
-  Oscillators.push_back(Oscillator_Prob3ppLinear);
+  OscillatorUnbinned* Oscillator_Prob3ppLinear = new OscillatorUnbinned(Prob3ppLinear_Vector);
+  Oscillators.push_back((OscillatorBase*)Oscillator_Prob3ppLinear);
 
   // Setup propagators
   for (size_t iOsc=0;iOsc<Oscillators.size();iOsc++) {
