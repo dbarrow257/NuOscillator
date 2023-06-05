@@ -39,12 +39,14 @@ class OscillatorBase {
   // ========================================================================================================================================================================
   // Basic protected variables required for oscillation probability calculation
 
+  std::vector<std::string> fOscProbCalcerImplementationToCreate;
+
   bool fCosineZIgnored;
 
   // This is a vector object to accomodate any implementations which require multiple calculators to perform the reweight
   // For instance, this could be used to deal with the MaCh3 Event-by-Event approach by having a OscProbCalcerBase object for each oscillation channel
   int fNCalcers;
-  std::vector<OscProbCalcerBase*> OPCalcers;
+  std::vector<OscProbCalcerBase*> fOscProbCalcers;
 
   int fVerbose;
   enum Verbosity{NONE,INFO};

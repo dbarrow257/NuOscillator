@@ -14,30 +14,32 @@
 
 #include <iostream>
 
-OscillatorBase::OscillatorBase(std::vector<std::string> OscProbCalcerImplementationToCreate) {
+OscillatorBase::OscillatorBase(std::vector<std::string> OscProbCalcerImplementationToCreate_) {
   //DB Grab OscProbCalcerImplementationToCreate and fVerbose from config manager once implemented (And store yaml config such that it can be used to setup OscProbCalcer objects as well)
+  fOscProbCalcerImplementationToCreate = OscProbCalcerImplementationToCreate_;
   fVerbose = INFO;
   fCosineZIgnored = false;
 
-  OPCalcers = std::vector<OscProbCalcerBase*>();
+  fOscProbCalcers = std::vector<OscProbCalcerBase*>();
   fOscProbCalcerSet = false;
-
-  fNCalcers = OscProbCalcerImplementationToCreate.size();
+  
+  //DB Move to seperate function
+  fNCalcers = fOscProbCalcerImplementationToCreate.size();
   if (fNCalcers <= 0) {
     std::cerr << "Number of OscProbCalcerBase objects to be initialised is unreasonable" << std::endl;
     std::cout << "fNCalcers:" << fNCalcers << std::endl;
     throw;
   }
 
-  for (size_t iOsc=0;iOsc<OscProbCalcerImplementationToCreate.size();iOsc++) {
-    OscProbCalcerBase* Calcer = InitialiseOscProbCalcer(OscProbCalcerImplementationToCreate[iOsc]);
+  for (size_t iOsc=0;iOsc<fOscProbCalcerImplementationToCreate.size();iOsc++) {
+    OscProbCalcerBase* Calcer = InitialiseOscProbCalcer(fOscProbCalcerImplementationToCreate[iOsc]);
     if (Calcer == NULL) {
       std::cerr << "OscProbCalcer was not correctly initialised. Please check the setup" << std::endl;
-      std::cerr << "OscProbCalcerImplementationToCreate:" << OscProbCalcerImplementationToCreate[iOsc] << std::endl;
+      std::cerr << "OscProbCalcerImplementationToCreate:" << fOscProbCalcerImplementationToCreate[iOsc] << std::endl;
       std::cerr << "iOsc:" << iOsc << std::endl;
       throw;
     }
-    OPCalcers.push_back(Calcer);
+    fOscProbCalcers.push_back(Calcer);
   }
   fOscProbCalcerSet = true;
 }
@@ -90,37 +92,37 @@ OscProbCalcerBase* OscillatorBase::InitialiseOscProbCalcer(std::string OscProbCa
 
 void OscillatorBase::SetEnergyArrayInCalcer(std::vector<FLOAT_T> Array, int CalcerIndex) {
   if (CalcerIndex < 0 || CalcerIndex >= fNCalcers) {
-    std::cerr << "Requested to set Energy array at invalid index within OPCalcers array" << std::endl;
+    std::cerr << "Requested to set Energy array at invalid index within fOscProbCalcers array" << std::endl;
     std::cerr << "CalcerIndex:" << CalcerIndex << std::endl;
     std::cerr << "fNCalcers:" << fNCalcers << std::endl;
     throw;
   }
-  if (fVerbose >= INFO) {std::cout << "Setting Energy array in OscProbCalcer Implementation:" << OPCalcers[CalcerIndex]->ReturnImplementationName() << " in OscillatorBase object" << std::endl;}
-  OPCalcers[CalcerIndex]->SetEnergyArray(Array);
+  if (fVerbose >= INFO) {std::cout << "Setting Energy array in OscProbCalcer Implementation:" << fOscProbCalcers[CalcerIndex]->ReturnImplementationName() << " in OscillatorBase object" << std::endl;}
+  fOscProbCalcers[CalcerIndex]->SetEnergyArray(Array);
 }
 
 void OscillatorBase::SetCosineZArrayInCalcer(std::vector<FLOAT_T> Array, int CalcerIndex) {
   if (CalcerIndex < 0 || CalcerIndex >= fNCalcers) {
-    std::cerr << "Requested to set CosineZ array at invalid index within OPCalcers array" << std::endl;
+    std::cerr << "Requested to set CosineZ array at invalid index within fOscProbCalcers array" << std::endl;
     std::cerr << "CalcerIndex:"<< CalcerIndex << std::endl;
     std::cerr << "fNCalcers:" << fNCalcers << std::endl;
     throw;
   }
-  if (fVerbose >= INFO) {std::cout << "Setting CosineZ array in OscProbCalcer Implementation:" << OPCalcers[CalcerIndex]->ReturnImplementationName() << " in OscillatorBase object" << std::endl;}
-  OPCalcers[CalcerIndex]->SetCosineZArray(Array);
+  if (fVerbose >= INFO) {std::cout << "Setting CosineZ array in OscProbCalcer Implementation:" << fOscProbCalcers[CalcerIndex]->ReturnImplementationName() << " in OscillatorBase object" << std::endl;}
+  fOscProbCalcers[CalcerIndex]->SetCosineZArray(Array);
 }
 
 void OscillatorBase::CalculateProbabilities(std::vector<FLOAT_T> OscParams) {
   for (int CalcerIndex=0;CalcerIndex<fNCalcers;CalcerIndex++) {
-    if (fVerbose >= INFO) {std::cout << "Calculating oscillation probabilities using OscProbCalcer Implementation:" << OPCalcers[CalcerIndex]->ReturnImplementationName() << " in OscillatorBase object" << std::endl;}
-    OPCalcers[CalcerIndex]->Reweight(OscParams);
+    if (fVerbose >= INFO) {std::cout << "Calculating oscillation probabilities using OscProbCalcer Implementation:" << fOscProbCalcers[CalcerIndex]->ReturnImplementationName() << " in OscillatorBase object" << std::endl;}
+    fOscProbCalcers[CalcerIndex]->Reweight(OscParams);
   }
 }
 
 void OscillatorBase::Setup() {
   for (int CalcerIndex=0;CalcerIndex<fNCalcers;CalcerIndex++) {
-    if (fVerbose >= INFO) {std::cout << "Setting up OscProbCalcer Implementation:" << OPCalcers[CalcerIndex]->ReturnImplementationName() << " in OscillatorBase object" << std::endl;}
-    OPCalcers[CalcerIndex]->Setup();
+    if (fVerbose >= INFO) {std::cout << "Setting up OscProbCalcer Implementation:" << fOscProbCalcers[CalcerIndex]->ReturnImplementationName() << " in OscillatorBase object" << std::endl;}
+    fOscProbCalcers[CalcerIndex]->Setup();
   }
 
   SanityCheck();
@@ -128,21 +130,21 @@ void OscillatorBase::Setup() {
 
 int OscillatorBase::ReturnNOscParams(int CalcerIndex) {
   if (CalcerIndex < 0 || CalcerIndex >= fNCalcers) {
-    std::cerr << "Requested to Return NOscParams at invalid index within OPCalcers array" << std::endl;
+    std::cerr << "Requested to Return NOscParams at invalid index within fOscProbCalcers array" << std::endl;
     std::cerr << "CalcerIndex:"<< CalcerIndex << std::endl;
     std::cerr << "fNCalcers:" << fNCalcers << std::endl;
     throw;
   }
 
-  return OPCalcers[CalcerIndex]->ReturnNOscParams();
+  return fOscProbCalcers[CalcerIndex]->ReturnNOscParams();
 }
 
 void OscillatorBase::SanityCheck() {
   bool IsSane = fOscProbCalcerSet;
 
   for (int iCalcer=0;iCalcer<fNCalcers;iCalcer++) {
-    IsSane = IsSane && OPCalcers[iCalcer]->SanityCheck();
-    IsSane = IsSane && (fCosineZIgnored == OPCalcers[iCalcer]->ReturnCosineZIgnored());
+    IsSane = IsSane && fOscProbCalcers[iCalcer]->SanityCheck();
+    IsSane = IsSane && (fCosineZIgnored == fOscProbCalcers[iCalcer]->ReturnCosineZIgnored());
   }
 
   if (!IsSane) {
@@ -150,8 +152,8 @@ void OscillatorBase::SanityCheck() {
     std::cerr << "fOscProbCalcerSet:" << fOscProbCalcerSet << std::endl;
     std::cerr << "fCosineZIgnored:" << fCosineZIgnored << std::endl;
     for (int iCalcer=0;iCalcer<fNCalcers;iCalcer++) {
-      std::cerr << "OPCalcers[iCalcer]->SanityCheck():" << OPCalcers[iCalcer]->SanityCheck() << std::endl;
-      std::cerr << "OPCalcers[iCalcer]->ReturnCosineZIgnored():" << OPCalcers[iCalcer]->ReturnCosineZIgnored() << std::endl;
+      std::cerr << "fOscProbCalcers[iCalcer]->SanityCheck():" << fOscProbCalcers[iCalcer]->SanityCheck() << std::endl;
+      std::cerr << "fOscProbCalcers[iCalcer]->ReturnCosineZIgnored():" << fOscProbCalcers[iCalcer]->ReturnCosineZIgnored() << std::endl;
       std::cerr << "iCalcer:" << iCalcer << std::endl;
     }
     throw;
@@ -162,11 +164,11 @@ void OscillatorBase::SanityCheck() {
 
 void OscillatorBase::PrintWeights(int CalcerIndex) {
   if (CalcerIndex < 0 || CalcerIndex >= fNCalcers) {
-    std::cerr << "Requested to PrintWeights at invalid index within OPCalcers array" << std::endl;
+    std::cerr << "Requested to PrintWeights at invalid index within fOscProbCalcers array" << std::endl;
     std::cerr << "CalcerIndex:"<< CalcerIndex << std::endl;
     std::cerr << "fNCalcers:" << fNCalcers << std::endl;
     throw;
   }
 
-  OPCalcers[CalcerIndex]->PrintWeights();
+  fOscProbCalcers[CalcerIndex]->PrintWeights();
 }

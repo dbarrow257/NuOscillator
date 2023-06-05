@@ -2,12 +2,15 @@
 
 #include <iostream>
 
-OscillatorBinned::OscillatorBinned(std::vector<std::string> OscProbCalcerImplementationToCreate, int Verbose_, bool CosineZIgnored_, std::string FileName_, std::string EnergyAxisHistName_, std::string CosineZAxisHistName_) : OscillatorBase(OscProbCalcerImplementationToCreate) {
+OscillatorBinned::OscillatorBinned(std::vector<std::string> OscProbCalcerImplementationToCreate_, int Verbose_, bool CosineZIgnored_, std::string FileName_, std::string EnergyAxisHistName_, std::string CosineZAxisHistName_) : OscillatorBase(OscProbCalcerImplementationToCreate_) {
   EnergyAxisBinEdges = std::vector<FLOAT_T>();
   CosineZAxisBinEdges = std::vector<FLOAT_T>();
+  EnergyAxisBinCenters = std::vector<FLOAT_T>();
+  CosineZAxisBinCenters = std::vector<FLOAT_T>();
 
   //=======
   //DB Grab the following from config manager - Currently brought through via constructor
+  fOscProbCalcerImplementationToCreate = OscProbCalcerImplementationToCreate_;
   fVerbose = Verbose_;
   fCosineZIgnored = CosineZIgnored_;
 
@@ -134,10 +137,12 @@ const FLOAT_T* OscillatorBinned::ReturnWeightPointer(int InitNuFlav, int FinalNu
 
   int CalcerIndex = 0;
   if (CalcerIndex < 0 || CalcerIndex >= fNCalcers) {
-    std::cerr << "Requested to set CosineZ array at invalid index within OPCalcers array" << std::endl;
+    std::cerr << "Requested to set CosineZ array at invalid index within fOscProbCalcers array" << std::endl;
     std::cerr << "CalcerIndex:"<< CalcerIndex << std::endl;
     std::cerr << "fNCalcers:" << fNCalcers << std::endl;
     throw;
   }
-  return OPCalcers[CalcerIndex]->ReturnPointerToWeight(InitNuFlav,FinalNuFlav,EnergyValBinCenter,CosineZValBinCenter);
+
+  //DB Could abstract to base function
+  return fOscProbCalcers[CalcerIndex]->ReturnPointerToWeight(InitNuFlav,FinalNuFlav,EnergyValBinCenter,CosineZValBinCenter);
 }
