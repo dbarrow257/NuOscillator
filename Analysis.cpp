@@ -39,15 +39,15 @@ int main() {
   std::vector<OscillatorBase*> Oscillators;
 
   std::vector<std::string> CUDAProb3_Vector{"CUDAProb3"};
-  OscillatorUnbinned* Oscillator_CUDAProb3 = new OscillatorUnbinned(CUDAProb3_Vector);
+  OscillatorBinned* Oscillator_CUDAProb3 = new OscillatorBinned(CUDAProb3_Vector);
   Oscillators.push_back((OscillatorBase*)Oscillator_CUDAProb3);
 
   std::vector<std::string> ProbGPULinear_Vector{"ProbGPULinear"};
-  OscillatorUnbinned* Oscillator_ProbGPULinear = new OscillatorUnbinned(ProbGPULinear_Vector);
+  OscillatorUnbinned* Oscillator_ProbGPULinear = new OscillatorUnbinned(ProbGPULinear_Vector,true);
   Oscillators.push_back((OscillatorBase*)Oscillator_ProbGPULinear);
 
   std::vector<std::string> Prob3ppLinear_Vector{"Prob3ppLinear"};
-  OscillatorUnbinned* Oscillator_Prob3ppLinear = new OscillatorUnbinned(Prob3ppLinear_Vector);
+  OscillatorUnbinned* Oscillator_Prob3ppLinear = new OscillatorUnbinned(Prob3ppLinear_Vector,true);
   Oscillators.push_back((OscillatorBase*)Oscillator_Prob3ppLinear);
 
   // Setup propagators

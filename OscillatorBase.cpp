@@ -17,6 +17,7 @@
 OscillatorBase::OscillatorBase(std::vector<std::string> OscProbCalcerImplementationToCreate) {
   //DB Grab OscProbCalcerImplementationToCreate and fVerbose from config manager once implemented (And store yaml config such that it can be used to setup OscProbCalcer objects as well)
   fVerbose = INFO;
+  fCosineZIgnored = false;
 
   OPCalcers = std::vector<OscProbCalcerBase*>();
   fOscProbCalcerSet = false;
@@ -141,13 +142,16 @@ void OscillatorBase::SanityCheck() {
 
   for (int iCalcer=0;iCalcer<fNCalcers;iCalcer++) {
     IsSane = IsSane && OPCalcers[iCalcer]->SanityCheck();
+    IsSane = IsSane && (fCosineZIgnored == OPCalcers[iCalcer]->ReturnCosineZIgnored());
   }
 
   if (!IsSane) {
     std::cerr << "OscillatorBase object has been found to not be 'sane' - The following booleans were expected to be true" << std::endl;
     std::cerr << "fOscProbCalcerSet:" << fOscProbCalcerSet << std::endl;
+    std::cerr << "fCosineZIgnored:" << fCosineZIgnored << std::endl;
     for (int iCalcer=0;iCalcer<fNCalcers;iCalcer++) {
       std::cerr << "OPCalcers[iCalcer]->SanityCheck():" << OPCalcers[iCalcer]->SanityCheck() << std::endl;
+      std::cerr << "OPCalcers[iCalcer]->ReturnCosineZIgnored():" << OPCalcers[iCalcer]->ReturnCosineZIgnored() << std::endl;
       std::cerr << "iCalcer:" << iCalcer << std::endl;
     }
     throw;

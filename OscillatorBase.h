@@ -22,6 +22,8 @@ class OscillatorBase {
   // ========================================================================================================================================================================
   // Public virtual functions which need calculater specific implementations
 
+  virtual const FLOAT_T* ReturnWeightPointer(int InitNuFlav, int FinalNuFlav, FLOAT_T EnergyVal, FLOAT_T CosineZVal) = 0;
+
  protected:
   OscillatorBase(std::vector<std::string> OscProbCalcerImplementationToCreate);
 
@@ -33,6 +35,9 @@ class OscillatorBase {
 
   // ========================================================================================================================================================================
   // Basic protected variables required for oscillation probability calculation
+
+  //DB 
+  bool fCosineZIgnored;
 
   // This is a vector object to accomodate any implementations which require multiple calculators to perform the reweight
   // For instance, this could be used to deal with the MaCh3 Event-by-Event approach by having a OscProbCalcerBase object for each oscillation channel
