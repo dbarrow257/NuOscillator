@@ -14,25 +14,130 @@
 
 #include <iostream>
 
-OscillatorBase::OscillatorBase() {
-  fVerbose = NONE;
+OscillatorBase::OscillatorBase(std::vector<std::string> OscProbCalcerImplementationToCreate) {
+  
+  //DB Grab OscProbCalcerImplementationToCreate and fVerbose from config manager once implemented (And store yaml config such that it can be used to setup OscProbCalcer objects as well)
+  fVerbose = INFO;
 
-#ifdef UseCUDAProb3
-  OscProbCalcerCUDAProb3* CUDAProb3 = new OscProbCalcerCUDAProb3("",fVerbose);
-  OPCalcer = (OscProbCalcerBase*)CUDAProb3;
-#endif
+  OPCalcers = std::vector<OscProbCalcerBase*>();
+  fOscProbCalcerSet = false;
 
-#ifdef UseProb3ppLinear
-  OscProbCalcerProb3ppLinear* Prob3ppLinear = new OscProbCalcerProb3ppLinear(fVerbose);
-  OPCalcer = (OscProbCalcerBase*)Prob3ppLinear;
-#endif
+  fNCalcers = OscProbCalcerImplementationToCreate.size();
+  if (fNCalcers <= 0) {
+    std::cerr << "Number of OscProbCalcerBase objects to be initialised is unreasonable" << std::endl;
+    std::cout << "fNCalcers:" << fNCalcers << std::endl;
+    throw;
+  }
 
-#ifdef UseProbGPULinear
-  OscProbCalcerProbGPULinear* ProbGPULinear = new OscProbCalcerProbGPULinear(fVerbose);
-  OPCalcer = (OscProbCalcerBase*)ProbGPULinear;
-#endif
+  for (size_t iOsc=0;iOsc<OscProbCalcerImplementationToCreate.size();iOsc++) {
+    OscProbCalcerBase* Calcer = InitialiseOscProbCalcer(OscProbCalcerImplementationToCreate[iOsc]);
+    if (Calcer == NULL) {
+      std::cerr << "OscProbCalcer was not correctly initialised. Please check the setup" << std::endl;
+      std::cerr << "OscProbCalcerImplementationToCreate:" << OscProbCalcerImplementationToCreate[iOsc] << std::endl;
+      std::cerr << "iOsc:" << iOsc << std::endl;
+      throw;
+    }
+    OPCalcers.push_back(Calcer);
+  }
+  fOscProbCalcerSet = true;
 }
 
-void OscillatorBase::ImplementationName() {
-  std::cout << OPCalcer->ReturnImplementationName() << std::endl;
+
+OscProbCalcerBase* OscillatorBase::InitialiseOscProbCalcer(std::string OscProbCalcerImplementationToCreate) {
+  OscProbCalcerBase* Calcer;
+
+  if (OscProbCalcerImplementationToCreate == "CUDAProb3") {
+#ifdef UseCUDAProb3
+    OscProbCalcerCUDAProb3* CUDAProb3 = new OscProbCalcerCUDAProb3("",fVerbose);
+    Calcer = (OscProbCalcerBase*)CUDAProb3;
+    if (fVerbose >= INFO) {std::cout << "Initalised OscProbCalcer Implementation:" << Calcer->ReturnImplementationName() << " in OscillatorBase object" << std::endl;}
+#else
+    std::cerr << "Oscillator was requsted to create " << OscProbCalcerImplementationToCreate << " OscProbCalcer but Use" << OscProbCalcerImplementationToCreate << " is undefined. Indicates problem in setup" << std::endl;
+    throw;
+#endif
+  }
+  
+  else if (OscProbCalcerImplementationToCreate == "Prob3ppLinear") {
+#ifdef UseProb3ppLinear
+    OscProbCalcerProb3ppLinear* Prob3ppLinear = new OscProbCalcerProb3ppLinear(fVerbose);
+    Calcer = (OscProbCalcerBase*)Prob3ppLinear;
+    if (fVerbose >= INFO) {std::cout << "Initalised OscProbCalcer Implementation:" << Calcer->ReturnImplementationName() << " in OscillatorBase object" << std::endl;}
+#else
+    std::cerr << "Oscillator was requsted to create " << OscProbCalcerImplementationToCreate << " OscProbCalcer but Use" << OscProbCalcerImplementationToCreate << " is undefined. Indicates problem in setup" << std::endl;
+    throw;
+#endif
+  }
+  
+  else if (OscProbCalcerImplementationToCreate == "ProbGPULinear") {
+#ifdef UseProbGPULinear
+    OscProbCalcerProbGPULinear* ProbGPULinear = new OscProbCalcerProbGPULinear(fVerbose);
+    Calcer = (OscProbCalcerBase*)ProbGPULinear;
+    if (fVerbose >= INFO) {std::cout << "Initalised OscProbCalcer Implementation:" << Calcer->ReturnImplementationName() << " in OscillatorBase object" << std::endl;}
+#else
+    std::cerr << "Oscillator was requsted to create " << OscProbCalcerImplementationToCreate << " OscProbCalcer but Use" << OscProbCalcerImplementationToCreate << " is undefined. Indicates problem in setup" << std::endl;
+    throw;
+#endif
+  }
+  
+  else {
+    std::cerr << "Oscillator was requsted to create " << OscProbCalcerImplementationToCreate << " OscProbCalcer but this is not implemented within " << __FILE__ << std::endl;
+    std::cerr << "Please correct the mistake or implement the new OscProbCalcer" << std::endl;
+    throw;
+  }
+
+  return Calcer;
+}
+
+void OscillatorBase::SetEnergyArrayInCalcer(std::vector<FLOAT_T> Array, int CalcerIndex) {
+  if (fVerbose >= INFO) {std::cout << "Setting Energy array in OscProbCalcer Implementation:" << OPCalcers[CalcerIndex]->ReturnImplementationName() << " in OscillatorBase object" << std::endl;}
+  OPCalcers[CalcerIndex]->SetEnergyArray(Array);
+}
+
+void OscillatorBase::SetCosineZArrayInCalcer(std::vector<FLOAT_T> Array, int CalcerIndex) {
+  if (fVerbose >= INFO) {std::cout << "Setting CosineZ array in OscProbCalcer Implementation:" << OPCalcers[CalcerIndex]->ReturnImplementationName() << " in OscillatorBase object" << std::endl;}
+  OPCalcers[CalcerIndex]->SetCosineZArray(Array);
+}
+
+void OscillatorBase::CalculateProbabilities(std::vector<FLOAT_T> OscParams) {
+  for (int CalcerIndex=0;CalcerIndex<fNCalcers;CalcerIndex++) {
+    if (fVerbose >= INFO) {std::cout << "Calculating oscillation probabilities using OscProbCalcer Implementation:" << OPCalcers[CalcerIndex]->ReturnImplementationName() << " in OscillatorBase object" << std::endl;}
+    OPCalcers[CalcerIndex]->Reweight(OscParams);
+  }
+}
+
+void OscillatorBase::Setup() {
+  for (int CalcerIndex=0;CalcerIndex<fNCalcers;CalcerIndex++) {
+    if (fVerbose >= INFO) {std::cout << "Setting up OscProbCalcer Implementation:" << OPCalcers[CalcerIndex]->ReturnImplementationName() << " in OscillatorBase object" << std::endl;}
+    OPCalcers[CalcerIndex]->Setup();
+  }
+
+  SanityCheck();
+}
+
+int OscillatorBase::ReturnNOscParams(int CalcerIndex) {
+  return OPCalcers[CalcerIndex]->ReturnNOscParams();
+}
+
+void OscillatorBase::SanityCheck() {
+  bool IsSane = fOscProbCalcerSet;
+
+  for (int iCalcer=0;iCalcer<fNCalcers;iCalcer++) {
+    IsSane = IsSane && OPCalcers[iCalcer]->SanityCheck();
+  }
+
+  if (!IsSane) {
+    std::cerr << "OscillatorBase object has been found to not be 'sane' - The following booleans were expected to be true" << std::endl;
+    std::cerr << "fOscProbCalcerSet:" << fOscProbCalcerSet << std::endl;
+    for (int iCalcer=0;iCalcer<fNCalcers;iCalcer++) {
+      std::cerr << "OPCalcers[iCalcer]->SanityCheck():" << OPCalcers[iCalcer]->SanityCheck() << std::endl;
+      std::cerr << "iCalcer:" << iCalcer << std::endl;
+    }
+    throw;
+  } else {
+    if (fVerbose >= INFO) {std::cout << "OscillatorBase instance passed SanityCheck" << std::endl;}
+  }
+}
+
+void OscillatorBase::PrintWeights(int CalcerIndex) {
+  OPCalcers[CalcerIndex]->PrintWeights();
 }

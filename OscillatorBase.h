@@ -5,12 +5,20 @@
 
 class OscillatorBase {
  public:
-  OscillatorBase();
+  OscillatorBase(std::vector<std::string> OscProbCalcerImplementationToCreate);
 
   // ========================================================================================================================================================================
   // Public functions which are calculation implementation agnostic
   
-  void ImplementationName();
+  //DB
+  void SanityCheck();
+  void PrintImplementationName(int CalcerIndex=0);
+  void SetEnergyArrayInCalcer(std::vector<FLOAT_T> Array, int CalcerIndex=0);
+  void SetCosineZArrayInCalcer(std::vector<FLOAT_T> Array, int CalcerIndex=0);
+  void CalculateProbabilities(std::vector<FLOAT_T> OscParams);
+  void Setup();
+  int ReturnNOscParams(int CalcerIndex=0);
+  void PrintWeights(int CalcerIndex=0);
 
   // ========================================================================================================================================================================
   // Public virtual functions which need calculater specific implementations
@@ -26,15 +34,20 @@ class OscillatorBase {
   // ========================================================================================================================================================================
   // Basic protected variables required for oscillation probability calculation
 
-  OscProbCalcerBase* OPCalcer;
+  // This is a vector object to accomodate any implementations which require multiple calculators to perform the reweight
+  // For instance, this could be used to deal with the MaCh3 Event-by-Event approach by having a OscProbCalcerBase object for each oscillation channel
+  int fNCalcers;
+  std::vector<OscProbCalcerBase*> OPCalcers;
 
   int fVerbose;
   enum Verbosity{NONE,INFO};
 
  private:
+  OscProbCalcerBase* InitialiseOscProbCalcer(std::string OscProbCalcerImplementationToCreate);
+
   // ========================================================================================================================================================================
   // Basic private variables required for oscillation probability calculation
-
+  bool fOscProbCalcerSet;
 };
 
 #endif
