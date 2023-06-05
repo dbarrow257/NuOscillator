@@ -14,8 +14,6 @@ using FLOAT_T = float;
 
 class OscProbCalcerBase {
  public:
-  OscProbCalcerBase();
-
   // ========================================================================================================================================================================
   // Public functions which are calculation implementation agnostic
   
@@ -54,6 +52,7 @@ class OscProbCalcerBase {
   // Public virtual functions which need calculater specific implementations
 
  protected:
+  OscProbCalcerBase();
 
   // ========================================================================================================================================================================
   // Protected functions which are calculation implementation agnostic  

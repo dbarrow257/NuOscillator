@@ -22,13 +22,15 @@ class OscillatorBase {
   // ========================================================================================================================================================================
   // Public virtual functions which need calculater specific implementations
 
-  virtual const FLOAT_T* ReturnWeightPointer(int InitNuFlav, int FinalNuFlav, FLOAT_T EnergyVal, FLOAT_T CosineZVal) = 0;
+  virtual const FLOAT_T* ReturnWeightPointer(int InitNuFlav, int FinalNuFlav, FLOAT_T EnergyVal, FLOAT_T CosineZVal=DUMMYVAL) = 0;
 
  protected:
-  OscillatorBase(std::vector<std::string> OscProbCalcerImplementationToCreate);
+  OscillatorBase();
 
   // ========================================================================================================================================================================
   // Protected functions which are calculation implementation agnostic  
+
+  void InitialiseOscProbCalcers();
 
   void SetEnergyArrayInCalcer(std::vector<FLOAT_T> Array, int CalcerIndex=0);
   void SetCosineZArrayInCalcer(std::vector<FLOAT_T> Array, int CalcerIndex=0);
@@ -39,6 +41,7 @@ class OscillatorBase {
   // ========================================================================================================================================================================
   // Basic protected variables required for oscillation probability calculation
 
+  const FLOAT_T* ReturnPointerToWeightinCalcer(int CalcerIndex, int InitNuFlav, int FinalNuFlav, FLOAT_T EnergyVal, FLOAT_T CosineZVal=DUMMYVAL);
   std::vector<std::string> fOscProbCalcerImplementationToCreate;
 
   bool fCosineZIgnored;

@@ -14,16 +14,21 @@
 
 #include <iostream>
 
-OscillatorBase::OscillatorBase(std::vector<std::string> OscProbCalcerImplementationToCreate_) {
-  //DB Grab OscProbCalcerImplementationToCreate and fVerbose from config manager once implemented (And store yaml config such that it can be used to setup OscProbCalcer objects as well)
-  fOscProbCalcerImplementationToCreate = OscProbCalcerImplementationToCreate_;
-  fVerbose = INFO;
+OscillatorBase::OscillatorBase() {
+  fOscProbCalcerImplementationToCreate = std::vector<std::string>();
+  fVerbose = NONE;
   fCosineZIgnored = false;
 
   fOscProbCalcers = std::vector<OscProbCalcerBase*>();
   fOscProbCalcerSet = false;
-  
-  //DB Move to seperate function
+}
+
+void OscillatorBase::InitialiseOscProbCalcers() {
+  if (fOscProbCalcerImplementationToCreate.size() == 0) {
+    std::cerr << "Size of fOscProbCalcerImplementationToCreate is 0. This means no OscProbCalcers were initialised. This indicates a problem." << std::endl;
+    throw;
+  }
+
   fNCalcers = fOscProbCalcerImplementationToCreate.size();
   if (fNCalcers <= 0) {
     std::cerr << "Number of OscProbCalcerBase objects to be initialised is unreasonable" << std::endl;
@@ -41,6 +46,7 @@ OscillatorBase::OscillatorBase(std::vector<std::string> OscProbCalcerImplementat
     }
     fOscProbCalcers.push_back(Calcer);
   }
+
   fOscProbCalcerSet = true;
 }
 
@@ -50,7 +56,10 @@ OscProbCalcerBase* OscillatorBase::InitialiseOscProbCalcer(std::string OscProbCa
 
   if (OscProbCalcerImplementationToCreate == "CUDAProb3") {
 #ifdef UseCUDAProb3
-    OscProbCalcerCUDAProb3* CUDAProb3 = new OscProbCalcerCUDAProb3("",fVerbose);
+    //DB When using config manager to setup the OscillatorBase, store it to grab the config for the specific OscProbCalcer initialisation
+    std::string CUDAProb3ConfigName = "";
+
+    OscProbCalcerCUDAProb3* CUDAProb3 = new OscProbCalcerCUDAProb3(CUDAProb3ConfigName,fVerbose);
     Calcer = (OscProbCalcerBase*)CUDAProb3;
     if (fVerbose >= INFO) {std::cout << "Initalised OscProbCalcer Implementation:" << Calcer->ReturnImplementationName() << " in OscillatorBase object" << std::endl;}
 #else
@@ -137,6 +146,17 @@ int OscillatorBase::ReturnNOscParams(int CalcerIndex) {
   }
 
   return fOscProbCalcers[CalcerIndex]->ReturnNOscParams();
+}
+
+const FLOAT_T* OscillatorBase::ReturnPointerToWeightinCalcer(int CalcerIndex, int InitNuFlav, int FinalNuFlav, FLOAT_T EnergyVal, FLOAT_T CosineZVal) {
+  if (CalcerIndex < 0 || CalcerIndex >= fNCalcers) {
+    std::cerr << "Requested to ReturnPointerToWeightinCalcer at invalid index within fOscProbCalcers array" << std::endl;
+    std::cerr << "CalcerIndex:"<< CalcerIndex << std::endl;
+    std::cerr << "fNCalcers:" << fNCalcers << std::endl;
+    throw;
+  }
+
+  return fOscProbCalcers[CalcerIndex]->ReturnPointerToWeight(InitNuFlav,FinalNuFlav,EnergyVal,CosineZVal);
 }
 
 void OscillatorBase::SanityCheck() {

@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-OscillatorBinned::OscillatorBinned(std::vector<std::string> OscProbCalcerImplementationToCreate_, int Verbose_, bool CosineZIgnored_, std::string FileName_, std::string EnergyAxisHistName_, std::string CosineZAxisHistName_) : OscillatorBase(OscProbCalcerImplementationToCreate_) {
+OscillatorBinned::OscillatorBinned(std::vector<std::string> OscProbCalcerImplementationToCreate_, int Verbose_, bool CosineZIgnored_, std::string FileName_, std::string EnergyAxisHistName_, std::string CosineZAxisHistName_) : OscillatorBase() {
   EnergyAxisBinEdges = std::vector<FLOAT_T>();
   CosineZAxisBinEdges = std::vector<FLOAT_T>();
   EnergyAxisBinCenters = std::vector<FLOAT_T>();
@@ -19,6 +19,8 @@ OscillatorBinned::OscillatorBinned(std::vector<std::string> OscProbCalcerImpleme
   CosineZAxisHistName = CosineZAxisHistName_;
   //=======
 
+  InitialiseOscProbCalcers();
+
   EnergyAxisBinEdges = ReadBinEdgesFromFile(FileName,EnergyAxisHistName);
   EnergyAxisBinCenters = ReturnBinCentersFromBinEdges(EnergyAxisBinEdges);
   for (int CalcerIndex=0;CalcerIndex<fNCalcers;CalcerIndex++) {
@@ -33,8 +35,6 @@ OscillatorBinned::OscillatorBinned(std::vector<std::string> OscProbCalcerImpleme
       SetCosineZArrayInCalcer(CosineZAxisBinCenters, CalcerIndex);
     }
   }
-  
-  Setup();
 }
 
 std::vector<FLOAT_T> OscillatorBinned::ReadBinEdgesFromFile(std::string FileName, std::string HistogramName) {
@@ -136,13 +136,5 @@ const FLOAT_T* OscillatorBinned::ReturnWeightPointer(int InitNuFlav, int FinalNu
   }
 
   int CalcerIndex = 0;
-  if (CalcerIndex < 0 || CalcerIndex >= fNCalcers) {
-    std::cerr << "Requested to set CosineZ array at invalid index within fOscProbCalcers array" << std::endl;
-    std::cerr << "CalcerIndex:"<< CalcerIndex << std::endl;
-    std::cerr << "fNCalcers:" << fNCalcers << std::endl;
-    throw;
-  }
-
-  //DB Could abstract to base function
-  return fOscProbCalcers[CalcerIndex]->ReturnPointerToWeight(InitNuFlav,FinalNuFlav,EnergyValBinCenter,CosineZValBinCenter);
+  return ReturnPointerToWeightinCalcer(CalcerIndex,InitNuFlav,FinalNuFlav,EnergyValBinCenter,CosineZValBinCenter);
 }

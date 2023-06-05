@@ -9,7 +9,7 @@ std::vector<FLOAT_T> linspace(FLOAT_T Emin, FLOAT_T Emax, int nDiv);
 
 int main() {
   enum Verbosity{NONE,INFO};
-  int Verbose = NONE;
+  int Verbose = INFO;
   
   std::vector<FLOAT_T> OscParams_Atm(7);
   OscParams_Atm[0] = 3.07e-1;
