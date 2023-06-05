@@ -60,10 +60,20 @@ std::vector<FLOAT_T> OscillatorBinned::ReadBinEdgesFromFile(std::string FileName
   }
   */
 
-  int NBins = 10;
-  for (int iBin=0;iBin<NBins;iBin++) {
-    BinEdges.push_back(iBin*0.1);
+  //===========
+  //DB Once ROOT is linked up, remove the following code
+  if (HistogramName=="CosineZHistName") {
+    int NBins = 11;
+    for (int iBin=0;iBin<NBins;iBin++) {
+      BinEdges.push_back(iBin*0.2-1.0);
+    }
+  } else {
+    int NBins = 11;
+    for (int iBin=0;iBin<NBins;iBin++) {
+      BinEdges.push_back(iBin*0.1);
+    }
   }
+  //===========
 
   if (fVerbose >= INFO) {
     std::cout << "Bin edges successfully read from File:" << FileName << " , Histogram:" << HistogramName << " :=" << std::endl;

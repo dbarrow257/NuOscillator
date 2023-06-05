@@ -47,6 +47,13 @@ int main() {
   OscillatorBinned* Oscillator_CUDAProb3 = new OscillatorBinned(CUDAProb3_Vector,CUDAProb3Linear_Verbosity,CUDAProb3Linear_IgnoreCosineZ);
   Oscillators.push_back((OscillatorBase*)Oscillator_CUDAProb3);
 
+  //Binned approaches take binning from TFile,TH1
+  std::vector<std::string> ProbGPUBinned_Vector{"ProbGPULinear"};
+  int ProbGPUBinnedLinear_Verbosity = Verbose;
+  int ProbGPUBinnedLinear_IgnoreCosineZ = true;
+  OscillatorBinned* Oscillator_ProbGPUBinned = new OscillatorBinned(ProbGPUBinned_Vector,ProbGPUBinnedLinear_Verbosity,ProbGPUBinnedLinear_IgnoreCosineZ);
+  Oscillators.push_back((OscillatorBase*)Oscillator_ProbGPUBinned);
+
   //Unbinned approaches need the binning to be set after constructor
   std::vector<std::string> ProbGPULinear_Vector{"ProbGPULinear"};
   int ProbGPULinear_Verbosity = Verbose;
