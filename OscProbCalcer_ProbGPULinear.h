@@ -84,7 +84,7 @@ class OscProbCalcerProbGPULinear : public OscProbCalcerBase {
   enum NuFlav{Electron=1, Muon=2, Tau=3};
 
   /**
-   * Boolean declaring what values are being passed for the values of theta_13 (sin^2(theta) or sin^2(2*theta))
+   * @brief Boolean declaring what values are being passed for the values of theta_13 (sin^2(theta) or sin^2(2*theta))
    */
   bool doubled_angle;
 };
