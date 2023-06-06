@@ -12,10 +12,18 @@
  */
 class OscProbCalcerProbGPULinear : public OscProbCalcerBase {
  public:
+
+  /**
+   * @brief Default constructor
+   *
+   * @param Verbosity_ Verbosity of console output
+   */
   OscProbCalcerProbGPULinear(int Verbosity_=NONE);
 
   // ========================================================================================================================================================================
   // Functions which need implementation specific code
+
+  
   void SetupPropagator();
   void CalculateProbabilities(std::vector<FLOAT_T> OscParams);
   int ReturnWeightArrayIndex(int NuTypeIndex, int InitNuIndex, int FinalNuIndex, int EnergyIndex, int CosineZIndex=-1);
