@@ -1,7 +1,7 @@
 export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:${PWD}/Prob3plusplus:${PWD}/ProbGPU
 
 #Environment configs
-export UseGPU=0
+export UseGPU=1
 export UseMultithreading=1
 
 #Which calculators to compile

@@ -2,6 +2,7 @@
 #define __OSCILLATOR_PROBGPULINEAR_H__
 
 #include "OscProbCalcerBase.h"
+#include "OscillatorConstants.h"
 
 /**
  * @file OscProbCalcer_ProbGPULinear.h

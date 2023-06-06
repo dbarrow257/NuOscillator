@@ -36,12 +36,11 @@ OscProbCalcerCUDAProb3::OscProbCalcerCUDAProb3(std::string ConfigName_, int Verb
   fInitialFlavours[0] = Electron;
   fInitialFlavours[1] = Muon;
 
-  //fNFinalFlavours = 3;
-  fNFinalFlavours = 2;
+  fNFinalFlavours = 3;
   InitialiseFinalFlavoursArray(fNFinalFlavours);
   fFinalFlavours[0] = Electron;
   fFinalFlavours[1] = Muon;
-  //fFinalFlavours[2] = Tau;
+  fFinalFlavours[2] = Tau;
 
   // Implementation specific variables
   OscChannels.resize(fNInitialFlavours);
@@ -50,10 +49,10 @@ OscProbCalcerCUDAProb3::OscProbCalcerCUDAProb3(std::string ConfigName_, int Verb
   }
   OscChannels[0][0] = e_e;
   OscChannels[0][1] = e_m;
-  //OscChannels[0][2] = e_t;
+  OscChannels[0][2] = e_t;
   OscChannels[1][0] = m_e;
   OscChannels[1][1] = m_m;
-  //OscChannels[1][2] = m_t;
+  OscChannels[1][2] = m_t;
 
   nThreads = 0;
 }
