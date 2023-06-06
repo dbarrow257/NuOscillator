@@ -12,6 +12,13 @@ using FLOAT_T = float;
 #include <vector>
 #include <string>
 
+/**
+ * @file OscProbCalcerBase.h
+ *
+ * @class OscProbCalcerBase
+ *
+ * @brief Oscillation calculation engine (CUDAProb3, ProbGPU, Prob3++, etc.) implementation agnostic base class.
+ */
 class OscProbCalcerBase {
  public:
   // ========================================================================================================================================================================

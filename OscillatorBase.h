@@ -1,4 +1,4 @@
-#ifndef __OSCILLATOR_BASE_H__A
+#ifndef __OSCILLATOR_BASE_H__
 #define __OSCILLATOR_BASE_H__
 
 #include "OscProbCalcerBase.h"
@@ -6,13 +6,13 @@
 /**
  * @file OscillatorBase.h
  *
+ * @class OscillatorBase
+ *
  * @brief Oscillation calculation (binned, unbinned, etc.) implementation agnostic base class.
  *
  * The base class which controls the calculation of neutrino oscillation probabilities through various calculation techniques. There are
  * oscillation calculation techniques which can be implemented (e.g. binned, unbinned) which are expected to be derived classes of this
- * base function
- *
- * 
+ * base function.
  */
 class OscillatorBase {
  public:
@@ -54,6 +54,8 @@ class OscillatorBase {
    *
    * Print the calculated oscillation probability values for a particular OscProbCalcerBase::OscProbCalcerBase() instance in #fOscProbCalcers.
    * This is typically performed after a call to CalculateProbabilities()
+   *
+   * @param CalcerIndex Index of #fOscProbCalcers instance in which to query
    */
   void PrintWeights(int CalcerIndex=0);
 
@@ -127,7 +129,18 @@ class OscillatorBase {
   void SetCosineZArrayInCalcer(std::vector<FLOAT_T> Array, int CalcerIndex=0);
 
   /**
+   * @brief Return a pointer to the oscillation probability memory address in a particular index of #fOscProbCalcers for a particular event
    *
+   * Return the memory address for the oscillation probability which is calculated for neutrinos of a particular initial and final flavour, energy and cosine value. This is
+   * a memory address for a particular OscProbCalcerBase::OscProbCalcerBase() instance stored in a particular index in #fOscProbCalcers.
+   *
+   * @param CalcerIndex The index in #fOscProbCalcers.
+   * @param InitNuFlav Initial neutrino flavour of event
+   * @param FinalNuFlav Final neutrino flavour of event
+   * @param EnergyVal Neutrino energy of event
+   * @param CosineZVal Netrino cosine zenith direction of event
+   *
+   * @return Memory address associated with given event attributes for CalcerIndex-th index in #fOscProbCalcers
    */
   const FLOAT_T* ReturnPointerToWeightinCalcer(int CalcerIndex, int InitNuFlav, int FinalNuFlav, FLOAT_T EnergyVal, FLOAT_T CosineZVal=DUMMYVAL);
   
@@ -137,12 +150,21 @@ class OscillatorBase {
   // ========================================================================================================================================================================
   // Basic protected variables required for oscillation probability calculation
 
+  /**
+   * @brief A vector used for initialising #fOscProbCalcers. It contains strings for the different OscProbCalcerBase::OscProbCalcerBase() objects to initialise. These 
+   * strings should match those in InitialiseOscProbCalcer()
+   */
   std::vector<std::string> fOscProbCalcerImplementationToCreate;
 
+  /**
+   * @brief A boolean used for declaring whether the OscillatorBase() object expects to care about the CosineZ dimension
+   */
   bool fCosineZIgnored;
 
-  // This is a vector object to accomodate any implementations which require multiple calculators to perform the reweight
-  // For instance, this could be used to deal with the MaCh3 Event-by-Event approach by having a OscProbCalcerBase object for each oscillation channel
+  /**
+   * @brief This is a vector object to accomodate any implementations which require multiple calculators to perform the reweight
+   * For instance, this could be used to deal with the MaCh3 Event-by-Event approach by having a OscProbCalcerBase object for each oscillation channel
+   */
   int fNCalcers;
 
   /**
@@ -150,14 +172,33 @@ class OscillatorBase {
    */
   std::vector<OscProbCalcerBase*> fOscProbCalcers;
 
+  /**
+   * @brief The verbosity level of console output
+   */
   int fVerbose;
   enum Verbosity{NONE,INFO};
 
  private:
+
+  /**
+   * @brief Return an OscProbCalcerBase::OscProbCalcerBase() object from the requested string input
+   *
+   * Create and return an instance of OscProbCalcerBase::OscProbCalcerBase() associated from the particular string input. The string is used as a switch statement to create
+   * a particular calculator implementation object (e.g. OscProbCalcer_CUDAProb3::OscProbCalcer_CUDAProb3() ) and recasts it into the base object 
+   * OscProbCalcerBase::OscProbCalcerBase()
+   *
+   * @param OscProbCalcerImplementationToCreate Type of implementation specific OscProbCalcerBase::OscProbCalcerBase() to build. E.g. ProbGPULinear
+   *
+   * @return OscProbCalcerBase::OscProbCalcerBase() object corresponding to the request string input
+   */
   OscProbCalcerBase* InitialiseOscProbCalcer(std::string OscProbCalcerImplementationToCreate);
 
   // ========================================================================================================================================================================
   // Basic private variables required for oscillation probability calculation
+
+  /**
+   * @brief A boolean which declares whether #fOscProbCalcers has been initialised
+   */
   bool fOscProbCalcerSet;
 };
 

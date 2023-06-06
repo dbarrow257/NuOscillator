@@ -3,6 +3,13 @@
 
 #include "OscProbCalcerBase.h"
 
+/**
+ * @file OscProbCalcer_ProbGPULinear.h
+ *
+ * @class OscProbCalcerProbGPULinear
+ *
+ * @brief Oscillation calculation engine for linear propagation in ProbGPU.
+ */
 class OscProbCalcerProbGPULinear : public OscProbCalcerBase {
  public:
   OscProbCalcerProbGPULinear(int Verbosity_=NONE);

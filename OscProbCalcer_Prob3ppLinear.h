@@ -5,6 +5,13 @@
 
 #include "BargerPropagator.h"
 
+/**
+ * @file OscProbCalcer_Prob3ppLinear.h
+ *
+ * @class OscProbCalcerProb3ppLinear
+ *
+ * @brief Oscillation calculation engine for linear propagation in Prob3pp.
+ */
 class OscProbCalcerProb3ppLinear : public OscProbCalcerBase {
  public:
   OscProbCalcerProb3ppLinear(int Verbosity_=NONE);

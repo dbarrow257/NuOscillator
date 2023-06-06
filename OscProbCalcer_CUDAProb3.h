@@ -1,6 +1,13 @@
 #ifndef __OSCILLATOR_CUDAPROB3_H__
 #define __OSCILLATOR_CUDAPROB3_H__
 
+/**
+ * @file OscProbCalcer_CUDAProb3.h
+ *
+ * @class OscProbCalcerCUDAProb3
+ *
+ * @brief Oscillation calculation engine for linear and atmospheric propagation in CUDAProb3.
+ */
 #include "OscProbCalcerBase.h"
 
 // ==================================================================

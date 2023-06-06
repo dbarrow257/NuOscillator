@@ -14,6 +14,9 @@
 
 #include <iostream>
 
+/**
+ * @file OscillatorBase.cpp
+ */
 OscillatorBase::OscillatorBase() {
   fOscProbCalcerImplementationToCreate = std::vector<std::string>();
   fVerbose = NONE;

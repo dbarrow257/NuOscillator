@@ -1,6 +1,13 @@
 #ifndef __OSCILLATOR_UNBINNED_BASE_H__
 #define __OSCILLATOR_UNBINNED_BASE_H__
 
+/**
+ * @file OscillatorUnbinned.h
+ *
+ * @class OscillatorUnbinned
+ *
+ * @brief Unbinned Oscillation calculation implementation class.
+ */
 #include "OscillatorBase.h"
 
 class OscillatorUnbinned : public OscillatorBase {

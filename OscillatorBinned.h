@@ -3,6 +3,13 @@
 
 #include "OscillatorBase.h"
 
+/**
+ * @file OscillatorBinned.h
+ *
+ * @class OscillatorBinned
+ *
+ * @brief Binned Oscillation calculation implementation class.
+ */
 class OscillatorBinned : public OscillatorBase {
  public:
   OscillatorBinned(std::vector<std::string> OscProbCalcerImplementationToCreate, int Verbose_=INFO, bool CosineZIgnored_=false, std::string FileName_="MyFile", std::string EnergyAxisHistName_="EnergyHistName", std::string CosineZAxisHistName_="CosineZHistName");
