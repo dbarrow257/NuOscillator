@@ -3,7 +3,7 @@
 
 #include "OscProbCalcerBase.h"
 
-#inxclude <memory>
+#include <memory>
 
 // ==================================================================
 /**
