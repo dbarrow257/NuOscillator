@@ -16,6 +16,7 @@ std::vector<FLOAT_T> logspace(FLOAT_T Emin, FLOAT_T  Emax, int nDiv);
 std::vector<FLOAT_T> linspace(FLOAT_T Emin, FLOAT_T Emax, int nDiv);
 
 int main() {
+  enum Verbosity{NONE,INFO};
   int Verbose = NONE;
   
   std::vector<FLOAT_T> OscParams_Atm(7);
@@ -38,7 +39,7 @@ int main() {
   OscParams_Beam[7] = 2.6;
 
   std::vector<FLOAT_T> EnergyArray = logspace(0.1,100.,1e6);
-  std::vector<FLOAT_T> CosineZArray = linspace(-1.0,1.0,1e4);
+  std::vector<FLOAT_T> CosineZArray = linspace(-1.0,1.0,1);
 
   std::cout << "========================================================" << std::endl;
   std::cout << "Starting setup in executable" << std::endl;
@@ -47,11 +48,20 @@ int main() {
 
 #if UseCUDAProb3 == 1
   //Binned approaches take binning from TFile,TH1
-  std::vector<std::string> CUDAProb3_Vector{"CUDAProb3"};
+  std::vector<std::string> CUDAProb3Binned_Vector{"CUDAProb3"};
+  int CUDAProb3BinnedLinear_Verbosity = Verbose;
+  int CUDAProb3BinnedLinear_IgnoreCosineZ = false;
+  OscillatorBinned* Oscillator_CUDAProb3Binned = new OscillatorBinned(CUDAProb3Binned_Vector,CUDAProb3BinnedLinear_Verbosity,CUDAProb3BinnedLinear_IgnoreCosineZ);
+  Oscillators.push_back((OscillatorBase*)Oscillator_CUDAProb3Binned);
+
+  //Unbinned approaches need the binning to be set after constructor
+  std::vector<std::string> CUDAProb3Linear_Vector{"CUDAProb3"};
   int CUDAProb3Linear_Verbosity = Verbose;
   int CUDAProb3Linear_IgnoreCosineZ = false;
-  OscillatorBinned* Oscillator_CUDAProb3 = new OscillatorBinned(CUDAProb3_Vector,CUDAProb3Linear_Verbosity,CUDAProb3Linear_IgnoreCosineZ);
-  Oscillators.push_back((OscillatorBase*)Oscillator_CUDAProb3);
+  OscillatorUnbinned* Oscillator_CUDAProb3Linear = new OscillatorUnbinned(CUDAProb3Linear_Vector,CUDAProb3Linear_Verbosity,CUDAProb3Linear_IgnoreCosineZ);
+  Oscillator_CUDAProb3Linear->SetEnergyArray(EnergyArray);
+  Oscillator_CUDAProb3Linear->SetCosineZArray(CosineZArray);
+  Oscillators.push_back((OscillatorBase*)Oscillator_CUDAProb3Linear);
 #endif
 
 #if UseProbGPULinear == 1
@@ -71,7 +81,15 @@ int main() {
   Oscillators.push_back((OscillatorBase*)Oscillator_ProbGPULinear);
 #endif 
 
+  /*
 #if UseProb3ppLinear == 1
+  //Binned approaches take binning from TFile,TH1
+  std::vector<std::string> Prob3ppBinned_Vector{"Prob3ppLinear"};
+  int Prob3ppBinnedLinear_Verbosity = Verbose;
+  int Prob3ppBinnedLinear_IgnoreCosineZ = true;
+  OscillatorBinned* Oscillator_Prob3ppBinned = new OscillatorBinned(Prob3ppBinned_Vector,Prob3ppBinnedLinear_Verbosity,Prob3ppBinnedLinear_IgnoreCosineZ);
+  Oscillators.push_back((OscillatorBase*)Oscillator_Prob3ppBinned);
+
   //Unbinned approaches need the binning to be set after constructor
   std::vector<std::string> Prob3ppLinear_Vector{"Prob3ppLinear"};
   int Prob3ppLinear_Verbosity = Verbose;
@@ -80,6 +98,7 @@ int main() {
   Oscillator_Prob3ppLinear->SetEnergyArray(EnergyArray);
   Oscillators.push_back((OscillatorBase*)Oscillator_Prob3ppLinear);
 #endif
+  */
 
   // Setup propagators
   for (size_t iOsc=0;iOsc<Oscillators.size();iOsc++) {
@@ -88,26 +107,37 @@ int main() {
 
   std::cout << "Finished setup in executable" << std::endl;
   std::cout << "========================================================" << std::endl;
-  std::cout << "Starting reweight in executable" << std::endl;
+  std::cout << "Starting drag race in executable" << std::endl;
 
-  // Reweight and calculate oscillation probabilities
+  int nThrows = 10;
+
   for (size_t iOsc=0;iOsc<Oscillators.size();iOsc++) {
-    // These don't have to be explicilty beam or atmospheric specific, all they have to be is equal to the number of oscillation parameters expected by the implementation
-    // If you have some NSI calculater, then it will work providing the length of the vector of oscillation parameters is equal to the number of expected oscillation parameters
-    if (Oscillators[iOsc]->ReturnNOscParams() == (int)OscParams_Beam.size()) {
-      Oscillators[iOsc]->CalculateProbabilities(OscParams_Beam); 
-    } else if (Oscillators[iOsc]->ReturnNOscParams() == (int)OscParams_Atm.size()) {
-      Oscillators[iOsc]->CalculateProbabilities(OscParams_Atm);
-    } else {
-      std::cerr << "Did not find viable oscillation parameters to hand to the oscillation probability calculater" << std::endl;
-      std::cerr << "Oscillator->ReturnNOscParams():" << Oscillators[iOsc]->ReturnNOscParams() << std::endl;
-      throw;
-    }
-  
-    Oscillators[iOsc]->PrintWeights();
-  }
+    std::cout << Oscillators[iOsc]->ReturnImplementationName() << " starting drag race" << std::endl;
 
-  std::cout << "Finished reweight in executable" << std::endl;
+    auto t1 = high_resolution_clock::now();
+    for (int iThrow=0;iThrow<nThrows;iThrow++) {      
+      //Throw dcp to some new value
+      FLOAT_T RandVal = rand();
+      OscParams_Atm[5] = RandVal;
+      OscParams_Beam[5] = RandVal;
+     
+      if (Oscillators[iOsc]->ReturnNOscParams() == (int)OscParams_Beam.size()) {
+	Oscillators[iOsc]->CalculateProbabilities(OscParams_Beam);
+      } else if (Oscillators[iOsc]->ReturnNOscParams() == (int)OscParams_Atm.size()) {
+	Oscillators[iOsc]->CalculateProbabilities(OscParams_Atm);
+      } else {
+	std::cerr << "Did not find viable oscillation parameters to hand to the oscillation probability calculater" << std::endl;
+	std::cerr << "Oscillator->ReturnNOscParams():" << Oscillators[iOsc]->ReturnNOscParams() << std::endl;
+	throw;
+      }
+    }
+    auto t2 = high_resolution_clock::now();
+    duration<double, std::milli> ms_double = t2 - t1;
+
+    std::cout << Oscillators[iOsc]->ReturnImplementationName() << " ended drag race - took " << ms_double.count()/nThrows << " milliseconds per reweight (Using nEnergyPoints = " << Oscillators[iOsc]->ReturnNEnergyPoints() << ")" << std::endl;
+  }
+  
+  std::cout << "Finished drag race in executable" << std::endl;
   std::cout << "========================================================" << std::endl;
 }
 

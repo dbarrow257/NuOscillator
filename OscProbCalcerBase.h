@@ -406,7 +406,6 @@ class OscProbCalcerBase {
    * @brief Define the verbosity of the console output
    */
   int fVerbose;
-  enum Verbosity{NONE,INFO};
 
   /**
    * @brief Define the implementation name - Can be used for recasting later (similar to TObject::InheritsFrom() etc.)

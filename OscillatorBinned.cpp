@@ -1,4 +1,5 @@
 #include "OscillatorBinned.h"
+#include "OscillatorConstants.h"
 
 #include <iostream>
 
@@ -7,6 +8,8 @@ OscillatorBinned::OscillatorBinned(std::vector<std::string> OscProbCalcerImpleme
   CosineZAxisBinEdges = std::vector<FLOAT_T>();
   EnergyAxisBinCenters = std::vector<FLOAT_T>();
   CosineZAxisBinCenters = std::vector<FLOAT_T>();
+
+  fCalculationTypeName = "Binned";
 
   //=======
   //DB Grab the following from config manager - Currently brought through via constructor
@@ -63,12 +66,12 @@ std::vector<FLOAT_T> OscillatorBinned::ReadBinEdgesFromFile(std::string FileName
   //===========
   //DB Once ROOT is linked up, remove the following code
   if (HistogramName=="CosineZHistName") {
-    int NBins = 11;
+    int NBins = 1;
     for (int iBin=0;iBin<NBins;iBin++) {
-      BinEdges.push_back(iBin*0.2-1.0);
+      BinEdges.push_back(iBin*0.002-1.0);
     }
   } else {
-    int NBins = 11;
+    int NBins = 1001;
     for (int iBin=0;iBin<NBins;iBin++) {
       BinEdges.push_back(iBin*0.1);
     }

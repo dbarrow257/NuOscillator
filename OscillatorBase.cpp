@@ -22,6 +22,9 @@ OscillatorBase::OscillatorBase() {
   fVerbose = NONE;
   fCosineZIgnored = false;
 
+  //DB
+  fCalculationTypeName = "";
+
   fOscProbCalcers = std::vector<OscProbCalcerBase*>();
   fOscProbCalcerSet = false;
 }
@@ -151,6 +154,17 @@ int OscillatorBase::ReturnNOscParams(int CalcerIndex) {
   return fOscProbCalcers[CalcerIndex]->ReturnNOscParams();
 }
 
+int OscillatorBase::ReturnNEnergyPoints(int CalcerIndex) {
+  if (CalcerIndex < 0 || CalcerIndex >= fNCalcers) {
+    std::cerr << "Requested to Return NEnergyPoints at invalid index within fOscProbCalcers array" << std::endl;
+    std::cerr << "CalcerIndex:"<< CalcerIndex << std::endl;
+    std::cerr << "fNCalcers:" << fNCalcers << std::endl;
+    throw;
+  }
+
+  return fOscProbCalcers[CalcerIndex]->ReturnNEnergyPoints();
+}
+
 const FLOAT_T* OscillatorBase::ReturnPointerToWeightinCalcer(int CalcerIndex, int InitNuFlav, int FinalNuFlav, FLOAT_T EnergyVal, FLOAT_T CosineZVal) {
   if (CalcerIndex < 0 || CalcerIndex >= fNCalcers) {
     std::cerr << "Requested to ReturnPointerToWeightinCalcer at invalid index within fOscProbCalcers array" << std::endl;
@@ -194,4 +208,15 @@ void OscillatorBase::PrintWeights(int CalcerIndex) {
   }
 
   fOscProbCalcers[CalcerIndex]->PrintWeights();
+}
+
+std::string OscillatorBase::ReturnImplementationName() {
+  std::string ReturnString = "";
+  
+  ReturnString += fCalculationTypeName;
+  for (int iCalcer=0;iCalcer<fNCalcers;iCalcer++) {
+    ReturnString += "_"+fOscProbCalcers[iCalcer]->ReturnImplementationName();
+  }
+  
+  return ReturnString;
 }

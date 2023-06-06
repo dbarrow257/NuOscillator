@@ -1,8 +1,11 @@
 #include "OscillatorUnbinned.h"
+#include "OscillatorConstants.h"
 
 #include <iostream>
 
 OscillatorUnbinned::OscillatorUnbinned(std::vector<std::string> OscProbCalcerImplementationToCreate_, int Verbosity_, bool CosineZIgnored_) : OscillatorBase() {
+  fCalculationTypeName = "Unbinned";
+
   //=======
   //DB Grab the following from config manager - Currently brought through via constructor
   fOscProbCalcerImplementationToCreate = OscProbCalcerImplementationToCreate_;

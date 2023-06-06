@@ -1,6 +1,9 @@
 #ifndef __OSCILLATOR_UNBINNED_BASE_H__
 #define __OSCILLATOR_UNBINNED_BASE_H__
 
+#include "OscillatorBase.h"
+#include "OscillatorConstants.h"
+
 /**
  * @file OscillatorUnbinned.h
  *
@@ -11,8 +14,6 @@
  * Implementation of OscillatorBase::OscillatorBase() object which uses unbinned energy and cosineZ dimensions. It is expected that the specific Energy and CosineZ
  * values to be used by the OscProbCalcerBase::OscProbCalcerBase() object are passed via SetEnergyArray() and SetCosineZArray()
  */
-#include "OscillatorBase.h"
-
 class OscillatorUnbinned : public OscillatorBase {
  public:
 

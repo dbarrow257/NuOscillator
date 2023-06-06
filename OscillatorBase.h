@@ -67,6 +67,12 @@ class OscillatorBase {
    */
   void Setup();
 
+  //DB
+  std::string ReturnImplementationName();
+
+  //DB
+  int ReturnNEnergyPoints(int CalcerIndex=0);
+
   // ========================================================================================================================================================================
   // Public virtual functions which need calculater specific implementations
 
@@ -172,11 +178,13 @@ class OscillatorBase {
    */
   std::vector<OscProbCalcerBase*> fOscProbCalcers;
 
+  //DB
+  std::string fCalculationTypeName;
+
   /**
    * @brief The verbosity level of console output
    */
   int fVerbose;
-  enum Verbosity{NONE,INFO};
 
  private:
 

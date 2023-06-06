@@ -2,6 +2,7 @@
 #define __OSCILLATOR_PROB3PPLINEAR_H__
 
 #include "OscProbCalcerBase.h"
+#include "OscillatorConstants.h"
 
 #include "BargerPropagator.h"
 

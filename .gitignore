@@ -1,2 +1,6 @@
 *.o
 *.exe
+
+CUDAProb3/
+Prob3plusplus/
+ProbGPU/
