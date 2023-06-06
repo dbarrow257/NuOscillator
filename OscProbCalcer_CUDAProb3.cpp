@@ -4,7 +4,7 @@
 #include "propagator.hpp"
 #include "physics.hpp"
 
-#ifdef UseGPU
+#if UseGPU == 1
 #include "cudapropagator.cuh"
 #else
 #include "cpupropagator.hpp"
@@ -59,13 +59,13 @@ OscProbCalcerCUDAProb3::OscProbCalcerCUDAProb3(std::string ConfigName_, int Verb
 
 void OscProbCalcerCUDAProb3::SetupPropagator() {
 
-#ifdef UseGPU
+#if UseGPU == 1
   if (fVerbose >= INFO) {std::cout << "Using GPU CUDAProb3 propagator" << std::endl;}
   propagator = std::unique_ptr<Propagator<FLOAT_T>> ( new CudaPropagatorSingle<FLOAT_T>(0, fNCosineZPoints, fNEnergyPoints)); // Single-GPU propagator
 #else
 
   nThreads = 1;
-#ifdef UseMultithread
+#if UseMultithreading == 1
 #pragma omp parallel
   {
 #pragma omp single

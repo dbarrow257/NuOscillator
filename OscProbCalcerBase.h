@@ -3,7 +3,7 @@
 
 #define DUMMYVAL -999
 
-#ifdef UsingDoubles
+#ifdef UseDoubles
 using FLOAT_T = double;
 #else
 using FLOAT_T = float;

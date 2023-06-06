@@ -5,7 +5,7 @@ CXXFLAGS = -Wall -fPIC -fopenmp -O3 -std=c++11 -g
 UseGPUFlag = 
 ARCH = 
 CUDA_LIBS =
-ifdef UseGPU
+ifeq (${UseGPU},1)
 	ARCH= 	-gencode arch=compute_52,code=sm_52 \
 		-gencode arch=compute_60,code=sm_60 \
 		-gencode arch=compute_61,code=sm_61 \
@@ -18,16 +18,16 @@ ifdef UseGPU
 	CUDA_LIBS = -L$(CUDAPATH)/lib64 -I$(CUDAPATH)/include -lcudart
 endif
 
-MultiThreadFlags = 
-ifdef MULTITHREAD
-	MultiThreadFlags = -DUseMultithread=1
+UseMultithreadingFlag = 
+ifeq (${UseMultithreading},1)
+	UseMultithreadingFlag = -DUseMultithreading=1
 endif
 
 CUDAProb3Lib =
 CUDAProb3Inc =
 CUDAProb3Obj =
 CUDAProb3Flags =
-ifdef UseCUDAProb3
+ifeq (${UseCUDAProb3},1)
         CUDAProb3Lib = 
         CUDAProb3Inc = -I../CUDAProb3
         CUDAProb3Obj = OscProbCalcer_CUDAProb3.o
@@ -38,7 +38,7 @@ ProbGPULinearLib =
 ProbGPULinearInc =
 ProbGPULinearObj =
 ProbGPULinearFlags =
-ifdef UseProbGPULinear
+ifeq (${UseProbGPULinear},1)
 	ProbGPULinearLib = -L../ProbGPU -lProbGPU
 	ProbGPULinearInc = -I../ProbGPU
 	ProbGPULinearObj = OscProbCalcer_ProbGPULinear.o
@@ -49,7 +49,7 @@ Prob3ppLinearLib =
 Prob3ppLinearInc =
 Prob3ppLinearObj = 
 Prob3ppLinearFlags =
-ifdef UseProb3ppLinear
+ifeq (${UseProb3ppLinear},1)
 	Prob3ppLinearLib = -L../Prob3 -lThreeProb_3.20
 	Prob3ppLinearInc = -I../Prob3
         Prob3ppLinearObj = OscProbCalcer_Prob3ppLinear.o
@@ -61,19 +61,19 @@ TARINCS = ${CUDAProb3Inc} ${ProbGPULinearInc} ${Prob3ppLinearInc}
 TAROBJS = ${CUDAProb3Obj} ${ProbGPULinearObj} ${Prob3ppLinearObj}
 TARFLAGS = ${CUDAProb3Flags} ${ProbGPULinearFlags} ${Prob3ppLinearFlags}
 
-FLOAT_TFLAGS = -DUsingDoubles=1
+FLOAT_TFLAGS = -DUseDoubles=1
 
 all: Analysis.exe
 
 OscProbCalcerBase.o : 
 	g++ $(CXXFLAGS) ${LIBS} ${INCS} -o OscProbCalcerBase.o -c OscProbCalcerBase.cpp ${FLOAT_TFLAGS}
 
-ifdef CUDAPATH
+ifeq (${UseGPU},1)
 OscProbCalcer_CUDAProb3.o : OscProbCalcerBase.o
 	nvcc -g -O3 -x cu $(ARCH) -lineinfo -std=c++11 -Xcompiler="${CUDA_LIBS} ${INCS} ${CUDAProb3Inc} $(CXXFLAGS) ${CUDAProb3Flags} ${FLOAT_TFLAGS} ${UseGPUFlag}" -c OscProbCalcer_CUDAProb3.cpp -o OscProbCalcer_CUDAProb3.o
 else
 OscProbCalcer_CUDAProb3.o : OscProbCalcerBase.o
-	g++ ${CXXFLAGS} ${LIBS} ${CUDAProb3Lib} ${INCS} ${CUDAProb3Inc} -o OscProbCalcer_CUDAProb3.o -c OscProbCalcer_CUDAProb3.cpp ${CUDAProb3Flags} ${FLOAT_TFLAGS} ${MultiThreadFlags} ${UseGPUFlag}
+	g++ ${CXXFLAGS} ${LIBS} ${CUDAProb3Lib} ${INCS} ${CUDAProb3Inc} -o OscProbCalcer_CUDAProb3.o -c OscProbCalcer_CUDAProb3.cpp ${CUDAProb3Flags} ${FLOAT_TFLAGS} ${UseMultithreadingFlag} ${UseGPUFlag}
 endif
 
 OscProbCalcer_ProbGPULinear.o : OscProbCalcerBase.o
