@@ -2,6 +2,22 @@ INCS = -I.
 LIBS = -L/usr/lib64 -L/usr/lib
 CXXFLAGS = -Wall -fPIC -fopenmp -O3 -std=c++11 -g
 
+UseGPUFlag = 
+ARCH = 
+CUDA_LIBS =
+ifdef UseGPU
+	ARCH= 	-gencode arch=compute_52,code=sm_52 \
+		-gencode arch=compute_60,code=sm_60 \
+		-gencode arch=compute_61,code=sm_61 \
+		-gencode arch=compute_70,code=sm_70 \
+		-gencode arch=compute_75,code=sm_75 \
+		-gencode arch=compute_80,code=sm_80 \
+		-gencode arch=compute_86,code=sm_86 \
+		-gencode arch=compute_86,code=compute_86
+	UseGPUFlag = -DUseGPU=1
+	CUDA_LIBS = -L$(CUDAPATH)/lib64 -I$(CUDAPATH)/include -lcudart
+endif
+
 MultiThreadFlags = 
 ifdef MULTITHREAD
 	MultiThreadFlags = -DUseMultithread=1
@@ -52,8 +68,13 @@ all: Analysis.exe
 OscProbCalcerBase.o : 
 	g++ $(CXXFLAGS) ${LIBS} ${INCS} -o OscProbCalcerBase.o -c OscProbCalcerBase.cpp ${FLOAT_TFLAGS}
 
+ifdef CUDAPATH
 OscProbCalcer_CUDAProb3.o : OscProbCalcerBase.o
-	g++ ${CXXFLAGS} ${LIBS} ${CUDAProb3Lib} ${INCS} ${CUDAProb3Inc} -o OscProbCalcer_CUDAProb3.o -c OscProbCalcer_CUDAProb3.cpp ${CUDAProb3Flags} ${FLOAT_TFLAGS} ${MultiThreadFlags}
+	nvcc -g -O3 -x cu $(ARCH) -lineinfo -std=c++11 -Xcompiler="${CUDA_LIBS} ${INCS} ${CUDAProb3Inc} $(CXXFLAGS) ${CUDAProb3Flags} ${FLOAT_TFLAGS} ${UseGPUFlag}" -c OscProbCalcer_CUDAProb3.cpp -o OscProbCalcer_CUDAProb3.o
+else
+OscProbCalcer_CUDAProb3.o : OscProbCalcerBase.o
+	g++ ${CXXFLAGS} ${LIBS} ${CUDAProb3Lib} ${INCS} ${CUDAProb3Inc} -o OscProbCalcer_CUDAProb3.o -c OscProbCalcer_CUDAProb3.cpp ${CUDAProb3Flags} ${FLOAT_TFLAGS} ${MultiThreadFlags} ${UseGPUFlag}
+endif
 
 OscProbCalcer_ProbGPULinear.o : OscProbCalcerBase.o
 	g++ ${CXXFLAGS} ${LIBS} ${ProbGPULinearLib} ${INCS} ${ProbGPULinearInc} -o OscProbCalcer_ProbGPULinear.o -c OscProbCalcer_ProbGPULinear.cpp ${ProbGPULinearFlags} ${FLOAT_TFLAGS}
@@ -71,7 +92,7 @@ OscillatorBinned.o : OscillatorBase.o
 	g++ ${CXXFLAGS} ${LIBS} ${TARLIBS} ${INCS} ${TARINCS} -o OscillatorBinned.o -c OscillatorBinned.cpp ${TARFLAGS} ${FLOAT_TFLAGS}
 
 Analysis.exe: OscillatorUnbinned.o OscillatorBinned.o
-	g++ ${CXXFLAGS} ${LIBS} ${TARLIBS} ${INCS} ${TARINCS} Analysis.cpp OscProbCalcerBase.o ${TAROBJS} OscillatorBase.o OscillatorUnbinned.o OscillatorBinned.o -o Analysis.exe ${TARFLAGS} ${FLOAT_TFLAGS}
+	g++ ${CXXFLAGS} ${LIBS} ${TARLIBS} ${CUDA_LIBS} ${INCS} ${TARINCS} Analysis.cpp OscProbCalcerBase.o ${TAROBJS} OscillatorBase.o OscillatorUnbinned.o OscillatorBinned.o -o Analysis.exe ${TARFLAGS} ${FLOAT_TFLAGS}
 
 clean:
 	rm -f *.o
