@@ -23,24 +23,65 @@ class OscProbCalcerBase {
  public:
   // ========================================================================================================================================================================
   // Public functions which are calculation implementation agnostic
-  
-  // Define the energies and cosines which will be used when calculating the oscillation probabilities
+
+  /**
+   * @brief Define the Energy which will be used when calculating the oscillation probabilities
+   * 
+   * @param EnergyArray The Energy array which will be used by the calculation engine
+   */
   void SetEnergyArray(std::vector<FLOAT_T> EnergyArray);
+
+  /**
+   * @brief Define the CosineZ which will be used when calculating the oscillation probabilities
+   *
+   * @param CosineZArray The CosineZ array which will be used by the calculation engine
+   */
   void SetCosineZArray(std::vector<FLOAT_T> CosineZArray);
 
-  // Return pointer to the weight array for a specific energy (and cosine)
+  /**
+   * @brief Return pointer to the weight array for a specific Energy and CosineZ
+   *
+   * The specific calculation engine will calculate an oscillation probability for a particular initial and final neutrino flavour, neutrino Energy and CosineZ and stores
+   * it in #fWeightArray. This function returns a pointer to the correct index in #fWeightArray for the given inputs
+   *
+   * @param InitNuFlav Initial neutrino flavour of the neutrino
+   * @param FinalNuFlav Final neutrino flavour of the neutrino
+   * @param Energy True energy of the neutrino
+   * @param CosineZ True direction of the neutrino in CosineZ
+   * 
+   * @return Pointer to the memory address where the calculated oscillation probability for events of the specific requested type will be stored
+   */
   const FLOAT_T* ReturnPointerToWeight(int InitNuFlav, int FinalNuFlav, FLOAT_T Energy, FLOAT_T CosineZ=DUMMYVAL);
 
-  // General function used to call the oscillation probability calculation
+  /**
+   * @brief General function used to call the oscillation probability calculation
+   *
+   * This function performs both the implementation specific CalculateProbabilities() function, along with checking whether the oscillation parameters have been
+   * updated since the last call. It also calls SanitiseProbabilities().
+   *
+   * @param OscParams The oscillation parameters to calculate the oscillation probability at
+   */
   void Reweight(std::vector<FLOAT_T> OscParams);
 
-  // General function used to setup all variables/functions
+  /**
+   * @brief General function used to setup all variables used within the reweighting
+   *
+   * Ensures that the Energy and CosineZ arrays have been set correctly, along with initialising the saved oscillation parameters and weight array (via. ResetCurrOscParams()
+   * and IntialiseWeightArray() ). Then sets the propagator specific implementation SetupPropagator()
+   */
   void Setup();
 
-  // Does my instance of OscProbCalcerBase pass all the sanity check;
+  /**
+   * @brief Ensures that the specific implementation has been correctly initialised
+   *
+   * Checks that the Energy and CosineZ arrays have been passed to the OscProbCalcerBase::OscProbCalcerBase() object, the neutrino flavour mapping, weight array and 
+   * propagator has also been initialised
+   */
   bool SanityCheck();
 
-  // Print values of fWeightArray
+  /**
+   * @brief Print the calculated oscillation probabilities
+   */
   void PrintWeights();
 
   // Getters
