@@ -22,7 +22,6 @@ OscillatorBase::OscillatorBase() {
   fVerbose = NONE;
   fCosineZIgnored = false;
 
-  //DB
   fCalculationTypeName = "";
 
   fOscProbCalcers = std::vector<OscProbCalcerBase*>();

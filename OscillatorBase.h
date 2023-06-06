@@ -67,10 +67,18 @@ class OscillatorBase {
    */
   void Setup();
 
-  //DB
+  /**
+   * @brief Return a string which encapsulates the calculation type along with the calculation engine
+   *
+   * @return Returns a string which looks like CalculationType_CalculationEngine (e.g. Binned_CUDAProb3)
+   */
   std::string ReturnImplementationName();
 
-  //DB
+  /**
+   * @brief Return the number of Energy points which are being evaluated in the OscProbCalcerBase::OscProbCalcerBase() object
+   *
+   * @return Returns an integer describing the number of Energy points which are being evaluated in the OscProbCalcerBase::OscProbCalcerBase() object
+   */
   int ReturnNEnergyPoints(int CalcerIndex=0);
 
   // ========================================================================================================================================================================
@@ -178,7 +186,9 @@ class OscillatorBase {
    */
   std::vector<OscProbCalcerBase*> fOscProbCalcers;
 
-  //DB
+  /**
+   * @brief A string describing the calculation implementation, e.g. Binned
+   */
   std::string fCalculationTypeName;
 
   /**
