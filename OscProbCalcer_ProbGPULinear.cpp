@@ -19,15 +19,17 @@ OscProbCalcerProbGPULinear::OscProbCalcerProbGPULinear(int Verbosity_) : OscProb
   fNeutrinoTypes[0] = Nu;
   fNeutrinoTypes[1] = Nubar;
 
-  fNInitialFlavours = 2;
+  fNInitialFlavours = 3;
   InitialiseInitialFlavoursArray(fNInitialFlavours);
   fInitialFlavours[0] = Electron;
   fInitialFlavours[1] = Muon;
+  fInitialFlavours[2] = Tau;
 
-  fNFinalFlavours = 2;
+  fNFinalFlavours = 3;
   InitialiseFinalFlavoursArray(fNFinalFlavours);
   fFinalFlavours[0] = Electron;
   fFinalFlavours[1] = Muon;
+  fFinalFlavours[2] = Tau;
 
   // This implementation only considers linear propagation, thus no requirement to set cosineZ array
   IgnoreCosineZBinning(true);

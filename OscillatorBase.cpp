@@ -1,7 +1,12 @@
 #include "OscillatorBase.h"
+#include "OscillatorConstants.h"
 
 #if UseCUDAProb3==1
 #include "OscProbCalcer_CUDAProb3.h"
+#endif
+
+#if UseCUDAProb3Linear==1
+#include "OscProbCalcer_CUDAProb3Linear.h"
 #endif
 
 #if UseProb3ppLinear==1
@@ -66,6 +71,20 @@ OscProbCalcerBase* OscillatorBase::InitialiseOscProbCalcer(std::string OscProbCa
 
     OscProbCalcerCUDAProb3* CUDAProb3 = new OscProbCalcerCUDAProb3(CUDAProb3ConfigName,fVerbose);
     Calcer = (OscProbCalcerBase*)CUDAProb3;
+    if (fVerbose >= INFO) {std::cout << "Initalised OscProbCalcer Implementation:" << Calcer->ReturnImplementationName() << " in OscillatorBase object" << std::endl;}
+#else
+    std::cerr << "Oscillator was requsted to create " << OscProbCalcerImplementationToCreate << " OscProbCalcer but Use" << OscProbCalcerImplementationToCreate << " is undefined. Indicates problem in setup" << std::endl;
+    throw;
+#endif
+  }
+
+  else if (OscProbCalcerImplementationToCreate == "CUDAProb3Linear") {
+#if UseCUDAProb3Linear==1
+    //DB When using config manager to setup the OscillatorBase, store it to grab the config for the specific OscProbCalcer initialisation
+    std::string CUDAProb3LinearConfigName = "";
+
+    OscProbCalcerCUDAProb3Linear* CUDAProb3Linear = new OscProbCalcerCUDAProb3Linear(CUDAProb3LinearConfigName,fVerbose);
+    Calcer = (OscProbCalcerBase*)CUDAProb3Linear;
     if (fVerbose >= INFO) {std::cout << "Initalised OscProbCalcer Implementation:" << Calcer->ReturnImplementationName() << " in OscillatorBase object" << std::endl;}
 #else
     std::cerr << "Oscillator was requsted to create " << OscProbCalcerImplementationToCreate << " OscProbCalcer but Use" << OscProbCalcerImplementationToCreate << " is undefined. Indicates problem in setup" << std::endl;

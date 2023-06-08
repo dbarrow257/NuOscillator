@@ -14,8 +14,13 @@ ifeq (${UseGPU},1)
 		-gencode arch=compute_80,code=sm_80 \
 		-gencode arch=compute_86,code=sm_86 \
 		-gencode arch=compute_86,code=compute_86
-	UseGPUFlag = -DUseGPU=1
+	UseGPUFlag = -DUseGPU=1 -DGPU_ON=1
 	CUDA_LIBS = -L$(CUDAPATH)/lib64 -I$(CUDAPATH)/include -lcudart
+endif
+
+UseBinnedProbsInExeFlag = 
+ifeq (${UseBinned},1)
+	UseBinnedProbsInExeFlag = -DUseBinned=1
 endif
 
 UseMultithreadingFlag = 
@@ -32,6 +37,18 @@ ifeq (${UseCUDAProb3},1)
         CUDAProb3Inc = -I./CUDAProb3
         CUDAProb3Obj = OscProbCalcer_CUDAProb3.o
         CUDAProb3Flags = -DUseCUDAProb3=1
+endif
+
+CUDAProb3LinearLib =
+CUDAProb3LinearInc =
+CUDAProb3LinearObj =
+CUDAProb3LinearFlags =
+ifeq (${UseCUDAProb3Linear},1)
+        CUDAProb3LinearLib = -L./CUDAProb3Linear/build -lCUDAProb3Beam
+        CUDAProb3LinearInc = -I./CUDAProb3Linear
+        CUDAProb3LinearObj = OscProbCalcer_CUDAProb3Linear.o
+#        CUDAProb3LinearFlags = -DUseCUDAProb3Linear=1 -DGPU_ON=1
+        CUDAProb3LinearFlags = -DUseCUDAProb3Linear=1
 endif
 
 ProbGPULinearLib =
@@ -56,10 +73,10 @@ ifeq (${UseProb3ppLinear},1)
         Prob3ppLinearFlags = -DUseProb3ppLinear=1
 endif
 
-TARLIBS = ${CUDAProb3Lib} ${ProbGPULinearLib} ${Prob3ppLinearLib}
-TARINCS = ${CUDAProb3Inc} ${ProbGPULinearInc} ${Prob3ppLinearInc}
-TAROBJS = ${CUDAProb3Obj} ${ProbGPULinearObj} ${Prob3ppLinearObj}
-TARFLAGS = ${CUDAProb3Flags} ${ProbGPULinearFlags} ${Prob3ppLinearFlags}
+TARLIBS = ${CUDAProb3Lib} ${CUDAProb3LinearLib} ${ProbGPULinearLib} ${Prob3ppLinearLib}
+TARINCS = ${CUDAProb3Inc} ${CUDAProb3LinearInc} ${ProbGPULinearInc} ${Prob3ppLinearInc}
+TAROBJS = ${CUDAProb3Obj} ${CUDAProb3LinearObj} ${ProbGPULinearObj} ${Prob3ppLinearObj}
+TARFLAGS = ${CUDAProb3Flags} ${CUDAProb3LinearFlags} ${ProbGPULinearFlags} ${Prob3ppLinearFlags}
 
 FLOAT_TFLAGS = -DUseDoubles=1
 
@@ -70,10 +87,18 @@ OscProbCalcerBase.o : OscProbCalcerBase.cpp
 
 ifeq (${UseGPU},1)
 OscProbCalcer_CUDAProb3.o : OscProbCalcerBase.o OscProbCalcer_CUDAProb3.cpp
-	nvcc -g -O3 -x cu $(ARCH) -lineinfo -std=c++11 -Xcompiler="${CUDA_LIBS} ${INCS} ${CUDAProb3Inc} $(CXXFLAGS) ${CUDAProb3Flags} ${FLOAT_TFLAGS} ${UseGPUFlag}" -c OscProbCalcer_CUDAProb3.cpp -o OscProbCalcer_CUDAProb3.o
+	nvcc -g -O0 -x cu $(ARCH) -lineinfo -std=c++11 -Xcompiler="${INCS} ${CUDAProb3Inc} $(CXXFLAGS) ${CUDAProb3Flags} ${FLOAT_TFLAGS} ${UseGPUFlag}" -c OscProbCalcer_CUDAProb3.cpp -o OscProbCalcer_CUDAProb3.o
 else
 OscProbCalcer_CUDAProb3.o : OscProbCalcerBase.o OscProbCalcer_CUDAProb3.cpp
 	g++ ${CXXFLAGS} ${LIBS} ${CUDAProb3Lib} ${INCS} ${CUDAProb3Inc} -o OscProbCalcer_CUDAProb3.o -c OscProbCalcer_CUDAProb3.cpp ${CUDAProb3Flags} ${FLOAT_TFLAGS} ${UseMultithreadingFlag} ${UseGPUFlag}
+endif
+
+ifeq (${UseGPU},1)
+OscProbCalcer_CUDAProb3Linear.o : OscProbCalcerBase.o OscProbCalcer_CUDAProb3Linear.cpp
+	nvcc -g -O0 -x cu $(ARCH) -lineinfo -std=c++11 -Xcompiler="${INCS} ${CUDAProb3LinearInc} $(CXXFLAGS) ${CUDAProb3LinearFlags} ${FLOAT_TFLAGS} ${UseGPUFlag}" -c OscProbCalcer_CUDAProb3Linear.cpp -o OscProbCalcer_CUDAProb3Linear.o
+else
+OscProbCalcer_CUDAProb3Linear.o : OscProbCalcerBase.o OscProbCalcer_CUDAProb3Linear.cpp
+	g++ ${CXXFLAGS} ${LIBS} ${CUDAProb3LinearLib} ${INCS} ${CUDAProb3LinearInc} -o OscProbCalcer_CUDAProb3Linear.o -c OscProbCalcer_CUDAProb3Linear.cpp ${CUDAProb3LinearFlags} ${FLOAT_TFLAGS} ${UseMultithreadingFlag} ${UseGPUFlag}
 endif
 
 OscProbCalcer_ProbGPULinear.o : OscProbCalcerBase.o OscProbCalcer_ProbGPULinear.cpp
@@ -92,10 +117,10 @@ OscillatorBinned.o : OscillatorBase.o OscillatorBinned.cpp
 	g++ ${CXXFLAGS} ${LIBS} ${TARLIBS} ${INCS} ${TARINCS} -o OscillatorBinned.o -c OscillatorBinned.cpp ${TARFLAGS} ${FLOAT_TFLAGS}
 
 Analysis.exe: OscillatorUnbinned.o OscillatorBinned.o Analysis.cpp
-	g++ ${CXXFLAGS} ${LIBS} ${TARLIBS} ${CUDA_LIBS} ${INCS} ${TARINCS} Analysis.cpp OscProbCalcerBase.o ${TAROBJS} OscillatorBase.o OscillatorUnbinned.o OscillatorBinned.o -o Analysis.exe ${TARFLAGS} ${FLOAT_TFLAGS}
+	g++ ${CXXFLAGS} ${LIBS} ${TARLIBS} ${CUDA_LIBS} ${INCS} ${TARINCS} Analysis.cpp OscProbCalcerBase.o ${TAROBJS} OscillatorBase.o OscillatorUnbinned.o OscillatorBinned.o -o Analysis.exe ${TARFLAGS} ${FLOAT_TFLAGS} ${UseBinnedProbsInExeFlag}
 
 DragRace.exe: OscillatorUnbinned.o OscillatorBinned.o DragRace.cpp
-	g++ ${CXXFLAGS} ${LIBS} ${TARLIBS} ${CUDA_LIBS} ${INCS} ${TARINCS} DragRace.cpp OscProbCalcerBase.o ${TAROBJS} OscillatorBase.o OscillatorUnbinned.o OscillatorBinned.o -o DragRace.exe ${TARFLAGS} ${FLOAT_TFLAGS}
+	g++ ${CXXFLAGS} ${LIBS} ${TARLIBS} ${CUDA_LIBS} ${INCS} ${TARINCS} DragRace.cpp OscProbCalcerBase.o ${TAROBJS} OscillatorBase.o OscillatorUnbinned.o OscillatorBinned.o -o DragRace.exe ${TARFLAGS} ${FLOAT_TFLAGS} ${UseBinnedProbsInExeFlag}
 
 clean:
 	rm -f *.o
@@ -105,6 +130,7 @@ clean:
 vclean: clean
 	rm -rf ProbGPU
 	rm -rf CUDAProb3
+	rm -rf CUDAProb3Linear
 	rm -rf Prob3plusplus
 
 deps:

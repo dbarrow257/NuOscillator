@@ -1,29 +1,27 @@
-#include "OscProbCalcer_CUDAProb3.h"
-
-#include "constants.hpp"
-#include "propagator.hpp"
-#include "physics.hpp"
-
-#if UseGPU == 1
-#include "cudapropagator.cuh"
-#else
-#include "cpupropagator.hpp"
-#endif
+#include "OscProbCalcer_CUDAProb3Linear.h"
 
 #include <iostream>
+
+#if UseGPU == 1
+#include "beamcudapropagator.cuh"
+#else
+#include "beamcpupropagator.hpp"
+#endif
+
+//using FLOAT_T=double;
+
 using namespace cudaprob3;
 
-OscProbCalcerCUDAProb3::OscProbCalcerCUDAProb3(std::string ConfigName_, int Verbosity_) : OscProbCalcerBase()
+OscProbCalcerCUDAProb3Linear::OscProbCalcerCUDAProb3Linear(std::string ConfigName_, int Verbosity_) : OscProbCalcerBase()
 {
-  //=======
+//=======
   //DB Grab the following from config manager
   fVerbose = Verbosity_;
 
   ConfigName = ConfigName_;
-  EarthDensityFile = "./CUDAProb3/models/PREM_1layer.dat"; 
   //=======
 
-  fImplementationName = "CUDAProb3";
+  fImplementationName = "CUDAProb3Linear";
   fNOscParams = kNOscParams;
 
   fNNeutrinoTypes = 2;
@@ -43,25 +41,29 @@ OscProbCalcerCUDAProb3::OscProbCalcerCUDAProb3(std::string ConfigName_, int Verb
   fFinalFlavours[2] = Tau;
 
   // Implementation specific variables
+
   OscChannels.resize(fNInitialFlavours);
   for (int i=0;i<fNInitialFlavours;i++) {
     OscChannels[i].resize(fNFinalFlavours);
   }
-  OscChannels[0][0] = e_e;
-  OscChannels[0][1] = e_m;
-  OscChannels[0][2] = e_t;
-  OscChannels[1][0] = m_e;
-  OscChannels[1][1] = m_m;
-  OscChannels[1][2] = m_t;
+  OscChannels[0][0] = cudaprob3::e_e;
+  OscChannels[0][1] = cudaprob3::e_m;
+  OscChannels[0][2] = cudaprob3::e_t;
+  OscChannels[1][0] = cudaprob3::m_e;
+  OscChannels[1][1] = cudaprob3::m_m;
+  OscChannels[1][2] = cudaprob3::m_t;
+
+  // This implementation only considers linear propagation, thus no requirement to set cosineZ array
+  IgnoreCosineZBinning(true);
 
   nThreads = 0;
 }
 
-void OscProbCalcerCUDAProb3::SetupPropagator() {
+void OscProbCalcerCUDAProb3Linear::SetupPropagator() {
 
 #if UseGPU == 1
-  if (fVerbose >= INFO) {std::cout << "Using GPU CUDAProb3 propagator" << std::endl;}
-  propagator = std::unique_ptr<Propagator<FLOAT_T>> ( new CudaPropagatorSingle<FLOAT_T>(0, fNCosineZPoints, fNEnergyPoints)); // Single-GPU propagator
+  if (fVerbose >= INFO) {std::cout << "Using GPU CUDAProb3Linear propagator" << std::endl;}
+  propagator = std::unique_ptr< Propagator<FLOAT_T> > ( new BeamCudaPropagatorSingle(0, fNEnergyPoints));
   fImplementationName += "-GPU";
 #else
 
@@ -74,19 +76,22 @@ void OscProbCalcerCUDAProb3::SetupPropagator() {
   }
 #endif
 
-  if (fVerbose >= INFO) {std::cout << "Using CPU CUDAProb3 propagator with " << nThreads << " threads" << std::endl;}
-  propagator = std::unique_ptr< Propagator< FLOAT_T > > ( new CpuPropagator<FLOAT_T>(fNCosineZPoints, fNEnergyPoints, nThreads)); // MultiThread CPU propagator
+  if (fVerbose >= INFO) {std::cout << "Using CPU CUDAProb3Linear propagator with fNEnergyPoints:" << fNEnergyPoints << " and:" << nThreads << " threads" << std::endl;}
+  propagator = std::unique_ptr< Propagator< FLOAT_T > > ( new BeamCpuPropagator<FLOAT_T>(fNEnergyPoints, nThreads)); // MultiThread CPU propagator
   fImplementationName += "-CPU-"+std::to_string(nThreads);
 #endif
 
+  std::cout << "fEnergyArray.size():" << fEnergyArray.size() << std::endl;
   propagator->setEnergyList(fEnergyArray);
-  propagator->setCosineList(fCosineZArray);
-  propagator->setDensityFromFile(EarthDensityFile);
 
-  if (fVerbose >= INFO) {std::cout << "Setup CUDAProb3 oscillation probability calculater" << std::endl;}
+  //DB
+  propagator->setDensity(0.1);
+  propagator->setPathLength(250.0);
+
+  if (fVerbose >= INFO) {std::cout << "Setup CUDAProb3Linear oscillation probability calculater" << std::endl;}
 }
  
-void OscProbCalcerCUDAProb3::CalculateProbabilities(std::vector<FLOAT_T> OscParams) {
+void OscProbCalcerCUDAProb3Linear::CalculateProbabilities(std::vector<FLOAT_T> OscParams) {
   // Oscpars, as given from MaCh3, expresses the mixing angles in sin^2(theta). This propagator expects them in theta
   for (int iOscPar=0;iOscPar<=kTH13;iOscPar++) {
     if (OscParams[iOscPar] < 0) {
@@ -101,27 +106,23 @@ void OscProbCalcerCUDAProb3::CalculateProbabilities(std::vector<FLOAT_T> OscPara
   FLOAT_T dm12sq  = OscParams[kDM12];
   FLOAT_T dm23sq  = OscParams[kDM23];
   FLOAT_T dcp     = OscParams[kDCP];
-  FLOAT_T prodH   = OscParams[kPRODH];
+  //FLOAT_T prodH   = OscParams[kPRODH];
 
   propagator->setNeutrinoMasses(dm12sq, dm23sq);
-  propagator->setProductionHeight(prodH);
 
-  // CUDAProb3 calculates oscillation probabilites for each NeutrinoType, so need to copy them from the calculator into fWeightArray
-  int CopyArrSize = fNEnergyPoints * fNCosineZPoints;
+  // CUDAProb3Linear calculates oscillation probabilites for each NeutrinoType, so need to copy them from the calculator into fWeightArray
+  int CopyArrSize = fNEnergyPoints;
   FLOAT_T* CopyArr = new FLOAT_T[CopyArrSize];
 
   for (int iNuType=0;iNuType<fNNeutrinoTypes;iNuType++) {
 
-    NeutrinoType NuType;
+    cudaprob3::NeutrinoType NuType;
     if (fNeutrinoTypes[iNuType]==Nubar) {
-      // Haven't really thought about it, but prob3++ sets dcp->-dcp here: https://github.com/rogerwendell/Prob3plusplus/blob/fd189e232e96e2c5ebb2f7bd3a5406b288228e41/BargerPropagator.cc#L235
-      // Copying that behaviour gives same behaviour as prob3++/probGPU
-      propagator->setMNSMatrix(theta12, theta13, theta23, -dcp);
       NuType = cudaprob3::Antineutrino;
     } else {
-      propagator->setMNSMatrix(theta12, theta13, theta23, dcp);
       NuType = cudaprob3::Neutrino;
     }
+    propagator->setMNSMatrix(theta12, theta13, theta23, dcp, NuType);
 
     propagator->calculateProbabilities(NuType);
 
@@ -133,7 +134,7 @@ void OscProbCalcerCUDAProb3::CalculateProbabilities(std::vector<FLOAT_T> OscPara
 	int IndexToFill = iNuType*fNInitialFlavours*fNFinalFlavours*CopyArrSize + iInitFlav*fNFinalFlavours*CopyArrSize + iFinalFlav*CopyArrSize;
 	for (int iOscProb=0;iOscProb<CopyArrSize;iOscProb++) {
 
-	  // Sometimes CUDAProb3 can return *slightly* unphysical oscillation probabilities
+	  // Sometimes CUDAProb3Linear can return *slightly* unphysical oscillation probabilities
 	  CopyArr[iOscProb] = CopyArr[iOscProb] > 0.0 ? CopyArr[iOscProb] : 0.0;
 	  CopyArr[iOscProb] = CopyArr[iOscProb] < 1.0 ? CopyArr[iOscProb] : 1.0;
 
@@ -146,13 +147,13 @@ void OscProbCalcerCUDAProb3::CalculateProbabilities(std::vector<FLOAT_T> OscPara
   delete[] CopyArr;
 }
 
-int OscProbCalcerCUDAProb3::ReturnWeightArrayIndex(int NuTypeIndex, int InitNuIndex, int FinalNuIndex, int EnergyIndex, int CosineZIndex) {
-  int IndexToReturn = NuTypeIndex*fNInitialFlavours*fNFinalFlavours*fNCosineZPoints*fNEnergyPoints + InitNuIndex*fNFinalFlavours*fNCosineZPoints*fNEnergyPoints + FinalNuIndex*fNCosineZPoints*fNEnergyPoints + CosineZIndex*fNEnergyPoints + EnergyIndex;
+int OscProbCalcerCUDAProb3Linear::ReturnWeightArrayIndex(int NuTypeIndex, int InitNuIndex, int FinalNuIndex, int EnergyIndex, int CosineZIndex) {
+  int IndexToReturn = NuTypeIndex*fNInitialFlavours*fNFinalFlavours*fNEnergyPoints + InitNuIndex*fNFinalFlavours*fNEnergyPoints + FinalNuIndex*fNEnergyPoints + EnergyIndex;
 
   return IndexToReturn;
 }
 
-long OscProbCalcerCUDAProb3::DefineWeightArraySize() {
-  long nCalculationPoints = fNEnergyPoints * fNCosineZPoints * fNInitialFlavours * fNFinalFlavours * fNNeutrinoTypes;
+long OscProbCalcerCUDAProb3Linear::DefineWeightArraySize() {
+  long nCalculationPoints = fNEnergyPoints * fNInitialFlavours * fNFinalFlavours * fNNeutrinoTypes;
   return nCalculationPoints;
 }

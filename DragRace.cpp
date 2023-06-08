@@ -47,13 +47,15 @@ int main() {
   std::vector<OscillatorBase*> Oscillators;
 
 #if UseCUDAProb3 == 1
+
+#if UseBinned == 1
   //Binned approaches take binning from TFile,TH1
   std::vector<std::string> CUDAProb3Binned_Vector{"CUDAProb3"};
   int CUDAProb3BinnedLinear_Verbosity = Verbose;
   int CUDAProb3BinnedLinear_IgnoreCosineZ = false;
   OscillatorBinned* Oscillator_CUDAProb3Binned = new OscillatorBinned(CUDAProb3Binned_Vector,CUDAProb3BinnedLinear_Verbosity,CUDAProb3BinnedLinear_IgnoreCosineZ);
   Oscillators.push_back((OscillatorBase*)Oscillator_CUDAProb3Binned);
-
+#else
   //Unbinned approaches need the binning to be set after constructor
   std::vector<std::string> CUDAProb3Linear_Vector{"CUDAProb3"};
   int CUDAProb3Linear_Verbosity = Verbose;
@@ -64,14 +66,39 @@ int main() {
   Oscillators.push_back((OscillatorBase*)Oscillator_CUDAProb3Linear);
 #endif
 
+#endif
+
+#if UseCUDAProb3Linear == 1
+
+#if UseBinned == 1
+  //Binned approaches take binning from TFile,TH1
+  std::vector<std::string> CUDAProb3LinearBinned_Vector{"CUDAProb3Linear"};
+  int CUDAProb3LinearBinnedLinear_Verbosity = Verbose;
+  int CUDAProb3LinearBinnedLinear_IgnoreCosineZ = true;
+  OscillatorBinned* Oscillator_CUDAProb3LinearBinned = new OscillatorBinned(CUDAProb3LinearBinned_Vector,CUDAProb3LinearBinnedLinear_Verbosity,CUDAProb3LinearBinnedLinear_IgnoreCosineZ);
+  Oscillators.push_back((OscillatorBase*)Oscillator_CUDAProb3LinearBinned);
+#else
+  //Unbinned approaches need the binning to be set after constructor
+  std::vector<std::string> CUDAProb3LinearLinear_Vector{"CUDAProb3Linear"};
+  int CUDAProb3LinearLinear_Verbosity = Verbose;
+  int CUDAProb3LinearLinear_IgnoreCosineZ = true;
+  OscillatorUnbinned* Oscillator_CUDAProb3LinearLinear = new OscillatorUnbinned(CUDAProb3LinearLinear_Vector,CUDAProb3LinearLinear_Verbosity,CUDAProb3LinearLinear_IgnoreCosineZ);
+  Oscillator_CUDAProb3LinearLinear->SetEnergyArray(EnergyArray);
+  Oscillators.push_back((OscillatorBase*)Oscillator_CUDAProb3LinearLinear);
+#endif
+
+#endif
+
 #if UseProbGPULinear == 1
+
+#if UseBinned == 1
   //Binned approaches take binning from TFile,TH1
   std::vector<std::string> ProbGPUBinned_Vector{"ProbGPULinear"};
   int ProbGPUBinnedLinear_Verbosity = Verbose;
   int ProbGPUBinnedLinear_IgnoreCosineZ = true;
   OscillatorBinned* Oscillator_ProbGPUBinned = new OscillatorBinned(ProbGPUBinned_Vector,ProbGPUBinnedLinear_Verbosity,ProbGPUBinnedLinear_IgnoreCosineZ);
   Oscillators.push_back((OscillatorBase*)Oscillator_ProbGPUBinned);
-
+#else
   //Unbinned approaches need the binning to be set after constructor
   std::vector<std::string> ProbGPULinear_Vector{"ProbGPULinear"};
   int ProbGPULinear_Verbosity = Verbose;
@@ -79,17 +106,20 @@ int main() {
   OscillatorUnbinned* Oscillator_ProbGPULinear = new OscillatorUnbinned(ProbGPULinear_Vector,ProbGPULinear_Verbosity,ProbGPULinear_IgnoreCosineZ);
   Oscillator_ProbGPULinear->SetEnergyArray(EnergyArray);
   Oscillators.push_back((OscillatorBase*)Oscillator_ProbGPULinear);
+#endif
+
 #endif 
 
-  /*
 #if UseProb3ppLinear == 1
+
+#if UseBinned == 1
   //Binned approaches take binning from TFile,TH1
   std::vector<std::string> Prob3ppBinned_Vector{"Prob3ppLinear"};
   int Prob3ppBinnedLinear_Verbosity = Verbose;
   int Prob3ppBinnedLinear_IgnoreCosineZ = true;
   OscillatorBinned* Oscillator_Prob3ppBinned = new OscillatorBinned(Prob3ppBinned_Vector,Prob3ppBinnedLinear_Verbosity,Prob3ppBinnedLinear_IgnoreCosineZ);
   Oscillators.push_back((OscillatorBase*)Oscillator_Prob3ppBinned);
-
+#else
   //Unbinned approaches need the binning to be set after constructor
   std::vector<std::string> Prob3ppLinear_Vector{"Prob3ppLinear"};
   int Prob3ppLinear_Verbosity = Verbose;
@@ -98,7 +128,8 @@ int main() {
   Oscillator_Prob3ppLinear->SetEnergyArray(EnergyArray);
   Oscillators.push_back((OscillatorBase*)Oscillator_Prob3ppLinear);
 #endif
-  */
+
+#endif
 
   // Setup propagators
   for (size_t iOsc=0;iOsc<Oscillators.size();iOsc++) {
@@ -109,7 +140,7 @@ int main() {
   std::cout << "========================================================" << std::endl;
   std::cout << "Starting drag race in executable" << std::endl;
 
-  int nThrows = 10;
+  int nThrows = 1000;
 
   for (size_t iOsc=0;iOsc<Oscillators.size();iOsc++) {
     std::cout << Oscillators[iOsc]->ReturnImplementationName() << " starting drag race" << std::endl;

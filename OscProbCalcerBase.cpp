@@ -99,6 +99,8 @@ void OscProbCalcerBase::IgnoreCosineZBinning(bool Ignore) {
 }
 
 void OscProbCalcerBase::Setup() {
+  if (fVerbose>=INFO) {std::cout << "About to setup OscProbCalcerBase implementation:" << fImplementationName << std::endl;}
+
   if (!fEnergyArraySet) {
     std::cerr << "Must call OscProbCalcerBase::SetEnergyArray(std::vector<FLOAT_T> EnergyArray) before trying to initialise propagator" << std::endl;
     throw;
@@ -110,7 +112,9 @@ void OscProbCalcerBase::Setup() {
   }
 
   ResetCurrOscParams();
+  if (fVerbose>=INFO) {std::cout << "Reset Saaved OscParams in OscProbCalcerBase implementation:" << fImplementationName << std::endl;}
   IntialiseWeightArray();
+  if (fVerbose>=INFO) {std::cout << "Initialised fWeightArray in OscProbCalcerBase implementation:" << fImplementationName << std::endl;}
 
   SetupPropagator();
   fPropagatorSet = true;
@@ -305,7 +309,9 @@ int OscProbCalcerBase::ReturnNuTypeFromFlavour(int NuFlav) {
 }
 
 void OscProbCalcerBase::IntialiseWeightArray() {
+  if (fVerbose >= INFO) {std::cout << "Asking OscProbCalcerBase implementation:" << fImplementationName << " for the size" << std::endl;}
   fNWeights = DefineWeightArraySize();
+  if (fVerbose >= INFO) {std::cout << "Asked OscProbCalcerBase implementation:" << fImplementationName << " for the size and got" << fNWeights << std::endl;}
   fWeightArray = std::vector<FLOAT_T>(fNWeights,DUMMYVAL);  
   fWeightArrayInit = true;
   if (fVerbose >= INFO) {std::cout << "Initialising fWeightArray to be of size:" << fNWeights << " in Implementation:" << fImplementationName << std::endl;}

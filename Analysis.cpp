@@ -54,6 +54,15 @@ int main() {
   Oscillators.push_back((OscillatorBase*)Oscillator_CUDAProb3);
 #endif
 
+#if UseCUDAProb3Linear == 1
+  //Binned approaches take binning from TFile,TH1
+  std::vector<std::string> CUDAProb3Linear_Vector{"CUDAProb3Linear"};
+  int CUDAProb3LinearLinear_Verbosity = Verbose;
+  int CUDAProb3LinearLinear_IgnoreCosineZ = false;
+  OscillatorBinned* Oscillator_CUDAProb3Linear = new OscillatorBinned(CUDAProb3Linear_Vector,CUDAProb3LinearLinear_Verbosity,CUDAProb3LinearLinear_IgnoreCosineZ);
+  Oscillators.push_back((OscillatorBase*)Oscillator_CUDAProb3Linear);
+#endif
+
 #if UseProbGPULinear == 1
   //Binned approaches take binning from TFile,TH1
   std::vector<std::string> ProbGPUBinned_Vector{"ProbGPULinear"};
