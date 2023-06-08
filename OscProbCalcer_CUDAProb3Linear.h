@@ -18,7 +18,7 @@ namespace cudaprob3 { template<typename T> class Propagator;}
  *
  * @class OscProbCalcerCUDAProb3Linear
  *
- * @brief Oscillation calculation engine for linear and atmospheric propagation in CUDAProb3.
+ * @brief Oscillation calculation engine for linear propagation in CUDAProb3.
  */
 class OscProbCalcerCUDAProb3Linear : public OscProbCalcerBase {
  public:
@@ -80,7 +80,7 @@ class OscProbCalcerCUDAProb3Linear : public OscProbCalcerBase {
   // Variables which are needed for implementation specific code
 
   /**
-   * @brief Definition of oscillation parameters which are expected in this ProbGPU implementation
+   * @brief Definition of oscillation parameters which are expected in this CUDAProb3Linear implementation
    */
   enum OscParams{kTH12, kTH23, kTH13, kDM12, kDM23, kDCP, kPATHL, kDENS, kNOscParams};
 

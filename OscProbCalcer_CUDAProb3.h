@@ -80,7 +80,7 @@ class OscProbCalcerCUDAProb3 : public OscProbCalcerBase {
   // Variables which are needed for implementation specific code
 
   /**
-   * @brief Definition of oscillation parameters which are expected in this ProbGPU implementation
+   * @brief Definition of oscillation parameters which are expected in this CUDAProb3 implementation
    */
   enum OscParams{kTH12, kTH23, kTH13, kDM12, kDM23, kDCP, kPRODH, kNOscParams};
 
