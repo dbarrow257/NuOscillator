@@ -35,5 +35,6 @@ if [ ${UseCUDAProb3Linear} == 1 ]; then
     #The CMAKE build system in this directory is pretty screwy and the library is only built if GPU options are turned on
     #May also need a 'set(CMAKE_CXX_STANDARD 11)' dropped into the CMAKELists.txt file if using older compilers
     cmake3 .. -DGPU_ON=1
+    make
     cd ${BASEDIR}
 fi

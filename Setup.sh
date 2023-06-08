@@ -1,10 +1,10 @@
 export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:${PWD}/Prob3plusplus:${PWD}/ProbGPU
 
 #Environment configs
-export UseGPU=0
+export UseGPU=1
 export UseMultithreading=1
-export UseBinned=0
-export OMP_NUM_THREADS=80
+export UseBinned=1
+export OMP_NUM_THREADS=8
 
 if [ ${UseBinned} == 1 ]; then
     echo "Using Binned Probabilities"
@@ -25,9 +25,9 @@ else
 fi
 
 #Which calculators to compile
-export UseCUDAProb3=1
+export UseCUDAProb3=0
 export UseCUDAProb3Linear=0
-export UseProbGPULinear=0
+export UseProbGPULinear=1
 export UseProb3ppLinear=0
 
 #ProbGPU only supported when using GPU
@@ -43,4 +43,8 @@ fi
 
 if [ ${UseCUDAProb3} == 1 ] && [ ${UseCUDAProb3Linear} == 1 ]; then
     echo "error: CUDAProb3 and CUDAProb3Linear and not able to be built at the same time"
+fi
+
+if [ ${UseCUDAProb3Linear} == 1 ]; then
+    export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:${PWD}/CUDAProb3Linear/build
 fi
