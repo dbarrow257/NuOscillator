@@ -84,10 +84,6 @@ void OscProbCalcerCUDAProb3Linear::SetupPropagator() {
   std::cout << "fEnergyArray.size():" << fEnergyArray.size() << std::endl;
   propagator->setEnergyList(fEnergyArray);
 
-  //DB
-  propagator->setDensity(0.1);
-  propagator->setPathLength(250.0);
-
   if (fVerbose >= INFO) {std::cout << "Setup CUDAProb3Linear oscillation probability calculater" << std::endl;}
 }
  
@@ -106,9 +102,12 @@ void OscProbCalcerCUDAProb3Linear::CalculateProbabilities(std::vector<FLOAT_T> O
   FLOAT_T dm12sq  = OscParams[kDM12];
   FLOAT_T dm23sq  = OscParams[kDM23];
   FLOAT_T dcp     = OscParams[kDCP];
-  //FLOAT_T prodH   = OscParams[kPRODH];
+  FLOAT_T PathL   = OscParams[kPATHL];
+  FLOAT_T Density = OscParams[kDENS];
 
   propagator->setNeutrinoMasses(dm12sq, dm23sq);
+  propagator->setDensity(Density);
+  propagator->setPathLength(PathL);
 
   // CUDAProb3Linear calculates oscillation probabilites for each NeutrinoType, so need to copy them from the calculator into fWeightArray
   int CopyArrSize = fNEnergyPoints;
