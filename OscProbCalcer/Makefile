@@ -110,5 +110,6 @@ libOscProbCalcer.so: libOscProbCalcer.a OscProbCalcerBase.o ${TAROBJS}
 
 clean:
 	rm -f *.o
+	rm -f *.a
 	rm -f *~
 	rm -f ../Lib/libOscProbCalcer.so

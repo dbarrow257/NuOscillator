@@ -99,5 +99,6 @@ libOscillator.so: libOscillator.a OscillatorBase.o ${OSCOBJS}
 
 clean:
 	rm -f *.o
+	rm -f *.a
 	rm -f *~
 	rm -f ../Lib/libOscillator.so
