@@ -1,5 +1,7 @@
-*.o
-*.exe
+*/*.o
+*/*.a
+*/*.exe
+
 
 CUDAProb3/
 Prob3plusplus/
