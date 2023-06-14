@@ -1,7 +1,5 @@
 #include "OscProbCalcerBase.h"
 
-#include "OscillatorConstants.h"
-
 #include <cmath>
 #include <math.h>
 

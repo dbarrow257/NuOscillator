@@ -1,5 +1,4 @@
 #include "OscillatorBinned.h"
-#include "OscillatorConstants.h"
 
 #include <iostream>
 

@@ -1,6 +1,11 @@
-*.o
-*.exe
+*/*.o
+*/*.a
+*/*.exe
+
 
 CUDAProb3/
 Prob3plusplus/
 ProbGPU/
+
+Bin/
+Lib/

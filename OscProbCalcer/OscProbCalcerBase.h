@@ -9,6 +9,8 @@ using FLOAT_T = double;
 using FLOAT_T = float;
 #endif
 
+#include "Constants/OscillatorConstants.h"
+
 #include <vector>
 #include <string>
 

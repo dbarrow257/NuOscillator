@@ -2,7 +2,6 @@
 #define __OSCILLATOR_UNBINNED_BASE_H__
 
 #include "OscillatorBase.h"
-#include "OscillatorConstants.h"
 
 /**
  * @file OscillatorUnbinned.h

@@ -1,5 +1,4 @@
 #include "OscillatorBase.h"
-#include "OscillatorConstants.h"
 
 #if UseCUDAProb3==1
 #include "OscProbCalcer_CUDAProb3.h"

@@ -2,7 +2,6 @@
 #define __OSCILLATOR_CUDAPROB3_H__
 
 #include "OscProbCalcerBase.h"
-#include "OscillatorConstants.h"
 
 #include <memory>
 

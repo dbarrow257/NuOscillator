@@ -1,5 +1,4 @@
 #include "OscProbCalcer_ProbGPULinear.h"
-#include "OscillatorConstants.h"
 
 extern "C" void setMNS(double x12, double x13, double x23, double m21, double m23, double Delta, bool kSquared);
 extern "C" void GetProb(int Alpha, int Beta, double Path, double Density, double *Energy, int n, double *oscw);
