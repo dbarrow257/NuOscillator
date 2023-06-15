@@ -1,6 +1,3 @@
-mkdir ${PWD}/Bin
-mkdir ${PWD}/Lib
-
 export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:${PWD}/Prob3plusplus:${PWD}/ProbGPU:${PWD}/Lib
 
 #Environment configs
@@ -28,10 +25,10 @@ else
 fi
 
 #Which calculators to compile
-export UseCUDAProb3=1
+export UseCUDAProb3=0
 export UseCUDAProb3Linear=0
 export UseProbGPULinear=1
-export UseProb3ppLinear=1
+export UseProb3ppLinear=0
 
 #ProbGPU only supported when using GPU
 if [ ${UseGPU} == 0 ]; then

@@ -1,7 +1,7 @@
 #include "OscillatorBinned.h"
 #include "OscillatorUnbinned.h"
 
-#include "Constants/OscillatorConstants.h"
+#include "OscillatorConstants.h"
 
 #include <iostream>
 #include <math.h>

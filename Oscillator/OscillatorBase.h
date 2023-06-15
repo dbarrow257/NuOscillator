@@ -2,7 +2,7 @@
 #define __OSCILLATOR_BASE_H__
 
 #include "OscProbCalcerBase.h"
-#include "Constants/OscillatorConstants.h"
+#include "OscillatorConstants.h"
 
 /**
  * @file OscillatorBase.h
