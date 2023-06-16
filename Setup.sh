@@ -1,10 +1,11 @@
 export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:${PWD}/Prob3plusplus:${PWD}/ProbGPU:${PWD}/Lib
 
 #Environment configs
-export UseGPU=1
+export UseGPU=0
 export UseMultithreading=1
 export UseBinned=1
 export OMP_NUM_THREADS=8
+export UseDoubles=1
 
 if [ ${UseBinned} == 1 ]; then
     echo "Using Binned Probabilities"
@@ -26,9 +27,9 @@ fi
 
 #Which calculators to compile
 export UseCUDAProb3=0
-export UseCUDAProb3Linear=0
+export UseCUDAProb3Linear=1
 export UseProbGPULinear=1
-export UseProb3ppLinear=0
+export UseProb3ppLinear=1
 
 #ProbGPU only supported when using GPU
 if [ ${UseGPU} == 0 ]; then
