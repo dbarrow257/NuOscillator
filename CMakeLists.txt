@@ -20,6 +20,18 @@ LIST(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake/Modules)
 
 include(CPM)
 
+if(DEFINED ENV{UseCUDAProb3} AND $ENV{UseCUDAProb3} EQUAL 1)
+	   CPMFindPackage(
+		NAME CUDAProb3
+		GITHUB_REPOSITORY "dbarrow257/CUDAProb3"
+		GIT_TAG "develop"
+		DOWNLOAD_ONLY
+	   )
+	   if(NOT CUDAProb3_ADDED)
+	   	  message(FATAL_ERROR "Could not download CUDAProb3")
+	   endif()
+endif()
+
 if(DEFINED ENV{UseCUDAProb3Linear} AND $ENV{UseCUDAProb3Linear} EQUAL 1)
 	if(DEFINED ENV{UseGPU} AND $ENV{UseGPU} EQUAL 1)
     		   CPMFindPackage(
