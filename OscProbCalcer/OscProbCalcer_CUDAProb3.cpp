@@ -20,7 +20,13 @@ OscProbCalcerCUDAProb3::OscProbCalcerCUDAProb3(std::string ConfigName_, int Verb
   fVerbose = Verbosity_;
 
   ConfigName = ConfigName_;
-  EarthDensityFile = "./CUDAProb3/models/PREM_1layer.dat"; 
+
+  char* EnvironVal = std::getenv("CUDAProb3Source");
+  if (EnvironVal == NULL) {
+    std::cerr << "CUDAProb3Source environment variable is not defined!" << std::endl;
+    throw;
+  }
+  EarthDensityFile = std::string(EnvironVal)+"/models/PREM_4layer.dat"; 
   //=======
 
   fImplementationName = "CUDAProb3";
@@ -61,7 +67,7 @@ void OscProbCalcerCUDAProb3::SetupPropagator() {
 
 #if UseGPU == 1
   if (fVerbose >= INFO) {std::cout << "Using GPU CUDAProb3 propagator" << std::endl;}
-  propagator = std::unique_ptr<Propagator<FLOAT_T>> ( new CudaPropagatorSingle<FLOAT_T>(0, fNCosineZPoints, fNEnergyPoints)); // Single-GPU propagator
+  propagator = std::unique_ptr< Propagator< FLOAT_T > > ( new CudaPropagatorSingle<FLOAT_T>(0, fNCosineZPoints, fNEnergyPoints)); // Single-GPU propagator
   fImplementationName += "-GPU";
 #else
 

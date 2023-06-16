@@ -1,5 +1,10 @@
 SET(OSCPROBCALCER_VERSION 0.0)
-project(OSCPROBCALCER VERSION ${OSCPROBCALCER_VERSION} LANGUAGES CXX)
+
+if (DEFINED ENV{UseGPU} AND $ENV{UseGPU} EQUAL 1)
+   project(OSCPROBCALCER VERSION ${OSCPROBCALCER_VERSION} LANGUAGES CXX C CUDA)
+else()
+   project(OSCPROBCALCER VERSION ${OSCPROBCALCER_VERSION} LANGUAGES CXX)
+endif()
 
 #============================================================================================================
 #Interface library used for setting compiler options
@@ -16,15 +21,11 @@ add_library(OscProbCalcer SHARED OscProbCalcerBase.cpp)
 target_link_libraries(OscProbCalcer NuOscillatorInterface)
 target_include_directories(OscProbCalcer PUBLIC ../Constants)
 
-#find_package(OpenMP)
-#if (OPENMP_FOUND)
-#    SET(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${OpenMP_C_FLAGS}")
-#    SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OpenMP_CXX_FLAGS}")
-#    SET(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} ${OpenMP_EXE_LINKER_FLAGS}")
-#endif()
-
 if(DEFINED ENV{UseCUDAProb3} AND $ENV{UseCUDAProb3} EQUAL 1)
 	   target_sources(OscProbCalcer PRIVATE OscProbCalcer_CUDAProb3.cpp)
+	   if(DEFINED ENV{UseGPU} AND $ENV{UseGPU} EQUAL 1)
+	   	      set_source_files_properties(OscProbCalcer_CUDAProb3.cpp PROPERTIES LANGUAGE CUDA)
+	   endif()
 	   target_include_directories(OscProbCalcer PRIVATE ${CUDAProb3_SOURCE_DIR})
 endif()
 
@@ -43,7 +44,16 @@ if(DEFINED ENV{UseProb3ppLinear} AND $ENV{UseProb3ppLinear} EQUAL 1)
 	   target_sources(OscProbCalcer PRIVATE OscProbCalcer_Prob3ppLinear.cpp)
 endif()
 
-set_target_properties(OscProbCalcer PROPERTIES 
+if (DEFINED ENV{UseGPU} AND $ENV{UseGPU} EQUAL 1)
+   set_property(TARGET ProbGPU PROPERTY CUDA_ARCHITECTURES 35 52 60 61 70 75)
+
+   set_target_properties(OscProbCalcer PROPERTIES 
+				    CUDA_SEPARABLE_COMPILATION ON 
+				    LINKER_LANGUAGE CUDA
 				    EXPORT_NAME OscProbCalcer)
+else()
+   set_target_properties(OscProbCalcer PROPERTIES
+                                    EXPORT_NAME OscProbCalcer)
+endif()
 
 add_library(OscProbCalcer::OscProbCalcer ALIAS OscProbCalcer)

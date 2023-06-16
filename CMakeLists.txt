@@ -35,7 +35,7 @@ else()
 	message(STATUS "\tNot using GPU")
 
 	if(${UseProbGPULinear} EQUAL 1)
-		message(FATAL_ERROR "ProbGPU calculator can only be used when using GPU")
+		message(FATAL_ERROR "ProbGPULinear calculator can only be used when using GPU")
 	endif()
 endif()
 
@@ -103,7 +103,7 @@ if(DEFINED ENV{UseCUDAProb3Linear} AND $ENV{UseCUDAProb3Linear} EQUAL 1)
 endif()
 
 if(DEFINED ENV{UseGPU} AND $ENV{UseGPU} EQUAL 1)
-	if(DEFINED ENV{UseProbGPU} AND $ENV{UseProbGPU} EQUAL 1)
+	if(DEFINED ENV{UseProbGPULinear} AND $ENV{UseProbGPULinear} EQUAL 1)
 		   CPMFindPackage(
 		   	NAME ProbGPU
 			GIT_TAG main   
@@ -132,3 +132,12 @@ endif()
 add_subdirectory(OscProbCalcer)
 add_subdirectory(Oscillator)
 add_subdirectory(Apps)
+
+#================================================================================================
+#
+
+configure_file(cmake/Templates/setup.NuOscillator.sh.in
+  "${PROJECT_BINARY_DIR}/setup.Oscillator.sh" @ONLY)
+install(FILES
+  "${PROJECT_BINARY_DIR}/setup.Oscillator.sh" DESTINATION
+  ${CMAKE_INSTALL_PREFIX}/bin)
