@@ -16,6 +16,55 @@ project(NUOSCILLATOR VERSION ${NUOSCILLATOR_VERSION} LANGUAGES CXX)
 LIST(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake/Modules)
 
 #================================================================================================
+#Custom variable sanitisation
+
+message(STATUS "Environment variables used:")
+foreach(VAR UseGPU UseMultithreading UseDoubles UseCUDAProb3 UseCUDAProb3Linear UseProb3ppLinear UseProbGPULinear)
+	    if(NOT DEFINED ENV{${VAR}})
+	    	   message(FATAL_ERROR "${VAR} not defined")
+	    endif()
+            SET(${VAR} $ENV{${VAR}})
+	    message(STATUS "\t${VAR}: ${${VAR}}")
+endforeach(VAR)
+
+message(STATUS "Required variables being used:")
+
+if(${UseGPU} EQUAL 1)
+	message(STATUS "\tUsing GPU")
+else()
+	message(STATUS "\tNot using GPU")
+
+	if(${UseProbGPULinear} EQUAL 1)
+		message(FATAL_ERROR "ProbGPU calculator can only be used when using GPU")
+	endif()
+endif()
+
+if(${UseMultithreading} EQUAL 1)
+        message(STATUS "\tUsing Multithreading with nThreads=$ENV{OMP_NUM_THREADS}")
+else()
+	message(STATUS "\tNot using Multithreading")
+endif()
+
+if(${UseDoubles} EQUAL 1)
+	message(STATUS "\tUsing FLOAT_T=double")
+else()
+        message(STATUS "\tUsing FLOAT_T=float")
+endif()
+
+if(${UseCUDAProb3} EQUAL 1 AND ${UseCUDAProb3Linear} EQUAL 1)
+	message(FATAL_ERROR "CUDAProb3 and CUDAProb3Linear and not able to be built at the same time")
+endif()
+
+if(${UseMultithreading} EQUAL 1)
+	find_package(OpenMP)
+	if (OPENMP_FOUND)
+	    SET(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${OpenMP_C_FLAGS}")
+	    SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OpenMP_CXX_FLAGS}")
+    	    SET(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} ${OpenMP_EXE_LINKER_FLAGS}")
+	endif()
+endif()
+
+#================================================================================================
 #Setup Deps
 
 include(CPM)
