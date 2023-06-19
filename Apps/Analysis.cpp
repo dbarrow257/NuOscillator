@@ -44,48 +44,34 @@ int main() {
   std::cout << "Starting setup in executable" << std::endl;
 
   std::vector<OscillatorBase*> Oscillators;
+  std::string ConfigName;
 
 #if UseCUDAProb3 == 1
-  //Binned approaches take binning from TFile,TH1
-  std::vector<std::string> CUDAProb3_Vector{"CUDAProb3"};
-  int CUDAProb3Linear_Verbosity = Verbose;
-  int CUDAProb3Linear_IgnoreCosineZ = false;
-  OscillatorBinned* Oscillator_CUDAProb3 = new OscillatorBinned(CUDAProb3_Vector,CUDAProb3Linear_Verbosity,CUDAProb3Linear_IgnoreCosineZ);
+  ConfigName = "";
+  OscillatorBinned* Oscillator_CUDAProb3 = new OscillatorBinned(ConfigName);
   Oscillators.push_back((OscillatorBase*)Oscillator_CUDAProb3);
 #endif
 
 #if UseCUDAProb3Linear == 1
-  //Binned approaches take binning from TFile,TH1
-  std::vector<std::string> CUDAProb3Linear_Vector{"CUDAProb3Linear"};
-  int CUDAProb3LinearLinear_Verbosity = Verbose;
-  int CUDAProb3LinearLinear_IgnoreCosineZ = false;
-  OscillatorBinned* Oscillator_CUDAProb3Linear = new OscillatorBinned(CUDAProb3Linear_Vector,CUDAProb3LinearLinear_Verbosity,CUDAProb3LinearLinear_IgnoreCosineZ);
+  ConfigName = "";
+  OscillatorBinned* Oscillator_CUDAProb3Linear = new OscillatorBinned(ConfigName);
   Oscillators.push_back((OscillatorBase*)Oscillator_CUDAProb3Linear);
 #endif
 
 #if UseProbGPULinear == 1
-  //Binned approaches take binning from TFile,TH1
-  std::vector<std::string> ProbGPUBinned_Vector{"ProbGPULinear"};
-  int ProbGPUBinnedLinear_Verbosity = Verbose;
-  int ProbGPUBinnedLinear_IgnoreCosineZ = true;
-  OscillatorBinned* Oscillator_ProbGPUBinned = new OscillatorBinned(ProbGPUBinned_Vector,ProbGPUBinnedLinear_Verbosity,ProbGPUBinnedLinear_IgnoreCosineZ);
+  ConfigName = "";
+  OscillatorBinned* Oscillator_ProbGPUBinned = new OscillatorBinned(ConfigName);
   Oscillators.push_back((OscillatorBase*)Oscillator_ProbGPUBinned);
 
-  //Unbinned approaches need the binning to be set after constructor
-  std::vector<std::string> ProbGPULinear_Vector{"ProbGPULinear"};
-  int ProbGPULinear_Verbosity = Verbose;
-  int ProbGPULinear_IgnoreCosineZ = true;
-  OscillatorUnbinned* Oscillator_ProbGPULinear = new OscillatorUnbinned(ProbGPULinear_Vector,ProbGPULinear_Verbosity,ProbGPULinear_IgnoreCosineZ);
+  ConfigName = "";
+  OscillatorUnbinned* Oscillator_ProbGPULinear = new OscillatorUnbinned(ConfigName);
   Oscillator_ProbGPULinear->SetEnergyArray(EnergyArray);
   Oscillators.push_back((OscillatorBase*)Oscillator_ProbGPULinear);
 #endif 
 
 #if UseProb3ppLinear == 1
-  //Unbinned approaches need the binning to be set after constructor
-  std::vector<std::string> Prob3ppLinear_Vector{"Prob3ppLinear"};
-  int Prob3ppLinear_Verbosity = Verbose;
-  int Prob3ppLinear_IgnoreCosineZ = true;
-  OscillatorUnbinned* Oscillator_Prob3ppLinear = new OscillatorUnbinned(Prob3ppLinear_Vector,Prob3ppLinear_Verbosity,Prob3ppLinear_IgnoreCosineZ);
+  ConfigName = "";
+  OscillatorUnbinned* Oscillator_Prob3ppLinear = new OscillatorUnbinned(ConfigName);
   Oscillator_Prob3ppLinear->SetEnergyArray(EnergyArray);
   Oscillators.push_back((OscillatorBase*)Oscillator_Prob3ppLinear);
 #endif
