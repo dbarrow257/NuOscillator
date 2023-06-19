@@ -1,7 +1,7 @@
 export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:${PWD}/Prob3plusplus:${PWD}/ProbGPU:${PWD}/Lib
 
 #Environment configs
-export UseGPU=0
+export UseGPU=1
 export UseMultithreading=1
 export UseBinned=1
 export OMP_NUM_THREADS=8

@@ -149,4 +149,4 @@ configure_file(cmake/Templates/setup.NuOscillator.sh.in
   "${PROJECT_BINARY_DIR}/setup.Oscillator.sh" @ONLY)
 install(FILES
   "${PROJECT_BINARY_DIR}/setup.Oscillator.sh" DESTINATION
-  ${CMAKE_INSTALL_PREFIX}/bin)
+  ${CMAKE_INSTALL_PREFIX})
