@@ -20,7 +20,7 @@ endforeach(VAR)
 set(HEADERS OscProbCalcerBase.h)
 
 add_library(OscProbCalcer SHARED OscProbCalcerBase.cpp)
-target_link_libraries(OscProbCalcer NuOscillatorInterface)
+target_link_libraries(OscProbCalcer NuOscillatorInterface yaml-cpp)
 target_include_directories(OscProbCalcer PUBLIC ../Constants)
 
 if(DEFINED ENV{UseCUDAProb3} AND $ENV{UseCUDAProb3} EQUAL 1)

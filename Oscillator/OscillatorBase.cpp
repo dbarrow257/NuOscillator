@@ -63,12 +63,11 @@ void OscillatorBase::InitialiseOscProbCalcers() {
 OscProbCalcerBase* OscillatorBase::InitialiseOscProbCalcer(std::string OscProbCalcerImplementationToCreate) {
   OscProbCalcerBase* Calcer;
 
+  std::string OscProbCalcerConfigname = "";
+
   if (OscProbCalcerImplementationToCreate == "CUDAProb3") {
 #if UseCUDAProb3==1
-    //DB When using config manager to setup the OscillatorBase, store it to grab the config for the specific OscProbCalcer initialisation
-    std::string CUDAProb3ConfigName = "";
-
-    OscProbCalcerCUDAProb3* CUDAProb3 = new OscProbCalcerCUDAProb3(CUDAProb3ConfigName,fVerbose);
+    OscProbCalcerCUDAProb3* CUDAProb3 = new OscProbCalcerCUDAProb3(OscProbCalcerConfigname);
     Calcer = (OscProbCalcerBase*)CUDAProb3;
     if (fVerbose >= INFO) {std::cout << "Initalised OscProbCalcer Implementation:" << Calcer->ReturnImplementationName() << " in OscillatorBase object" << std::endl;}
 #else
@@ -82,7 +81,7 @@ OscProbCalcerBase* OscillatorBase::InitialiseOscProbCalcer(std::string OscProbCa
     //DB When using config manager to setup the OscillatorBase, store it to grab the config for the specific OscProbCalcer initialisation
     std::string CUDAProb3LinearConfigName = "";
 
-    OscProbCalcerCUDAProb3Linear* CUDAProb3Linear = new OscProbCalcerCUDAProb3Linear(CUDAProb3LinearConfigName,fVerbose);
+    OscProbCalcerCUDAProb3Linear* CUDAProb3Linear = new OscProbCalcerCUDAProb3Linear(OscProbCalcerConfigname);
     Calcer = (OscProbCalcerBase*)CUDAProb3Linear;
     if (fVerbose >= INFO) {std::cout << "Initalised OscProbCalcer Implementation:" << Calcer->ReturnImplementationName() << " in OscillatorBase object" << std::endl;}
 #else
@@ -93,7 +92,7 @@ OscProbCalcerBase* OscillatorBase::InitialiseOscProbCalcer(std::string OscProbCa
   
   else if (OscProbCalcerImplementationToCreate == "Prob3ppLinear") {
 #if UseProb3ppLinear==1
-    OscProbCalcerProb3ppLinear* Prob3ppLinear = new OscProbCalcerProb3ppLinear(fVerbose);
+    OscProbCalcerProb3ppLinear* Prob3ppLinear = new OscProbCalcerProb3ppLinear(OscProbCalcerConfigname);
     Calcer = (OscProbCalcerBase*)Prob3ppLinear;
     if (fVerbose >= INFO) {std::cout << "Initalised OscProbCalcer Implementation:" << Calcer->ReturnImplementationName() << " in OscillatorBase object" << std::endl;}
 #else
@@ -104,7 +103,7 @@ OscProbCalcerBase* OscillatorBase::InitialiseOscProbCalcer(std::string OscProbCa
   
   else if (OscProbCalcerImplementationToCreate == "ProbGPULinear") {
 #if UseProbGPULinear==1
-    OscProbCalcerProbGPULinear* ProbGPULinear = new OscProbCalcerProbGPULinear(fVerbose);
+    OscProbCalcerProbGPULinear* ProbGPULinear = new OscProbCalcerProbGPULinear(OscProbCalcerConfigname);
     Calcer = (OscProbCalcerBase*)ProbGPULinear;
     if (fVerbose >= INFO) {std::cout << "Initalised OscProbCalcer Implementation:" << Calcer->ReturnImplementationName() << " in OscillatorBase object" << std::endl;}
 #else

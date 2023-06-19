@@ -14,6 +14,8 @@ using FLOAT_T = float;
 #include <vector>
 #include <string>
 
+#include "yaml-cpp/yaml.h"
+
 /**
  * @file OscProbCalcerBase.h
  *
@@ -153,8 +155,10 @@ class OscProbCalcerBase {
 
   /**
    * @brief Default constructor
+   *
+   * @param ConfigName_ Name of YAML config used to set runtime variables
    */
-  OscProbCalcerBase();
+  OscProbCalcerBase(std::string ConfigName_);
 
   // ========================================================================================================================================================================
   // Protected functions which are calculation implementation agnostic  
@@ -418,6 +422,11 @@ class OscProbCalcerBase {
    * @brief Flag to define whether the CosineZ binning has been ignored in the specific implementation
    */
   bool fCosineZIgnored;
+
+  /**
+   * @brief YAML Config object used to get runtime specific variables
+   */
+  YAML::Node Config;
 
  private:
   // ========================================================================================================================================================================

@@ -8,19 +8,10 @@
 #include "beamcpupropagator.hpp"
 #endif
 
-//using FLOAT_T=double;
-
 using namespace cudaprob3;
 
-OscProbCalcerCUDAProb3Linear::OscProbCalcerCUDAProb3Linear(std::string ConfigName_, int Verbosity_) : OscProbCalcerBase()
+OscProbCalcerCUDAProb3Linear::OscProbCalcerCUDAProb3Linear(std::string ConfigName_) : OscProbCalcerBase(std::string ConfigName_)
 {
-//=======
-  //DB Grab the following from config manager
-  fVerbose = Verbosity_;
-
-  ConfigName = ConfigName_;
-  //=======
-
   fImplementationName = "CUDAProb3Linear";
   fNOscParams = kNOscParams;
 
@@ -41,7 +32,6 @@ OscProbCalcerCUDAProb3Linear::OscProbCalcerCUDAProb3Linear(std::string ConfigNam
   fFinalFlavours[2] = Tau;
 
   // Implementation specific variables
-
   OscChannels.resize(fNInitialFlavours);
   for (int i=0;i<fNInitialFlavours;i++) {
     OscChannels[i].resize(fNFinalFlavours);

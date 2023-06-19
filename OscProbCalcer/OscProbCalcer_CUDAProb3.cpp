@@ -13,20 +13,18 @@
 #include <iostream>
 using namespace cudaprob3;
 
-OscProbCalcerCUDAProb3::OscProbCalcerCUDAProb3(std::string ConfigName_, int Verbosity_) : OscProbCalcerBase()
+OscProbCalcerCUDAProb3::OscProbCalcerCUDAProb3(std::string ConfigName_) : OscProbCalcerBase(ConfigName_)
 {
   //=======
-  //DB Grab the following from config manager
-  fVerbose = Verbosity_;
-
-  ConfigName = ConfigName_;
+  //Grab information from the config
+  std::string EarthDensityModelFileName = Config["CUDAProb3"]["EarthDensityModel"].as<std::string>();
 
   char* EnvironVal = std::getenv("CUDAProb3Source");
   if (EnvironVal == NULL) {
     std::cerr << "CUDAProb3Source environment variable is not defined!" << std::endl;
     throw;
   }
-  EarthDensityFile = std::string(EnvironVal)+"/models/PREM_4layer.dat"; 
+  EarthDensityFile = std::string(EnvironVal)+"/models/"+EarthDensityModelFileName;
   //=======
 
   fImplementationName = "CUDAProb3";

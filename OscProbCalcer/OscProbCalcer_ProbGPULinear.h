@@ -16,9 +16,9 @@ class OscProbCalcerProbGPULinear : public OscProbCalcerBase {
   /**
    * @brief Default constructor
    *
-   * @param Verbosity_ Verbosity of console output
+   * @param ConfigName_ Name of config used to setup the OscProbCalcerProbGPULinear() instance
    */
-  OscProbCalcerProbGPULinear(int Verbosity_=NONE);
+  OscProbCalcerProbGPULinear(std::string ConfigName_="");
 
   // ========================================================================================================================================================================
   // Functions which need implementation specific code

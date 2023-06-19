@@ -78,6 +78,15 @@ endif()
 
 include(CPM)
 
+CPMFindPackage(
+    NAME yaml-cpp
+    VERSION 0.7.0
+    GITHUB_REPOSITORY "jbeder/yaml-cpp"
+    GIT_TAG "yaml-cpp-0.7.0"
+    OPTIONS
+      "YAML_BUILD_SHARED_LIBS ON"
+)
+
 if(DEFINED ENV{UseCUDAProb3} AND $ENV{UseCUDAProb3} EQUAL 1)
 	   CPMFindPackage(
 		NAME CUDAProb3
@@ -138,6 +147,7 @@ endif()
 #================================================================================================
 #Subdirectories to add
 
+#add_subdirectory(Constants)
 add_subdirectory(OscProbCalcer)
 add_subdirectory(Oscillator)
 add_subdirectory(Apps)

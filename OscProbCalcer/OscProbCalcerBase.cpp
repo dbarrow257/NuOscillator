@@ -6,7 +6,7 @@
 #include <iostream>
 #include <iomanip>
 
-OscProbCalcerBase::OscProbCalcerBase() {
+OscProbCalcerBase::OscProbCalcerBase(std::string ConfigName_) {
   // Set deafult values of all variables within this base object
   fVerbose = NONE;
   fImplementationName = std::string();
@@ -36,6 +36,12 @@ OscProbCalcerBase::OscProbCalcerBase() {
   fPropagatorSet = false;
   fWeightArrayInit = false;
   fNuMappingSet = false;
+
+  // Create config manager
+  Config = YAML::Node(ConfigName_);
+
+  std::string Verbosity = Config["Verbosity"].as<std::string>();
+  fVerbose = Verbosity_StrToInt(Verbosity);
 }
 
 void OscProbCalcerBase::SetEnergyArray(std::vector<FLOAT_T> EnergyArray) {
