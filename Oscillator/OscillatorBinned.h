@@ -20,16 +20,9 @@ class OscillatorBinned : public OscillatorBase {
    * @brief Default constructor
    *
    * Default constructor
-   * @todo Move constructor arguments to config manager once available
-   *
-   * @param OscProbCalcerImplementationToCreate Vector of strings which dictate which OscProbCalcerBase::OscProbCalcerBase() to initialise
-   * @param Verbosity_ Verbosity of console output
-   * @param CosineZIgnored_ A boolean used for declaring whether the OscillatorBase() object expects to care about the CosineZ dimension.
-   * @param FileName_ The FileName which the binning is read from.
-   * @param EnergyAxisHistName_ The name of the histogram which contains the Energy axis binning.
-   * @param CosineZAxisHistName_ The name of the histogram which contains the CosineZ axis binning.
    */
-  OscillatorBinned(std::vector<std::string> OscProbCalcerImplementationToCreate, int Verbosity_=INFO, bool CosineZIgnored_=false, std::string FileName_="MyFile", std::string EnergyAxisHistName_="EnergyHistName", std::string CosineZAxisHistName_="CosineZHistName");
+  //DB
+  OscillatorBinned(std::string ConfigName_);
 
   // ========================================================================================================================================================================
   // Public functions which are calculation implementation agnostic

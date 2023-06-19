@@ -4,6 +4,8 @@
 #include "OscProbCalcerBase.h"
 #include "OscillatorConstants.h"
 
+#include "yaml-cpp/yaml.h"
+
 /**
  * @file OscillatorBase.h
  *
@@ -109,7 +111,8 @@ class OscillatorBase {
   /**
    * @brief Default constructor
    */
-  OscillatorBase();
+  //DB
+  OscillatorBase(std::string ConfigName_);
 
   /**
    * @brief Initialise an OscProbCalcerBase::OscProbCalcerBase() instance for each entry in #fOscProbCalcerImplementationToCreate
@@ -196,6 +199,9 @@ class OscillatorBase {
    * @brief The verbosity level of console output
    */
   int fVerbose;
+
+  //DB
+  YAML::Node Config;
 
  private:
 

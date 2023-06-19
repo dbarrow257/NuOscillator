@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-OscillatorBinned::OscillatorBinned(std::vector<std::string> OscProbCalcerImplementationToCreate_, int Verbose_, bool CosineZIgnored_, std::string FileName_, std::string EnergyAxisHistName_, std::string CosineZAxisHistName_) : OscillatorBase() {
+OscillatorBinned::OscillatorBinned(std::string ConfigName_) : OscillatorBase(ConfigName_) {
   EnergyAxisBinEdges = std::vector<FLOAT_T>();
   CosineZAxisBinEdges = std::vector<FLOAT_T>();
   EnergyAxisBinCenters = std::vector<FLOAT_T>();
@@ -11,14 +11,13 @@ OscillatorBinned::OscillatorBinned(std::vector<std::string> OscProbCalcerImpleme
   fCalculationTypeName = "Binned";
 
   //=======
-  //DB Grab the following from config manager - Currently brought through via constructor
-  fOscProbCalcerImplementationToCreate = OscProbCalcerImplementationToCreate_;
-  fVerbose = Verbose_;
-  fCosineZIgnored = CosineZIgnored_;
+  // Grab the following from config manager
+  //DB
+  //fOscProbCalcerImplementationToCreate = OscProbCalcerImplementationToCreate_;
 
-  FileName = FileName_;
-  EnergyAxisHistName = EnergyAxisHistName_;
-  CosineZAxisHistName = CosineZAxisHistName_;
+  FileName = Config[fCalculationTypeName]["FileName"].as<std::string>();
+  EnergyAxisHistName = Config[fCalculationTypeName]["EnergyAxisHistName"].as<std::string>();
+  CosineZAxisHistName = Config[fCalculationTypeName]["CosineZAxisHistName"].as<std::string>();
   //=======
 
   InitialiseOscProbCalcers();

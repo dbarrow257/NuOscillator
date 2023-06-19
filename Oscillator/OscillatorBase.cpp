@@ -21,7 +21,7 @@
 /**
  * @file OscillatorBase.cpp
  */
-OscillatorBase::OscillatorBase() {
+OscillatorBase::OscillatorBase(std::string ConfigName_) {
   fOscProbCalcerImplementationToCreate = std::vector<std::string>();
   fVerbose = NONE;
   fCosineZIgnored = false;
@@ -30,6 +30,14 @@ OscillatorBase::OscillatorBase() {
 
   fOscProbCalcers = std::vector<OscProbCalcerBase*>();
   fOscProbCalcerSet = false;
+
+  // Create config manager
+  Config = YAML::Node(ConfigName_);
+
+  std::string Verbosity = Config["Verbosity"].as<std::string>();
+  fVerbose = Verbosity_StrToInt(Verbosity);
+
+  fCosineZIgnored = Config["CosineZIgnored"].as<bool>();
 }
 
 void OscillatorBase::InitialiseOscProbCalcers() {
