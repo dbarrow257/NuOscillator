@@ -61,7 +61,8 @@ class OscillatorBinned : public OscillatorBase {
    *
    * @return Vector of bin edges
    */
-  std::vector<FLOAT_T> ReadBinEdgesFromFile(std::string FileName, std::string HistogramName);
+  //DB
+  std::vector<FLOAT_T> ReadBinEdgesFromFile(std::string FileName, std::string HistogramName, bool IsCosineZAxis);
 
   /**
    * @brief Return the bin center values from the bin edges

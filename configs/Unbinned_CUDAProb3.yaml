@@ -1,0 +1,7 @@
+General:
+  Verbosity: "NONE"
+  CosineZIgnored: false
+  CalculationType: "Unbinned"
+
+OscProbCalcer:
+  - Config: "CUDAProb3:./build/Linux/configs/OscProbCalcerConfigs/CUDAProb3.yaml"

@@ -94,11 +94,6 @@ class OscProbCalcerCUDAProb3Linear : public OscProbCalcerBase {
   enum NuFlav{Electron=1, Muon=2, Tau=3};
 
   /**
-   * @brief The name of the config used to setup the particular instance of OscProbCalcerCUDAProb3Linear()
-   */
-  std::string ConfigName;
-
-  /**
    * @brief The mapping of the oscillation channels defined in #fInitialFlavours and #fFinalFlavours to the CUDAProb3Linear constants
    */
   std::vector< std::vector<int> > OscChannels;

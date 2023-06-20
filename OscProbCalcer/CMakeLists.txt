@@ -33,13 +33,21 @@ if(DEFINED ENV{UseCUDAProb3} AND $ENV{UseCUDAProb3} EQUAL 1)
 endif()
 
 if(DEFINED ENV{UseCUDAProb3Linear} AND $ENV{UseCUDAProb3Linear} EQUAL 1)
-	   target_link_libraries(OscProbCalcer CUDAProb3Beam CUDAProb3Atmos)
+	   target_link_libraries(OscProbCalcer CUDAProb3Beam)
+	   set_property(TARGET CUDAProb3Beam PROPERTY CUDA_ARCHITECTURES 35 52 60 61 70 75)
 	   target_sources(OscProbCalcer PRIVATE OscProbCalcer_CUDAProb3Linear.cpp)
+
+#	   if(DEFINED ENV{UseGPU} AND $ENV{UseGPU} EQUAL 1)
+#	   	      set_source_files_properties(OscProbCalcer_CUDAProb3Linear.cpp PROPERTIES LANGUAGE CUDA)
+#	   endif()
+#	   target_include_directories(OscProbCalcer PRIVATE ${CUDAProb3_SOURCE_DIR})
+
 	   list(APPEND HEADERS OscProbCalcer_CUDAProb3Linear.h)
 endif()
 
 if(DEFINED ENV{UseProbGPULinear} AND $ENV{UseProbGPULinear} EQUAL 1)
 	   target_link_libraries(OscProbCalcer ProbGPU)
+	   set_property(TARGET ProbGPU PROPERTY CUDA_ARCHITECTURES 35 52 60 61 70 75)
 	   target_sources(OscProbCalcer PRIVATE OscProbCalcer_ProbGPULinear.cpp)
 	   list(APPEND HEADERS OscProbCalcer_ProbGPULinear.h)
 endif()
@@ -51,8 +59,6 @@ if(DEFINED ENV{UseProb3ppLinear} AND $ENV{UseProb3ppLinear} EQUAL 1)
 endif()
 
 if (DEFINED ENV{UseGPU} AND $ENV{UseGPU} EQUAL 1)
-   set_property(TARGET ProbGPU PROPERTY CUDA_ARCHITECTURES 35 52 60 61 70 75)
-
    set_target_properties(OscProbCalcer PROPERTIES 
 				    CUDA_SEPARABLE_COMPILATION ON 
 				    LINKER_LANGUAGE CUDA

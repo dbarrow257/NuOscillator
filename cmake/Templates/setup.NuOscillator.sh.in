@@ -1,1 +1,2 @@
 export CUDAProb3Source=@CUDAProb3_SOURCE_DIR@
+export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:@LIBDEST@:@yaml-cpp_BINARY_DIR@

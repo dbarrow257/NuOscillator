@@ -38,6 +38,10 @@ endforeach(VAR)
 
 message(STATUS "Required variables being used:")
 
+if(${UseCUDAProb3Linear} EQUAL 1)
+	message(FATAL_ERROR "This calculator has been an incredible pain to integrate as I think the CMake within it is malformed")
+endif()
+
 if(${UseGPU} EQUAL 1)
 	message(STATUS "\tUsing GPU")
 else()
@@ -155,8 +159,12 @@ add_subdirectory(Apps)
 #================================================================================================
 #
 
+set(LIBDEST ${CMAKE_INSTALL_PREFIX}/lib)
+
 configure_file(cmake/Templates/setup.NuOscillator.sh.in
   "${PROJECT_BINARY_DIR}/setup.Oscillator.sh" @ONLY)
 install(FILES
   "${PROJECT_BINARY_DIR}/setup.Oscillator.sh" DESTINATION
   ${CMAKE_INSTALL_PREFIX})
+
+install(DIRECTORY configs DESTINATION ${CMAKE_INSTALL_PREFIX}/)

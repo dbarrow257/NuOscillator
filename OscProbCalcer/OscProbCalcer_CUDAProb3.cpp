@@ -17,7 +17,7 @@ OscProbCalcerCUDAProb3::OscProbCalcerCUDAProb3(std::string ConfigName_) : OscPro
 {
   //=======
   //Grab information from the config
-  std::string EarthDensityModelFileName = Config["CUDAProb3"]["EarthDensityModel"].as<std::string>();
+  std::string EarthDensityModelFileName = Config["CUDAProb3"]["EarthModelFileName"].as<std::string>();
 
   char* EnvironVal = std::getenv("CUDAProb3Source");
   if (EnvironVal == NULL) {

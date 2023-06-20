@@ -18,9 +18,6 @@
 
 #include <iostream>
 
-/**
- * @file OscillatorBase.cpp
- */
 OscillatorBase::OscillatorBase(std::string ConfigName_) {
   fOscProbCalcerImplementationToCreate = std::vector<std::string>();
   fVerbose = NONE;
@@ -32,20 +29,29 @@ OscillatorBase::OscillatorBase(std::string ConfigName_) {
   fOscProbCalcerSet = false;
 
   // Create config manager
-  Config = YAML::Node(ConfigName_);
+  std::cout << "Reading config in OscillatorBase: " << ConfigName_ << std::endl;
+  Config = YAML::LoadFile(ConfigName_);
 
-  std::string Verbosity = Config["Verbosity"].as<std::string>();
+  std::string Verbosity = Config["General"]["Verbosity"].as<std::string>();
   fVerbose = Verbosity_StrToInt(Verbosity);
 
-  fCosineZIgnored = Config["CosineZIgnored"].as<bool>();
+  for (auto const &OscProbCalcer : Config["OscProbCalcer"]) {
+    fOscProbCalcerImplementationToCreate.push_back(OscProbCalcer["Config"].as<std::string>());
+  }
+  if (fVerbose >= INFO) {
+    std::cout << "Size of fOscProbCalcerImplementationToCreate:" << fOscProbCalcerImplementationToCreate.size() << std::endl;
+    for (size_t i=0;i<fOscProbCalcerImplementationToCreate.size();i++) {
+      std::cout << i << " " << fOscProbCalcerImplementationToCreate[i] << std::endl;
+    }
+  }
+
+  fCosineZIgnored = Config["General"]["CosineZIgnored"].as<bool>();
+
+  if (fVerbose >= INFO) {std::cout << "Read:" << ConfigName_ << "\n" << Config << std::endl;}
+  InitialiseOscProbCalcers();
 }
 
 void OscillatorBase::InitialiseOscProbCalcers() {
-  if (fOscProbCalcerImplementationToCreate.size() == 0) {
-    std::cerr << "Size of fOscProbCalcerImplementationToCreate is 0. This means no OscProbCalcers were initialised. This indicates a problem." << std::endl;
-    throw;
-  }
-
   fNCalcers = fOscProbCalcerImplementationToCreate.size();
   if (fNCalcers <= 0) {
     std::cerr << "Number of OscProbCalcerBase objects to be initialised is unreasonable" << std::endl;
@@ -68,10 +74,21 @@ void OscillatorBase::InitialiseOscProbCalcers() {
 }
 
 
-OscProbCalcerBase* OscillatorBase::InitialiseOscProbCalcer(std::string OscProbCalcerImplementationToCreate) {
+OscProbCalcerBase* OscillatorBase::InitialiseOscProbCalcer(std::string OscProbCalcerImplementationToCreateString) {
   OscProbCalcerBase* Calcer;
 
+  std::string OscProbCalcerImplementationToCreate = "";
   std::string OscProbCalcerConfigname = "";
+
+  size_t Delimiter = OscProbCalcerImplementationToCreateString.find(":");
+  if (Delimiter != std::string::npos) {
+    OscProbCalcerImplementationToCreate = OscProbCalcerImplementationToCreateString.substr(0,Delimiter);
+    OscProbCalcerConfigname = OscProbCalcerImplementationToCreateString.substr(Delimiter+1,OscProbCalcerImplementationToCreateString.size());
+  } else {
+    std::cerr << "Expected a string formatted as: 'OscProbCalcerImplementation:PathToYAMLConfig'" << std::endl;
+    std::cerr << "Recieved:" << OscProbCalcerImplementationToCreateString << std::endl;
+    throw;
+  }
 
   if (OscProbCalcerImplementationToCreate == "CUDAProb3") {
 #if UseCUDAProb3==1
@@ -86,9 +103,6 @@ OscProbCalcerBase* OscillatorBase::InitialiseOscProbCalcer(std::string OscProbCa
 
   else if (OscProbCalcerImplementationToCreate == "CUDAProb3Linear") {
 #if UseCUDAProb3Linear==1
-    //DB When using config manager to setup the OscillatorBase, store it to grab the config for the specific OscProbCalcer initialisation
-    std::string CUDAProb3LinearConfigName = "";
-
     OscProbCalcerCUDAProb3Linear* CUDAProb3Linear = new OscProbCalcerCUDAProb3Linear(OscProbCalcerConfigname);
     Calcer = (OscProbCalcerBase*)CUDAProb3Linear;
     if (fVerbose >= INFO) {std::cout << "Initalised OscProbCalcer Implementation:" << Calcer->ReturnImplementationName() << " in OscillatorBase object" << std::endl;}

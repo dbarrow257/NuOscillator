@@ -1,0 +1,7 @@
+General:
+  Verbosity: "NONE"
+  CosineZIgnored: true
+  CalculationType: "Unbinned"
+
+OscProbCalcer:
+  - Config: "ProbGPULinear:./build/Linux/configs/OscProbCalcerConfigs/ProbGPULinear.yaml"

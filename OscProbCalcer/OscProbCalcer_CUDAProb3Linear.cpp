@@ -1,16 +1,16 @@
 #include "OscProbCalcer_CUDAProb3Linear.h"
 
-#include <iostream>
-
 #if UseGPU == 1
 #include "beamcudapropagator.cuh"
 #else
 #include "beamcpupropagator.hpp"
 #endif
 
+#include <iostream>
+
 using namespace cudaprob3;
 
-OscProbCalcerCUDAProb3Linear::OscProbCalcerCUDAProb3Linear(std::string ConfigName_) : OscProbCalcerBase(std::string ConfigName_)
+OscProbCalcerCUDAProb3Linear::OscProbCalcerCUDAProb3Linear(std::string ConfigName_) : OscProbCalcerBase(ConfigName_)
 {
   fImplementationName = "CUDAProb3Linear";
   fNOscParams = kNOscParams;
@@ -53,7 +53,13 @@ void OscProbCalcerCUDAProb3Linear::SetupPropagator() {
 
 #if UseGPU == 1
   if (fVerbose >= INFO) {std::cout << "Using GPU CUDAProb3Linear propagator" << std::endl;}
-  propagator = std::unique_ptr< Propagator<FLOAT_T> > ( new BeamCudaPropagatorSingle(0, fNEnergyPoints));
+  //propagator = std::unique_ptr< Propagator<FLOAT_T> > ( new BeamCudaPropagatorSingle(0, fNEnergyPoints));
+
+  cudaprob3::Propagator<double> *Oscillator = new BeamCudaPropagatorSingle(0,fNEnergyPoints);
+
+  //cudaprob3::BeamCudaPropagatorSingle* mypropagator = new cudaprob3::BeamCudaPropagatorSingle(0, fNEnergyPoints);
+  //propagator = std::unique_ptr< cudaprob3::Propagator<FLOAT_T> > (mypropagator);
+
   fImplementationName += "-GPU";
 #else
 

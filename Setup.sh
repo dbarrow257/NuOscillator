@@ -1,4 +1,4 @@
-export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:${PWD}/Prob3plusplus:${PWD}/ProbGPU:${PWD}/Lib
+export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:${PWD}/Prob3plusplus:${PWD}/ProbGPU:
 
 #Environment configs
 export UseGPU=1
@@ -26,8 +26,8 @@ else
 fi
 
 #Which calculators to compile
-export UseCUDAProb3=1
-export UseCUDAProb3Linear=0
+export UseCUDAProb3=0
+export UseCUDAProb3Linear=1
 export UseProbGPULinear=1
 export UseProb3ppLinear=1
 
