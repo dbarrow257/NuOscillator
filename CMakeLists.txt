@@ -105,7 +105,6 @@ if(DEFINED ENV{UseCUDAProb3Linear} AND $ENV{UseCUDAProb3Linear} EQUAL 1)
 			NAME CUDAProb3
         		GITHUB_REPOSITORY "mach3-software/CUDAProb3"
         		GIT_TAG "feature_cleanup"
-#			DOWNLOAD_ONLY
 			OPTIONS "GPU_ON ON"
     			)
 	else()
