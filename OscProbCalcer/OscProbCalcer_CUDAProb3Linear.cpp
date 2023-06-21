@@ -53,13 +53,7 @@ void OscProbCalcerCUDAProb3Linear::SetupPropagator() {
 
 #if UseGPU == 1
   if (fVerbose >= INFO) {std::cout << "Using GPU CUDAProb3Linear propagator" << std::endl;}
-  //propagator = std::unique_ptr< Propagator<FLOAT_T> > ( new BeamCudaPropagatorSingle(0, fNEnergyPoints));
-
-  cudaprob3::Propagator<double> *Oscillator = new BeamCudaPropagatorSingle(0,fNEnergyPoints);
-
-  //cudaprob3::BeamCudaPropagatorSingle* mypropagator = new cudaprob3::BeamCudaPropagatorSingle(0, fNEnergyPoints);
-  //propagator = std::unique_ptr< cudaprob3::Propagator<FLOAT_T> > (mypropagator);
-
+  propagator = std::unique_ptr< Propagator<FLOAT_T> > ( new BeamCudaPropagatorSingle(0, fNEnergyPoints));
   fImplementationName += "-GPU";
 #else
 
