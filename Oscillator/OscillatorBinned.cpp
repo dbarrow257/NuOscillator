@@ -2,6 +2,9 @@
 
 #include <iostream>
 
+#include "TFile.h"
+#include "TH1.h"
+
 OscillatorBinned::OscillatorBinned(std::string ConfigName_) : OscillatorBase(ConfigName_) {
   EnergyAxisBinEdges = std::vector<FLOAT_T>();
   CosineZAxisBinEdges = std::vector<FLOAT_T>();
