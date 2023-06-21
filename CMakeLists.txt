@@ -151,7 +151,6 @@ endif()
 #================================================================================================
 #Subdirectories to add
 
-#add_subdirectory(Constants)
 add_subdirectory(OscProbCalcer)
 add_subdirectory(Oscillator)
 add_subdirectory(Apps)

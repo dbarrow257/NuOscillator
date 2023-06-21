@@ -17,7 +17,8 @@ std::vector<FLOAT_T> linspace(FLOAT_T Emin, FLOAT_T Emax, int nDiv);
 
 int main() {
   int Verbose = NONE;
-  
+  bool PrintWeights = false;
+
   std::vector<FLOAT_T> OscParams_Atm(7);
   OscParams_Atm[0] = 3.07e-1;
   OscParams_Atm[1] = 5.28e-1;
@@ -141,7 +142,9 @@ int main() {
       throw;
     }
   
-    //Oscillators[iOsc]->PrintWeights();
+    if (PrintWeights) {
+      Oscillators[iOsc]->PrintWeights();
+    }
   }
 
   std::cout << "Finished reweight in executable" << std::endl;
