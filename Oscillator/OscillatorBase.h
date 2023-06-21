@@ -110,8 +110,9 @@ class OscillatorBase {
 
   /**
    * @brief Default constructor
+   *
+   * @param ConfigName_ YAML config file used to set runtime constants
    */
-  //DB
   OscillatorBase(std::string ConfigName_);
 
   /**
@@ -190,7 +191,9 @@ class OscillatorBase {
    */
   int fVerbose;
 
-  //DB
+  /**
+   * @brief YAML Config manager
+   */
   YAML::Node Config;
 
  private:
@@ -198,12 +201,11 @@ class OscillatorBase {
   /**
    * @brief Initialise an OscProbCalcerBase::OscProbCalcerBase() instance for each entry in #fOscProbCalcerImplementationToCreate
    *
-   * #fOscProbCalcerImplementationToCreate is expected to be initialised within the costructor of the calculation specific code. For each entry in this vector, create an 
+   * #fOscProbCalcerImplementationToCreate is expected to be initialised within the costructor of the base class. For each entry in this vector, create an 
    * instance of OscProbCalcerBase::OscProbCalcerBase() and store it in #fOscProbCalcers. This function first parses the #fOscProbCalcerImplementationToCreate vector to
    * ensure that it is correctly filled by the calculation specific code. It then calls InitialiseOscProbCalcer(), for each entry in #fOscProbCalcerImplementationToCreate
    * and it is that function which actually initialises a specific OscProbCalcerBase::OscProbCalcerBase() object and returns it.
    */
-  //DB
   void InitialiseOscProbCalcers();
 
   /**
@@ -213,11 +215,11 @@ class OscillatorBase {
    * a particular calculator implementation object (e.g. OscProbCalcer_CUDAProb3::OscProbCalcer_CUDAProb3() ) and recasts it into the base object 
    * OscProbCalcerBase::OscProbCalcerBase()
    *
-   * @param OscProbCalcerImplementationToCreateString Type of implementation specific OscProbCalcerBase::OscProbCalcerBase() to build. E.g. ProbGPULinear
+   * @param OscProbCalcerImplementationToCreateString Type of implementation specific OscProbCalcerBase::OscProbCalcerBase() to build. E.g. ProbGPULinear and path to YAML config file, denoted as
+   * "Type:Path"
    *
    * @return OscProbCalcerBase::OscProbCalcerBase() object corresponding to the request string input
    */
-  //DB
   OscProbCalcerBase* InitialiseOscProbCalcer(std::string OscProbCalcerImplementationToCreateString);
 
   // ========================================================================================================================================================================

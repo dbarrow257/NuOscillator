@@ -20,8 +20,9 @@ class OscillatorBinned : public OscillatorBase {
    * @brief Default constructor
    *
    * Default constructor
+   *
+   * @param ConfigName_ YAML config file used to set runtime constants
    */
-  //DB
   OscillatorBinned(std::string ConfigName_);
 
   // ========================================================================================================================================================================
@@ -58,10 +59,10 @@ class OscillatorBinned : public OscillatorBase {
    *
    * @param FileName Name of TFile to read
    * @param HistogramName Name of TH1 to read from TFile
+   * @param IsCosineZAxis Denotes whether the axis currently being read is the Energy or CosineZ axis
    *
    * @return Vector of bin edges
    */
-  //DB
   std::vector<FLOAT_T> ReadBinEdgesFromFile(std::string FileName, std::string HistogramName, bool IsCosineZAxis);
 
   /**

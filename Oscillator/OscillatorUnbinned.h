@@ -20,8 +20,9 @@ class OscillatorUnbinned : public OscillatorBase {
    * @brief Default constructor
    *
    * Default constructor
+   *
+   * @param ConfigName_ YAML config file used to set runtime constants
    */
-  //DB
   OscillatorUnbinned(std::string ConfigName_);
 
   // ========================================================================================================================================================================

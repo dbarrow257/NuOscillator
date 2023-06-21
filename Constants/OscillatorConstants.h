@@ -13,7 +13,13 @@
  */
 enum Verbosity{NONE,INFO};
 
-//DB
+/**
+ * @brief Return the Verbosity enum value correpsonding to a particular string
+ * 
+ * @param Verbosity String to convert to enum value
+ *
+ * @return Enum value describing the verbosity level
+ */
 inline int Verbosity_StrToInt(std::string Verbosity) {
   if (Verbosity == "NONE") {
     return NONE;
