@@ -4,6 +4,8 @@
 #include "OscProbCalcerBase.h"
 #include "OscillatorConstants.h"
 
+#include "yaml-cpp/yaml.h"
+
 /**
  * @file OscillatorBase.h
  *
@@ -108,18 +110,10 @@ class OscillatorBase {
 
   /**
    * @brief Default constructor
-   */
-  OscillatorBase();
-
-  /**
-   * @brief Initialise an OscProbCalcerBase::OscProbCalcerBase() instance for each entry in #fOscProbCalcerImplementationToCreate
    *
-   * #fOscProbCalcerImplementationToCreate is expected to be initialised within the costructor of the calculation specific code. For each entry in this vector, create an 
-   * instance of OscProbCalcerBase::OscProbCalcerBase() and store it in #fOscProbCalcers. This function first parses the #fOscProbCalcerImplementationToCreate vector to
-   * ensure that it is correctly filled by the calculation specific code. It then calls InitialiseOscProbCalcer(), for each entry in #fOscProbCalcerImplementationToCreate
-   * and it is that function which actually initialises a specific OscProbCalcerBase::OscProbCalcerBase() object and returns it.
+   * @param ConfigName_ YAML config file used to set runtime constants
    */
-  void InitialiseOscProbCalcers();
+  OscillatorBase(std::string ConfigName_);
 
   /**
    * @brief Set the energy array which will be used by the OscProbCalcerBase::OscProbCalcerBase() instance stored in a particular index in #fOscProbCalcers
@@ -197,7 +191,22 @@ class OscillatorBase {
    */
   int fVerbose;
 
+  /**
+   * @brief YAML Config manager
+   */
+  YAML::Node Config;
+
  private:
+
+  /**
+   * @brief Initialise an OscProbCalcerBase::OscProbCalcerBase() instance for each entry in #fOscProbCalcerImplementationToCreate
+   *
+   * #fOscProbCalcerImplementationToCreate is expected to be initialised within the costructor of the base class. For each entry in this vector, create an 
+   * instance of OscProbCalcerBase::OscProbCalcerBase() and store it in #fOscProbCalcers. This function first parses the #fOscProbCalcerImplementationToCreate vector to
+   * ensure that it is correctly filled by the calculation specific code. It then calls InitialiseOscProbCalcer(), for each entry in #fOscProbCalcerImplementationToCreate
+   * and it is that function which actually initialises a specific OscProbCalcerBase::OscProbCalcerBase() object and returns it.
+   */
+  void InitialiseOscProbCalcers();
 
   /**
    * @brief Return an OscProbCalcerBase::OscProbCalcerBase() object from the requested string input
@@ -206,11 +215,12 @@ class OscillatorBase {
    * a particular calculator implementation object (e.g. OscProbCalcer_CUDAProb3::OscProbCalcer_CUDAProb3() ) and recasts it into the base object 
    * OscProbCalcerBase::OscProbCalcerBase()
    *
-   * @param OscProbCalcerImplementationToCreate Type of implementation specific OscProbCalcerBase::OscProbCalcerBase() to build. E.g. ProbGPULinear
+   * @param OscProbCalcerImplementationToCreateString Type of implementation specific OscProbCalcerBase::OscProbCalcerBase() to build. E.g. ProbGPULinear and path to YAML config file, denoted as
+   * "Type:Path"
    *
    * @return OscProbCalcerBase::OscProbCalcerBase() object corresponding to the request string input
    */
-  OscProbCalcerBase* InitialiseOscProbCalcer(std::string OscProbCalcerImplementationToCreate);
+  OscProbCalcerBase* InitialiseOscProbCalcer(std::string OscProbCalcerImplementationToCreateString);
 
   // ========================================================================================================================================================================
   // Basic private variables required for oscillation probability calculation

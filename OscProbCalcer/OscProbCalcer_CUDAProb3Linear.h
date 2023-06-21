@@ -26,9 +26,8 @@ class OscProbCalcerCUDAProb3Linear : public OscProbCalcerBase {
    * @brief Default constructor
    *
    * @param ConfigName_ Name of config used to setup the OscProbCalcerCUDAProb3Linear() instance
-   * @param Verbosity_ Verbosity of console output
    */
-  OscProbCalcerCUDAProb3Linear(std::string ConfigName_="", int Verbosity_=NONE);
+  OscProbCalcerCUDAProb3Linear(std::string ConfigName_="");
 
  private:
   // ========================================================================================================================================================================
@@ -93,11 +92,6 @@ class OscProbCalcerCUDAProb3Linear : public OscProbCalcerBase {
    * @brief Define the neutrino flavours expected by this implementation
    */
   enum NuFlav{Electron=1, Muon=2, Tau=3};
-
-  /**
-   * @brief The name of the config used to setup the particular instance of OscProbCalcerCUDAProb3Linear()
-   */
-  std::string ConfigName;
 
   /**
    * @brief The mapping of the oscillation channels defined in #fInitialFlavours and #fFinalFlavours to the CUDAProb3Linear constants

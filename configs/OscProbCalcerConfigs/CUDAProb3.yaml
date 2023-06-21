@@ -1,0 +1,5 @@
+General:
+  Verbosity: "NONE"
+
+CUDAProb3:
+  EarthModelFileName: "PREM_4layer.dat"

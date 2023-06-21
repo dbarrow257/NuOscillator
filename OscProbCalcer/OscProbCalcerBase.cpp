@@ -6,7 +6,7 @@
 #include <iostream>
 #include <iomanip>
 
-OscProbCalcerBase::OscProbCalcerBase() {
+OscProbCalcerBase::OscProbCalcerBase(std::string ConfigName_) {
   // Set deafult values of all variables within this base object
   fVerbose = NONE;
   fImplementationName = std::string();
@@ -36,6 +36,17 @@ OscProbCalcerBase::OscProbCalcerBase() {
   fPropagatorSet = false;
   fWeightArrayInit = false;
   fNuMappingSet = false;
+
+  // Create config manager
+  std::cout << "Reading config in OscProbCalcerBase: " << ConfigName_ << std::endl;
+  Config = YAML::LoadFile(ConfigName_);
+
+  std::string Verbosity = Config["General"]["Verbosity"].as<std::string>();
+  fVerbose = Verbosity_StrToInt(Verbosity);
+
+  if (fVerbose >= INFO) {
+    std::cout << "Read config in OscProbCalcerBase: " << ConfigName_ << "\n" << Config << std::endl;
+  }
 }
 
 void OscProbCalcerBase::SetEnergyArray(std::vector<FLOAT_T> EnergyArray) {
@@ -110,7 +121,7 @@ void OscProbCalcerBase::Setup() {
   }
 
   ResetCurrOscParams();
-  if (fVerbose>=INFO) {std::cout << "Reset Saaved OscParams in OscProbCalcerBase implementation:" << fImplementationName << std::endl;}
+  if (fVerbose>=INFO) {std::cout << "Reset Saved OscParams in OscProbCalcerBase implementation:" << fImplementationName << std::endl;}
   IntialiseWeightArray();
   if (fVerbose>=INFO) {std::cout << "Initialised fWeightArray in OscProbCalcerBase implementation:" << fImplementationName << std::endl;}
 
@@ -309,6 +320,11 @@ int OscProbCalcerBase::ReturnNuTypeFromFlavour(int NuFlav) {
 void OscProbCalcerBase::IntialiseWeightArray() {
   if (fVerbose >= INFO) {std::cout << "Asking OscProbCalcerBase implementation:" << fImplementationName << " for the size" << std::endl;}
   fNWeights = DefineWeightArraySize();
+  if (fNWeights <= 0) {
+    std::cerr << "Number of weights which will be stored is less than 0. This indicates a fault in the calculation specific code: DefineWeightArraySize() is incorrect or has overflow-ed the 'long' ttype used as the return type" << std::endl;
+    throw;
+  }
+
   if (fVerbose >= INFO) {std::cout << "Asked OscProbCalcerBase implementation:" << fImplementationName << " for the size and got" << fNWeights << std::endl;}
   fWeightArray = std::vector<FLOAT_T>(fNWeights,DUMMYVAL);  
   fWeightArrayInit = true;

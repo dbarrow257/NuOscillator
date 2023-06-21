@@ -20,13 +20,10 @@ class OscillatorUnbinned : public OscillatorBase {
    * @brief Default constructor
    *
    * Default constructor
-   * @todo Move constructor arguments to config manager once available
    *
-   * @param OscProbCalcerImplementationToCreate Vector of strings which dictate which OscProbCalcerBase::OscProbCalcerBase() to initialise
-   * @param Verbosity_ Verbosity of console output
-   * @param CosineZIgnored_ A boolean used for declaring whether the OscillatorBase() object expects to care about the CosineZ dimension.                                                                  
+   * @param ConfigName_ YAML config file used to set runtime constants
    */
-  OscillatorUnbinned(std::vector<std::string> OscProbCalcerImplementationToCreate, int Verbosity_=INFO, bool CosineZIgnored_=false);
+  OscillatorUnbinned(std::string ConfigName_);
 
   // ========================================================================================================================================================================
   // Public functions which are calculation implementation agnostic

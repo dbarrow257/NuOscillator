@@ -20,16 +20,10 @@ class OscillatorBinned : public OscillatorBase {
    * @brief Default constructor
    *
    * Default constructor
-   * @todo Move constructor arguments to config manager once available
    *
-   * @param OscProbCalcerImplementationToCreate Vector of strings which dictate which OscProbCalcerBase::OscProbCalcerBase() to initialise
-   * @param Verbosity_ Verbosity of console output
-   * @param CosineZIgnored_ A boolean used for declaring whether the OscillatorBase() object expects to care about the CosineZ dimension.
-   * @param FileName_ The FileName which the binning is read from.
-   * @param EnergyAxisHistName_ The name of the histogram which contains the Energy axis binning.
-   * @param CosineZAxisHistName_ The name of the histogram which contains the CosineZ axis binning.
+   * @param ConfigName_ YAML config file used to set runtime constants
    */
-  OscillatorBinned(std::vector<std::string> OscProbCalcerImplementationToCreate, int Verbosity_=INFO, bool CosineZIgnored_=false, std::string FileName_="MyFile", std::string EnergyAxisHistName_="EnergyHistName", std::string CosineZAxisHistName_="CosineZHistName");
+  OscillatorBinned(std::string ConfigName_);
 
   // ========================================================================================================================================================================
   // Public functions which are calculation implementation agnostic
@@ -65,10 +59,11 @@ class OscillatorBinned : public OscillatorBase {
    *
    * @param FileName Name of TFile to read
    * @param HistogramName Name of TH1 to read from TFile
+   * @param IsCosineZAxis Denotes whether the axis currently being read is the Energy or CosineZ axis
    *
    * @return Vector of bin edges
    */
-  std::vector<FLOAT_T> ReadBinEdgesFromFile(std::string FileName, std::string HistogramName);
+  std::vector<FLOAT_T> ReadBinEdgesFromFile(std::string FileName, std::string HistogramName, bool IsCosineZAxis);
 
   /**
    * @brief Return the bin center values from the bin edges

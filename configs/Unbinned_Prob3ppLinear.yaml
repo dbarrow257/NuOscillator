@@ -1,0 +1,7 @@
+General:
+  Verbosity: "NONE"
+  CosineZIgnored: true
+  CalculationType: "Unbinned"
+
+OscProbCalcer:
+  - Config: "Prob3ppLinear:./build/Linux/configs/OscProbCalcerConfigs/Prob3ppLinear.yaml"

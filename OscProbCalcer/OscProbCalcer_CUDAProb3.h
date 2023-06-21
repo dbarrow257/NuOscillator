@@ -25,9 +25,8 @@ class OscProbCalcerCUDAProb3 : public OscProbCalcerBase {
    * @brief Default constructor
    *
    * @param ConfigName_ Name of config used to setup the OscProbCalcerCUDAProb3() instance
-   * @param Verbosity_ Verbosity of console output
    */
-  OscProbCalcerCUDAProb3(std::string ConfigName_="", int Verbosity_=NONE);
+  OscProbCalcerCUDAProb3(std::string ConfigName_="");
 
  private:
   // ========================================================================================================================================================================

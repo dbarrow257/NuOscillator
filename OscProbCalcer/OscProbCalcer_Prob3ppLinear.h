@@ -18,9 +18,9 @@ class OscProbCalcerProb3ppLinear : public OscProbCalcerBase {
   /**
    * @brief Default constructor
    *
-   * @param Verbosity_ Verbosity of console output
+   * @param ConfigName_ Name of config used to setup the OscProbCalcerProb3ppLinear() instance
    */
-  OscProbCalcerProb3ppLinear(int Verbosity_=NONE);
+  OscProbCalcerProb3ppLinear(std::string ConfigName_="");
 
   // ========================================================================================================================================================================
   // Functions which need implementation specific code

@@ -6,7 +6,7 @@ add_library(Oscillator SHARED OscillatorBase.cpp OscillatorUnbinned.cpp Oscillat
 
 target_include_directories(Oscillator PUBLIC ../Constants PRIVATE ../OscProbCalcer)
 
-target_link_libraries(Oscillator OscProbCalcer::OscProbCalcer)
+target_link_libraries(Oscillator OscProbCalcer yaml-cpp)
 
 set_target_properties(Oscillator PROPERTIES 
 				 EXPORT_NAME Oscillator)

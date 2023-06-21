@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-OscillatorBinned::OscillatorBinned(std::vector<std::string> OscProbCalcerImplementationToCreate_, int Verbose_, bool CosineZIgnored_, std::string FileName_, std::string EnergyAxisHistName_, std::string CosineZAxisHistName_) : OscillatorBase() {
+OscillatorBinned::OscillatorBinned(std::string ConfigName_) : OscillatorBase(ConfigName_) {
   EnergyAxisBinEdges = std::vector<FLOAT_T>();
   CosineZAxisBinEdges = std::vector<FLOAT_T>();
   EnergyAxisBinCenters = std::vector<FLOAT_T>();
@@ -11,26 +11,21 @@ OscillatorBinned::OscillatorBinned(std::vector<std::string> OscProbCalcerImpleme
   fCalculationTypeName = "Binned";
 
   //=======
-  //DB Grab the following from config manager - Currently brought through via constructor
-  fOscProbCalcerImplementationToCreate = OscProbCalcerImplementationToCreate_;
-  fVerbose = Verbose_;
-  fCosineZIgnored = CosineZIgnored_;
+  // Grab the following from config manager
 
-  FileName = FileName_;
-  EnergyAxisHistName = EnergyAxisHistName_;
-  CosineZAxisHistName = CosineZAxisHistName_;
+  FileName = Config[fCalculationTypeName]["FileName"].as<std::string>();
+  EnergyAxisHistName = Config[fCalculationTypeName]["EnergyAxisHistName"].as<std::string>();
+  CosineZAxisHistName = Config[fCalculationTypeName]["CosineZAxisHistName"].as<std::string>();
   //=======
 
-  InitialiseOscProbCalcers();
-
-  EnergyAxisBinEdges = ReadBinEdgesFromFile(FileName,EnergyAxisHistName);
+  EnergyAxisBinEdges = ReadBinEdgesFromFile(FileName,EnergyAxisHistName,false);
   EnergyAxisBinCenters = ReturnBinCentersFromBinEdges(EnergyAxisBinEdges);
   for (int CalcerIndex=0;CalcerIndex<fNCalcers;CalcerIndex++) {
     SetEnergyArrayInCalcer(EnergyAxisBinCenters, CalcerIndex);
   }
 
   if (!fCosineZIgnored) {
-    CosineZAxisBinEdges = ReadBinEdgesFromFile(FileName,CosineZAxisHistName);
+    CosineZAxisBinEdges = ReadBinEdgesFromFile(FileName,CosineZAxisHistName,true);
     CosineZAxisBinCenters = ReturnBinCentersFromBinEdges(CosineZAxisBinEdges);
     
     for (int CalcerIndex=0;CalcerIndex<fNCalcers;CalcerIndex++) {
@@ -39,7 +34,7 @@ OscillatorBinned::OscillatorBinned(std::vector<std::string> OscProbCalcerImpleme
   }
 }
 
-std::vector<FLOAT_T> OscillatorBinned::ReadBinEdgesFromFile(std::string FileName, std::string HistogramName) {
+std::vector<FLOAT_T> OscillatorBinned::ReadBinEdgesFromFile(std::string FileName, std::string HistogramName, bool IsCosineZAxis) {
   std::vector<FLOAT_T> BinEdges;
 
   //DB Once ROOT is linked up, use TH1 - Assumes each axis is independently binned (Could be changed with another implementation)
@@ -64,7 +59,7 @@ std::vector<FLOAT_T> OscillatorBinned::ReadBinEdgesFromFile(std::string FileName
 
   //===========
   //DB Once ROOT is linked up, remove the following code
-  if (HistogramName=="CosineZHistName") {
+  if (IsCosineZAxis) {
     int NBins = 1;
     for (int iBin=0;iBin<NBins;iBin++) {
       BinEdges.push_back(iBin*0.002-1.0);

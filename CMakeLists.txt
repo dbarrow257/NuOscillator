@@ -78,6 +78,15 @@ endif()
 
 include(CPM)
 
+CPMFindPackage(
+    NAME yaml-cpp
+    VERSION 0.7.0
+    GITHUB_REPOSITORY "jbeder/yaml-cpp"
+    GIT_TAG "yaml-cpp-0.7.0"
+    OPTIONS
+      "YAML_BUILD_SHARED_LIBS ON"
+)
+
 if(DEFINED ENV{UseCUDAProb3} AND $ENV{UseCUDAProb3} EQUAL 1)
 	   CPMFindPackage(
 		NAME CUDAProb3
@@ -145,8 +154,12 @@ add_subdirectory(Apps)
 #================================================================================================
 #
 
+set(LIBDEST ${CMAKE_INSTALL_PREFIX}/lib)
+
 configure_file(cmake/Templates/setup.NuOscillator.sh.in
   "${PROJECT_BINARY_DIR}/setup.Oscillator.sh" @ONLY)
 install(FILES
   "${PROJECT_BINARY_DIR}/setup.Oscillator.sh" DESTINATION
   ${CMAKE_INSTALL_PREFIX})
+
+install(DIRECTORY configs DESTINATION ${CMAKE_INSTALL_PREFIX}/)
