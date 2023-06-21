@@ -116,6 +116,13 @@ int main() {
   Oscillators.push_back((OscillatorBase*)Oscillator_Prob3ppLinearUnbinned);
 #endif
 
+  /*
+  //Alternative option to show how all information can be held in a single YAML file rather than using a preset
+  ConfigName = "./configs/CUDAProb3_Binned-SelfContainedFile.yaml";
+  OscillatorBinned* MyOscillator = new OscillatorBinned(ConfigName);
+  Oscillators.push_back((OscillatorBase*)MyOscillator);
+  */
+
   std::cout << "========================================================" << std::endl;
   std::cout << "Setting up Oscillators" << std::endl;
 

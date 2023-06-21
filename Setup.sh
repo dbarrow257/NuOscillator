@@ -1,7 +1,7 @@
 export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:${PWD}/Prob3plusplus:${PWD}/ProbGPU:
 
 #Environment configs
-export UseGPU=1
+export UseGPU=0
 export UseMultithreading=1
 export UseBinned=1
 export OMP_NUM_THREADS=8
@@ -26,10 +26,10 @@ else
 fi
 
 #Which calculators to compile
-export UseCUDAProb3=1
-export UseCUDAProb3Linear=0
-export UseProbGPULinear=1
-export UseProb3ppLinear=1
+export UseCUDAProb3=0
+export UseCUDAProb3Linear=1
+export UseProbGPULinear=0
+export UseProb3ppLinear=0
 
 #ProbGPU only supported when using GPU
 if [ ${UseGPU} == 0 ]; then

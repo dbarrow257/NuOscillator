@@ -38,10 +38,6 @@ endforeach(VAR)
 
 message(STATUS "Required variables being used:")
 
-if(${UseCUDAProb3Linear} EQUAL 1)
-	message(FATAL_ERROR "This calculator has been an incredible pain to integrate as I think the CMake within it is malformed")
-endif()
-
 if(${UseGPU} EQUAL 1)
 	message(STATUS "\tUsing GPU")
 else()
@@ -109,6 +105,7 @@ if(DEFINED ENV{UseCUDAProb3Linear} AND $ENV{UseCUDAProb3Linear} EQUAL 1)
 			NAME CUDAProb3
         		GITHUB_REPOSITORY "mach3-software/CUDAProb3"
         		GIT_TAG "feature_cleanup"
+#			DOWNLOAD_ONLY
 			OPTIONS "GPU_ON ON"
     			)
 	else()

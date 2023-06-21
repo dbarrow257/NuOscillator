@@ -71,7 +71,6 @@ void OscProbCalcerCUDAProb3Linear::SetupPropagator() {
   fImplementationName += "-CPU-"+std::to_string(nThreads);
 #endif
 
-  std::cout << "fEnergyArray.size():" << fEnergyArray.size() << std::endl;
   propagator->setEnergyList(fEnergyArray);
 
   if (fVerbose >= INFO) {std::cout << "Setup CUDAProb3Linear oscillation probability calculater" << std::endl;}
