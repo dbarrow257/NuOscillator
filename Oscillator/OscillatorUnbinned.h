@@ -43,26 +43,6 @@ class OscillatorUnbinned : public OscillatorBase {
    * @return Pointer to the memory address where the calculated oscillation probability for events of the specific requested type will be stored
    */
   const FLOAT_T* ReturnWeightPointer(int InitNuFlav, int FinalNuFlav, FLOAT_T EnergyVal, FLOAT_T CosineZVal=DUMMYVAL);
-
-  /**
-   * @brief Set the Energy array in the OscProbCalcerBase::OscProbCalcerBase() object
-   *
-   * The unbinned approach uses true event-by-event Energy and CosineZ values. These need to be set after they are read in from MC so can't be defined a-priori. Thus, this
-   * function calls OscProbCalcerBase::SetEnergyArray()
-   * 
-   * @param Array The energy array to set in the OscProbCalcerBase::OscProbCalcerBase() object 
-   */
-  void SetEnergyArray(std::vector<FLOAT_T> Array);
-
-  /**
-   * @brief Set the CosineZ array in the OscProbCalcerBase::OscProbCalcerBase() object
-   *
-   * The unbinned approach uses true event-by-event CosineZ and CosineZ values. These need to be set after they are read in from MC so can't be defined a-priori. Thus, this
-   * function calls OscProbCalcerBase::SetCosineZArray()
-   * 
-   * @param Array The CosineZ array to set in the OscProbCalcerBase::OscProbCalcerBase() object 
-   */
-  void SetCosineZArray(std::vector<FLOAT_T> Array);
   
   // ========================================================================================================================================================================
   // Public virtual functions which need calculater specific implementations

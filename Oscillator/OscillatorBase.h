@@ -84,6 +84,30 @@ class OscillatorBase {
    */
   int ReturnNEnergyPoints(int CalcerIndex=0);
 
+  /**
+   * @brief Set the energy array which will be used by the OscProbCalcerBase::OscProbCalcerBase() instance stored in a particular index in #fOscProbCalcers
+   *
+   * Each instance of OscProbCalcerBase::OscProbCalcerBase() needs an energy array which will be used to calculate the oscillation probabilities. This function sets that
+   * array
+   *
+   * @param Array The energy array which will be passed to the OscProbCalcerBase::OscProbCalcerBase() instance
+   * @param CalcerIndex The index iin #fOscProbCalcers which will be handed the energy array
+   */
+  //DB
+  void SetEnergyArrayInCalcer(std::vector<FLOAT_T> Array, int CalcerIndex=0);
+
+  /**
+   * @brief Set the energy array which will be used by the OscProbCalcerBase::OscProbCalcerBase() instance stored in a particular index in #fOscProbCalcers
+   *
+   * Each instance of OscProbCalcerBase::OscProbCalcerBase() needs an energy array which will be used to calculate the oscillation probabilities. This function sets that
+   * array
+   *
+   * @param Array The energy array which will be passed to the OscProbCalcerBase::OscProbCalcerBase() instance
+   * @param CalcerIndex The index iin #fOscProbCalcers which will be handed the energy array
+   */
+  //DB
+  void SetCosineZArrayInCalcer(std::vector<FLOAT_T> Array, int CalcerIndex=0);
+
   // ========================================================================================================================================================================
   // Public virtual functions which need calculater specific implementations
 
@@ -114,28 +138,6 @@ class OscillatorBase {
    * @param ConfigName_ YAML config file used to set runtime constants
    */
   OscillatorBase(std::string ConfigName_);
-
-  /**
-   * @brief Set the energy array which will be used by the OscProbCalcerBase::OscProbCalcerBase() instance stored in a particular index in #fOscProbCalcers
-   *
-   * Each instance of OscProbCalcerBase::OscProbCalcerBase() needs an energy array which will be used to calculate the oscillation probabilities. This function sets that
-   * array
-   *
-   * @param Array The energy array which will be passed to the OscProbCalcerBase::OscProbCalcerBase() instance
-   * @param CalcerIndex The index iin #fOscProbCalcers which will be handed the energy array
-   */
-  void SetEnergyArrayInCalcer(std::vector<FLOAT_T> Array, int CalcerIndex=0);
-
-  /**
-   * @brief Set the energy array which will be used by the OscProbCalcerBase::OscProbCalcerBase() instance stored in a particular index in #fOscProbCalcers
-   *
-   * Each instance of OscProbCalcerBase::OscProbCalcerBase() needs an energy array which will be used to calculate the oscillation probabilities. This function sets that
-   * array
-   *
-   * @param Array The energy array which will be passed to the OscProbCalcerBase::OscProbCalcerBase() instance
-   * @param CalcerIndex The index iin #fOscProbCalcers which will be handed the energy array
-   */
-  void SetCosineZArrayInCalcer(std::vector<FLOAT_T> Array, int CalcerIndex=0);
 
   /**
    * @brief Return a pointer to the oscillation probability memory address in a particular index of #fOscProbCalcers for a particular event

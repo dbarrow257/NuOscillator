@@ -10,11 +10,3 @@ const FLOAT_T* OscillatorUnbinned::ReturnWeightPointer(int InitNuFlav, int Final
   int CalcerIndex = 0;
   return ReturnPointerToWeightinCalcer(CalcerIndex,InitNuFlav,FinalNuFlav,EnergyVal,CosineZVal);
 }
-
-void OscillatorUnbinned::SetEnergyArray(std::vector<FLOAT_T> Array) {
-  SetEnergyArrayInCalcer(Array);
-}
-
-void OscillatorUnbinned::SetCosineZArray(std::vector<FLOAT_T> Array) {
-  SetCosineZArrayInCalcer(Array);
-}

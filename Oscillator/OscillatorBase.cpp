@@ -143,6 +143,7 @@ OscProbCalcerBase* OscillatorBase::InitialiseOscProbCalcer(std::string OscProbCa
   return Calcer;
 }
 
+//DB Should include a flag to ensure that energy/CosineZ can only be set once
 void OscillatorBase::SetEnergyArrayInCalcer(std::vector<FLOAT_T> Array, int CalcerIndex) {
   if (CalcerIndex < 0 || CalcerIndex >= fNCalcers) {
     std::cerr << "Requested to set Energy array at invalid index within fOscProbCalcers array" << std::endl;
