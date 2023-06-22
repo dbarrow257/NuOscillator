@@ -40,7 +40,6 @@ OscillatorBinned::OscillatorBinned(std::string ConfigName_) : OscillatorBase(Con
 std::vector<FLOAT_T> OscillatorBinned::ReadBinEdgesFromFile(std::string FileName, std::string HistogramName, bool IsCosineZAxis) {
   std::vector<FLOAT_T> BinEdges;
 
-  //DB Once ROOT is linked up, use TH1 - Assumes each axis is independently binned (Could be changed with another implementation)
   TFile* File = new TFile(FileName.c_str()); 
   if (!File || File->IsZombie()) {
     std::cerr << "Could not find file:" << FileName << std::endl;
