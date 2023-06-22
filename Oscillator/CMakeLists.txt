@@ -1,8 +1,8 @@
 SET(OSCILLATOR_VERSION 0.0)
 project(OSCILLATOR VERSION ${OSCILLATOR_VERSION} LANGUAGES CXX)
 
-set(HEADERS OscillatorBase.h OscillatorUnbinned.h OscillatorBinned.h)
-add_library(Oscillator SHARED OscillatorBase.cpp OscillatorUnbinned.cpp OscillatorBinned.cpp)
+set(HEADERS OscillatorBase.h OscillatorUnbinned.h OscillatorBinned.h OscillatorFactory.h)
+add_library(Oscillator SHARED OscillatorBase.cpp OscillatorUnbinned.cpp OscillatorBinned.cpp OscillatorFactory.cpp)
 
 target_include_directories(Oscillator PUBLIC ../Constants PRIVATE ../OscProbCalcer)
 
