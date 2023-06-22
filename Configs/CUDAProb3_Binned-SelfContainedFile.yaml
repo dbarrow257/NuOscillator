@@ -1,0 +1,15 @@
+General:
+  Verbosity: "INFO"
+  CosineZIgnored: false
+  CalculationType: "Binned"
+
+OscProbCalcer:
+  - Config: "CUDAProb3:./build/Linux/Configs/CUDAProb3_Binned-SelfContainedFile.yaml"
+
+Binned:
+  FileName: "./Inputs/ExampleAtmosphericBinning.root"
+  EnergyAxisHistName: "EnergyAxisBinning"
+  CosineZAxisHistName: "CosineZAxisBinning"
+
+CUDAProb3:
+  EarthModelFileName: "PREM_4layer.dat"

@@ -87,6 +87,22 @@ CPMFindPackage(
       "YAML_BUILD_SHARED_LIBS ON"
 )
 
+CPMFindPackage(
+      NAME CMakeModules
+      GIT_TAG stable
+      GITHUB_REPOSITORY NuHepMC/CMakeModules
+      DOWNLOAD_ONLY
+  )
+include(${CMakeModules_SOURCE_DIR}/NuHepMCModules.cmake)
+
+include(ROOT)
+if(NOT TARGET ROOT::ROOT)
+  cmessage(FATAL_ERROR "Expected dependency target: ROOT::ROOT")
+endif()
+if(DEFINED ROOT_CXX_STANDARD AND ROOT_CXX_STANDARD GREATER CMAKE_CXX_STANDARD)
+  set(CMAKE_CXX_STANDARD ${ROOT_CXX_STANDARD})
+endif()
+
 if(DEFINED ENV{UseCUDAProb3} AND $ENV{UseCUDAProb3} EQUAL 1)
 	   CPMFindPackage(
 		NAME CUDAProb3
@@ -162,4 +178,5 @@ install(FILES
   "${PROJECT_BINARY_DIR}/setup.Oscillator.sh" DESTINATION
   ${CMAKE_INSTALL_PREFIX})
 
-install(DIRECTORY configs DESTINATION ${CMAKE_INSTALL_PREFIX}/)
+install(DIRECTORY Configs DESTINATION ${CMAKE_INSTALL_PREFIX}/)
+install(DIRECTORY Inputs DESTINATION ${CMAKE_INSTALL_PREFIX}/)

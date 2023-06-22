@@ -51,14 +51,14 @@ int main() {
   std::cout << "========================================================" << std::endl;
   std::cout << "Setting up Binned_CUDAProb3" << std::endl;
 
-  ConfigName = "./configs/Binned_CUDAProb3.yaml";
+  ConfigName = "./Configs/Binned_CUDAProb3.yaml";
   OscillatorBinned* Oscillator_CUDAProb3Binned = new OscillatorBinned(ConfigName);
   Oscillators.push_back((OscillatorBase*)Oscillator_CUDAProb3Binned);
 
   std::cout << "========================================================" << std::endl;
   std::cout << "Setting up Unbinned_CUDAProb3" << std::endl;
 
-  ConfigName = "./configs/Unbinned_CUDAProb3.yaml";
+  ConfigName = "./Configs/Unbinned_CUDAProb3.yaml";
   OscillatorUnbinned* Oscillator_CUDAProb3Unbinned = new OscillatorUnbinned(ConfigName);
   Oscillator_CUDAProb3Unbinned->SetEnergyArray(EnergyArray);
   Oscillator_CUDAProb3Unbinned->SetCosineZArray(CosineZArray);
@@ -69,14 +69,14 @@ int main() {
   std::cout << "========================================================" << std::endl;
   std::cout << "Initialising Binned_CUDAProb3Linear" << std::endl;
 
-  ConfigName = "./configs/Binned_CUDAProb3Linear.yaml";
+  ConfigName = "./Configs/Binned_CUDAProb3Linear.yaml";
   OscillatorBinned* Oscillator_CUDAProb3LinearBinned = new OscillatorBinned(ConfigName);
   Oscillators.push_back((OscillatorBase*)Oscillator_CUDAProb3LinearBinned);
 
   std::cout << "========================================================" << std::endl;
   std::cout << "Initialising Unbinned_CUDAProb3Linear" << std::endl;
 
-  ConfigName = "./configs/Unbinned_CUDAProb3Linear.yaml";
+  ConfigName = "./Configs/Unbinned_CUDAProb3Linear.yaml";
   OscillatorUnbinned* Oscillator_CUDAProb3LinearUnbinned = new OscillatorUnbinned(ConfigName);
   Oscillator_CUDAProb3LinearUnbinned->SetEnergyArray(EnergyArray);
   Oscillators.push_back((OscillatorBase*)Oscillator_CUDAProb3LinearUnbinned);
@@ -86,14 +86,14 @@ int main() {
   std::cout << "========================================================" << std::endl;
   std::cout << "Initialising Binned_ProbGPULinear" << std::endl;
 
-  ConfigName = "./configs/Binned_ProbGPULinear.yaml";
+  ConfigName = "./Configs/Binned_ProbGPULinear.yaml";
   OscillatorBinned* Oscillator_ProbGPULinearBinned = new OscillatorBinned(ConfigName);
   Oscillators.push_back((OscillatorBase*)Oscillator_ProbGPULinearBinned);
 
   std::cout << "========================================================" << std::endl;
   std::cout << "Initialising Unbinned_ProbGPULinear" << std::endl;
 
-  ConfigName = "./configs/Unbinned_ProbGPULinear.yaml";
+  ConfigName = "./Configs/Unbinned_ProbGPULinear.yaml";
   OscillatorUnbinned* Oscillator_ProbGPULinearUnbinned = new OscillatorUnbinned(ConfigName);
   Oscillator_ProbGPULinearUnbinned->SetEnergyArray(EnergyArray);
   Oscillators.push_back((OscillatorBase*)Oscillator_ProbGPULinearUnbinned);
@@ -103,14 +103,14 @@ int main() {
   std::cout << "========================================================" << std::endl;
   std::cout << "Initialising Binned_Prob3ppLinear" << std::endl;
 
-  ConfigName = "./configs/Binned_Prob3ppLinear.yaml";
+  ConfigName = "./Configs/Binned_Prob3ppLinear.yaml";
   OscillatorBinned* Oscillator_Prob3ppLinearBinned = new OscillatorBinned(ConfigName);
   Oscillators.push_back((OscillatorBase*)Oscillator_Prob3ppLinearBinned);
 
   std::cout << "========================================================" << std::endl;
   std::cout << "Initialising Unbinned_Prob3ppLinear" << std::endl;
 
-  ConfigName = "./configs/Binned_Prob3ppLinear.yaml";
+  ConfigName = "./Configs/Binned_Prob3ppLinear.yaml";
   OscillatorUnbinned* Oscillator_Prob3ppLinearUnbinned = new OscillatorUnbinned(ConfigName);
   Oscillator_Prob3ppLinearUnbinned->SetEnergyArray(EnergyArray);
   Oscillators.push_back((OscillatorBase*)Oscillator_Prob3ppLinearUnbinned);
@@ -118,7 +118,7 @@ int main() {
 
   /*
   //Alternative option to show how all information can be held in a single YAML file rather than using a preset
-  ConfigName = "./configs/CUDAProb3_Binned-SelfContainedFile.yaml";
+  ConfigName = "./Configs/CUDAProb3_Binned-SelfContainedFile.yaml";
   OscillatorBinned* MyOscillator = new OscillatorBinned(ConfigName);
   Oscillators.push_back((OscillatorBase*)MyOscillator);
   */

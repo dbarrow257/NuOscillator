@@ -4,4 +4,4 @@ General:
   CalculationType: "Unbinned"
 
 OscProbCalcer:
-  - Config: "CUDAProb3Linear:./build/Linux/configs/OscProbCalcerConfigs/CUDAProb3Linear.yaml"
+  - Config: "Prob3ppLinear:./build/Linux/Configs/OscProbCalcerConfigs/Prob3ppLinear.yaml"

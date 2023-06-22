@@ -4,4 +4,4 @@ General:
   CalculationType: "Unbinned"
 
 OscProbCalcer:
-  - Config: "ProbGPULinear:./build/Linux/configs/OscProbCalcerConfigs/ProbGPULinear.yaml"
+  - Config: "ProbGPULinear:./build/Linux/Configs/OscProbCalcerConfigs/ProbGPULinear.yaml"
