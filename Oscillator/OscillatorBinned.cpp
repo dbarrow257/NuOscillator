@@ -41,39 +41,25 @@ std::vector<FLOAT_T> OscillatorBinned::ReadBinEdgesFromFile(std::string FileName
   std::vector<FLOAT_T> BinEdges;
 
   //DB Once ROOT is linked up, use TH1 - Assumes each axis is independently binned (Could be changed with another implementation)
-  /*
-  TFile* File = new TFile(FileName); 
+  TFile* File = new TFile(FileName.c_str()); 
   if (!File || File->IsZombie()) {
     std::cerr << "Could not find file:" << FileName << std::endl;
     throw;
   }
 
-  TH1* Histogram = (TH1*)File->Get(HistogramName);
+  TH1* Histogram = (TH1*)File->Get(HistogramName.c_str());
   if (!Histogram) {
-    std::cerr << "Could not find Histogram:" << HistogramName << " in File:" << FileNaame << std::endl;
+    std::cerr << "Could not find Histogram:" << HistogramName << " in File:" << FileName << std::endl;
     throw;
   }
 
-  BinEdges.resize(Histogram->GetNBinsX()+1);
-  for (size_t iBin=0;iBin<=Histogram->GetNBinsX();iBin++) {
+  BinEdges.resize(Histogram->GetNbinsX()+1);
+  for (size_t iBin=0;iBin<=Histogram->GetNbinsX();iBin++) {
     BinEdges[iBin] = Histogram->GetBinLowEdge(iBin+1);
   }
-  */
 
-  //===========
-  //DB Once ROOT is linked up, remove the following code
-  if (IsCosineZAxis) {
-    int NBins = 1;
-    for (int iBin=0;iBin<NBins;iBin++) {
-      BinEdges.push_back(iBin*0.002-1.0);
-    }
-  } else {
-    int NBins = 1001;
-    for (int iBin=0;iBin<NBins;iBin++) {
-      BinEdges.push_back(iBin*0.1);
-    }
-  }
-  //===========
+  delete Histogram;
+  delete File;
 
   if (fVerbose >= INFO) {
     std::cout << "Bin edges successfully read from File:" << FileName << " , Histogram:" << HistogramName << " :=" << std::endl;

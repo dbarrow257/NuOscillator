@@ -1,0 +1,12 @@
+General:
+  Verbosity: "NONE"
+  CosineZIgnored: false
+  CalculationType: "Binned"
+
+OscProbCalcer:
+  - Config: "CUDAProb3:./build/Linux/Configs/OscProbCalcerConfigs/CUDAProb3.yaml"
+
+Binned:
+  FileName: "./Inputs/ExampleAtmosphericBinning.root"
+  EnergyAxisHistName: "EnergyAxisBinning"
+  CosineZAxisHistName: "CosineZAxisBinning"
