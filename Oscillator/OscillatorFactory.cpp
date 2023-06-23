@@ -7,7 +7,7 @@ OscillatorFactory::OscillatorFactory() {
 
 OscillatorBase* OscillatorFactory::CreateOscillator(std::string ConfigName_) {
   // Create config manager
-  std::cout << "Reading config in OscillatorBase: " << ConfigName_ << std::endl;
+  std::cout << "OscillatorFactory creating OscillatorBase object from config: " << ConfigName_ << std::endl;
   YAML::Node Config = YAML::LoadFile(ConfigName_);
 
   std::string OscillatorType = Config["General"]["CalculationType"].as<std::string>();
