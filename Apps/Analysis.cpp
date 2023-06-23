@@ -55,18 +55,18 @@ int main() {
 #endif
 
 #if UseCUDAProb3Linear == 1
-  ConfigNames.push_back("./Configs/Binned_CUDAProb3.yaml");
   ConfigNames.push_back("./Configs/Binned_CUDAProb3Linear.yaml");
+  ConfigNames.push_back("./Configs/Unbinned_CUDAProb3Linear.yaml");
 #endif
 
 #if UseProbGPULinear == 1
   ConfigNames.push_back("./Configs/Binned_ProbGPULinear.yaml");
-  ConfigNames.push_back("./Configs/Binned_ProbGPULinear.yaml");
+  ConfigNames.push_back("./Configs/Unbinned_ProbGPULinear.yaml");
 #endif
 
 #if UseProb3ppLinear == 1
   ConfigNames.push_back("./Configs/Binned_Prob3ppLinear.yaml");
-  ConfigNames.push_back("./Configs/Binned_Prob3ppLinear.yaml");
+  ConfigNames.push_back("./Configs/Unbinned_Prob3ppLinear.yaml");
 #endif
 
   //Alternative option to show how all information can be held in a single YAML file rather than using a preset
