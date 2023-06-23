@@ -1,5 +1,4 @@
-#include "OscillatorBinned.h"
-#include "OscillatorUnbinned.h"
+#include "OscillatorFactory.h"
 
 #include "OscillatorConstants.h"
 
@@ -47,22 +46,25 @@ int main() {
   std::vector<OscillatorBase*> Oscillators;
   std::string ConfigName;
 
+  OscillatorFactory* OscFactory = new OscillatorFactory();
+  OscillatorBase* Oscillator;
+
 #if UseCUDAProb3 == 1
   std::cout << "========================================================" << std::endl;
   std::cout << "Setting up Binned_CUDAProb3" << std::endl;
 
   ConfigName = "./Configs/Binned_CUDAProb3.yaml";
-  OscillatorBinned* Oscillator_CUDAProb3Binned = new OscillatorBinned(ConfigName);
-  Oscillators.push_back((OscillatorBase*)Oscillator_CUDAProb3Binned);
+  Oscillator = OscFactory->CreateOscillator(ConfigName);
+  Oscillators.push_back(Oscillator);
 
   std::cout << "========================================================" << std::endl;
   std::cout << "Setting up Unbinned_CUDAProb3" << std::endl;
 
   ConfigName = "./Configs/Unbinned_CUDAProb3.yaml";
-  OscillatorUnbinned* Oscillator_CUDAProb3Unbinned = new OscillatorUnbinned(ConfigName);
-  Oscillator_CUDAProb3Unbinned->SetEnergyArray(EnergyArray);
-  Oscillator_CUDAProb3Unbinned->SetCosineZArray(CosineZArray);
-  Oscillators.push_back((OscillatorBase*)Oscillator_CUDAProb3Unbinned);
+  Oscillator = OscFactory->CreateOscillator(ConfigName);
+  Oscillator->SetEnergyArrayInCalcer(EnergyArray);
+  Oscillator->SetCosineZArrayInCalcer(CosineZArray);
+  Oscillators.push_back(Oscillator);
 #endif
 
 #if UseCUDAProb3Linear == 1
@@ -70,16 +72,16 @@ int main() {
   std::cout << "Initialising Binned_CUDAProb3Linear" << std::endl;
 
   ConfigName = "./Configs/Binned_CUDAProb3Linear.yaml";
-  OscillatorBinned* Oscillator_CUDAProb3LinearBinned = new OscillatorBinned(ConfigName);
-  Oscillators.push_back((OscillatorBase*)Oscillator_CUDAProb3LinearBinned);
+  Oscillator = OscFactory->CreateOscillator(ConfigName);
+  Oscillators.push_back(Oscillator);
 
   std::cout << "========================================================" << std::endl;
   std::cout << "Initialising Unbinned_CUDAProb3Linear" << std::endl;
 
   ConfigName = "./Configs/Unbinned_CUDAProb3Linear.yaml";
-  OscillatorUnbinned* Oscillator_CUDAProb3LinearUnbinned = new OscillatorUnbinned(ConfigName);
-  Oscillator_CUDAProb3LinearUnbinned->SetEnergyArray(EnergyArray);
-  Oscillators.push_back((OscillatorBase*)Oscillator_CUDAProb3LinearUnbinned);
+  Oscillator = OscFactory->CreateOscillator(ConfigName);
+  Oscillator->SetEnergyArrayInCalcer(EnergyArray);
+  Oscillators.push_back(Oscillator);
 #endif
 
 #if UseProbGPULinear == 1
@@ -87,16 +89,16 @@ int main() {
   std::cout << "Initialising Binned_ProbGPULinear" << std::endl;
 
   ConfigName = "./Configs/Binned_ProbGPULinear.yaml";
-  OscillatorBinned* Oscillator_ProbGPULinearBinned = new OscillatorBinned(ConfigName);
-  Oscillators.push_back((OscillatorBase*)Oscillator_ProbGPULinearBinned);
+  Oscillator = OscFactory->CreateOscillator(ConfigName);
+  Oscillators.push_back(Oscillator);
 
   std::cout << "========================================================" << std::endl;
   std::cout << "Initialising Unbinned_ProbGPULinear" << std::endl;
-
+  
   ConfigName = "./Configs/Unbinned_ProbGPULinear.yaml";
-  OscillatorUnbinned* Oscillator_ProbGPULinearUnbinned = new OscillatorUnbinned(ConfigName);
-  Oscillator_ProbGPULinearUnbinned->SetEnergyArray(EnergyArray);
-  Oscillators.push_back((OscillatorBase*)Oscillator_ProbGPULinearUnbinned);
+  Oscillator = OscFactory->CreateOscillator(ConfigName);
+  Oscillator->SetEnergyArrayInCalcer(EnergyArray);
+  Oscillators.push_back(Oscillator);
 #endif 
 
 #if UseProb3ppLinear == 1
@@ -104,16 +106,16 @@ int main() {
   std::cout << "Initialising Binned_Prob3ppLinear" << std::endl;
 
   ConfigName = "./Configs/Binned_Prob3ppLinear.yaml";
-  OscillatorBinned* Oscillator_Prob3ppLinearBinned = new OscillatorBinned(ConfigName);
-  Oscillators.push_back((OscillatorBase*)Oscillator_Prob3ppLinearBinned);
+  Oscillator = OscFactory->CreateOscillator(ConfigName);
+  Oscillators.push_back(Oscillator);
 
   std::cout << "========================================================" << std::endl;
   std::cout << "Initialising Unbinned_Prob3ppLinear" << std::endl;
 
   ConfigName = "./Configs/Binned_Prob3ppLinear.yaml";
-  OscillatorUnbinned* Oscillator_Prob3ppLinearUnbinned = new OscillatorUnbinned(ConfigName);
-  Oscillator_Prob3ppLinearUnbinned->SetEnergyArray(EnergyArray);
-  Oscillators.push_back((OscillatorBase*)Oscillator_Prob3ppLinearUnbinned);
+  Oscillator = OscFactory->CreateOscillator(ConfigName);
+  Oscillator->SetEnergyArrayInCalcer(EnergyArray);
+  Oscillators.push_back(Oscillator);
 #endif
 
   std::cout << "========================================================" << std::endl;

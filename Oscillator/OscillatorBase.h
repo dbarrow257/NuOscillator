@@ -108,6 +108,13 @@ class OscillatorBase {
   //DB
   void SetCosineZArrayInCalcer(std::vector<FLOAT_T> Array, int CalcerIndex=0);
 
+  //DB
+  //Assumed if they are not set in the constructor, they need to be set after
+  bool EvalPointsSetInConstructor() {return fEvalPointsSetInConstructor;}
+
+  //DB
+  bool CosineZIgnored() {return fCosineZIgnored;}
+
   // ========================================================================================================================================================================
   // Public virtual functions which need calculater specific implementations
 
@@ -178,6 +185,9 @@ class OscillatorBase {
    */
   int fNCalcers;
 
+  //DB
+  bool fEvalPointsSetInConstructor;
+
   /**
    * @brief A vector which contains all instances of OscProbCalcerBase()
    */
@@ -231,6 +241,7 @@ class OscillatorBase {
    * @brief A boolean which declares whether #fOscProbCalcers has been initialised
    */
   bool fOscProbCalcerSet;
+
 };
 
 #endif

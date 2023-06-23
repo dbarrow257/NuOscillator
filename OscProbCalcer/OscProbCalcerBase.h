@@ -148,6 +148,10 @@ class OscProbCalcerBase {
    */
   std::vector<FLOAT_T> ReturnWeightArray() {return fWeightArray;}
 
+  //DB
+  bool ReturnHasSetEnergyArray() {return fEnergyArraySet;}
+  bool ReturnHasSetCosineZArray() {return fCosineZArraySet;}
+
   // ========================================================================================================================================================================
   // Public virtual functions which need calculater specific implementations
 

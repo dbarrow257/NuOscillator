@@ -44,86 +44,55 @@ int main() {
   std::cout << "Starting setup in executable" << std::endl;
 
   std::vector<OscillatorBase*> Oscillators;
-  std::string ConfigName;
+  std::vector<std::string> ConfigNames;
 
   OscillatorFactory* OscFactory = new OscillatorFactory();
   OscillatorBase* Oscillator;
 
 #if UseCUDAProb3 == 1
-  std::cout << "========================================================" << std::endl;
-  std::cout << "Setting up Binned_CUDAProb3" << std::endl;
-
-  ConfigName = "./Configs/Binned_CUDAProb3.yaml";
-  Oscillator = OscFactory->CreateOscillator(ConfigName);
-  Oscillators.push_back(Oscillator);
-
-  std::cout << "========================================================" << std::endl;
-  std::cout << "Setting up Unbinned_CUDAProb3" << std::endl;
-
-  ConfigName = "./Configs/Unbinned_CUDAProb3.yaml";
-  Oscillator = OscFactory->CreateOscillator(ConfigName);
-  Oscillator->SetEnergyArrayInCalcer(EnergyArray);
-  Oscillator->SetCosineZArrayInCalcer(CosineZArray);
-  Oscillators.push_back(Oscillator);
+  ConfigNames.push_back("./Configs/Binned_CUDAProb3.yaml");
+  ConfigNames.push_back("./Configs/Unbinned_CUDAProb3.yaml");
 #endif
 
 #if UseCUDAProb3Linear == 1
-  std::cout << "========================================================" << std::endl;
-  std::cout << "Initialising Binned_CUDAProb3Linear" << std::endl;
-
-  ConfigName = "./Configs/Binned_CUDAProb3Linear.yaml";
-  Oscillator = OscFactory->CreateOscillator(ConfigName);
-  Oscillators.push_back(Oscillator);
-
-  std::cout << "========================================================" << std::endl;
-  std::cout << "Initialising Unbinned_CUDAProb3Linear" << std::endl;
-
-  ConfigName = "./Configs/Unbinned_CUDAProb3Linear.yaml";
-  Oscillator = OscFactory->CreateOscillator(ConfigName);
-  Oscillator->SetEnergyArrayInCalcer(EnergyArray);
-  Oscillators.push_back(Oscillator);
+  ConfigNames.push_back("./Configs/Binned_CUDAProb3.yaml");
+  ConfigNames.push_back("./Configs/Binned_CUDAProb3Linear.yaml");
 #endif
 
 #if UseProbGPULinear == 1
-  std::cout << "========================================================" << std::endl;
-  std::cout << "Initialising Binned_ProbGPULinear" << std::endl;
-
-  ConfigName = "./Configs/Binned_ProbGPULinear.yaml";
-  Oscillator = OscFactory->CreateOscillator(ConfigName);
-  Oscillators.push_back(Oscillator);
-
-  std::cout << "========================================================" << std::endl;
-  std::cout << "Initialising Unbinned_ProbGPULinear" << std::endl;
-
-  ConfigName = "./Configs/Unbinned_ProbGPULinear.yaml";
-  Oscillator = OscFactory->CreateOscillator(ConfigName);
-  Oscillator->SetEnergyArrayInCalcer(EnergyArray);
-  Oscillators.push_back(Oscillator);
-#endif 
-
-#if UseProb3ppLinear == 1
-  std::cout << "========================================================" << std::endl;
-  std::cout << "Initialising Binned_Prob3ppLinear" << std::endl;
-
-  ConfigName = "./Configs/Binned_Prob3ppLinear.yaml";
-  Oscillator = OscFactory->CreateOscillator(ConfigName);
-  Oscillators.push_back(Oscillator);
-
-  std::cout << "========================================================" << std::endl;
-  std::cout << "Initialising Unbinned_Prob3ppLinear" << std::endl;
-
-  ConfigName = "./Configs/Binned_Prob3ppLinear.yaml";
-  Oscillator = OscFactory->CreateOscillator(ConfigName);
-  Oscillator->SetEnergyArrayInCalcer(EnergyArray);
-  Oscillators.push_back(Oscillator);
+  ConfigNames.push_back("./Configs/Binned_ProbGPULinear.yaml");
+  ConfigNames.push_back("./Configs/Binned_ProbGPULinear.yaml");
 #endif
 
-  /*
+#if UseProb3ppLinear == 1
+  ConfigNames.push_back("./Configs/Binned_Prob3ppLinear.yaml");
+  ConfigNames.push_back("./Configs/Binned_Prob3ppLinear.yaml");
+#endif
+
   //Alternative option to show how all information can be held in a single YAML file rather than using a preset
-  ConfigName = "./Configs/CUDAProb3_Binned-SelfContainedFile.yaml";
-  Oscillator = OscFactory->CreateOscillator(ConfigName);
-  Oscillators.push_back(Oscillator);
-  */
+  //ConfigNames.push_back("./Configs/CUDAProb3_Binned-SelfContainedFile.yaml");
+
+  for (size_t iConfig=0;iConfig<ConfigNames.size();iConfig++) {
+    std::cout << "========================================================" << std::endl;
+    std::cout << "Initialising " << ConfigNames[iConfig] << std::endl;
+    
+    //Create OscillatorBase* object from YAML config
+    Oscillator = OscFactory->CreateOscillator(ConfigNames[iConfig]);
+
+    //Check if the Energy and CosineZ evaluation points have been set in the constructor of the object (i.e. Binned where the templates have been picked up by the constructor)
+    //or if we need to set them after the fact (i.e. unbinned where the points may change depending on the events etc.)
+    if (!Oscillator->EvalPointsSetInConstructor()) {
+      Oscillator->SetEnergyArrayInCalcer(EnergyArray);
+      
+      //Check if we also need to set the CosineZ binning
+      if (!Oscillator->CosineZIgnored()) {
+	Oscillator->SetCosineZArrayInCalcer(CosineZArray);
+      }
+    }
+
+    //Append OscillatorBase* object to the vector
+    Oscillators.push_back(Oscillator);
+  }
 
   std::cout << "========================================================" << std::endl;
   std::cout << "Setting up Oscillators" << std::endl;
@@ -140,7 +109,7 @@ int main() {
   // Reweight and calculate oscillation probabilities
   for (size_t iOsc=0;iOsc<Oscillators.size();iOsc++) {
     // These don't have to be explicilty beam or atmospheric specific, all they have to be is equal to the number of oscillation parameters expected by the implementation
-    // If you have some NSI calculater, then it will work providing the length of the vector of oscillation parameters is equal to the number of expected oscillation parameters
+    // If you have some NSO calculater, then it will work providing the length of the vector of oscillation parameters is equal to the number of expected oscillation parameters
     if (Oscillators[iOsc]->ReturnNOscParams() == (int)OscParams_Beam.size()) {
       Oscillators[iOsc]->CalculateProbabilities(OscParams_Beam); 
     } else if (Oscillators[iOsc]->ReturnNOscParams() == (int)OscParams_Atm.size()) {
