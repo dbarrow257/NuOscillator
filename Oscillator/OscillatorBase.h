@@ -93,7 +93,6 @@ class OscillatorBase {
    * @param Array The energy array which will be passed to the OscProbCalcerBase::OscProbCalcerBase() instance
    * @param CalcerIndex The index iin #fOscProbCalcers which will be handed the energy array
    */
-  //DB
   void SetEnergyArrayInCalcer(std::vector<FLOAT_T> Array, int CalcerIndex=0);
 
   /**
@@ -105,14 +104,21 @@ class OscillatorBase {
    * @param Array The energy array which will be passed to the OscProbCalcerBase::OscProbCalcerBase() instance
    * @param CalcerIndex The index iin #fOscProbCalcers which will be handed the energy array
    */
-  //DB
   void SetCosineZArrayInCalcer(std::vector<FLOAT_T> Array, int CalcerIndex=0);
 
-  //DB
-  //Assumed if they are not set in the constructor, they need to be set after
+  /**
+   * @brief Return flag which describes whether the OscProbCalcerBase::OscProbCalcerBase() has had it's Energy and CosineZ evaluation points set in the constructor of the
+   * derived OscillatorBase::OscillatorBase() object
+   *
+   * @return Boolean flag
+   */
   bool EvalPointsSetInConstructor() {return fEvalPointsSetInConstructor;}
 
-  //DB
+  /**
+   * @brief Return flag which describes whether CosineZ binning is considered in the object
+   *
+   * @return Boolean flag
+   */
   bool CosineZIgnored() {return fCosineZIgnored;}
 
   // ========================================================================================================================================================================
@@ -185,7 +191,9 @@ class OscillatorBase {
    */
   int fNCalcers;
 
-  //DB
+  /**
+   * @brief Flad which describes whether the Energy and CosineZ evaluation points where set in the constructor of the OscillatorBase() derived object
+   */
   bool fEvalPointsSetInConstructor;
 
   /**
