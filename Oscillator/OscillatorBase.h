@@ -84,6 +84,43 @@ class OscillatorBase {
    */
   int ReturnNEnergyPoints(int CalcerIndex=0);
 
+  /**
+   * @brief Set the energy array which will be used by the OscProbCalcerBase::OscProbCalcerBase() instance stored in a particular index in #fOscProbCalcers
+   *
+   * Each instance of OscProbCalcerBase::OscProbCalcerBase() needs an energy array which will be used to calculate the oscillation probabilities. This function sets that
+   * array
+   *
+   * @param Array The energy array which will be passed to the OscProbCalcerBase::OscProbCalcerBase() instance
+   * @param CalcerIndex The index iin #fOscProbCalcers which will be handed the energy array
+   */
+  void SetEnergyArrayInCalcer(std::vector<FLOAT_T> Array, int CalcerIndex=0);
+
+  /**
+   * @brief Set the energy array which will be used by the OscProbCalcerBase::OscProbCalcerBase() instance stored in a particular index in #fOscProbCalcers
+   *
+   * Each instance of OscProbCalcerBase::OscProbCalcerBase() needs an energy array which will be used to calculate the oscillation probabilities. This function sets that
+   * array
+   *
+   * @param Array The energy array which will be passed to the OscProbCalcerBase::OscProbCalcerBase() instance
+   * @param CalcerIndex The index iin #fOscProbCalcers which will be handed the energy array
+   */
+  void SetCosineZArrayInCalcer(std::vector<FLOAT_T> Array, int CalcerIndex=0);
+
+  /**
+   * @brief Return flag which describes whether the OscProbCalcerBase::OscProbCalcerBase() has had it's Energy and CosineZ evaluation points set in the constructor of the
+   * derived OscillatorBase::OscillatorBase() object
+   *
+   * @return Boolean flag
+   */
+  bool EvalPointsSetInConstructor() {return fEvalPointsSetInConstructor;}
+
+  /**
+   * @brief Return flag which describes whether CosineZ binning is considered in the object
+   *
+   * @return Boolean flag
+   */
+  bool CosineZIgnored() {return fCosineZIgnored;}
+
   // ========================================================================================================================================================================
   // Public virtual functions which need calculater specific implementations
 
@@ -114,28 +151,6 @@ class OscillatorBase {
    * @param ConfigName_ YAML config file used to set runtime constants
    */
   OscillatorBase(std::string ConfigName_);
-
-  /**
-   * @brief Set the energy array which will be used by the OscProbCalcerBase::OscProbCalcerBase() instance stored in a particular index in #fOscProbCalcers
-   *
-   * Each instance of OscProbCalcerBase::OscProbCalcerBase() needs an energy array which will be used to calculate the oscillation probabilities. This function sets that
-   * array
-   *
-   * @param Array The energy array which will be passed to the OscProbCalcerBase::OscProbCalcerBase() instance
-   * @param CalcerIndex The index iin #fOscProbCalcers which will be handed the energy array
-   */
-  void SetEnergyArrayInCalcer(std::vector<FLOAT_T> Array, int CalcerIndex=0);
-
-  /**
-   * @brief Set the energy array which will be used by the OscProbCalcerBase::OscProbCalcerBase() instance stored in a particular index in #fOscProbCalcers
-   *
-   * Each instance of OscProbCalcerBase::OscProbCalcerBase() needs an energy array which will be used to calculate the oscillation probabilities. This function sets that
-   * array
-   *
-   * @param Array The energy array which will be passed to the OscProbCalcerBase::OscProbCalcerBase() instance
-   * @param CalcerIndex The index iin #fOscProbCalcers which will be handed the energy array
-   */
-  void SetCosineZArrayInCalcer(std::vector<FLOAT_T> Array, int CalcerIndex=0);
 
   /**
    * @brief Return a pointer to the oscillation probability memory address in a particular index of #fOscProbCalcers for a particular event
@@ -175,6 +190,11 @@ class OscillatorBase {
    * For instance, this could be used to deal with the MaCh3 Event-by-Event approach by having a OscProbCalcerBase object for each oscillation channel
    */
   int fNCalcers;
+
+  /**
+   * @brief Flad which describes whether the Energy and CosineZ evaluation points where set in the constructor of the OscillatorBase() derived object
+   */
+  bool fEvalPointsSetInConstructor;
 
   /**
    * @brief A vector which contains all instances of OscProbCalcerBase()
@@ -229,6 +249,7 @@ class OscillatorBase {
    * @brief A boolean which declares whether #fOscProbCalcers has been initialised
    */
   bool fOscProbCalcerSet;
+
 };
 
 #endif

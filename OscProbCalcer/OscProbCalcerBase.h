@@ -148,6 +148,18 @@ class OscProbCalcerBase {
    */
   std::vector<FLOAT_T> ReturnWeightArray() {return fWeightArray;}
 
+  /**
+   * @brief Return whether the instance of OscProbCalcerBase() has already been assigned the Energy binning
+   * @return Boolean flag
+   */
+  bool ReturnHasSetEnergyArray() {return fEnergyArraySet;}
+
+  /**
+   * @brief Return whether the instance of OscProbCalcerBase() has already been assigned the CosineZ binning
+   * @return Boolean flag
+   */
+  bool ReturnHasSetCosineZArray() {return fCosineZArraySet;}
+
   // ========================================================================================================================================================================
   // Public virtual functions which need calculater specific implementations
 

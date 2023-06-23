@@ -23,6 +23,7 @@ OscillatorBase::OscillatorBase(std::string ConfigName_) {
   fVerbose = NONE;
   fCosineZIgnored = false;
 
+  fEvalPointsSetInConstructor = false;
   fCalculationTypeName = "";
 
   fOscProbCalcers = std::vector<OscProbCalcerBase*>();
@@ -72,7 +73,6 @@ void OscillatorBase::InitialiseOscProbCalcers() {
 
   fOscProbCalcerSet = true;
 }
-
 
 OscProbCalcerBase* OscillatorBase::InitialiseOscProbCalcer(std::string OscProbCalcerImplementationToCreateString) {
   OscProbCalcerBase* Calcer;
@@ -150,6 +150,11 @@ void OscillatorBase::SetEnergyArrayInCalcer(std::vector<FLOAT_T> Array, int Calc
     std::cerr << "fNCalcers:" << fNCalcers << std::endl;
     throw;
   }
+  if (fOscProbCalcers[CalcerIndex]->ReturnHasSetEnergyArray()) {
+    std::cerr << "Have already set the Energy array in the requested OscProbCalcer" << std::endl;
+    std::cerr << "This seems like a fault in the setup" << std::endl;
+    throw;
+  }
   if (fVerbose >= INFO) {std::cout << "Setting Energy array in OscProbCalcer Implementation:" << fOscProbCalcers[CalcerIndex]->ReturnImplementationName() << " in OscillatorBase object" << std::endl;}
   fOscProbCalcers[CalcerIndex]->SetEnergyArray(Array);
 }
@@ -159,6 +164,11 @@ void OscillatorBase::SetCosineZArrayInCalcer(std::vector<FLOAT_T> Array, int Cal
     std::cerr << "Requested to set CosineZ array at invalid index within fOscProbCalcers array" << std::endl;
     std::cerr << "CalcerIndex:"<< CalcerIndex << std::endl;
     std::cerr << "fNCalcers:" << fNCalcers << std::endl;
+    throw;
+  }
+  if (fOscProbCalcers[CalcerIndex]->ReturnHasSetCosineZArray()) {
+    std::cerr << "Have already set the CosineZ array in the requested OscProbCalcer" << std::endl;
+    std::cerr << "This seems like a fault in the setup"<< std::endl;
     throw;
   }
   if (fVerbose >= INFO) {std::cout << "Setting CosineZ array in OscProbCalcer Implementation:" << fOscProbCalcers[CalcerIndex]->ReturnImplementationName() << " in OscillatorBase object" << std::endl;}

@@ -23,18 +23,22 @@ OscillatorBinned::OscillatorBinned(std::string ConfigName_) : OscillatorBase(Con
 
   EnergyAxisBinEdges = ReadBinEdgesFromFile(FileName,EnergyAxisHistName,false);
   EnergyAxisBinCenters = ReturnBinCentersFromBinEdges(EnergyAxisBinEdges);
-  for (int CalcerIndex=0;CalcerIndex<fNCalcers;CalcerIndex++) {
-    SetEnergyArrayInCalcer(EnergyAxisBinCenters, CalcerIndex);
-  }
-
   if (!fCosineZIgnored) {
     CosineZAxisBinEdges = ReadBinEdgesFromFile(FileName,CosineZAxisHistName,true);
     CosineZAxisBinCenters = ReturnBinCentersFromBinEdges(CosineZAxisBinEdges);
-    
+  }
+
+  fEvalPointsSetInConstructor = true;
+
+  for (int CalcerIndex=0;CalcerIndex<fNCalcers;CalcerIndex++) {
+    SetEnergyArrayInCalcer(EnergyAxisBinCenters, CalcerIndex);
+  }   
+  if (!fCosineZIgnored) {
     for (int CalcerIndex=0;CalcerIndex<fNCalcers;CalcerIndex++) {
       SetCosineZArrayInCalcer(CosineZAxisBinCenters, CalcerIndex);
     }
   }
+
 }
 
 std::vector<FLOAT_T> OscillatorBinned::ReadBinEdgesFromFile(std::string FileName, std::string HistogramName, bool IsCosineZAxis) {
