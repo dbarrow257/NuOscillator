@@ -77,6 +77,8 @@ void OscillatorBase::InitialiseOscProbCalcers() {
 OscProbCalcerBase* OscillatorBase::InitialiseOscProbCalcer(std::string OscProbCalcerImplementationToCreateString) {
   OscProbCalcerBase* Calcer;
 
+  //============================================================================================================================================
+  //Move out of this function and take as arguments
   std::string OscProbCalcerImplementationToCreate = "";
   std::string OscProbCalcerConfigname = "";
   std::string Instance_Str = "";
@@ -109,6 +111,7 @@ OscProbCalcerBase* OscillatorBase::InitialiseOscProbCalcer(std::string OscProbCa
     std::cout << "\tOscProbCalcerConfigname:" << OscProbCalcerConfigname << std::endl;
     std::cout << "\tInstance:" << Instance << std::endl;
   }
+  //============================================================================================================================================
 
   if (OscProbCalcerImplementationToCreate == "CUDAProb3") {
 #if UseCUDAProb3==1
@@ -199,6 +202,7 @@ void OscillatorBase::SetCosineZArrayInCalcer(std::vector<FLOAT_T> Array, int Cal
   fOscProbCalcers[CalcerIndex]->SetCosineZArray(Array);
 }
 
+// It is assumed that all OscProbCalcers within a single instance of an OscillatorBase object take the same oscillation probabilities
 void OscillatorBase::CalculateProbabilities(std::vector<FLOAT_T> OscParams) {
   for (int CalcerIndex=0;CalcerIndex<fNCalcers;CalcerIndex++) {
     if (fVerbose >= INFO) {std::cout << "Calculating oscillation probabilities using OscProbCalcer Implementation:" << fOscProbCalcers[CalcerIndex]->ReturnImplementationName() << " in OscillatorBase object" << std::endl;}
