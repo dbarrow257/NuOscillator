@@ -44,14 +44,13 @@ class OscProbCalcerProb3ppLinear : public OscProbCalcerBase {
    * @brief Return implementation specific index in the weight array for a specific combination of neutrino oscillation channel, energy and cosine zenith
    * 
    * @param NuTypeIndex The index in #fNeutrinoTypes (neutrino/antinuetrino) to return the pointer for 
-   * @param InitNuIndex The index in #fInitialFlavours (electron/muon/tau) to return the pointer for 
-   * @param FinalNuIndex The index in #fFinalFlavours (electron/muon/tau) to return the pointer for 
+   * @param OscNuIndex
    * @param EnergyIndex The index in #fEnergyArray to return the pointer for 
    * @param CosineZIndex The index in #fCosineZArray to return the pointer for 
    *
    * @return Index in #fWeightArray which corresponds to the given inputs
    */
-  int ReturnWeightArrayIndex(int NuTypeIndex, int InitNuIndex, int FinalNuIndex, int EnergyIndex, int CosineZIndex=-1);
+  int ReturnWeightArrayIndex(int NuTypeIndex, int OscNuIndex, int EnergyIndex, int CosineZIndex=-1);
   
   /**
    * @brief Define the size of fWeightArray
@@ -77,11 +76,6 @@ class OscProbCalcerProb3ppLinear : public OscProbCalcerBase {
    * @brief Define the neutrino and antineutrino values expected by this implementation
    */
   enum NuType{Nubar=-1, Nu=1};
-
-  /**
-   * @brief Define the neutrino flavours expected by this implementation
-   */
-  enum NuFlav{Electron=1, Muon=2, Tau=3};
 
   /**
    * @brief Boolean declaring what values are being passed for the values of theta_13 (sin^2(theta) or sin^2(2*theta))

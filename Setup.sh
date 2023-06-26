@@ -19,10 +19,10 @@ else
 fi
 
 #Which calculators to compile
-export UseCUDAProb3=1
-export UseCUDAProb3Linear=0
-export UseProbGPULinear=0
-export UseProb3ppLinear=0
+export UseCUDAProb3=0
+export UseCUDAProb3Linear=1
+export UseProbGPULinear=1
+export UseProb3ppLinear=1
 
 #ProbGPU only supported when using GPU
 if [ ${UseGPU} == 0 ]; then
