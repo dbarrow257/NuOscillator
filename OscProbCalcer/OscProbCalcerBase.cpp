@@ -18,6 +18,8 @@ OscProbCalcerBase::OscProbCalcerBase(std::string ConfigName_) {
   fNFinalFlavours = DUMMYVAL;
   fFinalFlavours = std::vector<int>();
 
+  fOscillationChannels = std::vector<OscillationChannel>();
+
   fNEnergyPoints = DUMMYVAL;
   fNCosineZPoints = DUMMYVAL;
   fEnergyArray = std::vector<FLOAT_T>();
@@ -430,4 +432,11 @@ bool OscProbCalcerBase::SanityCheck() {
   }
 
   return IsSane;
+}
+
+void OscProbCalcerBase::PrintKnownOscillationChannels() {
+  std::cout << "Number of requested oscillation channels:" << fOscillationChannels.size() << std::endl;
+  for (size_t i=0;i<fOscillationChannels.size();i++) {
+    std::cout << "\t" << i << " : " << fOscillationChannels[i].GeneratedFlavour << " (" << std::setw(10) << NeutrinoFlavour_IntToStr(fOscillationChannels[i].GeneratedFlavour) << ") -> " << fOscillationChannels[i].DetectedFlavour << " (" << std::setw(10) << NeutrinoFlavour_IntToStr(fOscillationChannels[i].DetectedFlavour) << ")" << std::endl;
+  }
 }

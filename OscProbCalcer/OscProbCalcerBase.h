@@ -88,6 +88,9 @@ class OscProbCalcerBase {
    */
   void PrintWeights();
 
+  //DB
+  void PrintKnownOscillationChannels();
+
   /**
    * @brief Return the number of oscillation parameters the specific implementation expects
    * @return Return the number of oscillation parameters the specific implementation expects
@@ -369,6 +372,10 @@ class OscProbCalcerBase {
    * @brief The mapping of initial neutrino flavour to uniquely defined integers (i.e. index)
    */
   std::vector<int> fInitialFlavours;
+
+  //DB
+  std::vector<OscillationChannel> fOscillationChannels;
+  int fNOscillationChannels;
 
   /**
    * @brief The number of final neutrino flavours (electron, muon, tau)

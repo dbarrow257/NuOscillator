@@ -13,3 +13,6 @@ Binned:
 
 CUDAProb3:
   EarthModelFileName: "PREM_4layer.dat"
+  OscChannelMapping:
+  - Entry: "Electron:Muon"
+  - Entry: "Electron:Electron"

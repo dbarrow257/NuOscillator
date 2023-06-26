@@ -100,7 +100,7 @@ class OscProbCalcerCUDAProb3 : public OscProbCalcerBase {
   /**
    * @brief The mapping of the oscillation channels defined in #fInitialFlavours and #fFinalFlavours to the CUDAProb3 constants
    */
-  std::vector< std::vector<int> > OscChannels;
+  std::vector<int> OscChannels;
 
   /**
    * @brief The number of threads being used to perform the calculation
