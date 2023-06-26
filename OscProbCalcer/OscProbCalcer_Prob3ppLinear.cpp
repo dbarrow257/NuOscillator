@@ -5,7 +5,7 @@
 OscProbCalcerProb3ppLinear::OscProbCalcerProb3ppLinear(std::string ConfigName_) : OscProbCalcerBase(ConfigName_)
 {
   // Required variables
-  fImplementationName = "Prob3pp";
+  fImplementationName = "Prob3ppLinear";
   InitialiseOscillationChannelMapping();
 
   //=======
@@ -52,7 +52,7 @@ void OscProbCalcerProb3ppLinear::CalculateProbabilities(std::vector<FLOAT_T> Osc
 }
 
 int OscProbCalcerProb3ppLinear::ReturnWeightArrayIndex(int NuTypeIndex, int OscChanIndex, int EnergyIndex, int CosineZIndex) {
-  int IndexToReturn = NuTypeIndex*fNOscillationChannels*fNEnergyPoints + OscChanIndex*fNEnergyPoints + FinalNuIndex*fNEnergyPoints + EnergyIndex;
+  int IndexToReturn = NuTypeIndex*fNOscillationChannels*fNEnergyPoints + OscChanIndex*fNEnergyPoints + EnergyIndex;
   return IndexToReturn;
 }
 

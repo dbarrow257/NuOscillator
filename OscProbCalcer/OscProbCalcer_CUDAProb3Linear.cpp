@@ -120,7 +120,7 @@ void OscProbCalcerCUDAProb3Linear::CalculateProbabilities(std::vector<FLOAT_T> O
       propagator->getProbabilityArr(CopyArr,static_cast<cudaprob3::ProbType>(OscChannels[iOscChannel]));
 	
       // Mapping which links the oscillation channel, neutrino type and energy/cosineZ index to the fWeightArray index
-      int IndexToFill = iNuType*fNInitialFlavours*fNFinalFlavours*CopyArrSize + iInitFlav*fNFinalFlavours*CopyArrSize + iFinalFlav*CopyArrSize;
+      int IndexToFill = iNuType*fNOscillationChannels*CopyArrSize + iOscChannel*CopyArrSize;
       for (int iOscProb=0;iOscProb<CopyArrSize;iOscProb++) {
 	
 	// Sometimes CUDAProb3Linear can return *slightly* unphysical oscillation probabilities

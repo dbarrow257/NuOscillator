@@ -303,7 +303,7 @@ void OscProbCalcerBase::IntialiseWeightArray() {
   if (fVerbose >= INFO) {std::cout << "Asking OscProbCalcerBase implementation:" << fImplementationName << " for the size" << std::endl;}
   fNWeights = DefineWeightArraySize();
   if (fNWeights <= 0) {
-    std::cerr << "Number of weights which will be stored is less than 0. This indicates a fault in the calculation specific code: DefineWeightArraySize() is incorrect or has overflow-ed the 'long' ttype used as the return type" << std::endl;
+    std::cerr << "Number of weights which will be stored is less than 0. This indicates a fault in the calculation specific code: DefineWeightArraySize() is incorrect or has overflow-ed the 'long' type used as the return type" << std::endl;
     throw;
   }
 

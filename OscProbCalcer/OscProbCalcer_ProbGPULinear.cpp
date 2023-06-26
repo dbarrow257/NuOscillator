@@ -8,7 +8,7 @@ extern "C" void GetProb(int Alpha, int Beta, double Path, double Density, double
 OscProbCalcerProbGPULinear::OscProbCalcerProbGPULinear(std::string ConfigName_) : OscProbCalcerBase(ConfigName_)
 {
   // Required variables
-  fImplementationName = "ProbGPU";
+  fImplementationName = "ProbGPULinear";
   InitialiseOscillationChannelMapping();
 
   //=======
