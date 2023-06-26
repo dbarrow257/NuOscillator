@@ -88,11 +88,6 @@ class OscProbCalcerCUDAProb3 : public OscProbCalcerBase {
   enum NuType{Nubar=-1, Nu=1};
 
   /**
-   * @brief Define the neutrino flavours expected by this implementation
-   */
-  enum NuFlav{Electron=1, Muon=2, Tau=3};
-
-  /**
    * @brief The name of the config used to setup the particular instance of OscProbCalcerCUDAProb3()
    */
   std::string ConfigName;
@@ -100,6 +95,7 @@ class OscProbCalcerCUDAProb3 : public OscProbCalcerBase {
   /**
    * @brief The mapping of the oscillation channels defined in #fInitialFlavours and #fFinalFlavours to the CUDAProb3 constants
    */
+  //DB Check for all instances of fInitialFlavours and fFinalFlavours
   std::vector<int> OscChannels;
 
   /**

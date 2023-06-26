@@ -328,6 +328,8 @@ void OscProbCalcerBase::InitialiseOscillationChannelMapping() {
     fOscillationChannels.push_back(myOscChan);
   }
   fNOscillationChannels = fOscillationChannels.size();
+
+  if (fVerbose >= INFO) {PrintKnownOscillationChannels();}
 }
 
 void OscProbCalcerBase::CheckNuFlavourMapping() {
