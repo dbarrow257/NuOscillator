@@ -234,25 +234,8 @@ class OscProbCalcerBase {
    */
   int ReturnEnergyIndexFromValue(FLOAT_T EnergyVal);
 
-  /**
-   * @brief Return the index in #fInitialFlavours for a particular neutrino flavour
-   *
-   * Neutrino flavour mapping is defined in #fInitialFlavours, so for a particular events flavour, the index in the mapping is returned to aide in #fWeightArray mapping
-   *
-   * @param InitFlav Initial neutrino flavour
-   * @return Index in #fInitialFlavours
-   */
-  int ReturnInitialIndexFromFlavour(int InitFlav);
-
-  /**
-   * @brief Return the index in #fFinalFlavours for a particular neutrino flavour
-   *
-   * Neutrino flavour mapping is defined in #fFinalFlavours, so for a particular events flavour, the index in the mapping is returned to aide in #fWeightArray mapping
-   *
-   * @param FinalFlav Final neutrino flavour
-   * @return Index in #fFinalFlavours
-   */
-  int ReturnFinalIndexFromFlavour(int FinalFlav);
+  //DB
+  int ReturnOscChannelIndexFromFlavours(int InitNuFlav, int FinalNuFlav);
 
   /**
    * @brief Return the index in #fNeutrinoTypes for a particular neutrino flavour (neutrino or antineutrino)
@@ -271,19 +254,8 @@ class OscProbCalcerBase {
    */
   void InitialiseNeutrinoTypesArray(int Size);
   
-  /**
-   * @brief Initialise the #fInitialFlavours mapping array to a particular size with dummy values
-   *
-   * @param Size Size of array to initialise
-   */
-  void InitialiseInitialFlavoursArray(int Size);
-  
-  /**
-   * @brief Initialise the #fFinalFlavours mapping array to a particular size with dummy values
-   *
-   * @param Size Size of array to initialise
-   */
-  void InitialiseFinalFlavoursArray(int Size);
+  //DB
+  void InitialiseOscillationChannelMapping();
 
   /**
    * @brief Check that the NuType/NuFlav mapping is set correctly based on the inputs from the particular implementation
@@ -329,14 +301,14 @@ class OscProbCalcerBase {
    * This function allows a mapping between the neutrino flavour to calculate for (along with Energy and CosineZ) to the index in #fWeightArray.
    * 
    * @param NuTypeIndex The index in #fNeutrinoTypes (neutrino/antinuetrino) to return the pointer for 
-   * @param InitNuIndex The index in #fInitialFlavours (electron/muon/tau) to return the pointer for 
-   * @param FinalNuIndex The index in #fFinalFlavours (electron/muon/tau) to return the pointer for 
+   * @param OscChanIndex
    * @param EnergyIndex The index in #fEnergyArray to return the pointer for 
    * @param CosineZIndex The index in #fCosineZArray to return the pointer for 
    *
    * @return Index in #fWeightArray which corresponds to the given inputs
    */
-  virtual int ReturnWeightArrayIndex(int NuTypeIndex, int InitNuIndex, int FinalNuIndex, int EnergyIndex, int CosineZIndex=-1) = 0;
+  //DB
+  virtual int ReturnWeightArrayIndex(int NuTypeIndex, int OscChanIndex, int EnergyIndex, int CosineZIndex=-1) = 0;
 
   /**
    * @brief Define the size of fWeightArray
@@ -363,29 +335,9 @@ class OscProbCalcerBase {
    */
   std::vector<int> fNeutrinoTypes;
 
-  /**
-   * @brief The number of initial neutrino flavours (electron, muon, tau)
-   */
-  int fNInitialFlavours;
-
-  /**
-   * @brief The mapping of initial neutrino flavour to uniquely defined integers (i.e. index)
-   */
-  std::vector<int> fInitialFlavours;
-
   //DB
   std::vector<OscillationChannel> fOscillationChannels;
   int fNOscillationChannels;
-
-  /**
-   * @brief The number of final neutrino flavours (electron, muon, tau)
-   */
-  int fNFinalFlavours;
-
-  /**
-   * @brief The mapping of final neutrino flavour to uniquely defined integers (i.e. index)
-   */
-  std::vector<int> fFinalFlavours;
 
   /**
    * @brief The number of Energy points which are being evaluated by the oscillation probability engine

@@ -53,14 +53,14 @@ class OscProbCalcerCUDAProb3 : public OscProbCalcerBase {
    * @brief Return implementation specific index in the weight array for a specific combination of neutrino oscillation channel, energy and cosine zenith
    * 
    * @param NuTypeIndex The index in #fNeutrinoTypes (neutrino/antinuetrino) to return the pointer for 
-   * @param InitNuIndex The index in #fInitialFlavours (electron/muon/tau) to return the pointer for 
-   * @param FinalNuIndex The index in #fFinalFlavours (electron/muon/tau) to return the pointer for 
+   * @param OscChanIndex
    * @param EnergyIndex The index in #fEnergyArray to return the pointer for 
    * @param CosineZIndex The index in #fCosineZArray to return the pointer for 
    *
    * @return Index in #fWeightArray which corresponds to the given inputs
    */
-  int ReturnWeightArrayIndex(int NuTypeIndex, int InitNuIndex, int FinalNuIndex, int EnergyIndex, int CosineZIndex=-1);
+  //DB
+  int ReturnWeightArrayIndex(int NuTypeIndex, int OscChanIndex, int EnergyIndex, int CosineZIndex=-1);
 
   /**
    * @brief Define the size of fWeightArray

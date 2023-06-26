@@ -16,6 +16,7 @@ using namespace cudaprob3;
 OscProbCalcerCUDAProb3::OscProbCalcerCUDAProb3(std::string ConfigName_) : OscProbCalcerBase(ConfigName_)
 {
   fImplementationName = "CUDAProb3";
+  InitialiseOscillationChannelMapping();
 
   //=======
   //Grab information from the config
@@ -27,13 +28,6 @@ OscProbCalcerCUDAProb3::OscProbCalcerCUDAProb3(std::string ConfigName_) : OscPro
     throw;
   }
   EarthDensityFile = std::string(EnvironVal)+"/models/"+EarthDensityModelFileName;
-
-  for (auto const &OscChannel : Config[fImplementationName]["OscChannelMapping"]) {
-    OscillationChannel myOscChan = ReturnOscillationChannel(OscChannel["Entry"].as<std::string>());
-    fOscillationChannels.push_back(myOscChan);
-  }
-  fNOscillationChannels = fOscillationChannels.size();
-  PrintKnownOscillationChannels();
   //=======
 
   fNOscParams = kNOscParams;
@@ -42,17 +36,6 @@ OscProbCalcerCUDAProb3::OscProbCalcerCUDAProb3(std::string ConfigName_) : OscPro
   InitialiseNeutrinoTypesArray(fNNeutrinoTypes);
   fNeutrinoTypes[0] = Nu;
   fNeutrinoTypes[1] = Nubar;
-
-  fNInitialFlavours = 2;
-  InitialiseInitialFlavoursArray(fNInitialFlavours);
-  fInitialFlavours[0] = Electron;
-  fInitialFlavours[1] = Muon;
-
-  fNFinalFlavours = 3;
-  InitialiseFinalFlavoursArray(fNFinalFlavours);
-  fFinalFlavours[0] = Electron;
-  fFinalFlavours[1] = Muon;
-  fFinalFlavours[2] = Tau;
 
   // Implementation specific variables
   OscChannels = std::vector<int>(fNOscillationChannels,DUMMYVAL);
@@ -162,10 +145,8 @@ void OscProbCalcerCUDAProb3::CalculateProbabilities(std::vector<FLOAT_T> OscPara
   delete[] CopyArr;
 }
 
-int OscProbCalcerCUDAProb3::ReturnWeightArrayIndex(int NuTypeIndex, int InitNuIndex, int FinalNuIndex, int EnergyIndex, int CosineZIndex) {
-  //DB Need to move to fOscillationChannel constants
-  int IndexToReturn = NuTypeIndex*fNInitialFlavours*fNFinalFlavours*fNCosineZPoints*fNEnergyPoints + InitNuIndex*fNFinalFlavours*fNCosineZPoints*fNEnergyPoints + FinalNuIndex*fNCosineZPoints*fNEnergyPoints + CosineZIndex*fNEnergyPoints + EnergyIndex;
-
+int OscProbCalcerCUDAProb3::ReturnWeightArrayIndex(int NuTypeIndex, int OscChanIndex, int EnergyIndex, int CosineZIndex) {
+  int IndexToReturn = NuTypeIndex*fNOscillationChannels*fNCosineZPoints*fNEnergyPoints + OscChanIndex*fNCosineZPoints*fNEnergyPoints + + CosineZIndex*fNEnergyPoints + EnergyIndex;
   return IndexToReturn;
 }
 
