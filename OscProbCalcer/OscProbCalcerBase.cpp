@@ -7,7 +7,7 @@
 #include <iomanip>
 
 OscProbCalcerBase::OscProbCalcerBase(std::string ConfigName_) {
-  // Set deafult values of all variables within this base object
+  // Set default values of all variables within this base object
   fVerbose = NONE;
   fImplementationName = std::string();
 
@@ -333,7 +333,7 @@ void OscProbCalcerBase::InitialiseOscillationChannelMapping() {
 }
 
 void OscProbCalcerBase::CheckNuFlavourMapping() {
-  if (fNNeutrinoTypes == DUMMYVAL || fNOscillationChannels == DUMMYVAL) {
+  if (fNNeutrinoTypes == DUMMYVAL || fNOscillationChannels == DUMMYVAL || fNNeutrinoTypes <= 0 || fNOscillationChannels <= 0) {
     std::cerr << "Number of neutrino types or flavours have not been correctly defined:" << std::endl;
     std::cerr << "fNNeutrinoTypes:" << fNNeutrinoTypes << std::endl;
     std::cerr << "fNOscillationChannels:" << fNOscillationChannels << std::endl;
