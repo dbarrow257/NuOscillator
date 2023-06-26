@@ -91,6 +91,9 @@ class OscProbCalcerBase {
   //DB
   void PrintKnownOscillationChannels();
 
+  //DB
+  bool HasOscillationChannel(int GeneratedFlavour, int DetectedFlavour);
+
   /**
    * @brief Return the number of oscillation parameters the specific implementation expects
    * @return Return the number of oscillation parameters the specific implementation expects
@@ -173,7 +176,8 @@ class OscProbCalcerBase {
    *
    * @param ConfigName_ Name of YAML config used to set runtime variables
    */
-  OscProbCalcerBase(std::string ConfigName_);
+  //DB
+  OscProbCalcerBase(std::string ConfigName_, std::string ImplementationName_, int Instance_=0);
 
   // ========================================================================================================================================================================
   // Protected functions which are calculation implementation agnostic  
@@ -394,10 +398,16 @@ class OscProbCalcerBase {
    */
   bool fCosineZIgnored;
 
+  //DB
+  int fInstance;
+
   /**
    * @brief YAML Config object used to get runtime specific variables
    */
-  YAML::Node Config;
+  YAML::Node GeneralConfig;
+
+  //DB
+  YAML::Node InstanceConfig;
 
  private:
   // ========================================================================================================================================================================

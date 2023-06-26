@@ -5,12 +5,8 @@ extern "C" void GetProb(int Alpha, int Beta, double Path, double Density, double
 
 #include <iostream>
 
-OscProbCalcerProbGPULinear::OscProbCalcerProbGPULinear(std::string ConfigName_) : OscProbCalcerBase(ConfigName_)
+OscProbCalcerProbGPULinear::OscProbCalcerProbGPULinear(std::string ConfigName_, int Instance_) : OscProbCalcerBase(ConfigName_,"ProbGPULinear",Instance_)
 {
-  // Required variables
-  fImplementationName = "ProbGPULinear";
-  InitialiseOscillationChannelMapping();
-
   //=======
   //Grab information from the config
 

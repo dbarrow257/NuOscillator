@@ -79,20 +79,40 @@ OscProbCalcerBase* OscillatorBase::InitialiseOscProbCalcer(std::string OscProbCa
 
   std::string OscProbCalcerImplementationToCreate = "";
   std::string OscProbCalcerConfigname = "";
+  std::string Instance_Str = "";
+  int Instance = -1;
 
   size_t Delimiter = OscProbCalcerImplementationToCreateString.find(":");
   if (Delimiter != std::string::npos) {
     OscProbCalcerImplementationToCreate = OscProbCalcerImplementationToCreateString.substr(0,Delimiter);
-    OscProbCalcerConfigname = OscProbCalcerImplementationToCreateString.substr(Delimiter+1,OscProbCalcerImplementationToCreateString.size());
+
+    std::string SubStr = OscProbCalcerImplementationToCreateString.substr(Delimiter+1,OscProbCalcerImplementationToCreateString.size());
+    Delimiter = SubStr.find(":");
+    OscProbCalcerConfigname = SubStr.substr(0,Delimiter);
+
+    if (Delimiter == std::string::npos) {
+      Instance_Str = "0";
+    } else {
+      Instance_Str = SubStr.substr(Delimiter+1,SubStr.size());
+    }
+    Instance = std::stoi(Instance_Str);
+    
   } else {
-    std::cerr << "Expected a string formatted as: 'OscProbCalcerImplementation:PathToYAMLConfig'" << std::endl;
+    std::cerr << "Expected a string formatted as: 'OscProbCalcerImplementation:PathToYAMLConfig:InstanceNumber'" << std::endl;
     std::cerr << "Recieved:" << OscProbCalcerImplementationToCreateString << std::endl;
     throw;
   }
 
+  if (fVerbose >= INFO) {
+    std::cout << "Parsed " << OscProbCalcerImplementationToCreateString << " and found:" << std::endl;
+    std::cout << "\tOscProbCalcerImplementationToCreate:" << OscProbCalcerImplementationToCreate << std::endl;
+    std::cout << "\tOscProbCalcerConfigname:" << OscProbCalcerConfigname << std::endl;
+    std::cout << "\tInstance:" << Instance << std::endl;
+  }
+
   if (OscProbCalcerImplementationToCreate == "CUDAProb3") {
 #if UseCUDAProb3==1
-    OscProbCalcerCUDAProb3* CUDAProb3 = new OscProbCalcerCUDAProb3(OscProbCalcerConfigname);
+    OscProbCalcerCUDAProb3* CUDAProb3 = new OscProbCalcerCUDAProb3(OscProbCalcerConfigname,Instance);
     Calcer = (OscProbCalcerBase*)CUDAProb3;
     if (fVerbose >= INFO) {std::cout << "Initalised OscProbCalcer Implementation:" << Calcer->ReturnImplementationName() << " in OscillatorBase object" << std::endl;}
 #else
@@ -103,7 +123,7 @@ OscProbCalcerBase* OscillatorBase::InitialiseOscProbCalcer(std::string OscProbCa
 
   else if (OscProbCalcerImplementationToCreate == "CUDAProb3Linear") {
 #if UseCUDAProb3Linear==1
-    OscProbCalcerCUDAProb3Linear* CUDAProb3Linear = new OscProbCalcerCUDAProb3Linear(OscProbCalcerConfigname);
+    OscProbCalcerCUDAProb3Linear* CUDAProb3Linear = new OscProbCalcerCUDAProb3Linear(OscProbCalcerConfigname,Instance);
     Calcer = (OscProbCalcerBase*)CUDAProb3Linear;
     if (fVerbose >= INFO) {std::cout << "Initalised OscProbCalcer Implementation:" << Calcer->ReturnImplementationName() << " in OscillatorBase object" << std::endl;}
 #else
@@ -114,7 +134,7 @@ OscProbCalcerBase* OscillatorBase::InitialiseOscProbCalcer(std::string OscProbCa
   
   else if (OscProbCalcerImplementationToCreate == "Prob3ppLinear") {
 #if UseProb3ppLinear==1
-    OscProbCalcerProb3ppLinear* Prob3ppLinear = new OscProbCalcerProb3ppLinear(OscProbCalcerConfigname);
+    OscProbCalcerProb3ppLinear* Prob3ppLinear = new OscProbCalcerProb3ppLinear(OscProbCalcerConfigname,Instance);
     Calcer = (OscProbCalcerBase*)Prob3ppLinear;
     if (fVerbose >= INFO) {std::cout << "Initalised OscProbCalcer Implementation:" << Calcer->ReturnImplementationName() << " in OscillatorBase object" << std::endl;}
 #else
@@ -125,7 +145,7 @@ OscProbCalcerBase* OscillatorBase::InitialiseOscProbCalcer(std::string OscProbCa
   
   else if (OscProbCalcerImplementationToCreate == "ProbGPULinear") {
 #if UseProbGPULinear==1
-    OscProbCalcerProbGPULinear* ProbGPULinear = new OscProbCalcerProbGPULinear(OscProbCalcerConfigname);
+    OscProbCalcerProbGPULinear* ProbGPULinear = new OscProbCalcerProbGPULinear(OscProbCalcerConfigname,Instance);
     Calcer = (OscProbCalcerBase*)ProbGPULinear;
     if (fVerbose >= INFO) {std::cout << "Initalised OscProbCalcer Implementation:" << Calcer->ReturnImplementationName() << " in OscillatorBase object" << std::endl;}
 #else
@@ -144,6 +164,7 @@ OscProbCalcerBase* OscillatorBase::InitialiseOscProbCalcer(std::string OscProbCa
 }
 
 void OscillatorBase::SetEnergyArrayInCalcer(std::vector<FLOAT_T> Array, int CalcerIndex) {
+  std::cout << "CalcerIndex:" << CalcerIndex << std::endl;
   if (CalcerIndex < 0 || CalcerIndex >= fNCalcers) {
     std::cerr << "Requested to set Energy array at invalid index within fOscProbCalcers array" << std::endl;
     std::cerr << "CalcerIndex:" << CalcerIndex << std::endl;
@@ -155,7 +176,10 @@ void OscillatorBase::SetEnergyArrayInCalcer(std::vector<FLOAT_T> Array, int Calc
     std::cerr << "This seems like a fault in the setup" << std::endl;
     throw;
   }
-  if (fVerbose >= INFO) {std::cout << "Setting Energy array in OscProbCalcer Implementation:" << fOscProbCalcers[CalcerIndex]->ReturnImplementationName() << " in OscillatorBase object" << std::endl;}
+  if (fVerbose >= INFO) {
+    std::cout << "Setting Energy array in OscProbCalcer Implementation:" << fOscProbCalcers[CalcerIndex]->ReturnImplementationName() << " in OscillatorBase object" << std::endl;
+    std::cout << "Using CalcerIndex:" << CalcerIndex << std::endl;
+  }
   fOscProbCalcers[CalcerIndex]->SetEnergyArray(Array);
 }
 
@@ -267,4 +291,15 @@ std::string OscillatorBase::ReturnImplementationName() {
   }
   
   return ReturnString;
+}
+
+bool OscillatorBase::HasOscProbCalcerGotOscillationChannel(int GeneratedFlavour, int DetectedFlavour, int CalcerIndex) {
+  if (CalcerIndex < 0 || CalcerIndex >= fNCalcers) {
+    std::cerr << "Requested to PrintWeights at invalid index within fOscProbCalcers array" << std::endl;
+    std::cerr << "CalcerIndex:"<< CalcerIndex << std::endl;
+    std::cerr << "fNCalcers:" << fNCalcers << std::endl;
+    throw;
+  }
+
+  return fOscProbCalcers[CalcerIndex]->HasOscillationChannel(GeneratedFlavour,DetectedFlavour);
 }

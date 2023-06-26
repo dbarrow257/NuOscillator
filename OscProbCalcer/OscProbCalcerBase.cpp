@@ -6,10 +6,12 @@
 #include <iostream>
 #include <iomanip>
 
-OscProbCalcerBase::OscProbCalcerBase(std::string ConfigName_) {
+OscProbCalcerBase::OscProbCalcerBase(std::string ConfigName_, std::string ImplementationName_, int Instance_) {
+  fImplementationName = ImplementationName_;
+  fInstance = Instance_;
+
   // Set default values of all variables within this base object
   fVerbose = NONE;
-  fImplementationName = std::string();
 
   fNNeutrinoTypes = DUMMYVAL;
   fNeutrinoTypes = std::vector<int>();
@@ -38,14 +40,26 @@ OscProbCalcerBase::OscProbCalcerBase(std::string ConfigName_) {
 
   // Create config manager
   std::cout << "Reading config in OscProbCalcerBase: " << ConfigName_ << std::endl;
-  Config = YAML::LoadFile(ConfigName_);
+  
+  GeneralConfig = YAML::LoadFile(ConfigName_);
 
-  std::string Verbosity = Config["General"]["Verbosity"].as<std::string>();
+  std::string Verbosity = GeneralConfig["General"]["Verbosity"].as<std::string>();
   fVerbose = Verbosity_StrToInt(Verbosity);
 
-  if (fVerbose >= INFO) {
-    std::cout << "Read config in OscProbCalcerBase: " << ConfigName_ << "\n" << Config << std::endl;
+  //DB Get the correct instance of the fImplementationName to create
+  int Count = 0;
+  for (auto const& OscProbCalcerSetup : GeneralConfig["OscProbCalcerSetup"]) {
+    if (Count == Instance_) {
+      InstanceConfig = YAML::Node(OscProbCalcerSetup);
+    }
+    Count += 1;
   }
+
+  if (fVerbose >= INFO) {
+    std::cout << "Read Config in OscProbCalcerBase: " << ConfigName_ << "\n" << GeneralConfig << " and got " << fInstance << "'th instance of implementation:" << fImplementationName << std::endl;
+  }
+
+  InitialiseOscillationChannelMapping();
 }
 
 void OscProbCalcerBase::SetEnergyArray(std::vector<FLOAT_T> EnergyArray) {
@@ -323,7 +337,7 @@ void OscProbCalcerBase::InitialiseNeutrinoTypesArray(int Size) {
 }
 
 void OscProbCalcerBase::InitialiseOscillationChannelMapping() {
-  for (auto const &OscChannel : Config[fImplementationName]["OscChannelMapping"]) {
+  for (auto const &OscChannel : InstanceConfig["OscChannelMapping"]) {
     OscillationChannel myOscChan = ReturnOscillationChannel(OscChannel["Entry"].as<std::string>());
     fOscillationChannels.push_back(myOscChan);
   }
@@ -393,7 +407,16 @@ bool OscProbCalcerBase::SanityCheck() {
 
 void OscProbCalcerBase::PrintKnownOscillationChannels() {
   std::cout << "Number of requested oscillation channels:" << fOscillationChannels.size() << std::endl;
-  for (size_t i=0;i<fOscillationChannels.size();i++) {
+  for (int i=0;i<fNOscillationChannels;i++) {
     std::cout << "\t" << i << " : " << fOscillationChannels[i].GeneratedFlavour << " (" << std::setw(10) << NeutrinoFlavour_IntToStr(fOscillationChannels[i].GeneratedFlavour) << ") -> " << fOscillationChannels[i].DetectedFlavour << " (" << std::setw(10) << NeutrinoFlavour_IntToStr(fOscillationChannels[i].DetectedFlavour) << ")" << std::endl;
   }
+}
+
+bool OscProbCalcerBase::HasOscillationChannel(int GeneratedFlavour, int DetectedFlavour) {
+  for (int iOscChan=0;iOscChan<fNOscillationChannels;iOscChan++) {
+    if (fOscillationChannels[iOscChan].GeneratedFlavour == GeneratedFlavour && fOscillationChannels[iOscChan].DetectedFlavour == DetectedFlavour) {
+      return true;
+    }
+  }
+  return false;
 }

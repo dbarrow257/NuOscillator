@@ -2,12 +2,8 @@
 
 #include <iostream>
 
-OscProbCalcerProb3ppLinear::OscProbCalcerProb3ppLinear(std::string ConfigName_) : OscProbCalcerBase(ConfigName_)
+OscProbCalcerProb3ppLinear::OscProbCalcerProb3ppLinear(std::string ConfigName_, int Instance_) : OscProbCalcerBase(ConfigName_,"Prob3ppLinear",Instance_)
 {
-  // Required variables
-  fImplementationName = "Prob3ppLinear";
-  InitialiseOscillationChannelMapping();
-
   //=======
   //Grab information from the config
 

@@ -20,7 +20,8 @@ class OscProbCalcerProb3ppLinear : public OscProbCalcerBase {
    *
    * @param ConfigName_ Name of config used to setup the OscProbCalcerProb3ppLinear() instance
    */
-  OscProbCalcerProb3ppLinear(std::string ConfigName_="");
+  //DB
+  OscProbCalcerProb3ppLinear(std::string ConfigName_="", int Instance_=0);
 
   // ========================================================================================================================================================================
   // Functions which need implementation specific code

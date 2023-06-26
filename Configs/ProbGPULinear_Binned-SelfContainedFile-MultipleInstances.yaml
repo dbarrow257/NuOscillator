@@ -1,0 +1,31 @@
+General:
+  Verbosity: "INFO"
+  CosineZIgnored: true
+  CalculationType: "Unbinned"
+
+OscProbCalcer:
+  - Config: "ProbGPULinear:./build/Linux/Configs/ProbGPULinear_Binned-SelfContainedFile-MultipleInstances.yaml:0"
+  - Config: "ProbGPULinear:./build/Linux/Configs/ProbGPULinear_Binned-SelfContainedFile-MultipleInstances.yaml:1"
+  - Config: "ProbGPULinear:./build/Linux/Configs/ProbGPULinear_Binned-SelfContainedFile-MultipleInstances.yaml:2"
+
+Binned:
+  FileName: "./Inputs/ExampleAtmosphericBinning.root"
+  EnergyAxisHistName: "EnergyAxisBinning"
+  CosineZAxisHistName: "CosineZAxisBinning"
+
+OscProbCalcerSetup:
+  - ProbGPULinear:
+    OscChannelMapping:
+      - Entry: "Electron:Electron"
+      - Entry: "Electron:Muon"
+      - Entry: "Electron:Tau"
+  - ProbGPULinear:
+    OscChannelMapping:
+      - Entry: "Muon:Electron"
+      - Entry: "Muon:Muon"
+      - Entry: "Muon:Tau"
+  - ProbGPULinear:
+    OscChannelMapping:
+      - Entry: "Tau:Electron"
+      - Entry: "Tau:Muon"
+      - Entry: "Tau:Tau"

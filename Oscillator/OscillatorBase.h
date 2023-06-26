@@ -84,6 +84,12 @@ class OscillatorBase {
    */
   int ReturnNEnergyPoints(int CalcerIndex=0);
 
+  //DB
+  int ReturnNOscProbCalcers() {return fNCalcers;}
+
+  //DB
+  bool HasOscProbCalcerGotOscillationChannel(int GeneratedFlavour, int DetectedFlavour, int CalcerIndex=0);
+
   /**
    * @brief Set the energy array which will be used by the OscProbCalcerBase::OscProbCalcerBase() instance stored in a particular index in #fOscProbCalcers
    *

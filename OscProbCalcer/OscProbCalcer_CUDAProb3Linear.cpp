@@ -10,11 +10,8 @@
 
 using namespace cudaprob3;
 
-OscProbCalcerCUDAProb3Linear::OscProbCalcerCUDAProb3Linear(std::string ConfigName_) : OscProbCalcerBase(ConfigName_)
+OscProbCalcerCUDAProb3Linear::OscProbCalcerCUDAProb3Linear(std::string ConfigName_, int Instance_) : OscProbCalcerBase(ConfigName_,"CUDAProb3Linear",Instance_)
 {
-  fImplementationName = "CUDAProb3Linear";
-  InitialiseOscillationChannelMapping();
-
   //=======
   //Grab information from the config
 

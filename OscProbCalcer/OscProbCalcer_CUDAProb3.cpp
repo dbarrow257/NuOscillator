@@ -13,14 +13,11 @@
 #include <iostream>
 using namespace cudaprob3;
 
-OscProbCalcerCUDAProb3::OscProbCalcerCUDAProb3(std::string ConfigName_) : OscProbCalcerBase(ConfigName_)
+OscProbCalcerCUDAProb3::OscProbCalcerCUDAProb3(std::string ConfigName_, int Instance_) : OscProbCalcerBase(ConfigName_,"CUDAProb3",Instance_)
 {
-  fImplementationName = "CUDAProb3";
-  InitialiseOscillationChannelMapping();
-
   //=======
   //Grab information from the config
-  std::string EarthDensityModelFileName = Config[fImplementationName]["EarthModelFileName"].as<std::string>();
+  std::string EarthDensityModelFileName = InstanceConfig["EarthModelFileName"].as<std::string>();
 
   char* EnvironVal = std::getenv("CUDAProb3Source");
   if (EnvironVal == NULL) {

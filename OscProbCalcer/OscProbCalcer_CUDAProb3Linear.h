@@ -27,7 +27,8 @@ class OscProbCalcerCUDAProb3Linear : public OscProbCalcerBase {
    *
    * @param ConfigName_ Name of config used to setup the OscProbCalcerCUDAProb3Linear() instance
    */
-  OscProbCalcerCUDAProb3Linear(std::string ConfigName_="");
+  //DB
+  OscProbCalcerCUDAProb3Linear(std::string ConfigName_="", int Instance_=0);
 
  private:
   // ========================================================================================================================================================================

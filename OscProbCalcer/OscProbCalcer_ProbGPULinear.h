@@ -18,7 +18,8 @@ class OscProbCalcerProbGPULinear : public OscProbCalcerBase {
    *
    * @param ConfigName_ Name of config used to setup the OscProbCalcerProbGPULinear() instance
    */
-  OscProbCalcerProbGPULinear(std::string ConfigName_="");
+  //DB
+  OscProbCalcerProbGPULinear(std::string ConfigName_="", int Instance_=0);
 
   // ========================================================================================================================================================================
   // Functions which need implementation specific code

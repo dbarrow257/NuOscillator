@@ -14,7 +14,13 @@ using std::chrono::milliseconds;
 std::vector<FLOAT_T> logspace(FLOAT_T Emin, FLOAT_T  Emax, int nDiv);
 std::vector<FLOAT_T> linspace(FLOAT_T Emin, FLOAT_T Emax, int nDiv);
 
-int main() {
+int main(int argc, char **argv) {
+  if (argc != 2) {
+    std::cerr << "./SingleOscillator InputConfig.yaml" << std::endl;
+    throw;
+  }
+  std::string ConfigName = argv[1];
+  
   int Verbose = NONE;
   bool PrintWeights = false;
 
@@ -44,59 +50,34 @@ int main() {
   std::cout << "Starting setup in executable" << std::endl;
 
   std::vector<OscillatorBase*> Oscillators;
-  std::vector<std::string> ConfigNames;
 
   OscillatorFactory* OscFactory = new OscillatorFactory();
   OscillatorBase* Oscillator;
 
-#if UseCUDAProb3 == 1
-  ConfigNames.push_back("./Configs/Binned_CUDAProb3.yaml");
-  ConfigNames.push_back("./Configs/Unbinned_CUDAProb3.yaml");
-#endif
+  std::cout << "========================================================" << std::endl;
+  std::cout << "Initialising " << ConfigName << std::endl;
+  
+  //Create OscillatorBase* object from YAML config
+  Oscillator = OscFactory->CreateOscillator(ConfigName);
+  
+  //Check if the Energy and CosineZ evaluation points have been set in the constructor of the object (i.e. Binned where the templates have been picked up by the constructor)
+  //or if we need to set them after the fact (i.e. unbinned where the points may change depending on the events etc.)
+  if (!Oscillator->EvalPointsSetInConstructor()) {
 
-#if UseCUDAProb3Linear == 1
-  ConfigNames.push_back("./Configs/Binned_CUDAProb3Linear.yaml");
-  ConfigNames.push_back("./Configs/Unbinned_CUDAProb3Linear.yaml");
-#endif
-
-#if UseProbGPULinear == 1
-  ConfigNames.push_back("./Configs/Binned_ProbGPULinear.yaml");
-  ConfigNames.push_back("./Configs/Unbinned_ProbGPULinear.yaml");
-#endif
-
-#if UseProb3ppLinear == 1
-  ConfigNames.push_back("./Configs/Binned_Prob3ppLinear.yaml");
-  ConfigNames.push_back("./Configs/Unbinned_Prob3ppLinear.yaml");
-#endif
-
-  //Alternative option to show how all information can be held in a single YAML file rather than using a preset
-  //ConfigNames.push_back("./Configs/CUDAProb3_Binned-SelfContainedFile.yaml");
-
-  for (size_t iConfig=0;iConfig<ConfigNames.size();iConfig++) {
-    std::cout << "========================================================" << std::endl;
-    std::cout << "Initialising " << ConfigNames[iConfig] << std::endl;
-    
-    //Create OscillatorBase* object from YAML config
-    Oscillator = OscFactory->CreateOscillator(ConfigNames[iConfig]);
-
-    //Check if the Energy and CosineZ evaluation points have been set in the constructor of the object (i.e. Binned where the templates have been picked up by the constructor)
-    //or if we need to set them after the fact (i.e. unbinned where the points may change depending on the events etc.)
-    if (!Oscillator->EvalPointsSetInConstructor()) {
+    //It's possible for one Oscillator to have multiple OscProbCalcers, these could be interfaced with individually such that each could have a different Energy and CosineZ array                        
+    for (int iCalcer=0;iCalcer<Oscillator->ReturnNOscProbCalcers();iCalcer++) {
+      Oscillator->SetEnergyArrayInCalcer(EnergyArray,iCalcer);
       
-      //It's possible for one Oscillator to have multiple OscProbCalcers, these could be interfaced with individually such that each could have a different Energy and CosineZ array
-      for (int iCalcer=0;iCalcer<Oscillator->ReturnNOscProbCalcers();iCalcer++) {
-	Oscillator->SetEnergyArrayInCalcer(EnergyArray,iCalcer);
-	
-	//Check if we also need to set the CosineZ binning
-	if (!Oscillator->CosineZIgnored()) {
-	  Oscillator->SetCosineZArrayInCalcer(CosineZArray,iCalcer);
-	}
+      //Check if we also need to set the CosineZ binning
+      if (!Oscillator->CosineZIgnored()) {
+	Oscillator->SetCosineZArrayInCalcer(CosineZArray,iCalcer);
       }
     }
 
-    //Append OscillatorBase* object to the vector
-    Oscillators.push_back(Oscillator);
   }
+
+  //Append OscillatorBase* object to the vector
+  Oscillators.push_back(Oscillator);
 
   std::cout << "========================================================" << std::endl;
   std::cout << "Setting up Oscillators" << std::endl;

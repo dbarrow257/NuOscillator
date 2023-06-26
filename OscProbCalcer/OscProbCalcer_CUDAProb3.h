@@ -26,7 +26,8 @@ class OscProbCalcerCUDAProb3 : public OscProbCalcerBase {
    *
    * @param ConfigName_ Name of config used to setup the OscProbCalcerCUDAProb3() instance
    */
-  OscProbCalcerCUDAProb3(std::string ConfigName_="");
+  //DB
+  OscProbCalcerCUDAProb3(std::string ConfigName_="", int Instance_=0);
 
  private:
   // ========================================================================================================================================================================
