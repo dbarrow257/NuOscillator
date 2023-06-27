@@ -6,17 +6,18 @@
 #include <iostream>
 #include <iomanip>
 
-OscProbCalcerBase::OscProbCalcerBase(std::string ConfigName_) {
-  // Set deafult values of all variables within this base object
+OscProbCalcerBase::OscProbCalcerBase(std::string ConfigName_, std::string ImplementationName_, int Instance_) {
+  fImplementationName = ImplementationName_;
+  fInstance = Instance_;
+
+  // Set default values of all variables within this base object
   fVerbose = NONE;
-  fImplementationName = std::string();
 
   fNNeutrinoTypes = DUMMYVAL;
   fNeutrinoTypes = std::vector<int>();
-  fNInitialFlavours = DUMMYVAL;
-  fInitialFlavours = std::vector<int>();
-  fNFinalFlavours = DUMMYVAL;
-  fFinalFlavours = std::vector<int>();
+
+  fNOscillationChannels = DUMMYVAL;
+  fOscillationChannels = std::vector<OscillationChannel>();
 
   fNEnergyPoints = DUMMYVAL;
   fNCosineZPoints = DUMMYVAL;
@@ -39,14 +40,34 @@ OscProbCalcerBase::OscProbCalcerBase(std::string ConfigName_) {
 
   // Create config manager
   std::cout << "Reading config in OscProbCalcerBase: " << ConfigName_ << std::endl;
-  Config = YAML::LoadFile(ConfigName_);
+  
+  GeneralConfig = YAML::LoadFile(ConfigName_);
 
-  std::string Verbosity = Config["General"]["Verbosity"].as<std::string>();
+  std::string Verbosity = GeneralConfig["General"]["Verbosity"].as<std::string>();
   fVerbose = Verbosity_StrToInt(Verbosity);
 
-  if (fVerbose >= INFO) {
-    std::cout << "Read config in OscProbCalcerBase: " << ConfigName_ << "\n" << Config << std::endl;
+  if (!GeneralConfig["OscProbCalcerSetup"]) {
+    std::cerr << "Did not find the 'OscProbCalcerSetup' Node within the specific config:" << ConfigName_ << std::endl;
+    throw;
   }
+  // Assumes instance number in list (not the index of the specifc implementation)
+  int Count = 0;
+  for (auto const& OscProbCalcerSetup : GeneralConfig["OscProbCalcerSetup"]) {
+    if (Count == Instance_) {
+      InstanceConfig = YAML::Node(OscProbCalcerSetup);
+    }
+    Count += 1;
+  }
+  if (!InstanceConfig["OscChannelMapping"]) {
+    std::cerr << "Expected to find a 'OscChannelMapping' Node within the 'OscProbCalcerSetup''Implementation' Node" << std::endl;
+    throw;
+  }
+
+  if (fVerbose >= INFO) {
+    std::cout << "Read Config in OscProbCalcerBase: " << ConfigName_ << "\n" << GeneralConfig << " and got " << fInstance << "'th instance of implementation:" << fImplementationName << std::endl;
+  }
+
+  InitialiseOscillationChannelMapping();
 }
 
 void OscProbCalcerBase::SetEnergyArray(std::vector<FLOAT_T> EnergyArray) {
@@ -145,12 +166,11 @@ const FLOAT_T* OscProbCalcerBase::ReturnPointerToWeight(int InitNuFlav, int Fina
   }
 
   int NuTypeIndex = ReturnNuTypeFromFlavour(InitNuFlav);
-  int InitNuIndex = ReturnInitialIndexFromFlavour(InitNuFlav);
-  int FinalNuIndex = ReturnFinalIndexFromFlavour(FinalNuFlav);
+  int OscChanIndex = ReturnOscChannelIndexFromFlavours(InitNuFlav,FinalNuFlav);
   int CosineZIndex = ReturnCosineZIndexFromValue(CosineZ);
   int EnergyIndex = ReturnEnergyIndexFromValue(Energy);
 
-  int WeightArrayIndex = ReturnWeightArrayIndex(NuTypeIndex,InitNuIndex,FinalNuIndex,EnergyIndex,CosineZIndex);
+  int WeightArrayIndex = ReturnWeightArrayIndex(NuTypeIndex,OscChanIndex,EnergyIndex,CosineZIndex);
   if (WeightArrayIndex < 0 || WeightArrayIndex >= (int)fWeightArray.size()) {
     std::cerr << "Array index in fWeightArray is outside of the array size. This indicates that the implementation of ReturnWeightArrayIndex is incorrect." << std::endl;
     std::cerr << "WeightArrayIndex:" << WeightArrayIndex << std::endl;
@@ -273,31 +293,15 @@ int OscProbCalcerBase::ReturnCosineZIndexFromValue(FLOAT_T CosineZVal) {
   return CosineZIndex;
 }
 
-int OscProbCalcerBase::ReturnInitialIndexFromFlavour(int InitFlav) {
-  for (size_t iFlav=0;iFlav<fInitialFlavours.size();iFlav++) {
-    if (fabs(InitFlav) == fInitialFlavours[iFlav]) {
-      if (fVerbose >= INFO) {std::cout << "Returning index:" << iFlav << " for InitFlav:" << InitFlav << " in Implementation:" << fImplementationName << std::endl;}
-      return iFlav;
+int OscProbCalcerBase::ReturnOscChannelIndexFromFlavours(int InitFlav, int FinalFlav) {
+  for (int iOscChan=0;iOscChan<fNOscillationChannels;iOscChan++) {
+    if (InitFlav == fOscillationChannels[iOscChan].GeneratedFlavour && FinalFlav == fOscillationChannels[iOscChan].DetectedFlavour) {
+      return iOscChan;
     }
   }
 
-  std::cerr << "Requested Initial Neutrino flavour is not defined within the InitialFlavour map!" << std::endl;
-  std::cerr << "InitNuFlav:" << InitFlav << std::endl;
-  std::cerr << "fNInitialFlavours:" << fNInitialFlavours << std::endl;
-  throw;
-}
-
-int OscProbCalcerBase::ReturnFinalIndexFromFlavour(int FinalFlav) {
-  for (size_t iFlav=0;iFlav<fFinalFlavours.size();iFlav++) {
-    if (fabs(FinalFlav) == fFinalFlavours[iFlav]) {
-      if (fVerbose >= INFO) {std::cout << "Returning index:" << iFlav << " for FinalFlav:" << FinalFlav << " in Implementation:" << fImplementationName << std::endl;}
-      return iFlav;
-    }
-  }
-
-  std::cerr << "Requested Final Neutrino flavour is not defined within the FinalFlavour map!" << std::endl;
-  std::cerr << "InitNuFlav:" << FinalFlav << std::endl;
-  std::cerr << "fNFinalFlavours:" << fNFinalFlavours << std::endl;
+  std::cerr << "Did not find reasonable oscillation channel index for the requested generated flavour: " << InitFlav << " and detected flavour: " << FinalFlav << std::endl;
+  PrintKnownOscillationChannels();
   throw;
 }
 
@@ -321,7 +325,7 @@ void OscProbCalcerBase::IntialiseWeightArray() {
   if (fVerbose >= INFO) {std::cout << "Asking OscProbCalcerBase implementation:" << fImplementationName << " for the size" << std::endl;}
   fNWeights = DefineWeightArraySize();
   if (fNWeights <= 0) {
-    std::cerr << "Number of weights which will be stored is less than 0. This indicates a fault in the calculation specific code: DefineWeightArraySize() is incorrect or has overflow-ed the 'long' ttype used as the return type" << std::endl;
+    std::cerr << "Number of weights which will be stored is less than 0. This indicates a fault in the calculation specific code: DefineWeightArraySize() is incorrect or has overflow-ed the 'long' type used as the return type" << std::endl;
     throw;
   }
 
@@ -340,30 +344,21 @@ void OscProbCalcerBase::InitialiseNeutrinoTypesArray(int Size) {
   if (fVerbose >= INFO) {std::cout << "Initialising fNeutrinoTypes to be of size:" << Size << " in Implementation:" << fImplementationName << std::endl;}
 }
 
-void OscProbCalcerBase::InitialiseInitialFlavoursArray(int Size) {
-  if (Size <= 0) {
-    std::cerr << "Attempting to initialise fInitialFlavours array with size:" << Size << std::endl;
-    throw;
+void OscProbCalcerBase::InitialiseOscillationChannelMapping() {
+  for (auto const &OscChannel : InstanceConfig["OscChannelMapping"]) {
+    OscillationChannel myOscChan = ReturnOscillationChannel(OscChannel["Entry"].as<std::string>());
+    fOscillationChannels.push_back(myOscChan);
   }
-  if (fVerbose >= INFO) {std::cout << "Initialising fInitialFlavours to be of size:" << Size << " in Implementation:" << fImplementationName << std::endl;}
-  fInitialFlavours = std::vector<int>(Size,DUMMYVAL);
-}
+  fNOscillationChannels = fOscillationChannels.size();
 
-void OscProbCalcerBase::InitialiseFinalFlavoursArray(int Size) {
-  if (Size <= 0) {
-    std::cerr << "Attempting to initialise fFinalFlavours array with size:" << Size << std::endl;
-    throw;
-  }
-  if (fVerbose >= INFO) {std::cout << "Initialising fFinalFlavours to be of size:" << Size << " in Implementation:" << fImplementationName << std::endl;}
-  fFinalFlavours = std::vector<int>(Size,DUMMYVAL);
+  if (fVerbose >= INFO) {PrintKnownOscillationChannels();}
 }
 
 void OscProbCalcerBase::CheckNuFlavourMapping() {
-  if (fNNeutrinoTypes == DUMMYVAL || fNInitialFlavours == DUMMYVAL || fNFinalFlavours == DUMMYVAL) {
+  if (fNNeutrinoTypes == DUMMYVAL || fNOscillationChannels == DUMMYVAL || fNNeutrinoTypes <= 0 || fNOscillationChannels <= 0) {
     std::cerr << "Number of neutrino types or flavours have not been correctly defined:" << std::endl;
     std::cerr << "fNNeutrinoTypes:" << fNNeutrinoTypes << std::endl;
-    std::cerr << "fNInitialFlavours:" << fNInitialFlavours << std::endl;
-    std::cerr << "fNFinalFlavours:" << fNFinalFlavours << std::endl;
+    std::cerr << "fNOscillationChannels:" << fNOscillationChannels << std::endl;
     std::cerr << "DUMMYVAL:" << DUMMYVAL << std::endl;
     throw;
   }
@@ -382,29 +377,15 @@ void OscProbCalcerBase::CheckNuFlavourMapping() {
     }
   }
 
-  if (fNInitialFlavours != (int)fInitialFlavours.size()) {
-    std::cerr << "fInitialFlavours array not equal in size to fNInitialFlavours" << std::endl;
-    std::cerr << "fNInitialFlavours:" << fNInitialFlavours << std::endl;
-    std::cerr << "fInitialFlavours.size():" << fInitialFlavours.size() << std::endl;
+  if (fNOscillationChannels != (int)fOscillationChannels.size()) {
+    std::cerr << "fOscillationChannels array not equal in size to fNOscillationChannels" << std::endl;
+    std::cerr << "fNOscillationChannels:" << fNOscillationChannels << std::endl;
+    std::cerr << "fOscillationChannels.size():" << fOscillationChannels.size() << std::endl;
     throw;
   }
-  for (int iNuFlav=0;iNuFlav<fNInitialFlavours;iNuFlav++) {
-    if (fInitialFlavours[iNuFlav]==DUMMYVAL) {
-      std::cerr << "Found DUMMYVAL in fInitialFlavours" << std::endl;
-      std::cerr << "iNuFlav:" << iNuFlav << std::endl;
-      throw;
-    }
-  }
-
-  if (fNFinalFlavours != (int)fFinalFlavours.size()) {
-    std::cerr << "fFinalFlavours array not equal in size to fNFinalFlavours" << std::endl;
-    std::cerr << "fNFinalFlavours:" << fNFinalFlavours << std::endl;
-    std::cerr << "fFinalFlavours.size():" << fFinalFlavours.size() << std::endl;
-    throw;
-  }
-  for (int iNuFlav=0;iNuFlav<fNFinalFlavours;iNuFlav++) {
-    if (fFinalFlavours[iNuFlav]==DUMMYVAL) {
-      std::cerr << "Found DUMMYVAL in fFinalFlavours" << std::endl;
+  for (int iNuFlav=0;iNuFlav<fNOscillationChannels;iNuFlav++) {
+    if (fOscillationChannels[iNuFlav].DetectedFlavour == 0 || fOscillationChannels[iNuFlav].GeneratedFlavour == 0) {
+      std::cerr << "Found DUMMYVAL in fOscillationChannels" << std::endl;
       std::cerr << "iNuFlav:" << iNuFlav << std::endl;
       throw;
     }
@@ -430,4 +411,20 @@ bool OscProbCalcerBase::SanityCheck() {
   }
 
   return IsSane;
+}
+
+void OscProbCalcerBase::PrintKnownOscillationChannels() {
+  std::cout << "Number of requested oscillation channels:" << fOscillationChannels.size() << std::endl;
+  for (int i=0;i<fNOscillationChannels;i++) {
+    std::cout << "\t" << i << " : " << fOscillationChannels[i].GeneratedFlavour << " (" << std::setw(10) << NeutrinoFlavour_IntToStr(fOscillationChannels[i].GeneratedFlavour) << ") -> " << fOscillationChannels[i].DetectedFlavour << " (" << std::setw(10) << NeutrinoFlavour_IntToStr(fOscillationChannels[i].DetectedFlavour) << ")" << std::endl;
+  }
+}
+
+bool OscProbCalcerBase::HasOscillationChannel(int GeneratedFlavour, int DetectedFlavour) {
+  for (int iOscChan=0;iOscChan<fNOscillationChannels;iOscChan++) {
+    if (fOscillationChannels[iOscChan].GeneratedFlavour == GeneratedFlavour && fOscillationChannels[iOscChan].DetectedFlavour == DetectedFlavour) {
+      return true;
+    }
+  }
+  return false;
 }

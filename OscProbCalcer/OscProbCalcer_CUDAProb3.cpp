@@ -13,11 +13,11 @@
 #include <iostream>
 using namespace cudaprob3;
 
-OscProbCalcerCUDAProb3::OscProbCalcerCUDAProb3(std::string ConfigName_) : OscProbCalcerBase(ConfigName_)
+OscProbCalcerCUDAProb3::OscProbCalcerCUDAProb3(std::string ConfigName_, int Instance_) : OscProbCalcerBase(ConfigName_,"CUDAProb3",Instance_)
 {
   //=======
   //Grab information from the config
-  std::string EarthDensityModelFileName = Config["CUDAProb3"]["EarthModelFileName"].as<std::string>();
+  std::string EarthDensityModelFileName = InstanceConfig["EarthModelFileName"].as<std::string>();
 
   char* EnvironVal = std::getenv("CUDAProb3Source");
   if (EnvironVal == NULL) {
@@ -27,7 +27,6 @@ OscProbCalcerCUDAProb3::OscProbCalcerCUDAProb3(std::string ConfigName_) : OscPro
   EarthDensityFile = std::string(EnvironVal)+"/models/"+EarthDensityModelFileName;
   //=======
 
-  fImplementationName = "CUDAProb3";
   fNOscParams = kNOscParams;
 
   fNNeutrinoTypes = 2;
@@ -35,30 +34,25 @@ OscProbCalcerCUDAProb3::OscProbCalcerCUDAProb3(std::string ConfigName_) : OscPro
   fNeutrinoTypes[0] = Nu;
   fNeutrinoTypes[1] = Nubar;
 
-  fNInitialFlavours = 2;
-  InitialiseInitialFlavoursArray(fNInitialFlavours);
-  fInitialFlavours[0] = Electron;
-  fInitialFlavours[1] = Muon;
-
-  fNFinalFlavours = 3;
-  InitialiseFinalFlavoursArray(fNFinalFlavours);
-  fFinalFlavours[0] = Electron;
-  fFinalFlavours[1] = Muon;
-  fFinalFlavours[2] = Tau;
-
   // Implementation specific variables
-  OscChannels.resize(fNInitialFlavours);
-  for (int i=0;i<fNInitialFlavours;i++) {
-    OscChannels[i].resize(fNFinalFlavours);
-  }
-  OscChannels[0][0] = e_e;
-  OscChannels[0][1] = e_m;
-  OscChannels[0][2] = e_t;
-  OscChannels[1][0] = m_e;
-  OscChannels[1][1] = m_m;
-  OscChannels[1][2] = m_t;
+  OscChannels = std::vector<int>(fNOscillationChannels,DUMMYVAL);
+  for (int iOscChannel=0;iOscChannel<fNOscillationChannels;iOscChannel++) {
+    if (fOscillationChannels[iOscChannel].GeneratedFlavour == kElectron) {
+      if (fOscillationChannels[iOscChannel].DetectedFlavour == kElectron) {OscChannels[iOscChannel] = e_e;}
+      if (fOscillationChannels[iOscChannel].DetectedFlavour == kMuon) {OscChannels[iOscChannel] = e_m;}
+      if (fOscillationChannels[iOscChannel].DetectedFlavour == kTau) {OscChannels[iOscChannel] = e_t;}
+    } else if (fOscillationChannels[iOscChannel].GeneratedFlavour == kMuon) {
+      if (fOscillationChannels[iOscChannel].DetectedFlavour == kElectron) {OscChannels[iOscChannel] = m_e;}
+      if (fOscillationChannels[iOscChannel].DetectedFlavour == kMuon) {OscChannels[iOscChannel] = m_m;}
+      if (fOscillationChannels[iOscChannel].DetectedFlavour == kTau) {OscChannels[iOscChannel] = m_t;}
+    } else if (fOscillationChannels[iOscChannel].GeneratedFlavour == kTau) {
+      if (fOscillationChannels[iOscChannel].DetectedFlavour == kElectron) {OscChannels[iOscChannel] = t_e;}
+      if (fOscillationChannels[iOscChannel].DetectedFlavour == kMuon) {OscChannels[iOscChannel] = t_m;}
+      if (fOscillationChannels[iOscChannel].DetectedFlavour == kTau) {OscChannels[iOscChannel] = t_t;}
+    }
+  }  
 
-  nThreads = 0;
+  nThreads = 1;
 }
 
 void OscProbCalcerCUDAProb3::SetupPropagator() {
@@ -129,20 +123,18 @@ void OscProbCalcerCUDAProb3::CalculateProbabilities(std::vector<FLOAT_T> OscPara
 
     propagator->calculateProbabilities(NuType);
 
-    for (int iInitFlav=0;iInitFlav<fNInitialFlavours;iInitFlav++) {
-      for (int iFinalFlav=0;iFinalFlav<fNFinalFlavours;iFinalFlav++) {
-	propagator->getProbabilityArr(CopyArr,static_cast<cudaprob3::ProbType>(OscChannels[iInitFlav][iFinalFlav]));
+    for (int iOscChannel=0;iOscChannel<fNOscillationChannels;iOscChannel++) {
+      propagator->getProbabilityArr(CopyArr,static_cast<cudaprob3::ProbType>(OscChannels[iOscChannel]));
+      
+      // Mapping which links the oscillation channel, neutrino type and energy/cosineZ index to the fWeightArray index
+      int IndexToFill = iNuType*fNOscillationChannels*CopyArrSize + iOscChannel*CopyArrSize;
+      for (int iOscProb=0;iOscProb<CopyArrSize;iOscProb++) {
 	
-	// Mapping which links the oscillation channel, neutrino type and energy/cosineZ index to the fWeightArray index
-	int IndexToFill = iNuType*fNInitialFlavours*fNFinalFlavours*CopyArrSize + iInitFlav*fNFinalFlavours*CopyArrSize + iFinalFlav*CopyArrSize;
-	for (int iOscProb=0;iOscProb<CopyArrSize;iOscProb++) {
-
-	  // Sometimes CUDAProb3 can return *slightly* unphysical oscillation probabilities
-	  CopyArr[iOscProb] = CopyArr[iOscProb] > 0.0 ? CopyArr[iOscProb] : 0.0;
-	  CopyArr[iOscProb] = CopyArr[iOscProb] < 1.0 ? CopyArr[iOscProb] : 1.0;
-
-	  fWeightArray[IndexToFill+iOscProb] = CopyArr[iOscProb];
-	}
+	// Sometimes CUDAProb3 can return *slightly* unphysical oscillation probabilities
+	CopyArr[iOscProb] = CopyArr[iOscProb] > 0.0 ? CopyArr[iOscProb] : 0.0;
+	CopyArr[iOscProb] = CopyArr[iOscProb] < 1.0 ? CopyArr[iOscProb] : 1.0;
+	
+	fWeightArray[IndexToFill+iOscProb] = CopyArr[iOscProb];
       }
     }
   }
@@ -150,13 +142,12 @@ void OscProbCalcerCUDAProb3::CalculateProbabilities(std::vector<FLOAT_T> OscPara
   delete[] CopyArr;
 }
 
-int OscProbCalcerCUDAProb3::ReturnWeightArrayIndex(int NuTypeIndex, int InitNuIndex, int FinalNuIndex, int EnergyIndex, int CosineZIndex) {
-  int IndexToReturn = NuTypeIndex*fNInitialFlavours*fNFinalFlavours*fNCosineZPoints*fNEnergyPoints + InitNuIndex*fNFinalFlavours*fNCosineZPoints*fNEnergyPoints + FinalNuIndex*fNCosineZPoints*fNEnergyPoints + CosineZIndex*fNEnergyPoints + EnergyIndex;
-
+int OscProbCalcerCUDAProb3::ReturnWeightArrayIndex(int NuTypeIndex, int OscChanIndex, int EnergyIndex, int CosineZIndex) {
+  int IndexToReturn = NuTypeIndex*fNOscillationChannels*fNCosineZPoints*fNEnergyPoints + OscChanIndex*fNCosineZPoints*fNEnergyPoints + + CosineZIndex*fNEnergyPoints + EnergyIndex;
   return IndexToReturn;
 }
 
 long OscProbCalcerCUDAProb3::DefineWeightArraySize() {
-  long nCalculationPoints = fNEnergyPoints * fNCosineZPoints * fNInitialFlavours * fNFinalFlavours * fNNeutrinoTypes;
+  long nCalculationPoints = fNEnergyPoints * fNCosineZPoints * fNOscillationChannels * fNNeutrinoTypes;
   return nCalculationPoints;
 }
