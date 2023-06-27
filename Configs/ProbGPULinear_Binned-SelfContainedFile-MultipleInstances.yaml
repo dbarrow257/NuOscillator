@@ -8,11 +8,6 @@ OscProbCalcer:
   - Config: "ProbGPULinear:./build/Linux/Configs/ProbGPULinear_Binned-SelfContainedFile-MultipleInstances.yaml:1"
   - Config: "ProbGPULinear:./build/Linux/Configs/ProbGPULinear_Binned-SelfContainedFile-MultipleInstances.yaml:2"
 
-Binned:
-  FileName: "./Inputs/ExampleAtmosphericBinning.root"
-  EnergyAxisHistName: "EnergyAxisBinning"
-  CosineZAxisHistName: "CosineZAxisBinning"
-
 OscProbCalcerSetup:
   - ProbGPULinear:
     OscChannelMapping:
