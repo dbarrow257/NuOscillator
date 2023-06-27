@@ -46,6 +46,10 @@ OscProbCalcerBase::OscProbCalcerBase(std::string ConfigName_, std::string Implem
   std::string Verbosity = GeneralConfig["General"]["Verbosity"].as<std::string>();
   fVerbose = Verbosity_StrToInt(Verbosity);
 
+  if (!GeneralConfig["OscProbCalcerSetup"]) {
+    std::cerr << "Did not find the 'OscProbCalcerSetup' Node within the specific config:" << ConfigName_ << std::endl;
+    throw;
+  }
   // Assumes instance number in list (not the index of the specifc implementation)
   int Count = 0;
   for (auto const& OscProbCalcerSetup : GeneralConfig["OscProbCalcerSetup"]) {
@@ -53,6 +57,10 @@ OscProbCalcerBase::OscProbCalcerBase(std::string ConfigName_, std::string Implem
       InstanceConfig = YAML::Node(OscProbCalcerSetup);
     }
     Count += 1;
+  }
+  if (!InstanceConfig["OscChannelMapping"]) {
+    std::cerr << "Expected to find a 'OscChannelMapping' Node within the 'OscProbCalcerSetup''Implementation' Node" << std::endl;
+    throw;
   }
 
   if (fVerbose >= INFO) {
