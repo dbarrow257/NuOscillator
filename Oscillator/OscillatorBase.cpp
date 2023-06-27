@@ -170,7 +170,6 @@ OscProbCalcerBase* OscillatorBase::InitialiseOscProbCalcer(std::string OscProbCa
 }
 
 void OscillatorBase::SetEnergyArrayInCalcer(std::vector<FLOAT_T> Array, int CalcerIndex) {
-  std::cout << "CalcerIndex:" << CalcerIndex << std::endl;
   if (CalcerIndex < 0 || CalcerIndex >= fNCalcers) {
     std::cerr << "Requested to set Energy array at invalid index within fOscProbCalcers array" << std::endl;
     std::cerr << "CalcerIndex:" << CalcerIndex << std::endl;
