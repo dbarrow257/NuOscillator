@@ -84,10 +84,22 @@ class OscillatorBase {
    */
   int ReturnNEnergyPoints(int CalcerIndex=0);
 
-  //DB
+  /**
+   * @brief Return the number of OscProbCalcerBase::OscProbCalcerBase() associated with the OscillatorBase() object
+   *
+   * @return Return the number of OscProbCalcerBase::OscProbCalcerBase() associated with the OscillatorBase() object
+   */
   int ReturnNOscProbCalcers() {return fNCalcers;}
 
-  //DB
+  /**
+   * @brief Check whether a particular OscProbCalcerBase::OscProbCalcerBase() instance has a particular oscillation channel
+   *
+   * @param GeneratedFlavour The oscillation channel generated neutrino flavour to check for
+   * @param DetectedFlavour The oscillation channel detected neutrino flavour to check for
+   * @param CalcerIndex The index in #fOscProbCalcers to check in
+   *
+   * @return Boolean flag which describes whether the oscillation channel was found in the particular instance of OscProbCalcerBase::OscProbCalcerBase()
+   */
   bool HasOscProbCalcerGotOscillationChannel(int GeneratedFlavour, int DetectedFlavour, int CalcerIndex=0);
 
   /**
@@ -235,18 +247,18 @@ class OscillatorBase {
   void InitialiseOscProbCalcers();
 
   /**
-   * @brief Return an OscProbCalcerBase::OscProbCalcerBase() object from the requested string input
+   * @brief Return an OscProbCalcerBase::OscProbCalcerBase() object from the requested inputs
    *
-   * Create and return an instance of OscProbCalcerBase::OscProbCalcerBase() associated from the particular string input. The string is used as a switch statement to create
-   * a particular calculator implementation object (e.g. OscProbCalcer_CUDAProb3::OscProbCalcer_CUDAProb3() ) and recasts it into the base object 
-   * OscProbCalcerBase::OscProbCalcerBase()
+   * Create and return an instance of OscProbCalcerBase::OscProbCalcerBase() associated with a particular implementation denoted by @param OscProbCalcerImplementationToCreate,
+   * config path @param OscProbCalcerConfigname and instance @param Instance, recast it to a base object OscProbCalcerBase::OscProbCalcerBase() and returns it.
    *
-   * @param OscProbCalcerImplementationToCreateString Type of implementation specific OscProbCalcerBase::OscProbCalcerBase() to build. E.g. ProbGPULinear and path to YAML config file, denoted as
-   * "Type:Path"
+   * @param OscProbCalcerImplementationToCreate Implementation type to build. Acts as a switch within this function
+   * @param OscProbCalcerConfigname Path to the YAML config
+   * @param Instance within the OscProbCalcerSetup YAML Node
    *
    * @return OscProbCalcerBase::OscProbCalcerBase() object corresponding to the request string input
    */
-  OscProbCalcerBase* InitialiseOscProbCalcer(std::string OscProbCalcerImplementationToCreateString);
+  OscProbCalcerBase* InitialiseOscProbCalcer(std::string OscProbCalcerImplementationToCreate, std::string OscProbCalcerConfigname, int Instance);
 
   // ========================================================================================================================================================================
   // Basic private variables required for oscillation probability calculation

@@ -46,7 +46,7 @@ OscProbCalcerBase::OscProbCalcerBase(std::string ConfigName_, std::string Implem
   std::string Verbosity = GeneralConfig["General"]["Verbosity"].as<std::string>();
   fVerbose = Verbosity_StrToInt(Verbosity);
 
-  //DB Get the correct instance of the fImplementationName to create
+  // Assumes instance number in list (not the index of the specifc implementation)
   int Count = 0;
   for (auto const& OscProbCalcerSetup : GeneralConfig["OscProbCalcerSetup"]) {
     if (Count == Instance_) {

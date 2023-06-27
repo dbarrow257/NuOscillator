@@ -14,19 +14,31 @@
  */
 enum Verbosity{NONE=0,INFO=1};
 
-//DB
+/**
+ * @brief Different neutrino flavours currently supported within the analysis
+ *
+ * If more need to be added, no changes should be required outside of this file
+ */
 enum NeutrinoFlavours{kElectron=1,kMuon=2,kTau=3,kSterile1=4,kSterile2=5,kSterile3=6,nNeutrinoFlavours=7};
 
-//DB
+/**
+ * @brief Enum which fixes the ordering of the generated and detected neutrino flavours in the #OscillationChannel structure
+ */
 enum {kNuFlavour_Generated=0,kNuFlavour_Detected=1,nNuFlavours=2};
 
-//DB
+/**
+ * @brief Structure which defines the oscillation channel generated and detected neutrino flavours
+ */
 struct OscillationChannel{
   int GeneratedFlavour;
   int DetectedFlavour;
 };
 
-//DB
+/**
+ * @brief Convert a neutrino flavour string to integer
+ *
+ * @return Enum value in #NeutrinoFlavours
+ */
 inline int NeutrinoFlavour_StrToInt(std::string NuFlav) {
   if (NuFlav == "Electron" || NuFlav == "electron") {
     return kElectron;
@@ -48,7 +60,13 @@ inline int NeutrinoFlavour_StrToInt(std::string NuFlav) {
   return -1;
 }
 
-//DB
+/**
+ * @brief Convert a neutrino flavour integer to string
+ *
+ * Inverse of NeutrinoFlavour_StrToInt()
+ *
+ * @return Name of neutrino flavour
+ */
 inline std::string NeutrinoFlavour_IntToStr(int NuFlav) {
   switch (NuFlav) {
     case kElectron: 
@@ -90,7 +108,13 @@ inline int Verbosity_StrToInt(std::string Verbosity) {
   return -1;
 }
 
-//DB
+/**
+ * @brief Take an input string formatted as 'GeneratedNeutrinoFlavour:DetectedNeutrinoFlavour' and return an OscillationChannel() structure
+ *
+ * @param String formatted as 'GeneratedNeutrinoFlavour:DetectedNeutrinoFlavour'
+ *
+ * @return OscillationChannel() structure with generated and detected neutrino flavours
+ */
 inline OscillationChannel ReturnOscillationChannel(std::string InputString) {
   std::string GeneratedFlavour = "";
   std::string DetectedFlavour = "";

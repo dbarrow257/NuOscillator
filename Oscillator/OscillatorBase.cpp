@@ -61,10 +61,49 @@ void OscillatorBase::InitialiseOscProbCalcers() {
   }
 
   for (size_t iOsc=0;iOsc<fOscProbCalcerImplementationToCreate.size();iOsc++) {
-    OscProbCalcerBase* Calcer = InitialiseOscProbCalcer(fOscProbCalcerImplementationToCreate[iOsc]);
+
+    std::string OscProbCalcerImplementationToCreateString = fOscProbCalcerImplementationToCreate[iOsc];
+
+    //============================================================================================================================================
+    // Parse string to find implementation name, config path and instance number
+    std::string OscProbCalcerImplementationToCreate = "";
+    std::string OscProbCalcerConfigname = "";
+    std::string Instance_Str = "";
+    int Instance = -1;
+    
+    size_t Delimiter = OscProbCalcerImplementationToCreateString.find(":");
+    if (Delimiter != std::string::npos) {
+      OscProbCalcerImplementationToCreate = OscProbCalcerImplementationToCreateString.substr(0,Delimiter);
+      
+      std::string SubStr = OscProbCalcerImplementationToCreateString.substr(Delimiter+1,OscProbCalcerImplementationToCreateString.size());
+      Delimiter = SubStr.find(":");
+      OscProbCalcerConfigname = SubStr.substr(0,Delimiter);
+      
+      if (Delimiter == std::string::npos) {
+	Instance_Str = "0";
+      } else {
+	Instance_Str = SubStr.substr(Delimiter+1,SubStr.size());
+      }
+      Instance = std::stoi(Instance_Str);
+      
+    } else {
+      std::cerr << "Expected a string formatted as: 'OscProbCalcerImplementation:PathToYAMLConfig:InstanceNumber'" << std::endl;
+      std::cerr << "Recieved:" << OscProbCalcerImplementationToCreateString << std::endl;
+      throw;
+    }
+    
+    if (fVerbose >= INFO) {
+      std::cout << "Parsed " << OscProbCalcerImplementationToCreateString << " and found:" << std::endl;
+      std::cout << "\tOscProbCalcerImplementationToCreate:" << OscProbCalcerImplementationToCreate << std::endl;
+      std::cout << "\tOscProbCalcerConfigname:" << OscProbCalcerConfigname << std::endl;
+      std::cout << "\tInstance:" << Instance << std::endl;
+    }
+    //============================================================================================================================================
+    
+    OscProbCalcerBase* Calcer = InitialiseOscProbCalcer(OscProbCalcerImplementationToCreate,OscProbCalcerConfigname,Instance);
     if (Calcer == NULL) {
       std::cerr << "OscProbCalcer was not correctly initialised. Please check the setup" << std::endl;
-      std::cerr << "OscProbCalcerImplementationToCreate:" << fOscProbCalcerImplementationToCreate[iOsc] << std::endl;
+      std::cerr << "OscProbCalcerImplementationToCreate:" << OscProbCalcerImplementationToCreateString << std::endl;
       std::cerr << "iOsc:" << iOsc << std::endl;
       throw;
     }
@@ -74,44 +113,8 @@ void OscillatorBase::InitialiseOscProbCalcers() {
   fOscProbCalcerSet = true;
 }
 
-OscProbCalcerBase* OscillatorBase::InitialiseOscProbCalcer(std::string OscProbCalcerImplementationToCreateString) {
+OscProbCalcerBase* OscillatorBase::InitialiseOscProbCalcer(std::string OscProbCalcerImplementationToCreate, std::string OscProbCalcerConfigname, int Instance) {
   OscProbCalcerBase* Calcer;
-
-  //============================================================================================================================================
-  //Move out of this function and take as arguments
-  std::string OscProbCalcerImplementationToCreate = "";
-  std::string OscProbCalcerConfigname = "";
-  std::string Instance_Str = "";
-  int Instance = -1;
-
-  size_t Delimiter = OscProbCalcerImplementationToCreateString.find(":");
-  if (Delimiter != std::string::npos) {
-    OscProbCalcerImplementationToCreate = OscProbCalcerImplementationToCreateString.substr(0,Delimiter);
-
-    std::string SubStr = OscProbCalcerImplementationToCreateString.substr(Delimiter+1,OscProbCalcerImplementationToCreateString.size());
-    Delimiter = SubStr.find(":");
-    OscProbCalcerConfigname = SubStr.substr(0,Delimiter);
-
-    if (Delimiter == std::string::npos) {
-      Instance_Str = "0";
-    } else {
-      Instance_Str = SubStr.substr(Delimiter+1,SubStr.size());
-    }
-    Instance = std::stoi(Instance_Str);
-    
-  } else {
-    std::cerr << "Expected a string formatted as: 'OscProbCalcerImplementation:PathToYAMLConfig:InstanceNumber'" << std::endl;
-    std::cerr << "Recieved:" << OscProbCalcerImplementationToCreateString << std::endl;
-    throw;
-  }
-
-  if (fVerbose >= INFO) {
-    std::cout << "Parsed " << OscProbCalcerImplementationToCreateString << " and found:" << std::endl;
-    std::cout << "\tOscProbCalcerImplementationToCreate:" << OscProbCalcerImplementationToCreate << std::endl;
-    std::cout << "\tOscProbCalcerConfigname:" << OscProbCalcerConfigname << std::endl;
-    std::cout << "\tInstance:" << Instance << std::endl;
-  }
-  //============================================================================================================================================
 
   if (OscProbCalcerImplementationToCreate == "CUDAProb3") {
 #if UseCUDAProb3==1

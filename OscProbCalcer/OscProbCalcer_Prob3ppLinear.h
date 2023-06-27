@@ -19,8 +19,8 @@ class OscProbCalcerProb3ppLinear : public OscProbCalcerBase {
    * @brief Default constructor
    *
    * @param ConfigName_ Name of config used to setup the OscProbCalcerProb3ppLinear() instance
+   * @param Instance_ Which entry of the OscProbCalcerSetup config block should be read in the case where there are multiple OscProbCalcers to be initialised
    */
-  //DB
   OscProbCalcerProb3ppLinear(std::string ConfigName_="", int Instance_=0);
 
   // ========================================================================================================================================================================
@@ -45,7 +45,7 @@ class OscProbCalcerProb3ppLinear : public OscProbCalcerBase {
    * @brief Return implementation specific index in the weight array for a specific combination of neutrino oscillation channel, energy and cosine zenith
    * 
    * @param NuTypeIndex The index in #fNeutrinoTypes (neutrino/antinuetrino) to return the pointer for 
-   * @param OscNuIndex
+   * @param OscChanIndex The index in #fOscillationChannels to return the pointer for 
    * @param EnergyIndex The index in #fEnergyArray to return the pointer for 
    * @param CosineZIndex The index in #fCosineZArray to return the pointer for 
    *

@@ -25,8 +25,8 @@ class OscProbCalcerCUDAProb3 : public OscProbCalcerBase {
    * @brief Default constructor
    *
    * @param ConfigName_ Name of config used to setup the OscProbCalcerCUDAProb3() instance
+   * @param Instance_ Which entry of the OscProbCalcerSetup config block should be read in the case where there are multiple OscProbCalcers to be initialised
    */
-  //DB
   OscProbCalcerCUDAProb3(std::string ConfigName_="", int Instance_=0);
 
  private:
@@ -54,13 +54,12 @@ class OscProbCalcerCUDAProb3 : public OscProbCalcerBase {
    * @brief Return implementation specific index in the weight array for a specific combination of neutrino oscillation channel, energy and cosine zenith
    * 
    * @param NuTypeIndex The index in #fNeutrinoTypes (neutrino/antinuetrino) to return the pointer for 
-   * @param OscChanIndex
+   * @param OscChanIndex The index in #fOscillationChannels to return the pointer for
    * @param EnergyIndex The index in #fEnergyArray to return the pointer for 
    * @param CosineZIndex The index in #fCosineZArray to return the pointer for 
    *
    * @return Index in #fWeightArray which corresponds to the given inputs
    */
-  //DB
   int ReturnWeightArrayIndex(int NuTypeIndex, int OscChanIndex, int EnergyIndex, int CosineZIndex=-1);
 
   /**
@@ -94,9 +93,8 @@ class OscProbCalcerCUDAProb3 : public OscProbCalcerBase {
   std::string ConfigName;
 
   /**
-   * @brief The mapping of the oscillation channels defined in #fInitialFlavours and #fFinalFlavours to the CUDAProb3 constants
+   * @brief The mapping of the oscillation channels defined in #fOscillationChannels to the CUDAProb3 constants
    */
-  //DB Check for all instances of fInitialFlavours and fFinalFlavours
   std::vector<int> OscChannels;
 
   /**

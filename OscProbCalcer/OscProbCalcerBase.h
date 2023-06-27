@@ -88,10 +88,19 @@ class OscProbCalcerBase {
    */
   void PrintWeights();
 
-  //DB
+  /**
+   * @brief Print the oscillation channels which a particular instance has been configured with
+   */
   void PrintKnownOscillationChannels();
 
-  //DB
+  /**
+   * @brief Check whether a particular oscillation channel has been configured in a particular instance of OscProbCalcerBase::OscProbCalcerBase()
+   *
+   * @param GeneratedFlavour Generated flavour of the questioned oscillation channel
+   * @param DetectedFlavour Detected flavour of the questioned oscillation channel
+   *
+   * @return Boolean parameter which describes if the oscillation channel is configured
+   */
   bool HasOscillationChannel(int GeneratedFlavour, int DetectedFlavour);
 
   /**
@@ -175,8 +184,8 @@ class OscProbCalcerBase {
    * @brief Default constructor
    *
    * @param ConfigName_ Name of YAML config used to set runtime variables
+   * @param Instance_ Instance in the OscProbCalcerSetup YAML Node to select
    */
-  //DB
   OscProbCalcerBase(std::string ConfigName_, std::string ImplementationName_, int Instance_=0);
 
   // ========================================================================================================================================================================
@@ -238,7 +247,14 @@ class OscProbCalcerBase {
    */
   int ReturnEnergyIndexFromValue(FLOAT_T EnergyVal);
 
-  //DB
+  /**
+   * @brief Loop through #fOscillationChannels and determine which index corresponds to the requested flavours
+   *
+   * @param InitNuFlav Generated neutrino flavour to search for
+   * @param FinalNuFlav Detected neutrino flavour to search for
+   *
+   * @return The index which corresponds to the requested neutrino flavours
+   */
   int ReturnOscChannelIndexFromFlavours(int InitNuFlav, int FinalNuFlav);
 
   /**
@@ -258,13 +274,15 @@ class OscProbCalcerBase {
    */
   void InitialiseNeutrinoTypesArray(int Size);
   
-  //DB
+  /**
+   * @brief Read the [OscProbCalcerSetup][Implementation][OscChannelMapping] YAML node and configure #fOscillationChannels
+   */
   void InitialiseOscillationChannelMapping();
 
   /**
    * @brief Check that the NuType/NuFlav mapping is set correctly based on the inputs from the particular implementation
    *
-   * Ensures that the mapping variables (#fNeutrinoTypes, #fInitialFlavours, #fFinalFlavours) are the expected size and filled with reasonable values
+   * Ensures that the mapping variables (#fNeutrinoTypes, #fOscillationChannels) are the expected size and filled with reasonable values
    */
   void CheckNuFlavourMapping();
 
@@ -305,13 +323,12 @@ class OscProbCalcerBase {
    * This function allows a mapping between the neutrino flavour to calculate for (along with Energy and CosineZ) to the index in #fWeightArray.
    * 
    * @param NuTypeIndex The index in #fNeutrinoTypes (neutrino/antinuetrino) to return the pointer for 
-   * @param OscChanIndex
+   * @param OscChanIndex The index in #fOscillationChannels to return the pointer for 
    * @param EnergyIndex The index in #fEnergyArray to return the pointer for 
    * @param CosineZIndex The index in #fCosineZArray to return the pointer for 
    *
    * @return Index in #fWeightArray which corresponds to the given inputs
    */
-  //DB
   virtual int ReturnWeightArrayIndex(int NuTypeIndex, int OscChanIndex, int EnergyIndex, int CosineZIndex=-1) = 0;
 
   /**
@@ -339,9 +356,15 @@ class OscProbCalcerBase {
    */
   std::vector<int> fNeutrinoTypes;
 
-  //DB
-  std::vector<OscillationChannel> fOscillationChannels;
+  /**
+   * @brief The number of oscillation channels which have been configured
+   */
   int fNOscillationChannels;
+
+  /**
+   * @brief The mapping of oscillation channels which have been requested from the YAML config
+   */
+  std::vector<OscillationChannel> fOscillationChannels;
 
   /**
    * @brief The number of Energy points which are being evaluated by the oscillation probability engine
@@ -398,7 +421,9 @@ class OscProbCalcerBase {
    */
   bool fCosineZIgnored;
 
-  //DB
+  /**
+   * @brief To allow multiple fOscProbCalcerBase:fOscProbCalcerBase() to be created, this variable describes which instance in the OscProbCalcerSetup YAML Node was requested
+   */
   int fInstance;
 
   /**
@@ -406,7 +431,9 @@ class OscProbCalcerBase {
    */
   YAML::Node GeneralConfig;
 
-  //DB
+  /**
+   * @brief An easy link to the [OscProbCalcerSetup][Implementation] YAML Node
+   */
   YAML::Node InstanceConfig;
 
  private:
@@ -433,7 +460,7 @@ class OscProbCalcerBase {
   bool fWeightArrayInit;
 
   /**
-   * @brief Boolean declaring whether #fNeutrinoTypes, #fInitialFlavours and #fFinalFlavours have been initialised correctly
+   * @brief Boolean declaring whether #fNeutrinoTypes and #fOscillationChannels have been initialised correctly
    */
   bool fNuMappingSet;
 };
