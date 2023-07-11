@@ -1,14 +1,6 @@
 #ifndef __OSCPROBCALCER_BASE_H__
 #define __OSCPROBCALCER_BASE_H__
 
-#define DUMMYVAL -999
-
-#ifdef UseDoubles
-using FLOAT_T = double;
-#else
-using FLOAT_T = float;
-#endif
-
 #include "OscillatorConstants.h"
 
 #include <vector>
@@ -162,6 +154,15 @@ class OscProbCalcerBase {
    * @return Return the vector of oscillation probabilites which have been calculated
    */
   std::vector<FLOAT_T> ReturnWeightArray() {return fWeightArray;}
+
+  /**
+   * @brief Return vector of oscillation probabilities with associated neutrin type, oscillation channel, Energy and CosineZ
+   *
+   * This uses the OscillationProbability struct
+   *
+   * @return Vector of OscillationProbability structs
+   */
+  std::vector<OscillationProbability> ReturnProbabilities();
 
   /**
    * @brief Return whether the instance of OscProbCalcerBase() has already been assigned the Energy binning

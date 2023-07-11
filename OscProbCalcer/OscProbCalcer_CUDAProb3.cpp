@@ -143,7 +143,7 @@ void OscProbCalcerCUDAProb3::CalculateProbabilities(std::vector<FLOAT_T> OscPara
 }
 
 int OscProbCalcerCUDAProb3::ReturnWeightArrayIndex(int NuTypeIndex, int OscChanIndex, int EnergyIndex, int CosineZIndex) {
-  int IndexToReturn = NuTypeIndex*fNOscillationChannels*fNCosineZPoints*fNEnergyPoints + OscChanIndex*fNCosineZPoints*fNEnergyPoints + + CosineZIndex*fNEnergyPoints + EnergyIndex;
+  int IndexToReturn = NuTypeIndex*fNOscillationChannels*fNCosineZPoints*fNEnergyPoints + OscChanIndex*fNCosineZPoints*fNEnergyPoints + CosineZIndex*fNEnergyPoints + EnergyIndex;
   return IndexToReturn;
 }
 

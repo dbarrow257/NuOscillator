@@ -1,6 +1,14 @@
 #ifndef __OSCILLATOR_CONSTANTS__
 #define __OSCILLATOR_CONSTANTS__
 
+#define DUMMYVAL -999
+
+#ifdef UseDoubles
+using FLOAT_T = double;
+#else
+using FLOAT_T = float;
+#endif
+
 #include <string>
 #include <iostream>
 #include <vector>
@@ -32,6 +40,17 @@ enum {kNuFlavour_Generated=0,kNuFlavour_Detected=1,nNuFlavours=2};
 struct OscillationChannel{
   int GeneratedFlavour;
   int DetectedFlavour;
+};
+
+/**
+ * @brief Structure to contain all information about the neutrino type, oscillation channel, Energy and CosineZ used to calculate a specific probability
+ */ 
+struct OscillationProbability{
+  int NuType;
+  OscillationChannel OscChan;
+  FLOAT_T Energy;
+  FLOAT_T CosineZ;
+  FLOAT_T Probability;
 };
 
 /**
