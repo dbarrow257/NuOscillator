@@ -1,6 +1,12 @@
 #ifndef __OSCILLATOR_CONSTANTS__
 #define __OSCILLATOR_CONSTANTS__
 
+#ifdef UseDoubles
+using FLOAT_T = double;
+#else
+using FLOAT_T = float;
+#endif
+
 #include <string>
 #include <iostream>
 #include <vector>
@@ -32,6 +38,15 @@ enum {kNuFlavour_Generated=0,kNuFlavour_Detected=1,nNuFlavours=2};
 struct OscillationChannel{
   int GeneratedFlavour;
   int DetectedFlavour;
+};
+
+//DB
+struct OscillationProbability{
+  int NuType;
+  OscillationChannel OscChan;
+  FLOAT_T Energy;
+  FLOAT_T CosineZ;
+  FLOAT_T Probability;
 };
 
 /**

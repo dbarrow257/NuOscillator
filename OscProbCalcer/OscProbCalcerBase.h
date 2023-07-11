@@ -3,11 +3,13 @@
 
 #define DUMMYVAL -999
 
+/*
 #ifdef UseDoubles
 using FLOAT_T = double;
 #else
 using FLOAT_T = float;
 #endif
+*/
 
 #include "OscillatorConstants.h"
 
@@ -162,6 +164,11 @@ class OscProbCalcerBase {
    * @return Return the vector of oscillation probabilites which have been calculated
    */
   std::vector<FLOAT_T> ReturnWeightArray() {return fWeightArray;}
+
+  /**
+   * //DB
+   */
+  std::vector<OscillationProbability> ReturnProbabilities();
 
   /**
    * @brief Return whether the instance of OscProbCalcerBase() has already been assigned the Energy binning

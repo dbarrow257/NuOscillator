@@ -182,6 +182,65 @@ const FLOAT_T* OscProbCalcerBase::ReturnPointerToWeight(int InitNuFlav, int Fina
   return &(fWeightArray[WeightArrayIndex]);
 }
 
+std::vector<OscillationProbability> OscProbCalcerBase::ReturnProbabilities() {
+  std::vector<OscillationProbability> ReturnVec(fNWeights);
+  std::vector<bool> CheckVec(fNWeights,false);
+
+  int Index;
+  int NuType;
+  OscillationChannel OscChan;
+  FLOAT_T Energy;
+  FLOAT_T CosineZ;
+  FLOAT_T Weight;
+ 
+  for (int iNuType=0;iNuType<fNNeutrinoTypes;iNuType++) {
+    NuType = fNeutrinoTypes[iNuType];
+
+    for (int iOscChan=0;iOscChan<fNOscillationChannels;iOscChan++) {
+      OscChan = fOscillationChannels[iOscChan];
+
+      if (fCosineZIgnored) {
+	for (int iEnergy=0;iEnergy<fNEnergyPoints;iEnergy++) {
+	  Energy = fEnergyArray[iEnergy];
+	  CosineZ = DUMMYVAL;
+
+	  Index = ReturnWeightArrayIndex(iNuType, iOscChan, iEnergy);
+	  Weight = fWeightArray[Index];
+	  
+	  OscillationProbability OscProb = {NuType,OscChan,Energy,CosineZ,Weight};
+	  ReturnVec[Index] = OscProb;
+	  CheckVec[Index] = true;
+	}	
+      } else {
+	for (int iCosZ=0;iCosZ<fNCosineZPoints;iCosZ++) {
+          CosineZ = fCosineZArray[iCosZ];
+
+	  for (int iEnergy=0;iEnergy<fNEnergyPoints;iEnergy++) {
+	    Energy = fEnergyArray[iEnergy];	 
+
+	    Index = ReturnWeightArrayIndex(iNuType, iOscChan, iEnergy);
+	    Weight = fWeightArray[Index];
+	    
+	    OscillationProbability OscProb = {NuType,OscChan,Energy,CosineZ,Weight};
+	    ReturnVec[Index] = OscProb;
+	    CheckVec[Index] = true;
+	  }
+	}
+      }
+      
+    }
+  }
+  for (int iPoint=0;iPoint<fNWeights;iPoint++) {
+    if (CheckVec[iPoint] == false) {
+      std::cerr << "Index:" << iPoint << " has not been filled within the returning vector of std::vector<OscillationProbability> OscProbCalcerBase::ReturnProbabilities()" << std::endl;
+      std::cerr << "Indicates a problem!" << std::endl;
+      throw;
+    } 
+  }
+
+  return ReturnVec;
+}
+
 void OscProbCalcerBase::Reweight(std::vector<FLOAT_T> OscParams) {
   if (fVerbose >= INFO) {std::cout << "Implementation:" << fImplementationName << " starting reweight" << std::endl;}
 
