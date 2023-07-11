@@ -166,7 +166,11 @@ class OscProbCalcerBase {
   std::vector<FLOAT_T> ReturnWeightArray() {return fWeightArray;}
 
   /**
-   * //DB
+   * @brief Return vector of oscillation probabilities with associated neutrin type, oscillation channel, Energy and CosineZ
+   *
+   * This uses the OscillationProbability struct
+   *
+   * @return Vector of OscillationProbability structs
    */
   std::vector<OscillationProbability> ReturnProbabilities();
 

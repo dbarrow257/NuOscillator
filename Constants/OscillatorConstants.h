@@ -40,7 +40,9 @@ struct OscillationChannel{
   int DetectedFlavour;
 };
 
-//DB
+/**
+ * Structure to contain all information about the neutrino type, oscillation channel, Energy and CosineZ used to calculate a specific probability
+ */ 
 struct OscillationProbability{
   int NuType;
   OscillationChannel OscChan;
