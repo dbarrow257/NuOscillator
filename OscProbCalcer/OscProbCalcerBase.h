@@ -1,16 +1,6 @@
 #ifndef __OSCPROBCALCER_BASE_H__
 #define __OSCPROBCALCER_BASE_H__
 
-#define DUMMYVAL -999
-
-/*
-#ifdef UseDoubles
-using FLOAT_T = double;
-#else
-using FLOAT_T = float;
-#endif
-*/
-
 #include "OscillatorConstants.h"
 
 #include <vector>

@@ -1,6 +1,8 @@
 #ifndef __OSCILLATOR_CONSTANTS__
 #define __OSCILLATOR_CONSTANTS__
 
+#define DUMMYVAL -999
+
 #ifdef UseDoubles
 using FLOAT_T = double;
 #else
