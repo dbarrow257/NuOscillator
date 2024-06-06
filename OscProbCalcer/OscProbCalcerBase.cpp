@@ -296,6 +296,7 @@ void OscProbCalcerBase::SetCurrOscParams(std::vector<FLOAT_T> OscParamsToSave) {
 
 void OscProbCalcerBase::PrintWeights() {
   if (fVerbose >= INFO) {std::cout << "Printing weights in Implementation:" << fImplementationName << std::endl;}
+  /*
   for (size_t i=0;i<fWeightArray.size();i++) {
     std::cout << std::setw(10) << i << " | " << fWeightArray[i] << std::endl;
     if (fWeightArray[i] == DUMMYVAL) {
@@ -304,6 +305,18 @@ void OscProbCalcerBase::PrintWeights() {
       throw;
     }
   }
+  */
+
+  std::vector<OscillationProbability> Probabilities = ReturnProbabilities();
+  for (size_t iProb=0;iProb<Probabilities.size();iProb++) {
+    std::cout << "Index:" << std::setw(10) << iProb << " | NuType:" << std::setw(3) << Probabilities[iProb].NuType << " | OscChan:" << std::setw(3) << Probabilities[iProb].OscChan.GeneratedFlavour << " -> " << std::setw(3) << Probabilities[iProb].OscChan.DetectedFlavour << " | Energy:" << std::setw(10) << Probabilities[iProb].Energy << " | CosZ:" << std::setw(10) << Probabilities[iProb].CosineZ << " | Prob:" << std::setw(10) << Probabilities[iProb].Probability << std::endl;
+    if (Probabilities[iProb].Probability == DUMMYVAL) {
+      std::cerr << "Found oscillation probability which has not been correctly calculated!" << std::endl;
+      std::cerr << "This indicates that the mapping between the propagator and fWeightArray is incorrect" << std::endl;
+      throw;
+    } 
+  }
+  
 }
 
 int OscProbCalcerBase::ReturnEnergyIndexFromValue(FLOAT_T EnergyVal) {
