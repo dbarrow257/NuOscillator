@@ -51,7 +51,7 @@ if(${UseProbGPULinear} EQUAL 1)
 endif()
 
 if(${UseProb3ppLinear} EQUAL 1)
-	   target_link_libraries(OscProbCalcer Prob3plusplus::Prob3plusplus)
+	   target_link_libraries(OscProbCalcer Prob3plusplus)
 	   target_sources(OscProbCalcer PRIVATE OscProbCalcer_Prob3ppLinear.cpp)
 	   list(APPEND HEADERS OscProbCalcer_Prob3ppLinear.h)
 endif()

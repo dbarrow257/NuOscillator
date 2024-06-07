@@ -158,8 +158,9 @@ endif()
 if(${UseProb3ppLinear} EQUAL 1)
 	   CPMFindPackage(
 		NAME Prob3plusplus
-		GIT_TAG main
-        	GITHUB_REPOSITORY rogerwendell/Prob3plusplus
+		VERSION 3.10.3
+		GIT_TAG v3.10.3
+        	GITHUB_REPOSITORY mach3-software/Prob3plusplus
 		)
 	   if(NOT TARGET Prob3plusplus)
        	   	message(FATAL_ERROR "Could not find Prob3plusplus")
