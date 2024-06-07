@@ -109,7 +109,7 @@ if(DEFINED ROOT_CXX_STANDARD AND ROOT_CXX_STANDARD GREATER CMAKE_CXX_STANDARD)
   set(CMAKE_CXX_STANDARD ${ROOT_CXX_STANDARD})
 endif()
 
-if(DEFINED ENV{UseCUDAProb3} AND $ENV{UseCUDAProb3} EQUAL 1)
+if(${UseCUDAProb3} EQUAL 1)
 	   CPMFindPackage(
 		NAME CUDAProb3
 		GITHUB_REPOSITORY "dbarrow257/CUDAProb3"
@@ -121,8 +121,8 @@ if(DEFINED ENV{UseCUDAProb3} AND $ENV{UseCUDAProb3} EQUAL 1)
 	   endif()
 endif()
 
-if(DEFINED ENV{UseCUDAProb3Linear} AND $ENV{UseCUDAProb3Linear} EQUAL 1)
-	if(DEFINED ENV{UseGPU} AND $ENV{UseGPU} EQUAL 1)
+if(${UseCUDAProb3Linear} EQUAL 1)
+	if(${UseGPU} EQUAL 1)
     		   CPMFindPackage(
 			NAME CUDAProb3
         		GITHUB_REPOSITORY "mach3-software/CUDAProb3"
@@ -142,7 +142,7 @@ if(DEFINED ENV{UseCUDAProb3Linear} AND $ENV{UseCUDAProb3Linear} EQUAL 1)
 	endif()
 endif()
 
-if(DEFINED ENV{UseGPU} AND $ENV{UseGPU} EQUAL 1)
+if(${UseGPU} EQUAL 1)
 	if(DEFINED ENV{UseProbGPULinear} AND $ENV{UseProbGPULinear} EQUAL 1)
 		   CPMFindPackage(
 		   	NAME ProbGPU
@@ -155,7 +155,7 @@ if(DEFINED ENV{UseGPU} AND $ENV{UseGPU} EQUAL 1)
 	endif()
 endif()
 
-if(DEFINED ENV{UseProb3ppLinear} AND $ENV{UseProb3ppLinear} EQUAL 1)
+if(${UseProb3ppLinear} EQUAL 1)
 	   CPMFindPackage(
 		NAME Prob3plusplus
 		GIT_TAG main
