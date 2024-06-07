@@ -45,7 +45,7 @@ endif()
 
 if(${UseProbGPULinear} EQUAL 1)
 	   target_link_libraries(OscProbCalcer ProbGPU)
-	   set_property(TARGET ProbGPU PROPERTY CUDA_ARCHITECTURES 60 61 70 75)
+	   set_property(TARGET ProbGPU PROPERTY 60 61 70 75)
 	   target_sources(OscProbCalcer PRIVATE OscProbCalcer_ProbGPULinear.cpp)
 	   list(APPEND HEADERS OscProbCalcer_ProbGPULinear.h)
 endif()
