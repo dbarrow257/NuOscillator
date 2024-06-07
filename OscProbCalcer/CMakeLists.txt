@@ -21,7 +21,7 @@ set(HEADERS OscProbCalcerBase.h)
 
 add_library(OscProbCalcer SHARED OscProbCalcerBase.cpp)
 target_link_libraries(OscProbCalcer NuOscillatorInterface yaml-cpp)
-target_include_directories(OscProbCalcer PUBLIC ${PROJECT_SOURCE_DIR}/Constants)
+target_include_directories(OscProbCalcer PUBLIC ${PROJECT_SOURCE_DIR}/Constants ${PROJECT_SOURCE_DIR}/OscProbCalcer)
 
 if(${UseCUDAProb3} EQUAL 1)
 	   target_sources(OscProbCalcer PRIVATE OscProbCalcer_CUDAProb3.cpp)
