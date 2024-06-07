@@ -4,7 +4,7 @@ project(OSCILLATOR VERSION ${OSCILLATOR_VERSION} LANGUAGES CXX)
 set(HEADERS OscillatorBase.h OscillatorUnbinned.h OscillatorBinned.h OscillatorFactory.h)
 add_library(Oscillator SHARED OscillatorBase.cpp OscillatorUnbinned.cpp OscillatorBinned.cpp OscillatorFactory.cpp)
 
-target_include_directories(Oscillator PUBLIC ../Constants PRIVATE ../OscProbCalcer)
+target_include_directories(Oscillator PUBLIC . PRIVATE ../OscProbCalcer)
 
 target_link_libraries(Oscillator OscProbCalcer yaml-cpp ROOT::ROOT)
 
