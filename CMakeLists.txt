@@ -27,13 +27,13 @@ endif()
 #================================================================================================
 #Custom variable sanitisation
 
-SET(UseGPU 0)
-SET(UseMultithreading 0)
-SET(UseDoubles 1)
-SET(UseCUDAProb3 1)
-SET(UseCUDAProb3Linear 0)
-SET(UseProb3ppLinear 0)
-SET(UseProbGPULinear 0)
+#SET(UseGPU 0)
+#SET(UseMultithreading 0)
+#SET(UseDoubles 1)
+#SET(UseCUDAProb3 1)
+#SET(UseCUDAProb3Linear 0)
+#SET(UseProb3ppLinear 0)
+#SET(UseProbGPULinear 0)
 
 foreach(VAR UseGPU UseMultithreading UseDoubles UseCUDAProb3 UseCUDAProb3Linear UseProb3ppLinear UseProbGPULinear)
 	    if(NOT DEFINED ${VAR})
