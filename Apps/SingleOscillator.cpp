@@ -22,7 +22,7 @@ int main(int argc, char **argv) {
   std::string ConfigName = argv[1];
   
   int Verbose = NONE;
-  bool PrintWeights = false;
+  bool PrintWeights = true;
 
   std::vector<FLOAT_T> OscParams_Atm(7);
   OscParams_Atm[0] = 3.07e-1;

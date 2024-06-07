@@ -218,7 +218,7 @@ std::vector<OscillationProbability> OscProbCalcerBase::ReturnProbabilities() {
 	  for (int iEnergy=0;iEnergy<fNEnergyPoints;iEnergy++) {
 	    Energy = fEnergyArray[iEnergy];	 
 
-	    Index = ReturnWeightArrayIndex(iNuType, iOscChan, iEnergy);
+	    Index = ReturnWeightArrayIndex(iNuType, iOscChan, iEnergy, iCosZ);
 	    Weight = fWeightArray[Index];
 	    
 	    OscillationProbability OscProb = {NuType,OscChan,Energy,CosineZ,Weight};

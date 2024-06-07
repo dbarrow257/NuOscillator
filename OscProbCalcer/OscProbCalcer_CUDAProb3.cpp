@@ -18,6 +18,7 @@ OscProbCalcerCUDAProb3::OscProbCalcerCUDAProb3(std::string ConfigName_, int Inst
   //=======
   //Grab information from the config
   EarthDensityFile = InstanceConfig["EarthModelFileName"].as<std::string>();
+  std::cout << "EarthDensityFile:" << EarthDensityFile << std::endl;
   //=======
 
   fNOscParams = kNOscParams;
