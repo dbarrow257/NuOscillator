@@ -143,7 +143,7 @@ if(${UseCUDAProb3Linear} EQUAL 1)
 endif()
 
 if(${UseGPU} EQUAL 1)
-	if(DEFINED ENV{UseProbGPULinear} AND $ENV{UseProbGPULinear} EQUAL 1)
+	if(${UseProbGPULinear} EQUAL 1)
 		   CPMFindPackage(
 		   	NAME ProbGPU
 			GIT_TAG main   
