@@ -76,7 +76,7 @@ std::vector<FLOAT_T> OscillatorBinned::ReadBinEdgesFromFile(std::string FileName
 }
 
 std::vector<FLOAT_T> OscillatorBinned::ReturnBinCentersFromBinEdges(std::vector<FLOAT_T> BinEdges) {
-  int nBins = BinEdges.size();
+  int nBins = BinEdges.size()-1;
   std::vector<FLOAT_T> BinCenters = std::vector<FLOAT_T>(nBins);
 
   for (int iBin=0;iBin<nBins;iBin++) {
