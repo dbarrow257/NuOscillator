@@ -2,7 +2,7 @@
 #define __OSCILLATOR_CUDAPROB3LINEAR_H__
 
 #include "OscProbCalcerBase.h"
-#include "OscillatorConstants.h"
+#include "Constants/OscillatorConstants.h"
 
 #include <memory>
 
