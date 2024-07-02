@@ -4,22 +4,23 @@ General:
   CalculationType: "Binned"
 
 OscProbCalcer:
-  - Config: "CUDAProb3:./build/NuOscillator/Configs/CUDAProb3_Binned-SelfContainedFile.yaml"
+  - Config: "CUDAProb3:./build/NuOscillatorConfigs/Configs/CUDAProb3_Binned-SelfContainedFile.yaml"
 
 Binned:
   FileName: "./Inputs/ExampleAtmosphericBinning.root"
   EnergyAxisHistName: "EnergyAxisBinning"
   CosineZAxisHistName: "CosineZAxisBinning"
 
-CUDAProb3:
-  EarthModelFileName: "PREM_4layer.dat"
-  OscChannelMapping:
-    - Entry: "Electron:Electron"
-    - Entry: "Electron:Muon"
-    - Entry: "Electron:Tau"
-    - Entry: "Muon:Electron"
-    - Entry: "Muon:Muon"
-    - Entry: "Muon:Tau"
-    - Entry: "Tau:Electron"
-    - Entry: "Tau:Muon"
-    - Entry: "Tau:Tau"
+OscProbCalcerSetup:
+  - CUDAProb3:
+    EarthModelFileName: "PREM_4layer.dat"
+    OscChannelMapping:
+      - Entry: "Electron:Electron"
+      - Entry: "Electron:Muon"
+      - Entry: "Electron:Tau"
+      - Entry: "Muon:Electron"
+      - Entry: "Muon:Muon"
+      - Entry: "Muon:Tau"
+      - Entry: "Tau:Electron"
+      - Entry: "Tau:Muon"
+      - Entry: "Tau:Tau"
