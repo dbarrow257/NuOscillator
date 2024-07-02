@@ -206,7 +206,7 @@ install(EXPORT NuOscillator-targets
         DESTINATION ${CMAKE_INSTALL_PREFIX}/
 )
 
-install(FILES
+install(DIRECTORY
 	Configs
 	DESTINATION ${CMAKE_BINARY_DIR}/NuOscillatorConfigs)
 
