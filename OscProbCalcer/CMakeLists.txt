@@ -1,13 +1,5 @@
 SET(OSCPROBCALCER_VERSION 0.0)
 
-#if (${UseGPU} EQUAL 1)
-#   project(OSCPROBCALCER VERSION ${OSCPROBCALCER_VERSION} LANGUAGES CXX C CUDA)
-#else()
-#   project(OSCPROBCALCER VERSION ${OSCPROBCALCER_VERSION} LANGUAGES CXX)
-#endif()
-
-#============================================================================================================
-
 #============================================================================================================
 
 set(HEADERS OscProbCalcerBase.h)
@@ -52,7 +44,7 @@ endif()
 
 if(${UseProbGPULinear} EQUAL 1)
 	   target_link_libraries(OscProbCalcer ProbGPU)
-	   set_property(TARGET ProbGPU PROPERTY CUDA_ARCHITECTURES 60 61 70 75)
+	   set_property(TARGET ProbGPU PROPERTY CUDA_ARCHITECTURES ${CMAKE_CUDA_ARCHITECTURES})
 	   target_sources(OscProbCalcer PRIVATE OscProbCalcer_ProbGPULinear.cpp)
 	   list(APPEND HEADERS OscProbCalcer_ProbGPULinear.h)
 endif()
