@@ -7,20 +7,13 @@ SET(OSCPROBCALCER_VERSION 0.0)
 #endif()
 
 #============================================================================================================
-#Interface library used for setting compiler options
-
-add_library(NuOscillatorInterface INTERFACE)
-
-foreach(VAR UseGPU UseMultithreading UseDoubles UseCUDAProb3 UseCUDAProb3Linear UseProb3ppLinear UseProbGPULinear)
-	    target_compile_options(NuOscillatorInterface INTERFACE -D${VAR}=${${VAR}})
-endforeach(VAR)
 
 #============================================================================================================
 
 set(HEADERS OscProbCalcerBase.h)
 
 add_library(OscProbCalcer SHARED OscProbCalcerBase.cpp)
-target_link_libraries(OscProbCalcer NuOscillatorInterface yaml-cpp)
+target_link_libraries(OscProbCalcer yaml-cpp)
 target_include_directories(OscProbCalcer PUBLIC ${PROJECT_SOURCE_DIR}/Constants ${PROJECT_SOURCE_DIR}/OscProbCalcer)
 
 if(${UseCUDAProb3} EQUAL 1)
