@@ -27,14 +27,6 @@ endif()
 #================================================================================================
 #Custom variable sanitisation
 
-#SET(UseGPU 0)
-#SET(UseMultithreading 0)
-#SET(UseDoubles 1)
-#SET(UseCUDAProb3 1)
-#SET(UseCUDAProb3Linear 0)
-#SET(UseProb3ppLinear 0)
-#SET(UseProbGPULinear 0)
-
 foreach(VAR UseGPU UseMultithreading UseDoubles UseCUDAProb3 UseCUDAProb3Linear UseProb3ppLinear UseProbGPULinear)
 	    if(NOT DEFINED ${VAR})
 	    	   message(FATAL_ERROR "${VAR} not defined")
@@ -119,6 +111,8 @@ if(${UseCUDAProb3} EQUAL 1)
 	   if(NOT CUDAProb3_ADDED)
 	   	  message(FATAL_ERROR "Could not download CUDAProb3")
 	   endif()
+
+	   add_compile_definitions(UseCUDAProb3=1)
 endif()
 
 if(${UseCUDAProb3Linear} EQUAL 1)
@@ -140,6 +134,8 @@ if(${UseCUDAProb3Linear} EQUAL 1)
 	if(NOT TARGET CUDAProb3Beam OR NOT TARGET CUDAProb3Atmos)
 	       message(FATAL_ERROR "Could not find CUDAProb3Linear")
 	endif()
+
+	add_compile_definitions(UseCUDAProb3Linear=1)
 endif()
 
 if(${UseGPU} EQUAL 1)
@@ -152,6 +148,8 @@ if(${UseGPU} EQUAL 1)
 		   if(NOT TARGET ProbGPU)
        	       	   	message(FATAL_ERROR "Could not find ProbGPU")
 		   endif()
+
+		   add_compile_definitions(UseProbGPULinear=1)
 	endif()
 endif()
 
@@ -165,6 +163,8 @@ if(${UseProb3ppLinear} EQUAL 1)
 	   if(NOT TARGET Prob3plusplus)
        	   	message(FATAL_ERROR "Could not find Prob3plusplus")
 	   endif()
+
+	   add_compile_definitions(UseProb3ppLinear=1)
 endif()
 
 #================================================================================================
