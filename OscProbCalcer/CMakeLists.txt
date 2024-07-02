@@ -14,7 +14,11 @@ set(HEADERS OscProbCalcerBase.h)
 
 add_library(OscProbCalcer SHARED OscProbCalcerBase.cpp)
 target_link_libraries(OscProbCalcer yaml-cpp)
-target_include_directories(OscProbCalcer PUBLIC ${PROJECT_SOURCE_DIR}/Constants ${PROJECT_SOURCE_DIR}/OscProbCalcer)
+
+target_include_directories(OscProbCalcer PUBLIC
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}/../>
+    $<INSTALL_INTERFACE:include>
+)
 
 install(TARGETS yaml-cpp
         EXPORT NuOscillator-targets
