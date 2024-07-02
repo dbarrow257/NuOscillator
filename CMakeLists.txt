@@ -187,3 +187,17 @@ install(FILES
 
 install(DIRECTORY Configs DESTINATION ${CMAKE_INSTALL_PREFIX}/)
 install(DIRECTORY Inputs DESTINATION ${CMAKE_INSTALL_PREFIX}/)
+
+#================================================================================================
+
+#This is to export the target properties of NuOscillator
+#Anything that links to "NuOscillator" will get all of these target properties
+add_library(NuOscillator INTERFACE)
+target_link_libraries(NuOscillator INTERFACE Oscillator::Oscillator OscProbCalcer::OscProbCalcer)
+set_target_properties(NuOscillator PROPERTIES EXPORT_NAME All)
+
+install(TARGETS NuOscillator
+    EXPORT NuOscillator-targets
+    LIBRARY DESTINATION lib/)
+
+add_library(NuOscillator::All ALIAS NuOscillator)
