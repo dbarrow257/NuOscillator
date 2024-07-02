@@ -191,6 +191,24 @@ if(${UseProb3ppLinear} EQUAL 1)
 	   add_compile_definitions(UseProb3ppLinear=1)
 endif()
 
+if(${UseGPU} EQUAL 1)
+	     add_compile_definitions(UseGPU=1)
+else()
+	     add_compile_definitions(UseGPU=0)
+endif()
+
+if(${UseMultithreading} EQUAL 1)
+             add_compile_definitions(UseMultithreading=1)
+else()
+             add_compile_definitions(UseMultithreading=0)
+endif()
+
+if(${UseDoubles} EQUAL 1)
+             add_compile_definitions(UseDoubles=1)
+else()
+             add_compile_definitions(UseDoubles=0)
+endif()
+
 #================================================================================================
 #Subdirectories to add
 
