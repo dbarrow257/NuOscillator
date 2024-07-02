@@ -16,6 +16,16 @@ add_library(OscProbCalcer SHARED OscProbCalcerBase.cpp)
 target_link_libraries(OscProbCalcer yaml-cpp)
 target_include_directories(OscProbCalcer PUBLIC ${PROJECT_SOURCE_DIR}/Constants ${PROJECT_SOURCE_DIR}/OscProbCalcer)
 
+install(TARGETS yaml-cpp
+        EXPORT NuOscillator-targets
+        LIBRARY DESTINATION lib/
+        PUBLIC_HEADER DESTINATION include/yaml-cpp
+        )
+
+install(DIRECTORY ${yaml-cpp_SOURCE_DIR}/include/
+    DESTINATION include/
+)
+
 if(${UseCUDAProb3} EQUAL 1)
 	   target_sources(OscProbCalcer PRIVATE OscProbCalcer_CUDAProb3.cpp)
 	   if(${UseGPU} EQUAL 1)
