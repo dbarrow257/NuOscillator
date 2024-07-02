@@ -200,4 +200,10 @@ install(TARGETS NuOscillator
     EXPORT NuOscillator-targets
     LIBRARY DESTINATION lib/)
 
+install(EXPORT NuOscillator-targets
+        FILE NuOscillatorTargets.cmake
+        NAMESPACE NuOscillator::
+        DESTINATION ${CMAKE_INSTALL_PREFIX}/
+)
+
 add_library(NuOscillator::All ALIAS NuOscillator)
