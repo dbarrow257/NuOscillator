@@ -2,7 +2,7 @@
 #define __OSCILLATOR_BASE_H__
 
 #include "OscProbCalcerBase.h"
-#include "OscillatorConstants.h"
+#include "Constants/OscillatorConstants.h"
 
 #include "yaml-cpp/yaml.h"
 

@@ -1,4 +1,4 @@
-#include "OscillatorConstants.h"
+#include "Constants/OscillatorConstants.h"
 #include "OscProbCalcerBase.h"
 
 #if UseCUDAProb3==1
