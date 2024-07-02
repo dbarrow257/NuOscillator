@@ -67,9 +67,9 @@ else()
 endif()
 
 install(TARGETS OscProbCalcer
-		EXPORT OscProbCalcer-targets
-		LIBRARY DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/
-		PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_PREFIX}/include/OscProbCalcer)
+        EXPORT NuOscillator-targets
+        LIBRARY DESTINATION lib/
+        PUBLIC_HEADER DESTINATION include/OscProbCalcer)
 
 foreach(head ${HEADERS})
 	     install(FILES ${head} DESTINATION ${CMAKE_INSTALL_PREFIX}/include/OscProbCalcer)

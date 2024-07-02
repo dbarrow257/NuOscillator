@@ -20,4 +20,9 @@ foreach(head ${HEADERS})
              install(FILES ${head} DESTINATION ${CMAKE_INSTALL_PREFIX}/include/Oscillator)
 endforeach(head)
 
+install(TARGETS	Oscillator
+	EXPORT NuOscillator-targets
+        LIBRARY DESTINATION lib/
+        PUBLIC_HEADER DESTINATION include/Oscillator)
+
 add_library(Oscillator::Oscillator ALIAS Oscillator)
