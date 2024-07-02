@@ -1,20 +1,20 @@
 #include "Constants/OscillatorConstants.h"
-#include "OscProbCalcerBase.h"
+#include "OscProbCalcer/OscProbCalcerBase.h"
 
 #if UseCUDAProb3==1
-#include "OscProbCalcer_CUDAProb3.h"
+#include "OscProbCalcer/OscProbCalcer_CUDAProb3.h"
 #endif
 
 #if UseCUDAProb3Linear==1
-#include "OscProbCalcer_CUDAProb3Linear.h"
+#include "OscProbCalcer/OscProbCalcer_CUDAProb3Linear.h"
 #endif
 
 #if UseProb3ppLinear==1
-#include "OscProbCalcer_Prob3ppLinear.h"
+#include "OscProbCalcer/OscProbCalcer_Prob3ppLinear.h"
 #endif
 
 #if UseProbGPULinear==1
-#include "OscProbCalcer_ProbGPULinear.h"
+#include "OscProbCalcer/OscProbCalcer_ProbGPULinear.h"
 #endif
 
 #include <iostream>
