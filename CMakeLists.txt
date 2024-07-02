@@ -207,7 +207,7 @@ install(EXPORT NuOscillator-targets
 )
 
 install(FILES
-    Diag_Config.yaml
-    DESTINATION ${CMAKE_BINARY_DIR}/NuOscillatorConfigs)
+	Configs
+	DESTINATION ${CMAKE_BINARY_DIR}/NuOscillatorConfigs)
 
 add_library(NuOscillator::All ALIAS NuOscillator)
