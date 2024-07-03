@@ -38,7 +38,6 @@ if(${UseCUDAProb3Linear} EQUAL 1)
 	   	      set_source_files_properties(OscProbCalcer_CUDAProb3Linear.cpp PROPERTIES LANGUAGE CUDA)
 		      target_include_directories(OscProbCalcer PRIVATE ${CUDAProb3_SOURCE_DIR})
 	   endif()
-	   target_compile_options(OscProbCalcer PUBLIC -DGPU_ON=1)
 	   list(APPEND HEADERS OscProbCalcer_CUDAProb3Linear.h)
 endif()
 

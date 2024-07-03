@@ -37,6 +37,7 @@ endif()
 #Custom variable sanitisation
 add_library(NuOscillatorCompilerOptions INTERFACE)
 
+message(STATUS "NuOscillator Features: ")
 foreach(VAR UseGPU UseMultithreading UseDoubles UseCUDAProb3 UseCUDAProb3Linear UseProb3ppLinear UseProbGPULinear)
 	    if(NOT DEFINED ${VAR})
 	    	   message(FATAL_ERROR "${VAR} not defined")
@@ -91,6 +92,13 @@ if(${UseGPU} EQUAL 1)
   		    endif()
 	     endif()
 endif()
+
+if(NOT DEFINED)
+    set(NuOscillator_Compiler_Flags "")
+endif()
+
+add_compile_options(NuOscillator_Compiler_Flags)
+
 
 #================================================================================================
 #Setup Deps
