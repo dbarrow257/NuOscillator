@@ -103,7 +103,7 @@ if(NOT DEFINED NuOscillator_Compiler_Flags)
 endif()
 
 separate_arguments(NuOscillator_Compiler_Flags)
-
+message(STATUS "Set compiler options: ${NuOscillator_Compiler_Flags}")
 add_compile_options(${NuOscillator_Compiler_Flags})
 
 #================================================================================================
