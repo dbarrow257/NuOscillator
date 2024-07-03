@@ -102,6 +102,8 @@ if(NOT DEFINED NuOscillator_Compiler_Flags)
     set(NuOscillator_Compiler_Flags "")
 endif()
 
+separate_arguments(NuOscillator_Compiler_Flags)
+
 add_compile_options(${NuOscillator_Compiler_Flags})
 
 #================================================================================================
