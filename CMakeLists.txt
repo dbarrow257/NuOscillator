@@ -91,14 +91,18 @@ if(${UseGPU} EQUAL 1)
     			set(CMAKE_CUDA_ARCHITECTURES 35 52 60 61 70 75 80 86)
   		    endif()
 	     endif()
+
+    if(NOT DEFINED NuOscillator_Compiler_Flags_CUDA)
+        set(NuOscillator_Compiler_Flags_CUDA "")
+    endif()
+    add_compile_options($<$<COMPILE_LANGUAGE:CUDA>:${NuOscillator_Compiler_Flags_CUDA}>)
 endif()
 
-if(NOT DEFINED)
+if(NOT DEFINED NuOscillator_Compiler_Flags)
     set(NuOscillator_Compiler_Flags "")
 endif()
 
 add_compile_options(NuOscillator_Compiler_Flags)
-
 
 #================================================================================================
 #Setup Deps
@@ -221,7 +225,6 @@ add_subdirectory(Oscillator)
 add_subdirectory(Apps)
 
 #================================================================================================
-#
 
 set(LIBDEST ${CMAKE_INSTALL_PREFIX}/lib)
 
