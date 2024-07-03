@@ -101,6 +101,7 @@ endif()
 if(NOT DEFINED NuOscillator_Compiler_Flags)
     set(NuOscillator_Compiler_Flags "")
 endif()
+message(STATUS "Set compiler options: ${NuOscillator_Compiler_Flags}")
 
 string(REPLACE ";" " " NuOscillator_Compiler_Flags "${NuOscillator_Compiler_Flags}")
 separate_arguments(NuOscillator_Compiler_Flags)
