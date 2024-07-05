@@ -4,7 +4,7 @@ General:
   CalculationType: "Binned"
 
 OscProbCalcer:
-  - Config: "CUDAProb3:./build/Linux/Configs/OscProbCalcerConfigs/CUDAProb3.yaml"
+  - Config: "CUDAProb3:/exp/uboone/app/users/barrow/NuOscillator/build/Linux/Configs/OscProbCalcerConfigs/CUDAProb3.yaml"
 
 Binned:
   FileName: "./Inputs/ExampleAtmosphericBinning.root"

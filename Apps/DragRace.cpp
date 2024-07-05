@@ -1,6 +1,6 @@
-#include "OscillatorFactory.h"
+#include "Oscillator/OscillatorFactory.h"
 
-#include "OscillatorConstants.h"
+#include "Constants/OscillatorConstants.h"
 
 #include <iostream>
 #include <math.h>
@@ -37,7 +37,7 @@ int main() {
   OscParams_Beam[6] = 250.0;
   OscParams_Beam[7] = 2.6;
 
-  std::vector<FLOAT_T> EnergyArray = logspace(0.1,100.,1e6);
+  std::vector<FLOAT_T> EnergyArray = logspace(0.1,100.,1e5);
   std::vector<FLOAT_T> CosineZArray = linspace(-1.0,1.0,1);
 
   std::cout << "========================================================" << std::endl;
@@ -106,7 +106,7 @@ int main() {
   std::cout << "========================================================" << std::endl;
   std::cout << "Starting drag race in executable" << std::endl;
 
-  int nThrows = 1000;
+  int nThrows = 100;
 
   for (size_t iOsc=0;iOsc<Oscillators.size();iOsc++) {
     std::cout << Oscillators[iOsc]->ReturnImplementationName() << " starting drag race" << std::endl;

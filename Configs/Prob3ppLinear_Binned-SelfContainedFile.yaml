@@ -1,10 +1,10 @@
 General:
   Verbosity: "INFO"
-  CosineZIgnored: false
+  CosineZIgnored: true
   CalculationType: "Binned"
 
 OscProbCalcer:
-  - Config: "CUDAProb3:./build/NuOscillatorConfigs/Configs/CUDAProb3_Binned-SelfContainedFile.yaml"
+  - Config: "Prob3ppLinear:./build/NuOscillatorConfigs/Configs/Prob3ppLinear_Binned-SelfContainedFile.yaml"
 
 Binned:
   FileName: "./Inputs/ExampleAtmosphericBinning.root"
@@ -12,8 +12,7 @@ Binned:
   CosineZAxisHistName: "CosineZAxisBinning"
 
 OscProbCalcerSetup:
-  - CUDAProb3:
-    EarthModelFileName: "PREM_4layer.dat"
+  - Prob3ppLinear:
     OscChannelMapping:
       - Entry: "Electron:Electron"
       - Entry: "Electron:Muon"

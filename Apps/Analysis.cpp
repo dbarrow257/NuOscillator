@@ -1,6 +1,6 @@
-#include "OscillatorFactory.h"
+#include "Oscillator/OscillatorFactory.h"
 
-#include "OscillatorConstants.h"
+#include "Constants/OscillatorConstants.h"
 
 #include <iostream>
 #include <math.h>
@@ -16,7 +16,7 @@ std::vector<FLOAT_T> linspace(FLOAT_T Emin, FLOAT_T Emax, int nDiv);
 
 int main() {
   int Verbose = NONE;
-  bool PrintWeights = false;
+  bool PrintWeights = true;
 
   std::vector<FLOAT_T> OscParams_Atm(7);
   OscParams_Atm[0] = 3.07e-1;

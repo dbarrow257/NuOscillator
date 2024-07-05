@@ -1,7 +1,7 @@
 #ifndef __OSCPROBCALCER_BASE_H__
 #define __OSCPROBCALCER_BASE_H__
 
-#include "OscillatorConstants.h"
+#include "Constants/OscillatorConstants.h"
 
 #include <vector>
 #include <string>

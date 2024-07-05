@@ -3,7 +3,7 @@ General:
 
 OscProbCalcerSetup:
   - CUDAProb3:
-    EarthModelFileName: "PREM_4layer.dat"
+    EarthModelFileName: "/exp/uboone/app/users/barrow/NuOscillator/build/_deps/cudaprob3-src/models/PREM_4layer.dat"
     OscChannelMapping:
       - Entry: "Electron:Electron"
       - Entry: "Electron:Muon"

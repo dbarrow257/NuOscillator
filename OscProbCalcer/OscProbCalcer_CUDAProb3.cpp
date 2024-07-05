@@ -17,14 +17,8 @@ OscProbCalcerCUDAProb3::OscProbCalcerCUDAProb3(std::string ConfigName_, int Inst
 {
   //=======
   //Grab information from the config
-  std::string EarthDensityModelFileName = InstanceConfig["EarthModelFileName"].as<std::string>();
-
-  char* EnvironVal = std::getenv("CUDAProb3Source");
-  if (EnvironVal == NULL) {
-    std::cerr << "CUDAProb3Source environment variable is not defined!" << std::endl;
-    throw;
-  }
-  EarthDensityFile = std::string(EnvironVal)+"/models/"+EarthDensityModelFileName;
+  EarthDensityFile = InstanceConfig["EarthModelFileName"].as<std::string>();
+  std::cout << "EarthDensityFile:" << EarthDensityFile << std::endl;
   //=======
 
   fNOscParams = kNOscParams;
