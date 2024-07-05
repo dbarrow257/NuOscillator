@@ -11,12 +11,12 @@ if(NOT DEFINED CMAKE_CXX_STANDARD)
 endif()
 
 if(NOT DEFINED UseGPU)
-       message(FATAL_ERROR "${UseGPU} not defined")
+       message(FATAL_ERROR "UseGPU is not defined, add -DUseGPU=<1/0>")
 endif()
 
 SET(NUOSCILLATOR_VERSION 0.0)
 
-if(${UseGPU} EQUAL 1)
+if(${UseGPU} EQUAL 0)
 	project(NUOSCILLATOR VERSION ${NUOSCILLATOR_VERSION} LANGUAGES CXX)
 else()
 	project(NUOSCILLATOR VERSION ${NUOSCILLATOR_VERSION} LANGUAGES CXX CUDA)
@@ -35,7 +35,9 @@ endif()
 
 #================================================================================================
 #Custom variable sanitisation
+add_library(NuOscillatorCompilerOptions INTERFACE)
 
+message(STATUS "NuOscillator Features: ")
 foreach(VAR UseGPU UseMultithreading UseDoubles UseCUDAProb3 UseCUDAProb3Linear UseProb3ppLinear UseProbGPULinear)
 	    if(NOT DEFINED ${VAR})
 	    	   message(FATAL_ERROR "${VAR} not defined")
@@ -72,12 +74,8 @@ if(${UseCUDAProb3} EQUAL 1 AND ${UseCUDAProb3Linear} EQUAL 1)
 endif()
 
 if(${UseMultithreading} EQUAL 1)
-	find_package(OpenMP)
-	if (OPENMP_FOUND)
-	    SET(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${OpenMP_C_FLAGS}")
-	    SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OpenMP_CXX_FLAGS}")
-    	    SET(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} ${OpenMP_EXE_LINKER_FLAGS}")
-	endif()
+  target_compile_options(NuOscillatorCompilerOptions INTERFACE -fopenmp)
+  target_link_libraries(NuOscillatorCompilerOptions INTERFACE gomp)
 endif()
 
 if(${UseGPU} EQUAL 1)
@@ -93,7 +91,21 @@ if(${UseGPU} EQUAL 1)
     			set(CMAKE_CUDA_ARCHITECTURES 35 52 60 61 70 75 80 86)
   		    endif()
 	     endif()
+
+    if(NOT DEFINED NuOscillator_Compiler_Flags_CUDA)
+        set(NuOscillator_Compiler_Flags_CUDA "")
+    endif()
+    add_compile_options($<$<COMPILE_LANGUAGE:CUDA>:${NuOscillator_Compiler_Flags_CUDA}>)
 endif()
+
+if(NOT DEFINED NuOscillator_Compiler_Flags)
+    set(NuOscillator_Compiler_Flags "")
+endif()
+
+separate_arguments(NuOscillator_Compiler_Flags)
+
+message(STATUS "Set compiler options: ${NuOscillator_Compiler_Flags}")
+add_compile_options(${NuOscillator_Compiler_Flags})
 
 #================================================================================================
 #Setup Deps
@@ -133,10 +145,10 @@ if(${UseCUDAProb3} EQUAL 1)
 		DOWNLOAD_ONLY
 	   )
 	   if(NOT CUDAProb3_ADDED)
-	   	  message(FATAL_ERROR "Could not download CUDAProb3")
+	   	  cmessage(FATAL_ERROR "Could not download CUDAProb3")
 	   endif()
 
-	   add_compile_definitions(UseCUDAProb3=1)
+	   target_compile_definitions(NuOscillatorCompilerOptions INTERFACE UseCUDAProb3=1)
 endif()
 
 if(${UseCUDAProb3Linear} EQUAL 1)
@@ -156,10 +168,9 @@ if(${UseCUDAProb3Linear} EQUAL 1)
 			)
 	endif()
 	if(NOT TARGET CUDAProb3Beam OR NOT TARGET CUDAProb3Atmos)
-	       message(FATAL_ERROR "Could not find CUDAProb3Linear")
+	       cmessage(FATAL_ERROR "Could not find CUDAProb3Linear")
 	endif()
-
-	add_compile_definitions(UseCUDAProb3Linear=1)
+	target_compile_definitions(NuOscillatorCompilerOptions INTERFACE UseCUDAProb3Linear=1)
 endif()
 
 if(${UseGPU} EQUAL 1)
@@ -170,10 +181,10 @@ if(${UseGPU} EQUAL 1)
 			GITHUB_REPOSITORY dbarrow257/ProbGPU
 			)
 		   if(NOT TARGET ProbGPU)
-       	       	   	message(FATAL_ERROR "Could not find ProbGPU")
+			cmessage(FATAL_ERROR "Could not find ProbGPU")
 		   endif()
 
-		   add_compile_definitions(UseProbGPULinear=1)
+		target_compile_definitions(NuOscillatorCompilerOptions INTERFACE UseProbGPULinear=1)
 	endif()
 endif()
 
@@ -185,28 +196,28 @@ if(${UseProb3ppLinear} EQUAL 1)
         	GITHUB_REPOSITORY mach3-software/Prob3plusplus
 		)
 	   if(NOT TARGET Prob3plusplus)
-       	   	message(FATAL_ERROR "Could not find Prob3plusplus")
+       	   	cmessage(FATAL_ERROR "Could not find Prob3plusplus")
 	   endif()
-
-	   add_compile_definitions(UseProb3ppLinear=1)
+	   target_compile_definitions(NuOscillatorCompilerOptions INTERFACE UseProb3ppLinear=1)
 endif()
 
 if(${UseGPU} EQUAL 1)
-	     add_compile_definitions(UseGPU=1)
+    target_compile_definitions(NuOscillatorCompilerOptions INTERFACE UseGPU=1)
 else()
-	     add_compile_definitions(UseGPU=0)
+    target_compile_definitions(NuOscillatorCompilerOptions INTERFACE UseGPU=0)
 endif()
 
 if(${UseMultithreading} EQUAL 1)
-             add_compile_definitions(UseMultithreading=1)
+    target_compile_definitions(NuOscillatorCompilerOptions INTERFACE UseMultithreading=1)
 else()
-             add_compile_definitions(UseMultithreading=0)
+    target_compile_definitions(NuOscillatorCompilerOptions INTERFACE UseMultithreading=0)
 endif()
 
 if(${UseDoubles} EQUAL 1)
-             add_compile_definitions(UseDoubles=1)
+    # Dan_Double
+    target_compile_definitions(NuOscillatorCompilerOptions INTERFACE UseDoubles=1)
 else()
-             add_compile_definitions(UseDoubles=0)
+    target_compile_definitions(NuOscillatorCompilerOptions INTERFACE UseDoubles=0)
 endif()
 
 #================================================================================================
@@ -217,7 +228,6 @@ add_subdirectory(Oscillator)
 add_subdirectory(Apps)
 
 #================================================================================================
-#
 
 set(LIBDEST ${CMAKE_INSTALL_PREFIX}/lib)
 
@@ -230,12 +240,18 @@ install(FILES
 install(DIRECTORY Configs DESTINATION ${CMAKE_INSTALL_PREFIX}/)
 install(DIRECTORY Inputs DESTINATION ${CMAKE_INSTALL_PREFIX}/)
 
+
+set_target_properties(NuOscillatorCompilerOptions PROPERTIES EXPORT_NAME CompilerOptions)
+install(TARGETS NuOscillatorCompilerOptions
+    EXPORT NuOscillator-targets
+    LIBRARY DESTINATION lib/)
+
 #================================================================================================
 
 #This is to export the target properties of NuOscillator
 #Anything that links to "NuOscillator" will get all of these target properties
 add_library(NuOscillator INTERFACE)
-target_link_libraries(NuOscillator INTERFACE Oscillator::Oscillator OscProbCalcer::OscProbCalcer)
+target_link_libraries(NuOscillator INTERFACE Oscillator OscProbCalcer NuOscillatorCompilerOptions)
 set_target_properties(NuOscillator PROPERTIES EXPORT_NAME All)
 
 install(TARGETS NuOscillator

@@ -11,7 +11,7 @@ target_include_directories(Oscillator PRIVATE ../OscProbCalcer PUBLIC
     $<INSTALL_INTERFACE:include>
 )
 
-target_link_libraries(Oscillator OscProbCalcer yaml-cpp ROOT::ROOT)
+target_link_libraries(Oscillator OscProbCalcer yaml-cpp ROOT::ROOT NuOscillatorCompilerOptions)
 
 set_target_properties(Oscillator PROPERTIES 
 				 EXPORT_NAME Oscillator)

@@ -5,7 +5,7 @@ SET(OSCPROBCALCER_VERSION 0.0)
 set(HEADERS OscProbCalcerBase.h)
 
 add_library(OscProbCalcer SHARED OscProbCalcerBase.cpp)
-target_link_libraries(OscProbCalcer yaml-cpp)
+target_link_libraries(OscProbCalcer yaml-cpp NuOscillatorCompilerOptions)
 
 target_include_directories(OscProbCalcer PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}/../>
@@ -38,7 +38,6 @@ if(${UseCUDAProb3Linear} EQUAL 1)
 	   	      set_source_files_properties(OscProbCalcer_CUDAProb3Linear.cpp PROPERTIES LANGUAGE CUDA)
 		      target_include_directories(OscProbCalcer PRIVATE ${CUDAProb3_SOURCE_DIR})
 	   endif()
-	   target_compile_options(OscProbCalcer PUBLIC -DGPU_ON=1)
 	   list(APPEND HEADERS OscProbCalcer_CUDAProb3Linear.h)
 endif()
 
