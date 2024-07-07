@@ -180,7 +180,7 @@ if(${UseGPU} EQUAL 1)
 	if(${UseProbGPULinear} EQUAL 1)
 		   CPMFindPackage(
 		   	NAME ProbGPU
-			GIT_TAG feature_CmakeUpdate # FIXME
+			GIT_TAG main
 			GITHUB_REPOSITORY dbarrow257/ProbGPU
 			OPTIONS
 			"CMAKE_CUDA_ARCHITECTURES ${CMAKE_CUDA_ARCHITECTURES_STRING}"
