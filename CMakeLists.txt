@@ -184,6 +184,7 @@ if(${UseGPU} EQUAL 1)
 		   	NAME ProbGPU
 			GIT_TAG feature_CmakeUpdate # FIXME
 			GITHUB_REPOSITORY dbarrow257/ProbGPU
+			OPTIONS
 			"CMAKE_CUDA_ARCHITECTURES ${CMAKE_CUDA_ARCHITECTURES}"
 			"ProbGPU_Compiler_Flags_CUDA ${NuOscillator_Compiler_Flags_CUDA}"
 			)
