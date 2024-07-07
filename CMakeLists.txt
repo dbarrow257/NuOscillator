@@ -110,6 +110,7 @@ if(${UseGPU} EQUAL 1)
 
     add_compile_options($<$<COMPILE_LANGUAGE:CUDA>:${NuOscillator_Compiler_Flags_CUDA_TEMP}>)
     message(STATUS "Set CUDA compiler options: ${NuOscillator_Compiler_Flags_CUDA_TEMP}")
+    message(STATUS "Set CUDA ARCHITECTURES options: ${CMAKE_CUDA_ARCHITECTURES}")
 endif()
 
 #================================================================================================
