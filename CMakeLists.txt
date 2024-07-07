@@ -104,10 +104,12 @@ if(${UseGPU} EQUAL 1)
     if(NOT DEFINED NuOscillator_Compiler_Flags_CUDA)
         set(NuOscillator_Compiler_Flags_CUDA "")
     endif()
-	separate_arguments(NuOscillator_Compiler_Flags_CUDA)
+    #KS: This is super hacky but transferring flags via CPM is quite annoying :(
+    set(NuOscillator_Compiler_Flags_CUDA_TEMP ${NuOscillator_Compiler_Flags_CUDA})
+	separate_arguments(NuOscillator_Compiler_Flags_CUDA_TEMP)
 
-    add_compile_options($<$<COMPILE_LANGUAGE:CUDA>:${NuOscillator_Compiler_Flags_CUDA}>)
-    message(STATUS "Set CUDA compiler options: ${NuOscillator_Compiler_Flags_CUDA}")
+    add_compile_options($<$<COMPILE_LANGUAGE:CUDA>:${NuOscillator_Compiler_Flags_CUDA_TEMP}>)
+    message(STATUS "Set CUDA compiler options: ${NuOscillator_Compiler_Flags_CUDA_TEMP}")
 endif()
 
 #================================================================================================
