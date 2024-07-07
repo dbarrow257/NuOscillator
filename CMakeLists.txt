@@ -99,6 +99,10 @@ if(${UseGPU} EQUAL 1)
 			#KS: Apparently with newer cmake and GPU
     			set(CMAKE_CUDA_ARCHITECTURES 35 52 60 61 70 75 80 86)
   		    endif()
+
+		 else()
+		 set(CMAKE_CUDA_ARCHITECTURES_STRING ${CMAKE_CUDA_ARCHITECTURES})
+		 string(REPLACE " " ";" CMAKE_CUDA_ARCHITECTURES "${CMAKE_CUDA_ARCHITECTURES}")
 	     endif()
 
     if(NOT DEFINED NuOscillator_Compiler_Flags_CUDA)
@@ -110,7 +114,7 @@ if(${UseGPU} EQUAL 1)
 
     add_compile_options("$<$<COMPILE_LANGUAGE:CUDA>:${NuOscillator_Compiler_Flags_CUDA_TEMP}>")
     message(STATUS "Set CUDA compiler options: ${NuOscillator_Compiler_Flags_CUDA_TEMP}")
-    message(STATUS "Set CUDA ARCHITECTURES options: ${CMAKE_CUDA_ARCHITECTURES}")
+    message(STATUS "Set CUDA ARCHITECTURES options: ${CMAKE_CUDA_ARCHITECTURES_STRING}")
 endif()
 
 #================================================================================================
@@ -186,7 +190,7 @@ if(${UseGPU} EQUAL 1)
 			GIT_TAG feature_CmakeUpdate # FIXME
 			GITHUB_REPOSITORY dbarrow257/ProbGPU
 			OPTIONS
-			"CMAKE_CUDA_ARCHITECTURES ${CMAKE_CUDA_ARCHITECTURES}"
+			"CMAKE_CUDA_ARCHITECTURES ${CMAKE_CUDA_ARCHITECTURES_STRING}"
 			"ProbGPU_Compiler_Flags_CUDA ${NuOscillator_Compiler_Flags_CUDA}"
 			)
 		   if(NOT TARGET ProbGPU)
