@@ -92,7 +92,7 @@ if(${UseGPU} EQUAL 1)
 	if(NOT DEFINED CMAKE_CUDA_ARCHITECTURES)
 		#KS: See this for more info https://cmake.org/cmake/help/latest/prop_tgt/CUDA_ARCHITECTURES.html
 	if( ${CMAKE_VERSION} VERSION_GREATER_EQUAL 3.23 )
-		set(CMAKE_CUDA_ARCHITECTURES 60 61 70 75 80 86 )
+		set(CMAKE_CUDA_ARCHITECTURES all )
 			#KS: Consider using native, requires cmake 3.24... will be terrible for containers but should results in more optimised code
 		#set(CMAKE_CUDA_ARCHITECTURES native )
 	else()
