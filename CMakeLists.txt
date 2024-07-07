@@ -177,8 +177,10 @@ if(${UseGPU} EQUAL 1)
 	if(${UseProbGPULinear} EQUAL 1)
 		   CPMFindPackage(
 		   	NAME ProbGPU
-			GIT_TAG main   
+			GIT_TAG feature_CmakeUpdate # FIXME
 			GITHUB_REPOSITORY dbarrow257/ProbGPU
+			"CMAKE_CUDA_ARCHITECTURES ${CMAKE_CUDA_ARCHITECTURES}"
+			"CMAKE_CUDA_ARCHITECTURES ${NuOscillator_Compiler_Flags_CUDA}"
 			)
 		   if(NOT TARGET ProbGPU)
 			cmessage(FATAL_ERROR "Could not find ProbGPU")
