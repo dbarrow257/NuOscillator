@@ -104,8 +104,7 @@ if(${UseGPU} EQUAL 1)
     if(NOT DEFINED NuOscillator_Compiler_Flags_CUDA)
         set(NuOscillator_Compiler_Flags_CUDA "")
     endif()
-    # KS: Remove quotes from the variable
-	string(REPLACE "\"" "" NuOscillator_Compiler_Flags_CUDA ${NuOscillator_Compiler_Flags_CUDA})
+	separate_arguments(NuOscillator_Compiler_Flags_CUDA)
 
     add_compile_options($<$<COMPILE_LANGUAGE:CUDA>:${NuOscillator_Compiler_Flags_CUDA}>)
     message(STATUS "Set CUDA compiler options: ${NuOscillator_Compiler_Flags_CUDA}")
