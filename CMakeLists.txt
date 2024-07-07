@@ -78,6 +78,15 @@ if(${UseMultithreading} EQUAL 1)
   target_link_libraries(NuOscillatorCompilerOptions INTERFACE gomp)
 endif()
 
+if(NOT DEFINED NuOscillator_Compiler_Flags)
+    set(NuOscillator_Compiler_Flags "")
+endif()
+
+separate_arguments(NuOscillator_Compiler_Flags)
+
+message(STATUS "Set compiler options: ${NuOscillator_Compiler_Flags}")
+add_compile_options(${NuOscillator_Compiler_Flags})
+
 if(${UseGPU} EQUAL 1)
 	     #KS: Allow user to define CMAKE_CUDA_ARCHITECTURES
 	     if(NOT DEFINED CMAKE_CUDA_ARCHITECTURES)
@@ -96,16 +105,8 @@ if(${UseGPU} EQUAL 1)
         set(NuOscillator_Compiler_Flags_CUDA "")
     endif()
     add_compile_options($<$<COMPILE_LANGUAGE:CUDA>:${NuOscillator_Compiler_Flags_CUDA}>)
+    message(STATUS "Set CUDA compiler options: ${NuOscillator_Compiler_Flags_CUDA}")
 endif()
-
-if(NOT DEFINED NuOscillator_Compiler_Flags)
-    set(NuOscillator_Compiler_Flags "")
-endif()
-
-separate_arguments(NuOscillator_Compiler_Flags)
-
-message(STATUS "Set compiler options: ${NuOscillator_Compiler_Flags}")
-add_compile_options(${NuOscillator_Compiler_Flags})
 
 #================================================================================================
 #Setup Deps
