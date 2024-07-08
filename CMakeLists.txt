@@ -156,22 +156,25 @@ endif()
 
 if(${UseCUDAProb3Linear} EQUAL 1)
 	if(${UseGPU} EQUAL 1)
-    		   CPMFindPackage(
+		CPMFindPackage(
 			NAME CUDAProb3
         		GITHUB_REPOSITORY "mach3-software/CUDAProb3"
-        		GIT_TAG "feature_cleanup"
-			OPTIONS "GPU_ON ON"
+        		GIT_TAG "main"
+			OPTIONS
+			"GPU_ON ON"
+			"CMAKE_CUDA_ARCHITECTURES ${CMAKE_CUDA_ARCHITECTURES_STRING}"
     			)
 	else()
-	           CPMFindPackage(
+		CPMFindPackage(
 			NAME CUDAProb3
-                        GITHUB_REPOSITORY "mach3-software/CUDAProb3"
-                        GIT_TAG "feature_cleanup"
-			OPTIONS "CPU_ONLY ON"
+			GITHUB_REPOSITORY "mach3-software/CUDAProb3"
+			GIT_TAG "main"
+			OPTIONS
+			"CPU_ONLY ON"
 			)
 	endif()
 	if(NOT TARGET CUDAProb3Beam OR NOT TARGET CUDAProb3Atmos)
-	       cmessage(FATAL_ERROR "Could not find CUDAProb3Linear")
+		cmessage(FATAL_ERROR "Could not find CUDAProb3Linear")
 	endif()
 	target_compile_definitions(NuOscillatorCompilerOptions INTERFACE UseCUDAProb3Linear=1)
 endif()
