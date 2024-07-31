@@ -78,26 +78,6 @@ if(${UseMultithreading} EQUAL 1)
   target_link_libraries(NuOscillatorCompilerOptions INTERFACE gomp)
 endif()
 
-if(${UseGPU} EQUAL 1)
-	     #KS: Allow user to define CMAKE_CUDA_ARCHITECTURES
-	     if(NOT DEFINED CMAKE_CUDA_ARCHITECTURES)
-	     	    #KS: See this for more info https://cmake.org/cmake/help/latest/prop_tgt/CUDA_ARCHITECTURES.html
-  		    if( ${CMAKE_VERSION} VERSION_GREATER_EQUAL 3.23 )
-		    	set(CMAKE_CUDA_ARCHITECTURES all )
-    		    	#KS: Consider using native, requires cmake 3.24... will be terrible for containers but should results in more optimised code
-    			#set(CMAKE_CUDA_ARCHITECTURES native )
-  		    else()
-			#KS: Apparently with newer cmake and GPU
-    			set(CMAKE_CUDA_ARCHITECTURES 35 52 60 61 70 75 80 86)
-  		    endif()
-	     endif()
-
-    if(NOT DEFINED NuOscillator_Compiler_Flags_CUDA)
-        set(NuOscillator_Compiler_Flags_CUDA "")
-    endif()
-    add_compile_options($<$<COMPILE_LANGUAGE:CUDA>:${NuOscillator_Compiler_Flags_CUDA}>)
-endif()
-
 if(NOT DEFINED NuOscillator_Compiler_Flags)
     set(NuOscillator_Compiler_Flags "")
 endif()
@@ -106,6 +86,29 @@ separate_arguments(NuOscillator_Compiler_Flags)
 
 message(STATUS "Set compiler options: ${NuOscillator_Compiler_Flags}")
 add_compile_options(${NuOscillator_Compiler_Flags})
+
+if(${UseGPU} EQUAL 1)
+	#KS: Allow user to define CMAKE_CUDA_ARCHITECTURES
+	if(NOT DEFINED CMAKE_CUDA_ARCHITECTURES)
+		#KS: See this for more info https://cmake.org/cmake/help/latest/prop_tgt/CUDA_ARCHITECTURES.html
+	if( ${CMAKE_VERSION} VERSION_GREATER_EQUAL 3.23 )
+		set(CMAKE_CUDA_ARCHITECTURES all )
+			#KS: Consider using native, requires cmake 3.24... will be terrible for containers but should results in more optimised code
+		#set(CMAKE_CUDA_ARCHITECTURES native )
+	else()
+	#KS: Apparently with newer cmake and GPU
+		set(CMAKE_CUDA_ARCHITECTURES 60 61 70 75 80 86)
+	endif()
+	#KS: Bit hacky but to properly pass cuda flags we need
+	string(REPLACE ";" " " CMAKE_CUDA_ARCHITECTURES_STRING "${CMAKE_CUDA_ARCHITECTURES}")
+	else()
+	#KS this may look hacky however CPM isn't build for passing stuff like this. If CMAKE_CUDA_ARCHITECTURES is passed CPM it will be string not list. Thus we convert it to list
+	set(CMAKE_CUDA_ARCHITECTURES_STRING ${CMAKE_CUDA_ARCHITECTURES})
+	string(REPLACE " " ";" CMAKE_CUDA_ARCHITECTURES "${CMAKE_CUDA_ARCHITECTURES}")
+	endif()
+
+    message(STATUS "Set CUDA ARCHITECTURES options: ${CMAKE_CUDA_ARCHITECTURES_STRING}")
+endif()
 
 #================================================================================================
 #Setup Deps
@@ -153,22 +156,25 @@ endif()
 
 if(${UseCUDAProb3Linear} EQUAL 1)
 	if(${UseGPU} EQUAL 1)
-    		   CPMFindPackage(
+		CPMFindPackage(
 			NAME CUDAProb3
         		GITHUB_REPOSITORY "mach3-software/CUDAProb3"
-        		GIT_TAG "feature_cleanup"
-			OPTIONS "GPU_ON ON"
+        		GIT_TAG "main"
+			OPTIONS
+			"GPU_ON ON"
+			"CMAKE_CUDA_ARCHITECTURES ${CMAKE_CUDA_ARCHITECTURES_STRING}"
     			)
 	else()
-	           CPMFindPackage(
+		CPMFindPackage(
 			NAME CUDAProb3
-                        GITHUB_REPOSITORY "mach3-software/CUDAProb3"
-                        GIT_TAG "feature_cleanup"
-			OPTIONS "CPU_ONLY ON"
+			GITHUB_REPOSITORY "mach3-software/CUDAProb3"
+			GIT_TAG "main"
+			OPTIONS
+			"CPU_ONLY ON"
 			)
 	endif()
 	if(NOT TARGET CUDAProb3Beam OR NOT TARGET CUDAProb3Atmos)
-	       cmessage(FATAL_ERROR "Could not find CUDAProb3Linear")
+		cmessage(FATAL_ERROR "Could not find CUDAProb3Linear")
 	endif()
 	target_compile_definitions(NuOscillatorCompilerOptions INTERFACE UseCUDAProb3Linear=1)
 endif()
@@ -177,8 +183,10 @@ if(${UseGPU} EQUAL 1)
 	if(${UseProbGPULinear} EQUAL 1)
 		   CPMFindPackage(
 		   	NAME ProbGPU
-			GIT_TAG main   
+			GIT_TAG main
 			GITHUB_REPOSITORY dbarrow257/ProbGPU
+			OPTIONS
+			"CMAKE_CUDA_ARCHITECTURES ${CMAKE_CUDA_ARCHITECTURES_STRING}"
 			)
 		   if(NOT TARGET ProbGPU)
 			cmessage(FATAL_ERROR "Could not find ProbGPU")
