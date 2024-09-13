@@ -171,6 +171,7 @@ if(${UseCUDAProb3Linear} EQUAL 1)
 			GIT_TAG "main"
 			OPTIONS
 			"CPU_ONLY ON"
+			"GPU_ON OFF"
 			)
 	endif()
 	if(NOT TARGET CUDAProb3Beam OR NOT TARGET CUDAProb3Atmos)
