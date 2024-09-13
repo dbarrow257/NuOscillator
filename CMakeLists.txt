@@ -175,9 +175,9 @@ if(${UseCUDAProb3Linear} EQUAL 1)
         )
     # KS: Terrible hack because CUDAProb3Beam is mess :(
     install(TARGETS CUDAProb3Beam
-    EXPORT NuOscillator-targets
-    LIBRARY DESTINATION lib/
-    PUBLIC_HEADER DESTINATION include/CUDAProb3Beam)
+        EXPORT NuOscillator-targets
+        LIBRARY DESTINATION lib/
+        PUBLIC_HEADER DESTINATION include/CUDAProb3Beam)
 
 	endif()
 	if(NOT TARGET CUDAProb3Beam OR NOT TARGET CUDAProb3Atmos)
@@ -210,6 +210,11 @@ if(${UseProb3ppLinear} EQUAL 1)
         GITHUB_REPOSITORY rogerwendell/Prob3plusplus
         GIT_TAG main
     )
+    install(TARGETS Prob3plusplus
+        EXPORT NuOscillator-targets
+        LIBRARY DESTINATION lib/
+        PUBLIC_HEADER DESTINATION include/Prob3plusplus)
+
     if(NOT TARGET Prob3plusplus)
         cmessage(FATAL_ERROR "Could not find Prob3plusplus")
     endif()
