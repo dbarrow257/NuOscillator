@@ -70,7 +70,7 @@ OscProbCalcerBase::OscProbCalcerBase(std::string ConfigName_, std::string Implem
   InitialiseOscillationChannelMapping();
 }
 
-OscProbCalcerBase~::OscProbCalcerBase() {
+OscProbCalcerBase::~OscProbCalcerBase() {
 
 }
 

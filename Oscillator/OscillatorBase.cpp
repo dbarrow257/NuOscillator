@@ -52,7 +52,7 @@ OscillatorBase::OscillatorBase(std::string ConfigName_) {
   InitialiseOscProbCalcers();
 }
 
-OscillatorBase~::OscillatorBase() {
+OscillatorBase::~OscillatorBase() {
 
 }
 
