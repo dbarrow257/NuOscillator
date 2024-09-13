@@ -165,14 +165,20 @@ if(${UseCUDAProb3Linear} EQUAL 1)
 			"CMAKE_CUDA_ARCHITECTURES ${CMAKE_CUDA_ARCHITECTURES_STRING}"
     			)
 	else()
-		CPMFindPackage(
-			NAME CUDAProb3
-			GITHUB_REPOSITORY "mach3-software/CUDAProb3"
-			GIT_TAG "main"
-			OPTIONS
-			"CPU_ONLY ON"
-			"GPU_ON OFF"
-			)
+    CPMFindPackage(
+        NAME CUDAProb3
+        GITHUB_REPOSITORY "mach3-software/CUDAProb3"
+        GIT_TAG "main"
+        OPTIONS
+        "CPU_ONLY ON"
+        "GPU_ON OFF"
+        )
+    # KS: Terrible hack because CUDAProb3Beam is mess :(
+    install(TARGETS CUDAProb3Beam
+    EXPORT NuOscillator-targets
+    LIBRARY DESTINATION lib/
+    PUBLIC_HEADER DESTINATION include/CUDAProb3Beam)
+
 	endif()
 	if(NOT TARGET CUDAProb3Beam OR NOT TARGET CUDAProb3Atmos)
 		cmessage(FATAL_ERROR "Could not find CUDAProb3Linear")
