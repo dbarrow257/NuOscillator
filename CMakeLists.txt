@@ -7,19 +7,19 @@ find_program(CMAKE_C_COMPILER NAMES $ENV{CC} gcc PATHS ENV PATH NO_DEFAULT_PATH)
 find_program(CMAKE_CXX_COMPILER NAMES $ENV{CXX} g++ PATHS ENV PATH NO_DEFAULT_PATH)
 
 if(NOT DEFINED CMAKE_CXX_STANDARD)
-  SET(CMAKE_CXX_STANDARD 11)
+  set(CMAKE_CXX_STANDARD 11)
 endif()
 
 if(NOT DEFINED UseGPU)
-       message(FATAL_ERROR "UseGPU is not defined, add -DUseGPU=<1/0>")
+    message(FATAL_ERROR "UseGPU is not defined, add -DUseGPU=<1/0>")
 endif()
 
-SET(NUOSCILLATOR_VERSION 0.0)
+set(NUOSCILLATOR_VERSION 0.0)
 
 if(${UseGPU} EQUAL 0)
-	project(NUOSCILLATOR VERSION ${NUOSCILLATOR_VERSION} LANGUAGES CXX)
+    project(NUOSCILLATOR VERSION ${NUOSCILLATOR_VERSION} LANGUAGES CXX)
 else()
-	project(NUOSCILLATOR VERSION ${NUOSCILLATOR_VERSION} LANGUAGES CXX CUDA)
+    project(NUOSCILLATOR VERSION ${NUOSCILLATOR_VERSION} LANGUAGES CXX CUDA)
 endif()
 
 LIST(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake/Modules)
@@ -58,19 +58,19 @@ else()
 endif()
 
 if(${UseMultithreading} EQUAL 1)
-        message(STATUS "\tUsing Multithreading with nThreads=$ENV{OMP_NUM_THREADS}")
+    message(STATUS "\tUsing Multithreading with nThreads=$ENV{OMP_NUM_THREADS}")
 else()
-	message(STATUS "\tNot using Multithreading")
+    message(STATUS "\tNot using Multithreading")
 endif()
 
 if(${UseDoubles} EQUAL 1)
-	message(STATUS "\tUsing FLOAT_T=double")
+    message(STATUS "\tUsing FLOAT_T=double")
 else()
-        message(STATUS "\tUsing FLOAT_T=float")
+    message(STATUS "\tUsing FLOAT_T=float")
 endif()
 
 if(${UseCUDAProb3} EQUAL 1 AND ${UseCUDAProb3Linear} EQUAL 1)
-	message(FATAL_ERROR "CUDAProb3 and CUDAProb3Linear and not able to be built at the same time")
+    message(FATAL_ERROR "CUDAProb3 and CUDAProb3Linear and not able to be built at the same time")
 endif()
 
 if(${UseMultithreading} EQUAL 1)
@@ -164,7 +164,7 @@ if(${UseCUDAProb3Linear} EQUAL 1)
 			"GPU_ON ON"
 			"CMAKE_CUDA_ARCHITECTURES ${CMAKE_CUDA_ARCHITECTURES_STRING}"
     			)
-	else()
+    else()
     CPMFindPackage(
         NAME CUDAProb3
         GITHUB_REPOSITORY "mach3-software/CUDAProb3"
@@ -229,7 +229,6 @@ else()
 endif()
 
 if(${UseDoubles} EQUAL 1)
-    # Dan_Double
     target_compile_definitions(NuOscillatorCompilerOptions INTERFACE UseDoubles=1)
 else()
     target_compile_definitions(NuOscillatorCompilerOptions INTERFACE UseDoubles=0)
