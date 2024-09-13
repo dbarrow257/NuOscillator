@@ -210,15 +210,16 @@ if(${UseProb3ppLinear} EQUAL 1)
         GITHUB_REPOSITORY rogerwendell/Prob3plusplus
         GIT_TAG main
     )
-    install(TARGETS Prob3plusplus
-        EXPORT NuOscillator-targets
-        LIBRARY DESTINATION lib/
-        PUBLIC_HEADER DESTINATION include/Prob3plusplus)
 
     if(NOT TARGET Prob3plusplus)
         cmessage(FATAL_ERROR "Could not find Prob3plusplus")
     endif()
     target_compile_definitions(NuOscillatorCompilerOptions INTERFACE UseProb3ppLinear=1)
+
+    install(TARGETS Prob3plusplus
+        EXPORT NuOscillator-targets
+        LIBRARY DESTINATION lib/
+        PUBLIC_HEADER DESTINATION include/Prob3plusplus)
 endif()
 
 if(${UseGPU} EQUAL 1)
