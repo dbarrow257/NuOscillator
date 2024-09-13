@@ -1,10 +1,7 @@
-SET(OSCPROBCALCER_VERSION 0.0)
-
-#============================================================================================================
-
 set(HEADERS OscProbCalcerBase.h)
 
 add_library(OscProbCalcer SHARED OscProbCalcerBase.cpp)
+
 target_link_libraries(OscProbCalcer yaml-cpp NuOscillatorCompilerOptions)
 
 target_include_directories(OscProbCalcer PUBLIC
@@ -35,8 +32,8 @@ if(${UseCUDAProb3Linear} EQUAL 1)
 	   target_link_libraries(OscProbCalcer CUDAProb3Beam)
 	   target_sources(OscProbCalcer PRIVATE OscProbCalcer_CUDAProb3Linear.cpp)
 	   if(${UseGPU} EQUAL 1)
-	   	      set_source_files_properties(OscProbCalcer_CUDAProb3Linear.cpp PROPERTIES LANGUAGE CUDA)
-		      target_include_directories(OscProbCalcer PRIVATE ${CUDAProb3_SOURCE_DIR})
+            set_source_files_properties(OscProbCalcer_CUDAProb3Linear.cpp PROPERTIES LANGUAGE CUDA)
+            target_include_directories(OscProbCalcer PRIVATE ${CUDAProb3_SOURCE_DIR})
 	   endif()
 	   list(APPEND HEADERS OscProbCalcer_CUDAProb3Linear.h)
 endif()
@@ -55,22 +52,19 @@ if(${UseProb3ppLinear} EQUAL 1)
 endif()
 
 if (${UseGPU} EQUAL 1)
-   set_target_properties(OscProbCalcer PROPERTIES 
-				    CUDA_SEPARABLE_COMPILATION ON 
+   set_target_properties(OscProbCalcer PROPERTIES
+				    CUDA_SEPARABLE_COMPILATION ON
 				    LINKER_LANGUAGE CUDA
 				    EXPORT_NAME OscProbCalcer)
-else()
-   set_target_properties(OscProbCalcer PROPERTIES
-                                    EXPORT_NAME OscProbCalcer)
 endif()
+
+set_target_properties(OscProbCalcer PROPERTIES
+    PUBLIC_HEADER "${HEADERS}"
+    EXPORT_NAME OscProbCalcer)
 
 install(TARGETS OscProbCalcer
         EXPORT NuOscillator-targets
         LIBRARY DESTINATION lib/
         PUBLIC_HEADER DESTINATION include/OscProbCalcer)
-
-foreach(head ${HEADERS})
-	     install(FILES ${head} DESTINATION ${CMAKE_INSTALL_PREFIX}/include/OscProbCalcer)
-endforeach(head)
 
 add_library(OscProbCalcer::OscProbCalcer ALIAS OscProbCalcer)
