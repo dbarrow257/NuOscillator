@@ -204,16 +204,16 @@ if(${UseGPU} EQUAL 1)
 endif()
 
 if(${UseProb3ppLinear} EQUAL 1)
-	   CPMFindPackage(
-		NAME Prob3plusplus
-		VERSION 3.10.3
-		GIT_TAG v3.10.3
-        	GITHUB_REPOSITORY mach3-software/Prob3plusplus
-		)
-	   if(NOT TARGET Prob3plusplus)
-       	   	cmessage(FATAL_ERROR "Could not find Prob3plusplus")
-	   endif()
-	   target_compile_definitions(NuOscillatorCompilerOptions INTERFACE UseProb3ppLinear=1)
+    CPMFindPackage(
+        NAME Prob3plusplus
+        VERSION 3.10.4
+        GITHUB_REPOSITORY rogerwendell/Prob3plusplus
+        GIT_TAG main
+    )
+    if(NOT TARGET Prob3plusplus)
+        cmessage(FATAL_ERROR "Could not find Prob3plusplus")
+    endif()
+    target_compile_definitions(NuOscillatorCompilerOptions INTERFACE UseProb3ppLinear=1)
 endif()
 
 if(${UseGPU} EQUAL 1)

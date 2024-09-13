@@ -23,6 +23,10 @@ endif()
 
 if(UseProb3ppLinear)
   find_package(Prob3plusplus @Prob3plusplus_VERSION@ REQUIRED)
+
+  if(NOT TARGET Prob3plusplus::All AND TARGET Prob3plusplus)
+    add_library(Prob3plusplus::All ALIAS Prob3plusplus)
+  endif()
 endif()
 
 include(${CMAKE_CURRENT_LIST_DIR}/NuOscillatorTargets.cmake)
