@@ -165,14 +165,20 @@ if(${UseCUDAProb3Linear} EQUAL 1)
 			"CMAKE_CUDA_ARCHITECTURES ${CMAKE_CUDA_ARCHITECTURES_STRING}"
     			)
 	else()
-		CPMFindPackage(
-			NAME CUDAProb3
-			GITHUB_REPOSITORY "mach3-software/CUDAProb3"
-			GIT_TAG "main"
-			OPTIONS
-			"CPU_ONLY ON"
-			"GPU_ON OFF"
-			)
+    CPMFindPackage(
+        NAME CUDAProb3
+        GITHUB_REPOSITORY "mach3-software/CUDAProb3"
+        GIT_TAG "main"
+        OPTIONS
+        "CPU_ONLY ON"
+        "GPU_ON OFF"
+        )
+    # KS: Terrible hack because CUDAProb3Beam is mess :(
+    install(TARGETS CUDAProb3Beam
+    EXPORT NuOscillator-targets
+    LIBRARY DESTINATION lib/
+    PUBLIC_HEADER DESTINATION include/CUDAProb3Beam)
+
 	endif()
 	if(NOT TARGET CUDAProb3Beam OR NOT TARGET CUDAProb3Atmos)
 		cmessage(FATAL_ERROR "Could not find CUDAProb3Linear")
@@ -240,8 +246,8 @@ add_subdirectory(Apps)
 
 set(LIBDEST ${CMAKE_INSTALL_PREFIX}/lib)
 
-configure_file(cmake/Templates/setup.Oscillator.sh.in "${PROJECT_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/setup.Oscillator.sh" @ONLY)
-install(FILES "${PROJECT_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/setup.Oscillator.sh" DESTINATION ${CMAKE_INSTALL_PREFIX}/bin)
+configure_file(cmake/Templates/setup.NuOscillator.sh.in "${PROJECT_BINARY_DIR}/setup.NuOscillator.sh" @ONLY)
+install(FILES "${PROJECT_BINARY_DIR}/setup.NuOscillator.sh" DESTINATION ${CMAKE_INSTALL_PREFIX}/bin)
 
 install(DIRECTORY Configs DESTINATION ${CMAKE_INSTALL_PREFIX}/)
 install(DIRECTORY Inputs DESTINATION ${CMAKE_INSTALL_PREFIX}/)
@@ -274,3 +280,22 @@ install(DIRECTORY
     DESTINATION ${CMAKE_BINARY_DIR}/NuOscillatorConfigs)
 
 add_library(NuOscillator::All ALIAS NuOscillator)
+
+
+############################  Install  ####################################
+include(CMakePackageConfigHelpers)
+configure_package_config_file(
+  ${CMAKE_CURRENT_LIST_DIR}/cmake/Templates/NuOscillatorConfig.cmake.in ${CMAKE_BINARY_DIR}/NuOscillatorConfig.cmake
+  INSTALL_DESTINATION
+    /this/is/ignored/for/some/reason/thanks/kitware
+  NO_SET_AND_CHECK_MACRO
+  NO_CHECK_REQUIRED_COMPONENTS_MACRO)
+
+  write_basic_package_version_file(${CMAKE_BINARY_DIR}/NuOscillatorConfigVersion.cmake
+  VERSION ${NUOSCILLATOR_VERSION}
+  COMPATIBILITY AnyNewerVersion)
+
+install(FILES
+    ${CMAKE_BINARY_DIR}/NuOscillatorConfig.cmake
+    ${CMAKE_BINARY_DIR}/NuOscillatorConfigVersion.cmake
+  DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/cmake/NuOscillator)

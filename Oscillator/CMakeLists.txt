@@ -1,10 +1,15 @@
-SET(OSCILLATOR_VERSION 0.0)
-#project(OSCILLATOR VERSION ${OSCILLATOR_VERSION} LANGUAGES CXX)
+set(HEADERS
+        OscillatorBase.h
+        OscillatorUnbinned.h
+        OscillatorBinned.h
+        OscillatorFactory.h)
 
-set(HEADERS OscillatorBase.h OscillatorUnbinned.h OscillatorBinned.h OscillatorFactory.h)
-add_library(Oscillator SHARED OscillatorBase.cpp OscillatorUnbinned.cpp OscillatorBinned.cpp OscillatorFactory.cpp)
+add_library(Oscillator SHARED
+        OscillatorBase.cpp
+        OscillatorUnbinned.cpp
+        OscillatorBinned.cpp
+        OscillatorFactory.cpp)
 
-#target_include_directories(Oscillator PRIVATE ../OscProbCalcer)
 
 target_include_directories(Oscillator PRIVATE ../OscProbCalcer PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}/../>
@@ -13,20 +18,12 @@ target_include_directories(Oscillator PRIVATE ../OscProbCalcer PUBLIC
 
 target_link_libraries(Oscillator OscProbCalcer yaml-cpp ROOT::ROOT NuOscillatorCompilerOptions)
 
-set_target_properties(Oscillator PROPERTIES 
-				 EXPORT_NAME Oscillator)
+set_target_properties(Oscillator PROPERTIES
+    PUBLIC_HEADER "${HEADERS}"
+    EXPORT_NAME Oscillator)
 
 install(TARGETS Oscillator
-		EXPORT Oscillator-targets
-                LIBRARY DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/
-                PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_PREFIX}/include/Oscillator)
-
-foreach(head ${HEADERS})
-             install(FILES ${head} DESTINATION ${CMAKE_INSTALL_PREFIX}/include/Oscillator)
-endforeach(head)
-
-install(TARGETS	Oscillator
-	EXPORT NuOscillator-targets
+        EXPORT NuOscillator-targets
         LIBRARY DESTINATION lib/
         PUBLIC_HEADER DESTINATION include/Oscillator)
 

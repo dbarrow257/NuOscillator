@@ -57,7 +57,7 @@ std::vector<FLOAT_T> OscillatorBinned::ReadBinEdgesFromFile(std::string FileName
   }
 
   BinEdges.resize(Histogram->GetNbinsX()+1);
-  for (size_t iBin=0;iBin<=Histogram->GetNbinsX();iBin++) {
+  for (int iBin=0;iBin<=Histogram->GetNbinsX();iBin++) {
     BinEdges[iBin] = Histogram->GetBinLowEdge(iBin+1);
   }
 

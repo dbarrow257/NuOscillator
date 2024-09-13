@@ -170,6 +170,12 @@ class OscillatorBase {
    */
   OscillatorBase(std::string ConfigName_);
 
+
+  /**
+   * @brief Destructor
+   */
+  virtual ~OscillatorBase();
+
   /**
    * @brief Return a pointer to the oscillation probability memory address in a particular index of #fOscProbCalcers for a particular event
    *
