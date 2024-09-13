@@ -189,6 +189,11 @@ class OscProbCalcerBase {
    */
   OscProbCalcerBase(std::string ConfigName_, std::string ImplementationName_, int Instance_=0);
 
+
+  /**
+   * @brief Destructor
+   */
+  virtual ~OscProbCalcerBase();
   // ========================================================================================================================================================================
   // Protected functions which are calculation implementation agnostic  
 

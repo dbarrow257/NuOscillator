@@ -52,6 +52,10 @@ OscillatorBase::OscillatorBase(std::string ConfigName_) {
   InitialiseOscProbCalcers();
 }
 
+OscillatorBase~::OscillatorBase() {
+
+}
+
 void OscillatorBase::InitialiseOscProbCalcers() {
   fNCalcers = fOscProbCalcerImplementationToCreate.size();
   if (fNCalcers <= 0) {

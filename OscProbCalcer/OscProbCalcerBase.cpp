@@ -70,6 +70,10 @@ OscProbCalcerBase::OscProbCalcerBase(std::string ConfigName_, std::string Implem
   InitialiseOscillationChannelMapping();
 }
 
+OscProbCalcerBase~::OscProbCalcerBase() {
+
+}
+
 void OscProbCalcerBase::SetEnergyArray(std::vector<FLOAT_T> EnergyArray) {
   if (fEnergyArraySet) {
     // Already defined the Energy array, or the implementation is designed such not to care about it
