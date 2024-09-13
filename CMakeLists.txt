@@ -240,8 +240,8 @@ add_subdirectory(Apps)
 
 set(LIBDEST ${CMAKE_INSTALL_PREFIX}/lib)
 
-configure_file(cmake/Templates/setup.NuOscillator.sh.in "${PROJECT_BINARY_DIR}/setup.Oscillator.sh" @ONLY)
-install(FILES "${PROJECT_BINARY_DIR}/setup.Oscillator.sh" DESTINATION ${CMAKE_INSTALL_PREFIX}/bin)
+configure_file(cmake/Templates/setup.NuOscillator.sh.in "${PROJECT_BINARY_DIR}/setup.NuOscillator.sh" @ONLY)
+install(FILES "${PROJECT_BINARY_DIR}/setup.NuOscillator.sh" DESTINATION ${CMAKE_INSTALL_PREFIX}/bin)
 
 install(DIRECTORY Configs DESTINATION ${CMAKE_INSTALL_PREFIX}/)
 install(DIRECTORY Inputs DESTINATION ${CMAKE_INSTALL_PREFIX}/)
