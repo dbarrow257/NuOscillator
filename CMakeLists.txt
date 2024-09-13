@@ -240,15 +240,11 @@ add_subdirectory(Apps)
 
 set(LIBDEST ${CMAKE_INSTALL_PREFIX}/lib)
 
-configure_file(cmake/Templates/setup.NuOscillator.sh.in
-  "${PROJECT_BINARY_DIR}/setup.Oscillator.sh" @ONLY)
-install(FILES
-  "${PROJECT_BINARY_DIR}/setup.Oscillator.sh" DESTINATION
-  ${CMAKE_INSTALL_PREFIX})
+configure_file(cmake/Templates/setup.Oscillator.sh.in "${PROJECT_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/setup.Oscillator.sh" @ONLY)
+install(FILES "${PROJECT_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/setup.Oscillator.sh" DESTINATION ${CMAKE_INSTALL_PREFIX}/bin)
 
 install(DIRECTORY Configs DESTINATION ${CMAKE_INSTALL_PREFIX}/)
 install(DIRECTORY Inputs DESTINATION ${CMAKE_INSTALL_PREFIX}/)
-
 
 set_target_properties(NuOscillatorCompilerOptions PROPERTIES EXPORT_NAME CompilerOptions)
 install(TARGETS NuOscillatorCompilerOptions
@@ -274,7 +270,7 @@ install(EXPORT NuOscillator-targets
 )
 
 install(DIRECTORY
-	Configs
-	DESTINATION ${CMAKE_BINARY_DIR}/NuOscillatorConfigs)
+    Configs
+    DESTINATION ${CMAKE_BINARY_DIR}/NuOscillatorConfigs)
 
 add_library(NuOscillator::All ALIAS NuOscillator)
