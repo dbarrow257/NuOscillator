@@ -280,3 +280,22 @@ install(DIRECTORY
     DESTINATION ${CMAKE_BINARY_DIR}/NuOscillatorConfigs)
 
 add_library(NuOscillator::All ALIAS NuOscillator)
+
+
+############################  Install  ####################################
+include(CMakePackageConfigHelpers)
+configure_package_config_file(
+  ${CMAKE_CURRENT_LIST_DIR}/cmake/Templates/NuOscillatorConfig.cmake.in ${CMAKE_BINARY_DIR}/NuOscillatorConfig.cmake
+  INSTALL_DESTINATION
+    /this/is/ignored/for/some/reason/thanks/kitware
+  NO_SET_AND_CHECK_MACRO
+  NO_CHECK_REQUIRED_COMPONENTS_MACRO)
+
+  write_basic_package_version_file(${CMAKE_BINARY_DIR}/NuOscillatorConfigVersion.cmake
+  VERSION ${NUOSCILLATOR_VERSION}
+  COMPATIBILITY AnyNewerVersion)
+
+install(FILES
+    ${CMAKE_BINARY_DIR}/NuOscillatorConfig.cmake
+    ${CMAKE_BINARY_DIR}/NuOscillatorConfigVersion.cmake
+  DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/cmake/NuOscillator)

@@ -1,0 +1,62 @@
+@PACKAGE_INIT@
+
+set(NuOscillator_VERSION @PROJECT_VERSION@)
+
+LIST(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_LIST_DIR}/../../../cmake)
+
+get_filename_component(NuOscillator_CMAKE_DIR "${CMAKE_CURRENT_LIST_FILE}" PATH)
+message(STATUS "Adding ${NuOscillator_CMAKE_DIR} to Module search path")
+message(STATUS "Adding ${NuOscillator_CMAKE_DIR}/cmake to Module search path")
+list(APPEND CMAKE_MODULE_PATH "${NuOscillator_CMAKE_DIR}")
+list(APPEND CMAKE_MODULE_PATH "${NuOscillator_CMAKE_DIR}/cmake")
+
+enable_language(CXX)
+
+set(NuOscillator_FOUND TRUE)
+
+include(ROOT)
+
+if(NOT TARGET ROOT::ROOT)
+  cmessage(WARNING "Expected NuOscillator to set up dependency target: ROOT::ROOT")
+  set(NuOscillator_FOUND FALSE)
+  return()
+endif()
+
+include(${CMAKE_CURRENT_LIST_DIR}/NuOscillatorTargets.cmake)
+
+if(NOT TARGET NuOscillator::All)
+  cmessage(FATAL_ERROR "Didn't set up NuOscillator::All")
+endif()
+
+get_filename_component(NuOscillator_CMAKE_DIR "${CMAKE_CURRENT_LIST_FILE}" PATH)
+
+
+find_path(NuOscillator_INCLUDE_DIR
+  NAMES Oscillator/OscillatorBase.h
+  PATHS ${NuOscillator_CMAKE_DIR}/include/
+)
+
+find_path(NuOscillator_LIB_DIR
+  NAMES libOscillator.so
+  PATHS ${NuOscillator_CMAKE_DIR}/lib/
+)
+
+find_path(NuOscillator_PREFIX
+  NAMES bin/setup.NuOscillator.sh
+  PATHS ${NuOscillator_CMAKE_DIR}/
+)
+
+cmessage(STATUS "NuOscillator_LIB_DIR: ${NuOscillator_LIB_DIR}")
+cmessage(STATUS "NuOscillator_INCLUDE_DIR: ${NuOscillator_INCLUDE_DIR}")
+cmessage(STATUS "NuOscillator_PREFIX: ${NuOscillator_PREFIX}")
+cmessage(STATUS "NuOscillator_VERSION: ${NuOscillator_VERSION}")
+
+include(FindPackageHandleStandardArgs)
+find_package_handle_standard_args(NuOscillator
+    REQUIRED_VARS
+      NuOscillator_INCLUDE_DIR
+      NuOscillator_LIB_DIR
+      NuOscillator_PREFIX
+    VERSION_VAR
+      NuOscillator_VERSION
+)

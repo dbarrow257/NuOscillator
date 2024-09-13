@@ -3,11 +3,12 @@ set(HEADERS
         OscillatorUnbinned.h
         OscillatorBinned.h
         OscillatorFactory.h)
+
 add_library(Oscillator SHARED
-                        OscillatorBase.cpp
-                        OscillatorUnbinned.cpp
-                        OscillatorBinned.cpp
-                        OscillatorFactory.cpp)
+        OscillatorBase.cpp
+        OscillatorUnbinned.cpp
+        OscillatorBinned.cpp
+        OscillatorFactory.cpp)
 
 
 target_include_directories(Oscillator PRIVATE ../OscProbCalcer PUBLIC
