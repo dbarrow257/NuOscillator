@@ -219,7 +219,7 @@ if(${UseProb3ppLinear} EQUAL 1)
     install(TARGETS Prob3plusplus
         EXPORT NuOscillator-targets
         LIBRARY DESTINATION lib/
-        PUBLIC_HEADER DESTINATION include/Prob3plusplus)
+        PUBLIC_HEADER DESTINATION include/)
 endif()
 
 if(${UseGPU} EQUAL 1)
