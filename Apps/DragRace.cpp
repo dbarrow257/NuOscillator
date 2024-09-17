@@ -37,7 +37,7 @@ int main() {
   OscParams_Beam[6] = 250.0;
   OscParams_Beam[7] = 2.6;
 
-  std::vector<FLOAT_T> EnergyArray = logspace(0.1,20.,1e5);
+  std::vector<FLOAT_T> EnergyArray = logspace(0.1,100.,1e5);
   std::vector<FLOAT_T> CosineZArray = linspace(-1.0,1.0,1);
 
   std::cout << "========================================================" << std::endl;
@@ -55,13 +55,13 @@ int main() {
 #endif
 
 #if UseNuFASTLinear == 1
-  //ConfigNames.push_back("./Configs/Binned_NuFASTLinear.yaml");
+  ConfigNames.push_back("./Configs/Binned_NuFASTLinear.yaml");
   ConfigNames.push_back("./Configs/Unbinned_NuFASTLinear.yaml");
 #endif
 
 #if UseCUDAProb3Linear == 1
-  //ConfigNames.push_back("./Configs/Binned_CUDAProb3Linear.yaml");
-  //ConfigNames.push_back("./Configs/Unbinned_CUDAProb3Linear.yaml");
+  ConfigNames.push_back("./Configs/Binned_CUDAProb3Linear.yaml");
+  ConfigNames.push_back("./Configs/Unbinned_CUDAProb3Linear.yaml");
 #endif
 
 #if UseProbGPULinear == 1
@@ -70,8 +70,8 @@ int main() {
 #endif
 
 #if UseProb3ppLinear == 1
-  //ConfigNames.push_back("./Configs/Binned_Prob3ppLinear.yaml");
-  //ConfigNames.push_back("./Configs/Unbinned_Prob3ppLinear.yaml");
+  ConfigNames.push_back("./Configs/Binned_Prob3ppLinear.yaml");
+  ConfigNames.push_back("./Configs/Unbinned_Prob3ppLinear.yaml");
 #endif
 
   //Alternative option to show how all information can be held in a single YAML file rather than using a preset
