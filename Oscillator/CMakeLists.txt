@@ -11,7 +11,7 @@ add_library(Oscillator SHARED
         OscillatorFactory.cpp)
 
 
-target_include_directories(Oscillator PRIVATE ../OscProbCalcer PUBLIC
+target_include_directories(Oscillator PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}/../>
     $<INSTALL_INTERFACE:include>
 )
