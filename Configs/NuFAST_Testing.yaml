@@ -1,0 +1,7 @@
+General:
+  Verbosity: "INFO"
+  CosineZIgnored: true
+  CalculationType: "Unbinned"
+
+OscProbCalcer:
+  - Config: "NuFASTLinear:./build/NuOscillatorConfigs/Configs/NuFASTLinear_Testing.yaml"
