@@ -33,9 +33,10 @@ void OscProbCalcerNuFASTLinear::CalculateProbabilities(std::vector<FLOAT_T> OscP
   // ------------------------------- //
   // Set the experimental parameters //
   // ------------------------------- //
-  L = 1300; // km
-  E = 2.5; // GeV
-  rho = 3; // g/cc
+  L = OscParams[kPATHL]; // km
+  rho = OscParams[kDENS]; // g/cc
+
+  //Ye = OscParams[kELECDENS];
   Ye = 0.5;
   
   // --------------------------------------------------------------------- //
@@ -44,36 +45,53 @@ void OscProbCalcerNuFASTLinear::CalculateProbabilities(std::vector<FLOAT_T> OscP
   // in the high statistics regime. Increasig N_Newton to 1,2,... rapidly  //
   // improves the precision at a modest computational cost                 //
   // --------------------------------------------------------------------- //
-  N_Newton = 0;
+  N_Newton = 3;
 
   // ------------------------------------- //
   // Set the vacuum oscillation parameters //
   // ------------------------------------- //
-  s12sq = 0.31;
-  s13sq = 0.02;
-  s23sq = 0.55;
-  delta = 0.7 * M_PI;
-  Dmsq21 = 7.5e-5; // eV^2
+  s12sq = OscParams[kTH12];
+  s13sq = OscParams[kTH13];
+  s23sq = OscParams[kTH23];
+  delta = OscParams[kDCP];
+  Dmsq21 = OscParams[kDM12];
+
+  //Need to convert OscParams[kDM23] to kDM31
   Dmsq31 = 2.5e-3; // eV^2
   
   // ------------------------------------------ //
   // Calculate all 9 oscillationa probabilities //
   // ------------------------------------------ //
-  Probability_Matter_LBL(s12sq, s13sq, s23sq, delta, Dmsq21, Dmsq31, L, E, rho, Ye, N_Newton, &probs_returned);
 
-  // --------------------------- //
-  // Print out the probabilities //
-  // --------------------------- //
-  printf("L = %g E = %g rho = %g\n", L, E, rho);
-  printf("Probabilities:\n");
-  printf("alpha beta P(nu_alpha -> nu_beta)\n");
-  for (int alpha = 0; alpha < 3; alpha++)
-    {
-      for (int beta = 0; beta < 3; beta++)
-	{
-	  printf("%d %d %g\n", alpha, beta, probs_returned[alpha][beta]);
-	} // beta, 3
-    } // alpha, 3
+  for (int iOscProb=0;iOscProb<fNEnergyPoints;iOscProb++) {    
+    for (int iNuType=0;iNuType<fNNeutrinoTypes;iNuType++) {
+      
+      //+ve energy for neutrinos, -ve energy for antineutrinos
+      E = fEnergyArray[iOscProb] * fNeutrinoTypes[iNuType];
+
+      Probability_Matter_LBL(s12sq, s13sq, s23sq, delta, Dmsq21, Dmsq31, L, E, rho, Ye, N_Newton, &probs_returned);
+
+      for (int iOscChannel=0;iOscChannel<fNOscillationChannels;iOscChannel++) {
+	// Mapping which links the oscillation channel, neutrino type and energy index to the fWeightArray index
+	int IndexToFill = iNuType*fNOscillationChannels*fNEnergyPoints + iOscChannel*fNEnergyPoints;
+
+	double Weight = probs_returned[fOscillationChannels[iOscChannel].GeneratedFlavour][fOscillationChannels[iOscChannel].DetectedFlavour];
+
+	//Cancel floating point precision
+	if (Weight<0. && Weight>-1e-6) {Weight = 0.;}
+
+	if (Weight<0. || Weight > 1.) {
+	  std::cout << "s12sq:" << s12sq << " s13sq:" << s13sq << " s23sq:" << s23sq << " delta:" << delta << " Dmsq21:" << Dmsq21 << " Dmsq31:" << Dmsq31 << " L:" << L << " E:" << E << " rho:" << rho << " Ye:" << Ye << " N_Newton:" << N_Newton << std::endl;
+	  std::cout << "iOscProb:" << iOscProb << " iNuType:" << iNuType << " iOscChannel:" << iOscChannel << " IndexToFill:" << IndexToFill << " fWeightArray[IndexToFill+iOscProb]:" << fWeightArray[IndexToFill+iOscProb] << std::endl;
+	  throw;
+	}
+	
+	fWeightArray[IndexToFill+iOscProb] = Weight;
+      }
+      
+    }
+  }
+
 }
 
 int OscProbCalcerNuFASTLinear::ReturnWeightArrayIndex(int NuTypeIndex, int OscChanIndex, int EnergyIndex, int CosineZIndex) {

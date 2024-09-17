@@ -206,7 +206,7 @@ endif()
 if(${UseProb3ppLinear} EQUAL 1)
     CPMFindPackage(
         NAME Prob3plusplus
-        VERSION 3.10.4
+        VERSION 3.10.3
         GITHUB_REPOSITORY rogerwendell/Prob3plusplus
         GIT_TAG main
     )
@@ -227,7 +227,8 @@ if(${UseNuFASTLinear} EQUAL 1)
       	GIT_TAG main
       	GITHUB_REPOSITORY PeterDenton/NuFast
       	DOWNLOAD_ONLY
-    )
+      )
+      target_compile_definitions(NuOscillatorCompilerOptions INTERFACE UseNuFASTLinear=1)
 endif()
 
 if(${UseGPU} EQUAL 1)

@@ -116,9 +116,8 @@ int main(int argc, char **argv) {
 
   else if (OscProbCalcerImplementationToCreate == "NuFASTLinear") {
 #if UseNuFASTLinear==1
-    OscProbCalcerNuFastLinear* NuFASTLinear = new OscProbCalcerNuFastLinear(OscProbCalcerConfigname,Instance);
+    OscProbCalcerNuFASTLinear* NuFASTLinear = new OscProbCalcerNuFASTLinear(OscProbCalcerConfigname);
     Calcer = (OscProbCalcerBase*)NuFASTLinear;
-    if (fVerbose >= INFO) {std::cout << "Initalised OscProbCalcer Implementation:" << Calcer->ReturnImplementationName() << " in OscillatorBase object" << std::endl;}
 #else
     std::cerr << "Oscillator was requsted to create " << OscProbCalcerImplementationToCreate << " OscProbCalcer but Use" << OscProbCalcerImplementationToCreate << " is undefined. Indicates problem in setup" << std::endl;
     throw;

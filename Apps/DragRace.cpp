@@ -37,7 +37,7 @@ int main() {
   OscParams_Beam[6] = 250.0;
   OscParams_Beam[7] = 2.6;
 
-  std::vector<FLOAT_T> EnergyArray = logspace(0.1,100.,1e5);
+  std::vector<FLOAT_T> EnergyArray = logspace(0.1,20.,1e5);
   std::vector<FLOAT_T> CosineZArray = linspace(-1.0,1.0,1);
 
   std::cout << "========================================================" << std::endl;
@@ -54,8 +54,13 @@ int main() {
   ConfigNames.push_back("./Configs/Unbinned_CUDAProb3.yaml");
 #endif
 
+#if UseNuFASTLinear == 1
+  //ConfigNames.push_back("./Configs/Binned_NuFASTLinear.yaml");
+  ConfigNames.push_back("./Configs/Unbinned_NuFASTLinear.yaml");
+#endif
+
 #if UseCUDAProb3Linear == 1
-  ConfigNames.push_back("./Configs/Binned_CUDAProb3Linear.yaml");
+  //ConfigNames.push_back("./Configs/Binned_CUDAProb3Linear.yaml");
   ConfigNames.push_back("./Configs/Unbinned_CUDAProb3Linear.yaml");
 #endif
 
@@ -65,7 +70,7 @@ int main() {
 #endif
 
 #if UseProb3ppLinear == 1
-  ConfigNames.push_back("./Configs/Binned_Prob3ppLinear.yaml");
+  //ConfigNames.push_back("./Configs/Binned_Prob3ppLinear.yaml");
   ConfigNames.push_back("./Configs/Unbinned_Prob3ppLinear.yaml");
 #endif
 
@@ -114,7 +119,7 @@ int main() {
     auto t1 = high_resolution_clock::now();
     for (int iThrow=0;iThrow<nThrows;iThrow++) {      
       //Throw dcp to some new value
-      FLOAT_T RandVal = rand();
+      FLOAT_T RandVal = static_cast <FLOAT_T> (rand()) / static_cast <FLOAT_T> (RAND_MAX);
       OscParams_Atm[5] = RandVal;
       OscParams_Beam[5] = RandVal;
      

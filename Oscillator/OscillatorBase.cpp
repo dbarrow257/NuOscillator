@@ -16,6 +16,10 @@
 #include "OscProbCalcer/OscProbCalcer_ProbGPULinear.h"
 #endif
 
+#if UseNuFASTLinear==1
+#include "OscProbCalcer/OscProbCalcer_NuFASTLinear.h"
+#endif
+
 #include <iostream>
 
 OscillatorBase::OscillatorBase(std::string ConfigName_) {
@@ -166,7 +170,7 @@ OscProbCalcerBase* OscillatorBase::InitialiseOscProbCalcer(std::string OscProbCa
 
   else if (OscProbCalcerImplementationToCreate == "NuFASTLinear") {
 #if UseNuFASTLinear==1
-    OscProbCalcerNuFastLinear* NuFASTLinear = new OscProbCalcerNuFastLinear(OscProbCalcerConfigname,Instance);
+    OscProbCalcerNuFASTLinear* NuFASTLinear = new OscProbCalcerNuFASTLinear(OscProbCalcerConfigname,Instance);
     Calcer = (OscProbCalcerBase*)NuFASTLinear;
     if (fVerbose >= INFO) {std::cout << "Initalised OscProbCalcer Implementation:" << Calcer->ReturnImplementationName() << " in OscillatorBase object" << std::endl;}
 #else
