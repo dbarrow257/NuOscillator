@@ -45,7 +45,7 @@ void OscProbCalcerNuFASTLinear::CalculateProbabilities(std::vector<FLOAT_T> OscP
   // in the high statistics regime. Increasig N_Newton to 1,2,... rapidly  //
   // improves the precision at a modest computational cost                 //
   // --------------------------------------------------------------------- //
-  N_Newton = 0;
+  N_Newton = 1;
 
   // ------------------------------------- //
   // Set the vacuum oscillation parameters //
@@ -75,7 +75,8 @@ void OscProbCalcerNuFASTLinear::CalculateProbabilities(std::vector<FLOAT_T> OscP
 	// Mapping which links the oscillation channel, neutrino type and energy index to the fWeightArray index
 	int IndexToFill = iNuType*fNOscillationChannels*fNEnergyPoints + iOscChannel*fNEnergyPoints;
 
-	double Weight = probs_returned[fOscillationChannels[iOscChannel].GeneratedFlavour][fOscillationChannels[iOscChannel].DetectedFlavour];
+	
+	double Weight = probs_returned[fOscillationChannels[iOscChannel].GeneratedFlavour-1][fOscillationChannels[iOscChannel].DetectedFlavour-1];
 
 	//Cancel floating point precision
 	if (Weight<0. && Weight>-1e-6) {Weight = 0.;}
