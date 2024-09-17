@@ -28,9 +28,9 @@ LIST(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake/Modules)
 #Can set build dir at configure time with -DCMAKE_INSTALL_PREFIX=/install/path
 if(CMAKE_INSTALL_PREFIX STREQUAL "" OR CMAKE_INSTALL_PREFIX STREQUAL
   "/usr/local")
-  set(CMAKE_INSTALL_PREFIX "${CMAKE_BINARY_DIR}/${CMAKE_SYSTEM_NAME}")
+  set(CMAKE_INSTALL_PREFIX "${CMAKE_BINARY_DIR}")
 elseif(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "${CMAKE_BINARY_DIR}/${CMAKE_SYSTEM_NAME}")
+  set(CMAKE_INSTALL_PREFIX "${CMAKE_BINARY_DIR}")
 endif()
 
 #================================================================================================
@@ -178,7 +178,6 @@ if(${UseCUDAProb3Linear} EQUAL 1)
         EXPORT NuOscillator-targets
         LIBRARY DESTINATION lib/
         PUBLIC_HEADER DESTINATION include/CUDAProb3Beam)
-
 	endif()
 	if(NOT TARGET CUDAProb3Beam OR NOT TARGET CUDAProb3Atmos)
 		cmessage(FATAL_ERROR "Could not find CUDAProb3Linear")
