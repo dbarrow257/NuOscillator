@@ -38,7 +38,7 @@ endif()
 add_library(NuOscillatorCompilerOptions INTERFACE)
 
 message(STATUS "NuOscillator Features: ")
-foreach(VAR UseGPU UseMultithreading UseDoubles UseCUDAProb3 UseCUDAProb3Linear UseProb3ppLinear UseProbGPULinear)
+foreach(VAR UseGPU UseMultithreading UseDoubles UseCUDAProb3 UseCUDAProb3Linear UseProb3ppLinear UseProbGPULinear UseNuFASTLinear)
 	    if(NOT DEFINED ${VAR})
 	    	   message(FATAL_ERROR "${VAR} not defined")
 	    endif()
@@ -219,6 +219,15 @@ if(${UseProb3ppLinear} EQUAL 1)
     install(TARGETS Prob3plusplus
         EXPORT NuOscillator-targets
         LIBRARY DESTINATION lib/)
+endif()
+
+if(${UseNuFASTLinear} EQUAL 1)
+    CPMFindPackage(
+      	NAME NuFAST
+      	GIT_TAG main
+      	GITHUB_REPOSITORY PeterDenton/NuFast
+      	DOWNLOAD_ONLY
+    )
 endif()
 
 if(${UseGPU} EQUAL 1)
