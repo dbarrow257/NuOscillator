@@ -54,6 +54,11 @@ int main() {
   ConfigNames.push_back("./Configs/Unbinned_CUDAProb3.yaml");
 #endif
 
+#if UseNuFASTLinear == 1
+  ConfigNames.push_back("./Configs/Binned_NuFASTLinear.yaml");
+  ConfigNames.push_back("./Configs/Unbinned_NuFASTLinear.yaml");
+#endif
+
 #if UseCUDAProb3Linear == 1
   ConfigNames.push_back("./Configs/Binned_CUDAProb3Linear.yaml");
   ConfigNames.push_back("./Configs/Unbinned_CUDAProb3Linear.yaml");
@@ -114,7 +119,7 @@ int main() {
     auto t1 = high_resolution_clock::now();
     for (int iThrow=0;iThrow<nThrows;iThrow++) {      
       //Throw dcp to some new value
-      FLOAT_T RandVal = rand();
+      FLOAT_T RandVal = static_cast <FLOAT_T> (rand()) / static_cast <FLOAT_T> (RAND_MAX);
       OscParams_Atm[5] = RandVal;
       OscParams_Beam[5] = RandVal;
      

@@ -51,6 +51,12 @@ if(${UseProb3ppLinear} EQUAL 1)
 	   list(APPEND HEADERS OscProbCalcer_Prob3ppLinear.h)
 endif()
 
+if(${UseNuFASTLinear} EQUAL 1)
+	   include_directories(${NuFAST_SOURCE_DIR})
+	   target_sources(OscProbCalcer PRIVATE OscProbCalcer_NuFASTLinear.cpp)
+	   list(APPEND HEADERS OscProbCalcer_NuFASTLinear.h)
+endif()
+
 if (${UseGPU} EQUAL 1)
    set_target_properties(OscProbCalcer PROPERTIES
 				    CUDA_SEPARABLE_COMPILATION ON

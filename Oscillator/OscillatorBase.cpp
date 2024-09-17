@@ -16,6 +16,10 @@
 #include "OscProbCalcer/OscProbCalcer_ProbGPULinear.h"
 #endif
 
+#if UseNuFASTLinear==1
+#include "OscProbCalcer/OscProbCalcer_NuFASTLinear.h"
+#endif
+
 #include <iostream>
 
 OscillatorBase::OscillatorBase(std::string ConfigName_) {
@@ -157,6 +161,17 @@ OscProbCalcerBase* OscillatorBase::InitialiseOscProbCalcer(std::string OscProbCa
 #if UseProbGPULinear==1
     OscProbCalcerProbGPULinear* ProbGPULinear = new OscProbCalcerProbGPULinear(OscProbCalcerConfigname,Instance);
     Calcer = (OscProbCalcerBase*)ProbGPULinear;
+    if (fVerbose >= INFO) {std::cout << "Initalised OscProbCalcer Implementation:" << Calcer->ReturnImplementationName() << " in OscillatorBase object" << std::endl;}
+#else
+    std::cerr << "Oscillator was requsted to create " << OscProbCalcerImplementationToCreate << " OscProbCalcer but Use" << OscProbCalcerImplementationToCreate << " is undefined. Indicates problem in setup" << std::endl;
+    throw;
+#endif
+  }
+
+  else if (OscProbCalcerImplementationToCreate == "NuFASTLinear") {
+#if UseNuFASTLinear==1
+    OscProbCalcerNuFASTLinear* NuFASTLinear = new OscProbCalcerNuFASTLinear(OscProbCalcerConfigname,Instance);
+    Calcer = (OscProbCalcerBase*)NuFASTLinear;
     if (fVerbose >= INFO) {std::cout << "Initalised OscProbCalcer Implementation:" << Calcer->ReturnImplementationName() << " in OscillatorBase object" << std::endl;}
 #else
     std::cerr << "Oscillator was requsted to create " << OscProbCalcerImplementationToCreate << " OscProbCalcer but Use" << OscProbCalcerImplementationToCreate << " is undefined. Indicates problem in setup" << std::endl;

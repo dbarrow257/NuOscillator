@@ -38,7 +38,7 @@ endif()
 add_library(NuOscillatorCompilerOptions INTERFACE)
 
 message(STATUS "NuOscillator Features: ")
-foreach(VAR UseGPU UseMultithreading UseDoubles UseCUDAProb3 UseCUDAProb3Linear UseProb3ppLinear UseProbGPULinear)
+foreach(VAR UseGPU UseMultithreading UseDoubles UseCUDAProb3 UseCUDAProb3Linear UseProb3ppLinear UseProbGPULinear UseNuFASTLinear)
 	    if(NOT DEFINED ${VAR})
 	    	   message(FATAL_ERROR "${VAR} not defined")
 	    endif()
@@ -203,7 +203,7 @@ if(${UseGPU} EQUAL 1)
 endif()
 
 if(${UseProb3ppLinear} EQUAL 1)
-    CPMFindPackage(
+    CPMAddPackage(
         NAME Prob3plusplus
         VERSION 3.10.4
         GITHUB_REPOSITORY rogerwendell/Prob3plusplus
@@ -218,6 +218,16 @@ if(${UseProb3ppLinear} EQUAL 1)
     install(TARGETS Prob3plusplus
         EXPORT NuOscillator-targets
         LIBRARY DESTINATION lib/)
+endif()
+
+if(${UseNuFASTLinear} EQUAL 1)
+    CPMAddPackage(
+      	NAME NuFAST
+      	GIT_TAG main
+      	GITHUB_REPOSITORY PeterDenton/NuFast
+      	DOWNLOAD_ONLY
+      )
+      target_compile_definitions(NuOscillatorCompilerOptions INTERFACE UseNuFASTLinear=1)
 endif()
 
 if(${UseGPU} EQUAL 1)
