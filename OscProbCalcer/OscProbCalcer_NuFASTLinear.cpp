@@ -45,7 +45,7 @@ void OscProbCalcerNuFASTLinear::CalculateProbabilities(std::vector<FLOAT_T> OscP
   // in the high statistics regime. Increasig N_Newton to 1,2,... rapidly  //
   // improves the precision at a modest computational cost                 //
   // --------------------------------------------------------------------- //
-  N_Newton = 3;
+  N_Newton = 0;
 
   // ------------------------------------- //
   // Set the vacuum oscillation parameters //
@@ -82,7 +82,7 @@ void OscProbCalcerNuFASTLinear::CalculateProbabilities(std::vector<FLOAT_T> OscP
 
 	if (Weight<0. || Weight > 1.) {
 	  std::cout << "s12sq:" << s12sq << " s13sq:" << s13sq << " s23sq:" << s23sq << " delta:" << delta << " Dmsq21:" << Dmsq21 << " Dmsq31:" << Dmsq31 << " L:" << L << " E:" << E << " rho:" << rho << " Ye:" << Ye << " N_Newton:" << N_Newton << std::endl;
-	  std::cout << "iOscProb:" << iOscProb << " iNuType:" << iNuType << " iOscChannel:" << iOscChannel << " IndexToFill:" << IndexToFill << " fWeightArray[IndexToFill+iOscProb]:" << fWeightArray[IndexToFill+iOscProb] << std::endl;
+	  std::cout << "iOscProb:" << iOscProb << " iNuType:" << iNuType << " iOscChannel:" << iOscChannel << " IndexToFill:" << IndexToFill << " fWeightArray[IndexToFill+iOscProb]:" << Weight << std::endl;
 	  throw;
 	}
 	

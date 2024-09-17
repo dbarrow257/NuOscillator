@@ -78,6 +78,8 @@ if(${UseMultithreading} EQUAL 1)
   target_link_libraries(NuOscillatorCompilerOptions INTERFACE gomp)
 endif()
 
+target_compile_options(NuOscillatorCompilerOptions INTERFACE -ffast-math)
+
 if(NOT DEFINED NuOscillator_Compiler_Flags)
     set(NuOscillator_Compiler_Flags "")
 endif()
