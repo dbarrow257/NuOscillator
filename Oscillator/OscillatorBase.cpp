@@ -270,7 +270,8 @@ const FLOAT_T* OscillatorBase::ReturnPointerToWeightinCalcer(int CalcerIndex, in
     throw;
   }
 
-  return fOscProbCalcers[CalcerIndex]->ReturnPointerToWeight(InitNuFlav,FinalNuFlav,EnergyVal,CosineZVal);
+  const FLOAT_T* Pointer = fOscProbCalcers[CalcerIndex]->ReturnPointerToWeight(InitNuFlav,FinalNuFlav,EnergyVal,CosineZVal);
+  return Pointer;
 }
 
 void OscillatorBase::SanityCheck() {

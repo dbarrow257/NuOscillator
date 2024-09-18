@@ -11,9 +11,6 @@ using std::chrono::duration_cast;
 using std::chrono::duration;
 using std::chrono::milliseconds;
 
-std::vector<FLOAT_T> logspace(FLOAT_T Emin, FLOAT_T  Emax, int nDiv);
-std::vector<FLOAT_T> linspace(FLOAT_T Emin, FLOAT_T Emax, int nDiv);
-
 int main(int argc, char **argv) {
   if (argc != 2) {
     std::cerr << "./SingleOscillator InputConfig.yaml" << std::endl;
@@ -112,59 +109,4 @@ int main(int argc, char **argv) {
 
   std::cout << "Finished reweight in executable" << std::endl;
   std::cout << "========================================================" << std::endl;
-}
-
-std::vector<FLOAT_T> logspace(FLOAT_T Emin, FLOAT_T  Emax, int nDiv) {
-  if (nDiv==0) {
-    std::cerr << "Requested log spacing distribution with 0 divisions" << std::endl;
-    throw;
-  }
-
-  std::vector<FLOAT_T> logpoints(nDiv+1, 0.0);
-  logpoints[0]=Emin;
-
-  if (Emin == 0.) {
-    Emin = 0.01;
-  }
-
-  FLOAT_T Emin_log,Emax_log;
-  Emin_log = log10(Emin);
-  Emax_log = log10(Emax);
-
-  FLOAT_T step_log = (Emax_log - Emin_log)/FLOAT_T(nDiv);
-
-  FLOAT_T EE = Emin_log+step_log;
-
-  for (int i=1; i<nDiv; i++) {
-    logpoints[i] = pow(10.,EE);
-    EE += step_log;
-  }
-
-  logpoints[nDiv]=Emax;
-
-  return logpoints;
-}
-
-std::vector<FLOAT_T> linspace(FLOAT_T Emin, FLOAT_T Emax, int nDiv) {
-  if (nDiv==0) {
-    std::cerr << "Requested linear spacing distribution with 0 divisions" << std::endl;
-    throw;
-  }
-
-  std::vector<FLOAT_T> linpoints(nDiv+1, 0.0);
-
-  FLOAT_T step_lin = (Emax - Emin)/FLOAT_T(nDiv);
-
-  FLOAT_T EE = Emin;
-
-  for (int i=0; i<nDiv; i++) {
-    if (fabs(EE)<1e-6) {EE = 0.;}
-
-    linpoints[i] = EE;
-    EE += step_lin;
-  }
-
-  linpoints[nDiv] = Emax;
-
-  return linpoints;
 }

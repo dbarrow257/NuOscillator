@@ -4,7 +4,8 @@ foreach(app
         DragRace
         Analysis
         SingleOscillator
-        SingleOscProbCalcer)
+        SingleOscProbCalcer
+	OscProbCalcerComparison)
 
         add_executable(${app} ${app}.cpp)
         add_dependencies(OscApps ${app})

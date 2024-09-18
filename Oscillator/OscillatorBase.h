@@ -139,6 +139,21 @@ class OscillatorBase {
    */
   bool CosineZIgnored() {return fCosineZIgnored;}
 
+  /**
+   * @brief Return oscillation probability for a given initial and final flavour, for a given energy and cosineZ
+   *
+   * @param InitNuFlav Initial neutrino flavour of the neutrino
+   * @param FinalNuFlav Final neutrino flavour of the neutrino
+   * @param EnergyVal True energy of the neutrino
+   * @param CosineZVal True direction of the neutrino in CosineZ
+   *
+   * @return Value of the oscillation probability for events of the specific requested type will be stored 
+   */  
+  const FLOAT_T ReturnOscillationProbability(int InitNuFlav, int FinalNuFlav, FLOAT_T EnergyVal, FLOAT_T CosineZVal=DUMMYVAL) {
+    const FLOAT_T* Pointer = ReturnWeightPointer(InitNuFlav, FinalNuFlav, EnergyVal, CosineZVal);
+    return *Pointer;
+  }
+  
   // ========================================================================================================================================================================
   // Public virtual functions which need calculater specific implementations
 

@@ -35,9 +35,7 @@ void OscProbCalcerNuFASTLinear::CalculateProbabilities(std::vector<FLOAT_T> OscP
   // ------------------------------- //
   L = OscParams[kPATHL]; // km
   rho = OscParams[kDENS]; // g/cc
-
-  //Ye = OscParams[kELECDENS];
-  Ye = 0.5;
+  Ye = OscParams[kELECDENS];
   
   // --------------------------------------------------------------------- //
   // Set the number of Newton-Raphson iterations which sets the precision. //
@@ -45,7 +43,7 @@ void OscProbCalcerNuFASTLinear::CalculateProbabilities(std::vector<FLOAT_T> OscP
   // in the high statistics regime. Increasig N_Newton to 1,2,... rapidly  //
   // improves the precision at a modest computational cost                 //
   // --------------------------------------------------------------------- //
-  N_Newton = 1;
+  N_Newton = 3;
 
   // ------------------------------------- //
   // Set the vacuum oscillation parameters //
@@ -57,7 +55,7 @@ void OscProbCalcerNuFASTLinear::CalculateProbabilities(std::vector<FLOAT_T> OscP
   Dmsq21 = OscParams[kDM12];
 
   //Need to convert OscParams[kDM23] to kDM31
-  Dmsq31 = 2.5e-3; // eV^2
+  Dmsq31 = OscParams[kDM23]+OscParams[kDM12]; // eV^2
   
   // ------------------------------------------ //
   // Calculate all 9 oscillationa probabilities //

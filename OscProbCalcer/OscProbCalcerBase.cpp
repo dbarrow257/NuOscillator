@@ -171,7 +171,10 @@ const FLOAT_T* OscProbCalcerBase::ReturnPointerToWeight(int InitNuFlav, int Fina
 
   int NuTypeIndex = ReturnNuTypeFromFlavour(InitNuFlav);
   int OscChanIndex = ReturnOscChannelIndexFromFlavours(InitNuFlav,FinalNuFlav);
-  int CosineZIndex = ReturnCosineZIndexFromValue(CosineZ);
+  int CosineZIndex = -1;
+  if (!ReturnCosineZIgnored()) {
+    CosineZIndex = ReturnCosineZIndexFromValue(CosineZ);
+  }
   int EnergyIndex = ReturnEnergyIndexFromValue(Energy);
 
   int WeightArrayIndex = ReturnWeightArrayIndex(NuTypeIndex,OscChanIndex,EnergyIndex,CosineZIndex);
