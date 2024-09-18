@@ -20,6 +20,8 @@ using std::chrono::milliseconds;
 
 int main() {
 
+  std::string FileExt = ".png";
+  
   //============================================================================================================
   //This executable assumes comparing oscillation engines which have 9 oscillation channels (e,mu,tau)
 
@@ -176,7 +178,7 @@ int main() {
     for	(int iChan=0;iChan<nChannels;iChan++) {
       ProbabilityArray_Ratio[iOsc][iChan].resize(Oscillators[iOsc]->ReturnNEnergyPoints());
       for (int iEnergy=0;iEnergy<Oscillators[iOsc]->ReturnNEnergyPoints();iEnergy++) {
-	ProbabilityArray_Ratio[iOsc][iChan][iEnergy] = fabs(ProbabilityArray[iOsc][iChan][iEnergy]-ProbabilityArray[0][iChan][iEnergy]);
+	ProbabilityArray_Ratio[iOsc][iChan][iEnergy] = 2.*(ProbabilityArray[iOsc][iChan][iEnergy]-ProbabilityArray[0][iChan][iEnergy])/(ProbabilityArray[iOsc][iChan][iEnergy]+ProbabilityArray[0][iChan][iEnergy]);
       }
     }
   }
@@ -186,7 +188,7 @@ int main() {
     Probabilities_Ratio[iOsc].resize(nChannels);
     for (int iChan=0;iChan<nChannels;iChan++) {
       Probabilities_Ratio[iOsc][iChan] = new TGraph(Oscillators[iOsc]->ReturnNEnergyPoints(),EnergyArray.data(),ProbabilityArray_Ratio[iOsc][iChan].data());
-      Probabilities_Ratio[iOsc][iChan]->SetTitle(";Neutrino Energy [GeV];Abs Diff of Probabilities");
+      Probabilities_Ratio[iOsc][iChan]->SetTitle(";Neutrino Energy [GeV];2*(Engine[n]-Engine[0])/(Engine[n]+Engine[0]) of Probabilities");
     }
   }
 
@@ -250,7 +252,7 @@ int main() {
       }
       Leg->Draw("SAME");
       Text.Draw("SAME");
-      Canv1->Print(Form("LinearProbabilityComparison_%i.pdf",iChan));
+      Canv1->Print((Form("LinearProbabilityComparison_%i",iChan)+FileExt).c_str());
       
       Canv2->cd();
       Canv2->SetTopMargin(0.15);
@@ -266,7 +268,7 @@ int main() {
       }
       Leg->Draw("SAME");
       Text.Draw("SAME");
-      Canv2->Print(Form("LinearProbabilityComparison_Ratio_%i.pdf",iChan));
+      Canv2->Print((Form("LinearProbabilityComparison_Ratio_%i",iChan)+FileExt).c_str());
     }
   }
   
