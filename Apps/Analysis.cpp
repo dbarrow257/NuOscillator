@@ -12,7 +12,6 @@ using std::chrono::duration;
 using std::chrono::milliseconds;
 
 int main() {
-  int Verbose = NONE;
   bool PrintWeights = true;
 
   std::vector<FLOAT_T> OscParams_Atm(7);

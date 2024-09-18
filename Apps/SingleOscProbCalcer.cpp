@@ -38,7 +38,6 @@ int main(int argc, char **argv) {
   std::string OscProbCalcerImplementationToCreate = argv[1];
   std::string OscProbCalcerConfigname = argv[2];
   
-  int Verbose = NONE;
   bool PrintWeights = false;
 
   std::vector<FLOAT_T> OscParams_Atm(7);
