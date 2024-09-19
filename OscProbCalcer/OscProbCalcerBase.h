@@ -21,14 +21,6 @@ class OscProbCalcerBase {
   // Public functions which are calculation implementation agnostic
 
    /**
-    * @brief Default constructor
-    *
-    * @param ConfigName_ Name of YAML config used to set runtime variables
-    * @param Instance_ Instance in the OscProbCalcerSetup YAML Node to select
-    */
-   OscProbCalcerBase(std::string ConfigName_, std::string ImplementationName_, int Instance_=0);
-
-   /**
     * @brief Destructor
     */
    virtual ~OscProbCalcerBase();
@@ -193,6 +185,16 @@ class OscProbCalcerBase {
   // Public virtual functions which need calculater specific implementations
 
  protected:
+   /**
+    * @brief Default constructor
+    *
+    * @details It is protected to prevent initialisation of base class
+    *
+    * @param ConfigName_ Name of YAML config used to set runtime variables
+    * @param Instance_ Instance in the OscProbCalcerSetup YAML Node to select
+    */
+   OscProbCalcerBase(std::string ConfigName_, std::string ImplementationName_, int Instance_=0);
+
   // ========================================================================================================================================================================
   // Protected functions which are calculation implementation agnostic  
 

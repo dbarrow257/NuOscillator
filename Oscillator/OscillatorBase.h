@@ -19,22 +19,13 @@
  */
 class OscillatorBase {
  public:
-
-  // ========================================================================================================================================================================
-  // Public functions which are calculation implementation agnostic
-
-   /**
-    * @brief Default constructor
-    *
-    * @param ConfigName_ YAML config file used to set runtime constants
-    */
-   OscillatorBase(std::string ConfigName_);
-
-
    /**
     * @brief Destructor
     */
    virtual ~OscillatorBase();
+
+  // ========================================================================================================================================================================
+  // Public functions which are calculation implementation agnostic
 
   /**
    * @brief Perform a sanity check which ensures that #fOscProbCalcers have been set correctly.
@@ -188,6 +179,16 @@ class OscillatorBase {
   virtual const FLOAT_T* ReturnWeightPointer(int InitNuFlav, int FinalNuFlav, FLOAT_T EnergyVal, FLOAT_T CosineZVal=DUMMYVAL) = 0;
 
  protected:
+   /**
+    * @brief Default constructor
+    *
+    * @details It is protected to prevent initialisation of base class
+    *
+    * @param ConfigName_ YAML config file used to set runtime constants
+    */
+   OscillatorBase(std::string ConfigName_);
+
+
   // ========================================================================================================================================================================
   // Protected functions which are calculation implementation agnostic
 
