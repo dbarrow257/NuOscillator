@@ -25,6 +25,11 @@ class OscillatorBinned : public OscillatorBase {
    */
   OscillatorBinned(std::string ConfigName_);
 
+  /**
+   * @brief Destructor
+   */
+  virtual ~OscillatorBinned();
+
   // ========================================================================================================================================================================
   // Public functions which are calculation implementation agnostic
 

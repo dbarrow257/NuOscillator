@@ -21,6 +21,11 @@ class OscProbCalcerProbGPULinear : public OscProbCalcerBase {
    */
   OscProbCalcerProbGPULinear(std::string ConfigName_="", int Instance_=0);
 
+  /**
+   * @brief Destructor
+   */
+  virtual ~OscProbCalcerProbGPULinear();
+
   // ========================================================================================================================================================================
   // Functions which need implementation specific code
 

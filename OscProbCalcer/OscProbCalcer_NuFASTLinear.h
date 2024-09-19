@@ -21,6 +21,11 @@ class OscProbCalcerNuFASTLinear : public OscProbCalcerBase {
    */
   OscProbCalcerNuFASTLinear(std::string ConfigName_="", int Instance_=0);
 
+  /**
+   * @brief Destructor
+   */
+  virtual ~OscProbCalcerNuFASTLinear();
+
   // ========================================================================================================================================================================
   // Functions which need implementation specific code
 

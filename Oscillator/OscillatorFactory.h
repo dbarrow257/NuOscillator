@@ -21,6 +21,11 @@ class OscillatorFactory {
   OscillatorFactory();
 
   /**
+   * @brief Destructor
+   */
+  virtual ~OscillatorFactory();
+
+  /**
    * @brief Create an instance of OscillatorBase::OscillatorBase() objects from a YAML config. This currently includes OscillatorBinned::OscillatorBinned() and 
    * OscillatorUnbinned::OscillatorUnbinned() objects
    *

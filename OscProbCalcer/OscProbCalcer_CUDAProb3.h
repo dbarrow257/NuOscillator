@@ -29,6 +29,11 @@ class OscProbCalcerCUDAProb3 : public OscProbCalcerBase {
    */
   OscProbCalcerCUDAProb3(std::string ConfigName_="", int Instance_=0);
 
+  /**
+   * @brief Destructor
+   */
+  virtual ~OscProbCalcerCUDAProb3();
+
  private:
   // ========================================================================================================================================================================
   // Functions which need implementation specific code

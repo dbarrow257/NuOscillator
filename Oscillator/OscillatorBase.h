@@ -23,6 +23,19 @@ class OscillatorBase {
   // ========================================================================================================================================================================
   // Public functions which are calculation implementation agnostic
 
+   /**
+    * @brief Default constructor
+    *
+    * @param ConfigName_ YAML config file used to set runtime constants
+    */
+   OscillatorBase(std::string ConfigName_);
+
+
+   /**
+    * @brief Destructor
+    */
+   virtual ~OscillatorBase();
+
   /**
    * @brief Perform a sanity check which ensures that #fOscProbCalcers have been set correctly.
    *
@@ -177,19 +190,6 @@ class OscillatorBase {
  protected:
   // ========================================================================================================================================================================
   // Protected functions which are calculation implementation agnostic
-
-  /**
-   * @brief Default constructor
-   *
-   * @param ConfigName_ YAML config file used to set runtime constants
-   */
-  OscillatorBase(std::string ConfigName_);
-
-
-  /**
-   * @brief Destructor
-   */
-  virtual ~OscillatorBase();
 
   /**
    * @brief Return a pointer to the oscillation probability memory address in a particular index of #fOscProbCalcers for a particular event

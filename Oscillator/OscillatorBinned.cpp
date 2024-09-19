@@ -41,6 +41,11 @@ OscillatorBinned::OscillatorBinned(std::string ConfigName_) : OscillatorBase(Con
 
 }
 
+
+OscillatorBinned::~OscillatorBinned() {
+
+}
+
 std::vector<FLOAT_T> OscillatorBinned::ReadBinEdgesFromFile(std::string FileName, std::string HistogramName, bool IsCosineZAxis) {
   std::vector<FLOAT_T> BinEdges;
 

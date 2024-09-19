@@ -22,6 +22,10 @@ OscProbCalcerNuFASTLinear::OscProbCalcerNuFASTLinear(std::string ConfigName_, in
   IgnoreCosineZBinning(true);
 }
 
+OscProbCalcerNuFASTLinear::~OscProbCalcerNuFASTLinear() {
+
+}
+
 void OscProbCalcerNuFASTLinear::SetupPropagator() {
 }
 

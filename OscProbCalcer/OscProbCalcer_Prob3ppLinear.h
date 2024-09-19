@@ -23,6 +23,11 @@ class OscProbCalcerProb3ppLinear : public OscProbCalcerBase {
    */
   OscProbCalcerProb3ppLinear(std::string ConfigName_="", int Instance_=0);
 
+  /**
+   * @brief Destructor
+   */
+  virtual ~OscProbCalcerProb3ppLinear();
+
   // ========================================================================================================================================================================
   // Functions which need implementation specific code
 

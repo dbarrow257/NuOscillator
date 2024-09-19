@@ -48,6 +48,11 @@ OscProbCalcerCUDAProb3Linear::OscProbCalcerCUDAProb3Linear(std::string ConfigNam
   nThreads = 1;
 }
 
+
+OscProbCalcerCUDAProb3Linear::~OscProbCalcerCUDAProb3Linear() {
+
+}
+
 void OscProbCalcerCUDAProb3Linear::SetupPropagator() {
 
 #if UseGPU == 1

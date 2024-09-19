@@ -26,6 +26,10 @@ OscProbCalcerProbGPULinear::OscProbCalcerProbGPULinear(std::string ConfigName_, 
   doubled_angle = true;
 }
 
+OscProbCalcerProbGPULinear::~OscProbCalcerProbGPULinear() {
+  if(CopyArr != nullptr) delete[] CopyArr;
+}
+
 void OscProbCalcerProbGPULinear::SetupPropagator() {
   // This implementation doesn't really need to do anything in the setup due to probGPU's horrific implementation
 }
@@ -44,7 +48,7 @@ void OscProbCalcerProbGPULinear::CalculateProbabilities(std::vector<FLOAT_T> Osc
       // Mapping which links the oscillation channel, neutrino type and energy index to the fWeightArray index
       int IndexToFill = iNuType*fNOscillationChannels*CopyArrSize + iOscChannel*CopyArrSize;
       for (int iOscProb=0;iOscProb<CopyArrSize;iOscProb++) {
-	fWeightArray[IndexToFill+iOscProb] = CopyArr[iOscProb];
+        fWeightArray[IndexToFill+iOscProb] = CopyArr[iOscProb];
       }
     }
   }

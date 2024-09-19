@@ -264,6 +264,7 @@ install(FILES "${PROJECT_BINARY_DIR}/setup.NuOscillator.sh" DESTINATION ${CMAKE_
 
 install(DIRECTORY Configs DESTINATION ${CMAKE_INSTALL_PREFIX}/)
 install(DIRECTORY Inputs DESTINATION ${CMAKE_INSTALL_PREFIX}/)
+install(DIRECTORY Constants DESTINATION ${CMAKE_INSTALL_PREFIX}/)
 
 set_target_properties(NuOscillatorCompilerOptions PROPERTIES EXPORT_NAME CompilerOptions)
 install(TARGETS NuOscillatorCompilerOptions

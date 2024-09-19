@@ -76,7 +76,7 @@ int main() {
 #if UseProb3ppLinear == 1
   ConfigNames.push_back("./Configs/Unbinned_Prob3ppLinear.yaml");
 #endif
-  
+
 #if UseCUDAProb3 == 1
   ConfigNames.push_back("./Configs/Unbinned_CUDAProb3.yaml");
 #endif

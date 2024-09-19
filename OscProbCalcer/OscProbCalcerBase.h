@@ -20,6 +20,19 @@ class OscProbCalcerBase {
   // ========================================================================================================================================================================
   // Public functions which are calculation implementation agnostic
 
+   /**
+    * @brief Default constructor
+    *
+    * @param ConfigName_ Name of YAML config used to set runtime variables
+    * @param Instance_ Instance in the OscProbCalcerSetup YAML Node to select
+    */
+   OscProbCalcerBase(std::string ConfigName_, std::string ImplementationName_, int Instance_=0);
+
+   /**
+    * @brief Destructor
+    */
+   virtual ~OscProbCalcerBase();
+
   /**
    * @brief Define the Energy which will be used when calculating the oscillation probabilities
    * 
@@ -180,20 +193,6 @@ class OscProbCalcerBase {
   // Public virtual functions which need calculater specific implementations
 
  protected:
-
-  /**
-   * @brief Default constructor
-   *
-   * @param ConfigName_ Name of YAML config used to set runtime variables
-   * @param Instance_ Instance in the OscProbCalcerSetup YAML Node to select
-   */
-  OscProbCalcerBase(std::string ConfigName_, std::string ImplementationName_, int Instance_=0);
-
-
-  /**
-   * @brief Destructor
-   */
-  virtual ~OscProbCalcerBase();
   // ========================================================================================================================================================================
   // Protected functions which are calculation implementation agnostic  
 

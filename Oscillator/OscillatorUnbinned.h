@@ -25,6 +25,11 @@ class OscillatorUnbinned : public OscillatorBase {
    */
   OscillatorUnbinned(std::string ConfigName_);
 
+  /**
+   * @brief Destructor
+   */
+  virtual ~OscillatorUnbinned();
+
   // ========================================================================================================================================================================
   // Public functions which are calculation implementation agnostic
 

@@ -5,6 +5,10 @@
 OscillatorFactory::OscillatorFactory() {
 }
 
+OscillatorFactory::~OscillatorFactory() {
+
+}
+
 OscillatorBase* OscillatorFactory::CreateOscillator(std::string ConfigName_) {
   // Create config manager
   std::cout << "OscillatorFactory creating OscillatorBase object from config: " << ConfigName_ << std::endl;
