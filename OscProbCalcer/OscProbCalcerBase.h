@@ -70,7 +70,7 @@ class OscProbCalcerBase {
    *
    * @param OscParams The oscillation parameters to calculate the oscillation probability at
    */
-  void Reweight(std::vector<FLOAT_T> OscParams);
+  void Reweight(const std::vector<FLOAT_T>& OscParams);
 
   /**
    * @brief General function used to setup all variables used within the reweighting
@@ -216,7 +216,7 @@ class OscProbCalcerBase {
    * @param OscParamsToCheck The oscillation parameters which have been requested for the next calculation
    * @return Boolean whether the OscParamsToCheck match those saved from the last calculation
    */
-  bool AreOscParamsChanged(std::vector<FLOAT_T> OscParamsToCheck);
+  bool AreOscParamsChanged(const std::vector<FLOAT_T>& OscParamsToCheck);
 
   /**
    * @brief Save the oscillation parameters which have been requested
@@ -225,7 +225,7 @@ class OscProbCalcerBase {
    *
    * @param OscParamsToCheck Parameter set to save
    */
-  void SetCurrOscParams(std::vector<FLOAT_T> OscParamsToCheck);
+  void SetCurrOscParams(const std::vector<FLOAT_T>& OscParamsToCheck);
 
   /**
    * @brief (Re-)Initialise the saved oscillation parameters in #fOscParamsCurr
@@ -312,7 +312,7 @@ class OscProbCalcerBase {
    *
    * @param OscParams The parameter set to calculate oscillation probabilities at
    */
-  virtual void CalculateProbabilities(std::vector<FLOAT_T> OscParams) = 0;
+  virtual void CalculateProbabilities(const std::vector<FLOAT_T>& OscParams) = 0;
 
   /**
    * @brief Setup any implementation specific variables/functions

@@ -21,6 +21,8 @@ OscProbCalcerProb3ppLinear::OscProbCalcerProb3ppLinear(std::string ConfigName_, 
 
   // Implementation specific variables
   doubled_angle = true;
+
+  bNu = nullptr;
 }
 
 OscProbCalcerProb3ppLinear::~OscProbCalcerProb3ppLinear() {
@@ -35,8 +37,8 @@ void OscProbCalcerProb3ppLinear::SetupPropagator() {
    bNu->SetWarningSuppression(true);
 }
 
-void OscProbCalcerProb3ppLinear::CalculateProbabilities(std::vector<FLOAT_T> OscParams) {
-  // Prob3++ calculates oscillation probabilites for each NeutrinoType and each energy, so need to copy them from the calculator into fWeightArray
+void OscProbCalcerProb3ppLinear::CalculateProbabilities(const std::vector<FLOAT_T>& OscParams) {
+  // Prob3++ calculates oscillation probabilities for each NeutrinoType and each energy, so need to copy them from the calculator into fWeightArray
   for (int iNuType=0;iNuType<fNNeutrinoTypes;iNuType++) {
     for (int iOscChannel=0;iOscChannel<fNOscillationChannels;iOscChannel++) {
     

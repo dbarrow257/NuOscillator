@@ -1,4 +1,4 @@
-#include "OscillatorBinned.h"
+#include "Oscillator/OscillatorBinned.h"
 
 #include <iostream>
 

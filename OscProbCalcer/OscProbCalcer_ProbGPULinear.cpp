@@ -27,17 +27,17 @@ OscProbCalcerProbGPULinear::OscProbCalcerProbGPULinear(std::string ConfigName_, 
 }
 
 OscProbCalcerProbGPULinear::~OscProbCalcerProbGPULinear() {
-  if(CopyArr != nullptr) delete[] CopyArr;
+
 }
 
 void OscProbCalcerProbGPULinear::SetupPropagator() {
   // This implementation doesn't really need to do anything in the setup due to probGPU's horrific implementation
 }
 
-void OscProbCalcerProbGPULinear::CalculateProbabilities(std::vector<FLOAT_T> OscParams) {
+void OscProbCalcerProbGPULinear::CalculateProbabilities(const std::vector<FLOAT_T>& OscParams) {
   setMNS(OscParams[kTH12], OscParams[kTH13], OscParams[kTH23], OscParams[kDM12], OscParams[kDM23], OscParams[kDCP], doubled_angle);
 
-  // ProbGPULinear calculates oscillation probabilites for each NeutrinoType, so need to copy them from the calculator into fWeightArray
+  // ProbGPULinear calculates oscillation probabilities for each NeutrinoType, so need to copy them from the calculator into fWeightArray
   int CopyArrSize = fNEnergyPoints;
   FLOAT_T* CopyArr = new FLOAT_T[CopyArrSize];
 
@@ -52,6 +52,7 @@ void OscProbCalcerProbGPULinear::CalculateProbabilities(std::vector<FLOAT_T> Osc
       }
     }
   }
+  delete[] CopyArr;
 }
 
 int OscProbCalcerProbGPULinear::ReturnWeightArrayIndex(int NuTypeIndex, int OscChanIndex, int EnergyIndex, int CosineZIndex) {
