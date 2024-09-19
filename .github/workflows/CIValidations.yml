@@ -21,7 +21,7 @@ jobs:
       fail-fast: false  # Prevents cancellation of remaining jobs if one fails
       matrix:
         include:
-          - name: SplineValidations
+          - name: DragRace
     container:
       image: ghcr.io/mach3-software/mach3:alma9latest
 
