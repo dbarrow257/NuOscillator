@@ -1,0 +1,49 @@
+# Update NuOscillator container image registry with newest updates
+name: Image CD
+
+# The events that trigger the workflow
+on:
+  push:
+    branches: [ main ]
+  release:
+    types: [ published ]
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false  # KS: Prevents cancellation of remaining jobs if one fails
+      matrix:
+        include:
+          - os: Alma9
+            file: Docs/DockerFiles/Alma9/Dockerfile
+            tag_latest: alma9latest
+
+    name: Image CD ${{ matrix.os }}
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Log in to GitHub Container Registry
+      run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+
+    - name: Build Docker image
+      run: |
+        if [ "${{ github.event_name }}" == 'release' ]; then
+          docker build . --file ${{ matrix.file }} --tag ghcr.io/${{ github.repository_owner }}/nuoscillator:${{ matrix.os }}v${{ github.event.release.tag_name }} --build-arg NUOSCILLATOR_VERSION=main
+        else
+          docker build . --file ${{ matrix.file }} --tag ghcr.io/${{ github.repository_owner }}/nuoscillator:${{ matrix.tag_latest }} --build-arg NUOSCILLATOR_VERSION=main
+        fi
+
+    - name: Push Docker image
+      run: |
+        if [ "${{ github.event_name }}" == 'release' ]; then
+          docker push ghcr.io/${{ github.repository_owner }}/nuoscillator:${{ matrix.os }}v${{ github.event.release.tag_name }}
+        else
+          docker push ghcr.io/${{ github.repository_owner }}/nuoscillator:${{ matrix.tag_latest }}
+        fi
