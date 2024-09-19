@@ -1,0 +1,51 @@
+# Performs unit and integration testing
+
+name: Validations CI
+
+# The events that trigger the workflow
+on:
+  pull_request:
+    branches: [ main ]
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    name: ${{ matrix.name }}
+
+    strategy:
+      fail-fast: false  # Prevents cancellation of remaining jobs if one fails
+      matrix:
+        include:
+          - name: SplineValidations
+    container:
+      image: ghcr.io/mach3-software/mach3:alma9latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+
+    - name: Get NuOscillator
+      run: |
+        cd /opt/
+        git clone https://github.com/dbarrow257/NuOscillator.git NuOscillator
+        cd NuOscillator
+        git checkout ${{ github.head_ref }}
+        mkdir build
+        cd build
+        cmake ../ -DUseGPU=0 -DUseMultithreading=1 -DUseDoubles=0 -DUseCUDAProb3=0 -DUseCUDAProb3Linear=1 -DUseProb3ppLinear=1 -DUseNuFASTLinear=1 -DUseProbGPULinear=0
+
+    - name: Build NuOscillator
+      run: |
+        cd /opt/NuOscillator/build
+        make install # Build the project
+
+    - name: Validations
+      run: |
+        source /opt/NuOscillator/build/Linux/bin/setup.NuOscillator.sh
+        cd /opt/NuOscillator/
+        build/Linux/bin//${{ matrix.name }}
