@@ -99,6 +99,9 @@ Inheritance diagram for OscProbCalcerBase:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr class="memitem:ae5485ac57513ab579873f3495522fa31" id="r_ae5485ac57513ab579873f3495522fa31"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerBase.html#ae5485ac57513ab579873f3495522fa31">~OscProbCalcerBase</a> ()</td></tr>
+<tr class="memdesc:ae5485ac57513ab579873f3495522fa31"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor.  <br /></td></tr>
+<tr class="separator:ae5485ac57513ab579873f3495522fa31"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a32f2aba0bf39abdec1171c40bf8de112" id="r_a32f2aba0bf39abdec1171c40bf8de112"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerBase.html#a32f2aba0bf39abdec1171c40bf8de112">SetEnergyArray</a> (std::vector&lt; <a class="el" href="OscillatorConstants_8h.html#acb53b45d3e1b677a15c2ef27b266b1ca">FLOAT_T</a> &gt; EnergyArray)</td></tr>
 <tr class="memdesc:a32f2aba0bf39abdec1171c40bf8de112"><td class="mdescLeft">&#160;</td><td class="mdescRight">Define the Energy which will be used when calculating the oscillation probabilities.  <br /></td></tr>
 <tr class="separator:a32f2aba0bf39abdec1171c40bf8de112"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -108,9 +111,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aa6989c2c10d592690dc08470ef0c6f31" id="r_aa6989c2c10d592690dc08470ef0c6f31"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="OscillatorConstants_8h.html#acb53b45d3e1b677a15c2ef27b266b1ca">FLOAT_T</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerBase.html#aa6989c2c10d592690dc08470ef0c6f31">ReturnPointerToWeight</a> (int InitNuFlav, int FinalNuFlav, <a class="el" href="OscillatorConstants_8h.html#acb53b45d3e1b677a15c2ef27b266b1ca">FLOAT_T</a> Energy, <a class="el" href="OscillatorConstants_8h.html#acb53b45d3e1b677a15c2ef27b266b1ca">FLOAT_T</a> CosineZ=<a class="el" href="OscillatorConstants_8h.html#ae3a7da283c400b8c7e8fb8f27042d7dc">DUMMYVAL</a>)</td></tr>
 <tr class="memdesc:aa6989c2c10d592690dc08470ef0c6f31"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return pointer to the weight array for a specific Energy and CosineZ.  <br /></td></tr>
 <tr class="separator:aa6989c2c10d592690dc08470ef0c6f31"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aad09677d5dd94128129ae5baccdb1d1e" id="r_aad09677d5dd94128129ae5baccdb1d1e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerBase.html#aad09677d5dd94128129ae5baccdb1d1e">Reweight</a> (std::vector&lt; <a class="el" href="OscillatorConstants_8h.html#acb53b45d3e1b677a15c2ef27b266b1ca">FLOAT_T</a> &gt; OscParams)</td></tr>
-<tr class="memdesc:aad09677d5dd94128129ae5baccdb1d1e"><td class="mdescLeft">&#160;</td><td class="mdescRight">General function used to call the oscillation probability calculation.  <br /></td></tr>
-<tr class="separator:aad09677d5dd94128129ae5baccdb1d1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a73cb63ebc6dc8e5381c96d318f5540cd" id="r_a73cb63ebc6dc8e5381c96d318f5540cd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerBase.html#a73cb63ebc6dc8e5381c96d318f5540cd">Reweight</a> (const std::vector&lt; <a class="el" href="OscillatorConstants_8h.html#acb53b45d3e1b677a15c2ef27b266b1ca">FLOAT_T</a> &gt; &amp;OscParams)</td></tr>
+<tr class="memdesc:a73cb63ebc6dc8e5381c96d318f5540cd"><td class="mdescLeft">&#160;</td><td class="mdescRight">General function used to call the oscillation probability calculation.  <br /></td></tr>
+<tr class="separator:a73cb63ebc6dc8e5381c96d318f5540cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad3014d68c5a9d86418204ce89cf8ad08" id="r_ad3014d68c5a9d86418204ce89cf8ad08"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerBase.html#ad3014d68c5a9d86418204ce89cf8ad08">Setup</a> ()</td></tr>
 <tr class="memdesc:ad3014d68c5a9d86418204ce89cf8ad08"><td class="mdescLeft">&#160;</td><td class="mdescRight">General function used to setup all variables used within the reweighting.  <br /></td></tr>
 <tr class="separator:ad3014d68c5a9d86418204ce89cf8ad08"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -171,18 +174,15 @@ Protected Member Functions</h2></td></tr>
 <tr class="memitem:ab5590c6dfa392d74861a4cdc2ba8a1ac" id="r_ab5590c6dfa392d74861a4cdc2ba8a1ac"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerBase.html#ab5590c6dfa392d74861a4cdc2ba8a1ac">OscProbCalcerBase</a> (std::string ConfigName_, std::string ImplementationName_, int Instance_=0)</td></tr>
 <tr class="memdesc:ab5590c6dfa392d74861a4cdc2ba8a1ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor.  <br /></td></tr>
 <tr class="separator:ab5590c6dfa392d74861a4cdc2ba8a1ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae5485ac57513ab579873f3495522fa31" id="r_ae5485ac57513ab579873f3495522fa31"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerBase.html#ae5485ac57513ab579873f3495522fa31">~OscProbCalcerBase</a> ()</td></tr>
-<tr class="memdesc:ae5485ac57513ab579873f3495522fa31"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor.  <br /></td></tr>
-<tr class="separator:ae5485ac57513ab579873f3495522fa31"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a46ec4492255938f1a37e621bc1404c0b" id="r_a46ec4492255938f1a37e621bc1404c0b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerBase.html#a46ec4492255938f1a37e621bc1404c0b">IgnoreCosineZBinning</a> (bool Ignore)</td></tr>
 <tr class="memdesc:a46ec4492255938f1a37e621bc1404c0b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Some implementations don't care about the CosineZ values, so this is a method to set <a class="el" href="classOscProbCalcerBase.html#afd9fe2aa6d97a77da7dea42ed2134763" title="Boolean declaring whether the CosineZ array has been set.">fCosineZArraySet</a> to true in those cases.  <br /></td></tr>
 <tr class="separator:a46ec4492255938f1a37e621bc1404c0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4e369ad2494bac7564280a4e9f4cc38b" id="r_a4e369ad2494bac7564280a4e9f4cc38b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerBase.html#a4e369ad2494bac7564280a4e9f4cc38b">AreOscParamsChanged</a> (std::vector&lt; <a class="el" href="OscillatorConstants_8h.html#acb53b45d3e1b677a15c2ef27b266b1ca">FLOAT_T</a> &gt; OscParamsToCheck)</td></tr>
-<tr class="memdesc:a4e369ad2494bac7564280a4e9f4cc38b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check whether the oscillation parameters have changed since their previous value.  <br /></td></tr>
-<tr class="separator:a4e369ad2494bac7564280a4e9f4cc38b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4b4ba6ea3f90f6ba2ba31d99c9dceb90" id="r_a4b4ba6ea3f90f6ba2ba31d99c9dceb90"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerBase.html#a4b4ba6ea3f90f6ba2ba31d99c9dceb90">SetCurrOscParams</a> (std::vector&lt; <a class="el" href="OscillatorConstants_8h.html#acb53b45d3e1b677a15c2ef27b266b1ca">FLOAT_T</a> &gt; OscParamsToCheck)</td></tr>
-<tr class="memdesc:a4b4ba6ea3f90f6ba2ba31d99c9dceb90"><td class="mdescLeft">&#160;</td><td class="mdescRight">Save the oscillation parameters which have been requested.  <br /></td></tr>
-<tr class="separator:a4b4ba6ea3f90f6ba2ba31d99c9dceb90"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3240c781d021606401ac6468b228f04b" id="r_a3240c781d021606401ac6468b228f04b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerBase.html#a3240c781d021606401ac6468b228f04b">AreOscParamsChanged</a> (const std::vector&lt; <a class="el" href="OscillatorConstants_8h.html#acb53b45d3e1b677a15c2ef27b266b1ca">FLOAT_T</a> &gt; &amp;OscParamsToCheck)</td></tr>
+<tr class="memdesc:a3240c781d021606401ac6468b228f04b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check whether the oscillation parameters have changed since their previous value.  <br /></td></tr>
+<tr class="separator:a3240c781d021606401ac6468b228f04b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae1f688e7e35762aa9b280b7cebd3bddf" id="r_ae1f688e7e35762aa9b280b7cebd3bddf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerBase.html#ae1f688e7e35762aa9b280b7cebd3bddf">SetCurrOscParams</a> (const std::vector&lt; <a class="el" href="OscillatorConstants_8h.html#acb53b45d3e1b677a15c2ef27b266b1ca">FLOAT_T</a> &gt; &amp;OscParamsToCheck)</td></tr>
+<tr class="memdesc:ae1f688e7e35762aa9b280b7cebd3bddf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Save the oscillation parameters which have been requested.  <br /></td></tr>
+<tr class="separator:ae1f688e7e35762aa9b280b7cebd3bddf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab9068d0366d8573f2ecbb42926f34af4" id="r_ab9068d0366d8573f2ecbb42926f34af4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerBase.html#ab9068d0366d8573f2ecbb42926f34af4">ResetCurrOscParams</a> ()</td></tr>
 <tr class="memdesc:ab9068d0366d8573f2ecbb42926f34af4"><td class="mdescLeft">&#160;</td><td class="mdescRight">(Re-)Initialise the saved oscillation parameters in <a class="el" href="classOscProbCalcerBase.html#abc4e79d55f1e9400a62b1b06c2c2b900" title="Vector which stores the saved oscillation probabilities.">fOscParamsCurr</a>  <br /></td></tr>
 <tr class="separator:ab9068d0366d8573f2ecbb42926f34af4"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -213,9 +213,9 @@ Protected Member Functions</h2></td></tr>
 <tr class="memitem:a604f6c463a8fc1f33ff867162d2adafd" id="r_a604f6c463a8fc1f33ff867162d2adafd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerBase.html#a604f6c463a8fc1f33ff867162d2adafd">SanitiseProbabilities</a> ()</td></tr>
 <tr class="memdesc:a604f6c463a8fc1f33ff867162d2adafd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ensure that the oscillation probabilities are within [0.,1.] range, if not throw error.  <br /></td></tr>
 <tr class="separator:a604f6c463a8fc1f33ff867162d2adafd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6dd2916f9767f99659c49f03499cd77f" id="r_a6dd2916f9767f99659c49f03499cd77f"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerBase.html#a6dd2916f9767f99659c49f03499cd77f">CalculateProbabilities</a> (std::vector&lt; <a class="el" href="OscillatorConstants_8h.html#acb53b45d3e1b677a15c2ef27b266b1ca">FLOAT_T</a> &gt; OscParams)=0</td></tr>
-<tr class="memdesc:a6dd2916f9767f99659c49f03499cd77f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate some oscillation probabilities for a particular oscillation parameter set.  <br /></td></tr>
-<tr class="separator:a6dd2916f9767f99659c49f03499cd77f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa4c6ecb7c6a0936a36810183658ce165" id="r_aa4c6ecb7c6a0936a36810183658ce165"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerBase.html#aa4c6ecb7c6a0936a36810183658ce165">CalculateProbabilities</a> (const std::vector&lt; <a class="el" href="OscillatorConstants_8h.html#acb53b45d3e1b677a15c2ef27b266b1ca">FLOAT_T</a> &gt; &amp;OscParams)=0</td></tr>
+<tr class="memdesc:aa4c6ecb7c6a0936a36810183658ce165"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate some oscillation probabilities for a particular oscillation parameter set.  <br /></td></tr>
+<tr class="separator:aa4c6ecb7c6a0936a36810183658ce165"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad81484ca1346a09c978123142249d926" id="r_ad81484ca1346a09c978123142249d926"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerBase.html#ad81484ca1346a09c978123142249d926">SetupPropagator</a> ()=0</td></tr>
 <tr class="memdesc:ad81484ca1346a09c978123142249d926"><td class="mdescLeft">&#160;</td><td class="mdescRight">Setup any implementation specific variables/functions.  <br /></td></tr>
 <tr class="separator:ad81484ca1346a09c978123142249d926"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -304,6 +304,33 @@ Private Attributes</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Oscillation calculation engine (CUDAProb3, ProbGPU, Prob3++, etc.) implementation agnostic base class. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="ae5485ac57513ab579873f3495522fa31" name="ae5485ac57513ab579873f3495522fa31"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae5485ac57513ab579873f3495522fa31">&#9670;&#160;</a></span>~OscProbCalcerBase()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">OscProbCalcerBase::~OscProbCalcerBase </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Destructor. </p>
+
+</div>
+</div>
 <a id="ab5590c6dfa392d74861a4cdc2ba8a1ac" name="ab5590c6dfa392d74861a4cdc2ba8a1ac"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab5590c6dfa392d74861a4cdc2ba8a1ac">&#9670;&#160;</a></span>OscProbCalcerBase()</h2>
 
@@ -345,6 +372,7 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Default constructor. </p>
+<p>It is protected to prevent initialisation of base class</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">ConfigName_</td><td>Name of YAML config used to set runtime variables </td></tr>
@@ -355,36 +383,9 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="ae5485ac57513ab579873f3495522fa31" name="ae5485ac57513ab579873f3495522fa31"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae5485ac57513ab579873f3495522fa31">&#9670;&#160;</a></span>~OscProbCalcerBase()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">OscProbCalcerBase::~OscProbCalcerBase </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Destructor. </p>
-
-</div>
-</div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a4e369ad2494bac7564280a4e9f4cc38b" name="a4e369ad2494bac7564280a4e9f4cc38b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4e369ad2494bac7564280a4e9f4cc38b">&#9670;&#160;</a></span>AreOscParamsChanged()</h2>
+<a id="a3240c781d021606401ac6468b228f04b" name="a3240c781d021606401ac6468b228f04b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3240c781d021606401ac6468b228f04b">&#9670;&#160;</a></span>AreOscParamsChanged()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -395,7 +396,7 @@ Private Attributes</h2></td></tr>
         <tr>
           <td class="memname">bool OscProbCalcerBase::AreOscParamsChanged </td>
           <td>(</td>
-          <td class="paramtype">std::vector&lt; <a class="el" href="OscillatorConstants_8h.html#acb53b45d3e1b677a15c2ef27b266b1ca">FLOAT_T</a> &gt;&#160;</td>
+          <td class="paramtype">const std::vector&lt; <a class="el" href="OscillatorConstants_8h.html#acb53b45d3e1b677a15c2ef27b266b1ca">FLOAT_T</a> &gt; &amp;&#160;</td>
           <td class="paramname"><em>OscParamsToCheck</em></td><td>)</td>
           <td></td>
         </tr>
@@ -408,7 +409,7 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Check whether the oscillation parameters have changed since their previous value. </p>
-<p>We can save a fairly expensive calculation by checking whether the oscillation parameters have been updated since the last call to <a class="el" href="classOscProbCalcerBase.html#a6dd2916f9767f99659c49f03499cd77f" title="Calculate some oscillation probabilities for a particular oscillation parameter set.">CalculateProbabilities()</a> , for the price of a couple of if statements. Whilst in normal MCMC running, this will almost always return true, for sigma variations of systematics, this will almost always return false</p>
+<p>We can save a fairly expensive calculation by checking whether the oscillation parameters have been updated since the last call to <a class="el" href="classOscProbCalcerBase.html#aa4c6ecb7c6a0936a36810183658ce165" title="Calculate some oscillation probabilities for a particular oscillation parameter set.">CalculateProbabilities()</a> , for the price of a couple of if statements. Whilst in normal MCMC running, this will almost always return true, for sigma variations of systematics, this will almost always return false</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">OscParamsToCheck</td><td>The oscillation parameters which have been requested for the next calculation </td></tr>
@@ -419,8 +420,8 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a6dd2916f9767f99659c49f03499cd77f" name="a6dd2916f9767f99659c49f03499cd77f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6dd2916f9767f99659c49f03499cd77f">&#9670;&#160;</a></span>CalculateProbabilities()</h2>
+<a id="aa4c6ecb7c6a0936a36810183658ce165" name="aa4c6ecb7c6a0936a36810183658ce165"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa4c6ecb7c6a0936a36810183658ce165">&#9670;&#160;</a></span>CalculateProbabilities()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -431,7 +432,7 @@ Private Attributes</h2></td></tr>
         <tr>
           <td class="memname">virtual void OscProbCalcerBase::CalculateProbabilities </td>
           <td>(</td>
-          <td class="paramtype">std::vector&lt; <a class="el" href="OscillatorConstants_8h.html#acb53b45d3e1b677a15c2ef27b266b1ca">FLOAT_T</a> &gt;&#160;</td>
+          <td class="paramtype">const std::vector&lt; <a class="el" href="OscillatorConstants_8h.html#acb53b45d3e1b677a15c2ef27b266b1ca">FLOAT_T</a> &gt; &amp;&#160;</td>
           <td class="paramname"><em>OscParams</em></td><td>)</td>
           <td></td>
         </tr>
@@ -452,7 +453,7 @@ Private Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Implemented in <a class="el" href="classOscProbCalcerCUDAProb3.html#afaa727754c7caf597cc0da1176b739fc">OscProbCalcerCUDAProb3</a>, <a class="el" href="classOscProbCalcerCUDAProb3Linear.html#a090e6da465e5e2f0e276267211fdd4fa">OscProbCalcerCUDAProb3Linear</a>, <a class="el" href="classOscProbCalcerNuFASTLinear.html#a43e4e3b448accd42e40f6bc15a266484">OscProbCalcerNuFASTLinear</a>, <a class="el" href="classOscProbCalcerProb3ppLinear.html#a7c26dd14ac64dae9ef76368fe621db4f">OscProbCalcerProb3ppLinear</a>, and <a class="el" href="classOscProbCalcerProbGPULinear.html#ade2c76ecacc669f5631f9df64682034a">OscProbCalcerProbGPULinear</a>.</p>
+<p>Implemented in <a class="el" href="classOscProbCalcerCUDAProb3Linear.html#aec5daa492534cb4e74e2a3e70a6e844d">OscProbCalcerCUDAProb3Linear</a>, <a class="el" href="classOscProbCalcerNuFASTLinear.html#a040676a34df2cfa8efe30e1dea470e8c">OscProbCalcerNuFASTLinear</a>, <a class="el" href="classOscProbCalcerProb3ppLinear.html#aa30e11160973739e5d99becd2e227848">OscProbCalcerProb3ppLinear</a>, and <a class="el" href="classOscProbCalcerProbGPULinear.html#ac7eee5038457154cebd11d79590e0191">OscProbCalcerProbGPULinear</a>.</p>
 
 </div>
 </div>
@@ -511,7 +512,7 @@ Private Attributes</h2></td></tr>
 <p>This is implementation specific because some propagators calculate all oscillation channels together, whilst others calculate only a single oscillation channel.</p>
 <dl class="section return"><dt>Returns</dt><dd>Length that <a class="el" href="classOscProbCalcerBase.html#a89ca55fe94b0f4b7710ca61d97bacdba" title="Vector which stores the oscillation probabilities.">fWeightArray</a> should be initialised to </dd></dl>
 
-<p>Implemented in <a class="el" href="classOscProbCalcerCUDAProb3.html#ac33cedc5046c61ecd773e3333837845d">OscProbCalcerCUDAProb3</a>, <a class="el" href="classOscProbCalcerCUDAProb3Linear.html#a952ebed293b147b2816c8fe6a36a397b">OscProbCalcerCUDAProb3Linear</a>, <a class="el" href="classOscProbCalcerNuFASTLinear.html#ae34de2fe6991398590c406cc2e83a191">OscProbCalcerNuFASTLinear</a>, <a class="el" href="classOscProbCalcerProb3ppLinear.html#a72cbd4d10ad82fb5e91a5c1082086b17">OscProbCalcerProb3ppLinear</a>, and <a class="el" href="classOscProbCalcerProbGPULinear.html#a0a2aeab995730f58ca9c24a80083c531">OscProbCalcerProbGPULinear</a>.</p>
+<p>Implemented in <a class="el" href="classOscProbCalcerCUDAProb3.html#a28e2ef6cb780f3ec3e883faecfe920fb">OscProbCalcerCUDAProb3</a>, <a class="el" href="classOscProbCalcerCUDAProb3Linear.html#afee60c57ac0ee8eb03f4a4edfca2e5ca">OscProbCalcerCUDAProb3Linear</a>, <a class="el" href="classOscProbCalcerNuFASTLinear.html#a214847bcdf5f39d4be56682e88f5ffec">OscProbCalcerNuFASTLinear</a>, <a class="el" href="classOscProbCalcerProb3ppLinear.html#a2c94697ac7530a28be80d076406ec13a">OscProbCalcerProb3ppLinear</a>, and <a class="el" href="classOscProbCalcerProbGPULinear.html#a90596567b6e6bfd8b180e229863eb2df">OscProbCalcerProbGPULinear</a>.</p>
 
 </div>
 </div>
@@ -1364,12 +1365,12 @@ Private Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Index in <a class="el" href="classOscProbCalcerBase.html#a89ca55fe94b0f4b7710ca61d97bacdba" title="Vector which stores the oscillation probabilities.">fWeightArray</a> which corresponds to the given inputs </dd></dl>
 
-<p>Implemented in <a class="el" href="classOscProbCalcerCUDAProb3.html#ac69ea26e16b4684315932fc01508b0c6">OscProbCalcerCUDAProb3</a>, <a class="el" href="classOscProbCalcerCUDAProb3Linear.html#a82a980eafd22a74d21a0d2e359461487">OscProbCalcerCUDAProb3Linear</a>, <a class="el" href="classOscProbCalcerProbGPULinear.html#af6647417d04fff883416900f14332301">OscProbCalcerProbGPULinear</a>, <a class="el" href="classOscProbCalcerNuFASTLinear.html#ada8392b35828ec8056b3eae965845369">OscProbCalcerNuFASTLinear</a>, and <a class="el" href="classOscProbCalcerProb3ppLinear.html#a9ac2180b6dba301043ec9d46f8628cff">OscProbCalcerProb3ppLinear</a>.</p>
+<p>Implemented in <a class="el" href="classOscProbCalcerCUDAProb3.html#a16efa9a082301954fed4c0181816433c">OscProbCalcerCUDAProb3</a>, <a class="el" href="classOscProbCalcerCUDAProb3Linear.html#a77f43455d2a6336faf2b747376f8bcbe">OscProbCalcerCUDAProb3Linear</a>, <a class="el" href="classOscProbCalcerProbGPULinear.html#a9be993a122b13f14355df50709b59cca">OscProbCalcerProbGPULinear</a>, <a class="el" href="classOscProbCalcerNuFASTLinear.html#a843d73a4f6fd2e71fd209cf0fc0a3db9">OscProbCalcerNuFASTLinear</a>, and <a class="el" href="classOscProbCalcerProb3ppLinear.html#a420628e29c875a72872734b7c5d3c345">OscProbCalcerProb3ppLinear</a>.</p>
 
 </div>
 </div>
-<a id="aad09677d5dd94128129ae5baccdb1d1e" name="aad09677d5dd94128129ae5baccdb1d1e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aad09677d5dd94128129ae5baccdb1d1e">&#9670;&#160;</a></span>Reweight()</h2>
+<a id="a73cb63ebc6dc8e5381c96d318f5540cd" name="a73cb63ebc6dc8e5381c96d318f5540cd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a73cb63ebc6dc8e5381c96d318f5540cd">&#9670;&#160;</a></span>Reweight()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1377,7 +1378,7 @@ Private Attributes</h2></td></tr>
         <tr>
           <td class="memname">void OscProbCalcerBase::Reweight </td>
           <td>(</td>
-          <td class="paramtype">std::vector&lt; <a class="el" href="OscillatorConstants_8h.html#acb53b45d3e1b677a15c2ef27b266b1ca">FLOAT_T</a> &gt;&#160;</td>
+          <td class="paramtype">const std::vector&lt; <a class="el" href="OscillatorConstants_8h.html#acb53b45d3e1b677a15c2ef27b266b1ca">FLOAT_T</a> &gt; &amp;&#160;</td>
           <td class="paramname"><em>OscParams</em></td><td>)</td>
           <td></td>
         </tr>
@@ -1385,7 +1386,7 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>General function used to call the oscillation probability calculation. </p>
-<p>This function performs both the implementation specific <a class="el" href="classOscProbCalcerBase.html#a6dd2916f9767f99659c49f03499cd77f" title="Calculate some oscillation probabilities for a particular oscillation parameter set.">CalculateProbabilities()</a> function, along with checking whether the oscillation parameters have been updated since the last call. It also calls <a class="el" href="classOscProbCalcerBase.html#a604f6c463a8fc1f33ff867162d2adafd" title="Ensure that the oscillation probabilities are within [0.,1.] range, if not throw error.">SanitiseProbabilities()</a>.</p>
+<p>This function performs both the implementation specific <a class="el" href="classOscProbCalcerBase.html#aa4c6ecb7c6a0936a36810183658ce165" title="Calculate some oscillation probabilities for a particular oscillation parameter set.">CalculateProbabilities()</a> function, along with checking whether the oscillation parameters have been updated since the last call. It also calls <a class="el" href="classOscProbCalcerBase.html#a604f6c463a8fc1f33ff867162d2adafd" title="Ensure that the oscillation probabilities are within [0.,1.] range, if not throw error.">SanitiseProbabilities()</a>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">OscParams</td><td>The oscillation parameters to calculate the oscillation probability at </td></tr>
@@ -1468,8 +1469,8 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a4b4ba6ea3f90f6ba2ba31d99c9dceb90" name="a4b4ba6ea3f90f6ba2ba31d99c9dceb90"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4b4ba6ea3f90f6ba2ba31d99c9dceb90">&#9670;&#160;</a></span>SetCurrOscParams()</h2>
+<a id="ae1f688e7e35762aa9b280b7cebd3bddf" name="ae1f688e7e35762aa9b280b7cebd3bddf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae1f688e7e35762aa9b280b7cebd3bddf">&#9670;&#160;</a></span>SetCurrOscParams()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1480,7 +1481,7 @@ Private Attributes</h2></td></tr>
         <tr>
           <td class="memname">void OscProbCalcerBase::SetCurrOscParams </td>
           <td>(</td>
-          <td class="paramtype">std::vector&lt; <a class="el" href="OscillatorConstants_8h.html#acb53b45d3e1b677a15c2ef27b266b1ca">FLOAT_T</a> &gt;&#160;</td>
+          <td class="paramtype">const std::vector&lt; <a class="el" href="OscillatorConstants_8h.html#acb53b45d3e1b677a15c2ef27b266b1ca">FLOAT_T</a> &gt; &amp;&#160;</td>
           <td class="paramname"><em>OscParamsToCheck</em></td><td>)</td>
           <td></td>
         </tr>
@@ -1575,7 +1576,7 @@ Private Attributes</h2></td></tr>
 <p>Setup any implementation specific variables/functions. </p>
 <p>Calculator engine specific implementation to setup any variables needed to calculate the oscillation probabilities </p>
 
-<p>Implemented in <a class="el" href="classOscProbCalcerCUDAProb3.html#a55700969af67ac6dcc82a76f578be6f4">OscProbCalcerCUDAProb3</a>, <a class="el" href="classOscProbCalcerCUDAProb3Linear.html#ad69b53f72875b70464818923c617049a">OscProbCalcerCUDAProb3Linear</a>, <a class="el" href="classOscProbCalcerNuFASTLinear.html#ab38a4595f3566152978eddfd45e85c67">OscProbCalcerNuFASTLinear</a>, <a class="el" href="classOscProbCalcerProb3ppLinear.html#a74babc9b0403b218aeb511892bf6a16d">OscProbCalcerProb3ppLinear</a>, and <a class="el" href="classOscProbCalcerProbGPULinear.html#aa7d929e3cef0f66b6856625bf819f73c">OscProbCalcerProbGPULinear</a>.</p>
+<p>Implemented in <a class="el" href="classOscProbCalcerCUDAProb3.html#a82197bc0066dcd31afc753a439ee35b1">OscProbCalcerCUDAProb3</a>, <a class="el" href="classOscProbCalcerCUDAProb3Linear.html#a5aa67c70be0b6c9be5627d48f08baea4">OscProbCalcerCUDAProb3Linear</a>, <a class="el" href="classOscProbCalcerNuFASTLinear.html#adfbfb3c378459aafd41525dde57e2db1">OscProbCalcerNuFASTLinear</a>, <a class="el" href="classOscProbCalcerProb3ppLinear.html#aec539c23dadd349163fcee7cc2c15644">OscProbCalcerProb3ppLinear</a>, and <a class="el" href="classOscProbCalcerProbGPULinear.html#aa2ef4335e2b53e587132b25cd3e86d17">OscProbCalcerProbGPULinear</a>.</p>
 
 </div>
 </div>

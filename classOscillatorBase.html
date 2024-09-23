@@ -97,6 +97,9 @@ Inheritance diagram for OscillatorBase:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr class="memitem:abf6deb9c36ae2554ecf64aaa529b3d66" id="r_abf6deb9c36ae2554ecf64aaa529b3d66"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscillatorBase.html#abf6deb9c36ae2554ecf64aaa529b3d66">~OscillatorBase</a> ()</td></tr>
+<tr class="memdesc:abf6deb9c36ae2554ecf64aaa529b3d66"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor.  <br /></td></tr>
+<tr class="separator:abf6deb9c36ae2554ecf64aaa529b3d66"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7899a75b398c562eb6dd40ae4564471a" id="r_a7899a75b398c562eb6dd40ae4564471a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscillatorBase.html#a7899a75b398c562eb6dd40ae4564471a">SanityCheck</a> ()</td></tr>
 <tr class="memdesc:a7899a75b398c562eb6dd40ae4564471a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perform a sanity check which ensures that <a class="el" href="classOscillatorBase.html#a54873b553f23a81c52fb080bf3e0e50f" title="A vector which contains all instances of OscProbCalcerBase()">fOscProbCalcers</a> have been set correctly.  <br /></td></tr>
 <tr class="separator:a7899a75b398c562eb6dd40ae4564471a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -148,9 +151,6 @@ Protected Member Functions</h2></td></tr>
 <tr class="memitem:a6116eba6cdc61961a5ea89946e2e544a" id="r_a6116eba6cdc61961a5ea89946e2e544a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscillatorBase.html#a6116eba6cdc61961a5ea89946e2e544a">OscillatorBase</a> (std::string ConfigName_)</td></tr>
 <tr class="memdesc:a6116eba6cdc61961a5ea89946e2e544a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor.  <br /></td></tr>
 <tr class="separator:a6116eba6cdc61961a5ea89946e2e544a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abf6deb9c36ae2554ecf64aaa529b3d66" id="r_abf6deb9c36ae2554ecf64aaa529b3d66"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscillatorBase.html#abf6deb9c36ae2554ecf64aaa529b3d66">~OscillatorBase</a> ()</td></tr>
-<tr class="memdesc:abf6deb9c36ae2554ecf64aaa529b3d66"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor.  <br /></td></tr>
-<tr class="separator:abf6deb9c36ae2554ecf64aaa529b3d66"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac3bbb0ea81f5e2564607d25de5dc17aa" id="r_ac3bbb0ea81f5e2564607d25de5dc17aa"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="OscillatorConstants_8h.html#acb53b45d3e1b677a15c2ef27b266b1ca">FLOAT_T</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscillatorBase.html#ac3bbb0ea81f5e2564607d25de5dc17aa">ReturnPointerToWeightinCalcer</a> (int CalcerIndex, int InitNuFlav, int FinalNuFlav, <a class="el" href="OscillatorConstants_8h.html#acb53b45d3e1b677a15c2ef27b266b1ca">FLOAT_T</a> EnergyVal, <a class="el" href="OscillatorConstants_8h.html#acb53b45d3e1b677a15c2ef27b266b1ca">FLOAT_T</a> CosineZVal=<a class="el" href="OscillatorConstants_8h.html#ae3a7da283c400b8c7e8fb8f27042d7dc">DUMMYVAL</a>)</td></tr>
 <tr class="memdesc:ac3bbb0ea81f5e2564607d25de5dc17aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return a pointer to the oscillation probability memory address in a particular index of <a class="el" href="classOscillatorBase.html#a54873b553f23a81c52fb080bf3e0e50f" title="A vector which contains all instances of OscProbCalcerBase()">fOscProbCalcers</a> for a particular event.  <br /></td></tr>
 <tr class="separator:ac3bbb0ea81f5e2564607d25de5dc17aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -201,6 +201,33 @@ Private Attributes</h2></td></tr>
 <div class="textblock"><p>Oscillation calculation (binned, unbinned, etc.) implementation agnostic base class. </p>
 <p>The base class which controls the calculation of neutrino oscillation probabilities through various calculation techniques. There are oscillation calculation techniques which can be implemented (e.g. binned, unbinned) which are expected to be derived classes of this base function. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="abf6deb9c36ae2554ecf64aaa529b3d66" name="abf6deb9c36ae2554ecf64aaa529b3d66"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abf6deb9c36ae2554ecf64aaa529b3d66">&#9670;&#160;</a></span>~OscillatorBase()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">OscillatorBase::~OscillatorBase </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Destructor. </p>
+
+</div>
+</div>
 <a id="a6116eba6cdc61961a5ea89946e2e544a" name="a6116eba6cdc61961a5ea89946e2e544a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a6116eba6cdc61961a5ea89946e2e544a">&#9670;&#160;</a></span>OscillatorBase()</h2>
 
@@ -226,39 +253,13 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Default constructor. </p>
+<p>It is protected to prevent initialisation of base class</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">ConfigName_</td><td>YAML config file used to set runtime constants </td></tr>
   </table>
   </dd>
 </dl>
-
-</div>
-</div>
-<a id="abf6deb9c36ae2554ecf64aaa529b3d66" name="abf6deb9c36ae2554ecf64aaa529b3d66"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abf6deb9c36ae2554ecf64aaa529b3d66">&#9670;&#160;</a></span>~OscillatorBase()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">OscillatorBase::~OscillatorBase </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Destructor. </p>
 
 </div>
 </div>

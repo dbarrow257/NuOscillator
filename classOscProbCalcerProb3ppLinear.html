@@ -121,19 +121,25 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a904c143fbba261dbf6b6251c77e6deee" id="r_a904c143fbba261dbf6b6251c77e6deee"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerProb3ppLinear.html#a904c143fbba261dbf6b6251c77e6deee">OscProbCalcerProb3ppLinear</a> (std::string ConfigName_=&quot;&quot;, int Instance_=0)</td></tr>
 <tr class="memdesc:a904c143fbba261dbf6b6251c77e6deee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor.  <br /></td></tr>
 <tr class="separator:a904c143fbba261dbf6b6251c77e6deee"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a74babc9b0403b218aeb511892bf6a16d" id="r_a74babc9b0403b218aeb511892bf6a16d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerProb3ppLinear.html#a74babc9b0403b218aeb511892bf6a16d">SetupPropagator</a> ()</td></tr>
-<tr class="memdesc:a74babc9b0403b218aeb511892bf6a16d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Setup Prob3pp specific variables like the BargerPropagator <a class="el" href="classOscProbCalcerProb3ppLinear.html#a1dd7bd540f57412be19ab284ad86fd44" title="BargerPropagator used within the Prob3pp calculation framework.">bNu</a>.  <br /></td></tr>
-<tr class="separator:a74babc9b0403b218aeb511892bf6a16d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7c26dd14ac64dae9ef76368fe621db4f" id="r_a7c26dd14ac64dae9ef76368fe621db4f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerProb3ppLinear.html#a7c26dd14ac64dae9ef76368fe621db4f">CalculateProbabilities</a> (std::vector&lt; <a class="el" href="OscillatorConstants_8h.html#acb53b45d3e1b677a15c2ef27b266b1ca">FLOAT_T</a> &gt; <a class="el" href="classOscProbCalcerProb3ppLinear.html#ae5200f4edd6509650d3e1e58572caf42">OscParams</a>)</td></tr>
-<tr class="memdesc:a7c26dd14ac64dae9ef76368fe621db4f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate some oscillation probabilities for a particular oscillation parameter set.  <br /></td></tr>
-<tr class="separator:a7c26dd14ac64dae9ef76368fe621db4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9ac2180b6dba301043ec9d46f8628cff" id="r_a9ac2180b6dba301043ec9d46f8628cff"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerProb3ppLinear.html#a9ac2180b6dba301043ec9d46f8628cff">ReturnWeightArrayIndex</a> (int NuTypeIndex, int OscNuIndex, int EnergyIndex, int CosineZIndex=-1)</td></tr>
-<tr class="memdesc:a9ac2180b6dba301043ec9d46f8628cff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return implementation specific index in the weight array for a specific combination of neutrino oscillation channel, energy and cosine zenith.  <br /></td></tr>
-<tr class="separator:a9ac2180b6dba301043ec9d46f8628cff"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a72cbd4d10ad82fb5e91a5c1082086b17" id="r_a72cbd4d10ad82fb5e91a5c1082086b17"><td class="memItemLeft" align="right" valign="top">long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerProb3ppLinear.html#a72cbd4d10ad82fb5e91a5c1082086b17">DefineWeightArraySize</a> ()</td></tr>
-<tr class="memdesc:a72cbd4d10ad82fb5e91a5c1082086b17"><td class="mdescLeft">&#160;</td><td class="mdescRight">Define the size of fWeightArray.  <br /></td></tr>
-<tr class="separator:a72cbd4d10ad82fb5e91a5c1082086b17"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a90700492baae03a677d4c3ce28c8f8f0" id="r_a90700492baae03a677d4c3ce28c8f8f0"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerProb3ppLinear.html#a90700492baae03a677d4c3ce28c8f8f0">~OscProbCalcerProb3ppLinear</a> ()</td></tr>
+<tr class="memdesc:a90700492baae03a677d4c3ce28c8f8f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor.  <br /></td></tr>
+<tr class="separator:a90700492baae03a677d4c3ce28c8f8f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aec539c23dadd349163fcee7cc2c15644" id="r_aec539c23dadd349163fcee7cc2c15644"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerProb3ppLinear.html#aec539c23dadd349163fcee7cc2c15644">SetupPropagator</a> () override</td></tr>
+<tr class="memdesc:aec539c23dadd349163fcee7cc2c15644"><td class="mdescLeft">&#160;</td><td class="mdescRight">Setup Prob3pp specific variables like the BargerPropagator <a class="el" href="classOscProbCalcerProb3ppLinear.html#a1dd7bd540f57412be19ab284ad86fd44" title="BargerPropagator used within the Prob3pp calculation framework.">bNu</a>.  <br /></td></tr>
+<tr class="separator:aec539c23dadd349163fcee7cc2c15644"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa30e11160973739e5d99becd2e227848" id="r_aa30e11160973739e5d99becd2e227848"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerProb3ppLinear.html#aa30e11160973739e5d99becd2e227848">CalculateProbabilities</a> (const std::vector&lt; <a class="el" href="OscillatorConstants_8h.html#acb53b45d3e1b677a15c2ef27b266b1ca">FLOAT_T</a> &gt; &amp;<a class="el" href="classOscProbCalcerProb3ppLinear.html#ae5200f4edd6509650d3e1e58572caf42">OscParams</a>) override</td></tr>
+<tr class="memdesc:aa30e11160973739e5d99becd2e227848"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate some oscillation probabilities for a particular oscillation parameter set.  <br /></td></tr>
+<tr class="separator:aa30e11160973739e5d99becd2e227848"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a420628e29c875a72872734b7c5d3c345" id="r_a420628e29c875a72872734b7c5d3c345"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerProb3ppLinear.html#a420628e29c875a72872734b7c5d3c345">ReturnWeightArrayIndex</a> (int NuTypeIndex, int OscNuIndex, int EnergyIndex, int CosineZIndex=-1) override</td></tr>
+<tr class="memdesc:a420628e29c875a72872734b7c5d3c345"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return implementation specific index in the weight array for a specific combination of neutrino oscillation channel, energy and cosine zenith.  <br /></td></tr>
+<tr class="separator:a420628e29c875a72872734b7c5d3c345"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2c94697ac7530a28be80d076406ec13a" id="r_a2c94697ac7530a28be80d076406ec13a"><td class="memItemLeft" align="right" valign="top">long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerProb3ppLinear.html#a2c94697ac7530a28be80d076406ec13a">DefineWeightArraySize</a> () override</td></tr>
+<tr class="memdesc:a2c94697ac7530a28be80d076406ec13a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Define the size of fWeightArray.  <br /></td></tr>
+<tr class="separator:a2c94697ac7530a28be80d076406ec13a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classOscProbCalcerBase"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classOscProbCalcerBase')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classOscProbCalcerBase.html">OscProbCalcerBase</a></td></tr>
+<tr class="memitem:ae5485ac57513ab579873f3495522fa31 inherit pub_methods_classOscProbCalcerBase" id="r_ae5485ac57513ab579873f3495522fa31"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerBase.html#ae5485ac57513ab579873f3495522fa31">~OscProbCalcerBase</a> ()</td></tr>
+<tr class="memdesc:ae5485ac57513ab579873f3495522fa31 inherit pub_methods_classOscProbCalcerBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor.  <br /></td></tr>
+<tr class="separator:ae5485ac57513ab579873f3495522fa31 inherit pub_methods_classOscProbCalcerBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a32f2aba0bf39abdec1171c40bf8de112 inherit pub_methods_classOscProbCalcerBase" id="r_a32f2aba0bf39abdec1171c40bf8de112"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerBase.html#a32f2aba0bf39abdec1171c40bf8de112">SetEnergyArray</a> (std::vector&lt; <a class="el" href="OscillatorConstants_8h.html#acb53b45d3e1b677a15c2ef27b266b1ca">FLOAT_T</a> &gt; EnergyArray)</td></tr>
 <tr class="memdesc:a32f2aba0bf39abdec1171c40bf8de112 inherit pub_methods_classOscProbCalcerBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Define the Energy which will be used when calculating the oscillation probabilities.  <br /></td></tr>
 <tr class="separator:a32f2aba0bf39abdec1171c40bf8de112 inherit pub_methods_classOscProbCalcerBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -143,9 +149,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aa6989c2c10d592690dc08470ef0c6f31 inherit pub_methods_classOscProbCalcerBase" id="r_aa6989c2c10d592690dc08470ef0c6f31"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="OscillatorConstants_8h.html#acb53b45d3e1b677a15c2ef27b266b1ca">FLOAT_T</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerBase.html#aa6989c2c10d592690dc08470ef0c6f31">ReturnPointerToWeight</a> (int InitNuFlav, int FinalNuFlav, <a class="el" href="OscillatorConstants_8h.html#acb53b45d3e1b677a15c2ef27b266b1ca">FLOAT_T</a> Energy, <a class="el" href="OscillatorConstants_8h.html#acb53b45d3e1b677a15c2ef27b266b1ca">FLOAT_T</a> CosineZ=<a class="el" href="OscillatorConstants_8h.html#ae3a7da283c400b8c7e8fb8f27042d7dc">DUMMYVAL</a>)</td></tr>
 <tr class="memdesc:aa6989c2c10d592690dc08470ef0c6f31 inherit pub_methods_classOscProbCalcerBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return pointer to the weight array for a specific Energy and CosineZ.  <br /></td></tr>
 <tr class="separator:aa6989c2c10d592690dc08470ef0c6f31 inherit pub_methods_classOscProbCalcerBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aad09677d5dd94128129ae5baccdb1d1e inherit pub_methods_classOscProbCalcerBase" id="r_aad09677d5dd94128129ae5baccdb1d1e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerBase.html#aad09677d5dd94128129ae5baccdb1d1e">Reweight</a> (std::vector&lt; <a class="el" href="OscillatorConstants_8h.html#acb53b45d3e1b677a15c2ef27b266b1ca">FLOAT_T</a> &gt; OscParams)</td></tr>
-<tr class="memdesc:aad09677d5dd94128129ae5baccdb1d1e inherit pub_methods_classOscProbCalcerBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">General function used to call the oscillation probability calculation.  <br /></td></tr>
-<tr class="separator:aad09677d5dd94128129ae5baccdb1d1e inherit pub_methods_classOscProbCalcerBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a73cb63ebc6dc8e5381c96d318f5540cd inherit pub_methods_classOscProbCalcerBase" id="r_a73cb63ebc6dc8e5381c96d318f5540cd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerBase.html#a73cb63ebc6dc8e5381c96d318f5540cd">Reweight</a> (const std::vector&lt; <a class="el" href="OscillatorConstants_8h.html#acb53b45d3e1b677a15c2ef27b266b1ca">FLOAT_T</a> &gt; &amp;OscParams)</td></tr>
+<tr class="memdesc:a73cb63ebc6dc8e5381c96d318f5540cd inherit pub_methods_classOscProbCalcerBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">General function used to call the oscillation probability calculation.  <br /></td></tr>
+<tr class="separator:a73cb63ebc6dc8e5381c96d318f5540cd inherit pub_methods_classOscProbCalcerBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad3014d68c5a9d86418204ce89cf8ad08 inherit pub_methods_classOscProbCalcerBase" id="r_ad3014d68c5a9d86418204ce89cf8ad08"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerBase.html#ad3014d68c5a9d86418204ce89cf8ad08">Setup</a> ()</td></tr>
 <tr class="memdesc:ad3014d68c5a9d86418204ce89cf8ad08 inherit pub_methods_classOscProbCalcerBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">General function used to setup all variables used within the reweighting.  <br /></td></tr>
 <tr class="separator:ad3014d68c5a9d86418204ce89cf8ad08 inherit pub_methods_classOscProbCalcerBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -216,18 +222,15 @@ Additional Inherited Members</h2></td></tr>
 <tr class="memitem:ab5590c6dfa392d74861a4cdc2ba8a1ac inherit pro_methods_classOscProbCalcerBase" id="r_ab5590c6dfa392d74861a4cdc2ba8a1ac"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerBase.html#ab5590c6dfa392d74861a4cdc2ba8a1ac">OscProbCalcerBase</a> (std::string ConfigName_, std::string ImplementationName_, int Instance_=0)</td></tr>
 <tr class="memdesc:ab5590c6dfa392d74861a4cdc2ba8a1ac inherit pro_methods_classOscProbCalcerBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor.  <br /></td></tr>
 <tr class="separator:ab5590c6dfa392d74861a4cdc2ba8a1ac inherit pro_methods_classOscProbCalcerBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae5485ac57513ab579873f3495522fa31 inherit pro_methods_classOscProbCalcerBase" id="r_ae5485ac57513ab579873f3495522fa31"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerBase.html#ae5485ac57513ab579873f3495522fa31">~OscProbCalcerBase</a> ()</td></tr>
-<tr class="memdesc:ae5485ac57513ab579873f3495522fa31 inherit pro_methods_classOscProbCalcerBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor.  <br /></td></tr>
-<tr class="separator:ae5485ac57513ab579873f3495522fa31 inherit pro_methods_classOscProbCalcerBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a46ec4492255938f1a37e621bc1404c0b inherit pro_methods_classOscProbCalcerBase" id="r_a46ec4492255938f1a37e621bc1404c0b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerBase.html#a46ec4492255938f1a37e621bc1404c0b">IgnoreCosineZBinning</a> (bool Ignore)</td></tr>
 <tr class="memdesc:a46ec4492255938f1a37e621bc1404c0b inherit pro_methods_classOscProbCalcerBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Some implementations don't care about the CosineZ values, so this is a method to set <a class="el" href="classOscProbCalcerBase.html#afd9fe2aa6d97a77da7dea42ed2134763" title="Boolean declaring whether the CosineZ array has been set.">fCosineZArraySet</a> to true in those cases.  <br /></td></tr>
 <tr class="separator:a46ec4492255938f1a37e621bc1404c0b inherit pro_methods_classOscProbCalcerBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4e369ad2494bac7564280a4e9f4cc38b inherit pro_methods_classOscProbCalcerBase" id="r_a4e369ad2494bac7564280a4e9f4cc38b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerBase.html#a4e369ad2494bac7564280a4e9f4cc38b">AreOscParamsChanged</a> (std::vector&lt; <a class="el" href="OscillatorConstants_8h.html#acb53b45d3e1b677a15c2ef27b266b1ca">FLOAT_T</a> &gt; OscParamsToCheck)</td></tr>
-<tr class="memdesc:a4e369ad2494bac7564280a4e9f4cc38b inherit pro_methods_classOscProbCalcerBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check whether the oscillation parameters have changed since their previous value.  <br /></td></tr>
-<tr class="separator:a4e369ad2494bac7564280a4e9f4cc38b inherit pro_methods_classOscProbCalcerBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4b4ba6ea3f90f6ba2ba31d99c9dceb90 inherit pro_methods_classOscProbCalcerBase" id="r_a4b4ba6ea3f90f6ba2ba31d99c9dceb90"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerBase.html#a4b4ba6ea3f90f6ba2ba31d99c9dceb90">SetCurrOscParams</a> (std::vector&lt; <a class="el" href="OscillatorConstants_8h.html#acb53b45d3e1b677a15c2ef27b266b1ca">FLOAT_T</a> &gt; OscParamsToCheck)</td></tr>
-<tr class="memdesc:a4b4ba6ea3f90f6ba2ba31d99c9dceb90 inherit pro_methods_classOscProbCalcerBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Save the oscillation parameters which have been requested.  <br /></td></tr>
-<tr class="separator:a4b4ba6ea3f90f6ba2ba31d99c9dceb90 inherit pro_methods_classOscProbCalcerBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3240c781d021606401ac6468b228f04b inherit pro_methods_classOscProbCalcerBase" id="r_a3240c781d021606401ac6468b228f04b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerBase.html#a3240c781d021606401ac6468b228f04b">AreOscParamsChanged</a> (const std::vector&lt; <a class="el" href="OscillatorConstants_8h.html#acb53b45d3e1b677a15c2ef27b266b1ca">FLOAT_T</a> &gt; &amp;OscParamsToCheck)</td></tr>
+<tr class="memdesc:a3240c781d021606401ac6468b228f04b inherit pro_methods_classOscProbCalcerBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check whether the oscillation parameters have changed since their previous value.  <br /></td></tr>
+<tr class="separator:a3240c781d021606401ac6468b228f04b inherit pro_methods_classOscProbCalcerBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae1f688e7e35762aa9b280b7cebd3bddf inherit pro_methods_classOscProbCalcerBase" id="r_ae1f688e7e35762aa9b280b7cebd3bddf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerBase.html#ae1f688e7e35762aa9b280b7cebd3bddf">SetCurrOscParams</a> (const std::vector&lt; <a class="el" href="OscillatorConstants_8h.html#acb53b45d3e1b677a15c2ef27b266b1ca">FLOAT_T</a> &gt; &amp;OscParamsToCheck)</td></tr>
+<tr class="memdesc:ae1f688e7e35762aa9b280b7cebd3bddf inherit pro_methods_classOscProbCalcerBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Save the oscillation parameters which have been requested.  <br /></td></tr>
+<tr class="separator:ae1f688e7e35762aa9b280b7cebd3bddf inherit pro_methods_classOscProbCalcerBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab9068d0366d8573f2ecbb42926f34af4 inherit pro_methods_classOscProbCalcerBase" id="r_ab9068d0366d8573f2ecbb42926f34af4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerBase.html#ab9068d0366d8573f2ecbb42926f34af4">ResetCurrOscParams</a> ()</td></tr>
 <tr class="memdesc:ab9068d0366d8573f2ecbb42926f34af4 inherit pro_methods_classOscProbCalcerBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">(Re-)Initialise the saved oscillation parameters in <a class="el" href="classOscProbCalcerBase.html#abc4e79d55f1e9400a62b1b06c2c2b900" title="Vector which stores the saved oscillation probabilities.">fOscParamsCurr</a>  <br /></td></tr>
 <tr class="separator:ab9068d0366d8573f2ecbb42926f34af4 inherit pro_methods_classOscProbCalcerBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -402,9 +405,36 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
+<a id="a90700492baae03a677d4c3ce28c8f8f0" name="a90700492baae03a677d4c3ce28c8f8f0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a90700492baae03a677d4c3ce28c8f8f0">&#9670;&#160;</a></span>~OscProbCalcerProb3ppLinear()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">OscProbCalcerProb3ppLinear::~OscProbCalcerProb3ppLinear </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Destructor. </p>
+
+</div>
+</div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a7c26dd14ac64dae9ef76368fe621db4f" name="a7c26dd14ac64dae9ef76368fe621db4f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7c26dd14ac64dae9ef76368fe621db4f">&#9670;&#160;</a></span>CalculateProbabilities()</h2>
+<a id="aa30e11160973739e5d99becd2e227848" name="aa30e11160973739e5d99becd2e227848"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa30e11160973739e5d99becd2e227848">&#9670;&#160;</a></span>CalculateProbabilities()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -415,14 +445,14 @@ Additional Inherited Members</h2></td></tr>
         <tr>
           <td class="memname">void OscProbCalcerProb3ppLinear::CalculateProbabilities </td>
           <td>(</td>
-          <td class="paramtype">std::vector&lt; <a class="el" href="OscillatorConstants_8h.html#acb53b45d3e1b677a15c2ef27b266b1ca">FLOAT_T</a> &gt;&#160;</td>
+          <td class="paramtype">const std::vector&lt; <a class="el" href="OscillatorConstants_8h.html#acb53b45d3e1b677a15c2ef27b266b1ca">FLOAT_T</a> &gt; &amp;&#160;</td>
           <td class="paramname"><em>OscParams</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -436,12 +466,12 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 
-<p>Implements <a class="el" href="classOscProbCalcerBase.html#a6dd2916f9767f99659c49f03499cd77f">OscProbCalcerBase</a>.</p>
+<p>Implements <a class="el" href="classOscProbCalcerBase.html#aa4c6ecb7c6a0936a36810183658ce165">OscProbCalcerBase</a>.</p>
 
 </div>
 </div>
-<a id="a72cbd4d10ad82fb5e91a5c1082086b17" name="a72cbd4d10ad82fb5e91a5c1082086b17"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a72cbd4d10ad82fb5e91a5c1082086b17">&#9670;&#160;</a></span>DefineWeightArraySize()</h2>
+<a id="a2c94697ac7530a28be80d076406ec13a" name="a2c94697ac7530a28be80d076406ec13a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2c94697ac7530a28be80d076406ec13a">&#9670;&#160;</a></span>DefineWeightArraySize()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -458,7 +488,7 @@ Additional Inherited Members</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -471,8 +501,8 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="a9ac2180b6dba301043ec9d46f8628cff" name="a9ac2180b6dba301043ec9d46f8628cff"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9ac2180b6dba301043ec9d46f8628cff">&#9670;&#160;</a></span>ReturnWeightArrayIndex()</h2>
+<a id="a420628e29c875a72872734b7c5d3c345" name="a420628e29c875a72872734b7c5d3c345"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a420628e29c875a72872734b7c5d3c345">&#9670;&#160;</a></span>ReturnWeightArrayIndex()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -512,7 +542,7 @@ Additional Inherited Members</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -533,8 +563,8 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="a74babc9b0403b218aeb511892bf6a16d" name="a74babc9b0403b218aeb511892bf6a16d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a74babc9b0403b218aeb511892bf6a16d">&#9670;&#160;</a></span>SetupPropagator()</h2>
+<a id="aec539c23dadd349163fcee7cc2c15644" name="aec539c23dadd349163fcee7cc2c15644"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aec539c23dadd349163fcee7cc2c15644">&#9670;&#160;</a></span>SetupPropagator()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -551,7 +581,7 @@ Additional Inherited Members</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
