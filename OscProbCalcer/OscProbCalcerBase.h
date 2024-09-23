@@ -20,6 +20,11 @@ class OscProbCalcerBase {
   // ========================================================================================================================================================================
   // Public functions which are calculation implementation agnostic
 
+   /**
+    * @brief Destructor
+    */
+   virtual ~OscProbCalcerBase();
+
   /**
    * @brief Define the Energy which will be used when calculating the oscillation probabilities
    * 
@@ -57,7 +62,7 @@ class OscProbCalcerBase {
    *
    * @param OscParams The oscillation parameters to calculate the oscillation probability at
    */
-  void Reweight(std::vector<FLOAT_T> OscParams);
+  void Reweight(const std::vector<FLOAT_T>& OscParams);
 
   /**
    * @brief General function used to setup all variables used within the reweighting
@@ -180,20 +185,16 @@ class OscProbCalcerBase {
   // Public virtual functions which need calculater specific implementations
 
  protected:
+   /**
+    * @brief Default constructor
+    *
+    * @details It is protected to prevent initialisation of base class
+    *
+    * @param ConfigName_ Name of YAML config used to set runtime variables
+    * @param Instance_ Instance in the OscProbCalcerSetup YAML Node to select
+    */
+   OscProbCalcerBase(std::string ConfigName_, std::string ImplementationName_, int Instance_=0);
 
-  /**
-   * @brief Default constructor
-   *
-   * @param ConfigName_ Name of YAML config used to set runtime variables
-   * @param Instance_ Instance in the OscProbCalcerSetup YAML Node to select
-   */
-  OscProbCalcerBase(std::string ConfigName_, std::string ImplementationName_, int Instance_=0);
-
-
-  /**
-   * @brief Destructor
-   */
-  virtual ~OscProbCalcerBase();
   // ========================================================================================================================================================================
   // Protected functions which are calculation implementation agnostic  
 
@@ -217,7 +218,7 @@ class OscProbCalcerBase {
    * @param OscParamsToCheck The oscillation parameters which have been requested for the next calculation
    * @return Boolean whether the OscParamsToCheck match those saved from the last calculation
    */
-  bool AreOscParamsChanged(std::vector<FLOAT_T> OscParamsToCheck);
+  bool AreOscParamsChanged(const std::vector<FLOAT_T>& OscParamsToCheck);
 
   /**
    * @brief Save the oscillation parameters which have been requested
@@ -226,7 +227,7 @@ class OscProbCalcerBase {
    *
    * @param OscParamsToCheck Parameter set to save
    */
-  void SetCurrOscParams(std::vector<FLOAT_T> OscParamsToCheck);
+  void SetCurrOscParams(const std::vector<FLOAT_T>& OscParamsToCheck);
 
   /**
    * @brief (Re-)Initialise the saved oscillation parameters in #fOscParamsCurr
@@ -313,7 +314,7 @@ class OscProbCalcerBase {
    *
    * @param OscParams The parameter set to calculate oscillation probabilities at
    */
-  virtual void CalculateProbabilities(std::vector<FLOAT_T> OscParams) = 0;
+  virtual void CalculateProbabilities(const std::vector<FLOAT_T>& OscParams) = 0;
 
   /**
    * @brief Setup any implementation specific variables/functions

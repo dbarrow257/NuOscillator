@@ -83,7 +83,7 @@ int main() {
   ConfigNames.push_back("./Configs/Unbinned_Prob3ppLinear.yaml");
 #endif
   */
-  
+
   //Alternative option to show how all information can be held in a single YAML file rather than using a preset
   //ConfigNames.push_back("./Configs/CUDAProb3_Binned-SelfContainedFile.yaml");
 
@@ -141,15 +141,15 @@ int main() {
 
       auto t1_single = high_resolution_clock::now();
       if (Oscillators[iOsc]->ReturnNOscParams() == (int)OscParams_Beam_woYe.size()) {
-	Oscillators[iOsc]->CalculateProbabilities(OscParams_Beam_woYe);
+        Oscillators[iOsc]->CalculateProbabilities(OscParams_Beam_woYe);
       } else if (Oscillators[iOsc]->ReturnNOscParams() == (int)OscParams_Beam_wYe.size()) {
-	Oscillators[iOsc]->CalculateProbabilities(OscParams_Beam_wYe);
+        Oscillators[iOsc]->CalculateProbabilities(OscParams_Beam_wYe);
       } else if (Oscillators[iOsc]->ReturnNOscParams() == (int)OscParams_Atm.size()) {
-	Oscillators[iOsc]->CalculateProbabilities(OscParams_Atm);
+        Oscillators[iOsc]->CalculateProbabilities(OscParams_Atm);
       } else {
-	std::cerr << "Did not find viable oscillation parameters to hand to the oscillation probability calculater" << std::endl;
-	std::cerr << "Oscillator->ReturnNOscParams():" << Oscillators[iOsc]->ReturnNOscParams() << std::endl;
-	throw;
+        std::cerr << "Did not find viable oscillation parameters to hand to the oscillation probability calculater" << std::endl;
+        std::cerr << "Oscillator->ReturnNOscParams():" << Oscillators[iOsc]->ReturnNOscParams() << std::endl;
+        throw;
       }
       auto t2_single = high_resolution_clock::now();
       duration<double, std::milli> ms_single_double = t2_single-t1_single;
@@ -185,4 +185,10 @@ int main() {
 
   std::cout << "Finished drag race in executable" << std::endl;
   std::cout << "========================================================" << std::endl;
+
+  for (size_t iOsc = 0; iOsc < Oscillators.size(); iOsc++) {
+    delete Oscillators[iOsc];
+  }
+  Oscillators.clear();
+  delete OscFactory;
 }

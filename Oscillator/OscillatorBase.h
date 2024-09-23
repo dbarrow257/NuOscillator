@@ -19,6 +19,10 @@
  */
 class OscillatorBase {
  public:
+   /**
+    * @brief Destructor
+    */
+   virtual ~OscillatorBase();
 
   // ========================================================================================================================================================================
   // Public functions which are calculation implementation agnostic
@@ -175,21 +179,18 @@ class OscillatorBase {
   virtual const FLOAT_T* ReturnWeightPointer(int InitNuFlav, int FinalNuFlav, FLOAT_T EnergyVal, FLOAT_T CosineZVal=DUMMYVAL) = 0;
 
  protected:
+   /**
+    * @brief Default constructor
+    *
+    * @details It is protected to prevent initialisation of base class
+    *
+    * @param ConfigName_ YAML config file used to set runtime constants
+    */
+   OscillatorBase(std::string ConfigName_);
+
+
   // ========================================================================================================================================================================
   // Protected functions which are calculation implementation agnostic
-
-  /**
-   * @brief Default constructor
-   *
-   * @param ConfigName_ YAML config file used to set runtime constants
-   */
-  OscillatorBase(std::string ConfigName_);
-
-
-  /**
-   * @brief Destructor
-   */
-  virtual ~OscillatorBase();
 
   /**
    * @brief Return a pointer to the oscillation probability memory address in a particular index of #fOscProbCalcers for a particular event

@@ -1,4 +1,4 @@
-#include "OscillatorBinned.h"
+#include "Oscillator/OscillatorBinned.h"
 
 #include <iostream>
 
@@ -38,6 +38,11 @@ OscillatorBinned::OscillatorBinned(std::string ConfigName_) : OscillatorBase(Con
       SetCosineZArrayInCalcer(CosineZAxisBinCenters, CalcerIndex);
     }
   }
+
+}
+
+
+OscillatorBinned::~OscillatorBinned() {
 
 }
 

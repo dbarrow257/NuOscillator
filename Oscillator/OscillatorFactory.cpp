@@ -1,8 +1,12 @@
-#include "OscillatorFactory.h"
+#include "Oscillator/OscillatorFactory.h"
 
 #include <iostream>
 
 OscillatorFactory::OscillatorFactory() {
+}
+
+OscillatorFactory::~OscillatorFactory() {
+
 }
 
 OscillatorBase* OscillatorFactory::CreateOscillator(std::string ConfigName_) {

@@ -49,6 +49,10 @@ OscProbCalcerCUDAProb3::OscProbCalcerCUDAProb3(std::string ConfigName_, int Inst
   nThreads = 1;
 }
 
+OscProbCalcerCUDAProb3::~OscProbCalcerCUDAProb3() {
+
+}
+
 void OscProbCalcerCUDAProb3::SetupPropagator() {
 
 #if UseGPU == 1

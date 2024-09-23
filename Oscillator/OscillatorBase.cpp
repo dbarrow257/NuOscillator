@@ -58,6 +58,9 @@ OscillatorBase::OscillatorBase(std::string ConfigName_) {
 
 OscillatorBase::~OscillatorBase() {
 
+  for (size_t iOsc = 0; iOsc < fOscProbCalcers.size(); iOsc++) {
+    delete fOscProbCalcers[iOsc];
+  }
 }
 
 void OscillatorBase::InitialiseOscProbCalcers() {

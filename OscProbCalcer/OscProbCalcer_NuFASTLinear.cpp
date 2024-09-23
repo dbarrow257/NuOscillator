@@ -22,10 +22,14 @@ OscProbCalcerNuFASTLinear::OscProbCalcerNuFASTLinear(std::string ConfigName_, in
   IgnoreCosineZBinning(true);
 }
 
+OscProbCalcerNuFASTLinear::~OscProbCalcerNuFASTLinear() {
+
+}
+
 void OscProbCalcerNuFASTLinear::SetupPropagator() {
 }
 
-void OscProbCalcerNuFASTLinear::CalculateProbabilities(std::vector<FLOAT_T> OscParams) {
+void OscProbCalcerNuFASTLinear::CalculateProbabilities(const std::vector<FLOAT_T>& OscParams) {
   double L, E, rho, Ye, probs_returned[3][3];
   double s12sq, s13sq, s23sq, delta, Dmsq21, Dmsq31;
   int N_Newton;
@@ -61,7 +65,7 @@ void OscProbCalcerNuFASTLinear::CalculateProbabilities(std::vector<FLOAT_T> OscP
   // Calculate all 9 oscillationa probabilities //
   // ------------------------------------------ //
 
-  for (int iOscProb=0;iOscProb<fNEnergyPoints;iOscProb++) {    
+  for (int iOscProb=0;iOscProb<fNEnergyPoints;iOscProb++) {
     for (int iNuType=0;iNuType<fNNeutrinoTypes;iNuType++) {
       
       //+ve energy for neutrinos, -ve energy for antineutrinos

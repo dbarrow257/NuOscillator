@@ -1,4 +1,4 @@
-#include "OscProbCalcerBase.h"
+#include "OscProbCalcer/OscProbCalcerBase.h"
 
 #include <cmath>
 #include <math.h>
@@ -248,7 +248,7 @@ std::vector<OscillationProbability> OscProbCalcerBase::ReturnProbabilities() {
   return ReturnVec;
 }
 
-void OscProbCalcerBase::Reweight(std::vector<FLOAT_T> OscParams) {
+void OscProbCalcerBase::Reweight(const std::vector<FLOAT_T>& OscParams) {
   if (fVerbose >= INFO) {std::cout << "Implementation:" << fImplementationName << " starting reweight" << std::endl;}
 
   if ((int)OscParams.size() != fNOscParams) {
@@ -269,7 +269,7 @@ void OscProbCalcerBase::Reweight(std::vector<FLOAT_T> OscParams) {
 }
 
 void OscProbCalcerBase::SanitiseProbabilities() {
-  for (int iWeight=0;iWeight<fNWeights;iWeight++) {
+  for (int iWeight=0;iWeight<fNWeights;++iWeight) {
     if (std::isnan(fWeightArray[iWeight]) || fWeightArray[iWeight] < 0.0 || fWeightArray[iWeight] > 1.0) {
       std::cerr << "Found unreasonable weight in fWeightArray" << std::endl;
       std::cerr << "iWeight:" << iWeight << std::endl;
@@ -279,8 +279,8 @@ void OscProbCalcerBase::SanitiseProbabilities() {
   }
 }
 
-bool OscProbCalcerBase::AreOscParamsChanged(std::vector<FLOAT_T> OscParamsToCheck) {
-  for (int iParam=0;iParam<fNOscParams;iParam++) {
+bool OscProbCalcerBase::AreOscParamsChanged(const std::vector<FLOAT_T>& OscParamsToCheck) {
+  for (int iParam=0;iParam<fNOscParams;++iParam) {
     if (OscParamsToCheck[iParam] != fOscParamsCurr[iParam]) {
       if (fVerbose >= INFO) {std::cout << "Implementation:" << fImplementationName << " was found to have different oscillation parameters than the previous calculation" << std::endl;}
       return true;
@@ -294,7 +294,7 @@ void OscProbCalcerBase::ResetCurrOscParams() {
   fOscParamsCurr = std::vector<FLOAT_T>(fNOscParams,DUMMYVAL);
 }
 
-void OscProbCalcerBase::SetCurrOscParams(std::vector<FLOAT_T> OscParamsToSave) {
+void OscProbCalcerBase::SetCurrOscParams(const std::vector<FLOAT_T>& OscParamsToSave) {
   for (int iParam=0;iParam<fNOscParams;iParam++) {
     fOscParamsCurr[iParam] = OscParamsToSave[iParam];
   }

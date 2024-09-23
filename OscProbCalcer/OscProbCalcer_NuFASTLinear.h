@@ -21,13 +21,18 @@ class OscProbCalcerNuFASTLinear : public OscProbCalcerBase {
    */
   OscProbCalcerNuFASTLinear(std::string ConfigName_="", int Instance_=0);
 
+  /**
+   * @brief Destructor
+   */
+  virtual ~OscProbCalcerNuFASTLinear();
+
   // ========================================================================================================================================================================
   // Functions which need implementation specific code
 
   /**
    * @brief Setup NuFAST specific variables
    */  
-  void SetupPropagator();
+  void SetupPropagator() override;
   
   /**
    * @brief Calculate some oscillation probabilities for a particular oscillation parameter set
@@ -37,7 +42,7 @@ class OscProbCalcerNuFASTLinear : public OscProbCalcerBase {
    *
    * @param OscParams The parameter set to calculate oscillation probabilities at
    */
-  void CalculateProbabilities(std::vector<FLOAT_T> OscParams);
+  void CalculateProbabilities(const std::vector<FLOAT_T>& OscParams) override;
 
   /**
    * @brief Return implementation specific index in the weight array for a specific combination of neutrino oscillation channel, energy and cosine zenith
@@ -49,7 +54,7 @@ class OscProbCalcerNuFASTLinear : public OscProbCalcerBase {
    *
    * @return Index in #fWeightArray which corresponds to the given inputs
    */
-  int ReturnWeightArrayIndex(int NuTypeIndex, int OscNuIndex, int EnergyIndex, int CosineZIndex=-1);
+  int ReturnWeightArrayIndex(int NuTypeIndex, int OscNuIndex, int EnergyIndex, int CosineZIndex=-1) override;
   
   /**
    * @brief Define the size of fWeightArray
@@ -58,7 +63,7 @@ class OscProbCalcerNuFASTLinear : public OscProbCalcerBase {
    *
    * @return Length that #fWeightArray should be initialised to
    */
-  long DefineWeightArraySize();
+  long DefineWeightArraySize() override;
 
   // ========================================================================================================================================================================
   // Functions which help setup implementation specific code
