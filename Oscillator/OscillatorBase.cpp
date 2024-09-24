@@ -20,6 +20,10 @@
 #include "OscProbCalcer/OscProbCalcer_NuFASTLinear.h"
 #endif
 
+#if UseOscProb==1
+#include "OscProbCalcer/OscProbCalcer_OscProb.h"
+#endif
+
 #include <iostream>
 
 OscillatorBase::OscillatorBase(std::string ConfigName_) {
@@ -181,6 +185,18 @@ OscProbCalcerBase* OscillatorBase::InitialiseOscProbCalcer(std::string OscProbCa
     throw;
 #endif
   }
+
+  else if (OscProbCalcerImplementationToCreate == "OscProb") {
+#if UseOscProb==1
+    OscProbCalcerOscProb* OscProb = new OscProbCalcerOscProb(OscProbCalcerConfigname,Instance);
+    Calcer = (OscProbCalcerBase*)OscProb;
+    if (fVerbose >= INFO) {std::cout << "Initalised OscProbCalcer Implementation:" << Calcer->ReturnImplementationName() << " in OscillatorBase object" << std::endl;}
+#else
+    std::cerr << "Oscillator was requsted to create " << OscProbCalcerImplementationToCreate << " OscProbCalcer but Use" << OscProbCalcerImplementationToCreate << " is undefined. Indicates problem in setup" << std::endl;
+    throw;
+#endif
+  }
+
   
   else {
     std::cerr << "Oscillator was requsted to create " << OscProbCalcerImplementationToCreate << " OscProbCalcer but this is not implemented within " << __FILE__ << std::endl;

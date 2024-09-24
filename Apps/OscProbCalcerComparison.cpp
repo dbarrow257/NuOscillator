@@ -31,7 +31,7 @@ int main() {
   
   //============================================================================================================
   
-  std::vector<FLOAT_T> OscParams_Atm(8);
+  std::vector<FLOAT_T> OscParams_Atm(7);
   OscParams_Atm[0] = 3.07e-1;
   OscParams_Atm[1] = 5.28e-1;
   OscParams_Atm[2] = 2.18e-2;

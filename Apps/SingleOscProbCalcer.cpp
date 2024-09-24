@@ -21,6 +21,10 @@
 #include "OscProbCalcer/OscProbCalcer_NuFASTLinear.h"
 #endif
 
+#if UseOscProb==1
+#include "OscProbCalcer/OscProbCalcer_OscProb.h"
+#endif
+
 #include <iostream>
 #include <math.h>
 #include <chrono>
@@ -49,16 +53,27 @@ int main(int argc, char **argv) {
   OscParams_Atm[5] = -1.601;
   OscParams_Atm[6] = 25.0;
 
-  std::vector<FLOAT_T> OscParams_Beam(8);
-  OscParams_Beam[0] = 3.07e-1;
-  OscParams_Beam[1] = 5.28e-1;
-  OscParams_Beam[2] = 2.18e-2;
-  OscParams_Beam[3] = 7.53e-5;
-  OscParams_Beam[4] = 2.509e-3;
-  OscParams_Beam[5] = -1.601;
-  OscParams_Beam[6] = 250.0;
-  OscParams_Beam[7] = 2.6;
+  std::vector<FLOAT_T> OscParams_Beam_woYe(8);
+  OscParams_Beam_woYe[0] = 3.07e-1;
+  OscParams_Beam_woYe[1] = 5.28e-1;
+  OscParams_Beam_woYe[2] = 2.18e-2;
+  OscParams_Beam_woYe[3] = 7.53e-5;
+  OscParams_Beam_woYe[4] = 2.509e-3;
+  OscParams_Beam_woYe[5] = -1.601;
+  OscParams_Beam_woYe[6] = 250.0;
+  OscParams_Beam_woYe[7] = 2.6;
 
+  std::vector<FLOAT_T> OscParams_Beam_wYe(9);
+  OscParams_Beam_wYe[0] = 3.07e-1;
+  OscParams_Beam_wYe[1] = 5.28e-1;
+  OscParams_Beam_wYe[2] = 2.18e-2;
+  OscParams_Beam_wYe[3] = 7.53e-5;
+  OscParams_Beam_wYe[4] = 2.509e-3;
+  OscParams_Beam_wYe[5] = -1.601;
+  OscParams_Beam_wYe[6] = 250.0;
+  OscParams_Beam_wYe[7] = 2.6;
+  OscParams_Beam_wYe[8] = 0.5;
+  
   std::vector<FLOAT_T> EnergyArray = logspace(0.1,100.,1e3);
   std::vector<FLOAT_T> CosineZArray = linspace(-1.0,1.0,1e3);
 
@@ -119,6 +134,16 @@ int main(int argc, char **argv) {
     throw;
 #endif
   }
+
+  else if (OscProbCalcerImplementationToCreate == "OscProb") {
+#if UseOscProb==1
+    OscProbCalcerOscProb* OscProb = new OscProbCalcerOscProb(OscProbCalcerConfigname);
+    Calcer = (OscProbCalcerBase*)OscProb;
+#else
+    std::cerr << "Oscillator was requsted to create " << OscProbCalcerImplementationToCreate << " OscProbCalcer but Use" << OscProbCalcerImplementationToCreate << " is undefined. Indicates problem in setup" << std::endl;
+    throw;
+#endif
+  }
   
   else {
     std::cerr << "Executable was requsted to create " << OscProbCalcerImplementationToCreate << " OscProbCalcer but this is not implemented within " << __FILE__ << std::endl;
@@ -143,8 +168,10 @@ int main(int argc, char **argv) {
 
   // These don't have to be explicilty beam or atmospheric specific, all they have to be is equal to the number of oscillation parameters expected by the implementation
   // If you have some NSO calculater, then it will work providing the length of the vector of oscillation parameters is equal to the number of expected oscillation parameters
-  if (Calcer->ReturnNOscParams() == (int)OscParams_Beam.size()) {
-    Calcer->Reweight(OscParams_Beam); 
+  if (Calcer->ReturnNOscParams() == (int)OscParams_Beam_woYe.size()) {
+    Calcer->Reweight(OscParams_Beam_woYe);
+  } else if (Calcer->ReturnNOscParams() == (int)OscParams_Beam_wYe.size()) {
+    Calcer->Reweight(OscParams_Beam_wYe); 
   } else if (Calcer->ReturnNOscParams() == (int)OscParams_Atm.size()) {
     Calcer->Reweight(OscParams_Atm);
   } else {

@@ -38,7 +38,7 @@ endif()
 add_library(NuOscillatorCompilerOptions INTERFACE)
 
 message(STATUS "NuOscillator Features: ")
-foreach(VAR UseGPU UseMultithreading UseDoubles UseCUDAProb3 UseCUDAProb3Linear UseProb3ppLinear UseProbGPULinear UseNuFASTLinear)
+foreach(VAR UseGPU UseMultithreading UseDoubles UseCUDAProb3 UseCUDAProb3Linear UseProb3ppLinear UseProbGPULinear UseNuFASTLinear UseOscProb)
 	    if(NOT DEFINED ${VAR})
 	    	   message(FATAL_ERROR "${VAR} not defined")
 	    endif()
@@ -228,6 +228,16 @@ if(${UseNuFASTLinear} EQUAL 1)
       	DOWNLOAD_ONLY
       )
       target_compile_definitions(NuOscillatorCompilerOptions INTERFACE UseNuFASTLinear=1)
+endif()
+
+if(${UseOscProb} EQUAL 1)
+  CPMAddPackage(
+    NAME OscProb
+    GITHUB_REPOSITORY joaoabcoelho/OscProb
+    GIT_TAG master
+  )
+  execute_process(COMMAND make WORKING_DIRECTORY ${OscProb_SOURCE_DIR})
+  target_compile_definitions(NuOscillatorCompilerOptions INTERFACE UseOscProb=1)
 endif()
 
 if(${UseGPU} EQUAL 1)
