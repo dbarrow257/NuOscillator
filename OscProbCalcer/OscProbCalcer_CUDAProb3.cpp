@@ -82,7 +82,7 @@ void OscProbCalcerCUDAProb3::SetupPropagator() {
   if (fVerbose >= INFO) {std::cout << "Setup CUDAProb3 oscillation probability calculater" << std::endl;}
 }
  
-void OscProbCalcerCUDAProb3::CalculateProbabilities(std::vector<FLOAT_T> OscParams) {
+void OscProbCalcerCUDAProb3::CalculateProbabilities(const std::vector<FLOAT_T>& OscParams) {
   // Oscpars, as given from MaCh3, expresses the mixing angles in sin^2(theta). This propagator expects them in theta
   for (int iOscPar=0;iOscPar<=kTH13;iOscPar++) {
     if (OscParams[iOscPar] < 0) {
