@@ -53,7 +53,7 @@ class OscProbCalcerCUDAProb3 : public OscProbCalcerBase {
    *
    * @param OscParams The parameter set to calculate oscillation probabilities at
    */
-  void CalculateProbabilities(std::vector<FLOAT_T> OscParams) override;
+  void CalculateProbabilities(const std::vector<FLOAT_T>& OscParams) override;
 
   /**
    * @brief Return implementation specific index in the weight array for a specific combination of neutrino oscillation channel, energy and cosine zenith
