@@ -7,7 +7,8 @@ var searchData=
   ['_7eoscprobcalcerbase_4',['~OscProbCalcerBase',['../classOscProbCalcerBase.html#ae5485ac57513ab579873f3495522fa31',1,'OscProbCalcerBase']]],
   ['_7eoscprobcalcercudaprob3_5',['~OscProbCalcerCUDAProb3',['../classOscProbCalcerCUDAProb3.html#ac2652e6124af3a84aa25cc702d067ff7',1,'OscProbCalcerCUDAProb3']]],
   ['_7eoscprobcalcercudaprob3linear_6',['~OscProbCalcerCUDAProb3Linear',['../classOscProbCalcerCUDAProb3Linear.html#a15d25d9eec6af5159a9eb1ca5128a6bc',1,'OscProbCalcerCUDAProb3Linear']]],
-  ['_7eoscprobcalcernufastlinear_7',['~OscProbCalcerNuFASTLinear',['../classOscProbCalcerNuFASTLinear.html#ad9b07d15601ef9f93cc168923abcc14f',1,'OscProbCalcerNuFASTLinear']]],
-  ['_7eoscprobcalcerprob3pplinear_8',['~OscProbCalcerProb3ppLinear',['../classOscProbCalcerProb3ppLinear.html#a90700492baae03a677d4c3ce28c8f8f0',1,'OscProbCalcerProb3ppLinear']]],
-  ['_7eoscprobcalcerprobgpulinear_9',['~OscProbCalcerProbGPULinear',['../classOscProbCalcerProbGPULinear.html#ab1fe8115aa199bea60afb14b8c17e134',1,'OscProbCalcerProbGPULinear']]]
+  ['_7eoscprobcalcerfactory_7',['~OscProbCalcerFactory',['../classOscProbCalcerFactory.html#a335ea83ccd010753af34f452cdf35579',1,'OscProbCalcerFactory']]],
+  ['_7eoscprobcalcernufastlinear_8',['~OscProbCalcerNuFASTLinear',['../classOscProbCalcerNuFASTLinear.html#ad9b07d15601ef9f93cc168923abcc14f',1,'OscProbCalcerNuFASTLinear']]],
+  ['_7eoscprobcalcerprob3pplinear_9',['~OscProbCalcerProb3ppLinear',['../classOscProbCalcerProb3ppLinear.html#a90700492baae03a677d4c3ce28c8f8f0',1,'OscProbCalcerProb3ppLinear']]],
+  ['_7eoscprobcalcerprobgpulinear_10',['~OscProbCalcerProbGPULinear',['../classOscProbCalcerProbGPULinear.html#ab1fe8115aa199bea60afb14b8c17e134',1,'OscProbCalcerProbGPULinear']]]
 ];

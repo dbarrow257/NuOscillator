@@ -10,5 +10,6 @@ var searchData=
   ['cosinezaxishistname_7',['CosineZAxisHistName',['../classOscillatorBinned.html#a50d0a10ad138873374c325011224d6a5',1,'OscillatorBinned']]],
   ['cosinezignored_8',['CosineZIgnored',['../classOscillatorBase.html#a39e513c5f4a492e9300ed277c48478a7',1,'OscillatorBase']]],
   ['createoscillator_9',['CreateOscillator',['../classOscillatorFactory.html#a6a5605305da0bff03fc4f14966fb0e71',1,'OscillatorFactory']]],
-  ['cudaprob3_10',['cudaprob3',['../namespacecudaprob3.html',1,'']]]
+  ['createoscprobcalcer_10',['CreateOscProbCalcer',['../classOscProbCalcerFactory.html#a2f890bbde36531a13b44a0a47d2a9002',1,'OscProbCalcerFactory']]],
+  ['cudaprob3_11',['cudaprob3',['../namespacecudaprob3.html',1,'']]]
 ];

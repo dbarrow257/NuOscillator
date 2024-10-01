@@ -9,7 +9,8 @@ var searchData=
   ['oscprobcalcerbase_6',['OscProbCalcerBase',['../classOscProbCalcerBase.html',1,'']]],
   ['oscprobcalcercudaprob3_7',['OscProbCalcerCUDAProb3',['../classOscProbCalcerCUDAProb3.html',1,'']]],
   ['oscprobcalcercudaprob3linear_8',['OscProbCalcerCUDAProb3Linear',['../classOscProbCalcerCUDAProb3Linear.html',1,'']]],
-  ['oscprobcalcernufastlinear_9',['OscProbCalcerNuFASTLinear',['../classOscProbCalcerNuFASTLinear.html',1,'']]],
-  ['oscprobcalcerprob3pplinear_10',['OscProbCalcerProb3ppLinear',['../classOscProbCalcerProb3ppLinear.html',1,'']]],
-  ['oscprobcalcerprobgpulinear_11',['OscProbCalcerProbGPULinear',['../classOscProbCalcerProbGPULinear.html',1,'']]]
+  ['oscprobcalcerfactory_9',['OscProbCalcerFactory',['../classOscProbCalcerFactory.html',1,'']]],
+  ['oscprobcalcernufastlinear_10',['OscProbCalcerNuFASTLinear',['../classOscProbCalcerNuFASTLinear.html',1,'']]],
+  ['oscprobcalcerprob3pplinear_11',['OscProbCalcerProb3ppLinear',['../classOscProbCalcerProb3ppLinear.html',1,'']]],
+  ['oscprobcalcerprobgpulinear_12',['OscProbCalcerProbGPULinear',['../classOscProbCalcerProbGPULinear.html',1,'']]]
 ];

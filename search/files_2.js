@@ -21,5 +21,7 @@ var searchData=
   ['oscprobcalcer_5fprobgpulinear_2eh_18',['OscProbCalcer_ProbGPULinear.h',['../OscProbCalcer__ProbGPULinear_8h.html',1,'']]],
   ['oscprobcalcerbase_2ecpp_19',['OscProbCalcerBase.cpp',['../OscProbCalcerBase_8cpp.html',1,'']]],
   ['oscprobcalcerbase_2eh_20',['OscProbCalcerBase.h',['../OscProbCalcerBase_8h.html',1,'']]],
-  ['oscprobcalcercomparison_2ecpp_21',['OscProbCalcerComparison.cpp',['../OscProbCalcerComparison_8cpp.html',1,'']]]
+  ['oscprobcalcercomparison_2ecpp_21',['OscProbCalcerComparison.cpp',['../OscProbCalcerComparison_8cpp.html',1,'']]],
+  ['oscprobcalcerfactory_2ecpp_22',['OscProbCalcerFactory.cpp',['../OscProbCalcerFactory_8cpp.html',1,'']]],
+  ['oscprobcalcerfactory_2eh_23',['OscProbCalcerFactory.h',['../OscProbCalcerFactory_8h.html',1,'']]]
 ];
