@@ -108,13 +108,16 @@ void OscProbCalcerCUDAProb3Linear::CalculateProbabilities(const std::vector<FLOA
 
   for (int iNuType=0;iNuType<fNNeutrinoTypes;iNuType++) {
 
+    int NuType_int;
     cudaprob3::NeutrinoType NuType;
     if (fNeutrinoTypes[iNuType]==Nubar) {
+      NuType_int = -1;
       NuType = cudaprob3::Antineutrino;
     } else {
+      NuType_int = 1;
       NuType = cudaprob3::Neutrino;
     }
-    propagator->setMNSMatrix(theta12, theta13, theta23, dcp, NuType);
+    propagator->setMNSMatrix(theta12, theta13, theta23, dcp, NuType_int);
 
     propagator->calculateProbabilities(NuType);
 
