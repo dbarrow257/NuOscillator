@@ -10,7 +10,7 @@
 
 using namespace cudaprob3;
 
-OscProbCalcerCUDAProb3Linear::OscProbCalcerCUDAProb3Linear(std::string ConfigName_, int Instance_) : OscProbCalcerBase(ConfigName_,"CUDAProb3Linear",Instance_)
+OscProbCalcerCUDAProb3Linear::OscProbCalcerCUDAProb3Linear(YAML::Node Config_) : OscProbCalcerBase(Config_)
 {
   //=======
   //Grab information from the config

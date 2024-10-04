@@ -28,7 +28,9 @@ class OscProbCalcerCUDAProb3Linear : public OscProbCalcerBase {
    * @param ConfigName_ Name of config used to setup the OscProbCalcerCUDAProb3Linear() instance
    * @param Instance_ Which entry of the OscProbCalcerSetup config block should be read in the case where there are multiple OscProbCalcers to be initialised
    */
-  OscProbCalcerCUDAProb3Linear(std::string ConfigName_="", int Instance_=0);
+  OscProbCalcerCUDAProb3Linear(YAML::Node Config_);
+
+  OscProbCalcerCUDAProb3Linear(std::string ConfigName_) : OscProbCalcerCUDAProb3Linear(YAML::LoadFile(ConfigName_)) {}
 
   /**
    * @brief Destructor

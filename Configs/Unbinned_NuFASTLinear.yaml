@@ -1,5 +1,5 @@
 General:
-  Verbosity: "INFO"
+  Verbosity: "NONE"
   CosineZIgnored: true
   CalculationType: "Unbinned"
 
