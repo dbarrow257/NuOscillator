@@ -30,7 +30,9 @@ class OscProbCalcerFactory {
    *
    * @return OscillatorBase::OscillatorBase() object
    */
-  OscProbCalcerBase* CreateOscProbCalcer(std::string OscProbCalcerImplementationToCreate, std::string OscProbCalcerConfigName_, int Instance, int Verbose=INFO);
+  OscProbCalcerBase* CreateOscProbCalcer(std::string OscProbCalcerConfigName_);
+
+  OscProbCalcerBase* CreateOscProbCalcer(YAML::Node OscProbCalcerConfig);
 
  protected:
 

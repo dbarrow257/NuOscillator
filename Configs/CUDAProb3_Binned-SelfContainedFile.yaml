@@ -3,13 +3,14 @@ General:
   CosineZIgnored: false
   CalculationType: "Binned"
 
-OscProbCalcer:
-  - Config: "CUDAProb3:./build/NuOscillatorConfigs/Configs/CUDAProb3_Binned-SelfContainedFile.yaml"
-
 Binned:
   FileName: "./Inputs/ExampleAtmosphericBinning.root"
   EnergyAxisHistName: "EnergyAxisBinning"
   CosineZAxisHistName: "CosineZAxisBinning"
+
+OscProbCalcer:
+  - Implementation: "CUDAProb3"
+  - Config: "./build/NuOscillatorConfigs/Configs/CUDAProb3_Binned-SelfContainedFile.yaml"
 
 OscProbCalcerSetup:
   - CUDAProb3:

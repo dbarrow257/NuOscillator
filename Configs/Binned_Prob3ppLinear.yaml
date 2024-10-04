@@ -3,10 +3,11 @@ General:
   CosineZIgnored: true
   CalculationType: "Binned"
 
-OscProbCalcer:
-  - Config: "Prob3ppLinear:./build/Linux/Configs/OscProbCalcerConfigs/Prob3ppLinear.yaml"
-
 Binned:
   FileName: "./Inputs/ExampleAtmosphericBinning.root"
   EnergyAxisHistName: "EnergyAxisBinning"
   CosineZAxisHistName: "CosineZAxisBinning"
+
+OscProbCalcer:
+  - Implementation: "Prob3ppLinear"
+  - Config: "./build/Linux/Configs/OscProbCalcerConfigs/Prob3ppLinear.yaml"

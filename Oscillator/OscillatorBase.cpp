@@ -22,18 +22,19 @@ OscillatorBase::OscillatorBase(std::string ConfigName_) {
 
   fCosineZIgnored = Config["General"]["CosineZIgnored"].as<bool>();
 
+  InitialiseOscProbCalcer();
+  
   if (fVerbose >= INFO) {std::cout << "Read:" << ConfigName_ << "\n" << Config << std::endl;}
-  InitialiseOscProbCalcer("NuFAST","Configs/NuFASTLinear.yaml");
 }
 
 OscillatorBase::~OscillatorBase() {
   delete fOscProbCalcer;
 }
 
-OscProbCalcerBase* OscillatorBase::InitialiseOscProbCalcer(std::string OscProbCalcerImplementationToCreate, std::string OscProbCalcerConfigname) {
+void OscillatorBase::InitialiseOscProbCalcer() {
   OscProbCalcerFactory* OscProbCalcFactory = new OscProbCalcerFactory();
-  OscProbCalcerBase* Calcer = OscProbCalcFactory->CreateOscProbCalcer(OscProbCalcerImplementationToCreate,OscProbCalcerConfigname,fVerbose);
-  return Calcer;
+  fOscProbCalcer = OscProbCalcFactory->CreateOscProbCalcer(Config);
+  fOscProbCalcerSet = true;
 }
 
 void OscillatorBase::SetEnergyArrayInCalcer(std::vector<FLOAT_T> Array) {
@@ -96,6 +97,7 @@ void OscillatorBase::SanityCheck() {
     std::cerr << "fCosineZIgnored:" << fCosineZIgnored << std::endl;
     std::cerr << "fOscProbCalcer->SanityCheck():" << fOscProbCalcer->SanityCheck() << std::endl;
     std::cerr << "fOscProbCalcer->ReturnCosineZIgnored():" << fOscProbCalcer->ReturnCosineZIgnored() << std::endl;
+    throw;
   } else {
     if (fVerbose >= INFO) {std::cout << "OscillatorBase instance passed SanityCheck" << std::endl;}
   }

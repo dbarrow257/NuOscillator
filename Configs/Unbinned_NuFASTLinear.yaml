@@ -1,7 +1,8 @@
 General:
-  Verbosity: "NONE"
+  Verbosity: "INFO"
   CosineZIgnored: true
   CalculationType: "Unbinned"
 
 OscProbCalcer:
-  - Config: "NuFASTLinear:./build/Linux/Configs/OscProbCalcerConfigs/NuFASTLinear.yaml"
+  Implementation: "NuFASTLinear"
+  Config: "./build/Linux/Configs/OscProbCalcerConfigs/NuFASTLinear.yaml"

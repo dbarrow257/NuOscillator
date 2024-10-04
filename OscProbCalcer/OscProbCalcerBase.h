@@ -185,16 +185,25 @@ class OscProbCalcerBase {
   // Public virtual functions which need calculater specific implementations
 
  protected:
-   /**
+
+  /**
     * @brief Default constructor
     *
     * @details It is protected to prevent initialisation of base class
     *
-    * @param ConfigName_ Name of YAML config used to set runtime variables
-    * @param Instance_ Instance in the OscProbCalcerSetup YAML Node to select
+    * @param Config_ YAML::Node used to define the object
     */
-   OscProbCalcerBase(std::string ConfigName_, std::string ImplementationName_, int Instance_=0);
+  OscProbCalcerBase(YAML::Node InputConfig_);
 
+   /**
+    * @brief Wrapper Construct
+    *
+    * @details If only a file path of a config has been specified, create a YAML::Node and then continue with the default constructor
+    *
+    * @param ConfigName_ Name of YAML config used to set runtime variables
+    */
+  OscProbCalcerBase(std::string ConfigName_) : OscProbCalcerBase(YAML::LoadFile(ConfigName_)) {}
+  
   // ========================================================================================================================================================================
   // Protected functions which are calculation implementation agnostic  
 
@@ -429,19 +438,9 @@ class OscProbCalcerBase {
   bool fCosineZIgnored;
 
   /**
-   * @brief To allow multiple fOscProbCalcerBase:fOscProbCalcerBase() to be created, this variable describes which instance in the OscProbCalcerSetup YAML Node was requested
-   */
-  int fInstance;
-
-  /**
    * @brief YAML Config object used to get runtime specific variables
    */
-  YAML::Node GeneralConfig;
-
-  /**
-   * @brief An easy link to the [OscProbCalcerSetup][Implementation] YAML Node
-   */
-  YAML::Node InstanceConfig;
+  YAML::Node Config;
 
  private:
   // ========================================================================================================================================================================

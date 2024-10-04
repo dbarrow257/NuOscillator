@@ -4,4 +4,5 @@ General:
   CalculationType: "Unbinned"
 
 OscProbCalcer:
-  - Config: "Prob3ppLinear:./build/Linux/Configs/OscProbCalcerConfigs/Prob3ppLinear.yaml"
+  - Implementation: "Prob3ppLinear"
+  - Config: "./build/Linux/Configs/OscProbCalcerConfigs/Prob3ppLinear.yaml"

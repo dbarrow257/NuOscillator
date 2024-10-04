@@ -1,19 +1,14 @@
 General:
-  Verbosity: "INFO"
+  Verbosity: "NONE"
   CosineZIgnored: true
-  CalculationType: "Binned"
-
-Binned:
-  FileName: "./Inputs/ExampleAtmosphericBinning.root"
-  EnergyAxisHistName: "EnergyAxisBinning"
-  CosineZAxisHistName: "CosineZAxisBinning"
+  CalculationType: "Unbinned"
 
 OscProbCalcer:
-  - Implementation: "Prob3ppLinear"
-  - Config: "./build/NuOscillatorConfigs/Configs/Prob3ppLinear_Binned-SelfContainedFile.yaml"
+  - Implementation: "ProbGPULinear"
+  - Config: "./build/Linux/Configs/ProbGPULinear_Binned-SelfContainedFile-MultipleInstances.yaml"
 
 OscProbCalcerSetup:
-  - Prob3ppLinear:
+  - ProbGPULinear:
     OscChannelMapping:
       - Entry: "Electron:Electron"
       - Entry: "Electron:Muon"

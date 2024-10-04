@@ -1,5 +1,7 @@
 General:
   Verbosity: "NONE"
+  CosineZIgnored: true
+  CalculationType: "Unbinned"
 
 OscProbCalcerSetup:
   ImplementationName: "NuFASTLinear"

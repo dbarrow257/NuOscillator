@@ -19,8 +19,10 @@ class OscProbCalcerNuFASTLinear : public OscProbCalcerBase {
    * @param ConfigName_ Name of config used to setup the OscProbCalcerNuFASTLinear() instance
    * @param Instance_ Which entry of the OscProbCalcerSetup config block should be read in the case where there are multiple OscProbCalcers to be initialised
    */
-  OscProbCalcerNuFASTLinear(std::string ConfigName_="", int Instance_=0);
+  OscProbCalcerNuFASTLinear(YAML::Node Config_);
 
+  OscProbCalcerNuFASTLinear(std::string ConfigName_) : OscProbCalcerNuFASTLinear(YAML::LoadFile(ConfigName_)) {}
+  
   /**
    * @brief Destructor
    */

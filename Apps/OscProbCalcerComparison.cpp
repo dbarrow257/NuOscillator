@@ -90,7 +90,8 @@ int main() {
 #endif
 
 #if UseNuFASTLinear == 1
-  ConfigNames.push_back("./Configs/Unbinned_NuFASTLinear.yaml");
+  //ConfigNames.push_back("./Configs/Unbinned_NuFASTLinear.yaml");
+  ConfigNames.push_back("./Configs/NuFAST_Unbinned-SelfContainedFile.yaml");
 #endif
 
   //Alternative option to show how all information can be held in a single YAML file rather than using a preset
@@ -99,7 +100,7 @@ int main() {
   for (size_t iConfig=0;iConfig<ConfigNames.size();iConfig++) {
     std::cout << "========================================================" << std::endl;
     std::cout << "Initialising " << ConfigNames[iConfig] << std::endl;
-    
+
     //Create OscillatorBase* object from YAML config
     Oscillator = OscFactory->CreateOscillator(ConfigNames[iConfig]);
 

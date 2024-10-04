@@ -236,15 +236,12 @@ class OscillatorBase {
   /**
    * @brief Return an OscProbCalcerBase::OscProbCalcerBase() object from the requested inputs
    *
-   * Create and return an instance of OscProbCalcerBase::OscProbCalcerBase() associated with a particular implementation denoted by @param OscProbCalcerImplementationToCreate
+   * Create and initialise #fOscProbCalcer to be an instance of OscProbCalcerBase::OscProbCalcerBase() associated with a particular implementation denoted by @param OscProbCalcerImplementationToCreate
    * and config path @param OscProbCalcerConfigname, recast it to a base object OscProbCalcerBase::OscProbCalcerBase() and returns it.
    *
-   * @param OscProbCalcerImplementationToCreate Implementation type to build. Acts as a switch within this function
    * @param OscProbCalcerConfigname Path to the YAML config
-   *
-   * @return OscProbCalcerBase::OscProbCalcerBase() object corresponding to the request string input
    */
-  OscProbCalcerBase* InitialiseOscProbCalcer(std::string OscProbCalcerImplementationToCreate, std::string OscProbCalcerConfigname);
+  void InitialiseOscProbCalcer();
 
   // ========================================================================================================================================================================
   // Basic private variables required for oscillation probability calculation
