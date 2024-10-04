@@ -90,8 +90,7 @@ int main() {
 #endif
 
 #if UseNuFASTLinear == 1
-  //ConfigNames.push_back("./Configs/Unbinned_NuFASTLinear.yaml");
-  ConfigNames.push_back("./Configs/NuFAST_Unbinned-SelfContainedFile.yaml");
+  ConfigNames.push_back("./Configs/Unbinned_NuFASTLinear.yaml");
 #endif
 
   //Alternative option to show how all information can be held in a single YAML file rather than using a preset

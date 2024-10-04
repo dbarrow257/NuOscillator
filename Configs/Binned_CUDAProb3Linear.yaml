@@ -8,6 +8,15 @@ Binned:
   EnergyAxisHistName: "EnergyAxisBinning"
   CosineZAxisHistName: "CosineZAxisBinning"
 
-OscProbCalcer:
-  - Implementation: "CUDAProb3Linear"
-  - Config: "./build/Linux/Configs/OscProbCalcerConfigs/CUDAProb3Linear.yaml"
+OscProbCalcerSetup:
+  ImplementationName: "CUDAProb3Linear"
+  OscChannelMapping:
+    - Entry: "Electron:Electron"
+    - Entry: "Electron:Muon"
+    - Entry: "Electron:Tau"
+    - Entry: "Muon:Electron"
+    - Entry: "Muon:Muon"
+    - Entry: "Muon:Tau"
+    - Entry: "Tau:Electron"
+    - Entry: "Tau:Muon"
+    - Entry: "Tau:Tau"
