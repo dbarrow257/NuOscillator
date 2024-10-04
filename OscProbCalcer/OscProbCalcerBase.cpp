@@ -6,18 +6,6 @@
 #include <iostream>
 #include <iomanip>
 
-/*
-OscProbCalcerBase::OscProbCalcerBase(std::string ConfigName_) {
-  std::cout << "Reading config in OscProbCalcerBase: " << ConfigName_ << std::endl;
-  YAML::Node TempConfig_ = YAML::LoadFile(ConfigName_);
-  OscProbCalcerBase(TempConfig_);
-
-  if (fVerbose >= INFO) {
-    std::cout << "Read Config in OscProbCalcerBase: " << ConfigName_ << "\n" << Config << " and got implementation:" << fImplementationName << std::endl;
-  }
-}
-*/
-
 OscProbCalcerBase::OscProbCalcerBase(YAML::Node InputConfig_) {
   // Set default values of all variables within this base object
   fVerbose = NONE;
