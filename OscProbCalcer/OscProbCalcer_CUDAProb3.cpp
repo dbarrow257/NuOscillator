@@ -13,7 +13,7 @@
 #include <iostream>
 using namespace cudaprob3;
 
-OscProbCalcerCUDAProb3::OscProbCalcerCUDAProb3(std::string ConfigName_, int Instance_) : OscProbCalcerBase(ConfigName_,"CUDAProb3",Instance_)
+OscProbCalcerCUDAProb3::OscProbCalcerCUDAProb3(YAML::Node Config_) : OscProbCalcerBase(Config_)
 {
   //=======
   //Grab information from the config

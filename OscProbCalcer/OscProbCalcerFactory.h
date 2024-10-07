@@ -26,12 +26,19 @@ class OscProbCalcerFactory {
   /**
    * @brief Create an instance of OscProbCalcerBase::OscProbCalcerBase() objects from a YAML config. 
    *
-   * @param ConfigName_ Path to YAML config file
+   * @param OscProbCalcerConfigName_ Path to YAML config file
    *
-   * @return OscillatorBase::OscillatorBase() object
+   * @return Intialised OscProbCalcerBase::OscProbCalcerBase() object
    */
   OscProbCalcerBase* CreateOscProbCalcer(std::string OscProbCalcerConfigName_);
 
+  /**
+   * @brief Create an instance of OscProbCalcerBase::OscProbCalcerBase() objects from a YAML Node
+   *
+   * @param OscProbCalcerConfig Instance of YAML node
+   *
+   * @return Intialised OscProbCalcerBase::OscProbCalcerBase() object
+   */
   OscProbCalcerBase* CreateOscProbCalcer(YAML::Node OscProbCalcerConfig);
 
  protected:

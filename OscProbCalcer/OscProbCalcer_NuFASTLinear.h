@@ -16,11 +16,15 @@ class OscProbCalcerNuFASTLinear : public OscProbCalcerBase {
   /**
    * @brief Default constructor
    *
-   * @param ConfigName_ Name of config used to setup the OscProbCalcerNuFASTLinear() instance
-   * @param Instance_ Which entry of the OscProbCalcerSetup config block should be read in the case where there are multiple OscProbCalcers to be initialised
+   * @param Config_ YAML::Node to setup the OscProbCalcerNuFASTLinear() instance
    */
   OscProbCalcerNuFASTLinear(YAML::Node Config_);
 
+  /**
+   * @brief Constructor which takes a file path, creates a YAML::Node and calls the default constructor
+   *
+   * @param ConfigName_ File path to config
+   */
   OscProbCalcerNuFASTLinear(std::string ConfigName_) : OscProbCalcerNuFASTLinear(YAML::LoadFile(ConfigName_)) {}
   
   /**
