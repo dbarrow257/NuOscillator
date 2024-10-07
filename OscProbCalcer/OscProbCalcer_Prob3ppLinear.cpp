@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-OscProbCalcerProb3ppLinear::OscProbCalcerProb3ppLinear(std::string ConfigName_, int Instance_) : OscProbCalcerBase(ConfigName_,"Prob3ppLinear",Instance_)
+OscProbCalcerProb3ppLinear::OscProbCalcerProb3ppLinear(YAML::Node Config_) : OscProbCalcerBase(Config_)
 {
   //=======
   //Grab information from the config

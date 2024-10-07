@@ -30,13 +30,9 @@ OscillatorBinned::OscillatorBinned(std::string ConfigName_) : OscillatorBase(Con
 
   fEvalPointsSetInConstructor = true;
 
-  for (int CalcerIndex=0;CalcerIndex<fNCalcers;CalcerIndex++) {
-    SetEnergyArrayInCalcer(EnergyAxisBinCenters, CalcerIndex);
-  }   
+  SetEnergyArrayInCalcer(EnergyAxisBinCenters);
   if (!fCosineZIgnored) {
-    for (int CalcerIndex=0;CalcerIndex<fNCalcers;CalcerIndex++) {
-      SetCosineZArrayInCalcer(CosineZAxisBinCenters, CalcerIndex);
-    }
+    SetCosineZArrayInCalcer(CosineZAxisBinCenters);
   }
 
 }
@@ -139,6 +135,5 @@ const FLOAT_T* OscillatorBinned::ReturnWeightPointer(int InitNuFlav, int FinalNu
     CosineZValBinCenter = CosineZAxisBinCenters[CosineZIndex];
   }
 
-  int CalcerIndex = 0;
-  return ReturnPointerToWeightinCalcer(CalcerIndex,InitNuFlav,FinalNuFlav,EnergyValBinCenter,CosineZValBinCenter);
+  return ReturnPointerToWeightinCalcer(InitNuFlav,FinalNuFlav,EnergyValBinCenter,CosineZValBinCenter);
 }

@@ -6,10 +6,7 @@
 #include <iostream>
 #include <iomanip>
 
-OscProbCalcerBase::OscProbCalcerBase(std::string ConfigName_, std::string ImplementationName_, int Instance_) {
-  fImplementationName = ImplementationName_;
-  fInstance = Instance_;
-
+OscProbCalcerBase::OscProbCalcerBase(YAML::Node InputConfig_) {
   // Set default values of all variables within this base object
   fVerbose = NONE;
 
@@ -38,40 +35,30 @@ OscProbCalcerBase::OscProbCalcerBase(std::string ConfigName_, std::string Implem
   fWeightArrayInit = false;
   fNuMappingSet = false;
 
-  // Create config manager
-  std::cout << "Reading config in OscProbCalcerBase: " << ConfigName_ << std::endl;
+  Config = InputConfig_;
   
-  GeneralConfig = YAML::LoadFile(ConfigName_);
-
-  std::string Verbosity = GeneralConfig["General"]["Verbosity"].as<std::string>();
+  std::string Verbosity = Config["General"]["Verbosity"].as<std::string>();
   fVerbose = Verbosity_StrToInt(Verbosity);
 
-  if (!GeneralConfig["OscProbCalcerSetup"]) {
-    std::cerr << "Did not find the 'OscProbCalcerSetup' Node within the specific config:" << ConfigName_ << std::endl;
-    throw;
-  }
-  // Assumes instance number in list (not the index of the specifc implementation)
-  int Count = 0;
-  for (auto const& OscProbCalcerSetup : GeneralConfig["OscProbCalcerSetup"]) {
-    if (Count == Instance_) {
-      InstanceConfig = YAML::Node(OscProbCalcerSetup);
-    }
-    Count += 1;
-  }
-  if (!InstanceConfig["OscChannelMapping"]) {
-    std::cerr << "Expected to find a 'OscChannelMapping' Node within the 'OscProbCalcerSetup''Implementation' Node" << std::endl;
+  if (!Config["OscProbCalcerSetup"]) {
+    std::cerr << "Did not find the 'OscProbCalcerSetup' Node within the config" << std::endl;
     throw;
   }
 
+  fImplementationName = Config["OscProbCalcerSetup"]["ImplementationName"].as<std::string>();
   if (fVerbose >= INFO) {
-    std::cout << "Read Config in OscProbCalcerBase: " << ConfigName_ << "\n" << GeneralConfig << " and got " << fInstance << "'th instance of implementation:" << fImplementationName << std::endl;
+    std::cout << "From config, found implementation:" << fImplementationName << std::endl;
   }
-
+  
+  if (!Config["OscProbCalcerSetup"]["OscChannelMapping"]) {
+    std::cerr << "Expected to find a 'OscChannelMapping' Node within the 'OscProbCalcerSetup'Node" << std::endl;
+    throw;
+  }
   InitialiseOscillationChannelMapping();
+
 }
 
 OscProbCalcerBase::~OscProbCalcerBase() {
-
 }
 
 void OscProbCalcerBase::SetEnergyArray(std::vector<FLOAT_T> EnergyArray) {
@@ -170,7 +157,7 @@ const FLOAT_T* OscProbCalcerBase::ReturnPointerToWeight(int InitNuFlav, int Fina
   }
 
   int NuTypeIndex = ReturnNuTypeFromFlavour(InitNuFlav);
-  int OscChanIndex = ReturnOscChannelIndexFromFlavours(InitNuFlav,FinalNuFlav);
+  int OscChanIndex = ReturnOscChannelIndexFromFlavours(std::abs(InitNuFlav),std::abs(FinalNuFlav));
   int CosineZIndex = -1;
   if (!ReturnCosineZIgnored()) {
     CosineZIndex = ReturnCosineZIndexFromValue(CosineZ);
@@ -424,7 +411,7 @@ void OscProbCalcerBase::InitialiseNeutrinoTypesArray(int Size) {
 }
 
 void OscProbCalcerBase::InitialiseOscillationChannelMapping() {
-  for (auto const &OscChannel : InstanceConfig["OscChannelMapping"]) {
+  for (auto const &OscChannel : Config["OscProbCalcerSetup"]["OscChannelMapping"]) {
     OscillationChannel myOscChan = ReturnOscillationChannel(OscChannel["Entry"].as<std::string>());
     fOscillationChannels.push_back(myOscChan);
   }

@@ -28,66 +28,75 @@ OscProbCalcerFactory::OscProbCalcerFactory() {
 OscProbCalcerFactory::~OscProbCalcerFactory() {
 }
 
-OscProbCalcerBase* OscProbCalcerFactory::CreateOscProbCalcer(std::string OscProbCalcerImplementationToCreate, std::string OscProbCalcerConfigName, int Instance, int Verbose) {
+OscProbCalcerBase* OscProbCalcerFactory::CreateOscProbCalcer(std::string OscProbCalcerConfigName) {
+  YAML::Node Config = YAML::LoadFile(OscProbCalcerConfigName);
+  return CreateOscProbCalcer(Config);
+}
+
+OscProbCalcerBase* OscProbCalcerFactory::CreateOscProbCalcer(YAML::Node OscProbCalcerConfig) {
   OscProbCalcerBase* Calcer = NULL;
-  
+
+  std::string OscProbCalcerImplementationToCreate = OscProbCalcerConfig["OscProbCalcerSetup"]["ImplementationName"].as<std::string>();
+  std::string Verbosity = OscProbCalcerConfig["General"]["Verbosity"].as<std::string>();
+  int Verbose = Verbosity_StrToInt(Verbosity);
+
   if (OscProbCalcerImplementationToCreate == "CUDAProb3") {
 #if UseCUDAProb3==1
-    OscProbCalcerCUDAProb3* CUDAProb3 = new OscProbCalcerCUDAProb3(OscProbCalcerConfigName,Instance);
+    OscProbCalcerCUDAProb3* CUDAProb3 = new OscProbCalcerCUDAProb3(OscProbCalcerConfig);
     Calcer = (OscProbCalcerBase*)CUDAProb3;
-    if (Verbose >= INFO) {std::cout << "Initalised OscProbCalcer Implementation:" << Calcer->ReturnImplementationName() << " in OscillatorBase object" << std::endl;}
+    if (Verbose >= INFO) {std::cout << "Initalised OscProbCalcer Implementation:" << Calcer->ReturnImplementationName() << " in OscProbCalcerFactory object" << std::endl;}
 #else
-    std::cerr << "Oscillator was requsted to create " << OscProbCalcerImplementationToCreate << " OscProbCalcer but Use" << OscProbCalcerImplementationToCreate << " is undefined. Indicates problem in setup" << std::endl;
+    std::cerr << "OscProbCalcerFactory was requsted to create " << OscProbCalcerImplementationToCreate << " OscProbCalcer but Use" << OscProbCalcerImplementationToCreate << " is undefined. Indicates problem in setup" << std::endl;
     throw;
 #endif
   }
 
   else if (OscProbCalcerImplementationToCreate == "CUDAProb3Linear") {
 #if UseCUDAProb3Linear==1
-    OscProbCalcerCUDAProb3Linear* CUDAProb3Linear = new OscProbCalcerCUDAProb3Linear(OscProbCalcerConfigName,Instance);
+    OscProbCalcerCUDAProb3Linear* CUDAProb3Linear = new OscProbCalcerCUDAProb3Linear(OscProbCalcerConfig);
     Calcer = (OscProbCalcerBase*)CUDAProb3Linear;
-    if (Verbose >= INFO) {std::cout << "Initalised OscProbCalcer Implementation:" << Calcer->ReturnImplementationName() << " in OscillatorBase object" << std::endl;}
+    if (Verbose >= INFO) {std::cout << "Initalised OscProbCalcer Implementation:" << Calcer->ReturnImplementationName() << " in OscProbCalcerFactory object" << std::endl;}
 #else
-    std::cerr << "Oscillator was requsted to create " << OscProbCalcerImplementationToCreate << " OscProbCalcer but Use" << OscProbCalcerImplementationToCreate << " is undefined. Indicates problem in setup" << std::endl;
+    std::cerr << "OscProbCalcerFactory was requsted to create " << OscProbCalcerImplementationToCreate << " OscProbCalcer but Use" << OscProbCalcerImplementationToCreate << " is undefined. Indicates problem in setup" << std::endl;
     throw;
 #endif
   }
   
   else if (OscProbCalcerImplementationToCreate == "Prob3ppLinear") {
 #if UseProb3ppLinear==1
-    OscProbCalcerProb3ppLinear* Prob3ppLinear = new OscProbCalcerProb3ppLinear(OscProbCalcerConfigName,Instance);
+    OscProbCalcerProb3ppLinear* Prob3ppLinear = new OscProbCalcerProb3ppLinear(OscProbCalcerConfig);
     Calcer = (OscProbCalcerBase*)Prob3ppLinear;
-    if (Verbose >= INFO) {std::cout << "Initalised OscProbCalcer Implementation:" << Calcer->ReturnImplementationName() << " in OscillatorBase object" << std::endl;}
+    if (Verbose >= INFO) {std::cout << "Initalised OscProbCalcer Implementation:" << Calcer->ReturnImplementationName() << " in OscProbCalcerFactory object" << std::endl;}
 #else
-    std::cerr << "Oscillator was requsted to create " << OscProbCalcerImplementationToCreate << " OscProbCalcer but Use" << OscProbCalcerImplementationToCreate << " is undefined. Indicates problem in setup" << std::endl;
+    std::cerr << "OscProbCalcerFactory was requsted to create " << OscProbCalcerImplementationToCreate << " OscProbCalcer but Use" << OscProbCalcerImplementationToCreate << " is undefined. Indicates problem in setup" << std::endl;
     throw;
 #endif
   }
   
   else if (OscProbCalcerImplementationToCreate == "ProbGPULinear") {
 #if UseProbGPULinear==1
-    OscProbCalcerProbGPULinear* ProbGPULinear = new OscProbCalcerProbGPULinear(OscProbCalcerConfigName,Instance);
+    OscProbCalcerProbGPULinear* ProbGPULinear = new OscProbCalcerProbGPULinear(OscProbCalcerConfig);
     Calcer = (OscProbCalcerBase*)ProbGPULinear;
-    if (Verbose >= INFO) {std::cout << "Initalised OscProbCalcer Implementation:" << Calcer->ReturnImplementationName() << " in OscillatorBase object" << std::endl;}
+    if (Verbose >= INFO) {std::cout << "Initalised OscProbCalcer Implementation:" << Calcer->ReturnImplementationName() << " in OscProbCalcerFactory object" << std::endl;}
 #else
-    std::cerr << "Oscillator was requsted to create " << OscProbCalcerImplementationToCreate << " OscProbCalcer but Use" << OscProbCalcerImplementationToCreate << " is undefined. Indicates problem in setup" << std::endl;
+    std::cerr << "OscProbCalcerFactory was requsted to create " << OscProbCalcerImplementationToCreate << " OscProbCalcer but Use" << OscProbCalcerImplementationToCreate << " is undefined. Indicates problem in setup" << std::endl;
     throw;
 #endif
   }
 
   else if (OscProbCalcerImplementationToCreate == "NuFASTLinear") {
 #if UseNuFASTLinear==1
-    OscProbCalcerNuFASTLinear* NuFASTLinear = new OscProbCalcerNuFASTLinear(OscProbCalcerConfigName,Instance);
+    OscProbCalcerNuFASTLinear* NuFASTLinear = new OscProbCalcerNuFASTLinear(OscProbCalcerConfig);
     Calcer = (OscProbCalcerBase*)NuFASTLinear;
-    if (Verbose >= INFO) {std::cout << "Initalised OscProbCalcer Implementation:" << Calcer->ReturnImplementationName() << " in OscillatorBase object" << std::endl;}
+    if (Verbose >= INFO) {std::cout << "Initalised OscProbCalcer Implementation:" << Calcer->ReturnImplementationName() << " in OscProbCalcerFactory object" << std::endl;}
 #else
-    std::cerr << "Oscillator was requsted to create " << OscProbCalcerImplementationToCreate << " OscProbCalcer but Use" << OscProbCalcerImplementationToCreate << " is undefined. Indicates problem in setup" << std::endl;
+    std::cerr << "OscProbCalcerFactory was requsted to create " << OscProbCalcerImplementationToCreate << " OscProbCalcer but Use" << OscProbCalcerImplementationToCreate << " is undefined. Indicates problem in setup" << std::endl;
     throw;
 #endif
   }
   
   else {
-    std::cerr << "Oscillator was requsted to create " << OscProbCalcerImplementationToCreate << " OscProbCalcer but this is not implemented within " << __FILE__ << std::endl;
+    std::cerr << "OscProbCalcerFactory was requsted to create " << OscProbCalcerImplementationToCreate << " OscProbCalcer but this is not implemented within " << __FILE__ << std::endl;
     std::cerr << "Please correct the mistake or implement the new OscProbCalcer" << std::endl;
     throw;
   }

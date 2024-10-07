@@ -59,15 +59,11 @@ int main(int argc, char **argv) {
   //Check if the Energy and CosineZ evaluation points have been set in the constructor of the object (i.e. Binned where the templates have been picked up by the constructor)
   //or if we need to set them after the fact (i.e. unbinned where the points may change depending on the events etc.)
   if (!Oscillator->EvalPointsSetInConstructor()) {
-
-    //It's possible for one Oscillator to have multiple OscProbCalcers, these could be interfaced with individually such that each could have a different Energy and CosineZ array                        
-    for (int iCalcer=0;iCalcer<Oscillator->ReturnNOscProbCalcers();iCalcer++) {
-      Oscillator->SetEnergyArrayInCalcer(EnergyArray,iCalcer);
-      
-      //Check if we also need to set the CosineZ binning
-      if (!Oscillator->CosineZIgnored()) {
-	Oscillator->SetCosineZArrayInCalcer(CosineZArray,iCalcer);
-      }
+    Oscillator->SetEnergyArrayInCalcer(EnergyArray);
+    
+    //Check if we also need to set the CosineZ binning
+    if (!Oscillator->CosineZIgnored()) {
+      Oscillator->SetCosineZArrayInCalcer(CosineZArray);
     }
 
   }
