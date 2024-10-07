@@ -4,5 +4,5 @@ var searchData=
   ['checknuflavourmapping_1',['CheckNuFlavourMapping',['../classOscProbCalcerBase.html#acd1544539bb5252252c5a81b5e6ebd18',1,'OscProbCalcerBase']]],
   ['cosinezignored_2',['CosineZIgnored',['../classOscillatorBase.html#a39e513c5f4a492e9300ed277c48478a7',1,'OscillatorBase']]],
   ['createoscillator_3',['CreateOscillator',['../classOscillatorFactory.html#a6a5605305da0bff03fc4f14966fb0e71',1,'OscillatorFactory']]],
-  ['createoscprobcalcer_4',['CreateOscProbCalcer',['../classOscProbCalcerFactory.html#a2f890bbde36531a13b44a0a47d2a9002',1,'OscProbCalcerFactory']]]
+  ['createoscprobcalcer_4',['createoscprobcalcer',['../classOscProbCalcerFactory.html#a4eadb3266545d37843ddf17aa0f8884f',1,'OscProbCalcerFactory::CreateOscProbCalcer(std::string OscProbCalcerConfigName_)'],['../classOscProbCalcerFactory.html#a5cd877cdd9c57eaffc7c51f75be3a5cb',1,'OscProbCalcerFactory::CreateOscProbCalcer(YAML::Node OscProbCalcerConfig)']]]
 ];

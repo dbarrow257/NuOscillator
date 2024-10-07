@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['oscchan_0',['OscChan',['../structOscillationProbability.html#a1154b2901f4974e75499cbb57f45c484',1,'OscillationProbability']]],
-  ['oscchannels_1',['oscchannels',['../classOscProbCalcerCUDAProb3.html#a24cff00f20d7bd72a055174a19586a4d',1,'OscProbCalcerCUDAProb3::OscChannels'],['../classOscProbCalcerCUDAProb3Linear.html#aad4b13c89eeba1a496a150783a6e66ff',1,'OscProbCalcerCUDAProb3Linear::OscChannels']]]
+  ['probability_0',['Probability',['../structOscillationProbability.html#a121fc652a4c21e70ca859693e11ddbef',1,'OscillationProbability']]],
+  ['propagator_1',['propagator',['../classOscProbCalcerCUDAProb3.html#ac1f8de8d9c1ccd3895555d1fad6b5bad',1,'OscProbCalcerCUDAProb3::propagator'],['../classOscProbCalcerCUDAProb3Linear.html#a15abf4d1581782f379780e01c30cc31d',1,'OscProbCalcerCUDAProb3Linear::propagator']]]
 ];
