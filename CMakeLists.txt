@@ -115,7 +115,7 @@ endif()
 
 include(CPM)
 
-CPMFindPackage(
+CPMAddPackage(
     NAME yaml-cpp
     VERSION 0.7.0
     GITHUB_REPOSITORY "jbeder/yaml-cpp"
