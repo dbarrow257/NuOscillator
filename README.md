@@ -13,6 +13,17 @@ make -jN [Where N is number of threads]
 make install
 ```
 
+don't forget about
+```
+source Linux/bin/setup.NuOscillator.sh
+```
+
+then you can check if everything runs correctly by
+```
+cd ../
+./build/Linux/bin/DragRac
+```
+
 ## Implemented Engines
 `UseCUDAProb3` etc. refers to implemented engines. Engines are loaded via yaml config files. In principle you can compile all of them and select one you want to use via config.
 
@@ -30,6 +41,7 @@ Some engines requires gpu like `ProbGPULinear` other can use both CPU and GPU. T
 ```
 cmake ../ -DUseGPU=1
 ```
+
 
 ## Other
 
