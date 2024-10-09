@@ -2,8 +2,8 @@
 
 #include <iostream>
 
-#include "include/nuSQuIDS/nuSQuIDS.h"
-#include "examples/Decoherence/nuSQUIDSDecoh.h"
+#include "nuSQuIDS/nuSQuIDS.h"
+#include "Decoherence/nuSQUIDSDecoh.h"
 
 OscProbCalcerNuSQUIDSLinear::OscProbCalcerNuSQUIDSLinear(YAML::Node Config_) : OscProbCalcerBase(Config_)
 {

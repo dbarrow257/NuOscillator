@@ -88,26 +88,26 @@ message(STATUS "Set compiler options: ${NuOscillator_Compiler_Flags}")
 add_compile_options(${NuOscillator_Compiler_Flags})
 
 if(${UseGPU} EQUAL 1)
-	#KS: Allow user to define CMAKE_CUDA_ARCHITECTURES
-	if(NOT DEFINED CMAKE_CUDA_ARCHITECTURES)
-		#KS: See this for more info https://cmake.org/cmake/help/latest/prop_tgt/CUDA_ARCHITECTURES.html
-	if( ${CMAKE_VERSION} VERSION_GREATER_EQUAL 3.23 )
-		set(CMAKE_CUDA_ARCHITECTURES all )
-			#KS: Consider using native, requires cmake 3.24... will be terrible for containers but should results in more optimised code
-		#set(CMAKE_CUDA_ARCHITECTURES native )
-	else()
-	#KS: Apparently with newer cmake and GPU
-		set(CMAKE_CUDA_ARCHITECTURES 60 61 70 75 80 86)
-	endif()
-	#KS: Bit hacky but to properly pass cuda flags we need
-	string(REPLACE ";" " " CMAKE_CUDA_ARCHITECTURES_STRING "${CMAKE_CUDA_ARCHITECTURES}")
-	else()
-	#KS this may look hacky however CPM isn't build for passing stuff like this. If CMAKE_CUDA_ARCHITECTURES is passed CPM it will be string not list. Thus we convert it to list
-	set(CMAKE_CUDA_ARCHITECTURES_STRING ${CMAKE_CUDA_ARCHITECTURES})
-	string(REPLACE " " ";" CMAKE_CUDA_ARCHITECTURES "${CMAKE_CUDA_ARCHITECTURES}")
-	endif()
-
-    message(STATUS "Set CUDA ARCHITECTURES options: ${CMAKE_CUDA_ARCHITECTURES_STRING}")
+  #KS: Allow user to define CMAKE_CUDA_ARCHITECTURES
+  if(NOT DEFINED CMAKE_CUDA_ARCHITECTURES)
+    #KS: See this for more info https://cmake.org/cmake/help/latest/prop_tgt/CUDA_ARCHITECTURES.html
+    if( ${CMAKE_VERSION} VERSION_GREATER_EQUAL 3.23 )
+      set(CMAKE_CUDA_ARCHITECTURES all )
+      #KS: Consider using native, requires cmake 3.24... will be terrible for containers but should results in more optimised code
+      #set(CMAKE_CUDA_ARCHITECTURES native )
+    else()
+      #KS: Apparently with newer cmake and GPU
+      set(CMAKE_CUDA_ARCHITECTURES 60 61 70 75 80 86)
+    endif()
+    #KS: Bit hacky but to properly pass cuda flags we need
+    string(REPLACE ";" " " CMAKE_CUDA_ARCHITECTURES_STRING "${CMAKE_CUDA_ARCHITECTURES}")
+  else()
+    #KS this may look hacky however CPM isn't build for passing stuff like this. If CMAKE_CUDA_ARCHITECTURES is passed CPM it will be string not list. Thus we convert it to list
+    set(CMAKE_CUDA_ARCHITECTURES_STRING ${CMAKE_CUDA_ARCHITECTURES})
+    string(REPLACE " " ";" CMAKE_CUDA_ARCHITECTURES "${CMAKE_CUDA_ARCHITECTURES}")
+  endif()
+  
+  message(STATUS "Set CUDA ARCHITECTURES options: ${CMAKE_CUDA_ARCHITECTURES_STRING}")
 endif()
 
 #================================================================================================
@@ -247,8 +247,8 @@ if(${UseNuSQUIDSLinear} EQUAL 1)
     GIT_TAG master
     BINARY_DIR = <SOURCE_DIR> 
     CONFIGURE_HANDLED_BY_BUILD true
-    CONFIGURE_COMMAND <SOURCE_DIR>/configure --with-gsl-incdir=${GSL_INCLUDE_DIRS} --with-gsl-libdir=${GSL_ROOT_DIR}/lib --prefix=<INSTALL_DIR>
-    BUILD_COMMAND make -j
+    CONFIGURE_COMMAND <SOURCE_DIR>/configure --with-gsl=${GSL_ROOT_DIR} --prefix=<INSTALL_DIR>
+    BUILD_COMMAND make
     INSTALL_COMMAND make install
   )
   
@@ -257,10 +257,9 @@ if(${UseNuSQUIDSLinear} EQUAL 1)
     GIT_TAG master
     BINARY_DIR = <SOURCE_DIR>
     CONFIGURE_HANDLED_BY_BUILD true
-    CONFIGURE_COMMAND <SOURCE_DIR>/configure --with-gsl-incdir=${GSL_INCLUDE_DIRS} --with-gsl-libdir=${GSL_ROOT_DIR}/lib --with-hdf5=${HDF5_INCLUDE_DIRS}/../ --with-squids=${CMAKE_CURRENT_BINARY_DIR}/SQUIDS-prefix --prefix=<INSTALL_DIR>
-    BUILD_COMMAND make -j
+    CONFIGURE_COMMAND <SOURCE_DIR>/configure --with-gsl=${GSL_ROOT_DIR} --with-hdf5=${HDF5_INCLUDE_DIRS}/../ --with-squids=${CMAKE_CURRENT_BINARY_DIR}/SQUIDS-prefix --prefix=<INSTALL_DIR>
+    BUILD_COMMAND make
     INSTALL_COMMAND make install
-    TEST_COMMAND make test
   )
 endif()
 
