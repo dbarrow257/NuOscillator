@@ -78,6 +78,13 @@ void OscProbCalcerBase::SetEnergyArray(std::vector<FLOAT_T> EnergyArray) {
     }
   }
 
+  for (size_t iEnergy=1;iEnergy<fEnergyArray.size();iEnergy++) {
+    if (fEnergyArray[iEnergy-1] > fEnergyArray[iEnergy]) {
+      std::cerr << "Found that the Energy array given to OscProbCalcerBase object is not ordered. This will become a problem when performing the binary search for indices" << std::endl;
+      throw;
+    }
+  }
+
   fNEnergyPoints = EnergyArray.size();
   fEnergyArraySet = true;
   if (fVerbose >= INFO) {std::cout << "Set EnergyArray in implementation:" << fImplementationName << std::endl;}
@@ -102,6 +109,13 @@ void OscProbCalcerBase::SetCosineZArray(std::vector<FLOAT_T> CosineZArray) {
       std::cerr<< "Found a CosineZ outside of [-1.0,1.0]. This indicates a problem in the array passed to: void OscProbCalcerBase::SetCosineZArray(std::vector<FLOAT_T> CosineZArray)" << std::endl;
       std::cerr << "iCosineZ:" << iCosineZ << std::endl;
       std::cerr << "fCosineZArray[iCosineZ]:" << fCosineZArray[iCosineZ] << std::endl;
+      throw;
+    }
+  }
+
+  for (size_t iCosineZ=1;iCosineZ<fCosineZArray.size();iCosineZ++) {
+    if (fCosineZArray[iCosineZ-1] > fCosineZArray[iCosineZ]) {
+      std::cerr << "Found that the CosineZ array given to OscProbCalcerBase object is not ordered. This will become a problem when performing the binary search for indices" << std::endl;
       throw;
     }
   }
@@ -320,12 +334,13 @@ int OscProbCalcerBase::ReturnEnergyIndexFromValue(FLOAT_T EnergyVal) {
   }
 
   int EnergyIndex = -1;
-  for (size_t iEnergy=0;iEnergy<fEnergyArray.size();iEnergy++) {
-    if (EnergyVal == fEnergyArray[iEnergy]) {
-      EnergyIndex = iEnergy;
-      break;
-    }
-  }
+  auto it = std::lower_bound(fEnergyArray.begin(), fEnergyArray.end(), EnergyVal);
+  if (it == fEnergyArray.end() || *it != EnergyVal) {
+    EnergyIndex = -1;
+  } else {
+    EnergyIndex = std::distance(fEnergyArray.begin(), it);
+  } 
+  
   if (EnergyIndex == -1) {
     std::cerr << "Did not find Energy in the array used in calculating oscillation probabilities" << std::endl;
     std::cerr << "Requested Energy:" << EnergyVal << std::endl;
@@ -343,12 +358,13 @@ int OscProbCalcerBase::ReturnCosineZIndexFromValue(FLOAT_T CosineZVal) {
   }
 
   int CosineZIndex = -1;
-  for (size_t iCosineZ=0;iCosineZ<fCosineZArray.size();iCosineZ++) {
-    if (CosineZVal == fCosineZArray[iCosineZ]) {
-      CosineZIndex = iCosineZ;
-      break;
-    }
-  }
+  auto it = std::lower_bound(fCosineZArray.begin(), fCosineZArray.end(), CosineZVal);
+  if (it == fCosineZArray.end() || *it != CosineZVal) {
+    CosineZIndex = -1;
+  } else {
+    CosineZIndex = std::distance(fCosineZArray.begin(), it);
+  } 
+  
   if (CosineZIndex == -1) {
     std::cerr << "Did not find CosineZ in the array used in calculating oscillation probabilities" << std::endl;
     std::cerr << "Requested CosineZ:" << CosineZVal << std::endl;
