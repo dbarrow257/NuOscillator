@@ -21,6 +21,10 @@
 #include "OscProbCalcer/OscProbCalcer_NuFASTLinear.h"
 #endif
 
+#if UseNuSQUIDSLinear==1
+#include "OscProbCalcer/OscProbCalcer_NuSQUIDSLinear.h"
+#endif
+
 #include <iostream>
 #include <math.h>
 #include <chrono>
@@ -114,6 +118,16 @@ int main(int argc, char **argv) {
 #if UseNuFASTLinear==1
     OscProbCalcerNuFASTLinear* NuFASTLinear = new OscProbCalcerNuFASTLinear(OscProbCalcerConfigname);
     Calcer = (OscProbCalcerBase*)NuFASTLinear;
+#else
+    std::cerr << "Oscillator was requsted to create " << OscProbCalcerImplementationToCreate << " OscProbCalcer but Use" << OscProbCalcerImplementationToCreate << " is undefined. Indicates problem in setup" << std::endl;
+    throw;
+#endif
+  }
+
+  else if (OscProbCalcerImplementationToCreate == "NuSQUIDSLinear") {
+#if UseNuSQUIDSLinear==1
+    OscProbCalcerNuSQUIDSLinear* NuSQUIDSLinear = new OscProbCalcerNuSQUIDSLinear(OscProbCalcerConfigname);
+    Calcer = (OscProbCalcerBase*)NuSQUIDSLinear;
 #else
     std::cerr << "Oscillator was requsted to create " << OscProbCalcerImplementationToCreate << " OscProbCalcer but Use" << OscProbCalcerImplementationToCreate << " is undefined. Indicates problem in setup" << std::endl;
     throw;
