@@ -240,20 +240,28 @@ if(${UseNuSQUIDSLinear} EQUAL 1)
   find_package(GSL REQUIRED)
   find_package(HDF5 REQUIRED)
 
-  CPMAddPackage(
-    NAME SQUIDS
+  include(ExternalProject)
+
+  ExternalProject_Add(SQUIDS
+    GIT_REPOSITORY https://github.com/jsalvado/SQuIDS.git
     GIT_TAG master
-    GITHUB_REPOSITORY jsalvado/SQuIDS
-    DOWNLOAD_ONLY
+    BINARY_DIR = <SOURCE_DIR> 
+    CONFIGURE_HANDLED_BY_BUILD true
+    CONFIGURE_COMMAND <SOURCE_DIR>/configure --with-gsl-incdir=${GSL_INCLUDE_DIRS} --with-gsl-libdir=${GSL_ROOT_DIR}/lib --prefix=<INSTALL_DIR>
+    BUILD_COMMAND make -j
+    INSTALL_COMMAND make install
   )
   
-  CPMAddPackage(
-    NAME NuSQUIDS
+  ExternalProject_Add(NUSQUIDS
+    GIT_REPOSITORY https://github.com/arguelles/nuSQuIDS.git
     GIT_TAG master
-    GITHUB_REPOSITORY arguelles/nuSQuIDS
-    DOWNLOAD_ONLY
+    BINARY_DIR = <SOURCE_DIR>
+    CONFIGURE_HANDLED_BY_BUILD true
+    CONFIGURE_COMMAND <SOURCE_DIR>/configure --with-gsl-incdir=${GSL_INCLUDE_DIRS} --with-gsl-libdir=${GSL_ROOT_DIR}/lib --with-hdf5=${HDF5_INCLUDE_DIRS}/../ --with-squids=${CMAKE_CURRENT_BINARY_DIR}/SQUIDS-prefix --prefix=<INSTALL_DIR>
+    BUILD_COMMAND make -j
+    INSTALL_COMMAND make install
+    TEST_COMMAND make test
   )
-  target_compile_definitions(NuOscillatorCompilerOptions INTERFACE UseNuSQUIDSLinear=1)
 endif()
 
 if(${UseGPU} EQUAL 1)
