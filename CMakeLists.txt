@@ -38,11 +38,11 @@ endif()
 add_library(NuOscillatorCompilerOptions INTERFACE)
 
 message(STATUS "NuOscillator Features: ")
-foreach(VAR UseGPU UseMultithreading UseDoubles UseCUDAProb3 UseCUDAProb3Linear UseProb3ppLinear UseProbGPULinear UseNuFASTLinear)
-	    if(NOT DEFINED ${VAR})
-	    	   message(FATAL_ERROR "${VAR} not defined")
-	    endif()
-	    message(STATUS "\t${VAR}: ${${VAR}}")
+foreach(VAR UseGPU UseMultithreading UseDoubles UseCUDAProb3 UseCUDAProb3Linear UseProb3ppLinear UseProbGPULinear UseNuFASTLinear UseNuSQUIDSLinear)
+  if(NOT DEFINED ${VAR})
+    message(FATAL_ERROR "${VAR} not defined")
+  endif()
+  message(STATUS "\t${VAR}: ${${VAR}}")
 endforeach(VAR)
 
 message(STATUS "Required variables being used:")
@@ -234,6 +234,26 @@ if(${UseNuFASTLinear} EQUAL 1)
       	DOWNLOAD_ONLY
       )
       target_compile_definitions(NuOscillatorCompilerOptions INTERFACE UseNuFASTLinear=1)
+endif()
+
+if(${UseNuSQUIDSLinear} EQUAL 1)
+  find_package(GSL REQUIRED)
+  find_package(HDF5 REQUIRED)
+
+  CPMAddPackage(
+    NAME SQUIDS
+    GIT_TAG master
+    GITHUB_REPOSITORY jsalvado/SQuIDS
+    DOWNLOAD_ONLY
+  )
+  
+  CPMAddPackage(
+    NAME NuSQUIDS
+    GIT_TAG master
+    GITHUB_REPOSITORY arguelles/nuSQuIDS
+    DOWNLOAD_ONLY
+  )
+  target_compile_definitions(NuOscillatorCompilerOptions INTERFACE UseNuSQUIDSLinear=1)
 endif()
 
 if(${UseGPU} EQUAL 1)
