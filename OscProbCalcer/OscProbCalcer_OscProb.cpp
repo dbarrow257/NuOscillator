@@ -16,12 +16,12 @@ OscProbCalcerOscProb::OscProbCalcerOscProb(YAML::Node Config_) : OscProbCalcerBa
   fNeutrinoTypes[0] = Nu;
   fNeutrinoTypes[1] = Nubar;
 
-  if (!Config_["PMNSType"]) {
+  if (!Config_["OscProbCalcerSetup"]["PMNSType"]) {
     std::cerr << "Expected to find a 'PMNSType' Node within the 'OscProbCalcerSetup''Implementation' Node" << std::endl;
     throw;
   }
 
-  std::string OscMatrix = Config_["PMNSType"].as<std::string>();
+  std::string OscMatrix = Config_["OscProbCalcerSetup"]["PMNSType"].as<std::string>();
   fOscType = PMNS_StrToInt(OscMatrix);
 
   std::cout << "PMNS Type : " << fOscType << std::endl;
