@@ -411,7 +411,7 @@ void OscProbCalcerBase::IntialiseWeightArray() {
     throw;
   }
 
-  if (fVerbose >= INFO) {std::cout << "Asked OscProbCalcerBase implementation:" << fImplementationName << " for the size and got" << fNWeights << std::endl;}
+  if (fVerbose >= INFO) {std::cout << "Asked OscProbCalcerBase implementation:" << fImplementationName << " for the size and got " << fNWeights << std::endl;}
   fWeightArray = std::vector<FLOAT_T>(fNWeights,DUMMYVAL);  
   fWeightArrayInit = true;
   if (fVerbose >= INFO) {std::cout << "Initialising fWeightArray to be of size:" << fNWeights << " in Implementation:" << fImplementationName << std::endl;}
