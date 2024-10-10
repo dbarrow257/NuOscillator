@@ -22,7 +22,7 @@ else()
     project(NUOSCILLATOR VERSION ${NUOSCILLATOR_VERSION} LANGUAGES CXX CUDA)
 endif()
 
-LIST(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake/Modules)
+LIST(APPEND CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake/Modules)
 
 #Changes default install path to be a subdirectory of the build dir.
 #Can set build dir at configure time with -DCMAKE_INSTALL_PREFIX=/install/path
@@ -113,9 +113,15 @@ endif()
 #================================================================================================
 #Setup Deps
 
-include(CPM)
+# download CPM.cmake
+file(
+  DOWNLOAD
+  https://github.com/cpm-cmake/CPM.cmake/releases/download/v0.38.8/CPM.cmake
+  ${CMAKE_CURRENT_BINARY_DIR}/cmake/CPM.cmake
+)
+include(${CMAKE_CURRENT_BINARY_DIR}/cmake/CPM.cmake)
 
-CPMFindPackage(
+CPMAddPackage(
     NAME yaml-cpp
     VERSION 0.7.0
     GITHUB_REPOSITORY "jbeder/yaml-cpp"
@@ -325,3 +331,5 @@ install(FILES
     ${CMAKE_BINARY_DIR}/NuOscillatorConfig.cmake
     ${CMAKE_BINARY_DIR}/NuOscillatorConfigVersion.cmake
   DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/cmake/NuOscillator)
+
+include(nuoscillator-config)

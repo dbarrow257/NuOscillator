@@ -4,7 +4,7 @@
 
 #include "c++/NuFast.cpp"
 
-OscProbCalcerNuFASTLinear::OscProbCalcerNuFASTLinear(std::string ConfigName_, int Instance_) : OscProbCalcerBase(ConfigName_,"NuFASTLinear",Instance_)
+OscProbCalcerNuFASTLinear::OscProbCalcerNuFASTLinear(YAML::Node Config_) : OscProbCalcerBase(Config_)
 {
   //=======
   //Grab information from the config

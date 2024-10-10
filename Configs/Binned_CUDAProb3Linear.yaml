@@ -3,10 +3,20 @@ General:
   CosineZIgnored: true
   CalculationType: "Binned"
 
-OscProbCalcer:
-  - Config: "CUDAProb3Linear:./build/Linux/Configs/OscProbCalcerConfigs/CUDAProb3Linear.yaml"
-
 Binned:
   FileName: "./Inputs/ExampleAtmosphericBinning.root"
   EnergyAxisHistName: "EnergyAxisBinning"
   CosineZAxisHistName: "CosineZAxisBinning"
+
+OscProbCalcerSetup:
+  ImplementationName: "CUDAProb3Linear"
+  OscChannelMapping:
+    - Entry: "Electron:Electron"
+    - Entry: "Electron:Muon"
+    - Entry: "Electron:Tau"
+    - Entry: "Muon:Electron"
+    - Entry: "Muon:Muon"
+    - Entry: "Muon:Tau"
+    - Entry: "Tau:Electron"
+    - Entry: "Tau:Muon"
+    - Entry: "Tau:Tau"

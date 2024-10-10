@@ -99,7 +99,7 @@ int main() {
   for (size_t iConfig=0;iConfig<ConfigNames.size();iConfig++) {
     std::cout << "========================================================" << std::endl;
     std::cout << "Initialising " << ConfigNames[iConfig] << std::endl;
-    
+
     //Create OscillatorBase* object from YAML config
     Oscillator = OscFactory->CreateOscillator(ConfigNames[iConfig]);
 

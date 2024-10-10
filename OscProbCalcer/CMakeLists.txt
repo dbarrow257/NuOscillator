@@ -1,6 +1,6 @@
-set(HEADERS OscProbCalcerBase.h)
+set(HEADERS OscProbCalcerBase.h OscProbCalcerFactory.h)
 
-add_library(OscProbCalcer SHARED OscProbCalcerBase.cpp)
+add_library(OscProbCalcer SHARED OscProbCalcerBase.cpp OscProbCalcerFactory.cpp)
 
 target_link_libraries(OscProbCalcer yaml-cpp NuOscillatorCompilerOptions)
 
@@ -22,7 +22,7 @@ install(DIRECTORY ${yaml-cpp_SOURCE_DIR}/include/
 if(${UseCUDAProb3} EQUAL 1)
 	   target_sources(OscProbCalcer PRIVATE OscProbCalcer_CUDAProb3.cpp)
 	   if(${UseGPU} EQUAL 1)
-	   	      set_source_files_properties(OscProbCalcer_CUDAProb3.cpp PROPERTIES LANGUAGE CUDA)
+	     set_source_files_properties(OscProbCalcer_CUDAProb3.cpp PROPERTIES LANGUAGE CUDA)
 	   endif()
 	   target_include_directories(OscProbCalcer PRIVATE ${CUDAProb3_SOURCE_DIR})
 	   list(APPEND HEADERS OscProbCalcer_CUDAProb3.h)

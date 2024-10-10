@@ -1,5 +1,6 @@
 # This is a basic workflow make doxygen documentation every time develop is updated
-
+#WARNING KS: I think deployment doesn't work due to secrets.GITHUB_TOKEN. I think
+#
 name: Doxygen
 
 # Controls when the workflow will run
@@ -14,7 +15,7 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "Doxygen"
-  
+
   Doxygen:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
@@ -27,7 +28,7 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
-      
+
       # Updates the package list to ensure you get the latest version of packages
       - run: sudo apt-get update
 
@@ -46,11 +47,11 @@ jobs:
         with:
           doxyfile-path: './Doxyfile'
           working-directory: .
-  
+
       # Deploys the generated documentation to GitHub Pages
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./Docs/html
-    
+

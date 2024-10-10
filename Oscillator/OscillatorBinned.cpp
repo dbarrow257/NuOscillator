@@ -30,20 +30,14 @@ OscillatorBinned::OscillatorBinned(std::string ConfigName_) : OscillatorBase(Con
 
   fEvalPointsSetInConstructor = true;
 
-  for (int CalcerIndex=0;CalcerIndex<fNCalcers;CalcerIndex++) {
-    SetEnergyArrayInCalcer(EnergyAxisBinCenters, CalcerIndex);
-  }   
+  SetEnergyArrayInCalcer(EnergyAxisBinCenters);
   if (!fCosineZIgnored) {
-    for (int CalcerIndex=0;CalcerIndex<fNCalcers;CalcerIndex++) {
-      SetCosineZArrayInCalcer(CosineZAxisBinCenters, CalcerIndex);
-    }
+    SetCosineZArrayInCalcer(CosineZAxisBinCenters);
   }
 
 }
 
-
 OscillatorBinned::~OscillatorBinned() {
-
 }
 
 std::vector<FLOAT_T> OscillatorBinned::ReadBinEdgesFromFile(std::string FileName, std::string HistogramName, bool IsCosineZAxis) {
@@ -96,7 +90,7 @@ const FLOAT_T* OscillatorBinned::ReturnWeightPointer(int InitNuFlav, int FinalNu
   FLOAT_T CosineZValBinCenter = DUMMYVAL;
 
   int nEnergyBins = EnergyAxisBinCenters.size();
-  if (EnergyVal < EnergyAxisBinEdges[0] || EnergyVal >= EnergyAxisBinEdges[nEnergyBins+1]) {
+  if (EnergyVal < EnergyAxisBinEdges[0] || EnergyVal >= EnergyAxisBinEdges[nEnergyBins]) {
     std::cerr << "Requested Energy is not within the range of pre-defined binning (EnergyAxisBinEdges)" << std::endl;
     std::cerr << "EnergyVal:" << EnergyVal << std::endl;
     std::cerr << "EnergyAxisBinEdges[0]:" << EnergyAxisBinEdges[0] << std::endl;
@@ -116,9 +110,9 @@ const FLOAT_T* OscillatorBinned::ReturnWeightPointer(int InitNuFlav, int FinalNu
   }
   EnergyValBinCenter = EnergyAxisBinCenters[EnergyIndex];
 
-  if (fCosineZIgnored) {
+  if (!fCosineZIgnored) {
     int nCosineZBins = CosineZAxisBinCenters.size();
-    if (CosineZVal < CosineZAxisBinEdges[0] || CosineZVal >= CosineZAxisBinEdges[nCosineZBins+1]) {
+    if (CosineZVal < CosineZAxisBinEdges[0] || CosineZVal >= CosineZAxisBinEdges[nCosineZBins]) {
       std::cerr << "Requested CosineZ is not within the range of pre-defined binning (CosineZAxisBinEdges)" << std::endl;
       std::cerr << "CosineZVal:" << CosineZVal << std::endl;
       std::cerr << "CosineZAxisBinEdges[0]:" << CosineZAxisBinEdges[0] << std::endl;
@@ -139,6 +133,5 @@ const FLOAT_T* OscillatorBinned::ReturnWeightPointer(int InitNuFlav, int FinalNu
     CosineZValBinCenter = CosineZAxisBinCenters[CosineZIndex];
   }
 
-  int CalcerIndex = 0;
-  return ReturnPointerToWeightinCalcer(CalcerIndex,InitNuFlav,FinalNuFlav,EnergyValBinCenter,CosineZValBinCenter);
+  return ReturnPointerToWeightinCalcer(InitNuFlav,FinalNuFlav,EnergyValBinCenter,CosineZValBinCenter);
 }

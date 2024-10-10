@@ -6,10 +6,7 @@
 #include <iostream>
 #include <iomanip>
 
-OscProbCalcerBase::OscProbCalcerBase(std::string ConfigName_, std::string ImplementationName_, int Instance_) {
-  fImplementationName = ImplementationName_;
-  fInstance = Instance_;
-
+OscProbCalcerBase::OscProbCalcerBase(YAML::Node InputConfig_) {
   // Set default values of all variables within this base object
   fVerbose = NONE;
 
@@ -38,40 +35,30 @@ OscProbCalcerBase::OscProbCalcerBase(std::string ConfigName_, std::string Implem
   fWeightArrayInit = false;
   fNuMappingSet = false;
 
-  // Create config manager
-  std::cout << "Reading config in OscProbCalcerBase: " << ConfigName_ << std::endl;
+  Config = InputConfig_;
   
-  GeneralConfig = YAML::LoadFile(ConfigName_);
-
-  std::string Verbosity = GeneralConfig["General"]["Verbosity"].as<std::string>();
+  std::string Verbosity = Config["General"]["Verbosity"].as<std::string>();
   fVerbose = Verbosity_StrToInt(Verbosity);
 
-  if (!GeneralConfig["OscProbCalcerSetup"]) {
-    std::cerr << "Did not find the 'OscProbCalcerSetup' Node within the specific config:" << ConfigName_ << std::endl;
-    throw;
-  }
-  // Assumes instance number in list (not the index of the specifc implementation)
-  int Count = 0;
-  for (auto const& OscProbCalcerSetup : GeneralConfig["OscProbCalcerSetup"]) {
-    if (Count == Instance_) {
-      InstanceConfig = YAML::Node(OscProbCalcerSetup);
-    }
-    Count += 1;
-  }
-  if (!InstanceConfig["OscChannelMapping"]) {
-    std::cerr << "Expected to find a 'OscChannelMapping' Node within the 'OscProbCalcerSetup''Implementation' Node" << std::endl;
+  if (!Config["OscProbCalcerSetup"]) {
+    std::cerr << "Did not find the 'OscProbCalcerSetup' Node within the config" << std::endl;
     throw;
   }
 
+  fImplementationName = Config["OscProbCalcerSetup"]["ImplementationName"].as<std::string>();
   if (fVerbose >= INFO) {
-    std::cout << "Read Config in OscProbCalcerBase: " << ConfigName_ << "\n" << GeneralConfig << " and got " << fInstance << "'th instance of implementation:" << fImplementationName << std::endl;
+    std::cout << "From config, found implementation:" << fImplementationName << std::endl;
   }
-
+  
+  if (!Config["OscProbCalcerSetup"]["OscChannelMapping"]) {
+    std::cerr << "Expected to find a 'OscChannelMapping' Node within the 'OscProbCalcerSetup'Node" << std::endl;
+    throw;
+  }
   InitialiseOscillationChannelMapping();
+
 }
 
 OscProbCalcerBase::~OscProbCalcerBase() {
-
 }
 
 void OscProbCalcerBase::SetEnergyArray(std::vector<FLOAT_T> EnergyArray) {
@@ -87,6 +74,13 @@ void OscProbCalcerBase::SetEnergyArray(std::vector<FLOAT_T> EnergyArray) {
       std::cerr << "Found a negative neutrino energy. This indicates a problem in the array passed to: void OscProbCalcerBase::SetEnergyArray(std::vector<FLOAT_T> EnergyArray)" << std::endl;
       std::cerr << "iEnergy:" << iEnergy << std::endl;
       std::cerr << "fEnergyArray[iEnergy]:" << fEnergyArray[iEnergy] << std::endl;
+      throw;
+    }
+  }
+
+  for (size_t iEnergy=1;iEnergy<fEnergyArray.size();iEnergy++) {
+    if (fEnergyArray[iEnergy-1] > fEnergyArray[iEnergy]) {
+      std::cerr << "Found that the Energy array given to OscProbCalcerBase object is not ordered. This will become a problem when performing the binary search for indices" << std::endl;
       throw;
     }
   }
@@ -115,6 +109,13 @@ void OscProbCalcerBase::SetCosineZArray(std::vector<FLOAT_T> CosineZArray) {
       std::cerr<< "Found a CosineZ outside of [-1.0,1.0]. This indicates a problem in the array passed to: void OscProbCalcerBase::SetCosineZArray(std::vector<FLOAT_T> CosineZArray)" << std::endl;
       std::cerr << "iCosineZ:" << iCosineZ << std::endl;
       std::cerr << "fCosineZArray[iCosineZ]:" << fCosineZArray[iCosineZ] << std::endl;
+      throw;
+    }
+  }
+
+  for (size_t iCosineZ=1;iCosineZ<fCosineZArray.size();iCosineZ++) {
+    if (fCosineZArray[iCosineZ-1] > fCosineZArray[iCosineZ]) {
+      std::cerr << "Found that the CosineZ array given to OscProbCalcerBase object is not ordered. This will become a problem when performing the binary search for indices" << std::endl;
       throw;
     }
   }
@@ -170,7 +171,7 @@ const FLOAT_T* OscProbCalcerBase::ReturnPointerToWeight(int InitNuFlav, int Fina
   }
 
   int NuTypeIndex = ReturnNuTypeFromFlavour(InitNuFlav);
-  int OscChanIndex = ReturnOscChannelIndexFromFlavours(InitNuFlav,FinalNuFlav);
+  int OscChanIndex = ReturnOscChannelIndexFromFlavours(std::abs(InitNuFlav),std::abs(FinalNuFlav));
   int CosineZIndex = -1;
   if (!ReturnCosineZIgnored()) {
     CosineZIndex = ReturnCosineZIndexFromValue(CosineZ);
@@ -333,12 +334,13 @@ int OscProbCalcerBase::ReturnEnergyIndexFromValue(FLOAT_T EnergyVal) {
   }
 
   int EnergyIndex = -1;
-  for (size_t iEnergy=0;iEnergy<fEnergyArray.size();iEnergy++) {
-    if (EnergyVal == fEnergyArray[iEnergy]) {
-      EnergyIndex = iEnergy;
-      break;
-    }
-  }
+  auto it = std::lower_bound(fEnergyArray.begin(), fEnergyArray.end(), EnergyVal);
+  if (it == fEnergyArray.end() || *it != EnergyVal) {
+    EnergyIndex = -1;
+  } else {
+    EnergyIndex = std::distance(fEnergyArray.begin(), it);
+  } 
+  
   if (EnergyIndex == -1) {
     std::cerr << "Did not find Energy in the array used in calculating oscillation probabilities" << std::endl;
     std::cerr << "Requested Energy:" << EnergyVal << std::endl;
@@ -356,12 +358,13 @@ int OscProbCalcerBase::ReturnCosineZIndexFromValue(FLOAT_T CosineZVal) {
   }
 
   int CosineZIndex = -1;
-  for (size_t iCosineZ=0;iCosineZ<fCosineZArray.size();iCosineZ++) {
-    if (CosineZVal == fCosineZArray[iCosineZ]) {
-      CosineZIndex = iCosineZ;
-      break;
-    }
-  }
+  auto it = std::lower_bound(fCosineZArray.begin(), fCosineZArray.end(), CosineZVal);
+  if (it == fCosineZArray.end() || *it != CosineZVal) {
+    CosineZIndex = -1;
+  } else {
+    CosineZIndex = std::distance(fCosineZArray.begin(), it);
+  } 
+  
   if (CosineZIndex == -1) {
     std::cerr << "Did not find CosineZ in the array used in calculating oscillation probabilities" << std::endl;
     std::cerr << "Requested CosineZ:" << CosineZVal << std::endl;
@@ -408,7 +411,7 @@ void OscProbCalcerBase::IntialiseWeightArray() {
     throw;
   }
 
-  if (fVerbose >= INFO) {std::cout << "Asked OscProbCalcerBase implementation:" << fImplementationName << " for the size and got" << fNWeights << std::endl;}
+  if (fVerbose >= INFO) {std::cout << "Asked OscProbCalcerBase implementation:" << fImplementationName << " for the size and got " << fNWeights << std::endl;}
   fWeightArray = std::vector<FLOAT_T>(fNWeights,DUMMYVAL);  
   fWeightArrayInit = true;
   if (fVerbose >= INFO) {std::cout << "Initialising fWeightArray to be of size:" << fNWeights << " in Implementation:" << fImplementationName << std::endl;}
@@ -424,7 +427,7 @@ void OscProbCalcerBase::InitialiseNeutrinoTypesArray(int Size) {
 }
 
 void OscProbCalcerBase::InitialiseOscillationChannelMapping() {
-  for (auto const &OscChannel : InstanceConfig["OscChannelMapping"]) {
+  for (auto const &OscChannel : Config["OscProbCalcerSetup"]["OscChannelMapping"]) {
     OscillationChannel myOscChan = ReturnOscillationChannel(OscChannel["Entry"].as<std::string>());
     fOscillationChannels.push_back(myOscChan);
   }

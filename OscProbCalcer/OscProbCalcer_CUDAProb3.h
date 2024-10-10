@@ -21,13 +21,19 @@ namespace cudaprob3 { template<typename T> class Propagator;}
  */
 class OscProbCalcerCUDAProb3 : public OscProbCalcerBase {
  public:
-    /**
+  /**
    * @brief Default constructor
    *
-   * @param ConfigName_ Name of config used to setup the OscProbCalcerCUDAProb3() instance
-   * @param Instance_ Which entry of the OscProbCalcerSetup config block should be read in the case where there are multiple OscProbCalcers to be initialised
+   * @param Config_ YAML::Node to setup the OscProbCalcerNuCUDAProb3() instance
    */
-  OscProbCalcerCUDAProb3(std::string ConfigName_="", int Instance_=0);
+  OscProbCalcerCUDAProb3(YAML::Node Config_);
+
+  /**
+   * @brief Constructor which takes a file path, creates a YAML::Node and calls the default constructor
+   *
+   * @param ConfigName_ File path to config
+   */  
+  OscProbCalcerCUDAProb3(std::string ConfigName_) : OscProbCalcerCUDAProb3(YAML::LoadFile(ConfigName_)) {}
 
   /**
    * @brief Destructor
@@ -53,7 +59,7 @@ class OscProbCalcerCUDAProb3 : public OscProbCalcerBase {
    *
    * @param OscParams The parameter set to calculate oscillation probabilities at
    */
-  void CalculateProbabilities(std::vector<FLOAT_T> OscParams) override;
+  void CalculateProbabilities(const std::vector<FLOAT_T>& OscParams) override;
 
   /**
    * @brief Return implementation specific index in the weight array for a specific combination of neutrino oscillation channel, energy and cosine zenith

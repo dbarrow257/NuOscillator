@@ -5,7 +5,7 @@ extern "C" void GetProb(int Alpha, int Beta, double Path, double Density, double
 
 #include <iostream>
 
-OscProbCalcerProbGPULinear::OscProbCalcerProbGPULinear(std::string ConfigName_, int Instance_) : OscProbCalcerBase(ConfigName_,"ProbGPULinear",Instance_)
+OscProbCalcerProbGPULinear::OscProbCalcerProbGPULinear(YAML::Node Config_) : OscProbCalcerBase(Config_)
 {
   //=======
   //Grab information from the config
