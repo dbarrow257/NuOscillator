@@ -33,7 +33,7 @@ class OscProbCalcerCUDAProb3 : public OscProbCalcerBase {
    *
    * @param ConfigName_ File path to config
    */  
-  OscProbCalcerCUDAProb3(std::string ConfigName_) : OscProbCalcerNuFASTLinear(YAML::LoadFile(ConfigName_)) {}
+  OscProbCalcerCUDAProb3(std::string ConfigName_) : OscProbCalcerCUDAProb3(YAML::LoadFile(ConfigName_)) {}
 
   /**
    * @brief Destructor
