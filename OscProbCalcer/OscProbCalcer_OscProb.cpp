@@ -3,7 +3,7 @@
 #include "inc/PremModel.h"
 #include "TMath.h"
 
-OscProbCalcerOscProb::OscProbCalcerOscProb(std::string ConfigName_, int Instance_) : OscProbCalcerBase(ConfigName_,"OscProb",Instance_)
+OscProbCalcerOscProb::OscProbCalcerOscProb(YAML::Node Config_) : OscProbCalcerBase(Config_)
 {
   //=======
   //Grab information from the config
@@ -15,12 +15,12 @@ OscProbCalcerOscProb::OscProbCalcerOscProb(std::string ConfigName_, int Instance
   fNeutrinoTypes[0] = Nu;
   fNeutrinoTypes[1] = Nubar;
 
-  if (!InstanceConfig["PMNSType"]) {
+  if (!Config_["PMNSType"]) {
     std::cerr << "Expected to find a 'PMNSType' Node within the 'OscProbCalcerSetup''Implementation' Node" << std::endl;
     throw;
   }
 
-  std::string OscMatrix = InstanceConfig["PMNSType"].as<std::string>();
+  std::string OscMatrix = Config_["PMNSType"].as<std::string>();
   fOscType = PMNS_StrToInt(OscMatrix);
 
   std::cout << "PMNS Type : " << fOscType << std::endl;
@@ -279,7 +279,6 @@ void OscProbCalcerOscProb::SetPMNSParams(OscProb::PMNS_Decay *Decay, const std::
   double dcp;
   double alpha2, alpha3;
 
-  std::cout << "Precision for Iter PMNS class : " << prec << std::endl;
   th12 = asin(sqrt(OscParams[kTH12]));
   th13 = asin(sqrt(OscParams[kTH13]));
   th23 = asin(sqrt(OscParams[kTH23]));
