@@ -1,7 +1,5 @@
 #include "OscProbCalcer_OscProb.h"
 
-#include "inc/PremModel.h"
-
 #include "TMath.h"
 
 OscProbCalcerOscProb::OscProbCalcerOscProb(YAML::Node Config_) : OscProbCalcerBase(Config_)
@@ -36,6 +34,12 @@ OscProbCalcerOscProb::~OscProbCalcerOscProb() {
 }
 
 void OscProbCalcerOscProb::SetupPropagator() {
+  
+  int prem_model = 0;
+  std::string premfile = SetupPREMModel(prem_model);
+  PremModel = OscProb::PremModel(premfile);
+
+  std::cout << "Fast with PREM model : " << prem_model << std::endl;
 }
 
 std::string OscProbCalcerOscProb::SetupPREMModel(int model) {
@@ -68,7 +72,6 @@ void OscProbCalcerOscProb::CalculateProbabilities(const std::vector<FLOAT_T>& Os
   fWeightArray.resize(DefineWeightArraySize());
   std::cout << fNEnergyPoints << " " << fNCosineZPoints << " " << fWeightArray.size() << std::endl;
 
-
   switch(fOscType) {
     case kFast: 
       CalcProbPMNS_Fast(OscParams);
@@ -96,12 +99,6 @@ void OscProbCalcerOscProb::CalcProbPMNS_Fast(const std::vector<FLOAT_T>& OscPara
   double weight;
   int index;
 
-  prem_model = OscParams[kPREM];
-  std::string premfile = SetupPREMModel(prem_model);
-  OscProb::PremModel prem(premfile);
-
-  std::cout << "Fast with PREM model : " << prem_model << std::endl;
-
   OscProb::PMNS_Fast myPMNS;
 
   SetPMNSParams(&myPMNS, OscParams);
@@ -111,9 +108,9 @@ void OscProbCalcerOscProb::CalcProbPMNS_Fast(const std::vector<FLOAT_T>& OscPara
 
     cosZ = fCosineZArray[iCosineZ];
 
-    prem.FillPath(cosZ);
+    PremModel.FillPath(cosZ);
 
-    myPMNS.SetPath(prem.GetNuPath());
+    myPMNS.SetPath(PremModel.GetNuPath());
     
     for (int iEnergy = 0; iEnergy < fNEnergyPoints; iEnergy++) {
 
@@ -141,17 +138,9 @@ void OscProbCalcerOscProb::CalcProbPMNS_Fast(const std::vector<FLOAT_T>& OscPara
 
 void OscProbCalcerOscProb::CalcProbPMNS_Decay(const std::vector<FLOAT_T>& OscParams) {
 
-  int prem_model;
-
   double energy, cosZ;
   double weight;
   int index;
-
-  prem_model = OscParams[kPREM];
-  std::string premfile = SetupPREMModel(prem_model);
-  OscProb::PremModel prem(premfile);
-
-  std::cout << "Decay with PREM model : " << prem_model << std::endl;
 
   OscProb::PMNS_Decay myPMNS;
 
@@ -162,9 +151,9 @@ void OscProbCalcerOscProb::CalcProbPMNS_Decay(const std::vector<FLOAT_T>& OscPar
 
     cosZ = fCosineZArray[iCosineZ];
 
-    prem.FillPath(cosZ);
+    PremModel.FillPath(cosZ);
 
-    myPMNS.SetPath(prem.GetNuPath());
+    myPMNS.SetPath(PremModel.GetNuPath());
     
     for (int iEnergy = 0; iEnergy < fNEnergyPoints; iEnergy++) {
 
@@ -192,17 +181,10 @@ void OscProbCalcerOscProb::CalcProbPMNS_Decay(const std::vector<FLOAT_T>& OscPar
 
 void OscProbCalcerOscProb::CalcProbPMNS_Iter(const std::vector<FLOAT_T>& OscParams) {
 
-  int prem_model;
 
   double energy, cosZ;
   double weight;
   int index;
-
-  prem_model = OscParams[kPREM];
-  std::string premfile = SetupPREMModel(prem_model);
-  OscProb::PremModel prem(premfile);
-
-  std::cout << "Iter with PREM model : " << prem_model << std::endl;
 
   OscProb::PMNS_Iter myPMNS;
 
@@ -213,9 +195,9 @@ void OscProbCalcerOscProb::CalcProbPMNS_Iter(const std::vector<FLOAT_T>& OscPara
 
     cosZ = fCosineZArray[iCosineZ];
 
-    prem.FillPath(cosZ);
+    PremModel.FillPath(cosZ);
 
-    myPMNS.SetPath(prem.GetNuPath());
+    myPMNS.SetPath(PremModel.GetNuPath());
     
     for (int iEnergy = 0; iEnergy < fNEnergyPoints; iEnergy++) {
 

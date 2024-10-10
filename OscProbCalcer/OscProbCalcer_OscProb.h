@@ -6,6 +6,7 @@
 #include "inc/PMNS_Fast.h"
 #include "inc/PMNS_Decay.h"
 #include "inc/PMNS_Iter.h"
+#include "inc/PremModel.h"
 
 /**
  * @file OscProbCalcer_OscProb.h
@@ -171,20 +172,20 @@ class OscProbCalcerOscProb : public OscProbCalcerBase {
    * @brief Definition of oscillation parameters which are expected in this ProbGPU implementation. 
    * Base parameters for standard 3x3 oscillation matrix, works as is for PMNS_Fast class
    */
-  enum OscParams{kTH12, kTH23, kTH13, kDM12, kDM23, kDCP, kPREM, kNOscParams};
+  enum OscParams{kTH12, kTH23, kTH13, kDM12, kDM23, kDCP, kNOscParams};
 
   /**
    * @brief Definition of extra oscillation parameters for PMNS_Decay class
    * kAlpha2 = m2/tau2, mass and lifetime of the 2nd state in the restframe
    * kAlpha3 = m3/tau3, mass and lifetime of the 3rd state in the restframe
    */
-  enum OscParams_Decay{kAlpha2 = kPREM+1, kAlpha3 = kPREM+2};
+  enum OscParams_Decay{kAlpha2 = kDCP+1, kAlpha3 = kDCP+2};
 
    /**
    * @brief Definition of extra oscillation parameters for PMNS_Iter class
    * kPrec defines precision of the iterative method
    */
-  enum OscParams_Iter{kPrec = kPREM+1};
+  enum OscParams_Iter{kPrec = kDCP+1};
   
   /**
    * @brief Define the neutrino and antineutrino values expected by this implementation
@@ -200,6 +201,10 @@ class OscProbCalcerOscProb : public OscProbCalcerBase {
    * @brief Define the type for the PMNS matrix
    */
   int fOscType;
+
+private:
+  
+  OscProb::PremModel PremModel;
   
 };
 
