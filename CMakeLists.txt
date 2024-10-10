@@ -121,7 +121,7 @@ file(
 )
 include(${CMAKE_CURRENT_BINARY_DIR}/cmake/CPM.cmake)
 
-CPMFindPackage(
+CPMAddPackage(
     NAME yaml-cpp
     VERSION 0.7.0
     GITHUB_REPOSITORY "jbeder/yaml-cpp"

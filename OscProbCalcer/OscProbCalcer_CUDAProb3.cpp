@@ -17,7 +17,7 @@ OscProbCalcerCUDAProb3::OscProbCalcerCUDAProb3(YAML::Node Config_) : OscProbCalc
 {
   //=======
   //Grab information from the config
-  EarthDensityFile = InstanceConfig["EarthModelFileName"].as<std::string>();
+  EarthDensityFile = Config_["OscProbCalcerSetup"]["EarthModelFileName"].as<std::string>();
   std::cout << "EarthDensityFile:" << EarthDensityFile << std::endl;
   //=======
 
