@@ -256,6 +256,10 @@ if(${UseOscProb} EQUAL 1)
   endif()
   
   execute_process(COMMAND make WORKING_DIRECTORY ${OscProb_SOURCE_DIR})
+
+  add_library(OSCPROB INTERFACE IMPORTED)
+  target_include_directories(OSCPROB INTERFACE  ${OscProb_SOURCE_DIR})
+  
   target_compile_definitions(NuOscillatorCompilerOptions INTERFACE UseOscProb=1)
   
   set(OSCPROB_LIB_DIR ${OscProb_SOURCE_DIR}/lib)

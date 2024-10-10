@@ -2,9 +2,10 @@
 #define __OSCILLATOR_OSCPROB_H__
 
 #include "OscProbCalcerBase.h"
-#include "../build/_deps/oscprob-src/inc/PMNS_Fast.h"
-#include "../build/_deps/oscprob-src/inc/PMNS_Decay.h"
-#include "../build/_deps/oscprob-src/inc/PMNS_Iter.h"
+
+#include "inc/PMNS_Fast.h"
+#include "inc/PMNS_Decay.h"
+#include "inc/PMNS_Iter.h"
 
 /**
  * @file OscProbCalcer_OscProb.h

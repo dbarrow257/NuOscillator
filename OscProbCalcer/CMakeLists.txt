@@ -58,10 +58,9 @@ if(${UseNuFASTLinear} EQUAL 1)
 endif()
 
 if(${UseOscProb} EQUAL 1)
-  include_directories(${OscProb_SOURCE_DIR})
   target_sources(OscProbCalcer PRIVATE OscProbCalcer_OscProb.cpp)
   target_link_libraries(OscProbCalcer ${OscProb_SOURCE_DIR}/lib/libOscProb.so)
-  target_link_libraries(OscProbCalcer Eigen)
+  target_link_libraries(OscProbCalcer Eigen OSCPROB)
   list(APPEND HEADERS OscProbCalcer_OscProb.h)
 endif()	 
 
