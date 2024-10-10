@@ -3,6 +3,7 @@ General:
 
 OscProbCalcerSetup:
   - OscProb:
+    PMNSType: "Fast"
     OscChannelMapping:
       - Entry: "Electron:Electron"
       - Entry: "Electron:Muon"

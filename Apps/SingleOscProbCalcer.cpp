@@ -42,7 +42,7 @@ int main(int argc, char **argv) {
   std::string OscProbCalcerImplementationToCreate = argv[1];
   std::string OscProbCalcerConfigname = argv[2];
   
-  bool PrintWeights = false;
+  bool PrintWeights = true;
 
   std::vector<FLOAT_T> OscParams_Atm(7);
   OscParams_Atm[0] = 3.07e-1;
@@ -52,6 +52,16 @@ int main(int argc, char **argv) {
   OscParams_Atm[4] = 2.509e-3;
   OscParams_Atm[5] = -1.601;
   OscParams_Atm[6] = 25.0;
+
+  std::vector<FLOAT_T> OscParams_Atm_OscProb(7);
+  OscParams_Atm_OscProb[0] = 3.03e-1;
+  OscParams_Atm_OscProb[1] = 4.51e-1;
+  OscParams_Atm_OscProb[2] = 2.2225e-2;
+  OscParams_Atm_OscProb[3] = 7.41e-5;
+  OscParams_Atm_OscProb[4] = 2.511e-3 - 7.41e-5;
+  OscParams_Atm_OscProb[5] = 232. * 3.14159265 / 180.;
+  OscParams_Atm_OscProb[6] = 2;
+  //OscParams_Atm_OscProb[7] = 1e-3;
 
   std::vector<FLOAT_T> OscParams_Beam_woYe(8);
   OscParams_Beam_woYe[0] = 3.07e-1;
@@ -74,8 +84,8 @@ int main(int argc, char **argv) {
   OscParams_Beam_wYe[7] = 2.6;
   OscParams_Beam_wYe[8] = 0.5;
   
-  std::vector<FLOAT_T> EnergyArray = logspace(0.1,100.,1e3);
-  std::vector<FLOAT_T> CosineZArray = linspace(-1.0,1.0,1e3);
+  std::vector<FLOAT_T> EnergyArray = logspace(0.1,100.,2);
+  std::vector<FLOAT_T> CosineZArray = linspace(-1.0,1.0,1);
 
   std::cout << "========================================================" << std::endl;
   std::cout << "Starting setup in executable" << std::endl;
@@ -168,17 +178,23 @@ int main(int argc, char **argv) {
 
   // These don't have to be explicilty beam or atmospheric specific, all they have to be is equal to the number of oscillation parameters expected by the implementation
   // If you have some NSO calculater, then it will work providing the length of the vector of oscillation parameters is equal to the number of expected oscillation parameters
-  if (Calcer->ReturnNOscParams() == (int)OscParams_Beam_woYe.size()) {
+  if(OscProbCalcerImplementationToCreate == "OscProb") {
+        Calcer->Reweight(OscParams_Atm_OscProb);
+  }
+  else if (Calcer->ReturnNOscParams() == (int)OscParams_Beam_woYe.size()) {
     Calcer->Reweight(OscParams_Beam_woYe);
   } else if (Calcer->ReturnNOscParams() == (int)OscParams_Beam_wYe.size()) {
     Calcer->Reweight(OscParams_Beam_wYe); 
   } else if (Calcer->ReturnNOscParams() == (int)OscParams_Atm.size()) {
     Calcer->Reweight(OscParams_Atm);
-  } else {
+  }
+   else {
     std::cerr << "Did not find viable oscillation parameters to hand to the oscillation probability calculater" << std::endl;
     std::cerr << "Oscillator->ReturnNOscParams():" << Calcer->ReturnNOscParams() << std::endl;
     throw;
   }
+
+ 
 
   if (PrintWeights) {
     std::vector<OscillationProbability> OscProbs = Calcer->ReturnProbabilities();
