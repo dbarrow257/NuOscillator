@@ -6,7 +6,12 @@ OscProbCalcerOscProb::OscProbCalcerOscProb(YAML::Node Config_) : OscProbCalcerBa
 {
   //=======
   //Grab information from the config
+  if (!Config_["OscProbCalcerSetup"]["PMNSType"]) {
+    std::cerr << "Expected to find a 'PMNSType' Node within the 'OscProbCalcerSetup''Implementation' Node" << std::endl;
+    throw;
+  }
 
+  std::string OscMatrix = Config_["OscProbCalcerSetup"]["PMNSType"].as<std::string>();
   //=======
 
   fNNeutrinoTypes = 2;
@@ -14,27 +19,17 @@ OscProbCalcerOscProb::OscProbCalcerOscProb(YAML::Node Config_) : OscProbCalcerBa
   fNeutrinoTypes[0] = Nu;
   fNeutrinoTypes[1] = Nubar;
 
-  if (!Config_["OscProbCalcerSetup"]["PMNSType"]) {
-    std::cerr << "Expected to find a 'PMNSType' Node within the 'OscProbCalcerSetup''Implementation' Node" << std::endl;
-    throw;
-  }
-
-  std::string OscMatrix = Config_["OscProbCalcerSetup"]["PMNSType"].as<std::string>();
   fOscType = PMNS_StrToInt(OscMatrix);
-
-  std::cout << "PMNS Type : " << fOscType << std::endl;
-
   fNOscParams = GetNOscParams(fOscType);
-
+  
+  std::cout << "PMNS Type : " << fOscType << std::endl;
   std::cout << "Number of parameters : " << fNOscParams << std::endl;
-
 }
 
 OscProbCalcerOscProb::~OscProbCalcerOscProb() {
 }
 
 void OscProbCalcerOscProb::SetupPropagator() {
-  
   int prem_model = 0;
   std::string premfile = SetupPREMModel(prem_model);
   PremModel = OscProb::PremModel(premfile);
@@ -43,7 +38,6 @@ void OscProbCalcerOscProb::SetupPropagator() {
 }
 
 std::string OscProbCalcerOscProb::SetupPREMModel(int model) {
-
   if (model > 3 || model < 0) std::cout << "Invalid prem model" << std::endl;
 
     // Get the model table paths
@@ -68,10 +62,6 @@ std::string OscProbCalcerOscProb::SetupPREMModel(int model) {
 }
 
 void OscProbCalcerOscProb::CalculateProbabilities(const std::vector<FLOAT_T>& OscParams) {
-
-  fWeightArray.resize(DefineWeightArraySize());
-  std::cout << fNEnergyPoints << " " << fNCosineZPoints << " " << fWeightArray.size() << std::endl;
-
   switch(fOscType) {
     case kFast: 
       CalcProbPMNS_Fast(OscParams);
@@ -87,14 +77,9 @@ void OscProbCalcerOscProb::CalculateProbabilities(const std::vector<FLOAT_T>& Os
     default:
       break;
   }
-  //std::cout << "OscProb Probability: Energy = " << Energy << " , Baseline:" << Baseline << " , Prob (mu->mu):" << myPMNS.Prob(1, 1, Energy, Baseline) << std::endl;
-
 }
 
 void OscProbCalcerOscProb::CalcProbPMNS_Fast(const std::vector<FLOAT_T>& OscParams) {
-
-  int prem_model;
-
   double energy, cosZ;
   double weight;
   int index;
@@ -132,12 +117,9 @@ void OscProbCalcerOscProb::CalcProbPMNS_Fast(const std::vector<FLOAT_T>& OscPara
       }
     }
   }
-  //std::cout << "OscProb Probability: Energy = " << Energy << " , Baseline:" << Baseline << " , Prob (mu->mu):" << myPMNS.Prob(1, 1, Energy, Baseline) << std::endl;
-
 }
 
 void OscProbCalcerOscProb::CalcProbPMNS_Decay(const std::vector<FLOAT_T>& OscParams) {
-
   double energy, cosZ;
   double weight;
   int index;
@@ -175,13 +157,9 @@ void OscProbCalcerOscProb::CalcProbPMNS_Decay(const std::vector<FLOAT_T>& OscPar
       }
     }
   }
-  //std::cout << "OscProb Probability: Energy = " << Energy << " , Baseline:" << Baseline << " , Prob (mu->mu):" << myPMNS.Prob(1, 1, Energy, Baseline) << std::endl;
-
 }
 
 void OscProbCalcerOscProb::CalcProbPMNS_Iter(const std::vector<FLOAT_T>& OscParams) {
-
-
   double energy, cosZ;
   double weight;
   int index;
@@ -219,8 +197,6 @@ void OscProbCalcerOscProb::CalcProbPMNS_Iter(const std::vector<FLOAT_T>& OscPara
       }
     }
   }
-  //std::cout << "OscProb Probability: Energy = " << Energy << " , Baseline:" << Baseline << " , Prob (mu->mu):" << myPMNS.Prob(1, 1, Energy, Baseline) << std::endl;
-
 }
 
 int OscProbCalcerOscProb::ReturnWeightArrayIndex(int NuTypeIndex, int OscChanIndex, int EnergyIndex, int CosineZIndex) {
@@ -310,7 +286,6 @@ void OscProbCalcerOscProb::SetPMNSParams(OscProb::PMNS_Iter *Iter, const std::ve
   Iter->SetDelta(1,3, dcp);
   Iter->SetPrec(prec);
 }
-
 
 int OscProbCalcerOscProb::PMNS_StrToInt(std::string PMNSType) {
   if (PMNSType == "Fast" || PMNSType == "fast") {
