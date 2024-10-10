@@ -238,6 +238,8 @@ if(${UseOscProb} EQUAL 1)
   )
   execute_process(COMMAND make WORKING_DIRECTORY ${OscProb_SOURCE_DIR})
   target_compile_definitions(NuOscillatorCompilerOptions INTERFACE UseOscProb=1)
+
+  set(OSCPROB_LIB_DIR ${OscProb_SOURCE_DIR}/lib)
 endif()
 
 if(${UseGPU} EQUAL 1)
