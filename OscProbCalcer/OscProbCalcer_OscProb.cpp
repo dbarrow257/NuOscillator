@@ -30,7 +30,21 @@ OscProbCalcerOscProb::~OscProbCalcerOscProb() {
 }
 
 void OscProbCalcerOscProb::SetupPropagator() {
+  //===================================================
+  //===================================================
+  //===================================================
+  //===================================================
+  //Should probably grab this from the config..
+  //
+  //Or maybe just directly grab the model filename in
+  //the constructor and save it as a member variable,
+  //then use it below when setting up the PREM Model
   int prem_model = 0;
+  //===================================================
+  //===================================================
+  //===================================================
+  //===================================================
+  
   std::string premfile = SetupPREMModel(prem_model);
   PremModel = OscProb::PremModel(premfile);
 
