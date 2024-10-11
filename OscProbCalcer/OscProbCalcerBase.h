@@ -167,7 +167,7 @@ class OscProbCalcerBase {
    *
    * @return Vector of OscillationProbability structs
    */
-  std::vector<OscillationProbability> ReturnProbabilities();
+  std::vector<NuOscillator::OscillationProbability> ReturnProbabilities();
 
   /**
    * @brief Return whether the instance of OscProbCalcerBase() has already been assigned the Energy binning
@@ -380,7 +380,7 @@ class OscProbCalcerBase {
   /**
    * @brief The mapping of oscillation channels which have been requested from the YAML config
    */
-  std::vector<OscillationChannel> fOscillationChannels;
+  std::vector<NuOscillator::OscillationChannel> fOscillationChannels;
 
   /**
    * @brief The number of Energy points which are being evaluated by the oscillation probability engine
