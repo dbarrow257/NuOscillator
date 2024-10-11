@@ -154,7 +154,7 @@ int main(int argc, char **argv) {
   }
 
   if (PrintWeights) {
-    std::vector<NuOscillator::OscillationProbability> OscProbs = Calcer->ReturnProbabilities();
+    std::vector<OscillationProbability> OscProbs = Calcer->ReturnProbabilities();
     for (int iOscProb=0;iOscProb<(int)OscProbs.size();iOscProb++) {
       std::cout << iOscProb << " " << OscProbs[iOscProb].NuType << " " << OscProbs[iOscProb].OscChan.GeneratedFlavour << " " << OscProbs[iOscProb].OscChan.DetectedFlavour << " " << OscProbs[iOscProb].Energy << " " << OscProbs[iOscProb].CosineZ << " " << OscProbs[iOscProb].Probability << std::endl;
     }
