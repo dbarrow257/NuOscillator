@@ -4,6 +4,7 @@ General:
 OscProbCalcerSetup:
   ImplementationName: "OscProb"
   PMNSType: "Fast"
+  PREMLayers: "44"
   OscChannelMapping:
     - Entry: "Electron:Electron"
     - Entry: "Electron:Muon"

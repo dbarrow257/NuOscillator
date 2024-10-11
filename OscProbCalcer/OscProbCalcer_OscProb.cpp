@@ -12,6 +12,13 @@ OscProbCalcerOscProb::OscProbCalcerOscProb(YAML::Node Config_) : OscProbCalcerBa
   }
 
   std::string OscMatrix = Config_["OscProbCalcerSetup"]["PMNSType"].as<std::string>();
+
+  if (!Config_["OscProbCalcerSetup"]["PREMLayers"]) {
+    std::cerr << "Expected to find a 'PREMLayers' Node within the 'OscProbCalcerSetup''Implementation' Node" << std::endl;
+    throw;
+  }
+
+  prem_model = Config_["OscProbCalcerSetup"]["PREMLayers"].as<std::string>();
   //=======
 
   fNNeutrinoTypes = 2;
@@ -24,52 +31,39 @@ OscProbCalcerOscProb::OscProbCalcerOscProb(YAML::Node Config_) : OscProbCalcerBa
   
   std::cout << "PMNS Type : " << fOscType << std::endl;
   std::cout << "Number of parameters : " << fNOscParams << std::endl;
+  std::cout << "PREM Model : " << prem_model << std::endl;
 }
 
 OscProbCalcerOscProb::~OscProbCalcerOscProb() {
 }
 
 void OscProbCalcerOscProb::SetupPropagator() {
-  //===================================================
-  //===================================================
-  //===================================================
-  //===================================================
-  //Should probably grab this from the config..
-  //
-  //Or maybe just directly grab the model filename in
-  //the constructor and save it as a member variable,
-  //then use it below when setting up the PREM Model
-  int prem_model = 0;
-  //===================================================
-  //===================================================
-  //===================================================
-  //===================================================
   
   std::string premfile = SetupPREMModel(prem_model);
   PremModel = OscProb::PremModel(premfile);
 
-  std::cout << "Fast with PREM model : " << prem_model << std::endl;
+  std::cout << "PREM model : " << prem_model << std::endl;
 }
 
-std::string OscProbCalcerOscProb::SetupPREMModel(int model) {
-  if (model > 3 || model < 0) std::cout << "Invalid prem model" << std::endl;
-
+std::string OscProbCalcerOscProb::SetupPREMModel(std::string model) {
     // Get the model table paths
     std::string filename;
 
-    switch (model) {
-        case 0:
-            filename = "./build/_deps/oscprob-src/PremTables/prem_default.txt";
-            break;
-        case 1:
-            filename = "./build/_deps/oscprob-src/PremTables/prem_15layers.txt";
-            break;
-        case 2:
-            filename = "./build/_deps/oscprob-src/PremTables/prem_44layers.txt";
-            break;
-        case 3:
-            filename = "./build/_deps/oscprob-src/PremTables/prem_425layers.txt";
-            break;
+    if(model == "Default" || model == "default") {
+      filename = "./build/_deps/oscprob-src/PremTables/prem_default.txt";
+    }
+    else if(model == "15") {
+      filename = "./build/_deps/oscprob-src/PremTables/prem_15layers.txt";
+    }
+    else if(model == "44") {
+      filename = "./build/_deps/oscprob-src/PremTables/prem_44layers.txt";
+    }
+    else if(model == "425") {
+      filename = "./build/_deps/oscprob-src/PremTables/prem_425layers.txt";
+    }
+    else {
+      std::cerr << "Invalid PREM model provided:" << model << std::endl;
+      throw;
     }
 
     return filename;
@@ -342,6 +336,7 @@ int OscProbCalcerOscProb::PMNS_StrToInt(std::string PMNSType) {
   
   return -1;
 }
+
 
 int OscProbCalcerOscProb::GetNOscParams(int OscType) {
   if (OscType == kFast) {

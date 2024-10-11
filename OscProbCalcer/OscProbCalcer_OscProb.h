@@ -52,7 +52,7 @@ class OscProbCalcerOscProb : public OscProbCalcerBase {
    *
    * @param model parameter to define which model to use. 0 -> default file, 1 -> 15 layers, 2 -> 44 layers, 3 -> 425 layers 
    */
-  std::string SetupPREMModel(int model = 2);
+  std::string SetupPREMModel(std::string model = "");
   
   /**
    * @brief Calculate some oscillation probabilities for a particular oscillation parameter set
@@ -205,6 +205,7 @@ class OscProbCalcerOscProb : public OscProbCalcerBase {
 private:
   
   OscProb::PremModel PremModel;
+  std::string prem_model;
   
 };
 
