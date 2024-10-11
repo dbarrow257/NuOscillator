@@ -17,7 +17,7 @@ var searchData=
   ['fnoscparams_14',['fNOscParams',['../classOscProbCalcerBase.html#a288da12dc6e017a792a2ceb15d16db11',1,'OscProbCalcerBase']]],
   ['fnumappingset_15',['fNuMappingSet',['../classOscProbCalcerBase.html#a39eb705727ef5a18a9433196555348d6',1,'OscProbCalcerBase']]],
   ['fnweights_16',['fNWeights',['../classOscProbCalcerBase.html#a8c9d26a0bfb627a782c3c374f3e59433',1,'OscProbCalcerBase']]],
-  ['foscillationchannels_17',['fOscillationChannels',['../classOscProbCalcerBase.html#accdd18b5357c299f4170dbe4d4ec0818',1,'OscProbCalcerBase']]],
+  ['foscillationchannels_17',['fOscillationChannels',['../classOscProbCalcerBase.html#a9d3596ff47e31e6fe6855d092588c38a',1,'OscProbCalcerBase']]],
   ['foscparamscurr_18',['fOscParamsCurr',['../classOscProbCalcerBase.html#abc4e79d55f1e9400a62b1b06c2c2b900',1,'OscProbCalcerBase']]],
   ['foscprobcalcer_19',['fOscProbCalcer',['../classOscillatorBase.html#addf56ce729e9b76700741fc2d8a32b7f',1,'OscillatorBase']]],
   ['foscprobcalcerset_20',['fOscProbCalcerSet',['../classOscillatorBase.html#af47a1f1b03c183022c741fbf8549d406',1,'OscillatorBase']]],
