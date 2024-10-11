@@ -3,7 +3,7 @@ General:
 
 OscProbCalcerSetup:
   ImplementationName: "OscProb"
-  PMNSType: "Fast"
+  PMNSType: "Sterile+1"
   PREMLayers: "44"
   OscChannelMapping:
     - Entry: "Electron:Electron"

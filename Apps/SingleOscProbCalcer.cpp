@@ -53,14 +53,20 @@ int main(int argc, char **argv) {
   OscParams_Atm[5] = -1.601;
   OscParams_Atm[6] = 25.0;
 
-  std::vector<FLOAT_T> OscParams_Atm_OscProb(6);
+  //test values for Sterile+1 model
+  std::vector<FLOAT_T> OscParams_Atm_OscProb(12);
   OscParams_Atm_OscProb[0] = 3.03e-1;
   OscParams_Atm_OscProb[1] = 4.51e-1;
   OscParams_Atm_OscProb[2] = 2.2225e-2;
   OscParams_Atm_OscProb[3] = 7.41e-5;
   OscParams_Atm_OscProb[4] = 2.511e-3 - 7.41e-5;
   OscParams_Atm_OscProb[5] = 232. * 3.14159265 / 180.;
-  //OscParams_Atm_OscProb[7] = 1e-3;
+  OscParams_Atm_OscProb[6] = 0.;
+  OscParams_Atm_OscProb[7] = 0.03;
+  OscParams_Atm_OscProb[8] = 0.05;
+  OscParams_Atm_OscProb[9] = 1.;
+  OscParams_Atm_OscProb[10] = 2.;
+  OscParams_Atm_OscProb[11] = 1.;
 
   std::vector<FLOAT_T> OscParams_Beam_woYe(8);
   OscParams_Beam_woYe[0] = 3.07e-1;
