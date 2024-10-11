@@ -63,7 +63,7 @@ std::vector<FLOAT_T> OscillatorBinned::ReadBinEdgesFromFile(std::string FileName
   delete Histogram;
   delete File;
 
-  if (fVerbose >= INFO) {
+  if (fVerbose >= NuOscillator::INFO) {
     std::cout << "Bin edges successfully read from File:" << FileName << " , Histogram:" << HistogramName << " :=" << std::endl;
     for (size_t i=0;i<BinEdges.size();i++) {
       std::cout << BinEdges[i] << ", ";
