@@ -19,41 +19,44 @@ using FLOAT_T = float;
  * @file OscillatorConstants.h
  */
 
-/**
- * @brief Different verbosity levels for console output
- */
-enum Verbosity{NONE=0,INFO=1};
-
-/**
- * @brief Different neutrino flavours currently supported within the analysis
- *
- * If more need to be added, no changes should be required outside of this file
- */
-enum NeutrinoFlavours{kElectron=1,kMuon=2,kTau=3,kSterile1=4,kSterile2=5,kSterile3=6,nNeutrinoFlavours=7};
-
-/**
- * @brief Enum which fixes the ordering of the generated and detected neutrino flavours in the #OscillationChannel structure
- */
-enum {kNuFlavour_Generated=0,kNuFlavour_Detected=1,nNuFlavours=2};
-
-/**
- * @brief Structure which defines the oscillation channel generated and detected neutrino flavours
- */
-struct OscillationChannel{
-  int GeneratedFlavour;
-  int DetectedFlavour;
-};
-
-/**
- * @brief Structure to contain all information about the neutrino type, oscillation channel, Energy and CosineZ used to calculate a specific probability
- */ 
-struct OscillationProbability{
-  int NuType;
-  OscillationChannel OscChan;
-  FLOAT_T Energy;
-  FLOAT_T CosineZ;
-  FLOAT_T Probability;
-};
+namespace NuOscillator
+{
+  /**
+   * @brief Different verbosity levels for console output
+   */
+  enum Verbosity{NONE=0,INFO=1};
+  
+  /**
+   * @brief Different neutrino flavours currently supported within the analysis
+   *
+   * If more need to be added, no changes should be required outside of this file
+   */
+  enum NeutrinoFlavours{kElectron=1,kMuon=2,kTau=3,kSterile1=4,kSterile2=5,kSterile3=6,nNeutrinoFlavours=7};
+  
+  /**
+   * @brief Enum which fixes the ordering of the generated and detected neutrino flavours in the #OscillationChannel structure
+   */
+  enum {kNuFlavour_Generated=0,kNuFlavour_Detected=1,nNuFlavours=2};
+  
+  /**
+   * @brief Structure which defines the oscillation channel generated and detected neutrino flavours
+   */
+  struct OscillationChannel{
+    int GeneratedFlavour;
+    int DetectedFlavour;
+  };
+  
+  /**
+   * @brief Structure to contain all information about the neutrino type, oscillation channel, Energy and CosineZ used to calculate a specific probability
+   */ 
+  struct OscillationProbability{
+    int NuType;
+    OscillationChannel OscChan;
+    FLOAT_T Energy;
+    FLOAT_T CosineZ;
+    FLOAT_T Probability;
+  };
+}
 
 /**
  * @brief Convert a neutrino flavour string to integer
@@ -62,17 +65,17 @@ struct OscillationProbability{
  */
 inline int NeutrinoFlavour_StrToInt(std::string NuFlav) {
   if (NuFlav == "Electron" || NuFlav == "electron") {
-    return kElectron;
+    return NuOscillator::kElectron;
   } else if (NuFlav == "Muon" || NuFlav == "muon") {
-    return kMuon;
+    return NuOscillator::kMuon;
   } else if (NuFlav == "Tau" || NuFlav == "tau") {
-    return kTau;
+    return NuOscillator::kTau;
   } else if (NuFlav == "Sterile1" || NuFlav == "sterile1") {
-    return kSterile1;
+    return NuOscillator::kSterile1;
   } else if (NuFlav == "Sterile2" || NuFlav == "sterile2") {
-    return kSterile2;
+    return NuOscillator::kSterile2;
   } else if (NuFlav == "Sterile3" || NuFlav == "sterile3") {
-    return kSterile3;
+    return NuOscillator::kSterile3;
   } else {
     std::cerr << "Could not convert input string:" << NuFlav << " to known enum value in NeutrinoFlavours" << std::endl;
     throw;
@@ -90,22 +93,22 @@ inline int NeutrinoFlavour_StrToInt(std::string NuFlav) {
  */
 inline std::string NeutrinoFlavour_IntToStr(int NuFlav) {
   switch (NuFlav) {
-    case kElectron: 
-      return "Electron";
-    case kMuon:
-      return "Muon";
-    case kTau:
-      return "Tau";
-    case kSterile1:
-      return "Sterile1";
-    case kSterile2:
-      return "Sterile2";
-    case kSterile3:
-      return "Sterile3";
-    default:
-      std::cerr << "Recieved unknown NeutrinoFlavour:" << NuFlav << " which is inconsistent with those in enum 'NeutrinoFlavours'" << std::endl;
-      throw;
-    }
+  case NuOscillator::kElectron: 
+    return "Electron";
+  case NuOscillator::kMuon:
+    return "Muon";
+  case NuOscillator::kTau:
+    return "Tau";
+  case NuOscillator::kSterile1:
+    return "Sterile1";
+  case NuOscillator::kSterile2:
+    return "Sterile2";
+  case NuOscillator::kSterile3:
+    return "Sterile3";
+  default:
+    std::cerr << "Recieved unknown NeutrinoFlavour:" << NuFlav << " which is inconsistent with those in enum 'NeutrinoFlavours'" << std::endl;
+    throw;
+  }
   return "";
 }
 
@@ -118,9 +121,9 @@ inline std::string NeutrinoFlavour_IntToStr(int NuFlav) {
  */
 inline int Verbosity_StrToInt(std::string Verbosity) {
   if (Verbosity == "NONE") {
-    return NONE;
+    return NuOscillator::NONE;
   } else if (Verbosity == "INFO") {
-    return INFO;
+    return NuOscillator::INFO;
   } else {
     std::cerr << "Invalid verbosity provided:" << Verbosity << std::endl;
     throw;
@@ -130,13 +133,13 @@ inline int Verbosity_StrToInt(std::string Verbosity) {
 }
 
 /**
- * @brief Take an input string formatted as 'GeneratedNeutrinoFlavour:DetectedNeutrinoFlavour' and return an OscillationChannel() structure
+ * @brief Take an input string formatted as 'GeneratedNeutrinoFlavour:DetectedNeutrinoFlavour' and return an NuOscillator::OscillationChannel() structure
  *
  * @param String formatted as 'GeneratedNeutrinoFlavour:DetectedNeutrinoFlavour'
  *
- * @return OscillationChannel() structure with generated and detected neutrino flavours
+ * @return NuOscillator::OscillationChannel() structure with generated and detected neutrino flavours
  */
-inline OscillationChannel ReturnOscillationChannel(std::string InputString) {
+inline NuOscillator::OscillationChannel ReturnOscillationChannel(std::string InputString) {
   std::string GeneratedFlavour = "";
   std::string DetectedFlavour = "";
 
@@ -149,7 +152,7 @@ inline OscillationChannel ReturnOscillationChannel(std::string InputString) {
     std::cerr << "Recieved:" << InputString << std::endl;
   }
   
-  OscillationChannel OscChannel = {NeutrinoFlavour_StrToInt(GeneratedFlavour),NeutrinoFlavour_StrToInt(DetectedFlavour)};
+  NuOscillator::OscillationChannel OscChannel = {NeutrinoFlavour_StrToInt(GeneratedFlavour),NeutrinoFlavour_StrToInt(DetectedFlavour)};
   return OscChannel;
 }
 
