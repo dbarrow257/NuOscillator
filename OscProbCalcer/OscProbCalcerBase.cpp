@@ -55,7 +55,6 @@ OscProbCalcerBase::OscProbCalcerBase(YAML::Node InputConfig_) {
     throw;
   }
   InitialiseOscillationChannelMapping();
-
 }
 
 OscProbCalcerBase::~OscProbCalcerBase() {
