@@ -5,7 +5,7 @@
 #include <iostream>
 
 OscillatorBase::OscillatorBase(std::string ConfigName_) {
-  fVerbose = NuOscillator::NONE;
+  fVerbose = NONE;
   fCosineZIgnored = false;
 
   fEvalPointsSetInConstructor = false;
@@ -24,7 +24,7 @@ OscillatorBase::OscillatorBase(std::string ConfigName_) {
 
   InitialiseOscProbCalcer();
   
-  if (fVerbose >= NuOscillator::INFO) {std::cout << "Read:" << ConfigName_ << "\n" << Config << std::endl;}
+  if (fVerbose >= INFO) {std::cout << "Read:" << ConfigName_ << "\n" << Config << std::endl;}
 }
 
 OscillatorBase::~OscillatorBase() {
@@ -43,7 +43,7 @@ void OscillatorBase::SetEnergyArrayInCalcer(std::vector<FLOAT_T> Array) {
     std::cerr << "This seems like a fault in the setup" << std::endl;
     throw;
   }
-  if (fVerbose >= NuOscillator::INFO) {
+  if (fVerbose >= INFO) {
     std::cout << "Setting Energy array in OscProbCalcer Implementation:" << fOscProbCalcer->ReturnImplementationName() << " in OscillatorBase object" << std::endl;
   }
   fOscProbCalcer->SetEnergyArray(Array);
@@ -55,18 +55,18 @@ void OscillatorBase::SetCosineZArrayInCalcer(std::vector<FLOAT_T> Array) {
     std::cerr << "This seems like a fault in the setup"<< std::endl;
     throw;
   }
-  if (fVerbose >= NuOscillator::INFO) {std::cout << "Setting CosineZ array in OscProbCalcer Implementation:" << fOscProbCalcer->ReturnImplementationName() << " in OscillatorBase object" << std::endl;}
+  if (fVerbose >= INFO) {std::cout << "Setting CosineZ array in OscProbCalcer Implementation:" << fOscProbCalcer->ReturnImplementationName() << " in OscillatorBase object" << std::endl;}
   fOscProbCalcer->SetCosineZArray(Array);
 }
 
 // It is assumed that all OscProbCalcers within a single instance of an OscillatorBase object take the same oscillation probabilities
 void OscillatorBase::CalculateProbabilities(std::vector<FLOAT_T> OscParams) {
-  if (fVerbose >= NuOscillator::INFO) {std::cout << "Calculating oscillation probabilities using OscProbCalcer Implementation:" << fOscProbCalcer->ReturnImplementationName() << " in OscillatorBase object" << std::endl;}
+  if (fVerbose >= INFO) {std::cout << "Calculating oscillation probabilities using OscProbCalcer Implementation:" << fOscProbCalcer->ReturnImplementationName() << " in OscillatorBase object" << std::endl;}
   fOscProbCalcer->Reweight(OscParams);
 }
 
 void OscillatorBase::Setup() {
-  if (fVerbose >= NuOscillator::INFO) {std::cout << "Setting up OscProbCalcer Implementation:" << fOscProbCalcer->ReturnImplementationName() << " in OscillatorBase object" << std::endl;}
+  if (fVerbose >= INFO) {std::cout << "Setting up OscProbCalcer Implementation:" << fOscProbCalcer->ReturnImplementationName() << " in OscillatorBase object" << std::endl;}
   fOscProbCalcer->Setup();
 
   SanityCheck();
@@ -99,7 +99,7 @@ void OscillatorBase::SanityCheck() {
     std::cerr << "fOscProbCalcer->ReturnCosineZIgnored():" << fOscProbCalcer->ReturnCosineZIgnored() << std::endl;
     throw;
   } else {
-    if (fVerbose >= NuOscillator::INFO) {std::cout << "OscillatorBase instance passed SanityCheck" << std::endl;}
+    if (fVerbose >= INFO) {std::cout << "OscillatorBase instance passed SanityCheck" << std::endl;}
   }
 }
 
