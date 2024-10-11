@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['oscillationchannel_0',['OscillationChannel',['../structNuOscillator_1_1OscillationChannel.html',1,'NuOscillator']]],
-  ['oscillationprobability_1',['OscillationProbability',['../structNuOscillator_1_1OscillationProbability.html',1,'NuOscillator']]],
+  ['oscillationchannel_0',['OscillationChannel',['../structOscillationChannel.html',1,'']]],
+  ['oscillationprobability_1',['OscillationProbability',['../structOscillationProbability.html',1,'']]],
   ['oscillatorbase_2',['OscillatorBase',['../classOscillatorBase.html',1,'']]],
   ['oscillatorbinned_3',['OscillatorBinned',['../classOscillatorBinned.html',1,'']]],
   ['oscillatorfactory_4',['OscillatorFactory',['../classOscillatorFactory.html',1,'']]],

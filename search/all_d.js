@@ -1,9 +1,9 @@
 var searchData=
 [
-  ['oscchan_0',['OscChan',['../structNuOscillator_1_1OscillationProbability.html#a9e7894ccdb93b149696feed4150f92a5',1,'NuOscillator::OscillationProbability']]],
+  ['oscchan_0',['OscChan',['../structOscillationProbability.html#a1154b2901f4974e75499cbb57f45c484',1,'OscillationProbability']]],
   ['oscchannels_1',['oscchannels',['../classOscProbCalcerCUDAProb3.html#a24cff00f20d7bd72a055174a19586a4d',1,'OscProbCalcerCUDAProb3::OscChannels'],['../classOscProbCalcerCUDAProb3Linear.html#aad4b13c89eeba1a496a150783a6e66ff',1,'OscProbCalcerCUDAProb3Linear::OscChannels']]],
-  ['oscillationchannel_2',['OscillationChannel',['../structNuOscillator_1_1OscillationChannel.html',1,'NuOscillator']]],
-  ['oscillationprobability_3',['OscillationProbability',['../structNuOscillator_1_1OscillationProbability.html',1,'NuOscillator']]],
+  ['oscillationchannel_2',['OscillationChannel',['../structOscillationChannel.html',1,'']]],
+  ['oscillationprobability_3',['OscillationProbability',['../structOscillationProbability.html',1,'']]],
   ['oscillatorbase_4',['oscillatorbase',['../classOscillatorBase.html',1,'OscillatorBase'],['../classOscillatorBase.html#a6116eba6cdc61961a5ea89946e2e544a',1,'OscillatorBase::OscillatorBase()']]],
   ['oscillatorbase_2ecpp_5',['OscillatorBase.cpp',['../OscillatorBase_8cpp.html',1,'']]],
   ['oscillatorbase_2eh_6',['OscillatorBase.h',['../OscillatorBase_8h.html',1,'']]],
