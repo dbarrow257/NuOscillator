@@ -56,6 +56,49 @@ namespace NuOscillator
     FLOAT_T CosineZ;
     FLOAT_T Probability;
   };
+
+#ifndef PARAMS_DEFINED
+#define PARAMS_DEFINED
+  static std::vector<FLOAT_T> OscParams_Atm = {3.07e-1,5.28e-1,2.18e-2,7.53e-5,2.509e-3,-1.601,25.0};
+  static std::vector<FLOAT_T> OscParams_Beam_woYe = {3.07e-1,5.28e-1,2.18e-2,7.53e-5,2.509e-3,-1.601,250.0,2.6};
+  static std::vector<FLOAT_T> OscParams_Beam_wYe = {3.07e-1,5.28e-1,2.18e-2,7.53e-5,2.509e-3,-1.601,250.0,2.6,0.5};
+#else
+  extern static std::vector<FLOAT_T> OscParams_Atm;
+  extern static std::vector<FLOAT_T> OscParams_Beam_woYe;
+  extern static std::vector<FLOAT_T> OscParams_Beam_wYe;
+#endif
+  
+}
+
+/**
+ * @brief Return vector of all config names for each oscillation engine which has been enabled
+ *
+ * @return Vector of paths to config files
+ */
+inline std::vector<std::string> ReturnKnownConfigs() {
+  std::vector<std::string> ConfigNames;
+
+#if UseCUDAProb3 == 1
+  ConfigNames.push_back("./Configs/Unbinned_CUDAProb3.yaml");
+#endif
+
+#if UseCUDAProb3Linear == 1
+  ConfigNames.push_back("./Configs/Unbinned_CUDAProb3Linear.yaml");
+#endif
+
+#if UseProbGPULinear == 1
+  ConfigNames.push_back("./Configs/Unbinned_ProbGPULinear.yaml");
+#endif
+
+#if UseProb3ppLinear == 1
+  ConfigNames.push_back("./Configs/Unbinned_Prob3ppLinear.yaml");
+#endif
+
+#if UseNuFASTLinear == 1
+  ConfigNames.push_back("./Configs/Unbinned_NuFASTLinear.yaml");
+#endif  
+
+  return ConfigNames;
 }
 
 /**
