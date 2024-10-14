@@ -20,6 +20,25 @@ int main(int argc, char **argv) {
   
   bool PrintWeights = true;
 
+  std::vector<FLOAT_T> OscParams_Atm(7);
+  OscParams_Atm[0] = 3.07e-1;
+  OscParams_Atm[1] = 5.28e-1;
+  OscParams_Atm[2] = 2.18e-2;
+  OscParams_Atm[3] = 7.53e-5;
+  OscParams_Atm[4] = 2.509e-3;
+  OscParams_Atm[5] = -1.601;
+  OscParams_Atm[6] = 25.0;
+
+  std::vector<FLOAT_T> OscParams_Beam(8);
+  OscParams_Beam[0] = 3.07e-1;
+  OscParams_Beam[1] = 5.28e-1;
+  OscParams_Beam[2] = 2.18e-2;
+  OscParams_Beam[3] = 7.53e-5;
+  OscParams_Beam[4] = 2.509e-3;
+  OscParams_Beam[5] = -1.601;
+  OscParams_Beam[6] = 250.0;
+  OscParams_Beam[7] = 2.6;
+
   std::vector<FLOAT_T> EnergyArray = logspace(0.1,100.,1e3);
   std::vector<FLOAT_T> CosineZArray = linspace(-1.0,1.0,1e3);
 
@@ -68,12 +87,10 @@ int main(int argc, char **argv) {
   for (size_t iOsc=0;iOsc<Oscillators.size();iOsc++) {
     // These don't have to be explicilty beam or atmospheric specific, all they have to be is equal to the number of oscillation parameters expected by the implementation
     // If you have some NSO calculater, then it will work providing the length of the vector of oscillation parameters is equal to the number of expected oscillation parameters
-    if (Oscillators[iOsc]->ReturnNOscParams() == (int)NuOscillator::OscParams_Beam_woYe.size()) {
-      Oscillators[iOsc]->CalculateProbabilities(NuOscillator::OscParams_Beam_woYe);
-    } else if (Oscillators[iOsc]->ReturnNOscParams() == (int)NuOscillator::OscParams_Beam_wYe.size()) {
-      Oscillators[iOsc]->CalculateProbabilities(NuOscillator::OscParams_Beam_wYe); 
-    } else if (Oscillators[iOsc]->ReturnNOscParams() == (int)NuOscillator::OscParams_Atm.size()) {
-      Oscillators[iOsc]->CalculateProbabilities(NuOscillator::OscParams_Atm);
+    if (Oscillators[iOsc]->ReturnNOscParams() == (int)OscParams_Beam.size()) {
+      Oscillators[iOsc]->CalculateProbabilities(OscParams_Beam); 
+    } else if (Oscillators[iOsc]->ReturnNOscParams() == (int)OscParams_Atm.size()) {
+      Oscillators[iOsc]->CalculateProbabilities(OscParams_Atm);
     } else {
       std::cerr << "Did not find viable oscillation parameters to hand to the oscillation probability calculater" << std::endl;
       std::cerr << "Oscillator->ReturnNOscParams():" << Oscillators[iOsc]->ReturnNOscParams() << std::endl;
