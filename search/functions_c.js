@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['readbinedgesfromfile_0',['ReadBinEdgesFromFile',['../classOscillatorBinned.html#aeee5ded4d52b2a9040a88bee3323bebb',1,'OscillatorBinned']]],
+  ['readbinedgesfromfile_0',['ReadBinEdgesFromFile',['../classOscillatorBinned.html#adc920b721b8951392f70b5e1d0c73af9',1,'OscillatorBinned']]],
   ['resetcurroscparams_1',['ResetCurrOscParams',['../classOscProbCalcerBase.html#ab9068d0366d8573f2ecbb42926f34af4',1,'OscProbCalcerBase']]],
   ['returnbincentersfrombinedges_2',['ReturnBinCentersFromBinEdges',['../classOscillatorBinned.html#a78361fe03067eb74a66b14679e290f8b',1,'OscillatorBinned']]],
   ['returncosinezarray_3',['ReturnCosineZArray',['../classOscProbCalcerBase.html#ac969e7ef88cd59dc3b77fa577ea7691f',1,'OscProbCalcerBase']]],
@@ -18,7 +18,7 @@ var searchData=
   ['returnnweights_15',['ReturnNWeights',['../classOscProbCalcerBase.html#aedb86f11541178000e62c54ad32f3cef',1,'OscProbCalcerBase']]],
   ['returnoscchannelindexfromflavours_16',['ReturnOscChannelIndexFromFlavours',['../classOscProbCalcerBase.html#aa85abd21df41dcbbf0cac4f1b154137b',1,'OscProbCalcerBase']]],
   ['returnoscillationchannel_17',['ReturnOscillationChannel',['../OscillatorConstants_8h.html#ad04660c1f8d95f73fe9a64034d906a71',1,'OscillatorConstants.h']]],
-  ['returnoscillationprobability_18',['ReturnOscillationProbability',['../classOscillatorBase.html#ad59488b2e69a35a049c5714641be2836',1,'OscillatorBase']]],
+  ['returnoscillationprobability_18',['ReturnOscillationProbability',['../classOscillatorBase.html#a81b4442eefe929ccf3d8bebd13edea7d',1,'OscillatorBase']]],
   ['returnoscparamscurr_19',['ReturnOscParamsCurr',['../classOscProbCalcerBase.html#a858f9f4f07f0d2106f2e277ef3cdfddb',1,'OscProbCalcerBase']]],
   ['returnpointertoweight_20',['ReturnPointerToWeight',['../classOscProbCalcerBase.html#aa6989c2c10d592690dc08470ef0c6f31',1,'OscProbCalcerBase']]],
   ['returnpointertoweightincalcer_21',['ReturnPointerToWeightinCalcer',['../classOscillatorBase.html#a67d2a5f1fc2f47dd077ffc1fa1e505d6',1,'OscillatorBase']]],
