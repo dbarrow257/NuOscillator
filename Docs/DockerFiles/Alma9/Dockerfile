@@ -2,6 +2,12 @@
 # KS: Get glorious container from Luke which will work as a base
 FROM picker24/root_v6_26_10:alma9 AS nuoscillator_build
 
+# Add a label for the author
+LABEL website="https://dbarrow257.github.io/NuOscillator/"
+LABEL compiler="GNU 11.3.1"
+LABEL root_version="v6.26.10"
+LABEL org.opencontainers.image.description="Official NuOscillator container"
+
 # Declare the build argument
 ARG NUOSCILLATOR_VERSION
 ENV NUOSCILLATOR_VERSION=${NUOSCILLATOR_VERSION:-develop}

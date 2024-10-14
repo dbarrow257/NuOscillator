@@ -140,7 +140,7 @@ class OscillatorBase {
    *
    * @return Value of the oscillation probability for events of the specific requested type will be stored 
    */  
-  const FLOAT_T ReturnOscillationProbability(int InitNuFlav, int FinalNuFlav, FLOAT_T EnergyVal, FLOAT_T CosineZVal=DUMMYVAL) {
+  FLOAT_T ReturnOscillationProbability(int InitNuFlav, int FinalNuFlav, FLOAT_T EnergyVal, FLOAT_T CosineZVal=DUMMYVAL) {
     const FLOAT_T* Pointer = ReturnWeightPointer(InitNuFlav, FinalNuFlav, EnergyVal, CosineZVal);
     return *Pointer;
   }
