@@ -21,7 +21,7 @@ source Linux/bin/setup.NuOscillator.sh
 then you can check if everything runs correctly by
 ```bash
 cd ../
-./build/Linux/bin/DragRac
+./build/Linux/bin/DragRace
 ```
 
 ## How to Integrate in Framework
