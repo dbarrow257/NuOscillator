@@ -10,11 +10,13 @@ if(NOT DEFINED CMAKE_CXX_STANDARD)
   set(CMAKE_CXX_STANDARD 11)
 endif()
 
-if(NOT DEFINED UseGPU)
-  message(FATAL_ERROR "UseGPU is not defined, add -DUseGPU=<1/0>")
-endif()
+#KS: Store some handy cmake functions
+include(${CMAKE_CURRENT_LIST_DIR}/cmake/Modules/NuOscillatorUtils.cmake)
 
-set(NUOSCILLATOR_VERSION 0.0)
+# By default GPU is off
+DefineEnabledRequiredSwitch(UseGPU 0)
+
+set(NUOSCILLATOR_VERSION 1.0.0)
 
 if(${UseGPU} EQUAL 0)
   project(NUOSCILLATOR VERSION ${NUOSCILLATOR_VERSION} LANGUAGES CXX)
@@ -37,40 +39,78 @@ endif()
 #Custom variable sanitisation
 add_library(NuOscillatorCompilerOptions INTERFACE)
 
-message(STATUS "NuOscillator Features: ")
-foreach(VAR UseGPU UseMultithreading UseDoubles UseCUDAProb3 UseCUDAProb3Linear UseProb3ppLinear UseProbGPULinear UseNuFASTLinear UseOscProb)
-  if(NOT DEFINED ${VAR})
-    message(FATAL_ERROR "${VAR} not defined")
-  endif()
-  message(STATUS "\t${VAR}: ${${VAR}}")
-endforeach(VAR)
+# download CPM.cmake
+file(
+  DOWNLOAD
+  https://github.com/cpm-cmake/CPM.cmake/releases/download/v0.38.8/CPM.cmake
+  ${CMAKE_CURRENT_BINARY_DIR}/cmake/CPM.cmake
+)
+include(${CMAKE_CURRENT_BINARY_DIR}/cmake/CPM.cmake)
+CPMFindPackage(
+  NAME CMakeModules
+  GIT_TAG stable
+  GITHUB_REPOSITORY NuHepMC/CMakeModules
+  DOWNLOAD_ONLY
+)
 
-message(STATUS "Required variables being used:")
+DefineEnabledRequiredSwitch(UseMultithreading 1)
+DefineEnabledRequiredSwitch(UseDoubles 1)
 
+DefineEnabledRequiredSwitch(UseCUDAProb3 0)
+DefineEnabledRequiredSwitch(UseCUDAProb3Linear 0)
+DefineEnabledRequiredSwitch(UseProb3ppLinear 0)
+DefineEnabledRequiredSwitch(UseProbGPULinear 0)
+DefineEnabledRequiredSwitch(UseNuFASTLinear 0)
+DefineEnabledRequiredSwitch(UseOscProb 0)
+
+# KS: NuFastLinear by default
+if(UseCUDAProb3        EQUAL 0 AND
+    UseCUDAProb3Linear EQUAL 0 AND
+    UseProb3ppLinear   EQUAL 0 AND
+    UseProbGPULinear   EQUAL 0 AND
+    UseNuFASTLinear    EQUAL 0 AND
+    UseOscProb         EQUAL 0)
+  set(UseNuFASTLinear 1)
+endif()
+
+LIST(APPEND ALL_Engines
+  CUDAProb3
+  CUDAProb3Linear
+  Prob3ppLinear
+  ProbGPULinear
+  NuFASTLinear
+  OscProb
+)
+cmessage(STATUS "NuOscillator Features: ")
+foreach(f ${ALL_Engines})
+  cmessage(STATUS "     ${f}: ${Use${f}}")
+endforeach()
+
+cmessage(STATUS "Required variables being used:")
 if(${UseGPU} EQUAL 1)
-  message(STATUS "\tUsing GPU")
+  cmessage(STATUS "\tUsing GPU")
 else()
-  message(STATUS "\tNot using GPU")
+  cmessage(STATUS "\tNot using GPU")
   
   if(${UseProbGPULinear} EQUAL 1)
-    message(FATAL_ERROR "ProbGPULinear calculator can only be used when using GPU")
+    cmessage(FATAL_ERROR "ProbGPULinear calculator can only be used when using GPU")
   endif()
 endif()
 
 if(${UseMultithreading} EQUAL 1)
-  message(STATUS "\tUsing Multithreading with nThreads=$ENV{OMP_NUM_THREADS}")
+  cmessage(STATUS "\tUsing Multithreading with nThreads=$ENV{OMP_NUM_THREADS}")
 else()
-  message(STATUS "\tNot using Multithreading")
+  cmessage(STATUS "\tNot using Multithreading")
 endif()
 
 if(${UseDoubles} EQUAL 1)
-  message(STATUS "\tUsing FLOAT_T=double")
+  cmessage(STATUS "\tUsing FLOAT_T=double")
 else()
-  message(STATUS "\tUsing FLOAT_T=float")
+  cmessage(STATUS "\tUsing FLOAT_T=float")
 endif()
 
 if(${UseCUDAProb3} EQUAL 1 AND ${UseCUDAProb3Linear} EQUAL 1)
-  message(FATAL_ERROR "CUDAProb3 and CUDAProb3Linear and not able to be built at the same time")
+  cmessage(FATAL_ERROR "CUDAProb3 and CUDAProb3Linear and not able to be built at the same time")
 endif()
 
 if(${UseMultithreading} EQUAL 1)
@@ -84,7 +124,7 @@ endif()
 
 separate_arguments(NuOscillator_Compiler_Flags)
 
-message(STATUS "Set compiler options: ${NuOscillator_Compiler_Flags}")
+cmessage(STATUS "Set compiler options: ${NuOscillator_Compiler_Flags}")
 add_compile_options(${NuOscillator_Compiler_Flags})
 
 if(${UseGPU} EQUAL 1)
@@ -107,20 +147,11 @@ if(${UseGPU} EQUAL 1)
     string(REPLACE " " ";" CMAKE_CUDA_ARCHITECTURES "${CMAKE_CUDA_ARCHITECTURES}")
   endif()
   
-  message(STATUS "Set CUDA ARCHITECTURES options: ${CMAKE_CUDA_ARCHITECTURES_STRING}")
+  cmessage(STATUS "Set CUDA ARCHITECTURES options: ${CMAKE_CUDA_ARCHITECTURES_STRING}")
 endif()
 
 #================================================================================================
 #Setup Deps
-
-# download CPM.cmake
-file(
-  DOWNLOAD
-  https://github.com/cpm-cmake/CPM.cmake/releases/download/v0.38.8/CPM.cmake
-  ${CMAKE_CURRENT_BINARY_DIR}/cmake/CPM.cmake
-)
-include(${CMAKE_CURRENT_BINARY_DIR}/cmake/CPM.cmake)
-
 CPMAddPackage(
   NAME yaml-cpp
   VERSION 0.7.0
@@ -130,12 +161,6 @@ CPMAddPackage(
   "YAML_BUILD_SHARED_LIBS ON"
 )
 
-CPMFindPackage(
-  NAME CMakeModules
-  GIT_TAG stable
-  GITHUB_REPOSITORY NuHepMC/CMakeModules
-  DOWNLOAD_ONLY
-)
 include(${CMakeModules_SOURCE_DIR}/NuHepMCModules.cmake)
 
 include(ROOT)
@@ -237,7 +262,6 @@ if(${UseNuFASTLinear} EQUAL 1)
 endif()
 
 if(${UseOscProb} EQUAL 1)
-
   CPMAddPackage(
     NAME OscProb
     GITHUB_REPOSITORY joaoabcoelho/OscProb
@@ -256,7 +280,7 @@ if(${UseOscProb} EQUAL 1)
   endif()
   
   execute_process(COMMAND make WORKING_DIRECTORY ${OscProb_SOURCE_DIR})
-
+  
   add_library(OSCPROB INTERFACE IMPORTED)
   target_include_directories(OSCPROB INTERFACE  ${OscProb_SOURCE_DIR})
   

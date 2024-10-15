@@ -1,0 +1,12 @@
+#KS: Inspired by Nuisance code
+if(NOT COMMAND DefineEnabledRequiredSwitch)
+  function(DefineEnabledRequiredSwitch VARNAME DEFAULTVALUE)
+    if(NOT DEFINED ${VARNAME} OR "${${VARNAME}}x" STREQUAL "x")
+      set(${VARNAME} ${DEFAULTVALUE} PARENT_SCOPE)
+      set(${VARNAME} ${DEFAULTVALUE})
+    else()
+      set(${VARNAME}_REQUIRED ${${VARNAME}} PARENT_SCOPE)
+      set(${VARNAME}_REQUIRED ${${VARNAME}})
+    endif()
+  endfunction()
+endif()
