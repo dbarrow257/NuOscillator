@@ -5,7 +5,7 @@
 
 #include <math.h>
 
-#ifdef UseDoubles
+#if UseDoubles==1
 using FLOAT_T = double;
 #else
 using FLOAT_T = float;
