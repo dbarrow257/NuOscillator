@@ -24,7 +24,7 @@ RUN git checkout ${NUOSCILLATOR_VERSION}
 
 RUN mkdir -p ${NuOscillator_INSTALL_DIR}
 WORKDIR ${NuOscillator_INSTALL_DIR}
-RUN cmake -DUseGPU=0 -DUseMultithreading=1 -DUseDoubles=0 -DUseCUDAProb3=0 -DUseCUDAProb3Linear=1 -DUseProb3ppLinear=1 -DUseNuFASTLinear=1 -DUseProbGPULinear=0 ${NuOscillator_WORK_DIR}
+RUN cmake -DUseGPU=0 -DUseMultithreading=1 -DUseDoubles=1 -DUseCUDAProb3=0 -DUseCUDAProb3Linear=1 -DUseProb3ppLinear=1 -DUseNuFASTLinear=1 -DUseProbGPULinear=0 ${NuOscillator_WORK_DIR}
 RUN make VERBOSE=1 && make install
 
 # KS: Need to set them here, otherwise container using this container will not be able to find NuOscillator
