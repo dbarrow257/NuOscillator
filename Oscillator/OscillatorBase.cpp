@@ -2,6 +2,10 @@
 
 #include "OscProbCalcer/OscProbCalcerFactory.h"
 
+#if UseOscProb==1
+#include "OscProbCalcer/OscProbCalcer_OscProb.h"
+#endif
+
 #include <iostream>
 
 OscillatorBase::OscillatorBase(std::string ConfigName_) {

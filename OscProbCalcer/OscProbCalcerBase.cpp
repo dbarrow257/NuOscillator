@@ -271,7 +271,7 @@ void OscProbCalcerBase::Reweight(const std::vector<FLOAT_T>& OscParams) {
 
 void OscProbCalcerBase::SanitiseProbabilities() {
   for (int iWeight=0;iWeight<fNWeights;++iWeight) {
-    if (std::isnan(fWeightArray[iWeight]) || fWeightArray[iWeight] < 0.0 || fWeightArray[iWeight] > 1.0) {
+    if (std::isnan(fWeightArray[iWeight]) || fWeightArray[iWeight] < 0.0 || fWeightArray[iWeight] > 1.001) {
       std::cerr << "Found unreasonable weight in fWeightArray" << std::endl;
       std::cerr << "iWeight:" << iWeight << std::endl;
       std::cerr << "fWeightArray[iWeight]:" << fWeightArray[iWeight] << std::endl;

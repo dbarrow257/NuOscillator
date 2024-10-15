@@ -3,6 +3,10 @@
 
 #include "OscProbCalcer/OscProbCalcerFactory.h"
 
+#if UseOscProb==1
+#include "OscProbCalcer/OscProbCalcer_OscProb.h"
+#endif
+
 #include <iostream>
 #include <math.h>
 #include <chrono>
@@ -18,7 +22,7 @@ int main(int argc, char **argv) {
     throw;
   }
   std::string OscProbCalcerConfigname = argv[1];
-  
+
   bool PrintWeights = false;
   
   std::vector<FLOAT_T> EnergyArray = logspace(0.1,100.,1e3);
@@ -60,7 +64,8 @@ int main(int argc, char **argv) {
     Calcer->Reweight(OscParams_Beam_wYe); 
   } else if (Calcer->ReturnNOscParams() == (int)OscParams_Atm.size()) {
     Calcer->Reweight(OscParams_Atm);
-  } else {
+  }
+   else {
     std::cerr << "Did not find viable oscillation parameters to hand to the oscillation probability calculater" << std::endl;
     std::cerr << "Oscillator->ReturnNOscParams():" << Calcer->ReturnNOscParams() << std::endl;
     throw;
