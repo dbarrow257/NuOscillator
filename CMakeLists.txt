@@ -10,11 +10,13 @@ if(NOT DEFINED CMAKE_CXX_STANDARD)
   set(CMAKE_CXX_STANDARD 11)
 endif()
 
-if(NOT DEFINED UseGPU)
-    message(FATAL_ERROR "UseGPU is not defined, add -DUseGPU=<1/0>")
-endif()
+#KS: Store some handy cmake functions
+include(${CMAKE_CURRENT_LIST_DIR}/cmake/Modules/NuOscillatorUtils.cmake)
 
-set(NUOSCILLATOR_VERSION 0.0)
+# By default GPU is off
+DefineEnabledRequiredSwitch(UseGPU 0)
+
+set(NUOSCILLATOR_VERSION 1.0)
 
 if(${UseGPU} EQUAL 0)
     project(NUOSCILLATOR VERSION ${NUOSCILLATOR_VERSION} LANGUAGES CXX)
@@ -37,16 +39,28 @@ endif()
 #Custom variable sanitisation
 add_library(NuOscillatorCompilerOptions INTERFACE)
 
+DefineEnabledRequiredSwitch(UseMultithreading 1)
+DefineEnabledRequiredSwitch(UseDoubles 1)
+
+DefineEnabledRequiredSwitch(UseCUDAProb3 0)
+DefineEnabledRequiredSwitch(UseCUDAProb3Linear 0)
+DefineEnabledRequiredSwitch(UseProb3ppLinear 0)
+DefineEnabledRequiredSwitch(UseProbGPULinear 0)
+DefineEnabledRequiredSwitch(UseNuFASTLinear 1)
+
+LIST(APPEND ALL_Engines
+  CUDAProb3
+  CUDAProb3Linear
+  Prob3ppLinear
+  ProbGPULinear
+  NuFASTLinear
+  )
 message(STATUS "NuOscillator Features: ")
-foreach(VAR UseGPU UseMultithreading UseDoubles UseCUDAProb3 UseCUDAProb3Linear UseProb3ppLinear UseProbGPULinear UseNuFASTLinear)
-	    if(NOT DEFINED ${VAR})
-	    	   message(FATAL_ERROR "${VAR} not defined")
-	    endif()
-	    message(STATUS "\t${VAR}: ${${VAR}}")
-endforeach(VAR)
+foreach(f ${ALL_Engines})
+  message(STATUS "     ${f}: ${Use${f}}")
+endforeach()
 
 message(STATUS "Required variables being used:")
-
 if(${UseGPU} EQUAL 1)
 	message(STATUS "\tUsing GPU")
 else()
