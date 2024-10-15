@@ -37,7 +37,7 @@ jobs:
         git checkout ${{ github.head_ref }}
         mkdir build
         cd build
-        cmake ../ -DUseGPU=0 -DUseMultithreading=1 -DUseDoubles=1 -DUseCUDAProb3=0 -DUseCUDAProb3Linear=1 -DUseProb3ppLinear=1 -DUseNuFASTLinear=1 -DUseProbGPULinear=0
+        cmake ../ -DUseGPU=0 -DUseMultithreading=1 -DUseDoubles=1 -DUseCUDAProb3=0 -DUseCUDAProb3Linear=1 -DUseProb3ppLinear=0 -DUseNuFASTLinear=1 -DUseProbGPULinear=0
 
     - name: Build NuOscillator
       run: |
