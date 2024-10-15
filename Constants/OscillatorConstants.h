@@ -56,18 +56,22 @@ namespace NuOscillator
     FLOAT_T CosineZ;
     FLOAT_T Probability;
   };
-
-#ifndef PARAMS_DEFINED
-#define PARAMS_DEFINED
-  static std::vector<FLOAT_T> OscParams_Atm = {3.07e-1,5.28e-1,2.18e-2,7.53e-5,2.509e-3,-1.601,25.0};
-  static std::vector<FLOAT_T> OscParams_Beam_woYe = {3.07e-1,5.28e-1,2.18e-2,7.53e-5,2.509e-3,-1.601,250.0,2.6};
-  static std::vector<FLOAT_T> OscParams_Beam_wYe = {3.07e-1,5.28e-1,2.18e-2,7.53e-5,2.509e-3,-1.601,250.0,2.6,0.5};
-#else
-  extern static std::vector<FLOAT_T> OscParams_Atm;
-  extern static std::vector<FLOAT_T> OscParams_Beam_woYe;
-  extern static std::vector<FLOAT_T> OscParams_Beam_wYe;
-#endif
   
+}
+
+inline std::vector<FLOAT_T> ReturnOscParams_Atm() {
+  std::vector<FLOAT_T> OscParams_Atm = {3.07e-1,5.28e-1,2.18e-2,7.53e-5,2.509e-3,-1.601,25.0};
+  return OscParams_Atm;
+}
+
+inline std::vector<FLOAT_T> ReturnOscParams_Beam_woYe() {
+  std::vector<FLOAT_T> OscParams_Beam_woYe = {3.07e-1,5.28e-1,2.18e-2,7.53e-5,2.509e-3,-1.601,250.0,2.6};
+  return OscParams_Beam_woYe;
+}
+
+inline std::vector<FLOAT_T> ReturnOscParams_Beam_wYe() {
+  std::vector<FLOAT_T> OscParams_Beam_wYe = {3.07e-1,5.28e-1,2.18e-2,7.53e-5,2.509e-3,-1.601,250.0,2.6,0.5};
+  return OscParams_Beam_wYe;
 }
 
 /**

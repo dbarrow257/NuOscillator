@@ -19,44 +19,19 @@ int main() {
   std::vector<FLOAT_T> EnergyArray = logspace(0.1,100.,1e5);
   std::vector<FLOAT_T> CosineZArray = linspace(-1.0,1.0,1);
 
+  std::vector<FLOAT_T> OscParams_Atm = ReturnOscParams_Atm();
+  std::vector<FLOAT_T> OscParams_Beam_woYe = ReturnOscParams_Beam_woYe();
+  std::vector<FLOAT_T> OscParams_Beam_wYe = ReturnOscParams_Beam_wYe();
+
   std::cout << "========================================================" << std::endl;
   std::cout << "Starting setup in executable" << std::endl;
 
   std::vector<OscillatorBase*> Oscillators;
-  std::vector<std::string> ConfigNames;
-
   OscillatorFactory* OscFactory = new OscillatorFactory();
   OscillatorBase* Oscillator;
 
-#if UseCUDAProb3 == 1
-  ConfigNames.push_back("./Configs/Binned_CUDAProb3.yaml");
-  ConfigNames.push_back("./Configs/Unbinned_CUDAProb3.yaml");
-#endif
-
-#if UseNuFASTLinear == 1
-  ConfigNames.push_back("./Configs/Binned_NuFASTLinear.yaml");
-  ConfigNames.push_back("./Configs/Unbinned_NuFASTLinear.yaml");
-#endif
-
-#if UseCUDAProb3Linear == 1
-  ConfigNames.push_back("./Configs/Binned_CUDAProb3Linear.yaml");
-  ConfigNames.push_back("./Configs/Unbinned_CUDAProb3Linear.yaml");
-#endif
-
-#if UseProbGPULinear == 1
-  ConfigNames.push_back("./Configs/Binned_ProbGPULinear.yaml");
-  ConfigNames.push_back("./Configs/Unbinned_ProbGPULinear.yaml");
-#endif
-
-  /*
-#if UseProb3ppLinear == 1
-  ConfigNames.push_back("./Configs/Binned_Prob3ppLinear.yaml");
-  ConfigNames.push_back("./Configs/Unbinned_Prob3ppLinear.yaml");
-#endif
-  */
-
-  //Alternative option to show how all information can be held in a single YAML file rather than using a preset
-  //ConfigNames.push_back("./Configs/CUDAProb3_Binned-SelfContainedFile.yaml");
+  //Get the standard set of config names
+  std::vector<std::string> ConfigNames = ReturnKnownConfigs();
 
   for (size_t iConfig=0;iConfig<ConfigNames.size();iConfig++) {
     std::cout << "========================================================" << std::endl;
@@ -106,17 +81,17 @@ int main() {
     for (int iThrow=0;iThrow<nThrows;iThrow++) {
       //Throw dcp to some new value
       FLOAT_T RandVal = static_cast <FLOAT_T> (rand()) / static_cast <FLOAT_T> (RAND_MAX);
-      NuOscillator::OscParams_Atm[5] = RandVal;
-      NuOscillator::OscParams_Beam_woYe[5] = RandVal;
-      NuOscillator::OscParams_Beam_wYe[5] = RandVal;
+      OscParams_Atm[5] = RandVal;
+      OscParams_Beam_woYe[5] = RandVal;
+      OscParams_Beam_wYe[5] = RandVal;
 
       auto t1_single = high_resolution_clock::now();
-      if (Oscillators[iOsc]->ReturnNOscParams() == (int)NuOscillator::OscParams_Beam_woYe.size()) {
-        Oscillators[iOsc]->CalculateProbabilities(NuOscillator::OscParams_Beam_woYe);
-      } else if (Oscillators[iOsc]->ReturnNOscParams() == (int)NuOscillator::OscParams_Beam_wYe.size()) {
-        Oscillators[iOsc]->CalculateProbabilities(NuOscillator::OscParams_Beam_wYe);
-      } else if (Oscillators[iOsc]->ReturnNOscParams() == (int)NuOscillator::OscParams_Atm.size()) {
-        Oscillators[iOsc]->CalculateProbabilities(NuOscillator::OscParams_Atm);
+      if (Oscillators[iOsc]->ReturnNOscParams() == (int)OscParams_Beam_woYe.size()) {
+        Oscillators[iOsc]->CalculateProbabilities(OscParams_Beam_woYe);
+      } else if (Oscillators[iOsc]->ReturnNOscParams() == (int)OscParams_Beam_wYe.size()) {
+        Oscillators[iOsc]->CalculateProbabilities(OscParams_Beam_wYe);
+      } else if (Oscillators[iOsc]->ReturnNOscParams() == (int)OscParams_Atm.size()) {
+        Oscillators[iOsc]->CalculateProbabilities(OscParams_Atm);
       } else {
         std::cerr << "Did not find viable oscillation parameters to hand to the oscillation probability calculater" << std::endl;
         std::cerr << "Oscillator->ReturnNOscParams():" << Oscillators[iOsc]->ReturnNOscParams() << std::endl;
