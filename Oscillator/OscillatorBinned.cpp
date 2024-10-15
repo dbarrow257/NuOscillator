@@ -40,18 +40,18 @@ OscillatorBinned::OscillatorBinned(std::string ConfigName_) : OscillatorBase(Con
 OscillatorBinned::~OscillatorBinned() {
 }
 
-std::vector<FLOAT_T> OscillatorBinned::ReadBinEdgesFromFile(std::string FileName, std::string HistogramName, bool IsCosineZAxis) {
+std::vector<FLOAT_T> OscillatorBinned::ReadBinEdgesFromFile(std::string TFileName, std::string HistogramName, bool IsCosineZAxis) {
   std::vector<FLOAT_T> BinEdges;
 
-  TFile* File = new TFile(FileName.c_str()); 
+  TFile* File = new TFile(TFileName.c_str());
   if (!File || File->IsZombie()) {
-    std::cerr << "Could not find file:" << FileName << std::endl;
+    std::cerr << "Could not find file:" << TFileName << std::endl;
     throw;
   }
 
   TH1* Histogram = (TH1*)File->Get(HistogramName.c_str());
   if (!Histogram) {
-    std::cerr << "Could not find Histogram:" << HistogramName << " in File:" << FileName << std::endl;
+    std::cerr << "Could not find Histogram:" << HistogramName << " in File:" << TFileName << std::endl;
     throw;
   }
 
@@ -63,8 +63,8 @@ std::vector<FLOAT_T> OscillatorBinned::ReadBinEdgesFromFile(std::string FileName
   delete Histogram;
   delete File;
 
-  if (fVerbose >= INFO) {
-    std::cout << "Bin edges successfully read from File:" << FileName << " , Histogram:" << HistogramName << " :=" << std::endl;
+  if (fVerbose >= NuOscillator::INFO) {
+    std::cout << "Bin edges successfully read from File:" << TFileName << " , Histogram:" << HistogramName << " :=" << std::endl;
     for (size_t i=0;i<BinEdges.size();i++) {
       std::cout << BinEdges[i] << ", ";
     }

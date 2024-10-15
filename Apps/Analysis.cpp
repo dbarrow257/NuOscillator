@@ -12,62 +12,25 @@ using std::chrono::duration;
 using std::chrono::milliseconds;
 
 int main() {
-  bool PrintWeights = true;
-
-  std::vector<FLOAT_T> OscParams_Atm(7);
-  OscParams_Atm[0] = 3.07e-1;
-  OscParams_Atm[1] = 5.28e-1;
-  OscParams_Atm[2] = 2.18e-2;
-  OscParams_Atm[3] = 7.53e-5;
-  OscParams_Atm[4] = 2.509e-3;
-  OscParams_Atm[5] = -1.601;
-  OscParams_Atm[6] = 25.0;
-
-  std::vector<FLOAT_T> OscParams_Beam(8);
-  OscParams_Beam[0] = 3.07e-1;
-  OscParams_Beam[1] = 5.28e-1;
-  OscParams_Beam[2] = 2.18e-2;
-  OscParams_Beam[3] = 7.53e-5;
-  OscParams_Beam[4] = 2.509e-3;
-  OscParams_Beam[5] = -1.601;
-  OscParams_Beam[6] = 250.0;
-  OscParams_Beam[7] = 2.6;
+  bool PrintWeights = false;
 
   std::vector<FLOAT_T> EnergyArray = logspace(0.1,100.,1e3);
   std::vector<FLOAT_T> CosineZArray = linspace(-1.0,1.0,1e3);
+
+  std::vector<FLOAT_T> OscParams_Atm = ReturnOscParams_Atm();
+  std::vector<FLOAT_T> OscParams_Beam_woYe = ReturnOscParams_Beam_woYe();
+  std::vector<FLOAT_T> OscParams_Beam_wYe = ReturnOscParams_Beam_wYe();
 
   std::cout << "========================================================" << std::endl;
   std::cout << "Starting setup in executable" << std::endl;
 
   std::vector<OscillatorBase*> Oscillators;
-  std::vector<std::string> ConfigNames;
-
   OscillatorFactory* OscFactory = new OscillatorFactory();
   OscillatorBase* Oscillator;
 
-#if UseCUDAProb3 == 1
-  ConfigNames.push_back("./Configs/Binned_CUDAProb3.yaml");
-  ConfigNames.push_back("./Configs/Unbinned_CUDAProb3.yaml");
-#endif
-
-#if UseCUDAProb3Linear == 1
-  ConfigNames.push_back("./Configs/Binned_CUDAProb3Linear.yaml");
-  ConfigNames.push_back("./Configs/Unbinned_CUDAProb3Linear.yaml");
-#endif
-
-#if UseProbGPULinear == 1
-  ConfigNames.push_back("./Configs/Binned_ProbGPULinear.yaml");
-  ConfigNames.push_back("./Configs/Unbinned_ProbGPULinear.yaml");
-#endif
-
-#if UseProb3ppLinear == 1
-  ConfigNames.push_back("./Configs/Binned_Prob3ppLinear.yaml");
-  ConfigNames.push_back("./Configs/Unbinned_Prob3ppLinear.yaml");
-#endif
-
-  //Alternative option to show how all information can be held in a single YAML file rather than using a preset
-  //ConfigNames.push_back("./Configs/CUDAProb3_Binned-SelfContainedFile.yaml");
-
+  //Get the standard set of config names
+  std::vector<std::string> ConfigNames = ReturnKnownConfigs();
+    
   for (size_t iConfig=0;iConfig<ConfigNames.size();iConfig++) {
     std::cout << "========================================================" << std::endl;
     std::cout << "Initialising " << ConfigNames[iConfig] << std::endl;
@@ -104,10 +67,14 @@ int main() {
 
   // Reweight and calculate oscillation probabilities
   for (size_t iOsc=0;iOsc<Oscillators.size();iOsc++) {
+    std::cout << "Performing reweight in Oscillator: " << iOsc << "/" << Oscillators.size() << std::endl;
+    
     // These don't have to be explicilty beam or atmospheric specific, all they have to be is equal to the number of oscillation parameters expected by the implementation
     // If you have some NSO calculater, then it will work providing the length of the vector of oscillation parameters is equal to the number of expected oscillation parameters
-    if (Oscillators[iOsc]->ReturnNOscParams() == (int)OscParams_Beam.size()) {
-      Oscillators[iOsc]->CalculateProbabilities(OscParams_Beam); 
+    if (Oscillators[iOsc]->ReturnNOscParams() == (int)OscParams_Beam_woYe.size()) {
+      Oscillators[iOsc]->CalculateProbabilities(OscParams_Beam_woYe);
+    } else if (Oscillators[iOsc]->ReturnNOscParams() == (int)OscParams_Beam_wYe.size()) {
+	Oscillators[iOsc]->CalculateProbabilities(OscParams_Beam_wYe); 
     } else if (Oscillators[iOsc]->ReturnNOscParams() == (int)OscParams_Atm.size()) {
       Oscillators[iOsc]->CalculateProbabilities(OscParams_Atm);
     } else {
