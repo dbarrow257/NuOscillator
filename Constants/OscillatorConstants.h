@@ -100,6 +100,10 @@ inline std::vector<std::string> ReturnKnownConfigs() {
 
 #if UseNuFASTLinear == 1
   ConfigNames.push_back("./Configs/Binned_NuFASTLinear.yaml");
+#endif
+
+#if UseOscProb == 1
+  ConfigNames.push_back("./Configs/Binned_OscProb.yaml");
 #endif  
 
   return ConfigNames;
