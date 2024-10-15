@@ -60,7 +60,16 @@ DefineEnabledRequiredSwitch(UseCUDAProb3 0)
 DefineEnabledRequiredSwitch(UseCUDAProb3Linear 0)
 DefineEnabledRequiredSwitch(UseProb3ppLinear 0)
 DefineEnabledRequiredSwitch(UseProbGPULinear 0)
-DefineEnabledRequiredSwitch(UseNuFASTLinear 1)
+DefineEnabledRequiredSwitch(UseNuFASTLinear 0)
+
+# KS: NuFastLinear by default
+if(UseCUDAProb3       EQUAL 0 AND
+   UseCUDAProb3Linear EQUAL 0 AND
+   UseProb3ppLinear   EQUAL 0 AND
+   UseProbGPULinear   EQUAL 0 AND
+   UseNuFASTLinear    EQUAL 0)
+    set(UseNuFASTLinear 1)
+endif()
 
 LIST(APPEND ALL_Engines
   CUDAProb3
