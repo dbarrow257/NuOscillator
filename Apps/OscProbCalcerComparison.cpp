@@ -31,71 +31,23 @@ int main() {
   
   //============================================================================================================
   
-  std::vector<FLOAT_T> OscParams_Atm(7);
-  OscParams_Atm[0] = 3.07e-1;
-  OscParams_Atm[1] = 5.28e-1;
-  OscParams_Atm[2] = 2.18e-2;
-  OscParams_Atm[3] = 7.53e-5;
-  OscParams_Atm[4] = 2.509e-3;
-  OscParams_Atm[5] = -1.601;
-  OscParams_Atm[6] = 25.0;
-
-  std::vector<FLOAT_T> OscParams_Beam_woYe(8);
-  OscParams_Beam_woYe[0] = 3.07e-1;
-  OscParams_Beam_woYe[1] = 5.28e-1;
-  OscParams_Beam_woYe[2] = 2.18e-2;
-  OscParams_Beam_woYe[3] = 7.53e-5;
-  OscParams_Beam_woYe[4] = 2.509e-3;
-  OscParams_Beam_woYe[5] = -1.601;
-  OscParams_Beam_woYe[6] = 250.0;
-  OscParams_Beam_woYe[7] = 2.6;
-
-  std::vector<FLOAT_T> OscParams_Beam_wYe(9);
-  OscParams_Beam_wYe[0] = 3.07e-1;
-  OscParams_Beam_wYe[1] = 5.28e-1;
-  OscParams_Beam_wYe[2] = 2.18e-2;
-  OscParams_Beam_wYe[3] = 7.53e-5;
-  OscParams_Beam_wYe[4] = 2.509e-3;
-  OscParams_Beam_wYe[5] = -1.601;
-  OscParams_Beam_wYe[6] = 250.0;
-  OscParams_Beam_wYe[7] = 2.6;
-  OscParams_Beam_wYe[8] = 0.5;
-  
   std::vector<FLOAT_T> EnergyArray = logspace(0.1,10.,1e3);
   std::vector<FLOAT_T> CosineZArray = linspace(-1.0,1.0,1);
+
+  std::vector<FLOAT_T> OscParams_Atm = ReturnOscParams_Atm();
+  std::vector<FLOAT_T> OscParams_Beam_woYe = ReturnOscParams_Beam_woYe();
+  std::vector<FLOAT_T> OscParams_Beam_wYe = ReturnOscParams_Beam_wYe();
 
   std::cout << "========================================================" << std::endl;
   std::cout << "Starting setup in executable" << std::endl;
 
   std::vector<OscillatorBase*> Oscillators;
-  std::vector<std::string> ConfigNames;
-
   OscillatorFactory* OscFactory = new OscillatorFactory();
   OscillatorBase* Oscillator;
 
-#if UseProb3ppLinear == 1
-  ConfigNames.push_back("./Configs/Unbinned_Prob3ppLinear.yaml");
-#endif
-
-#if UseCUDAProb3 == 1
-  ConfigNames.push_back("./Configs/Unbinned_CUDAProb3.yaml");
-#endif
-
-#if UseCUDAProb3Linear == 1
-  ConfigNames.push_back("./Configs/Unbinned_CUDAProb3Linear.yaml");
-#endif
-
-#if UseProbGPULinear == 1
-  ConfigNames.push_back("./Configs/Unbinned_ProbGPULinear.yaml");
-#endif
-
-#if UseNuFASTLinear == 1
-  ConfigNames.push_back("./Configs/Unbinned_NuFASTLinear.yaml");
-#endif
-
-  //Alternative option to show how all information can be held in a single YAML file rather than using a preset
-  //ConfigNames.push_back("./Configs/CUDAProb3_Binned-SelfContainedFile.yaml");
-
+  //Get the standard set of config names
+  std::vector<std::string> ConfigNames = ReturnKnownConfigs();
+ 
   for (size_t iConfig=0;iConfig<ConfigNames.size();iConfig++) {
     std::cout << "========================================================" << std::endl;
     std::cout << "Initialising " << ConfigNames[iConfig] << std::endl;
@@ -162,6 +114,8 @@ int main() {
       }
     }
   }
+
+  std::cout << "Created probability array.." << std::endl;
 
   std::vector< std::vector<TGraph*> > Probabilities(Oscillators.size());
   for (size_t iOsc=0;iOsc<Oscillators.size();iOsc++) {

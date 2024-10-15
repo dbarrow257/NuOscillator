@@ -31,18 +31,18 @@ OscProbCalcerCUDAProb3::OscProbCalcerCUDAProb3(YAML::Node Config_) : OscProbCalc
   // Implementation specific variables
   OscChannels = std::vector<int>(fNOscillationChannels,DUMMYVAL);
   for (int iOscChannel=0;iOscChannel<fNOscillationChannels;iOscChannel++) {
-    if (fOscillationChannels[iOscChannel].GeneratedFlavour == kElectron) {
-      if (fOscillationChannels[iOscChannel].DetectedFlavour == kElectron) {OscChannels[iOscChannel] = e_e;}
-      if (fOscillationChannels[iOscChannel].DetectedFlavour == kMuon) {OscChannels[iOscChannel] = e_m;}
-      if (fOscillationChannels[iOscChannel].DetectedFlavour == kTau) {OscChannels[iOscChannel] = e_t;}
-    } else if (fOscillationChannels[iOscChannel].GeneratedFlavour == kMuon) {
-      if (fOscillationChannels[iOscChannel].DetectedFlavour == kElectron) {OscChannels[iOscChannel] = m_e;}
-      if (fOscillationChannels[iOscChannel].DetectedFlavour == kMuon) {OscChannels[iOscChannel] = m_m;}
-      if (fOscillationChannels[iOscChannel].DetectedFlavour == kTau) {OscChannels[iOscChannel] = m_t;}
-    } else if (fOscillationChannels[iOscChannel].GeneratedFlavour == kTau) {
-      if (fOscillationChannels[iOscChannel].DetectedFlavour == kElectron) {OscChannels[iOscChannel] = t_e;}
-      if (fOscillationChannels[iOscChannel].DetectedFlavour == kMuon) {OscChannels[iOscChannel] = t_m;}
-      if (fOscillationChannels[iOscChannel].DetectedFlavour == kTau) {OscChannels[iOscChannel] = t_t;}
+    if (fOscillationChannels[iOscChannel].GeneratedFlavour == NuOscillator::kElectron) {
+      if (fOscillationChannels[iOscChannel].DetectedFlavour == NuOscillator::kElectron) {OscChannels[iOscChannel] = e_e;}
+      if (fOscillationChannels[iOscChannel].DetectedFlavour == NuOscillator::kMuon) {OscChannels[iOscChannel] = e_m;}
+      if (fOscillationChannels[iOscChannel].DetectedFlavour == NuOscillator::kTau) {OscChannels[iOscChannel] = e_t;}
+    } else if (fOscillationChannels[iOscChannel].GeneratedFlavour == NuOscillator::kMuon) {
+      if (fOscillationChannels[iOscChannel].DetectedFlavour == NuOscillator::kElectron) {OscChannels[iOscChannel] = m_e;}
+      if (fOscillationChannels[iOscChannel].DetectedFlavour == NuOscillator::kMuon) {OscChannels[iOscChannel] = m_m;}
+      if (fOscillationChannels[iOscChannel].DetectedFlavour == NuOscillator::kTau) {OscChannels[iOscChannel] = m_t;}
+    } else if (fOscillationChannels[iOscChannel].GeneratedFlavour == NuOscillator::kTau) {
+      if (fOscillationChannels[iOscChannel].DetectedFlavour == NuOscillator::kElectron) {OscChannels[iOscChannel] = t_e;}
+      if (fOscillationChannels[iOscChannel].DetectedFlavour == NuOscillator::kMuon) {OscChannels[iOscChannel] = t_m;}
+      if (fOscillationChannels[iOscChannel].DetectedFlavour == NuOscillator::kTau) {OscChannels[iOscChannel] = t_t;}
     }
   }  
 
@@ -56,7 +56,7 @@ OscProbCalcerCUDAProb3::~OscProbCalcerCUDAProb3() {
 void OscProbCalcerCUDAProb3::SetupPropagator() {
 
 #if UseGPU == 1
-  if (fVerbose >= INFO) {std::cout << "Using GPU CUDAProb3 propagator" << std::endl;}
+  if (fVerbose >= NuOscillator::INFO) {std::cout << "Using GPU CUDAProb3 propagator" << std::endl;}
   propagator = std::unique_ptr< Propagator< FLOAT_T > > ( new CudaPropagatorSingle<FLOAT_T>(0, fNCosineZPoints, fNEnergyPoints)); // Single-GPU propagator
   fImplementationName += "-GPU";
 #else
@@ -70,7 +70,7 @@ void OscProbCalcerCUDAProb3::SetupPropagator() {
   }
 #endif
 
-  if (fVerbose >= INFO) {std::cout << "Using CPU CUDAProb3 propagator with " << nThreads << " threads" << std::endl;}
+  if (fVerbose >= NuOscillator::INFO) {std::cout << "Using CPU CUDAProb3 propagator with " << nThreads << " threads" << std::endl;}
   propagator = std::unique_ptr< Propagator< FLOAT_T > > ( new CpuPropagator<FLOAT_T>(fNCosineZPoints, fNEnergyPoints, nThreads)); // MultiThread CPU propagator
   fImplementationName += "-CPU-"+std::to_string(nThreads);
 #endif
@@ -79,7 +79,7 @@ void OscProbCalcerCUDAProb3::SetupPropagator() {
   propagator->setCosineList(fCosineZArray);
   propagator->setDensityFromFile(EarthDensityFile);
 
-  if (fVerbose >= INFO) {std::cout << "Setup CUDAProb3 oscillation probability calculater" << std::endl;}
+  if (fVerbose >= NuOscillator::INFO) {std::cout << "Setup CUDAProb3 oscillation probability calculater" << std::endl;}
 }
  
 void OscProbCalcerCUDAProb3::CalculateProbabilities(const std::vector<FLOAT_T>& OscParams) {
