@@ -42,16 +42,10 @@ add_library(NuOscillatorCompilerOptions INTERFACE)
 # download CPM.cmake
 file(
   DOWNLOAD
-  https://github.com/cpm-cmake/CPM.cmake/releases/download/v0.38.8/CPM.cmake
+  https://github.com/cpm-cmake/CPM.cmake/releases/download/v0.40.2/CPM.cmake
   ${CMAKE_CURRENT_BINARY_DIR}/cmake/CPM.cmake
 )
 include(${CMAKE_CURRENT_BINARY_DIR}/cmake/CPM.cmake)
-CPMFindPackage(
-      NAME CMakeModules
-      GIT_TAG stable
-      GITHUB_REPOSITORY NuHepMC/CMakeModules
-      DOWNLOAD_ONLY
-  )
 
 DefineEnabledRequiredSwitch(UseMultithreading 1)
 DefineEnabledRequiredSwitch(UseDoubles 1)
@@ -149,24 +143,44 @@ endif()
 
 #================================================================================================
 #Setup Deps
+set(YAML_CPP_VERSION 0.8.0)
 CPMAddPackage(
     NAME yaml-cpp
-    VERSION 0.7.0
+    VERSION ${YAML_CPP_VERSION}
     GITHUB_REPOSITORY "jbeder/yaml-cpp"
-    GIT_TAG "yaml-cpp-0.7.0"
+    GIT_TAG "${YAML_CPP_VERSION}"
     OPTIONS
+      "YAML_CPP_INSTALL ON"
+      "YAML_CPP_BUILD_TESTS OFF"
+      "YAML_CPP_BUILD_CONTRIB OFF"
       "YAML_BUILD_SHARED_LIBS ON"
 )
 
-
-include(${CMakeModules_SOURCE_DIR}/NuHepMCModules.cmake)
-
-include(ROOT)
-if(NOT TARGET ROOT::ROOT)
-  cmessage(FATAL_ERROR "Expected dependency target: ROOT::ROOT")
+if(NOT TARGET yaml-cpp::yaml-cpp)
+  cmessage(FATAL_ERROR "NuOscillator Expected dependency target: yaml-cpp::yaml-cpp")
 endif()
-if(DEFINED ROOT_CXX_STANDARD AND ROOT_CXX_STANDARD GREATER CMAKE_CXX_STANDARD)
-  set(CMAKE_CXX_STANDARD ${ROOT_CXX_STANDARD})
+
+find_package(ROOT 6.18 REQUIRED)
+
+STRING(STRIP "${ROOT_CXX_FLAGS}" ROOT_CXX_FLAGS_LIST)
+STRING(REPLACE " " ";" ROOT_CXX_FLAGS_LIST ${ROOT_CXX_FLAGS_LIST})
+
+list (FIND ROOT_CXX_FLAGS "-std=c++14" CPP14_INDEX)
+list (FIND ROOT_CXX_FLAGS "-std=c++1y" CPP1Y_INDEX)
+list (FIND ROOT_CXX_FLAGS "-std=c++17" CPP17_INDEX)
+list (FIND ROOT_CXX_FLAGS "-std=c++1z" CPP1Z_INDEX)
+list (FIND ROOT_CXX_FLAGS "-std=c++20" CPP20_INDEX)
+
+if (CPP14_INDEX GREATER -1)
+  SET(ROOT_CXX_STANDARD 14)
+elseif (CPP1Y_INDEX GREATER -1)
+  SET(ROOT_CXX_STANDARD 14)
+elseif (CPP17_INDEX GREATER -1)
+  SET(ROOT_CXX_STANDARD 17)
+elseif (CPP1Z_INDEX GREATER -1)
+  SET(ROOT_CXX_STANDARD 17)
+elseif (CPP20_INDEX GREATER -1)
+  SET(ROOT_CXX_STANDARD 20)
 endif()
 
 if(${UseCUDAProb3} EQUAL 1)
