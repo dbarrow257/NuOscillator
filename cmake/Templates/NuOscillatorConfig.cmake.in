@@ -12,14 +12,7 @@ enable_language(CXX)
 
 set(NuOscillator_FOUND TRUE)
 
-include(ROOT)
-
-if(NOT TARGET ROOT::ROOT)
-  cmessage(WARNING "Expected NuOscillator to set up dependency target: ROOT::ROOT")
-  set(NuOscillator_FOUND FALSE)
-  return()
-endif()
-
+find_package(ROOT @ROOT_VERSION@ EXACT REQUIRED)
 
 include(${CMAKE_CURRENT_LIST_DIR}/NuOscillatorTargets.cmake)
 

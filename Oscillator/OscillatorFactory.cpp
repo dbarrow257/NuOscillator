@@ -10,18 +10,21 @@ OscillatorFactory::~OscillatorFactory() {
 }
 
 OscillatorBase* OscillatorFactory::CreateOscillator(std::string ConfigName_) {
-  // Create config manager
   std::cout << "OscillatorFactory creating OscillatorBase object from config: " << ConfigName_ << std::endl;
   YAML::Node Config = YAML::LoadFile(ConfigName_);
+  return CreateOscillator(Config);
+}
 
+OscillatorBase* OscillatorFactory::CreateOscillator(YAML::Node Config) {
+  // Create config manager
   std::string OscillatorType = Config["General"]["CalculationType"].as<std::string>();
   OscillatorBase* Oscillator = NULL;
 
   if (OscillatorType == "Unbinned") {
-    OscillatorUnbinned* ImpOscillator = new OscillatorUnbinned(ConfigName_);
+    OscillatorUnbinned* ImpOscillator = new OscillatorUnbinned(Config);
     Oscillator = (OscillatorBase*)ImpOscillator;
   } else if (OscillatorType == "Binned") {
-    OscillatorBinned* ImpOscillator = new OscillatorBinned(ConfigName_);
+    OscillatorBinned* ImpOscillator = new OscillatorBinned(Config);
     Oscillator = (OscillatorBase*)ImpOscillator;
   } else {
     std::cerr << "OscillatorFactory was provided with unknown calculation type:" << OscillatorType << std::endl;

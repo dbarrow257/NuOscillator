@@ -5,6 +5,17 @@
 #include <iostream>
 
 OscillatorBase::OscillatorBase(std::string ConfigName_) {
+  // Create config manager
+  YAML::Node Config_ = YAML::LoadFile(ConfigName_);
+  if (fVerbose >= NuOscillator::INFO) {std::cout << "Read:" << ConfigName_ << "\n" << Config << std::endl;}
+  Initialise(Config_);
+}
+
+OscillatorBase::OscillatorBase(YAML::Node Config_) {
+  Initialise(Config_);
+}
+
+void OscillatorBase::Initialise(YAML::Node Config_) {
   fVerbose = NuOscillator::NONE;
   fCosineZIgnored = false;
 
@@ -13,9 +24,7 @@ OscillatorBase::OscillatorBase(std::string ConfigName_) {
 
   fOscProbCalcerSet = false;
 
-  // Create config manager
-  std::cout << "Reading config in OscillatorBase: " << ConfigName_ << std::endl;
-  Config = YAML::LoadFile(ConfigName_);
+  Config = Config_;
 
   std::string Verbosity = Config["General"]["Verbosity"].as<std::string>();
   fVerbose = Verbosity_StrToInt(Verbosity);
@@ -23,8 +32,6 @@ OscillatorBase::OscillatorBase(std::string ConfigName_) {
   fCosineZIgnored = Config["General"]["CosineZIgnored"].as<bool>();
 
   InitialiseOscProbCalcer();
-  
-  if (fVerbose >= NuOscillator::INFO) {std::cout << "Read:" << ConfigName_ << "\n" << Config << std::endl;}
 }
 
 OscillatorBase::~OscillatorBase() {

@@ -166,15 +166,23 @@ class OscillatorBase {
   virtual const FLOAT_T* ReturnWeightPointer(int InitNuFlav, int FinalNuFlav, FLOAT_T EnergyVal, FLOAT_T CosineZVal=DUMMYVAL) = 0;
 
  protected:
-   /**
-    * @brief Default constructor
-    *
-    * @details It is protected to prevent initialisation of base class
-    *
-    * @param ConfigName_ YAML config file used to set runtime constants
-    */
-   OscillatorBase(std::string ConfigName_);
-
+  /**
+   * @brief Default constructor
+   *
+   * @details It is protected to prevent initialisation of base class
+   *
+   * @param ConfigName_ YAML config file used to set runtime constants
+   */
+  OscillatorBase(std::string ConfigName_);
+  
+  /**
+   * @brief Default constructor
+   *
+   * @details It is protected to prevent initialisation of base class
+   *
+   * @param ConfigName_ YAML config file used to set runtime constants
+   */
+  OscillatorBase(YAML::Node Config_);
 
   // ========================================================================================================================================================================
   // Protected functions which are calculation implementation agnostic
@@ -238,10 +246,17 @@ class OscillatorBase {
    *
    * Create and initialise #fOscProbCalcer to be an instance of OscProbCalcerBase::OscProbCalcerBase() associated with a particular implementation denoted by @param OscProbCalcerImplementationToCreate
    * and config path @param OscProbCalcerConfigname, recast it to a base object OscProbCalcerBase::OscProbCalcerBase() and returns it.
-   *
-   * @param OscProbCalcerConfigname Path to the YAML config
    */
   void InitialiseOscProbCalcer();
+
+  /**
+   * @brief Initialise OscillatorBase object
+   *
+   * Define everything which is needed for the OscillatorBase object to function
+   *
+   * @param Config_ YAML Node to be initialised from
+   */
+  void Initialise(YAML::Node Config_);
 
   // ========================================================================================================================================================================
   // Basic private variables required for oscillation probability calculation

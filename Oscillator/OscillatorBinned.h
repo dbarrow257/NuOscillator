@@ -25,6 +25,8 @@ class OscillatorBinned : public OscillatorBase {
    */
   OscillatorBinned(std::string ConfigName_);
 
+  OscillatorBinned(YAML::Node Config_);
+
   /**
    * @brief Destructor
    */
@@ -90,6 +92,8 @@ class OscillatorBinned : public OscillatorBase {
   // Basic protected variables required for oscillation probability calculation
 
  private:
+
+  void Initialise();
 
   // ========================================================================================================================================================================
   // Basic private variables required for oscillation probability calculation
