@@ -245,7 +245,7 @@ endif()
 if(${UseNuFASTLinear} EQUAL 1)
     CPMAddPackage(
       	NAME NuFAST
-      	GIT_TAG main
+      	GIT_TAG v1.0
       	GITHUB_REPOSITORY PeterDenton/NuFast
       	DOWNLOAD_ONLY
       )
