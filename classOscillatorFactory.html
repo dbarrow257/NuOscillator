@@ -92,6 +92,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a6a5605305da0bff03fc4f14966fb0e71" id="r_a6a5605305da0bff03fc4f14966fb0e71"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classOscillatorBase.html">OscillatorBase</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscillatorFactory.html#a6a5605305da0bff03fc4f14966fb0e71">CreateOscillator</a> (std::string ConfigName_)</td></tr>
 <tr class="memdesc:a6a5605305da0bff03fc4f14966fb0e71"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create an instance of <a class="el" href="classOscillatorBase.html#a6116eba6cdc61961a5ea89946e2e544a" title="Default constructor.">OscillatorBase::OscillatorBase()</a> objects from a YAML config. This currently includes <a class="el" href="classOscillatorBinned.html#a8bf891ee5d12f2fc7a12f99711ba6b15" title="Default constructor.">OscillatorBinned::OscillatorBinned()</a> and <a class="el" href="classOscillatorUnbinned.html#a07738e1e7c5bbba529309847f0d9d6c3" title="Default constructor.">OscillatorUnbinned::OscillatorUnbinned()</a> objects.  <br /></td></tr>
 <tr class="separator:a6a5605305da0bff03fc4f14966fb0e71"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a20a983eb6a89cb30c26552b79b252065" id="r_a20a983eb6a89cb30c26552b79b252065"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classOscillatorBase.html">OscillatorBase</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscillatorFactory.html#a20a983eb6a89cb30c26552b79b252065">CreateOscillator</a> (YAML::Node Config)</td></tr>
+<tr class="memdesc:a20a983eb6a89cb30c26552b79b252065"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create an instance of <a class="el" href="classOscillatorBase.html#a6116eba6cdc61961a5ea89946e2e544a" title="Default constructor.">OscillatorBase::OscillatorBase()</a> objects from a YAML config. This currently includes <a class="el" href="classOscillatorBinned.html#a8bf891ee5d12f2fc7a12f99711ba6b15" title="Default constructor.">OscillatorBinned::OscillatorBinned()</a> and <a class="el" href="classOscillatorUnbinned.html#a07738e1e7c5bbba529309847f0d9d6c3" title="Default constructor.">OscillatorUnbinned::OscillatorUnbinned()</a> objects.  <br /></td></tr>
+<tr class="separator:a20a983eb6a89cb30c26552b79b252065"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Wrapper class which creates instances of <a class="el" href="classOscillatorBase.html#a6116eba6cdc61961a5ea89946e2e544a" title="Default constructor.">OscillatorBase::OscillatorBase()</a> objects. </p>
@@ -144,7 +147,7 @@ Public Member Functions</h2></td></tr>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
 <a id="a6a5605305da0bff03fc4f14966fb0e71" name="a6a5605305da0bff03fc4f14966fb0e71"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6a5605305da0bff03fc4f14966fb0e71">&#9670;&#160;</a></span>CreateOscillator()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a6a5605305da0bff03fc4f14966fb0e71">&#9670;&#160;</a></span>CreateOscillator() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -163,6 +166,33 @@ Public Member Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">ConfigName_</td><td>Path to YAML config file</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="classOscillatorBase.html#a6116eba6cdc61961a5ea89946e2e544a" title="Default constructor.">OscillatorBase::OscillatorBase()</a> object </dd></dl>
+
+</div>
+</div>
+<a id="a20a983eb6a89cb30c26552b79b252065" name="a20a983eb6a89cb30c26552b79b252065"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a20a983eb6a89cb30c26552b79b252065">&#9670;&#160;</a></span>CreateOscillator() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classOscillatorBase.html">OscillatorBase</a> * OscillatorFactory::CreateOscillator </td>
+          <td>(</td>
+          <td class="paramtype">YAML::Node&#160;</td>
+          <td class="paramname"><em>Config</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Create an instance of <a class="el" href="classOscillatorBase.html#a6116eba6cdc61961a5ea89946e2e544a" title="Default constructor.">OscillatorBase::OscillatorBase()</a> objects from a YAML config. This currently includes <a class="el" href="classOscillatorBinned.html#a8bf891ee5d12f2fc7a12f99711ba6b15" title="Default constructor.">OscillatorBinned::OscillatorBinned()</a> and <a class="el" href="classOscillatorUnbinned.html#a07738e1e7c5bbba529309847f0d9d6c3" title="Default constructor.">OscillatorUnbinned::OscillatorUnbinned()</a> objects. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Config</td><td>YAML config node</td></tr>
   </table>
   </dd>
 </dl>

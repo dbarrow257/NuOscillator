@@ -9,7 +9,7 @@ var searchData=
   ['cosinezaxisbinedges_6',['CosineZAxisBinEdges',['../classOscillatorBinned.html#a2a471cf189a3cf40f95cff104a71fedf',1,'OscillatorBinned']]],
   ['cosinezaxishistname_7',['CosineZAxisHistName',['../classOscillatorBinned.html#a50d0a10ad138873374c325011224d6a5',1,'OscillatorBinned']]],
   ['cosinezignored_8',['CosineZIgnored',['../classOscillatorBase.html#a39e513c5f4a492e9300ed277c48478a7',1,'OscillatorBase']]],
-  ['createoscillator_9',['CreateOscillator',['../classOscillatorFactory.html#a6a5605305da0bff03fc4f14966fb0e71',1,'OscillatorFactory']]],
+  ['createoscillator_9',['createoscillator',['../classOscillatorFactory.html#a6a5605305da0bff03fc4f14966fb0e71',1,'OscillatorFactory::CreateOscillator(std::string ConfigName_)'],['../classOscillatorFactory.html#a20a983eb6a89cb30c26552b79b252065',1,'OscillatorFactory::CreateOscillator(YAML::Node Config)']]],
   ['createoscprobcalcer_10',['createoscprobcalcer',['../classOscProbCalcerFactory.html#a4eadb3266545d37843ddf17aa0f8884f',1,'OscProbCalcerFactory::CreateOscProbCalcer(std::string OscProbCalcerConfigName_)'],['../classOscProbCalcerFactory.html#a5cd877cdd9c57eaffc7c51f75be3a5cb',1,'OscProbCalcerFactory::CreateOscProbCalcer(YAML::Node OscProbCalcerConfig)']]],
   ['cudaprob3_11',['cudaprob3',['../namespacecudaprob3.html',1,'']]]
 ];

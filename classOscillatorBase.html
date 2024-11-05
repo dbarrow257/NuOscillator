@@ -148,6 +148,9 @@ Protected Member Functions</h2></td></tr>
 <tr class="memitem:a6116eba6cdc61961a5ea89946e2e544a" id="r_a6116eba6cdc61961a5ea89946e2e544a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscillatorBase.html#a6116eba6cdc61961a5ea89946e2e544a">OscillatorBase</a> (std::string ConfigName_)</td></tr>
 <tr class="memdesc:a6116eba6cdc61961a5ea89946e2e544a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor.  <br /></td></tr>
 <tr class="separator:a6116eba6cdc61961a5ea89946e2e544a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaf621fd06989d08a4bc6bd1e55d79479" id="r_aaf621fd06989d08a4bc6bd1e55d79479"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscillatorBase.html#aaf621fd06989d08a4bc6bd1e55d79479">OscillatorBase</a> (YAML::Node Config_)</td></tr>
+<tr class="memdesc:aaf621fd06989d08a4bc6bd1e55d79479"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor.  <br /></td></tr>
+<tr class="separator:aaf621fd06989d08a4bc6bd1e55d79479"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a67d2a5f1fc2f47dd077ffc1fa1e505d6" id="r_a67d2a5f1fc2f47dd077ffc1fa1e505d6"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="OscillatorConstants_8h.html#acb53b45d3e1b677a15c2ef27b266b1ca">FLOAT_T</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscillatorBase.html#a67d2a5f1fc2f47dd077ffc1fa1e505d6">ReturnPointerToWeightinCalcer</a> (int InitNuFlav, int FinalNuFlav, <a class="el" href="OscillatorConstants_8h.html#acb53b45d3e1b677a15c2ef27b266b1ca">FLOAT_T</a> EnergyVal, <a class="el" href="OscillatorConstants_8h.html#acb53b45d3e1b677a15c2ef27b266b1ca">FLOAT_T</a> CosineZVal=<a class="el" href="OscillatorConstants_8h.html#ae3a7da283c400b8c7e8fb8f27042d7dc">DUMMYVAL</a>)</td></tr>
 <tr class="memdesc:a67d2a5f1fc2f47dd077ffc1fa1e505d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return a pointer to the oscillation probability memory address in a particular index of #fOscProbCalcers for a particular event.  <br /></td></tr>
 <tr class="separator:a67d2a5f1fc2f47dd077ffc1fa1e505d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -178,6 +181,9 @@ Private Member Functions</h2></td></tr>
 <tr class="memitem:af4703b50260a25117367b02896a96dc1" id="r_af4703b50260a25117367b02896a96dc1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscillatorBase.html#af4703b50260a25117367b02896a96dc1">InitialiseOscProbCalcer</a> ()</td></tr>
 <tr class="memdesc:af4703b50260a25117367b02896a96dc1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return an <a class="el" href="classOscProbCalcerBase.html#a577215656c88457f96a30bb4631a9688" title="Default constructor.">OscProbCalcerBase::OscProbCalcerBase()</a> object from the requested inputs.  <br /></td></tr>
 <tr class="separator:af4703b50260a25117367b02896a96dc1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3e46dc5927b087981031ecc71b01b0d6" id="r_a3e46dc5927b087981031ecc71b01b0d6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscillatorBase.html#a3e46dc5927b087981031ecc71b01b0d6">Initialise</a> (YAML::Node Config_)</td></tr>
+<tr class="memdesc:a3e46dc5927b087981031ecc71b01b0d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialise <a class="el" href="classOscillatorBase.html" title="Oscillation calculation (binned, unbinned, etc.) implementation agnostic base class.">OscillatorBase</a> object.  <br /></td></tr>
+<tr class="separator:a3e46dc5927b087981031ecc71b01b0d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
@@ -217,7 +223,7 @@ Private Attributes</h2></td></tr>
 </div>
 </div>
 <a id="a6116eba6cdc61961a5ea89946e2e544a" name="a6116eba6cdc61961a5ea89946e2e544a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6116eba6cdc61961a5ea89946e2e544a">&#9670;&#160;</a></span>OscillatorBase()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a6116eba6cdc61961a5ea89946e2e544a">&#9670;&#160;</a></span>OscillatorBase() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -230,6 +236,41 @@ Private Attributes</h2></td></tr>
           <td>(</td>
           <td class="paramtype">std::string&#160;</td>
           <td class="paramname"><em>ConfigName_</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Default constructor. </p>
+<p>It is protected to prevent initialisation of base class</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ConfigName_</td><td>YAML config file used to set runtime constants </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aaf621fd06989d08a4bc6bd1e55d79479" name="aaf621fd06989d08a4bc6bd1e55d79479"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaf621fd06989d08a4bc6bd1e55d79479">&#9670;&#160;</a></span>OscillatorBase() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">OscillatorBase::OscillatorBase </td>
+          <td>(</td>
+          <td class="paramtype">YAML::Node&#160;</td>
+          <td class="paramname"><em>Config_</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -373,6 +414,41 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
+<a id="a3e46dc5927b087981031ecc71b01b0d6" name="a3e46dc5927b087981031ecc71b01b0d6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3e46dc5927b087981031ecc71b01b0d6">&#9670;&#160;</a></span>Initialise()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void OscillatorBase::Initialise </td>
+          <td>(</td>
+          <td class="paramtype">YAML::Node&#160;</td>
+          <td class="paramname"><em>Config_</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Initialise <a class="el" href="classOscillatorBase.html" title="Oscillation calculation (binned, unbinned, etc.) implementation agnostic base class.">OscillatorBase</a> object. </p>
+<p>Define everything which is needed for the <a class="el" href="classOscillatorBase.html" title="Oscillation calculation (binned, unbinned, etc.) implementation agnostic base class.">OscillatorBase</a> object to function</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Config_</td><td>YAML Node to be initialised from </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="af4703b50260a25117367b02896a96dc1" name="af4703b50260a25117367b02896a96dc1"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af4703b50260a25117367b02896a96dc1">&#9670;&#160;</a></span>InitialiseOscProbCalcer()</h2>
 
@@ -400,8 +476,7 @@ Private Attributes</h2></td></tr>
 <p>Create and initialise <a class="el" href="classOscillatorBase.html#addf56ce729e9b76700741fc2d8a32b7f" title="The instance of OscProbCalcerBase()">fOscProbCalcer</a> to be an instance of <a class="el" href="classOscProbCalcerBase.html#a577215656c88457f96a30bb4631a9688" title="Default constructor.">OscProbCalcerBase::OscProbCalcerBase()</a> associated with a particular implementation denoted by</p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">OscProbCalcerImplementationToCreate</td><td>and config path</td></tr>
-    <tr><td class="paramname">OscProbCalcerConfigname,recast</td><td>it to a base object <a class="el" href="classOscProbCalcerBase.html#a577215656c88457f96a30bb4631a9688" title="Default constructor.">OscProbCalcerBase::OscProbCalcerBase()</a> and returns it.</td></tr>
-    <tr><td class="paramname">OscProbCalcerConfigname</td><td>Path to the YAML config </td></tr>
+    <tr><td class="paramname">OscProbCalcerConfigname,recast</td><td>it to a base object <a class="el" href="classOscProbCalcerBase.html#a577215656c88457f96a30bb4631a9688" title="Default constructor.">OscProbCalcerBase::OscProbCalcerBase()</a> and returns it. </td></tr>
   </table>
   </dd>
 </dl>
