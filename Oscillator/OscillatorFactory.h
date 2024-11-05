@@ -35,6 +35,16 @@ class OscillatorFactory {
    */
   OscillatorBase* CreateOscillator(std::string ConfigName_);
 
+  /**
+   * @brief Create an instance of OscillatorBase::OscillatorBase() objects from a YAML config. This currently includes OscillatorBinned::OscillatorBinned() and
+   * OscillatorUnbinned::OscillatorUnbinned() objects
+   *
+   * @param Config YAML config node
+   *
+   * @return OscillatorBase::OscillatorBase() object
+   */
+  OscillatorBase* CreateOscillator(YAML::Node Config);
+
  protected:
 
  private:
