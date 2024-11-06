@@ -25,6 +25,8 @@ class OscillatorUnbinned : public OscillatorBase {
    */
   OscillatorUnbinned(std::string ConfigName_);
 
+  OscillatorUnbinned(YAML::Node Config_);
+
   /**
    * @brief Destructor
    */
@@ -64,6 +66,8 @@ class OscillatorUnbinned : public OscillatorBase {
   // Basic protected variables required for oscillation probability calculation
 
  private:
+
+  void Initialise();
 
   // ========================================================================================================================================================================
   // Basic private variables required for oscillation probability calculation

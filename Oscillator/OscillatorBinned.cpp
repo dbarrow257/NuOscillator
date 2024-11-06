@@ -6,6 +6,14 @@
 #include "TH1.h"
 
 OscillatorBinned::OscillatorBinned(std::string ConfigName_) : OscillatorBase(ConfigName_) {
+  Initialise();
+}
+
+OscillatorBinned::OscillatorBinned(YAML::Node Config_) : OscillatorBase(Config_) {
+  Initialise();
+}
+
+void OscillatorBinned::Initialise() {
   EnergyAxisBinEdges = std::vector<FLOAT_T>();
   CosineZAxisBinEdges = std::vector<FLOAT_T>();
   EnergyAxisBinCenters = std::vector<FLOAT_T>();

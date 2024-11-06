@@ -3,6 +3,14 @@
 #include <iostream>
 
 OscillatorUnbinned::OscillatorUnbinned(std::string ConfigName_) : OscillatorBase(ConfigName_) {
+  Initialise();
+}
+
+OscillatorUnbinned::OscillatorUnbinned(YAML::Node Config_) : OscillatorBase(Config_) {
+  Initialise();
+}
+
+void OscillatorUnbinned::Initialise() {
   fCalculationTypeName = "Unbinned";
 }
 
