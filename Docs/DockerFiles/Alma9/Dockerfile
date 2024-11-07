@@ -1,6 +1,6 @@
 #To run use:  docker build -t nuoscillator .
-# KS: Get glorious container from Kamil which will work as a base
-FROM kamilskwarczynski/nukamil:latest AS nuoscillator_build
+# KS: Get glorious container from Luke which will work as a base
+FROM picker24/root_v6_26_10:alma9 AS nuoscillator_build
 
 # Add a label for the author
 LABEL website="https://dbarrow257.github.io/NuOscillator/"
