@@ -1,19 +1,19 @@
-#ifndef __OSCILLATOR_BINNED_BASE_H__
-#define __OSCILLATOR_BINNED_BASE_H__
+#ifndef __OSCILLATOR_SUBSAMPLING_BASE_H__
+#define __OSCILLATOR_SUBSAMPLING_BASE_H__
 
 #include "OscillatorBase.h"
 
 /**
- * @file OscillatorBinned.h
+ * @file OscillatorSubSampling.h
  *
- * @class OscillatorBinned
+ * @class OscillatorSubSampling
  *
- * @brief Binned Oscillation calculation implementation class.
+ * @brief SubSampling Oscillation calculation implementation class.
  *
  * Implementation of OscillatorBase::OscillatorBase() object which uses standard binning for the energy and cosineZ dimension, read from TFile/TH1D such that the binning in
  * each dimension is independent. 
  */
-class OscillatorBinned : public OscillatorBase {
+class OscillatorSubSampling : public OscillatorBase {
  public:
 
   /**
@@ -23,14 +23,14 @@ class OscillatorBinned : public OscillatorBase {
    *
    * @param ConfigName_ YAML config file used to set runtime constants
    */
-  OscillatorBinned(std::string ConfigName_);
+  OscillatorSubSampling(std::string ConfigName_);
 
-  OscillatorBinned(YAML::Node Config_);
+  OscillatorSubSampling(YAML::Node Config_);
 
   /**
    * @brief Destructor
    */
-  virtual ~OscillatorBinned();
+  virtual ~OscillatorSubSampling();
 
   // ========================================================================================================================================================================
   // Public functions which are calculation implementation agnostic
@@ -56,7 +56,7 @@ class OscillatorBinned : public OscillatorBase {
  protected:
 
   // ========================================================================================================================================================================
-  // Protected functions which are calculation implementation agnostic  
+  // Protected functions which are calculation implementation agnostic   
 
   // ========================================================================================================================================================================
   // Protected virtual functions which are calculation implementation agnostic
@@ -68,6 +68,29 @@ class OscillatorBinned : public OscillatorBase {
 
   void Initialise();
 
+  void PostCalculateProbabilities();
+
+  void SetupOscillatorImplementation();
+  
+  int FindBinIndexFromEdges(FLOAT_T Val, std::vector<FLOAT_T> BinEdges);
+
+  std::vector<FLOAT_T> AveragedOscillationProbabilities; //Vector holding averaged Probabilities [length = nBins]                                                                                                     
+  std::vector< std::vector<const FLOAT_T*> > OscillationProbabilitiesToAverage; //Vector holding the pointers to the fine oscillation probabilities to average across [length = nBins][length = nFineBinsInCoarseBin]
+
+  size_t nCoarseEnergyBins;
+  size_t nCoarseCosineZBins;
+
+  size_t nFineEnergyBins;
+  size_t nFineCosineZBins;
+
+  size_t TotalCoarseBins;
+
+  std::vector<NuOscillator::OscillationChannel> OscillationChannels;
+  size_t nOscillationChannels;
+
+  std::vector<int> NeutrinoTypes;
+  size_t nNeutrinoTypes;
+  
   // ========================================================================================================================================================================
   // Basic private variables required for oscillation probability calculation
 
@@ -79,29 +102,34 @@ class OscillatorBinned : public OscillatorBase {
   /**
    * @brief The name of the histogram which contains the Energy axis binning
    */
-  std::string EnergyAxisHistName;
-
+  std::string CoarseEnergyAxisHistName;
+  std::string FineEnergyAxisHistName;
   /**
    * @brief The name of the histogram which contains the CosineZ axis binning
    */
-  std::string CosineZAxisHistName;
+  std::string CoarseCosineZAxisHistName;
+  std::string FineCosineZAxisHistName;
 
   /**
    * @brief A vector of Energy axis bin edges
    */
-  std::vector<FLOAT_T> EnergyAxisBinEdges;
+  std::vector<FLOAT_T> CoarseEnergyAxisBinEdges;
+  std::vector<FLOAT_T> FineEnergyAxisBinEdges;
   /**
    * @brief A vector of CosineZ axis bin edges
    */
-  std::vector<FLOAT_T> CosineZAxisBinEdges;
+  std::vector<FLOAT_T> CoarseCosineZAxisBinEdges;
+  std::vector<FLOAT_T> FineCosineZAxisBinEdges;
+
   /**
    * @brief A vector of Energy axis bin centers
    */
-  std::vector<FLOAT_T> EnergyAxisBinCenters;
+  std::vector<FLOAT_T> FineEnergyAxisBinCenters;
   /**
    * @brief A vector of CosineZ axis bin centers
    */
-  std::vector<FLOAT_T> CosineZAxisBinCenters;
+  std::vector<FLOAT_T> FineCosineZAxisBinCenters;
+
 };
 
 #endif

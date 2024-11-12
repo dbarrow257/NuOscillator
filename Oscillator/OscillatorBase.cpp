@@ -70,6 +70,7 @@ void OscillatorBase::SetCosineZArrayInCalcer(std::vector<FLOAT_T> Array) {
 void OscillatorBase::CalculateProbabilities(std::vector<FLOAT_T> OscParams) {
   if (fVerbose >= NuOscillator::INFO) {std::cout << "Calculating oscillation probabilities using OscProbCalcer Implementation:" << fOscProbCalcer->ReturnImplementationName() << " in OscillatorBase object" << std::endl;}
   fOscProbCalcer->Reweight(OscParams);
+  PostCalculateProbabilities();
 }
 
 void OscillatorBase::Setup() {
@@ -77,6 +78,8 @@ void OscillatorBase::Setup() {
   fOscProbCalcer->Setup();
 
   SanityCheck();
+
+  SetupOscillatorImplementation();
 }
 
 int OscillatorBase::ReturnNOscParams() {

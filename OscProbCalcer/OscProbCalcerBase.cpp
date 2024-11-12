@@ -68,6 +68,11 @@ void OscProbCalcerBase::SetEnergyArray(std::vector<FLOAT_T> EnergyArray) {
     return;
   }
 
+  if (EnergyArray.size()==0) {
+    std::cerr << "Invalid array passed to OscProbCalcerBase::SetEnergyArray as it has size 0" << std::endl;
+    throw;
+  }
+
   fEnergyArray = EnergyArray;
   for (size_t iEnergy=0;iEnergy<fEnergyArray.size();iEnergy++) {
     if (fEnergyArray[iEnergy] <= 0) {
@@ -87,7 +92,13 @@ void OscProbCalcerBase::SetEnergyArray(std::vector<FLOAT_T> EnergyArray) {
 
   fNEnergyPoints = EnergyArray.size();
   fEnergyArraySet = true;
-  if (fVerbose >= NuOscillator::INFO) {std::cout << "Set EnergyArray in implementation:" << fImplementationName << std::endl;}
+  if (fVerbose >= NuOscillator::INFO) {
+    std::cout << "Set EnergyArray in implementation:" << fImplementationName << " -" << std::endl;
+    for (size_t iEnergy=1;iEnergy<fEnergyArray.size();iEnergy++) {
+      std::cout << fEnergyArray[iEnergy] << ", ";
+    }
+    std::cout << std::endl;
+  }
 }
 
 void OscProbCalcerBase::SetCosineZArray(std::vector<FLOAT_T> CosineZArray) {
@@ -178,9 +189,19 @@ const FLOAT_T* OscProbCalcerBase::ReturnPointerToWeight(int InitNuFlav, int Fina
   }
   int EnergyIndex = ReturnEnergyIndexFromValue(Energy);
 
-  int WeightArrayIndex = ReturnWeightArrayIndex(NuTypeIndex,OscChanIndex,EnergyIndex,CosineZIndex);
+  int WeightArrayIndex;
+  if (!ReturnCosineZIgnored()) {
+    WeightArrayIndex = ReturnWeightArrayIndex(NuTypeIndex,OscChanIndex,EnergyIndex,CosineZIndex);
+  } else {
+    WeightArrayIndex = ReturnWeightArrayIndex(NuTypeIndex,OscChanIndex,EnergyIndex);
+  }
+  
   if (WeightArrayIndex < 0 || WeightArrayIndex >= (int)fWeightArray.size()) {
     std::cerr << "Array index in fWeightArray is outside of the array size. This indicates that the implementation of ReturnWeightArrayIndex is incorrect." << std::endl;
+    std::cerr << "NuTypeIndex:" << NuTypeIndex << std::endl;
+    std::cerr << "OscChanIndex:" << OscChanIndex << std::endl;
+    std::cerr << "CosineZIndex:" << CosineZIndex << std::endl;
+    std::cerr << "EnergyIndex:" << EnergyIndex << std::endl;
     std::cerr << "WeightArrayIndex:" << WeightArrayIndex << std::endl;
     std::cerr << "fWeightArray.size():" << fWeightArray.size() << std::endl;
     throw;
@@ -344,6 +365,11 @@ int OscProbCalcerBase::ReturnEnergyIndexFromValue(FLOAT_T EnergyVal) {
   if (EnergyIndex == -1) {
     std::cerr << "Did not find Energy in the array used in calculating oscillation probabilities" << std::endl;
     std::cerr << "Requested Energy:" << EnergyVal << std::endl;
+    std::cerr << "Binning - " << std::endl;
+    for (size_t iEnergy=0;iEnergy<fEnergyArray.size();iEnergy++) {
+      std::cerr << fEnergyArray[iEnergy] << ", ";
+    }
+    std::cerr << std::endl;
     throw;
   }
 

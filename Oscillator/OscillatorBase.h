@@ -205,6 +205,9 @@ class OscillatorBase {
   
   // ========================================================================================================================================================================
   // Protected virtual functions which are calculation implementation agnostic
+
+  virtual void PostCalculateProbabilities() {}
+  virtual void SetupOscillatorImplementation() {}
   
   // ========================================================================================================================================================================
   // Basic protected variables required for oscillation probability calculation
