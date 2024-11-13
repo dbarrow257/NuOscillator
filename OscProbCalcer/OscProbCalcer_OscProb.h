@@ -332,7 +332,16 @@ class OscProbCalcerOscProb : public OscProbCalcerBase {
 
 private:
   
+  /**
+   * @brief Object handling the Earth model and the estimation of neutrino paths through the Earth depending on their direction
+   * Paths used by PMNS objects for neutrino propagation
+   * Earth model implemented as succession of spherical shells with uniform density 
+   */
   OscProb::PremModel PremModel;
+
+  /**
+   * @brief String storing the path of the density table file used to setup the Earth model
+   */
   std::string prem_model;
   
 };
