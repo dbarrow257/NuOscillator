@@ -34,6 +34,7 @@ int main() {
   std::vector<FLOAT_T> EnergyArray = logspace(0.1,10.,1e3);
   std::vector<FLOAT_T> CosineZArray = linspace(-1.0,1.0,1);
 
+  std::vector<FLOAT_T> OscParams_Basic = ReturnOscParams_Basic();
   std::vector<FLOAT_T> OscParams_Atm = ReturnOscParams_Atm();
   std::vector<FLOAT_T> OscParams_Beam_woYe = ReturnOscParams_Beam_woYe();
   std::vector<FLOAT_T> OscParams_Beam_wYe = ReturnOscParams_Beam_wYe();
@@ -99,6 +100,8 @@ int main() {
       Oscillators[iOsc]->CalculateProbabilities(OscParams_Beam_wYe);
     } else if (Oscillators[iOsc]->ReturnNOscParams() == (int)OscParams_Atm.size()) {
       Oscillators[iOsc]->CalculateProbabilities(OscParams_Atm);
+    } else if (Oscillators[iOsc]->ReturnNOscParams() == (int)OscParams_Basic.size()) {
+      Oscillators[iOsc]->CalculateProbabilities(OscParams_Basic);
     } else {
       std::cerr << "Did not find viable oscillation parameters to hand to the oscillation probability calculater" << std::endl;
       std::cerr << "Oscillator->ReturnNOscParams():" << Oscillators[iOsc]->ReturnNOscParams() << std::endl;
