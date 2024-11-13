@@ -21,8 +21,9 @@ var searchData=
   ['foscparamscurr_18',['fOscParamsCurr',['../classOscProbCalcerBase.html#abc4e79d55f1e9400a62b1b06c2c2b900',1,'OscProbCalcerBase']]],
   ['foscprobcalcer_19',['fOscProbCalcer',['../classOscillatorBase.html#addf56ce729e9b76700741fc2d8a32b7f',1,'OscillatorBase']]],
   ['foscprobcalcerset_20',['fOscProbCalcerSet',['../classOscillatorBase.html#af47a1f1b03c183022c741fbf8549d406',1,'OscillatorBase']]],
-  ['fpropagatorset_21',['fPropagatorSet',['../classOscProbCalcerBase.html#a4258db5c5c9fcd503c294a3ab996203f',1,'OscProbCalcerBase']]],
-  ['fverbose_22',['fverbose',['../classOscillatorBase.html#aefea428bfddb9afd64b289d7e21d7892',1,'OscillatorBase::fVerbose'],['../classOscProbCalcerBase.html#afd90d7924214b849c24a6040e0d25042',1,'OscProbCalcerBase::fVerbose']]],
-  ['fweightarray_23',['fWeightArray',['../classOscProbCalcerBase.html#a89ca55fe94b0f4b7710ca61d97bacdba',1,'OscProbCalcerBase']]],
-  ['fweightarrayinit_24',['fWeightArrayInit',['../classOscProbCalcerBase.html#a3798ecd36b75b027f2c36ff1ebc5414a',1,'OscProbCalcerBase']]]
+  ['fosctype_21',['fOscType',['../classOscProbCalcerOscProb.html#a96189e894b4b0928f6744dfe8163c35b',1,'OscProbCalcerOscProb']]],
+  ['fpropagatorset_22',['fPropagatorSet',['../classOscProbCalcerBase.html#a4258db5c5c9fcd503c294a3ab996203f',1,'OscProbCalcerBase']]],
+  ['fverbose_23',['fverbose',['../classOscillatorBase.html#aefea428bfddb9afd64b289d7e21d7892',1,'OscillatorBase::fVerbose'],['../classOscProbCalcerBase.html#afd90d7924214b849c24a6040e0d25042',1,'OscProbCalcerBase::fVerbose']]],
+  ['fweightarray_24',['fWeightArray',['../classOscProbCalcerBase.html#a89ca55fe94b0f4b7710ca61d97bacdba',1,'OscProbCalcerBase']]],
+  ['fweightarrayinit_25',['fWeightArrayInit',['../classOscProbCalcerBase.html#a3798ecd36b75b027f2c36ff1ebc5414a',1,'OscProbCalcerBase']]]
 ];

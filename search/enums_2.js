@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['verbosity_0',['Verbosity',['../namespaceNuOscillator.html#a1a5a62bdaace9e9010549574869c3c73',1,'NuOscillator']]]
+  ['pmnsmatrix_0',['PMNSMatrix',['../classOscProbCalcerOscProb.html#a62fca4b88373b2123e942914e5c4d623',1,'OscProbCalcerOscProb']]]
 ];
