@@ -2,9 +2,6 @@
 
 #include <iostream>
 
-//#include "nuSQuIDS/nuSQuIDS.h"
-//#include "examples/Decoherence/nuSQUIDSDecoh.h"
-
 OscProbCalcerNuSQUIDSLinear::OscProbCalcerNuSQUIDSLinear(YAML::Node Config_) : OscProbCalcerBase(Config_)
 {
   //=======
@@ -21,85 +18,6 @@ OscProbCalcerNuSQUIDSLinear::OscProbCalcerNuSQUIDSLinear(YAML::Node Config_) : O
 
   // This implementation only considers linear propagation, thus no requirement to set cosineZ array
   IgnoreCosineZBinning(true);
-
-//  squids::Const units;
-//  unsigned int numneu = 3;
-/*
-  nusquids::nuSQUIDSDecoh nus(nusquids::logspace(1.e2*units.GeV,1.e6*units.GeV,200),numneu,nusquids::neutrino,true);
-
-  //Here we define the trajectory that the particle follows and the object for more examples
-  // of how construct a track and object look body_track example.
-  //zenith angle, neutrinos crossing the earth
-  double phi = acos(0.);
-  //Declaration of the body, EarthAtm is one of the predefined bodies
-  std::shared_ptr<nusquids::EarthAtm> earth_atm = std::make_shared<nusquids::EarthAtm>();
-  //Definition of the track, in encodes the trajectory inside the body, here is declared with the zenith angle.
-  auto track_atm = std::make_shared<nusquids::EarthAtm::Track>(earth_atm->MakeTrack(phi));
-  //We set this in the nusSQuID object.
-  nus.Set_Body(earth_atm);
-  nus.Set_Track(track_atm);
-
-  // set mixing angles and masses
-  nus.Set_MixingAngle(0,1,0.563942);
-  nus.Set_MixingAngle(0,2,0.154085);
-  nus.Set_MixingAngle(1,2,0.785398);
-  nus.Set_SquareMassDifference(1,7.65e-05);
-  nus.Set_SquareMassDifference(2,0.00247);
-
-  //Here we set the maximum size for the integration step, important for fast or sharp variations of the density.
-  nus.Set_h_max( 500.0*units.km );
-
-  //We set the GSL step function
-  nus.Set_GSL_step(gsl_odeiv2_step_rk4);
-
-  //Setting the numerical precision of gsl integrator.
-  nus.Set_rel_error(1.0e-5);
-  nus.Set_abs_error(1.0e-5);
-
-    //Construct the initial state
-  //E_range is an array that contains all the energies.
-  nusquids::marray<double,1> E_range = nus.GetERange();
-  //Array that contains the initial state of the system, fist component is energy and second every one of the flavors
-  nusquids::marray<double,2> inistate{E_range.size(),numneu};
-  double N0 = 1.0e18;
-  //Se a power low spectra for the muon neutrinos (k==1), other flavors to 0.0
-  for ( int i = 0 ; i < inistate.extent(0); i++){
-      for ( int k = 0; k < inistate.extent(1); k ++){
-        inistate[i][k] = (k == 1) ? N0*pow(E_range[i],-2) : 0.0;
-      }
-  }
-
-  //Set the initial state in nuSQuIDS object
-  nus.Set_initial_state(inistate,nusquids::flavor);
-
-  //Set the decoherence model and parameters
-  nus.Set_DecoherenceGammaMatrix(nusquids::nuSQUIDSDecoh::DecoherenceModel::RandomizeState, 9.48e-18*units.eV);
-  nus.Set_DecoherenceGammaEnergyDependence(2);
-  nus.Set_DecoherenceGammaEnergyScale(1.0*units.TeV);
-
-  //Propagate the neutrinos in the earth for the path defined in path
-  nus.EvolveState();
-
-  std::cout << std::endl << "Writing the outputs..." << std::endl;
-
-  //number of energies we want the result, notice that this can be larger than the number of the internal grid of 
-  //the nuSQuIDS object, a linear interpolation between the quantum density matrices in the interaction picture is used
-  //and vacuum oscillations are solved analytically for the given energy.
-  int Nen =1000;
-  double lEmin=2;
-  double lEmax=6;
-  
-  std::cout << "# log10(E) E flux_i fluxRatio_i . . . ." << std::endl;
-  for(double lE=lEmin; lE<lEmax; lE+=(lEmax-lEmin)/(double)Nen){
-    double E=pow(10.0,lE)*units.GeV;
-    std::cout << lE << " " << E << " ";
-    for(int fl=0; fl<numneu; fl++){
-      std::cout << " " <<  nus.EvalFlavor(fl, E) << " " <<  nus.EvalFlavor(fl, E)/(N0*pow(E,-2));
-    }
-    std::cout << std::endl;
-  }
-*/  
-//  throw;
 }
 
 OscProbCalcerNuSQUIDSLinear::~OscProbCalcerNuSQUIDSLinear() {
@@ -107,71 +25,22 @@ OscProbCalcerNuSQUIDSLinear::~OscProbCalcerNuSQUIDSLinear() {
 
 void OscProbCalcerNuSQUIDSLinear::SetupPropagator() {
 
-//  unsigned int numneu = 3;
-
-//  squids::Const units;
-
   nusquids::marray<double,1> E_range{fNEnergyPoints};
-//  nusquids::nuSQUIDSDecoh nus(nusquids::logspace(1.e2*units.GeV,1.e6*units.GeV,200), NuOscillator::kTau,nusquids::neutrino,true);
 
-  std::cout<< "FNEnergyPoints: " << fNEnergyPoints << std::endl;
+  std::cout<< "fNEnergyPoints: " << fNEnergyPoints << std::endl;
 
   for(int i=0; i < fNEnergyPoints; i++){
     E_range[i] = fEnergyArray[i]*units.GeV;
   }
-  std::cout << "A " << std::endl;
-//  nusquids::nuSQUIDSDecoh nus(E_range, NuOscillator::kTau,nusquids::neutrino,true);
+
   nus = nusquids::nuSQUIDSDecoh(E_range, NuOscillator::kTau,nusquids::neutrino,true); // neutrinos
-//  nus = nusquids::nuSQUIDSDecoh(E_range, NuOscillator::kTau,nusquids::antineutrino,true); // anti-neutrinos
+  nubars = nusquids::nuSQUIDSDecoh(E_range, NuOscillator::kTau,nusquids::antineutrino,false); // anti-neutrinos
+
   //Here we define the trajectory that the particle follows and the object for more examples
   // of how construct a track and object look body_track example.
   //zenith angle, neutrinos crossing the earth
   double phi = acos(0.);
-  //Declaration of the body, EarthAtm is one of the predefined bodies
-  std::shared_ptr<nusquids::EarthAtm> earth_atm = std::make_shared<nusquids::EarthAtm>();
-  //Definition of the track, in encodes the trajectory inside the body, here is declared with the zenith angle.
-  auto track_atm = std::make_shared<nusquids::EarthAtm::Track>(earth_atm->MakeTrack(phi));
-  //We set this in the nusSQuID object.
-  nus.Set_Body(earth_atm);
-  nus.Set_Track(track_atm);
 
-  //Here we set the maximum size for the integration step, important for fast or sharp variations of the density.
-  nus.Set_h_max( 500.0*units.km );
-
-  //We set the GSL step function
-  nus.Set_GSL_step(gsl_odeiv2_step_rk4);
-
-  //Setting the numerical precision of gsl integrator.
-  nus.Set_rel_error(1.0e-5);
-  nus.Set_abs_error(1.0e-5);
-
-  //Set the decoherence model and parameters
-  nus.Set_DecoherenceGammaMatrix(nusquids::nuSQUIDSDecoh::DecoherenceModel::RandomizeState, 9.48e-18*units.eV);
-  nus.Set_DecoherenceGammaEnergyDependence(2);
-  nus.Set_DecoherenceGammaEnergyScale(1.0*units.TeV);
-}
-
-void OscProbCalcerNuSQUIDSLinear::CalculateProbabilities(const std::vector<FLOAT_T>& OscParams) {
-//  unsigned int numneu = 3;
-
-//  squids::Const units;
-
-//  nusquids::marray<double,1> E_range{fNEnergyPoints};
-//  nusquids::nuSQUIDSDecoh nus(nusquids::logspace(1.e2*units.GeV,1.e6*units.GeV,200), NuOscillator::kTau,nusquids::neutrino,true);
-
-//  std::cout<< "FNEnergyPoints: " << fNEnergyPoints << std::endl;
-
-//  for(int i=0; i < fNEnergyPoints; i++){
-//    E_range[i] = fEnergyArray[i]*units.GeV;
-//  }
-//  std::cout << "A " << std::endl;
-//  nusquids::nuSQUIDSDecoh nus(E_range, NuOscillator::kTau,nusquids::neutrino,true);
-//  nus = nusquids::nuSQUIDSDecoh(E_range, NuOscillator::kTau,nusquids::neutrino,true);
-
-  //Here we define the trajectory that the particle follows and the object for more examples
-  // of how construct a track and object look body_track example.
-  //zenith angle, neutrinos crossing the earth
-//  double phi = acos(0.);
   //Declaration of the body, EarthAtm is one of the predefined bodies
 //  std::shared_ptr<nusquids::EarthAtm> earth_atm = std::make_shared<nusquids::EarthAtm>();
   //Definition of the track, in encodes the trajectory inside the body, here is declared with the zenith angle.
@@ -179,99 +48,128 @@ void OscProbCalcerNuSQUIDSLinear::CalculateProbabilities(const std::vector<FLOAT
   //We set this in the nusSQuID object.
 //  nus.Set_Body(earth_atm);
 //  nus.Set_Track(track_atm);
+//  nubars.Set_Body(earth_atm);
+//  nubars.Set_Track(track_atm);
 
-  // set mixing angles and masses
-//  nus.Set_MixingAngle(0,1,0.563942); // \theta_12
-//  nus.Set_MixingAngle(0,2,0.154085); // \theta_13
-//  nus.Set_MixingAngle(1,2,0.785398); // \theta_13
-//  nus.Set_SquareMassDifference(1,7.65e-05); // \Delta m_12
-//  nus.Set_SquareMassDifference(2,0.00247); // \Delta m_13
+  //Here we set the maximum size for the integration step, important for fast or sharp variations of the density.
+  nus.Set_h_max( 500.0*units.km );
+  nubars.Set_h_max( 500.0*units.km );
 
-  // set mixing angles and masses
-  nus.Set_MixingAngle(0,1,asin(sqrt(OscParams[kTH12]))); // \theta_12
-  nus.Set_MixingAngle(0,2,asin(sqrt(OscParams[kTH23]))); // \theta_13
-  nus.Set_MixingAngle(1,2,asin(sqrt(OscParams[kTH13]))); // \theta_13
+  //We set the GSL step function
+  nus.Set_GSL_step(gsl_odeiv2_step_rk4);
+  nubars.Set_GSL_step(gsl_odeiv2_step_rk4);
+
+  //Setting the numerical precision of gsl integrator.
+  nus.Set_rel_error(1.0e-5);
+  nus.Set_abs_error(1.0e-5);
+  nubars.Set_rel_error(1.0e-5);
+  nubars.Set_abs_error(1.0e-5);
+
+  //Set the decoherence model and parameters
+//  nus.Set_DecoherenceGammaMatrix(nusquids::nuSQUIDSDecoh::DecoherenceModel::RandomizeState, 9.48e-18*units.eV);
+  nus.Set_DecoherenceGammaMatrix(nusquids::nuSQUIDSDecoh::DecoherenceModel::RandomizeState, 0.0*units.eV);
+  nus.Set_DecoherenceGammaEnergyDependence(2);
+  nus.Set_DecoherenceGammaEnergyScale(1.0*units.TeV);
+//  nubars.Set_DecoherenceGammaMatrix(nusquids::nuSQUIDSDecoh::DecoherenceModel::RandomizeState, 9.48e-18*units.eV);
+  nubars.Set_DecoherenceGammaMatrix(nusquids::nuSQUIDSDecoh::DecoherenceModel::RandomizeState, 0.0*units.eV);
+  nubars.Set_DecoherenceGammaEnergyDependence(2);
+  nubars.Set_DecoherenceGammaEnergyScale(1.0*units.TeV);
+}
+
+void OscProbCalcerNuSQUIDSLinear::CalculateProbabilities(const std::vector<FLOAT_T>& OscParams) {
+
+//  std::cout<< "fNEnergyPoints: " << fNEnergyPoints << std::endl;
+
+  // Set mixing angles and masses
+//  nus.Set_MixingAngle(0,1,asin(sqrt(OscParams[kTH12]))); // \theta_12
+//  nus.Set_MixingAngle(0,2,asin(sqrt(OscParams[kTH23]))); // \theta_13
+//  nus.Set_MixingAngle(1,2,asin(sqrt(OscParams[kTH13]))); // \theta_13
   nus.Set_SquareMassDifference(1,OscParams[kDM12]); // \Delta m_12
   nus.Set_SquareMassDifference(2,OscParams[kDM23]); // \Delta m_13
 
-  //Here we set the maximum size for the integration step, important for fast or sharp variations of the density.
-//  nus.Set_h_max( 500.0*units.km );
+  nus.Set_MixingParametersToDefault();
 
-  //We set the GSL step function
-//  nus.Set_GSL_step(gsl_odeiv2_step_rk4);
+//  nubars.Set_MixingAngle(0,1,asin(sqrt(OscParams[kTH12]))); // \theta_12
+//  nubars.Set_MixingAngle(0,2,asin(sqrt(OscParams[kTH23]))); // \theta_13
+//  nubars.Set_MixingAngle(1,2,asin(sqrt(OscParams[kTH13]))); // \theta_13
+  nubars.Set_SquareMassDifference(1,OscParams[kDM12]); // \Delta m_12
+  nubars.Set_SquareMassDifference(2,OscParams[kDM23]); // \Delta m_13
 
-  //Setting the numerical precision of gsl integrator.
-//  nus.Set_rel_error(1.0e-5);
-//  nus.Set_abs_error(1.0e-5);
+  nubars.Set_MixingParametersToDefault();
 
-    //Construct the initial state
+  const double layer_2 = OscParams[kPATHL]*units.km;
+  std::shared_ptr<nusquids::ConstantDensity> constdens_env1 = std::make_shared<nusquids::ConstantDensity>(OscParams[kDENS],OscParams[kELECDENS]); // density [gr/cm^3[, ye [dimensionless]
+  std::shared_ptr<nusquids::ConstantDensity::Track> track_env1 = std::make_shared<nusquids::ConstantDensity::Track>(layer_2);
+
+  nus.Set_Body(constdens_env1);
+  nus.Set_Track(track_env1);
+
+  nubars.Set_Body(constdens_env1);
+  nubars.Set_Track(track_env1);
+
+  //Construct the initial state
   //E_range is an array that contains all the energies.
   nusquids::marray<double,1> E_range = nus.GetERange();
   //Array that contains the initial state of the system, fist component is energy and second every one of the flavors
   nusquids::marray<double,2> inistate{E_range.size(),static_cast<size_t>(NuOscillator::kTau)};
-//  double N0 = 1.0e18;
-  //Se a power low spectra for the muon neutrinos (k==1), other flavors to 0.0
+
+//  for(int i = 0; i < fNWeights; i++){
+//    fWeightArray[i] = 0.0;
+//  }
+
+  int index_counter = 0 * fNEnergyPoints;
+  for(int nu_flavor = 0; nu_flavor < NuOscillator::kTau; nu_flavor++){
+  // Set initial state for the electron neutrinos (k==0), muon neutrinos (k==1) and tau neutrinos (k==2), other flavors to 0.0
   for ( int i = 0 ; i < inistate.extent(0); i++){
       for ( int k = 0; k < inistate.extent(1); k ++){
-//        inistate[i][k] = (k == 1) ? N0*pow(E_range[i],-2) : 0.0;
-        inistate[i][k] = (k == 1) ? 1.0 : 0.0;
+        inistate[i][k] = (k == nu_flavor) ? 1.0 : 0.0;
       }
   }
-
-//  nusquids::marray<double,1> inistate{3};
-//  inistate[1] = 1;
-
-//  std::cout << "B " << std::endl;
 
   //Set the initial state in nuSQuIDS object
   nus.Set_initial_state(inistate,nusquids::flavor);
 
-  //Set the decoherence model and parameters
-//  nus.Set_DecoherenceGammaMatrix(nusquids::nuSQUIDSDecoh::DecoherenceModel::RandomizeState, 9.48e-18*units.eV);
-//  nus.Set_DecoherenceGammaEnergyDependence(2);
-//  nus.Set_DecoherenceGammaEnergyScale(1.0*units.TeV);
-
-//  std::cout << "B1 " << std::endl;
-
   //Propagate the neutrinos in the earth for the path defined in path
   nus.EvolveState();
 
- std::cout << "Teeeeeeeeeeest " << std::endl;
-  std::cout << std::endl << "Writing the outputs..." << std::endl;
-
-//  std::cout << "B2 " << std::endl;
-
-  //number of energies we want the result, notice that this can be larger than the number of the internal grid of 
+  // Number of energies we want the result, notice that this can be larger than the number of the internal grid of 
   //the nuSQuIDS object, a linear interpolation between the quantum density matrices in the interaction picture is used
   //and vacuum oscillations are solved analytically for the given energy.
-  int Nen =1000;
-  double lEmin=2;
-  double lEmax=6;
-
-  std::cout << "# log10(E) E flux_i fluxRatio_i . . . ." << std::endl;
-//  for(double lE=lEmin; lE<lEmax; lE+=(lEmax-lEmin)/(double)Nen){
-//    double E=pow(10.0,lE)*units.GeV;
-//    std::cout << lE << " " << E << " ";
-  int index_counter = 3 * fNEnergyPoints;
-
-  for(int i = 0; i < fNWeights; i++){
-    fWeightArray[i] = 0.0;
-  }
 
   for(int fl=0; fl<NuOscillator::kTau; fl++){
-  for(int i = 0; i < fNEnergyPoints; i++) {
-//    double E = E_range[i];
-//    double E = pow(10.0,E_range[i])*units.GeV;
-//      	  for(int fl=0; fl<NuOscillator::kTau; fl++){
-//      std::cout << " " <<  nus.EvalFlavor(fl, E) << " " <<  nus.EvalFlavor(fl, E)/(N0*pow(E,-2));
-//        std::cout << " " <<  nus.EvalFlavor(fl, E);
-//        fWeightArray[index_counter] = nus.EvalFlavor(fl, E);
-        fWeightArray[index_counter] = nus.EvalFlavor(fl, fEnergyArray[i]*units.GeV);
-  	  index_counter++;
-	  }
-//    std::cout << std::endl;
+    for(int i = 0; i < fNEnergyPoints; i++) {
+      fWeightArray[index_counter] = nus.EvalFlavor(fl, fEnergyArray[i]*units.GeV);
+      index_counter++;
+    }
   }
-//    std::cout << "C " << std::endl;
+  }
+
+  // Now the same for anti-nus:
+  for(int nu_flavor = 0; nu_flavor < NuOscillator::kTau; nu_flavor++){
+  // Set initial state for the electron neutrinos (k==0), muon neutrinos (k==1) and tau neutrinos (k==2), other flavors to 0.0
+  for ( int i = 0 ; i < inistate.extent(0); i++){
+      for ( int k = 0; k < inistate.extent(1); k ++){
+        inistate[i][k] = (k == nu_flavor) ? 1.0 : 0.0;
+      }
+  }
+
+  //Set the initial state in nuSQuIDS object
+  nubars.Set_initial_state(inistate,nusquids::flavor);
+
+  //Propagate the neutrinos in the earth for the path defined in path
+  nubars.EvolveState();
+
+  // Number of energies we want the result, notice that this can be larger than the number of the internal grid of 
+  //the nuSQuIDS object, a linear interpolation between the quantum density matrices in the interaction picture is used
+  //and vacuum oscillations are solved analytically for the given energy.
+
+  for(int fl=0; fl<NuOscillator::kTau; fl++){
+    for(int i = 0; i < fNEnergyPoints; i++) {
+      fWeightArray[index_counter] = nubars.EvalFlavor(fl, fEnergyArray[i]*units.GeV);
+      index_counter++;
+    }
+  }
+  }
 }
 
 int OscProbCalcerNuSQUIDSLinear::ReturnWeightArrayIndex(int NuTypeIndex, int OscChanIndex, int EnergyIndex, int CosineZIndex) {
