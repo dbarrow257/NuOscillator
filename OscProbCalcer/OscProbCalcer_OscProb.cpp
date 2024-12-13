@@ -13,12 +13,12 @@ OscProbCalcerOscProb::OscProbCalcerOscProb(YAML::Node Config_) : OscProbCalcerBa
 
   std::string OscMatrix = Config_["OscProbCalcerSetup"]["PMNSType"].as<std::string>();
 
-  if (!Config_["OscProbCalcerSetup"]["PREMLayers"]) {
-    std::cerr << "Expected to find a 'PREMLayers' Node within the 'OscProbCalcerSetup''Implementation' Node" << std::endl;
+  if (!Config_["OscProbCalcerSetup"]["PREMFile"]) {
+    std::cerr << "Expected to find a 'PREMFile' Node within the 'OscProbCalcerSetup''Implementation' Node" << std::endl;
     throw;
   }
 
-  prem_model = Config_["OscProbCalcerSetup"]["PREMLayers"].as<std::string>();
+  premfile = Config_["OscProbCalcerSetup"]["PREMFile"].as<std::string>();
   //=======
 
   fNNeutrinoTypes = 2;
@@ -31,7 +31,7 @@ OscProbCalcerOscProb::OscProbCalcerOscProb(YAML::Node Config_) : OscProbCalcerBa
   
   std::cout << "PMNS Type : " << fOscType << std::endl;
   std::cout << "Number of parameters : " << fNOscParams << std::endl;
-  std::cout << "PREM Model : " << prem_model << std::endl;
+  std::cout << "PREM Model : " << premfile << std::endl;
 }
 
 OscProbCalcerOscProb::~OscProbCalcerOscProb() {
@@ -39,36 +39,17 @@ OscProbCalcerOscProb::~OscProbCalcerOscProb() {
 
 void OscProbCalcerOscProb::SetupPropagator() {
   
-  std::string premfile = SetupPREMModel(prem_model);
   PremModel = OscProb::PremModel(premfile);
 
 }
 
-std::string OscProbCalcerOscProb::SetupPREMModel(std::string model) {
-    // Get the model table paths
-    std::string filename;
-
-    if(model == "Default" || model == "default") {
-      filename = "./build/_deps/oscprob-src/PremTables/prem_default.txt";
-    }
-    else if(model == "15") {
-      filename = "./build/_deps/oscprob-src/PremTables/prem_15layers.txt";
-    }
-    else if(model == "44") {
-      filename = "./build/_deps/oscprob-src/PremTables/prem_44layers.txt";
-    }
-    else if(model == "425") {
-      filename = "./build/_deps/oscprob-src/PremTables/prem_425layers.txt";
-    }
-    else {
-      std::cerr << "Invalid PREM model provided:" << model << std::endl;
-      throw;
-    }
-
-    return filename;
-}
-
 void OscProbCalcerOscProb::CalculateProbabilities(const std::vector<FLOAT_T>& OscParams) {
+
+  double det_radius = 6371. - OscParams[kDetDepth];
+  std::cout << OscParams[kDetDepth] << " " << det_radius << std::endl;
+
+  PremModel.SetDetPos(det_radius);
+
   switch(fOscType) {
     case kFast: 
       CalcProbPMNS_Fast(OscParams);

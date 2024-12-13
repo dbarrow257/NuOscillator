@@ -47,18 +47,9 @@ class OscProbCalcerOscProb : public OscProbCalcerBase {
   // Functions which need implementation specific code
 
   /**
-   * @brief Setup NuFAST specific variables
+   * @brief Setup Earth model
    */  
   void SetupPropagator() override;
-
-  /**
-   * @brief Setup PREM Model with certain number of layers 
-   *
-   * Files with PREM Models already included in OscProb, used to compute neutrino path and densities
-   *
-   * @param model parameter to define which model to use. 0 -> default file, 1 -> 15 layers, 2 -> 44 layers, 3 -> 425 layers 
-   */
-  std::string SetupPREMModel(std::string model = "");
   
   /**
    * @brief Calculate some oscillation probabilities for a particular oscillation parameter set
@@ -258,8 +249,9 @@ class OscProbCalcerOscProb : public OscProbCalcerBase {
   /**
    * @brief Definition of oscillation parameters which are expected in this ProbGPU implementation. 
    * Base parameters for standard 3x3 oscillation matrix, works as is for PMNS_Fast class
+   * DetDepth is the detector depth and is expected in km
    */
-  enum OscParams{kTH12, kTH23, kTH13, kDM12, kDM23, kDCP, kNOscParams};
+  enum OscParams{kTH12, kTH23, kTH13, kDM12, kDM23, kDCP, kDetDepth, kNOscParams};
 
   /**
    * @brief Definition of extra oscillation parameters for PMNS_Sterile class with up to 3 additional neutrinos
@@ -267,17 +259,17 @@ class OscProbCalcerOscProb : public OscProbCalcerBase {
    * kDeltaij -> CP violating phase between states i and j
    * kDM1j -> mass squared difference between states 1 and j in eV^2
    */
-  enum OscParams_Sterile{kTH14=kDCP+1, kTH24=kDCP+2, kTH34=kDCP+3, kDM14=kDCP+4, kDelta14=kDCP+5, kDelta24=kDCP+6,
-                         kTH15=kDCP+7, kTH25=kDCP+8, kTH35=kDCP+9, kTH45=kDCP+10, kDM15=kDCP+11, kDelta15=kDCP+12, kDelta25=kDCP+13, kDelta35=kDCP+14,
-                         kTH16=kDCP+15, kTH26=kDCP+16, kTH36=kDCP+17, kTH46=kDCP+18, kTH56=kDCP+19, kDM16=kDCP+20, 
-                         kDelta16=kDCP+21, kDelta26=kDCP+22, kDelta36=kDCP+23, kDelta46=kDCP+24};
+  enum OscParams_Sterile{kTH14=kDetDepth+1, kTH24=kDetDepth+2, kTH34=kDetDepth+3, kDM14=kDetDepth+4, kDelta14=kDetDepth+5, kDelta24=kDetDepth+6,
+                         kTH15=kDetDepth+7, kTH25=kDetDepth+8, kTH35=kDetDepth+9, kTH45=kDetDepth+10, kDM15=kDetDepth+11, kDelta15=kDetDepth+12, kDelta25=kDetDepth+13, kDelta35=kDetDepth+14,
+                         kTH16=kDetDepth+15, kTH26=kDetDepth+16, kTH36=kDetDepth+17, kTH46=kDetDepth+18, kTH56=kDetDepth+19, kDM16=kDetDepth+20, 
+                         kDelta16=kDetDepth+21, kDelta26=kDetDepth+22, kDelta36=kDetDepth+23, kDelta46=kDetDepth+24};
 
   /**
    * @brief Definition of extra oscillation parameters for PMNS_Decay class
    * kAlpha2 = m2/tau2, mass and lifetime of the 2nd state in the restframe, must be positive and units are eV^2
    * kAlpha3 = m3/tau3, mass and lifetime of the 3rd state in the restframe, must be positive and units are eV^2
    */
-  enum OscParams_Decay{kAlpha2 = kDCP+1, kAlpha3 = kDCP+2};
+  enum OscParams_Decay{kAlpha2 = kDetDepth+1, kAlpha3 = kDetDepth+2};
 
     /**
    * @brief Definition of extra oscillation parameters for PMNS_Deco class
@@ -286,7 +278,7 @@ class OscProbCalcerOscProb : public OscProbCalcerBase {
    * kDecoAngle decoherence angle
    * kPower power index of decoherence energy dependence
    */
-  enum OscParams_Deco{kGamma21 = kDCP+1, kGamma31 = kDCP+2, kDecoAngle = kDCP+3, kPower = kDCP+4};
+  enum OscParams_Deco{kGamma21 = kDetDepth+1, kGamma31 = kDetDepth+2, kDecoAngle = kDetDepth+3, kPower = kDetDepth+4};
 
    /**
    * @brief Definition of extra oscillation parameters for PMNS_NSI class
@@ -296,14 +288,14 @@ class OscProbCalcerOscProb : public OscProbCalcerBase {
    * kUpCoup u-quark coupling
    * kDownCoup d-quark coupling
    */
-  enum OscParams_NSI{kEps_ee = kDCP+1, kEps_emu = kDCP+2, kEps_etau = kDCP+3, kEps_mumu = kDCP+4, kEps_mutau = kDCP+5, kEps_tautau= kDCP+6,
-                     kDelta_emu = kDCP+7, kDelta_etau = kDCP+8, kDelta_mutau = kDCP+9, kElecCoup = kDCP+10, kUpCoup = kDCP+11, kDownCoup = kDCP+12};
+  enum OscParams_NSI{kEps_ee = kDetDepth+1, kEps_emu = kDetDepth+2, kEps_etau = kDetDepth+3, kEps_mumu = kDetDepth+4, kEps_mutau = kDetDepth+5, kEps_tautau= kDetDepth+6,
+                     kDelta_emu = kDetDepth+7, kDelta_etau = kDetDepth+8, kDelta_mutau = kDetDepth+9, kElecCoup = kDetDepth+10, kUpCoup = kDetDepth+11, kDownCoup = kDetDepth+12};
 
    /**
    * @brief Definition of extra oscillation parameters for PMNS_Iter class
    * kPrec defines precision of the iterative method
    */
-  enum OscParams_Iter{kPrec = kDCP+1};
+  enum OscParams_Iter{kPrec = kDetDepth+1};
 
   /**
    * @brief Definition of extra oscillation parameters for PMNS_NUNM class (non unitary neutrino mixing)
@@ -311,8 +303,8 @@ class OscProbCalcerOscProb : public OscProbCalcerBase {
    * kPhiij complex phases for non diagonal elements between states i and j 
    * kFracVnc fraction of matter potential affecting NC
    */
-  enum OscParams_NUNM{kAlpha11 = kDCP+1, kAlpha21 = kDCP+2, kAlpha31 = kDCP+3, kAlpha22 = kDCP+4, kAlpha32 = kDCP+5, kAlpha33 = kDCP+6,
-                      kPhi21 = kDCP+7, kPhi31 = kDCP+8, kPhi32 = kDCP+9, kFracVnc = kDCP+10};
+  enum OscParams_NUNM{kAlpha11 = kDetDepth+1, kAlpha21 = kDetDepth+2, kAlpha31 = kDetDepth+3, kAlpha22 = kDetDepth+4, kAlpha32 = kDetDepth+5, kAlpha33 = kDetDepth+6,
+                      kPhi21 = kDetDepth+7, kPhi31 = kDetDepth+8, kPhi32 = kDetDepth+9, kFracVnc = kDetDepth+10};
   
   /**
    * @brief Define the neutrino and antineutrino values expected by this implementation
@@ -342,7 +334,7 @@ private:
   /**
    * @brief String storing the path of the density table file used to setup the Earth model
    */
-  std::string prem_model;
+  std::string premfile;
   
 };
 
