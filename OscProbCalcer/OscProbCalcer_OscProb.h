@@ -111,6 +111,16 @@ class OscProbCalcerOscProb : public OscProbCalcerBase {
    */
   void CalcProbPMNS_NSI(const std::vector<FLOAT_T>& OscParams);
 
+  /**
+   * @brief Calculate some oscillation probabilities for a particular oscillation parameter set
+   *
+   * Calculator oscillation probabilities with PMNS_SNSI object. This function both calculates and stores
+   * the oscillation probabilities in #fWeightArray. 
+   *
+   * @param OscParams The parameter set to calculate oscillation probabilities at
+   */
+  void CalcProbPMNS_SNSI(const std::vector<FLOAT_T>& OscParams);
+
     /**
    * @brief Calculate some oscillation probabilities for a particular oscillation parameter set
    *
@@ -223,6 +233,16 @@ class OscProbCalcerOscProb : public OscProbCalcerBase {
  */
   void SetPMNSParams_NSI(OscProb::PMNS_NSI *NSI, const std::vector<FLOAT_T>& OscParams);
 
+   /**
+ * @brief Set parameters for PMNS_SNSI
+ * 
+ * @param SNSI object of class PMNS_SNSI
+ * @param OscParams  The parameter set to calculate oscillation probabilities at
+ *
+ * @return Sets relevant parameters for PMNS Matrix
+ */
+  void SetPMNSParams_SNSI(OscProb::PMNS_SNSI *SNSI, const std::vector<FLOAT_T>& OscParams);
+
   /**
  * @brief Set parameters for PMNS_Iter 
  * 
@@ -290,6 +310,14 @@ class OscProbCalcerOscProb : public OscProbCalcerBase {
    */
   enum OscParams_NSI{kEps_ee = kDetDepth+1, kEps_emu = kDetDepth+2, kEps_etau = kDetDepth+3, kEps_mumu = kDetDepth+4, kEps_mutau = kDetDepth+5, kEps_tautau= kDetDepth+6,
                      kDelta_emu = kDetDepth+7, kDelta_etau = kDetDepth+8, kDelta_mutau = kDetDepth+9, kElecCoup = kDetDepth+10, kUpCoup = kDetDepth+11, kDownCoup = kDetDepth+12};
+
+  /**
+   * @brief Definition of extra oscillation parameters for PMNS_SNSI class (scalar non standard interactions)
+   * Takes class PMNS_NSI as base with all parameters associated to it
+   * kLightMass mass of lightest neutrino
+   * WARNING : kEps expected in units of 1/mass^2 in MeV^-2 and not dimensionless like for PMNS_NSI
+   */
+  enum OscParams_SNSI{kLightMass = kDownCoup+1};
 
    /**
    * @brief Definition of extra oscillation parameters for PMNS_Iter class

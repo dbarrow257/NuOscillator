@@ -46,7 +46,6 @@ void OscProbCalcerOscProb::SetupPropagator() {
 void OscProbCalcerOscProb::CalculateProbabilities(const std::vector<FLOAT_T>& OscParams) {
 
   double det_radius = 6371. - OscParams[kDetDepth];
-  std::cout << OscParams[kDetDepth] << " " << det_radius << std::endl;
 
   PremModel.SetDetPos(det_radius);
 
@@ -77,6 +76,10 @@ void OscProbCalcerOscProb::CalculateProbabilities(const std::vector<FLOAT_T>& Os
 
     case kNSI:
       CalcProbPMNS_NSI(OscParams);
+      break;
+
+    case kSNSI:
+      CalcProbPMNS_SNSI(OscParams);
       break;
 
     case kIter:
@@ -291,6 +294,45 @@ void OscProbCalcerOscProb::CalcProbPMNS_NSI(const std::vector<FLOAT_T>& OscParam
   }
 }
 
+void OscProbCalcerOscProb::CalcProbPMNS_SNSI(const std::vector<FLOAT_T>& OscParams) {
+  double energy, cosZ;
+  double weight;
+  int index;
+
+  OscProb::PMNS_SNSI myPMNS;
+
+  SetPMNSParams_SNSI(&myPMNS, OscParams);
+
+  for (int iCosineZ = 0; iCosineZ < fNCosineZPoints; iCosineZ++) {
+
+    cosZ = fCosineZArray[iCosineZ];
+
+    PremModel.FillPath(cosZ);
+
+    myPMNS.SetPath(PremModel.GetNuPath());
+    
+    for (int iEnergy = 0; iEnergy < fNEnergyPoints; iEnergy++) {
+
+      energy = fEnergyArray[iEnergy];
+
+      for (int iNuType = 0; iNuType < fNNeutrinoTypes; iNuType++) {
+
+        myPMNS.SetIsNuBar(fNeutrinoTypes[iNuType]==Nubar);
+
+        for (int iOscChannel = 0; iOscChannel < fNOscillationChannels; iOscChannel++) {
+          
+          weight = myPMNS.Prob(fOscillationChannels[iOscChannel].GeneratedFlavour-1, fOscillationChannels[iOscChannel].DetectedFlavour-1, energy);
+          index = ReturnWeightArrayIndex(iNuType, iOscChannel, iEnergy, iCosineZ);
+
+          fWeightArray[index] = weight;
+
+        }
+
+      }
+    }
+  }
+}
+
 void OscProbCalcerOscProb::CalcProbPMNS_Iter(const std::vector<FLOAT_T>& OscParams) {
   double energy, cosZ;
   double weight;
@@ -474,8 +516,6 @@ void OscProbCalcerOscProb::SetPMNSParams_Decay(OscProb::PMNS_Decay *Decay, const
   alpha2 = OscParams[kAlpha2];
   alpha3 = OscParams[kAlpha3];
 
-  std::cout << "Alpha 2 : " << alpha2 << " | Alpha 3 : " << alpha3 << std::endl;
-
   //Need to convert OscParams[kDM23] to kDM31
   dm31 = OscParams[kDM23]+OscParams[kDM12]; // eV^2
 
@@ -506,8 +546,6 @@ void OscProbCalcerOscProb::SetPMNSParams_Deco(OscProb::PMNS_Deco *Deco, const st
   gamma31 = OscParams[kGamma31];
   deco_angle = OscParams[kDecoAngle];
   power = OscParams[kPower];
-
-  std::cout << "Gamma 21 : " << gamma21 << " | Gamma 31 : " << gamma31 << " | Deco Angle : " << deco_angle << " | Power : " << power << std::endl;
 
   //Need to convert OscParams[kDM23] to kDM31
   dm31 = OscParams[kDM23]+OscParams[kDM12]; // eV^2
@@ -551,6 +589,33 @@ void OscProbCalcerOscProb::SetPMNSParams_NSI(OscProb::PMNS_NSI *NSI, const std::
   NSI->SetFermCoup(OscParams[kElecCoup], OscParams[kUpCoup], OscParams[kDownCoup]);
 }
 
+void OscProbCalcerOscProb::SetPMNSParams_SNSI(OscProb::PMNS_SNSI *SNSI, const std::vector<FLOAT_T>& OscParams) {
+  double th12, th13, th23;
+  double dm21, dm31;
+  double dcp;
+
+  th12 = asin(sqrt(OscParams[kTH12]));
+  th13 = asin(sqrt(OscParams[kTH13]));
+  th23 = asin(sqrt(OscParams[kTH23]));
+  dcp = OscParams[kDCP];
+  dm21 = OscParams[kDM12];
+
+  //Need to convert OscParams[kDM23] to kDM31
+  dm31 = OscParams[kDM23]+OscParams[kDM12]; // eV^2
+
+  // Set PMNS parameters
+  SNSI->SetDm(2, dm21);
+  SNSI->SetDm(3, dm31);
+  SNSI->SetAngle(1,2, th12);
+  SNSI->SetAngle(1,3, th13);
+  SNSI->SetAngle(2,3, th23);
+  SNSI->SetDelta(1,3, dcp);
+  SNSI->SetNSI(OscParams[kEps_ee], OscParams[kEps_emu], OscParams[kEps_etau], OscParams[kEps_mumu], OscParams[kEps_mutau], OscParams[kEps_tautau],
+              OscParams[kDelta_emu], OscParams[kDelta_etau], OscParams[kDelta_mutau]);
+  SNSI->SetFermCoup(OscParams[kElecCoup], OscParams[kUpCoup], OscParams[kDownCoup]);
+  SNSI->SetLowestMass(OscParams[kLightMass]);
+}
+
 void OscProbCalcerOscProb::SetPMNSParams_Iter(OscProb::PMNS_Iter *Iter, const std::vector<FLOAT_T>& OscParams) {
   double th12, th13, th23;
   double dm21, dm31;
@@ -558,7 +623,7 @@ void OscProbCalcerOscProb::SetPMNSParams_Iter(OscProb::PMNS_Iter *Iter, const st
   double prec;
 
   prec = OscParams[kPrec];
-  std::cout << "Precision for Iter PMNS class : " << prec << std::endl;
+
   th12 = asin(sqrt(OscParams[kTH12]));
   th13 = asin(sqrt(OscParams[kTH13]));
   th23 = asin(sqrt(OscParams[kTH23]));
@@ -684,8 +749,7 @@ int OscProbCalcerOscProb::GetNOscParams(int OscType) {
     throw;
   }
   else if (OscType == kSNSI) {
-    std::cerr << "SNSI PMNS matrix not implemented yet" << std::endl;
-    throw;
+    return kNOscParams+13;
   }
   else {
     std::cerr << "Invalid PMNS matrix type provided:" << OscType << std::endl;
