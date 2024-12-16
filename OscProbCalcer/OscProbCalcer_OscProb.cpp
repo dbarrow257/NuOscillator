@@ -90,6 +90,10 @@ void OscProbCalcerOscProb::CalculateProbabilities(const std::vector<FLOAT_T>& Os
       CalcProbPMNS_NUNM(OscParams);
       break;
 
+    case kLIV:
+      CalcProbPMNS_LIV(OscParams);
+      break;
+
     default:
       break;
   }
@@ -411,6 +415,45 @@ void OscProbCalcerOscProb::CalcProbPMNS_NUNM(const std::vector<FLOAT_T>& OscPara
   }
 }
 
+void OscProbCalcerOscProb::CalcProbPMNS_LIV(const std::vector<FLOAT_T>& OscParams) {
+  double energy, cosZ;
+  double weight;
+  int index;
+
+  OscProb::PMNS_LIV myPMNS;
+
+  SetPMNSParams_LIV(&myPMNS, OscParams);
+
+  for (int iCosineZ = 0; iCosineZ < fNCosineZPoints; iCosineZ++) {
+
+    cosZ = fCosineZArray[iCosineZ];
+
+    PremModel.FillPath(cosZ);
+
+    myPMNS.SetPath(PremModel.GetNuPath());
+    
+    for (int iEnergy = 0; iEnergy < fNEnergyPoints; iEnergy++) {
+
+      energy = fEnergyArray[iEnergy];
+
+      for (int iNuType = 0; iNuType < fNNeutrinoTypes; iNuType++) {
+
+        myPMNS.SetIsNuBar(fNeutrinoTypes[iNuType]==Nubar);
+
+        for (int iOscChannel = 0; iOscChannel < fNOscillationChannels; iOscChannel++) {
+          
+          weight = myPMNS.Prob(fOscillationChannels[iOscChannel].GeneratedFlavour-1, fOscillationChannels[iOscChannel].DetectedFlavour-1, energy);
+          index = ReturnWeightArrayIndex(iNuType, iOscChannel, iEnergy, iCosineZ);
+
+          fWeightArray[index] = weight;
+
+        }
+
+      }
+    }
+  }
+}
+
 int OscProbCalcerOscProb::ReturnWeightArrayIndex(int NuTypeIndex, int OscChanIndex, int EnergyIndex, int CosineZIndex) {
   int IndexToReturn = NuTypeIndex*fNOscillationChannels*fNCosineZPoints*fNEnergyPoints + OscChanIndex*fNCosineZPoints*fNEnergyPoints + CosineZIndex*fNEnergyPoints + EnergyIndex;
   return IndexToReturn;
@@ -673,6 +716,66 @@ void OscProbCalcerOscProb::SetPMNSParams_NUNM(OscProb::PMNS_NUNM *NUNM, const st
   NUNM->SetFracVnc(OscParams[kFracVnc]);
 }
 
+void OscProbCalcerOscProb::SetPMNSParams_LIV(OscProb::PMNS_LIV *LIV, const std::vector<FLOAT_T>& OscParams) {
+  double th12, th13, th23;
+  double dm21, dm31;
+  double dcp;
+ 
+  th12 = asin(sqrt(OscParams[kTH12]));
+  th13 = asin(sqrt(OscParams[kTH13]));
+  th23 = asin(sqrt(OscParams[kTH23]));
+  dcp = OscParams[kDCP];
+  dm21 = OscParams[kDM12];
+
+  //Need to convert OscParams[kDM23] to kDM31
+  dm31 = OscParams[kDM23]+OscParams[kDM12]; // eV^2
+
+  // Set PMNS parameters
+  LIV->SetDm(2, dm21);
+  LIV->SetDm(3, dm31);
+  LIV->SetAngle(1,2, th12);
+  LIV->SetAngle(1,3, th13);
+  LIV->SetAngle(2,3, th23);
+  LIV->SetDelta(1,3, dcp);
+
+  LIV->SetaT(0, 0, 3, OscParams[kaT_ee_3], 0.);
+  LIV->SetaT(0, 1, 3, OscParams[kaT_emu_3], OscParams[kDelta_emu_3]);
+  LIV->SetaT(0, 2, 3, OscParams[kaT_etau_3], OscParams[kDelta_etau_3]);
+  LIV->SetaT(1, 1, 3, OscParams[kaT_mumu_3], 0.);
+  LIV->SetaT(1, 2, 3, OscParams[kaT_mutau_3], OscParams[kDelta_mutau_3]);
+  LIV->SetaT(2, 2, 3, OscParams[kaT_tautau_3], 0.);
+  LIV->SetcT(0, 0, 4, OscParams[kcT_ee_4], 0.);
+  LIV->SetcT(0, 1, 4, OscParams[kcT_emu_4], OscParams[kDelta_emu_4]);
+  LIV->SetcT(0, 2, 4, OscParams[kcT_etau_4], OscParams[kDelta_etau_4]);
+  LIV->SetcT(1, 1, 4, OscParams[kcT_mumu_4], 0.);
+  LIV->SetcT(1, 2, 4, OscParams[kcT_mutau_4], OscParams[kDelta_mutau_4]);
+  LIV->SetcT(2, 2, 4, OscParams[kcT_tautau_4], 0.);
+  LIV->SetaT(0, 0, 5, OscParams[kaT_ee_5], 0.);
+  LIV->SetaT(0, 1, 5, OscParams[kaT_emu_5], OscParams[kDelta_emu_5]);
+  LIV->SetaT(0, 2, 5, OscParams[kaT_etau_5], OscParams[kDelta_etau_5]);
+  LIV->SetaT(1, 1, 5, OscParams[kaT_mumu_5], 0.);
+  LIV->SetaT(1, 2, 5, OscParams[kaT_mutau_5], OscParams[kDelta_mutau_5]);
+  LIV->SetaT(2, 2, 5, OscParams[kaT_tautau_5], 0.);
+  LIV->SetcT(0, 0, 6, OscParams[kcT_ee_6], 0.);
+  LIV->SetcT(0, 1, 6, OscParams[kcT_emu_6], OscParams[kDelta_emu_6]);
+  LIV->SetcT(0, 2, 6, OscParams[kcT_etau_6], OscParams[kDelta_etau_6]);
+  LIV->SetcT(1, 1, 6, OscParams[kcT_mumu_6], 0.);
+  LIV->SetcT(1, 2, 6, OscParams[kcT_mutau_6], OscParams[kDelta_mutau_6]);
+  LIV->SetcT(2, 2, 6, OscParams[kcT_tautau_6], 0.);
+  LIV->SetaT(0, 0, 7, OscParams[kaT_ee_7], 0.);
+  LIV->SetaT(0, 1, 7, OscParams[kaT_emu_7], OscParams[kDelta_emu_7]);
+  LIV->SetaT(0, 2, 7, OscParams[kaT_etau_7], OscParams[kDelta_etau_7]);
+  LIV->SetaT(1, 1, 7, OscParams[kaT_mumu_7], 0.);
+  LIV->SetaT(1, 2, 7, OscParams[kaT_mutau_7], OscParams[kDelta_mutau_7]);
+  LIV->SetaT(2, 2, 7, OscParams[kaT_tautau_7], 0.);
+  LIV->SetcT(0, 0, 8, OscParams[kcT_ee_8], 0.);
+  LIV->SetcT(0, 1, 8, OscParams[kcT_emu_8], OscParams[kDelta_emu_8]);
+  LIV->SetcT(0, 2, 8, OscParams[kcT_etau_8], OscParams[kDelta_etau_8]);
+  LIV->SetcT(1, 1, 8, OscParams[kcT_mumu_8], 0.);
+  LIV->SetcT(1, 2, 8, OscParams[kcT_mutau_8], OscParams[kDelta_mutau_8]);
+  LIV->SetcT(2, 2, 8, OscParams[kcT_tautau_8], 0.);
+}
+
 int OscProbCalcerOscProb::PMNS_StrToInt(std::string PMNSType) {
   if (PMNSType == "Fast" || PMNSType == "fast") {
     return kFast;
@@ -745,8 +848,7 @@ int OscProbCalcerOscProb::GetNOscParams(int OscType) {
     return kNOscParams+10;
   }
   else if (OscType == kLIV) {
-    std::cerr << "LIV PMNS matrix not implemented yet" << std::endl;
-    throw;
+    return kNOscParams+54;
   }
   else if (OscType == kSNSI) {
     return kNOscParams+13;

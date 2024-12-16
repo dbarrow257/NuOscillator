@@ -141,6 +141,16 @@ class OscProbCalcerOscProb : public OscProbCalcerBase {
    */
   void CalcProbPMNS_NUNM(const std::vector<FLOAT_T>& OscParams);
 
+     /**
+   * @brief Calculate some oscillation probabilities for a particular oscillation parameter set
+   *
+   * Calculator oscillation probabilities with PMNS_LIV object. This function both calculates and stores
+   * the oscillation probabilities in #fWeightArray. 
+   *
+   * @param OscParams The parameter set to calculate oscillation probabilities at
+   */
+  void CalcProbPMNS_LIV(const std::vector<FLOAT_T>& OscParams);
+
   /**
    * @brief Return implementation specific index in the weight array for a specific combination of neutrino oscillation channel, energy and cosine zenith
    * 
@@ -263,6 +273,16 @@ class OscProbCalcerOscProb : public OscProbCalcerBase {
  */
   void SetPMNSParams_NUNM(OscProb::PMNS_NUNM *NUNM, const std::vector<FLOAT_T>& OscParams);
 
+    /**
+ * @brief Set parameters for PMNS_LIV
+ * 
+ * @param LIV object of class PMNS_LIV
+ * @param OscParams  The parameter set to calculate oscillation probabilities at
+ *
+ * @return Sets relevant parameters for PMNS Matrix
+ */
+  void SetPMNSParams_LIV(OscProb::PMNS_LIV *LIV, const std::vector<FLOAT_T>& OscParams);
+
   // ========================================================================================================================================================================
   // Variables which are needed for implementation specific code
 
@@ -333,6 +353,25 @@ class OscProbCalcerOscProb : public OscProbCalcerBase {
    */
   enum OscParams_NUNM{kAlpha11 = kDetDepth+1, kAlpha21 = kDetDepth+2, kAlpha31 = kDetDepth+3, kAlpha22 = kDetDepth+4, kAlpha32 = kDetDepth+5, kAlpha33 = kDetDepth+6,
                       kPhi21 = kDetDepth+7, kPhi31 = kDetDepth+8, kPhi32 = kDetDepth+9, kFracVnc = kDetDepth+10};
+
+  /**
+   * @brief Definition of extra oscillation parameters for PMNS_LIV class (Lorentz Invariance Violation)
+   * kaT_j LIV coefficient of dimension j between 2 neutrino flavors with j = 3, 5 or 7
+   * kcT_j LIV coefficient of dimension j between 2 neutrino flavors with j = 4, 6 or 8
+   * kDelta_j complex phase between 2 neutrino flavors for non diag element with dimension j
+   */
+  enum OscParams_LIV{kaT_ee_3 = kDetDepth+1, kaT_emu_3 = kDetDepth+2, kaT_etau_3 = kDetDepth+3, kaT_mumu_3 = kDetDepth+4, kaT_mutau_3 = kDetDepth+5, 
+                     kaT_tautau_3 = kDetDepth+6, kDelta_emu_3 = kDetDepth+7, kDelta_etau_3 = kDetDepth+8, kDelta_mutau_3 = kDetDepth+9,
+                     kcT_ee_4 = kDetDepth+10, kcT_emu_4 = kDetDepth+11, kcT_etau_4 = kDetDepth+12, kcT_mumu_4 = kDetDepth+13, kcT_mutau_4 = kDetDepth+14, 
+                     kcT_tautau_4 = kDetDepth+15, kDelta_emu_4 = kDetDepth+16, kDelta_etau_4 = kDetDepth+17, kDelta_mutau_4 = kDetDepth+18,
+                     kaT_ee_5 = kDetDepth+19, kaT_emu_5 = kDetDepth+20, kaT_etau_5 = kDetDepth+21, kaT_mumu_5 = kDetDepth+22, kaT_mutau_5 = kDetDepth+23, 
+                     kaT_tautau_5 = kDetDepth+24, kDelta_emu_5 = kDetDepth+25, kDelta_etau_5 = kDetDepth+26, kDelta_mutau_5 = kDetDepth+27,
+                     kcT_ee_6 = kDetDepth+28, kcT_emu_6 = kDetDepth+29, kcT_etau_6 = kDetDepth+30, kcT_mumu_6 = kDetDepth+31, kcT_mutau_6 = kDetDepth+32, 
+                     kcT_tautau_6 = kDetDepth+33, kDelta_emu_6 = kDetDepth+34, kDelta_etau_6 = kDetDepth+35, kDelta_mutau_6 = kDetDepth+36,
+                     kaT_ee_7 = kDetDepth+37, kaT_emu_7 = kDetDepth+38, kaT_etau_7 = kDetDepth+39, kaT_mumu_7 = kDetDepth+40, kaT_mutau_7 = kDetDepth+41, 
+                     kaT_tautau_7 = kDetDepth+42, kDelta_emu_7 = kDetDepth+43, kDelta_etau_7 = kDetDepth+44, kDelta_mutau_7 = kDetDepth+45,
+                     kcT_ee_8 = kDetDepth+46, kcT_emu_8 = kDetDepth+47, kcT_etau_8 = kDetDepth+48, kcT_mumu_8 = kDetDepth+49, kcT_mutau_8 = kDetDepth+50, 
+                     kcT_tautau_8 = kDetDepth+51, kDelta_emu_8 = kDetDepth+52, kDelta_etau_8 = kDetDepth+53, kDelta_mutau_8 = kDetDepth+54};
   
   /**
    * @brief Define the neutrino and antineutrino values expected by this implementation
@@ -343,7 +382,7 @@ class OscProbCalcerOscProb : public OscProbCalcerBase {
   * @brief Different types of PMNS matrices currently supported within the analysis
   * LIV and SNSI still to be implemented at some point
   */
-  enum PMNSMatrix{kFast=0, kPMNSSterile1=1, kPMNSSterile2=2, kPMNSSterile3=3, kDecay=4, kDeco=5, kNSI=6, kIter=7, kNUNM=8, kLIV=9, kSNSI=10};
+  enum PMNSMatrix{kFast=0, kPMNSSterile1=1, kPMNSSterile2=2, kPMNSSterile3=3, kDecay=4, kDeco=5, kNSI=6, kSNSI=7, kIter=8, kNUNM=9, kLIV=10};
 
   /**
    * @brief Define the type for the PMNS matrix
