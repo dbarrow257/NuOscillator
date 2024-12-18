@@ -3,6 +3,9 @@
 
 #include "OscProbCalcerBase.h"
 
+#include "nuSQuIDS/nuSQuIDS.h"
+#include "examples/Decoherence/nuSQUIDSDecoh.h"
+
 /**
  * @file OscProbCalcer_NuSQUIDSLinear.h
  *
@@ -86,7 +89,24 @@ class OscProbCalcerNuSQUIDSLinear : public OscProbCalcerBase {
    * @brief Define the neutrino and antineutrino values expected by this implementation
    */
   enum NuType{Nu=1,Nubar=-1};
-  
+
+  nusquids::nuSQUIDSDecoh nus;
+  nusquids::nuSQUIDSDecoh nubars;
+
+  squids::Const units;
+
+  double zenith_angle;
+  double integration_step;
+  double nus_rel_error;
+  double nus_abs_error;
+  double nubars_rel_error;
+  double nubars_abs_error;
+  double nus_gamma_strength;
+  double nus_gamma_energy_dependence;
+  double nus_gamma_energy_scale;
+  double nubars_gamma_strength;
+  double nubars_gamma_energy_dependence;
+  double nubars_gamma_energy_scale;
 };
 
 #endif

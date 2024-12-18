@@ -1,10 +1,22 @@
 General:
   Verbosity: "NONE"
-  CosineZIgnored: false
+  CosineZIgnored: true
   CalculationType: "Unbinned"
 
 OscProbCalcerSetup:
   ImplementationName: "NuSQUIDSLinear"
+  ZenithAngle: "0.0"
+  IntegrationStep: "500.0"
+  NusRelativeError: "1.0e-5"
+  NusAbsoluteError: "1.0e-5"
+  NubarsRelativeError: "1.0e-5"
+  NubarsAbsoluteError: "1.0e-5"
+  NusGammaStrength: "0.0" # reference: 9.48e-18
+  NusGammaEnergyDependence: "2"
+  NusGammaEnergyScale: "1.0"
+  NubarsGammaStrength: "0.0" # reference: 9.48e-18
+  NubarsGammaEnergyDependence: "2"
+  NubarsGammaEnergyScale: "1.0"
   OscChannelMapping:
     - Entry: "Electron:Electron"
     - Entry: "Electron:Muon"

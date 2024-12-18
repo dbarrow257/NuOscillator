@@ -6,6 +6,105 @@ OscProbCalcerNuSQUIDSLinear::OscProbCalcerNuSQUIDSLinear(YAML::Node Config_) : O
 {
   //=======
   //Grab information from the config
+  //ZenithAngle
+  if (!Config_["OscProbCalcerSetup"]["ZenithAngle"]) {
+    std::cerr << "Expected to find a 'ZenithAngle' Node within the 'OscProbCalcerSetup''Implementation' Node" << std::endl;
+    throw;
+  }
+
+  zenith_angle = Config_["OscProbCalcerSetup"]["ZenithAngle"].as<double>();
+
+  //IntegrationStep
+  if (!Config_["OscProbCalcerSetup"]["IntegrationStep"]) {
+    std::cerr << "Expected to find a 'IntegrationStep' Node within the 'OscProbCalcerSetup''Implementation' Node" << std::endl;
+    throw;
+  }
+
+  integration_step = Config_["OscProbCalcerSetup"]["IntegrationStep"].as<double>();
+
+  //Errors
+  //NusRelativeError
+  if (!Config_["OscProbCalcerSetup"]["NusRelativeError"]) {
+    std::cerr << "Expected to find a 'NusRelativeError' Node within the 'OscProbCalcerSetup''Implementation' Node" << std::endl;
+    throw;
+  }
+
+//  prem_model = Config_["OscProbCalcerSetup"]["NusRelativeError"].as<std::string>();
+  nus_rel_error = Config_["OscProbCalcerSetup"]["NusRelativeError"].as<double>();
+
+  //NusAbsoluteError
+  if (!Config_["OscProbCalcerSetup"]["NusAbsoluteError"]) {
+    std::cerr << "Expected to find a 'NusAbsoluteError' Node within the 'OscProbCalcerSetup''Implementation' Node" << std::endl;
+    throw;
+  }
+
+  nus_abs_error = Config_["OscProbCalcerSetup"]["NusAbsoluteError"].as<double>();
+
+  //NubarsRelativeError
+  if (!Config_["OscProbCalcerSetup"]["NubarsRelativeError"]) {
+    std::cerr << "Expected to find a 'NubarsRelativeError' Node within the 'OscProbCalcerSetup''Implementation' Node" << std::endl;
+    throw;
+  }
+
+  nubars_rel_error = Config_["OscProbCalcerSetup"]["NubarsRelativeError"].as<double>();
+
+  //NubarsAbsoluteError
+  if (!Config_["OscProbCalcerSetup"]["NubarsAbsoluteError"]) {
+    std::cerr << "Expected to find a 'NubarsAbsoluteError' Node within the 'OscProbCalcerSetup''Implementation' Node" << std::endl;
+    throw;
+  }
+
+  nubars_abs_error = Config_["OscProbCalcerSetup"]["NubarsAbsoluteError"].as<double>();
+
+  //Decoherence setup
+  //NusGammaStrength
+  if (!Config_["OscProbCalcerSetup"]["NusGammaStrength"]) {
+    std::cerr << "Expected to find a 'NusGammaStrength' Node within the 'OscProbCalcerSetup''Implementation' Node" << std::endl;
+    throw;
+  }
+
+  nus_gamma_strength = Config_["OscProbCalcerSetup"]["NusGammaStrength"].as<double>();
+
+  //NusGammaEnergyDependence
+  if (!Config_["OscProbCalcerSetup"]["NusGammaEnergyDependence"]) {
+    std::cerr << "Expected to find a 'NusGammaEnergyDependence' Node within the 'OscProbCalcerSetup''Implementation' Node" << std::endl;
+    throw;
+  }
+
+  nus_gamma_energy_dependence = Config_["OscProbCalcerSetup"]["NusGammaEnergyDependence"].as<double>();
+
+  //NusGammaEnergyScale
+  if (!Config_["OscProbCalcerSetup"]["NusGammaEnergyScale"]) {
+    std::cerr << "Expected to find a 'NusGammaEnergyScale' Node within the 'OscProbCalcerSetup''Implementation' Node" << std::endl;
+    throw;
+  }
+
+  nus_gamma_energy_scale = Config_["OscProbCalcerSetup"]["NusGammaEnergyScale"].as<double>();
+
+  //Nubars
+  //NubarsGammaStrength
+  if (!Config_["OscProbCalcerSetup"]["NubarsGammaStrength"]) {
+    std::cerr << "Expected to find a 'NubarsGammaStrength' Node within the 'OscProbCalcerSetup''Implementation' Node" << std::endl;
+    throw;
+  }
+
+  nubars_gamma_strength = Config_["OscProbCalcerSetup"]["NusGammaStrength"].as<double>();
+
+  //NubarsGammaEnergyDependence
+  if (!Config_["OscProbCalcerSetup"]["NubarsGammaEnergyDependence"]) {
+    std::cerr << "Expected to find a 'NubarsGammaEnergyDependence' Node within the 'OscProbCalcerSetup''Implementation' Node" << std::endl;
+    throw;
+  }
+
+  nubars_gamma_energy_dependence = Config_["OscProbCalcerSetup"]["NubarsGammaEnergyDependence"].as<double>();
+
+  //NubarsGammaEnergyScale
+  if (!Config_["OscProbCalcerSetup"]["NubarsGammaEnergyScale"]) {
+    std::cerr << "Expected to find a 'NubarsGammaEnergyScale' Node within the 'OscProbCalcerSetup''Implementation' Node" << std::endl;
+    throw;
+  }
+
+  nubars_gamma_energy_scale = Config_["OscProbCalcerSetup"]["NubarsGammaEnergyScale"].as<double>();
 
   //=======
 
@@ -39,7 +138,8 @@ void OscProbCalcerNuSQUIDSLinear::SetupPropagator() {
   //Here we define the trajectory that the particle follows and the object for more examples
   // of how construct a track and object look body_track example.
   //zenith angle, neutrinos crossing the earth
-  double phi = acos(0.);
+//  double phi = acos(0.);
+  double phi = acos(zenith_angle);
 
   //Declaration of the body, EarthAtm is one of the predefined bodies
 //  std::shared_ptr<nusquids::EarthAtm> earth_atm = std::make_shared<nusquids::EarthAtm>();
@@ -52,28 +152,47 @@ void OscProbCalcerNuSQUIDSLinear::SetupPropagator() {
 //  nubars.Set_Track(track_atm);
 
   //Here we set the maximum size for the integration step, important for fast or sharp variations of the density.
-  nus.Set_h_max( 500.0*units.km );
-  nubars.Set_h_max( 500.0*units.km );
+//  nus.Set_h_max( 500.0*units.km );
+//  nubars.Set_h_max( 500.0*units.km );
+
+  nus.Set_h_max( integration_step*units.km );
+  nubars.Set_h_max( integration_step*units.km );
 
   //We set the GSL step function
   nus.Set_GSL_step(gsl_odeiv2_step_rk4);
   nubars.Set_GSL_step(gsl_odeiv2_step_rk4);
 
   //Setting the numerical precision of gsl integrator.
-  nus.Set_rel_error(1.0e-5);
-  nus.Set_abs_error(1.0e-5);
-  nubars.Set_rel_error(1.0e-5);
-  nubars.Set_abs_error(1.0e-5);
+//  nus.Set_rel_error(1.0e-5);
+  nus.Set_rel_error(nus_rel_error);
+  nus.Set_abs_error(nus_abs_error);
+  nubars.Set_rel_error(nubars_rel_error);
+  nubars.Set_abs_error(nubars_abs_error);
+  //  nus.Set_abs_error(1.0e-5);
+//  nubars.Set_rel_error(1.0e-5);
+//  nubars.Set_abs_error(1.0e-5);
+
+//  std::cout << "nus.Set_rel_error(1.0e-5); " << nus_rel_error << std::endl;
 
   //Set the decoherence model and parameters
 //  nus.Set_DecoherenceGammaMatrix(nusquids::nuSQUIDSDecoh::DecoherenceModel::RandomizeState, 9.48e-18*units.eV);
-  nus.Set_DecoherenceGammaMatrix(nusquids::nuSQUIDSDecoh::DecoherenceModel::RandomizeState, 0.0*units.eV);
-  nus.Set_DecoherenceGammaEnergyDependence(2);
-  nus.Set_DecoherenceGammaEnergyScale(1.0*units.TeV);
-//  nubars.Set_DecoherenceGammaMatrix(nusquids::nuSQUIDSDecoh::DecoherenceModel::RandomizeState, 9.48e-18*units.eV);
-  nubars.Set_DecoherenceGammaMatrix(nusquids::nuSQUIDSDecoh::DecoherenceModel::RandomizeState, 0.0*units.eV);
-  nubars.Set_DecoherenceGammaEnergyDependence(2);
-  nubars.Set_DecoherenceGammaEnergyScale(1.0*units.TeV);
+//  nus.Set_DecoherenceGammaMatrix(nusquids::nuSQUIDSDecoh::DecoherenceModel::RandomizeState, 0.0*units.eV);
+  nus.Set_DecoherenceGammaMatrix(nusquids::nuSQUIDSDecoh::DecoherenceModel::RandomizeState, nus_gamma_strength*units.eV);
+
+  //  nus.Set_DecoherenceGammaEnergyDependence(2);
+//  nus.Set_DecoherenceGammaEnergyDependence(2);
+  nus.Set_DecoherenceGammaEnergyDependence(nus_gamma_energy_dependence);
+//  nus.Set_DecoherenceGammaEnergyScale(1.0*units.GeV);
+  nus.Set_DecoherenceGammaEnergyScale(nus_gamma_energy_scale*units.GeV);
+
+  //  nubars.Set_DecoherenceGammaMatrix(nusquids::nuSQUIDSDecoh::DecoherenceModel::RandomizeState, 9.48e-18*units.eV);
+//  nubars.Set_DecoherenceGammaMatrix(nusquids::nuSQUIDSDecoh::DecoherenceModel::RandomizeState, 0.0*units.eV);
+  nubars.Set_DecoherenceGammaMatrix(nusquids::nuSQUIDSDecoh::DecoherenceModel::RandomizeState, nubars_gamma_strength*units.eV);
+  //  nubars.Set_DecoherenceGammaEnergyDependence(2);
+//  nubars.Set_DecoherenceGammaEnergyDependence(0);
+  nubars.Set_DecoherenceGammaEnergyDependence(nubars_gamma_energy_dependence);
+//  nubars.Set_DecoherenceGammaEnergyScale(1.0*units.GeV);
+  nubars.Set_DecoherenceGammaEnergyScale(nubars_gamma_energy_scale*units.GeV);
 }
 
 void OscProbCalcerNuSQUIDSLinear::CalculateProbabilities(const std::vector<FLOAT_T>& OscParams) {
@@ -84,18 +203,34 @@ void OscProbCalcerNuSQUIDSLinear::CalculateProbabilities(const std::vector<FLOAT
 //  nus.Set_MixingAngle(0,1,asin(sqrt(OscParams[kTH12]))); // \theta_12
 //  nus.Set_MixingAngle(0,2,asin(sqrt(OscParams[kTH23]))); // \theta_13
 //  nus.Set_MixingAngle(1,2,asin(sqrt(OscParams[kTH13]))); // \theta_13
-  nus.Set_SquareMassDifference(1,OscParams[kDM12]); // \Delta m_12
-  nus.Set_SquareMassDifference(2,OscParams[kDM23]); // \Delta m_13
+//  nus.Set_SquareMassDifference(1,OscParams[kDM12]); // \Delta m_12
+//  nus.Set_SquareMassDifference(2,OscParams[kDM23]); // \Delta m_13
 
-  nus.Set_MixingParametersToDefault();
+  nus.Set_MixingAngle(0,1,asin(sqrt(OscParams[kTH12]))); // \theta_12
+  nus.Set_MixingAngle(0,2,asin(sqrt(OscParams[kTH13]))); // \theta_13
+  nus.Set_MixingAngle(1,2,asin(sqrt(OscParams[kTH23]))); // \theta_23
+  nus.Set_SquareMassDifference(1,OscParams[kDM12]); // \Delta m_12
+  nus.Set_SquareMassDifference(2,OscParams[kDM12] + OscParams[kDM23]); // \Delta m_13
+
+  nus.Set_CPPhase(0,2,OscParams[kDCP]);
+
+//  nus.Set_MixingParametersToDefault();
 
 //  nubars.Set_MixingAngle(0,1,asin(sqrt(OscParams[kTH12]))); // \theta_12
 //  nubars.Set_MixingAngle(0,2,asin(sqrt(OscParams[kTH23]))); // \theta_13
 //  nubars.Set_MixingAngle(1,2,asin(sqrt(OscParams[kTH13]))); // \theta_13
-  nubars.Set_SquareMassDifference(1,OscParams[kDM12]); // \Delta m_12
-  nubars.Set_SquareMassDifference(2,OscParams[kDM23]); // \Delta m_13
+//  nubars.Set_SquareMassDifference(1,OscParams[kDM12]); // \Delta m_12
+//  nubars.Set_SquareMassDifference(2,OscParams[kDM23]); // \Delta m_13
 
-  nubars.Set_MixingParametersToDefault();
+  nubars.Set_MixingAngle(0,1,asin(sqrt(OscParams[kTH12]))); // \theta_12
+  nubars.Set_MixingAngle(0,2,asin(sqrt(OscParams[kTH13]))); // \theta_13
+  nubars.Set_MixingAngle(1,2,asin(sqrt(OscParams[kTH23]))); // \theta_23
+  nubars.Set_SquareMassDifference(1,OscParams[kDM12]); // \Delta m_12
+  nubars.Set_SquareMassDifference(2,OscParams[kDM12] + OscParams[kDM23]); // \Delta m_13
+
+  nubars.Set_CPPhase(0,2,OscParams[kDCP]);
+
+//  nubars.Set_MixingParametersToDefault();
 
   const double layer_2 = OscParams[kPATHL]*units.km;
   std::shared_ptr<nusquids::ConstantDensity> constdens_env1 = std::make_shared<nusquids::ConstantDensity>(OscParams[kDENS],OscParams[kELECDENS]); // density [gr/cm^3[, ye [dimensionless]
