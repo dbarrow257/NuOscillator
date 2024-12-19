@@ -5,6 +5,8 @@
 
 #include "nuSQuIDS/nuSQuIDS.h"
 #include "examples/Decoherence/nuSQUIDSDecoh.h"
+#include "examples/NSI/NSI.h"
+#include "examples/LV/LV.h"
 
 /**
  * @file OscProbCalcer_NuSQUIDSLinear.h
@@ -119,16 +121,20 @@ class OscProbCalcerNuSQUIDSLinear : public OscProbCalcerBase {
    */
   enum NuType{Nu=1,Nubar=-1};
 
-//  std::unique_ptr<nusquids::nuSQUIDS> nus;
-//  std::unique_ptr<nusquids::nuSQUIDS> nubars;
+  nusquids::nuSQUIDS* nus_base;
+  nusquids::nuSQUIDS* nubars_base;
+  
+  nusquids::nuSQUIDS* nus_pmns;
+  nusquids::nuSQUIDS* nubars_pmns;
+  
+  nusquids::nuSQUIDSDecoh* nus_decoh;
+  nusquids::nuSQUIDSDecoh* nubars_decoh;
 
-//  nusquids::nuSQUIDSDecoh nus;
-  //  nusquids::nuSQUIDS nus;
-
-  std::map<std::string, std::shared_ptr<nusquids::nuSQUIDS>> nusMap;
-//  std::shared_ptr<nusquids::nuSQUIDS> nus;
-
-  nusquids::nuSQUIDSDecoh nubars;
+  nuSQUIDSNSI* nus_NSI;
+  nuSQUIDSNSI* nubars_NSI;
+  
+  nusquids::nuSQUIDSLV* nus_LV;
+  nusquids::nuSQUIDSLV* nubarss_LV;
 
   squids::Const units;
 
