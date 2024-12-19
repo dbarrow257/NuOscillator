@@ -289,7 +289,7 @@ int OscProbCalcerNuSQUIDSLinear::PMNS_StrToInt(std::string PMNSType) {
 }
 
 int OscProbCalcerNuSQUIDSLinear::GetNOscParams(int OscType) {
-  return -1;
+  return kNOscParams;
 }
 
 int OscProbCalcerNuSQUIDSLinear::ReturnWeightArrayIndex(int NuTypeIndex, int OscChanIndex, int EnergyIndex, int CosineZIndex) {
