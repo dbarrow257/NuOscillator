@@ -5,6 +5,7 @@ General:
 
 OscProbCalcerSetup:
   ImplementationName: "NuSQUIDSLinear"
+  NusBSMModel: "Decoherence"
   ZenithAngle: "0.0"
   IntegrationStep: "500.0"
   NusRelativeError: "1.0e-5"
@@ -17,6 +18,7 @@ OscProbCalcerSetup:
   NubarsGammaStrength: "0.0" # reference: 9.48e-18
   NubarsGammaEnergyDependence: "2"
   NubarsGammaEnergyScale: "1.0"
+  PMNSType: "SM"
   OscChannelMapping:
     - Entry: "Electron:Electron"
     - Entry: "Electron:Muon"
