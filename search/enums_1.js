@@ -4,7 +4,9 @@ var searchData=
   ['oscparams_5fdecay_1',['OscParams_Decay',['../classOscProbCalcerOscProb.html#a93c0c2059ad879968cff09aceaf6289a',1,'OscProbCalcerOscProb']]],
   ['oscparams_5fdeco_2',['OscParams_Deco',['../classOscProbCalcerOscProb.html#a31c91e2a9a686f6a4b0bf3334324128f',1,'OscProbCalcerOscProb']]],
   ['oscparams_5fiter_3',['OscParams_Iter',['../classOscProbCalcerOscProb.html#a83c30550ded4a31b458028ead38cee26',1,'OscProbCalcerOscProb']]],
-  ['oscparams_5fnsi_4',['OscParams_NSI',['../classOscProbCalcerOscProb.html#a0aaf27fac6252d17cf989964af0526c4',1,'OscProbCalcerOscProb']]],
-  ['oscparams_5fnunm_5',['OscParams_NUNM',['../classOscProbCalcerOscProb.html#a4bb4e4a1e916943e9f8b48a8f3c61190',1,'OscProbCalcerOscProb']]],
-  ['oscparams_5fsterile_6',['OscParams_Sterile',['../classOscProbCalcerOscProb.html#a3eff2a4eef9d3692fa696280fc2c285f',1,'OscProbCalcerOscProb']]]
+  ['oscparams_5fliv_4',['OscParams_LIV',['../classOscProbCalcerOscProb.html#a40339f2713e5dd0e635fc511da6b8f00',1,'OscProbCalcerOscProb']]],
+  ['oscparams_5fnsi_5',['OscParams_NSI',['../classOscProbCalcerOscProb.html#a0aaf27fac6252d17cf989964af0526c4',1,'OscProbCalcerOscProb']]],
+  ['oscparams_5fnunm_6',['OscParams_NUNM',['../classOscProbCalcerOscProb.html#a4bb4e4a1e916943e9f8b48a8f3c61190',1,'OscProbCalcerOscProb']]],
+  ['oscparams_5fsnsi_7',['OscParams_SNSI',['../classOscProbCalcerOscProb.html#a5a43c0273d6af70b9165e6da5317679d',1,'OscProbCalcerOscProb']]],
+  ['oscparams_5fsterile_8',['OscParams_Sterile',['../classOscProbCalcerOscProb.html#a3eff2a4eef9d3692fa696280fc2c285f',1,'OscProbCalcerOscProb']]]
 ];

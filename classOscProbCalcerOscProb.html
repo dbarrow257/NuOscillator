@@ -106,7 +106,7 @@ Public Types</h2></td></tr>
 , <a class="el" href="classOscProbCalcerOscProb.html#afe48140827f760b4cf4294320b99ee99a06e67584a421475865eebb097dbea77e">kNOscParams</a>
 <br />
  }</td></tr>
-<tr class="memdesc:afe48140827f760b4cf4294320b99ee99"><td class="mdescLeft">&#160;</td><td class="mdescRight">Definition of oscillation parameters which are expected in this ProbGPU implementation. Base parameters for standard 3x3 oscillation matrix, works as is for PMNS_Fast class.  <a href="classOscProbCalcerOscProb.html#afe48140827f760b4cf4294320b99ee99">More...</a><br /></td></tr>
+<tr class="memdesc:afe48140827f760b4cf4294320b99ee99"><td class="mdescLeft">&#160;</td><td class="mdescRight">Definition of oscillation parameters which are expected in this ProbGPU implementation. Base parameters for standard 3x3 oscillation matrix, works as is for PMNS_Fast class DetDepth is the detector depth and is expected in km.  <a href="classOscProbCalcerOscProb.html#afe48140827f760b4cf4294320b99ee99">More...</a><br /></td></tr>
 <tr class="separator:afe48140827f760b4cf4294320b99ee99"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3eff2a4eef9d3692fa696280fc2c285f" id="r_a3eff2a4eef9d3692fa696280fc2c285f"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerOscProb.html#a3eff2a4eef9d3692fa696280fc2c285f">OscParams_Sterile</a> { <br />
 &#160;&#160;<a class="el" href="classOscProbCalcerOscProb.html#a3eff2a4eef9d3692fa696280fc2c285fa01603f31e937d45b5d9dabe8a8ac1cb0">kTH14</a> =kDCP+1
@@ -173,6 +173,10 @@ Public Types</h2></td></tr>
  }</td></tr>
 <tr class="memdesc:a0aaf27fac6252d17cf989964af0526c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Definition of extra oscillation parameters for PMNS_NSI class kEps quantity reprensenting the intensity of NSI wrt standard matter effects between the different flavours kDelta complex phases between the different flavours (non diag elements) kElecCoup electron coupling kUpCoup u-quark coupling kDownCoup d-quark coupling.  <a href="classOscProbCalcerOscProb.html#a0aaf27fac6252d17cf989964af0526c4">More...</a><br /></td></tr>
 <tr class="separator:a0aaf27fac6252d17cf989964af0526c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5a43c0273d6af70b9165e6da5317679d" id="r_a5a43c0273d6af70b9165e6da5317679d"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerOscProb.html#a5a43c0273d6af70b9165e6da5317679d">OscParams_SNSI</a> { <a class="el" href="classOscProbCalcerOscProb.html#a5a43c0273d6af70b9165e6da5317679da78d412508cf58155dcb11508f85fa5ce">kLightMass</a> = kDownCoup+1
+ }</td></tr>
+<tr class="memdesc:a5a43c0273d6af70b9165e6da5317679d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Definition of extra oscillation parameters for PMNS_SNSI class (scalar non standard interactions) Takes class PMNS_NSI as base with all parameters associated to it kLightMass mass of lightest neutrino WARNING : kEps expected in units of 1/mass^2 in MeV^-2 and not dimensionless like for PMNS_NSI.  <a href="classOscProbCalcerOscProb.html#a5a43c0273d6af70b9165e6da5317679d">More...</a><br /></td></tr>
+<tr class="separator:a5a43c0273d6af70b9165e6da5317679d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a83c30550ded4a31b458028ead38cee26" id="r_a83c30550ded4a31b458028ead38cee26"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerOscProb.html#a83c30550ded4a31b458028ead38cee26">OscParams_Iter</a> { <a class="el" href="classOscProbCalcerOscProb.html#a83c30550ded4a31b458028ead38cee26a162fa5d639f35f97733b3e69f269d682">kPrec</a> = kDCP+1
  }</td></tr>
 <tr class="memdesc:a83c30550ded4a31b458028ead38cee26"><td class="mdescLeft">&#160;</td><td class="mdescRight">Definition of extra oscillation parameters for PMNS_Iter class kPrec defines precision of the iterative method.  <a href="classOscProbCalcerOscProb.html#a83c30550ded4a31b458028ead38cee26">More...</a><br /></td></tr>
@@ -194,6 +198,78 @@ Public Types</h2></td></tr>
  }</td></tr>
 <tr class="memdesc:a4bb4e4a1e916943e9f8b48a8f3c61190"><td class="mdescLeft">&#160;</td><td class="mdescRight">Definition of extra oscillation parameters for PMNS_NUNM class (non unitary neutrino mixing) kAlphaij quantify deviation from unitary wrt standard mixing between states i and j kPhiij complex phases for non diagonal elements between states i and j kFracVnc fraction of matter potential affecting NC.  <a href="classOscProbCalcerOscProb.html#a4bb4e4a1e916943e9f8b48a8f3c61190">More...</a><br /></td></tr>
 <tr class="separator:a4bb4e4a1e916943e9f8b48a8f3c61190"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a40339f2713e5dd0e635fc511da6b8f00" id="r_a40339f2713e5dd0e635fc511da6b8f00"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerOscProb.html#a40339f2713e5dd0e635fc511da6b8f00">OscParams_LIV</a> { <br />
+&#160;&#160;<a class="el" href="classOscProbCalcerOscProb.html#a40339f2713e5dd0e635fc511da6b8f00a804e28c9828f660c1d445ac6f8eee402">kaT_ee_3</a> = kDCP+1
+, <a class="el" href="classOscProbCalcerOscProb.html#a40339f2713e5dd0e635fc511da6b8f00aa58d3c84dff4dbb0b23a95afe53dcf27">kaT_emu_3</a> = kDCP+2
+, <a class="el" href="classOscProbCalcerOscProb.html#a40339f2713e5dd0e635fc511da6b8f00a11e498b58720b3c18aa0cf59b8afe6d7">kaT_etau_3</a> = kDCP+3
+, <a class="el" href="classOscProbCalcerOscProb.html#a40339f2713e5dd0e635fc511da6b8f00a67e09a93e469b4e5adf58d17400b8436">kaT_mumu_3</a> = kDCP+4
+, <br />
+&#160;&#160;<a class="el" href="classOscProbCalcerOscProb.html#a40339f2713e5dd0e635fc511da6b8f00ad0010bfe2766321e92e96505227f329c">kaT_mutau_3</a> = kDCP+5
+, <a class="el" href="classOscProbCalcerOscProb.html#a40339f2713e5dd0e635fc511da6b8f00ac4788eb533d41e28d3244c1c851cfe5d">kaT_tautau_3</a> = kDCP+6
+, <a class="el" href="classOscProbCalcerOscProb.html#a40339f2713e5dd0e635fc511da6b8f00ae30bfb1f97e6aed25f9b8e0557a6a805">kDelta_emu_3</a> = kDCP+7
+, <a class="el" href="classOscProbCalcerOscProb.html#a40339f2713e5dd0e635fc511da6b8f00a27186016a85bc8068127f19d0d15e32c">kDelta_etau_3</a> = kDCP+8
+, <br />
+&#160;&#160;<a class="el" href="classOscProbCalcerOscProb.html#a40339f2713e5dd0e635fc511da6b8f00a6ea21ab49f338ebcd2b470c8133df7b3">kDelta_mutau_3</a> = kDCP+9
+, <a class="el" href="classOscProbCalcerOscProb.html#a40339f2713e5dd0e635fc511da6b8f00a25f96fb9202a824e08f262b7b4df5792">kcT_ee_4</a> = kDCP+10
+, <a class="el" href="classOscProbCalcerOscProb.html#a40339f2713e5dd0e635fc511da6b8f00a4fa8ee2f3b45e2edca20de58fe628f22">kcT_emu_4</a> = kDCP+11
+, <a class="el" href="classOscProbCalcerOscProb.html#a40339f2713e5dd0e635fc511da6b8f00a4397f1d849e4d5589421c59f5cedc335">kcT_etau_4</a> = kDCP+12
+, <br />
+&#160;&#160;<a class="el" href="classOscProbCalcerOscProb.html#a40339f2713e5dd0e635fc511da6b8f00ad08b4bc9826004749860319f94140854">kcT_mumu_4</a> = kDCP+13
+, <a class="el" href="classOscProbCalcerOscProb.html#a40339f2713e5dd0e635fc511da6b8f00ace4c1232264e45664a5039fd94dafd63">kcT_mutau_4</a> = kDCP+14
+, <a class="el" href="classOscProbCalcerOscProb.html#a40339f2713e5dd0e635fc511da6b8f00a382d3b4a1ac523ec7649c54a8b15b20d">kcT_tautau_4</a> = kDCP+15
+, <a class="el" href="classOscProbCalcerOscProb.html#a40339f2713e5dd0e635fc511da6b8f00a128aabfb13996ae3d003060cccdbb61e">kDelta_emu_4</a> = kDCP+16
+, <br />
+&#160;&#160;<a class="el" href="classOscProbCalcerOscProb.html#a40339f2713e5dd0e635fc511da6b8f00adf70f39919b320f53044ff37a2a741c8">kDelta_etau_4</a> = kDCP+17
+, <a class="el" href="classOscProbCalcerOscProb.html#a40339f2713e5dd0e635fc511da6b8f00ae3aa175059a27a1979c2ac7e9e2f64bf">kDelta_mutau_4</a> = kDCP+18
+, <a class="el" href="classOscProbCalcerOscProb.html#a40339f2713e5dd0e635fc511da6b8f00a256012d38130dc7846a5721be873d1b1">kaT_ee_5</a> = kDCP+19
+, <a class="el" href="classOscProbCalcerOscProb.html#a40339f2713e5dd0e635fc511da6b8f00afd904d7107d56258e11868f4e322e5c7">kaT_emu_5</a> = kDCP+20
+, <br />
+&#160;&#160;<a class="el" href="classOscProbCalcerOscProb.html#a40339f2713e5dd0e635fc511da6b8f00a97cbc913294f84180899bfa4f5f0a65d">kaT_etau_5</a> = kDCP+21
+, <a class="el" href="classOscProbCalcerOscProb.html#a40339f2713e5dd0e635fc511da6b8f00ab16156ef6b51fdce882b719380f6a84f">kaT_mumu_5</a> = kDCP+22
+, <a class="el" href="classOscProbCalcerOscProb.html#a40339f2713e5dd0e635fc511da6b8f00ad97c482401bfd70e019635b32b51fe55">kaT_mutau_5</a> = kDCP+23
+, <a class="el" href="classOscProbCalcerOscProb.html#a40339f2713e5dd0e635fc511da6b8f00addafce10a9d505c2cb0836bf0550588b">kaT_tautau_5</a> = kDCP+24
+, <br />
+&#160;&#160;<a class="el" href="classOscProbCalcerOscProb.html#a40339f2713e5dd0e635fc511da6b8f00a43c5c9b61f235564898e6b16061a93a4">kDelta_emu_5</a> = kDCP+25
+, <a class="el" href="classOscProbCalcerOscProb.html#a40339f2713e5dd0e635fc511da6b8f00a65a6d5f9c650291fd7259c1ddd628126">kDelta_etau_5</a> = kDCP+26
+, <a class="el" href="classOscProbCalcerOscProb.html#a40339f2713e5dd0e635fc511da6b8f00aada4b5a3b4962f98addc8a74f9ed4280">kDelta_mutau_5</a> = kDCP+27
+, <a class="el" href="classOscProbCalcerOscProb.html#a40339f2713e5dd0e635fc511da6b8f00a433e62da7d1171e881b7730145e3145b">kcT_ee_6</a> = kDCP+28
+, <br />
+&#160;&#160;<a class="el" href="classOscProbCalcerOscProb.html#a40339f2713e5dd0e635fc511da6b8f00af64eb50d45933336ec61215ebffb8e28">kcT_emu_6</a> = kDCP+29
+, <a class="el" href="classOscProbCalcerOscProb.html#a40339f2713e5dd0e635fc511da6b8f00a137a29ade77807bf8c95c022835137a7">kcT_etau_6</a> = kDCP+30
+, <a class="el" href="classOscProbCalcerOscProb.html#a40339f2713e5dd0e635fc511da6b8f00aa843f1ff2a28e41469b9bb37ee4e6a41">kcT_mumu_6</a> = kDCP+31
+, <a class="el" href="classOscProbCalcerOscProb.html#a40339f2713e5dd0e635fc511da6b8f00a55d5a9699b8fc24fdd8f3db5677242db">kcT_mutau_6</a> = kDCP+32
+, <br />
+&#160;&#160;<a class="el" href="classOscProbCalcerOscProb.html#a40339f2713e5dd0e635fc511da6b8f00af2eaa8e71fe8c453586ee5c93c93d421">kcT_tautau_6</a> = kDCP+33
+, <a class="el" href="classOscProbCalcerOscProb.html#a40339f2713e5dd0e635fc511da6b8f00a1480d453206f6758077989fe9105278c">kDelta_emu_6</a> = kDCP+34
+, <a class="el" href="classOscProbCalcerOscProb.html#a40339f2713e5dd0e635fc511da6b8f00a8efe70aac49a6d068c4dfdea9a5b5bd4">kDelta_etau_6</a> = kDCP+35
+, <a class="el" href="classOscProbCalcerOscProb.html#a40339f2713e5dd0e635fc511da6b8f00a54bf8bd8b1456765f1dbde285ec6903c">kDelta_mutau_6</a> = kDCP+36
+, <br />
+&#160;&#160;<a class="el" href="classOscProbCalcerOscProb.html#a40339f2713e5dd0e635fc511da6b8f00a2a7d34ba0b29f3ca5a9ee16a77e7047c">kaT_ee_7</a> = kDCP+37
+, <a class="el" href="classOscProbCalcerOscProb.html#a40339f2713e5dd0e635fc511da6b8f00a54f50438f3e583a03570a095c8ea718b">kaT_emu_7</a> = kDCP+38
+, <a class="el" href="classOscProbCalcerOscProb.html#a40339f2713e5dd0e635fc511da6b8f00a41f31a249fff0fc8a910106096534252">kaT_etau_7</a> = kDCP+39
+, <a class="el" href="classOscProbCalcerOscProb.html#a40339f2713e5dd0e635fc511da6b8f00a168385b128fb26c05069d8d9318d8055">kaT_mumu_7</a> = kDCP+40
+, <br />
+&#160;&#160;<a class="el" href="classOscProbCalcerOscProb.html#a40339f2713e5dd0e635fc511da6b8f00a20b49c21f31745aa3560ab2d7adb0e11">kaT_mutau_7</a> = kDCP+41
+, <a class="el" href="classOscProbCalcerOscProb.html#a40339f2713e5dd0e635fc511da6b8f00af1073e4e71c92440df1bd25778b81fe2">kaT_tautau_7</a> = kDCP+42
+, <a class="el" href="classOscProbCalcerOscProb.html#a40339f2713e5dd0e635fc511da6b8f00a60b71029a827e1bb67b5397192a3314d">kDelta_emu_7</a> = kDCP+43
+, <a class="el" href="classOscProbCalcerOscProb.html#a40339f2713e5dd0e635fc511da6b8f00a3b5a75787b544026253fa453390c40d4">kDelta_etau_7</a> = kDCP+44
+, <br />
+&#160;&#160;<a class="el" href="classOscProbCalcerOscProb.html#a40339f2713e5dd0e635fc511da6b8f00a4a0f0411f2a4b7cdf6484f957b9093ed">kDelta_mutau_7</a> = kDCP+45
+, <a class="el" href="classOscProbCalcerOscProb.html#a40339f2713e5dd0e635fc511da6b8f00a94086e03d6f87b1a22031d5f5dd19b05">kcT_ee_8</a> = kDCP+46
+, <a class="el" href="classOscProbCalcerOscProb.html#a40339f2713e5dd0e635fc511da6b8f00abcd5163677e0957e54df220b86ba9d0b">kcT_emu_8</a> = kDCP+47
+, <a class="el" href="classOscProbCalcerOscProb.html#a40339f2713e5dd0e635fc511da6b8f00a178ff9510761788560532c7601e631e0">kcT_etau_8</a> = kDCP+48
+, <br />
+&#160;&#160;<a class="el" href="classOscProbCalcerOscProb.html#a40339f2713e5dd0e635fc511da6b8f00a5af11ec99dd41c24232bc604bbf9b3e2">kcT_mumu_8</a> = kDCP+49
+, <a class="el" href="classOscProbCalcerOscProb.html#a40339f2713e5dd0e635fc511da6b8f00aadcc0403427f4e0301d0d3c61753c228">kcT_mutau_8</a> = kDCP+50
+, <a class="el" href="classOscProbCalcerOscProb.html#a40339f2713e5dd0e635fc511da6b8f00a41fb98649615a468fbc59bb28e5ff65b">kcT_tautau_8</a> = kDCP+51
+, <a class="el" href="classOscProbCalcerOscProb.html#a40339f2713e5dd0e635fc511da6b8f00a053cab3d05eaca37cbe2913849c95163">kDelta_emu_8</a> = kDCP+52
+, <br />
+&#160;&#160;<a class="el" href="classOscProbCalcerOscProb.html#a40339f2713e5dd0e635fc511da6b8f00a6a2b19c77693ad578d2b3ef12406bdbf">kDelta_etau_8</a> = kDCP+53
+, <a class="el" href="classOscProbCalcerOscProb.html#a40339f2713e5dd0e635fc511da6b8f00acd5513ae002a4e730749bd44489b19df">kDelta_mutau_8</a> = kDCP+54
+<br />
+ }</td></tr>
+<tr class="memdesc:a40339f2713e5dd0e635fc511da6b8f00"><td class="mdescLeft">&#160;</td><td class="mdescRight">Definition of extra oscillation parameters for PMNS_LIV class (Lorentz Invariance Violation) kaT_j LIV coefficient of dimension j between 2 neutrino flavors with j = 3, 5 or 7 kcT_j LIV coefficient of dimension j between 2 neutrino flavors with j = 4, 6 or 8 kDelta_j complex phase between 2 neutrino flavors for non diag element with dimension j.  <a href="classOscProbCalcerOscProb.html#a40339f2713e5dd0e635fc511da6b8f00">More...</a><br /></td></tr>
+<tr class="separator:a40339f2713e5dd0e635fc511da6b8f00"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a64e95aed2a78dd02f43e7b35fba76f85" id="r_a64e95aed2a78dd02f43e7b35fba76f85"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerOscProb.html#a64e95aed2a78dd02f43e7b35fba76f85">NuType</a> { <a class="el" href="classOscProbCalcerOscProb.html#a64e95aed2a78dd02f43e7b35fba76f85aa9c91aeaec42e3a94b806fa461ec153f">Nu</a> =1
 , <a class="el" href="classOscProbCalcerOscProb.html#a64e95aed2a78dd02f43e7b35fba76f85a2b56e1beed43242bf73fa7ca79943970">Nubar</a> =-1
  }</td></tr>
@@ -208,11 +284,11 @@ Public Types</h2></td></tr>
 &#160;&#160;<a class="el" href="classOscProbCalcerOscProb.html#a62fca4b88373b2123e942914e5c4d623a5532a6c742371ef5f9ded97404c7559a">kDecay</a> =4
 , <a class="el" href="classOscProbCalcerOscProb.html#a62fca4b88373b2123e942914e5c4d623a057bf420e41d07cfcaf011e37f26a38d">kDeco</a> =5
 , <a class="el" href="classOscProbCalcerOscProb.html#a62fca4b88373b2123e942914e5c4d623a050d21b0fce5d9df45d320f0b1dc522c">kNSI</a> =6
-, <a class="el" href="classOscProbCalcerOscProb.html#a62fca4b88373b2123e942914e5c4d623a2251b96c7dc8dc7c474135f57f1766c8">kIter</a> =7
+, <a class="el" href="classOscProbCalcerOscProb.html#a62fca4b88373b2123e942914e5c4d623acd1f788c7bf027b9932e5bf5897c05e2">kSNSI</a> =7
 , <br />
-&#160;&#160;<a class="el" href="classOscProbCalcerOscProb.html#a62fca4b88373b2123e942914e5c4d623ad47a0021cf303dad627b7cadf71e3660">kNUNM</a> =8
-, <a class="el" href="classOscProbCalcerOscProb.html#a62fca4b88373b2123e942914e5c4d623aefc22e67be7d399fb8e4b99676f33a0b">kLIV</a> =9
-, <a class="el" href="classOscProbCalcerOscProb.html#a62fca4b88373b2123e942914e5c4d623acd1f788c7bf027b9932e5bf5897c05e2">kSNSI</a> =10
+&#160;&#160;<a class="el" href="classOscProbCalcerOscProb.html#a62fca4b88373b2123e942914e5c4d623a2251b96c7dc8dc7c474135f57f1766c8">kIter</a> =8
+, <a class="el" href="classOscProbCalcerOscProb.html#a62fca4b88373b2123e942914e5c4d623ad47a0021cf303dad627b7cadf71e3660">kNUNM</a> =9
+, <a class="el" href="classOscProbCalcerOscProb.html#a62fca4b88373b2123e942914e5c4d623aefc22e67be7d399fb8e4b99676f33a0b">kLIV</a> =10
 <br />
  }</td></tr>
 <tr class="memdesc:a62fca4b88373b2123e942914e5c4d623"><td class="mdescLeft">&#160;</td><td class="mdescRight">Different types of PMNS matrices currently supported within the analysis LIV and SNSI still to be implemented at some point.  <a href="classOscProbCalcerOscProb.html#a62fca4b88373b2123e942914e5c4d623">More...</a><br /></td></tr>
@@ -230,11 +306,8 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a50bc77e7f90728565fe10076a8ac01db"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor.  <br /></td></tr>
 <tr class="separator:a50bc77e7f90728565fe10076a8ac01db"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8da169ba5b1cdce215453034e8f72977" id="r_a8da169ba5b1cdce215453034e8f72977"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerOscProb.html#a8da169ba5b1cdce215453034e8f72977">SetupPropagator</a> () override</td></tr>
-<tr class="memdesc:a8da169ba5b1cdce215453034e8f72977"><td class="mdescLeft">&#160;</td><td class="mdescRight">Setup NuFAST specific variables.  <br /></td></tr>
+<tr class="memdesc:a8da169ba5b1cdce215453034e8f72977"><td class="mdescLeft">&#160;</td><td class="mdescRight">Setup Earth model.  <br /></td></tr>
 <tr class="separator:a8da169ba5b1cdce215453034e8f72977"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abb643bf6bf6313bb7d764100b00061de" id="r_abb643bf6bf6313bb7d764100b00061de"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerOscProb.html#abb643bf6bf6313bb7d764100b00061de">SetupPREMModel</a> (std::string model=&quot;&quot;)</td></tr>
-<tr class="memdesc:abb643bf6bf6313bb7d764100b00061de"><td class="mdescLeft">&#160;</td><td class="mdescRight">Setup PREM Model with certain number of layers.  <br /></td></tr>
-<tr class="separator:abb643bf6bf6313bb7d764100b00061de"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab24de45630cf49e438d5f7cb551f1e7a" id="r_ab24de45630cf49e438d5f7cb551f1e7a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerOscProb.html#ab24de45630cf49e438d5f7cb551f1e7a">CalculateProbabilities</a> (const std::vector&lt; <a class="el" href="OscillatorConstants_8h.html#acb53b45d3e1b677a15c2ef27b266b1ca">FLOAT_T</a> &gt; &amp;<a class="el" href="classOscProbCalcerOscProb.html#afe48140827f760b4cf4294320b99ee99">OscParams</a>) override</td></tr>
 <tr class="memdesc:ab24de45630cf49e438d5f7cb551f1e7a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate some oscillation probabilities for a particular oscillation parameter set.  <br /></td></tr>
 <tr class="separator:ab24de45630cf49e438d5f7cb551f1e7a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -253,12 +326,18 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a0caf7ea7a4f5a4d17b2e824ff7f274c9" id="r_a0caf7ea7a4f5a4d17b2e824ff7f274c9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerOscProb.html#a0caf7ea7a4f5a4d17b2e824ff7f274c9">CalcProbPMNS_NSI</a> (const std::vector&lt; <a class="el" href="OscillatorConstants_8h.html#acb53b45d3e1b677a15c2ef27b266b1ca">FLOAT_T</a> &gt; &amp;<a class="el" href="classOscProbCalcerOscProb.html#afe48140827f760b4cf4294320b99ee99">OscParams</a>)</td></tr>
 <tr class="memdesc:a0caf7ea7a4f5a4d17b2e824ff7f274c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate some oscillation probabilities for a particular oscillation parameter set.  <br /></td></tr>
 <tr class="separator:a0caf7ea7a4f5a4d17b2e824ff7f274c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac44bde535d247ac433f229cab542b2c0" id="r_ac44bde535d247ac433f229cab542b2c0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerOscProb.html#ac44bde535d247ac433f229cab542b2c0">CalcProbPMNS_SNSI</a> (const std::vector&lt; <a class="el" href="OscillatorConstants_8h.html#acb53b45d3e1b677a15c2ef27b266b1ca">FLOAT_T</a> &gt; &amp;<a class="el" href="classOscProbCalcerOscProb.html#afe48140827f760b4cf4294320b99ee99">OscParams</a>)</td></tr>
+<tr class="memdesc:ac44bde535d247ac433f229cab542b2c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate some oscillation probabilities for a particular oscillation parameter set.  <br /></td></tr>
+<tr class="separator:ac44bde535d247ac433f229cab542b2c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac22cd90103c0f80ba6b1e1433919322d" id="r_ac22cd90103c0f80ba6b1e1433919322d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerOscProb.html#ac22cd90103c0f80ba6b1e1433919322d">CalcProbPMNS_Iter</a> (const std::vector&lt; <a class="el" href="OscillatorConstants_8h.html#acb53b45d3e1b677a15c2ef27b266b1ca">FLOAT_T</a> &gt; &amp;<a class="el" href="classOscProbCalcerOscProb.html#afe48140827f760b4cf4294320b99ee99">OscParams</a>)</td></tr>
 <tr class="memdesc:ac22cd90103c0f80ba6b1e1433919322d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate some oscillation probabilities for a particular oscillation parameter set.  <br /></td></tr>
 <tr class="separator:ac22cd90103c0f80ba6b1e1433919322d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a004d52fb824847874e12f88b3b548a98" id="r_a004d52fb824847874e12f88b3b548a98"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerOscProb.html#a004d52fb824847874e12f88b3b548a98">CalcProbPMNS_NUNM</a> (const std::vector&lt; <a class="el" href="OscillatorConstants_8h.html#acb53b45d3e1b677a15c2ef27b266b1ca">FLOAT_T</a> &gt; &amp;<a class="el" href="classOscProbCalcerOscProb.html#afe48140827f760b4cf4294320b99ee99">OscParams</a>)</td></tr>
 <tr class="memdesc:a004d52fb824847874e12f88b3b548a98"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate some oscillation probabilities for a particular oscillation parameter set.  <br /></td></tr>
 <tr class="separator:a004d52fb824847874e12f88b3b548a98"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7205b32adc0c9d2962dd314a9081cba9" id="r_a7205b32adc0c9d2962dd314a9081cba9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerOscProb.html#a7205b32adc0c9d2962dd314a9081cba9">CalcProbPMNS_LIV</a> (const std::vector&lt; <a class="el" href="OscillatorConstants_8h.html#acb53b45d3e1b677a15c2ef27b266b1ca">FLOAT_T</a> &gt; &amp;<a class="el" href="classOscProbCalcerOscProb.html#afe48140827f760b4cf4294320b99ee99">OscParams</a>)</td></tr>
+<tr class="memdesc:a7205b32adc0c9d2962dd314a9081cba9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate some oscillation probabilities for a particular oscillation parameter set.  <br /></td></tr>
+<tr class="separator:a7205b32adc0c9d2962dd314a9081cba9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae59df77b7ceb497ad65e42d2e1749345" id="r_ae59df77b7ceb497ad65e42d2e1749345"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerOscProb.html#ae59df77b7ceb497ad65e42d2e1749345">ReturnWeightArrayIndex</a> (int NuTypeIndex, int OscNuIndex, int EnergyIndex, int CosineZIndex=-1) override</td></tr>
 <tr class="memdesc:ae59df77b7ceb497ad65e42d2e1749345"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return implementation specific index in the weight array for a specific combination of neutrino oscillation channel, energy and cosine zenith.  <br /></td></tr>
 <tr class="separator:ae59df77b7ceb497ad65e42d2e1749345"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -286,12 +365,18 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a391e30a29c5b74962bce1c004c221bca" id="r_a391e30a29c5b74962bce1c004c221bca"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerOscProb.html#a391e30a29c5b74962bce1c004c221bca">SetPMNSParams_NSI</a> (OscProb::PMNS_NSI *NSI, const std::vector&lt; <a class="el" href="OscillatorConstants_8h.html#acb53b45d3e1b677a15c2ef27b266b1ca">FLOAT_T</a> &gt; &amp;<a class="el" href="classOscProbCalcerOscProb.html#afe48140827f760b4cf4294320b99ee99">OscParams</a>)</td></tr>
 <tr class="memdesc:a391e30a29c5b74962bce1c004c221bca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set parameters for PMNS_NSI.  <br /></td></tr>
 <tr class="separator:a391e30a29c5b74962bce1c004c221bca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0b67d916754c98e8b9d2d3bd5e5ffd25" id="r_a0b67d916754c98e8b9d2d3bd5e5ffd25"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerOscProb.html#a0b67d916754c98e8b9d2d3bd5e5ffd25">SetPMNSParams_SNSI</a> (OscProb::PMNS_SNSI *SNSI, const std::vector&lt; <a class="el" href="OscillatorConstants_8h.html#acb53b45d3e1b677a15c2ef27b266b1ca">FLOAT_T</a> &gt; &amp;<a class="el" href="classOscProbCalcerOscProb.html#afe48140827f760b4cf4294320b99ee99">OscParams</a>)</td></tr>
+<tr class="memdesc:a0b67d916754c98e8b9d2d3bd5e5ffd25"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set parameters for PMNS_SNSI.  <br /></td></tr>
+<tr class="separator:a0b67d916754c98e8b9d2d3bd5e5ffd25"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a81856044883c2e20a99561fd19314647" id="r_a81856044883c2e20a99561fd19314647"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerOscProb.html#a81856044883c2e20a99561fd19314647">SetPMNSParams_Iter</a> (OscProb::PMNS_Iter *Iter, const std::vector&lt; <a class="el" href="OscillatorConstants_8h.html#acb53b45d3e1b677a15c2ef27b266b1ca">FLOAT_T</a> &gt; &amp;<a class="el" href="classOscProbCalcerOscProb.html#afe48140827f760b4cf4294320b99ee99">OscParams</a>)</td></tr>
 <tr class="memdesc:a81856044883c2e20a99561fd19314647"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set parameters for PMNS_Iter.  <br /></td></tr>
 <tr class="separator:a81856044883c2e20a99561fd19314647"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a96d6fb5b691966e13c966660d8d53df8" id="r_a96d6fb5b691966e13c966660d8d53df8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerOscProb.html#a96d6fb5b691966e13c966660d8d53df8">SetPMNSParams_NUNM</a> (OscProb::PMNS_NUNM *NUNM, const std::vector&lt; <a class="el" href="OscillatorConstants_8h.html#acb53b45d3e1b677a15c2ef27b266b1ca">FLOAT_T</a> &gt; &amp;<a class="el" href="classOscProbCalcerOscProb.html#afe48140827f760b4cf4294320b99ee99">OscParams</a>)</td></tr>
 <tr class="memdesc:a96d6fb5b691966e13c966660d8d53df8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set parameters for PMNS_NUNM.  <br /></td></tr>
 <tr class="separator:a96d6fb5b691966e13c966660d8d53df8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afec1d15b5853e917be65222eb4ad8193" id="r_afec1d15b5853e917be65222eb4ad8193"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerOscProb.html#afec1d15b5853e917be65222eb4ad8193">SetPMNSParams_LIV</a> (OscProb::PMNS_LIV *LIV, const std::vector&lt; <a class="el" href="OscillatorConstants_8h.html#acb53b45d3e1b677a15c2ef27b266b1ca">FLOAT_T</a> &gt; &amp;<a class="el" href="classOscProbCalcerOscProb.html#afe48140827f760b4cf4294320b99ee99">OscParams</a>)</td></tr>
+<tr class="memdesc:afec1d15b5853e917be65222eb4ad8193"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set parameters for PMNS_LIV.  <br /></td></tr>
+<tr class="separator:afec1d15b5853e917be65222eb4ad8193"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classOscProbCalcerBase"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classOscProbCalcerBase')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classOscProbCalcerBase.html">OscProbCalcerBase</a></td></tr>
 <tr class="memitem:ae5485ac57513ab579873f3495522fa31 inherit pub_methods_classOscProbCalcerBase" id="r_ae5485ac57513ab579873f3495522fa31"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerBase.html#ae5485ac57513ab579873f3495522fa31">~OscProbCalcerBase</a> ()</td></tr>
 <tr class="memdesc:ae5485ac57513ab579873f3495522fa31 inherit pub_methods_classOscProbCalcerBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor.  <br /></td></tr>
@@ -374,9 +459,12 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:ae98d9599e38e8d0112d9ece0b6b52ac4" id="r_ae98d9599e38e8d0112d9ece0b6b52ac4"><td class="memItemLeft" align="right" valign="top">OscProb::PremModel&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerOscProb.html#ae98d9599e38e8d0112d9ece0b6b52ac4">PremModel</a></td></tr>
 <tr class="memdesc:ae98d9599e38e8d0112d9ece0b6b52ac4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Object handling the Earth model and the estimation of neutrino paths through the Earth depending on their direction Paths used by PMNS objects for neutrino propagation Earth model implemented as succession of spherical shells with uniform density.  <br /></td></tr>
 <tr class="separator:ae98d9599e38e8d0112d9ece0b6b52ac4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab16e358f32040484a1376e70daf1ffdb" id="r_ab16e358f32040484a1376e70daf1ffdb"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerOscProb.html#ab16e358f32040484a1376e70daf1ffdb">prem_model</a></td></tr>
-<tr class="memdesc:ab16e358f32040484a1376e70daf1ffdb"><td class="mdescLeft">&#160;</td><td class="mdescRight">String storing the path of the density table file used to setup the Earth model.  <br /></td></tr>
-<tr class="separator:ab16e358f32040484a1376e70daf1ffdb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa9fead4473343f09308bb0e4f6508de1" id="r_aa9fead4473343f09308bb0e4f6508de1"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerOscProb.html#aa9fead4473343f09308bb0e4f6508de1">premfile</a></td></tr>
+<tr class="memdesc:aa9fead4473343f09308bb0e4f6508de1"><td class="mdescLeft">&#160;</td><td class="mdescRight">String storing the path of the density table file used to setup the Earth model.  <br /></td></tr>
+<tr class="separator:aa9fead4473343f09308bb0e4f6508de1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae4fc4394bef8e13bac6183535cadd18f" id="r_ae4fc4394bef8e13bac6183535cadd18f"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerOscProb.html#ae4fc4394bef8e13bac6183535cadd18f">fDetDepth</a></td></tr>
+<tr class="memdesc:ae4fc4394bef8e13bac6183535cadd18f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Double storing the detector depth in km.  <br /></td></tr>
+<tr class="separator:ae4fc4394bef8e13bac6183535cadd18f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
@@ -511,7 +599,7 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition of oscillation parameters which are expected in this ProbGPU implementation. Base parameters for standard 3x3 oscillation matrix, works as is for PMNS_Fast class. </p>
+<p>Definition of oscillation parameters which are expected in this ProbGPU implementation. Base parameters for standard 3x3 oscillation matrix, works as is for PMNS_Fast class DetDepth is the detector depth and is expected in km. </p>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="afe48140827f760b4cf4294320b99ee99a328417131f751761bd137a696dcfccc5" name="afe48140827f760b4cf4294320b99ee99a328417131f751761bd137a696dcfccc5"></a>kTH12&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="afe48140827f760b4cf4294320b99ee99a604ef2f5e01fe4c79c0dac7db404a26b" name="afe48140827f760b4cf4294320b99ee99a604ef2f5e01fe4c79c0dac7db404a26b"></a>kTH23&#160;</td><td class="fielddoc"></td></tr>
@@ -585,6 +673,78 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
+<a id="a40339f2713e5dd0e635fc511da6b8f00" name="a40339f2713e5dd0e635fc511da6b8f00"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a40339f2713e5dd0e635fc511da6b8f00">&#9670;&#160;</a></span>OscParams_LIV</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="classOscProbCalcerOscProb.html#a40339f2713e5dd0e635fc511da6b8f00">OscProbCalcerOscProb::OscParams_LIV</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition of extra oscillation parameters for PMNS_LIV class (Lorentz Invariance Violation) kaT_j LIV coefficient of dimension j between 2 neutrino flavors with j = 3, 5 or 7 kcT_j LIV coefficient of dimension j between 2 neutrino flavors with j = 4, 6 or 8 kDelta_j complex phase between 2 neutrino flavors for non diag element with dimension j. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a40339f2713e5dd0e635fc511da6b8f00a804e28c9828f660c1d445ac6f8eee402" name="a40339f2713e5dd0e635fc511da6b8f00a804e28c9828f660c1d445ac6f8eee402"></a>kaT_ee_3&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a40339f2713e5dd0e635fc511da6b8f00aa58d3c84dff4dbb0b23a95afe53dcf27" name="a40339f2713e5dd0e635fc511da6b8f00aa58d3c84dff4dbb0b23a95afe53dcf27"></a>kaT_emu_3&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a40339f2713e5dd0e635fc511da6b8f00a11e498b58720b3c18aa0cf59b8afe6d7" name="a40339f2713e5dd0e635fc511da6b8f00a11e498b58720b3c18aa0cf59b8afe6d7"></a>kaT_etau_3&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a40339f2713e5dd0e635fc511da6b8f00a67e09a93e469b4e5adf58d17400b8436" name="a40339f2713e5dd0e635fc511da6b8f00a67e09a93e469b4e5adf58d17400b8436"></a>kaT_mumu_3&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a40339f2713e5dd0e635fc511da6b8f00ad0010bfe2766321e92e96505227f329c" name="a40339f2713e5dd0e635fc511da6b8f00ad0010bfe2766321e92e96505227f329c"></a>kaT_mutau_3&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a40339f2713e5dd0e635fc511da6b8f00ac4788eb533d41e28d3244c1c851cfe5d" name="a40339f2713e5dd0e635fc511da6b8f00ac4788eb533d41e28d3244c1c851cfe5d"></a>kaT_tautau_3&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a40339f2713e5dd0e635fc511da6b8f00ae30bfb1f97e6aed25f9b8e0557a6a805" name="a40339f2713e5dd0e635fc511da6b8f00ae30bfb1f97e6aed25f9b8e0557a6a805"></a>kDelta_emu_3&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a40339f2713e5dd0e635fc511da6b8f00a27186016a85bc8068127f19d0d15e32c" name="a40339f2713e5dd0e635fc511da6b8f00a27186016a85bc8068127f19d0d15e32c"></a>kDelta_etau_3&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a40339f2713e5dd0e635fc511da6b8f00a6ea21ab49f338ebcd2b470c8133df7b3" name="a40339f2713e5dd0e635fc511da6b8f00a6ea21ab49f338ebcd2b470c8133df7b3"></a>kDelta_mutau_3&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a40339f2713e5dd0e635fc511da6b8f00a25f96fb9202a824e08f262b7b4df5792" name="a40339f2713e5dd0e635fc511da6b8f00a25f96fb9202a824e08f262b7b4df5792"></a>kcT_ee_4&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a40339f2713e5dd0e635fc511da6b8f00a4fa8ee2f3b45e2edca20de58fe628f22" name="a40339f2713e5dd0e635fc511da6b8f00a4fa8ee2f3b45e2edca20de58fe628f22"></a>kcT_emu_4&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a40339f2713e5dd0e635fc511da6b8f00a4397f1d849e4d5589421c59f5cedc335" name="a40339f2713e5dd0e635fc511da6b8f00a4397f1d849e4d5589421c59f5cedc335"></a>kcT_etau_4&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a40339f2713e5dd0e635fc511da6b8f00ad08b4bc9826004749860319f94140854" name="a40339f2713e5dd0e635fc511da6b8f00ad08b4bc9826004749860319f94140854"></a>kcT_mumu_4&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a40339f2713e5dd0e635fc511da6b8f00ace4c1232264e45664a5039fd94dafd63" name="a40339f2713e5dd0e635fc511da6b8f00ace4c1232264e45664a5039fd94dafd63"></a>kcT_mutau_4&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a40339f2713e5dd0e635fc511da6b8f00a382d3b4a1ac523ec7649c54a8b15b20d" name="a40339f2713e5dd0e635fc511da6b8f00a382d3b4a1ac523ec7649c54a8b15b20d"></a>kcT_tautau_4&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a40339f2713e5dd0e635fc511da6b8f00a128aabfb13996ae3d003060cccdbb61e" name="a40339f2713e5dd0e635fc511da6b8f00a128aabfb13996ae3d003060cccdbb61e"></a>kDelta_emu_4&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a40339f2713e5dd0e635fc511da6b8f00adf70f39919b320f53044ff37a2a741c8" name="a40339f2713e5dd0e635fc511da6b8f00adf70f39919b320f53044ff37a2a741c8"></a>kDelta_etau_4&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a40339f2713e5dd0e635fc511da6b8f00ae3aa175059a27a1979c2ac7e9e2f64bf" name="a40339f2713e5dd0e635fc511da6b8f00ae3aa175059a27a1979c2ac7e9e2f64bf"></a>kDelta_mutau_4&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a40339f2713e5dd0e635fc511da6b8f00a256012d38130dc7846a5721be873d1b1" name="a40339f2713e5dd0e635fc511da6b8f00a256012d38130dc7846a5721be873d1b1"></a>kaT_ee_5&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a40339f2713e5dd0e635fc511da6b8f00afd904d7107d56258e11868f4e322e5c7" name="a40339f2713e5dd0e635fc511da6b8f00afd904d7107d56258e11868f4e322e5c7"></a>kaT_emu_5&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a40339f2713e5dd0e635fc511da6b8f00a97cbc913294f84180899bfa4f5f0a65d" name="a40339f2713e5dd0e635fc511da6b8f00a97cbc913294f84180899bfa4f5f0a65d"></a>kaT_etau_5&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a40339f2713e5dd0e635fc511da6b8f00ab16156ef6b51fdce882b719380f6a84f" name="a40339f2713e5dd0e635fc511da6b8f00ab16156ef6b51fdce882b719380f6a84f"></a>kaT_mumu_5&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a40339f2713e5dd0e635fc511da6b8f00ad97c482401bfd70e019635b32b51fe55" name="a40339f2713e5dd0e635fc511da6b8f00ad97c482401bfd70e019635b32b51fe55"></a>kaT_mutau_5&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a40339f2713e5dd0e635fc511da6b8f00addafce10a9d505c2cb0836bf0550588b" name="a40339f2713e5dd0e635fc511da6b8f00addafce10a9d505c2cb0836bf0550588b"></a>kaT_tautau_5&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a40339f2713e5dd0e635fc511da6b8f00a43c5c9b61f235564898e6b16061a93a4" name="a40339f2713e5dd0e635fc511da6b8f00a43c5c9b61f235564898e6b16061a93a4"></a>kDelta_emu_5&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a40339f2713e5dd0e635fc511da6b8f00a65a6d5f9c650291fd7259c1ddd628126" name="a40339f2713e5dd0e635fc511da6b8f00a65a6d5f9c650291fd7259c1ddd628126"></a>kDelta_etau_5&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a40339f2713e5dd0e635fc511da6b8f00aada4b5a3b4962f98addc8a74f9ed4280" name="a40339f2713e5dd0e635fc511da6b8f00aada4b5a3b4962f98addc8a74f9ed4280"></a>kDelta_mutau_5&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a40339f2713e5dd0e635fc511da6b8f00a433e62da7d1171e881b7730145e3145b" name="a40339f2713e5dd0e635fc511da6b8f00a433e62da7d1171e881b7730145e3145b"></a>kcT_ee_6&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a40339f2713e5dd0e635fc511da6b8f00af64eb50d45933336ec61215ebffb8e28" name="a40339f2713e5dd0e635fc511da6b8f00af64eb50d45933336ec61215ebffb8e28"></a>kcT_emu_6&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a40339f2713e5dd0e635fc511da6b8f00a137a29ade77807bf8c95c022835137a7" name="a40339f2713e5dd0e635fc511da6b8f00a137a29ade77807bf8c95c022835137a7"></a>kcT_etau_6&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a40339f2713e5dd0e635fc511da6b8f00aa843f1ff2a28e41469b9bb37ee4e6a41" name="a40339f2713e5dd0e635fc511da6b8f00aa843f1ff2a28e41469b9bb37ee4e6a41"></a>kcT_mumu_6&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a40339f2713e5dd0e635fc511da6b8f00a55d5a9699b8fc24fdd8f3db5677242db" name="a40339f2713e5dd0e635fc511da6b8f00a55d5a9699b8fc24fdd8f3db5677242db"></a>kcT_mutau_6&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a40339f2713e5dd0e635fc511da6b8f00af2eaa8e71fe8c453586ee5c93c93d421" name="a40339f2713e5dd0e635fc511da6b8f00af2eaa8e71fe8c453586ee5c93c93d421"></a>kcT_tautau_6&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a40339f2713e5dd0e635fc511da6b8f00a1480d453206f6758077989fe9105278c" name="a40339f2713e5dd0e635fc511da6b8f00a1480d453206f6758077989fe9105278c"></a>kDelta_emu_6&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a40339f2713e5dd0e635fc511da6b8f00a8efe70aac49a6d068c4dfdea9a5b5bd4" name="a40339f2713e5dd0e635fc511da6b8f00a8efe70aac49a6d068c4dfdea9a5b5bd4"></a>kDelta_etau_6&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a40339f2713e5dd0e635fc511da6b8f00a54bf8bd8b1456765f1dbde285ec6903c" name="a40339f2713e5dd0e635fc511da6b8f00a54bf8bd8b1456765f1dbde285ec6903c"></a>kDelta_mutau_6&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a40339f2713e5dd0e635fc511da6b8f00a2a7d34ba0b29f3ca5a9ee16a77e7047c" name="a40339f2713e5dd0e635fc511da6b8f00a2a7d34ba0b29f3ca5a9ee16a77e7047c"></a>kaT_ee_7&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a40339f2713e5dd0e635fc511da6b8f00a54f50438f3e583a03570a095c8ea718b" name="a40339f2713e5dd0e635fc511da6b8f00a54f50438f3e583a03570a095c8ea718b"></a>kaT_emu_7&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a40339f2713e5dd0e635fc511da6b8f00a41f31a249fff0fc8a910106096534252" name="a40339f2713e5dd0e635fc511da6b8f00a41f31a249fff0fc8a910106096534252"></a>kaT_etau_7&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a40339f2713e5dd0e635fc511da6b8f00a168385b128fb26c05069d8d9318d8055" name="a40339f2713e5dd0e635fc511da6b8f00a168385b128fb26c05069d8d9318d8055"></a>kaT_mumu_7&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a40339f2713e5dd0e635fc511da6b8f00a20b49c21f31745aa3560ab2d7adb0e11" name="a40339f2713e5dd0e635fc511da6b8f00a20b49c21f31745aa3560ab2d7adb0e11"></a>kaT_mutau_7&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a40339f2713e5dd0e635fc511da6b8f00af1073e4e71c92440df1bd25778b81fe2" name="a40339f2713e5dd0e635fc511da6b8f00af1073e4e71c92440df1bd25778b81fe2"></a>kaT_tautau_7&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a40339f2713e5dd0e635fc511da6b8f00a60b71029a827e1bb67b5397192a3314d" name="a40339f2713e5dd0e635fc511da6b8f00a60b71029a827e1bb67b5397192a3314d"></a>kDelta_emu_7&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a40339f2713e5dd0e635fc511da6b8f00a3b5a75787b544026253fa453390c40d4" name="a40339f2713e5dd0e635fc511da6b8f00a3b5a75787b544026253fa453390c40d4"></a>kDelta_etau_7&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a40339f2713e5dd0e635fc511da6b8f00a4a0f0411f2a4b7cdf6484f957b9093ed" name="a40339f2713e5dd0e635fc511da6b8f00a4a0f0411f2a4b7cdf6484f957b9093ed"></a>kDelta_mutau_7&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a40339f2713e5dd0e635fc511da6b8f00a94086e03d6f87b1a22031d5f5dd19b05" name="a40339f2713e5dd0e635fc511da6b8f00a94086e03d6f87b1a22031d5f5dd19b05"></a>kcT_ee_8&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a40339f2713e5dd0e635fc511da6b8f00abcd5163677e0957e54df220b86ba9d0b" name="a40339f2713e5dd0e635fc511da6b8f00abcd5163677e0957e54df220b86ba9d0b"></a>kcT_emu_8&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a40339f2713e5dd0e635fc511da6b8f00a178ff9510761788560532c7601e631e0" name="a40339f2713e5dd0e635fc511da6b8f00a178ff9510761788560532c7601e631e0"></a>kcT_etau_8&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a40339f2713e5dd0e635fc511da6b8f00a5af11ec99dd41c24232bc604bbf9b3e2" name="a40339f2713e5dd0e635fc511da6b8f00a5af11ec99dd41c24232bc604bbf9b3e2"></a>kcT_mumu_8&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a40339f2713e5dd0e635fc511da6b8f00aadcc0403427f4e0301d0d3c61753c228" name="a40339f2713e5dd0e635fc511da6b8f00aadcc0403427f4e0301d0d3c61753c228"></a>kcT_mutau_8&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a40339f2713e5dd0e635fc511da6b8f00a41fb98649615a468fbc59bb28e5ff65b" name="a40339f2713e5dd0e635fc511da6b8f00a41fb98649615a468fbc59bb28e5ff65b"></a>kcT_tautau_8&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a40339f2713e5dd0e635fc511da6b8f00a053cab3d05eaca37cbe2913849c95163" name="a40339f2713e5dd0e635fc511da6b8f00a053cab3d05eaca37cbe2913849c95163"></a>kDelta_emu_8&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a40339f2713e5dd0e635fc511da6b8f00a6a2b19c77693ad578d2b3ef12406bdbf" name="a40339f2713e5dd0e635fc511da6b8f00a6a2b19c77693ad578d2b3ef12406bdbf"></a>kDelta_etau_8&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a40339f2713e5dd0e635fc511da6b8f00acd5513ae002a4e730749bd44489b19df" name="a40339f2713e5dd0e635fc511da6b8f00acd5513ae002a4e730749bd44489b19df"></a>kDelta_mutau_8&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+</div>
+</div>
 <a id="a0aaf27fac6252d17cf989964af0526c4" name="a0aaf27fac6252d17cf989964af0526c4"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a0aaf27fac6252d17cf989964af0526c4">&#9670;&#160;</a></span>OscParams_NSI</h2>
 
@@ -639,6 +799,25 @@ Additional Inherited Members</h2></td></tr>
 <tr><td class="fieldname"><a id="a4bb4e4a1e916943e9f8b48a8f3c61190a8ade5f453f03a1bcdfd6e6256e60fbf0" name="a4bb4e4a1e916943e9f8b48a8f3c61190a8ade5f453f03a1bcdfd6e6256e60fbf0"></a>kPhi31&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="a4bb4e4a1e916943e9f8b48a8f3c61190a07b6a8a78728c1ce3b6e522cf7d1886b" name="a4bb4e4a1e916943e9f8b48a8f3c61190a07b6a8a78728c1ce3b6e522cf7d1886b"></a>kPhi32&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="a4bb4e4a1e916943e9f8b48a8f3c61190a2cf3cc1a860a333c231baee078421af2" name="a4bb4e4a1e916943e9f8b48a8f3c61190a2cf3cc1a860a333c231baee078421af2"></a>kFracVnc&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+</div>
+</div>
+<a id="a5a43c0273d6af70b9165e6da5317679d" name="a5a43c0273d6af70b9165e6da5317679d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5a43c0273d6af70b9165e6da5317679d">&#9670;&#160;</a></span>OscParams_SNSI</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="classOscProbCalcerOscProb.html#a5a43c0273d6af70b9165e6da5317679d">OscProbCalcerOscProb::OscParams_SNSI</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition of extra oscillation parameters for PMNS_SNSI class (scalar non standard interactions) Takes class PMNS_NSI as base with all parameters associated to it kLightMass mass of lightest neutrino WARNING : kEps expected in units of 1/mass^2 in MeV^-2 and not dimensionless like for PMNS_NSI. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a5a43c0273d6af70b9165e6da5317679da78d412508cf58155dcb11508f85fa5ce" name="a5a43c0273d6af70b9165e6da5317679da78d412508cf58155dcb11508f85fa5ce"></a>kLightMass&#160;</td><td class="fielddoc"></td></tr>
 </table>
 
 </div>
@@ -706,10 +885,10 @@ Additional Inherited Members</h2></td></tr>
 <tr><td class="fieldname"><a id="a62fca4b88373b2123e942914e5c4d623a5532a6c742371ef5f9ded97404c7559a" name="a62fca4b88373b2123e942914e5c4d623a5532a6c742371ef5f9ded97404c7559a"></a>kDecay&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="a62fca4b88373b2123e942914e5c4d623a057bf420e41d07cfcaf011e37f26a38d" name="a62fca4b88373b2123e942914e5c4d623a057bf420e41d07cfcaf011e37f26a38d"></a>kDeco&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="a62fca4b88373b2123e942914e5c4d623a050d21b0fce5d9df45d320f0b1dc522c" name="a62fca4b88373b2123e942914e5c4d623a050d21b0fce5d9df45d320f0b1dc522c"></a>kNSI&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a62fca4b88373b2123e942914e5c4d623acd1f788c7bf027b9932e5bf5897c05e2" name="a62fca4b88373b2123e942914e5c4d623acd1f788c7bf027b9932e5bf5897c05e2"></a>kSNSI&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="a62fca4b88373b2123e942914e5c4d623a2251b96c7dc8dc7c474135f57f1766c8" name="a62fca4b88373b2123e942914e5c4d623a2251b96c7dc8dc7c474135f57f1766c8"></a>kIter&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="a62fca4b88373b2123e942914e5c4d623ad47a0021cf303dad627b7cadf71e3660" name="a62fca4b88373b2123e942914e5c4d623ad47a0021cf303dad627b7cadf71e3660"></a>kNUNM&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="a62fca4b88373b2123e942914e5c4d623aefc22e67be7d399fb8e4b99676f33a0b" name="a62fca4b88373b2123e942914e5c4d623aefc22e67be7d399fb8e4b99676f33a0b"></a>kLIV&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a62fca4b88373b2123e942914e5c4d623acd1f788c7bf027b9932e5bf5897c05e2" name="a62fca4b88373b2123e942914e5c4d623acd1f788c7bf027b9932e5bf5897c05e2"></a>kSNSI&#160;</td><td class="fielddoc"></td></tr>
 </table>
 
 </div>
@@ -911,6 +1090,33 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
+<a id="a7205b32adc0c9d2962dd314a9081cba9" name="a7205b32adc0c9d2962dd314a9081cba9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7205b32adc0c9d2962dd314a9081cba9">&#9670;&#160;</a></span>CalcProbPMNS_LIV()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void OscProbCalcerOscProb::CalcProbPMNS_LIV </td>
+          <td>(</td>
+          <td class="paramtype">const std::vector&lt; <a class="el" href="OscillatorConstants_8h.html#acb53b45d3e1b677a15c2ef27b266b1ca">FLOAT_T</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>OscParams</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Calculate some oscillation probabilities for a particular oscillation parameter set. </p>
+<p>Calculator oscillation probabilities with PMNS_LIV object. This function both calculates and stores the oscillation probabilities in <a class="el" href="classOscProbCalcerBase.html#a89ca55fe94b0f4b7710ca61d97bacdba" title="Vector which stores the oscillation probabilities.">fWeightArray</a>.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">OscParams</td><td>The parameter set to calculate oscillation probabilities at </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="a0caf7ea7a4f5a4d17b2e824ff7f274c9" name="a0caf7ea7a4f5a4d17b2e824ff7f274c9"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a0caf7ea7a4f5a4d17b2e824ff7f274c9">&#9670;&#160;</a></span>CalcProbPMNS_NSI()</h2>
 
@@ -956,6 +1162,33 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Calculate some oscillation probabilities for a particular oscillation parameter set. </p>
 <p>Calculator oscillation probabilities with PMNS_NUNM object. This function both calculates and stores the oscillation probabilities in <a class="el" href="classOscProbCalcerBase.html#a89ca55fe94b0f4b7710ca61d97bacdba" title="Vector which stores the oscillation probabilities.">fWeightArray</a>.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">OscParams</td><td>The parameter set to calculate oscillation probabilities at </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ac44bde535d247ac433f229cab542b2c0" name="ac44bde535d247ac433f229cab542b2c0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac44bde535d247ac433f229cab542b2c0">&#9670;&#160;</a></span>CalcProbPMNS_SNSI()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void OscProbCalcerOscProb::CalcProbPMNS_SNSI </td>
+          <td>(</td>
+          <td class="paramtype">const std::vector&lt; <a class="el" href="OscillatorConstants_8h.html#acb53b45d3e1b677a15c2ef27b266b1ca">FLOAT_T</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>OscParams</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Calculate some oscillation probabilities for a particular oscillation parameter set. </p>
+<p>Calculator oscillation probabilities with PMNS_SNSI object. This function both calculates and stores the oscillation probabilities in <a class="el" href="classOscProbCalcerBase.html#a89ca55fe94b0f4b7710ca61d97bacdba" title="Vector which stores the oscillation probabilities.">fWeightArray</a>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">OscParams</td><td>The parameter set to calculate oscillation probabilities at </td></tr>
@@ -1339,6 +1572,44 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
+<a id="afec1d15b5853e917be65222eb4ad8193" name="afec1d15b5853e917be65222eb4ad8193"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afec1d15b5853e917be65222eb4ad8193">&#9670;&#160;</a></span>SetPMNSParams_LIV()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void OscProbCalcerOscProb::SetPMNSParams_LIV </td>
+          <td>(</td>
+          <td class="paramtype">OscProb::PMNS_LIV *&#160;</td>
+          <td class="paramname"><em>LIV</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; <a class="el" href="OscillatorConstants_8h.html#acb53b45d3e1b677a15c2ef27b266b1ca">FLOAT_T</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>OscParams</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set parameters for PMNS_LIV. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">LIV</td><td>object of class PMNS_LIV </td></tr>
+    <tr><td class="paramname">OscParams</td><td>The parameter set to calculate oscillation probabilities at</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Sets relevant parameters for PMNS Matrix </dd></dl>
+
+</div>
+</div>
 <a id="a391e30a29c5b74962bce1c004c221bca" name="a391e30a29c5b74962bce1c004c221bca"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a391e30a29c5b74962bce1c004c221bca">&#9670;&#160;</a></span>SetPMNSParams_NSI()</h2>
 
@@ -1415,6 +1686,44 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
+<a id="a0b67d916754c98e8b9d2d3bd5e5ffd25" name="a0b67d916754c98e8b9d2d3bd5e5ffd25"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0b67d916754c98e8b9d2d3bd5e5ffd25">&#9670;&#160;</a></span>SetPMNSParams_SNSI()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void OscProbCalcerOscProb::SetPMNSParams_SNSI </td>
+          <td>(</td>
+          <td class="paramtype">OscProb::PMNS_SNSI *&#160;</td>
+          <td class="paramname"><em>SNSI</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; <a class="el" href="OscillatorConstants_8h.html#acb53b45d3e1b677a15c2ef27b266b1ca">FLOAT_T</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>OscParams</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set parameters for PMNS_SNSI. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">SNSI</td><td>object of class PMNS_SNSI </td></tr>
+    <tr><td class="paramname">OscParams</td><td>The parameter set to calculate oscillation probabilities at</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Sets relevant parameters for PMNS Matrix </dd></dl>
+
+</div>
+</div>
 <a id="ad6d6e10727684e71472ba4d3d21a67b8" name="ad6d6e10727684e71472ba4d3d21a67b8"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad6d6e10727684e71472ba4d3d21a67b8">&#9670;&#160;</a></span>SetPMNSParams_Sterile()</h2>
 
@@ -1453,33 +1762,6 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="abb643bf6bf6313bb7d764100b00061de" name="abb643bf6bf6313bb7d764100b00061de"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abb643bf6bf6313bb7d764100b00061de">&#9670;&#160;</a></span>SetupPREMModel()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::string OscProbCalcerOscProb::SetupPREMModel </td>
-          <td>(</td>
-          <td class="paramtype">std::string&#160;</td>
-          <td class="paramname"><em>model</em> = <code>&quot;&quot;</code></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Setup PREM Model with certain number of layers. </p>
-<p>Files with PREM Models already included in OscProb, used to compute neutrino path and densities</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">model</td><td>parameter to define which model to use. 0 -&gt; default file, 1 -&gt; 15 layers, 2 -&gt; 44 layers, 3 -&gt; 425 layers </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
 <a id="a8da169ba5b1cdce215453034e8f72977" name="a8da169ba5b1cdce215453034e8f72977"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a8da169ba5b1cdce215453034e8f72977">&#9670;&#160;</a></span>SetupPropagator()</h2>
 
@@ -1503,13 +1785,37 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Setup NuFAST specific variables. </p>
+<p>Setup Earth model. </p>
 
 <p>Implements <a class="el" href="classOscProbCalcerBase.html#ad81484ca1346a09c978123142249d926">OscProbCalcerBase</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
+<a id="ae4fc4394bef8e13bac6183535cadd18f" name="ae4fc4394bef8e13bac6183535cadd18f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae4fc4394bef8e13bac6183535cadd18f">&#9670;&#160;</a></span>fDetDepth</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double OscProbCalcerOscProb::fDetDepth</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Double storing the detector depth in km. </p>
+
+</div>
+</div>
 <a id="a96189e894b4b0928f6744dfe8163c35b" name="a96189e894b4b0928f6744dfe8163c35b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a96189e894b4b0928f6744dfe8163c35b">&#9670;&#160;</a></span>fOscType</h2>
 
@@ -1526,8 +1832,8 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="ab16e358f32040484a1376e70daf1ffdb" name="ab16e358f32040484a1376e70daf1ffdb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab16e358f32040484a1376e70daf1ffdb">&#9670;&#160;</a></span>prem_model</h2>
+<a id="aa9fead4473343f09308bb0e4f6508de1" name="aa9fead4473343f09308bb0e4f6508de1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa9fead4473343f09308bb0e4f6508de1">&#9670;&#160;</a></span>premfile</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1536,7 +1842,7 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::string OscProbCalcerOscProb::prem_model</td>
+          <td class="memname">std::string OscProbCalcerOscProb::premfile</td>
         </tr>
       </table>
   </td>
