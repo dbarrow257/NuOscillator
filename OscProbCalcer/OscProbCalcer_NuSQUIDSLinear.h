@@ -3,6 +3,11 @@
 
 #include "OscProbCalcerBase.h"
 
+#include "nuSQuIDS/nuSQuIDS.h"
+#include "examples/Decoherence/nuSQUIDSDecoh.h"
+#include "examples/NSI/NSI.h"
+#include "examples/LV/LV.h"
+
 /**
  * @file OscProbCalcer_NuSQUIDSLinear.h
  *
@@ -81,12 +86,71 @@ class OscProbCalcerNuSQUIDSLinear : public OscProbCalcerBase {
    * @brief Definition of oscillation parameters which are expected in this ProbGPU implementation
    */
   enum OscParams{kTH12, kTH23, kTH13, kDM12, kDM23, kDCP, kPATHL, kDENS, kELECDENS, kNOscParams};
-  
+ 
+  /**
+ * @brief Return the PMNS Matrix type corresponding to a particular string 
+ * 
+ * @param PMNSType String to convert to enum value
+ *
+ * @return Enum value describing the PMNS Matrix to use
+ */
+  int PMNS_StrToInt(std::string PMNSType);
+
+  /**
+ * @brief Return number of parameters needed for a particular type of PMNS matrix
+ * 
+ * @param OscType int value corresponding to type of PMNS matrix
+ *
+ * @return number of parameters needed for the type of PMNS matrix
+ */
+  int GetNOscParams(int OscType);
+
+/**
+  * @brief Different types of PMNS matrices currently supported within the analysis
+  * LIV and SNSI still to be implemented at some point
+  */
+  enum PMNSMatrix{kFast=0, kPMNSSterile1=1, kPMNSSterile2=2, kPMNSSterile3=3, kDecay=4, kDeco=5, kNSI=6, kIter=7, kNUNM=8, kLIV=9, kSNSI=10, kPMNSSM=11};
+
+  /**
+   * @brief Define the type for the PMNS matrix
+   */
+  int fOscType;
+
   /**
    * @brief Define the neutrino and antineutrino values expected by this implementation
    */
   enum NuType{Nu=1,Nubar=-1};
+
+  nusquids::nuSQUIDS* nus_base;
+  nusquids::nuSQUIDS* nubars_base;
   
+  nusquids::nuSQUIDS* nus_pmns;
+  nusquids::nuSQUIDS* nubars_pmns;
+  
+  nusquids::nuSQUIDSDecoh* nus_decoh;
+  nusquids::nuSQUIDSDecoh* nubars_decoh;
+
+  nuSQUIDSNSI* nus_NSI;
+  nuSQUIDSNSI* nubars_NSI;
+  
+  nusquids::nuSQUIDSLV* nus_LV;
+  nusquids::nuSQUIDSLV* nubarss_LV;
+
+  squids::Const units;
+
+  double zenith_angle;
+  double integration_step;
+  double nus_rel_error;
+  double nus_abs_error;
+  double nubars_rel_error;
+  double nubars_abs_error;
+  double nus_gamma_strength;
+  double nus_gamma_energy_dependence;
+  double nus_gamma_energy_scale;
+  double nubars_gamma_strength;
+  double nubars_gamma_energy_dependence;
+  double nubars_gamma_energy_scale;
+  std::string nus_bsm_model;
 };
 
 #endif
