@@ -70,8 +70,14 @@ if(${UseNuSQUIDSLinear} EQUAL 1)
   endforeach(VAR)
   target_sources(OscProbCalcer PRIVATE OscProbCalcer_NuSQUIDSLinear.cpp)
   list(APPEND HEADERS OscProbCalcer_NuSQUIDSLinear.h)
-  
 endif()
+
+if(${UseOscProb} EQUAL 1)
+  target_sources(OscProbCalcer PRIVATE OscProbCalcer_OscProb.cpp)
+  target_link_libraries(OscProbCalcer ${OscProb_SOURCE_DIR}/lib/libOscProb.so)
+  target_link_libraries(OscProbCalcer Eigen OSCPROB ROOT::Core)
+  list(APPEND HEADERS OscProbCalcer_OscProb.h)
+endif()	 
 
 if (${UseGPU} EQUAL 1)
   set_target_properties(OscProbCalcer PROPERTIES

@@ -59,6 +59,11 @@ namespace NuOscillator
   
 }
 
+inline std::vector<FLOAT_T> ReturnOscParams_Basic() {
+  std::vector<FLOAT_T> OscParams_Basic = {3.07e-1,5.28e-1,2.18e-2,7.53e-5,2.509e-3,-1.601};
+  return OscParams_Basic;
+}
+
 inline std::vector<FLOAT_T> ReturnOscParams_Atm() {
   std::vector<FLOAT_T> OscParams_Atm = {3.07e-1,5.28e-1,2.18e-2,7.53e-5,2.509e-3,-1.601,25.0};
   return OscParams_Atm;
@@ -104,6 +109,10 @@ inline std::vector<std::string> ReturnKnownConfigs() {
 
 #if UseNuSQUIDSLinear == 1
   ConfigNames.push_back("./Configs/Unbinned_NuSQUIDSLinear.yaml");
+#endif
+  
+#if UseOscProb == 1
+  ConfigNames.push_back("./Configs/Binned_OscProb.yaml");
 #endif  
 
   return ConfigNames;
