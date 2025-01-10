@@ -19,6 +19,13 @@ OscProbCalcerOscProb::OscProbCalcerOscProb(YAML::Node Config_) : OscProbCalcerBa
   }
 
   premfile = Config_["OscProbCalcerSetup"]["PREMFile"].as<std::string>();
+
+  if (!Config_["OscProbCalcerSetup"]["DetDepth"]) {
+    std::cerr << "Expected to find a 'DetDepth' Node within the 'OscProbCalcerSetup''Implementation' Node" << std::endl;
+    throw;
+  }
+
+  fDetDepth = Config_["OscProbCalcerSetup"]["DetDepth"].as<double>();
   //=======
 
   fNNeutrinoTypes = 2;
@@ -32,6 +39,7 @@ OscProbCalcerOscProb::OscProbCalcerOscProb(YAML::Node Config_) : OscProbCalcerBa
   std::cout << "PMNS Type : " << fOscType << std::endl;
   std::cout << "Number of parameters : " << fNOscParams << std::endl;
   std::cout << "PREM Model : " << premfile << std::endl;
+  std::cout << "Detector depth : " << fDetDepth << "km" << std::endl;
 }
 
 OscProbCalcerOscProb::~OscProbCalcerOscProb() {
@@ -45,7 +53,7 @@ void OscProbCalcerOscProb::SetupPropagator() {
 
 void OscProbCalcerOscProb::CalculateProbabilities(const std::vector<FLOAT_T>& OscParams) {
 
-  double det_radius = 6371. - OscParams[kDetDepth];
+  double det_radius = 6371. - fDetDepth;
 
   PremModel.SetDetPos(det_radius);
 

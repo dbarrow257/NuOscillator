@@ -291,7 +291,7 @@ class OscProbCalcerOscProb : public OscProbCalcerBase {
    * Base parameters for standard 3x3 oscillation matrix, works as is for PMNS_Fast class
    * DetDepth is the detector depth and is expected in km
    */
-  enum OscParams{kTH12, kTH23, kTH13, kDM12, kDM23, kDCP, kDetDepth, kNOscParams};
+  enum OscParams{kTH12, kTH23, kTH13, kDM12, kDM23, kDCP, kNOscParams};
 
   /**
    * @brief Definition of extra oscillation parameters for PMNS_Sterile class with up to 3 additional neutrinos
@@ -299,17 +299,17 @@ class OscProbCalcerOscProb : public OscProbCalcerBase {
    * kDeltaij -> CP violating phase between states i and j
    * kDM1j -> mass squared difference between states 1 and j in eV^2
    */
-  enum OscParams_Sterile{kTH14=kDetDepth+1, kTH24=kDetDepth+2, kTH34=kDetDepth+3, kDM14=kDetDepth+4, kDelta14=kDetDepth+5, kDelta24=kDetDepth+6,
-                         kTH15=kDetDepth+7, kTH25=kDetDepth+8, kTH35=kDetDepth+9, kTH45=kDetDepth+10, kDM15=kDetDepth+11, kDelta15=kDetDepth+12, kDelta25=kDetDepth+13, kDelta35=kDetDepth+14,
-                         kTH16=kDetDepth+15, kTH26=kDetDepth+16, kTH36=kDetDepth+17, kTH46=kDetDepth+18, kTH56=kDetDepth+19, kDM16=kDetDepth+20, 
-                         kDelta16=kDetDepth+21, kDelta26=kDetDepth+22, kDelta36=kDetDepth+23, kDelta46=kDetDepth+24};
+  enum OscParams_Sterile{kTH14=kDCP+1, kTH24=kDCP+2, kTH34=kDCP+3, kDM14=kDCP+4, kDelta14=kDCP+5, kDelta24=kDCP+6,
+                         kTH15=kDCP+7, kTH25=kDCP+8, kTH35=kDCP+9, kTH45=kDCP+10, kDM15=kDCP+11, kDelta15=kDCP+12, kDelta25=kDCP+13, kDelta35=kDCP+14,
+                         kTH16=kDCP+15, kTH26=kDCP+16, kTH36=kDCP+17, kTH46=kDCP+18, kTH56=kDCP+19, kDM16=kDCP+20, 
+                         kDelta16=kDCP+21, kDelta26=kDCP+22, kDelta36=kDCP+23, kDelta46=kDCP+24};
 
   /**
    * @brief Definition of extra oscillation parameters for PMNS_Decay class
    * kAlpha2 = m2/tau2, mass and lifetime of the 2nd state in the restframe, must be positive and units are eV^2
    * kAlpha3 = m3/tau3, mass and lifetime of the 3rd state in the restframe, must be positive and units are eV^2
    */
-  enum OscParams_Decay{kAlpha2 = kDetDepth+1, kAlpha3 = kDetDepth+2};
+  enum OscParams_Decay{kAlpha2 = kDCP+1, kAlpha3 = kDCP+2};
 
     /**
    * @brief Definition of extra oscillation parameters for PMNS_Deco class
@@ -318,7 +318,7 @@ class OscProbCalcerOscProb : public OscProbCalcerBase {
    * kDecoAngle decoherence angle
    * kPower power index of decoherence energy dependence
    */
-  enum OscParams_Deco{kGamma21 = kDetDepth+1, kGamma31 = kDetDepth+2, kDecoAngle = kDetDepth+3, kPower = kDetDepth+4};
+  enum OscParams_Deco{kGamma21 = kDCP+1, kGamma31 = kDCP+2, kDecoAngle = kDCP+3, kPower = kDCP+4};
 
    /**
    * @brief Definition of extra oscillation parameters for PMNS_NSI class
@@ -328,8 +328,9 @@ class OscProbCalcerOscProb : public OscProbCalcerBase {
    * kUpCoup u-quark coupling
    * kDownCoup d-quark coupling
    */
-  enum OscParams_NSI{kEps_ee = kDetDepth+1, kEps_emu = kDetDepth+2, kEps_etau = kDetDepth+3, kEps_mumu = kDetDepth+4, kEps_mutau = kDetDepth+5, kEps_tautau= kDetDepth+6,
-                     kDelta_emu = kDetDepth+7, kDelta_etau = kDetDepth+8, kDelta_mutau = kDetDepth+9, kElecCoup = kDetDepth+10, kUpCoup = kDetDepth+11, kDownCoup = kDetDepth+12};
+  enum OscParams_NSI{kEps_ee = kDCP+1, kEps_emu = kDCP+2, kEps_etau = kDCP+3, kEps_mumu = kDCP+4, 
+                     kEps_mutau = kDCP+5, kEps_tautau= kDCP+6, kDelta_emu = kDCP+7, kDelta_etau = kDCP+8, 
+                     kDelta_mutau = kDCP+9, kElecCoup = kDCP+10, kUpCoup = kDCP+11, kDownCoup = kDCP+12};
 
   /**
    * @brief Definition of extra oscillation parameters for PMNS_SNSI class (scalar non standard interactions)
@@ -343,7 +344,7 @@ class OscProbCalcerOscProb : public OscProbCalcerBase {
    * @brief Definition of extra oscillation parameters for PMNS_Iter class
    * kPrec defines precision of the iterative method
    */
-  enum OscParams_Iter{kPrec = kDetDepth+1};
+  enum OscParams_Iter{kPrec = kDCP+1};
 
   /**
    * @brief Definition of extra oscillation parameters for PMNS_NUNM class (non unitary neutrino mixing)
@@ -351,8 +352,8 @@ class OscProbCalcerOscProb : public OscProbCalcerBase {
    * kPhiij complex phases for non diagonal elements between states i and j 
    * kFracVnc fraction of matter potential affecting NC
    */
-  enum OscParams_NUNM{kAlpha11 = kDetDepth+1, kAlpha21 = kDetDepth+2, kAlpha31 = kDetDepth+3, kAlpha22 = kDetDepth+4, kAlpha32 = kDetDepth+5, kAlpha33 = kDetDepth+6,
-                      kPhi21 = kDetDepth+7, kPhi31 = kDetDepth+8, kPhi32 = kDetDepth+9, kFracVnc = kDetDepth+10};
+  enum OscParams_NUNM{kAlpha11 = kDCP+1, kAlpha21 = kDCP+2, kAlpha31 = kDCP+3, kAlpha22 = kDCP+4, kAlpha32 = kDCP+5, kAlpha33 = kDCP+6,
+                      kPhi21 = kDCP+7, kPhi31 = kDCP+8, kPhi32 = kDCP+9, kFracVnc = kDCP+10};
 
   /**
    * @brief Definition of extra oscillation parameters for PMNS_LIV class (Lorentz Invariance Violation)
@@ -360,18 +361,18 @@ class OscProbCalcerOscProb : public OscProbCalcerBase {
    * kcT_j LIV coefficient of dimension j between 2 neutrino flavors with j = 4, 6 or 8
    * kDelta_j complex phase between 2 neutrino flavors for non diag element with dimension j
    */
-  enum OscParams_LIV{kaT_ee_3 = kDetDepth+1, kaT_emu_3 = kDetDepth+2, kaT_etau_3 = kDetDepth+3, kaT_mumu_3 = kDetDepth+4, kaT_mutau_3 = kDetDepth+5, 
-                     kaT_tautau_3 = kDetDepth+6, kDelta_emu_3 = kDetDepth+7, kDelta_etau_3 = kDetDepth+8, kDelta_mutau_3 = kDetDepth+9,
-                     kcT_ee_4 = kDetDepth+10, kcT_emu_4 = kDetDepth+11, kcT_etau_4 = kDetDepth+12, kcT_mumu_4 = kDetDepth+13, kcT_mutau_4 = kDetDepth+14, 
-                     kcT_tautau_4 = kDetDepth+15, kDelta_emu_4 = kDetDepth+16, kDelta_etau_4 = kDetDepth+17, kDelta_mutau_4 = kDetDepth+18,
-                     kaT_ee_5 = kDetDepth+19, kaT_emu_5 = kDetDepth+20, kaT_etau_5 = kDetDepth+21, kaT_mumu_5 = kDetDepth+22, kaT_mutau_5 = kDetDepth+23, 
-                     kaT_tautau_5 = kDetDepth+24, kDelta_emu_5 = kDetDepth+25, kDelta_etau_5 = kDetDepth+26, kDelta_mutau_5 = kDetDepth+27,
-                     kcT_ee_6 = kDetDepth+28, kcT_emu_6 = kDetDepth+29, kcT_etau_6 = kDetDepth+30, kcT_mumu_6 = kDetDepth+31, kcT_mutau_6 = kDetDepth+32, 
-                     kcT_tautau_6 = kDetDepth+33, kDelta_emu_6 = kDetDepth+34, kDelta_etau_6 = kDetDepth+35, kDelta_mutau_6 = kDetDepth+36,
-                     kaT_ee_7 = kDetDepth+37, kaT_emu_7 = kDetDepth+38, kaT_etau_7 = kDetDepth+39, kaT_mumu_7 = kDetDepth+40, kaT_mutau_7 = kDetDepth+41, 
-                     kaT_tautau_7 = kDetDepth+42, kDelta_emu_7 = kDetDepth+43, kDelta_etau_7 = kDetDepth+44, kDelta_mutau_7 = kDetDepth+45,
-                     kcT_ee_8 = kDetDepth+46, kcT_emu_8 = kDetDepth+47, kcT_etau_8 = kDetDepth+48, kcT_mumu_8 = kDetDepth+49, kcT_mutau_8 = kDetDepth+50, 
-                     kcT_tautau_8 = kDetDepth+51, kDelta_emu_8 = kDetDepth+52, kDelta_etau_8 = kDetDepth+53, kDelta_mutau_8 = kDetDepth+54};
+  enum OscParams_LIV{kaT_ee_3 = kDCP+1, kaT_emu_3 = kDCP+2, kaT_etau_3 = kDCP+3, kaT_mumu_3 = kDCP+4, kaT_mutau_3 = kDCP+5, 
+                     kaT_tautau_3 = kDCP+6, kDelta_emu_3 = kDCP+7, kDelta_etau_3 = kDCP+8, kDelta_mutau_3 = kDCP+9,
+                     kcT_ee_4 = kDCP+10, kcT_emu_4 = kDCP+11, kcT_etau_4 = kDCP+12, kcT_mumu_4 = kDCP+13, kcT_mutau_4 = kDCP+14, 
+                     kcT_tautau_4 = kDCP+15, kDelta_emu_4 = kDCP+16, kDelta_etau_4 = kDCP+17, kDelta_mutau_4 = kDCP+18,
+                     kaT_ee_5 = kDCP+19, kaT_emu_5 = kDCP+20, kaT_etau_5 = kDCP+21, kaT_mumu_5 = kDCP+22, kaT_mutau_5 = kDCP+23, 
+                     kaT_tautau_5 = kDCP+24, kDelta_emu_5 = kDCP+25, kDelta_etau_5 = kDCP+26, kDelta_mutau_5 = kDCP+27,
+                     kcT_ee_6 = kDCP+28, kcT_emu_6 = kDCP+29, kcT_etau_6 = kDCP+30, kcT_mumu_6 = kDCP+31, kcT_mutau_6 = kDCP+32, 
+                     kcT_tautau_6 = kDCP+33, kDelta_emu_6 = kDCP+34, kDelta_etau_6 = kDCP+35, kDelta_mutau_6 = kDCP+36,
+                     kaT_ee_7 = kDCP+37, kaT_emu_7 = kDCP+38, kaT_etau_7 = kDCP+39, kaT_mumu_7 = kDCP+40, kaT_mutau_7 = kDCP+41, 
+                     kaT_tautau_7 = kDCP+42, kDelta_emu_7 = kDCP+43, kDelta_etau_7 = kDCP+44, kDelta_mutau_7 = kDCP+45,
+                     kcT_ee_8 = kDCP+46, kcT_emu_8 = kDCP+47, kcT_etau_8 = kDCP+48, kcT_mumu_8 = kDCP+49, kcT_mutau_8 = kDCP+50, 
+                     kcT_tautau_8 = kDCP+51, kDelta_emu_8 = kDCP+52, kDelta_etau_8 = kDCP+53, kDelta_mutau_8 = kDCP+54};
   
   /**
    * @brief Define the neutrino and antineutrino values expected by this implementation
@@ -402,7 +403,11 @@ private:
    * @brief String storing the path of the density table file used to setup the Earth model
    */
   std::string premfile;
-  
+
+  /**
+   * @brief Double storing the detector depth in km
+   */
+  double fDetDepth;
 };
 
 #endif
