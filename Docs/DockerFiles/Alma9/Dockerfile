@@ -17,6 +17,9 @@ ENV NUOSCILLATOR_VERSION=${NUOSCILLATOR_VERSION:-develop}
 ENV NuOscillator_WORK_DIR=/opt/NuOscillator/
 ENV NuOscillator_INSTALL_DIR=/opt/NuOscillator/build/
 
+# Needed for NuSQUIDS
+RUN dnf install -y hdf5 hdf5-devel
+
 RUN mkdir -p ${NuOscillator_WORK_DIR}
 
 WORKDIR /opt/
