@@ -42,7 +42,7 @@ OscProbCalcerBase::OscProbCalcerBase(YAML::Node InputConfig_) {
 
   if (!Config["OscProbCalcerSetup"]) {
     std::cerr << "Did not find the 'OscProbCalcerSetup' Node within the config" << std::endl;
-    throw;
+    throw std::runtime_error("Invalid setup");
   }
 
   fImplementationName = Config["OscProbCalcerSetup"]["ImplementationName"].as<std::string>();
@@ -52,7 +52,7 @@ OscProbCalcerBase::OscProbCalcerBase(YAML::Node InputConfig_) {
   
   if (!Config["OscProbCalcerSetup"]["OscChannelMapping"]) {
     std::cerr << "Expected to find a 'OscChannelMapping' Node within the 'OscProbCalcerSetup'Node" << std::endl;
-    throw;
+    throw std::runtime_error("Invalid setup");
   }
   InitialiseOscillationChannelMapping();
 
@@ -74,14 +74,14 @@ void OscProbCalcerBase::SetEnergyArray(std::vector<FLOAT_T> EnergyArray) {
       std::cerr << "Found a negative neutrino energy. This indicates a problem in the array passed to: void OscProbCalcerBase::SetEnergyArray(std::vector<FLOAT_T> EnergyArray)" << std::endl;
       std::cerr << "iEnergy:" << iEnergy << std::endl;
       std::cerr << "fEnergyArray[iEnergy]:" << fEnergyArray[iEnergy] << std::endl;
-      throw;
+      throw std::runtime_error("Invalid setup");
     }
   }
 
   for (size_t iEnergy=1;iEnergy<fEnergyArray.size();iEnergy++) {
     if (fEnergyArray[iEnergy-1] > fEnergyArray[iEnergy]) {
       std::cerr << "Found that the Energy array given to OscProbCalcerBase object is not ordered. This will become a problem when performing the binary search for indices" << std::endl;
-      throw;
+      throw std::runtime_error("Invalid setup");
     }
   }
 
@@ -109,14 +109,14 @@ void OscProbCalcerBase::SetCosineZArray(std::vector<FLOAT_T> CosineZArray) {
       std::cerr<< "Found a CosineZ outside of [-1.0,1.0]. This indicates a problem in the array passed to: void OscProbCalcerBase::SetCosineZArray(std::vector<FLOAT_T> CosineZArray)" << std::endl;
       std::cerr << "iCosineZ:" << iCosineZ << std::endl;
       std::cerr << "fCosineZArray[iCosineZ]:" << fCosineZArray[iCosineZ] << std::endl;
-      throw;
+      throw std::runtime_error("Invalid setup");
     }
   }
 
   for (size_t iCosineZ=1;iCosineZ<fCosineZArray.size();iCosineZ++) {
     if (fCosineZArray[iCosineZ-1] > fCosineZArray[iCosineZ]) {
       std::cerr << "Found that the CosineZ array given to OscProbCalcerBase object is not ordered. This will become a problem when performing the binary search for indices" << std::endl;
-      throw;
+      throw std::runtime_error("Invalid setup");
     }
   }
 
@@ -138,12 +138,12 @@ void OscProbCalcerBase::Setup() {
 
   if (!fEnergyArraySet) {
     std::cerr << "Must call OscProbCalcerBase::SetEnergyArray(std::vector<FLOAT_T> EnergyArray) before trying to initialise propagator" << std::endl;
-    throw;
+    throw std::runtime_error("Invalid setup");
   }
 
   if (!fCosineZArraySet) {
     std::cerr << "Must call OscProbCalcerBase::SetCosineZArray(std::vector<FLOAT_T> CosineZArray) before trying to initialise propagator" << std::endl;
-    throw;
+    throw std::runtime_error("Invalid setup");
   }
 
   ResetCurrOscParams();
@@ -167,7 +167,7 @@ const FLOAT_T* OscProbCalcerBase::ReturnPointerToWeight(int InitNuFlav, int Fina
     std::cerr << "Initial neutrino flavour and final neutrino flavour are different Neutrino types (one is positive integer and the other is negative)" << std::endl;
     std::cerr << "InitNuFlav:" << InitNuFlav << std::endl;
     std::cerr << "FinalNuFlav:" << FinalNuFlav << std::endl;
-    throw;
+    throw std::runtime_error("Invalid setup");
   }
 
   int NuTypeIndex = ReturnNuTypeFromFlavour(InitNuFlav);
@@ -183,7 +183,7 @@ const FLOAT_T* OscProbCalcerBase::ReturnPointerToWeight(int InitNuFlav, int Fina
     std::cerr << "Array index in fWeightArray is outside of the array size. This indicates that the implementation of ReturnWeightArrayIndex is incorrect." << std::endl;
     std::cerr << "WeightArrayIndex:" << WeightArrayIndex << std::endl;
     std::cerr << "fWeightArray.size():" << fWeightArray.size() << std::endl;
-    throw;
+    throw std::runtime_error("Invalid setup");
   }
 
   if (fVerbose >= NuOscillator::INFO) {std::cout << "Implementation:" << fImplementationName << " returned pointer to index " << WeightArrayIndex << std::endl;}
@@ -242,7 +242,7 @@ std::vector<NuOscillator::OscillationProbability> OscProbCalcerBase::ReturnProba
     if (CheckVec[iPoint] == false) {
       std::cerr << "Index:" << iPoint << " has not been filled within the returning vector of std::vector<NuOscillator::OscillationProbability> OscProbCalcerBase::ReturnProbabilities()" << std::endl;
       std::cerr << "Indicates a problem!" << std::endl;
-      throw;
+      throw std::runtime_error("Invalid setup");
     } 
   }
 
@@ -256,7 +256,7 @@ void OscProbCalcerBase::Reweight(const std::vector<FLOAT_T>& OscParams) {
     std::cerr << "Number of oscillation parameters passed to calculater does not match that expected by the implementation" << std::endl;
     std::cerr << "OscParams.size():" << OscParams.size() << std::endl;
     std::cerr << "fNOscParams:" << fNOscParams << std::endl;
-    throw;
+    throw std::runtime_error("Invalid setup");
   }
 
   if (!AreOscParamsChanged(OscParams)) {
@@ -275,7 +275,7 @@ void OscProbCalcerBase::SanitiseProbabilities() {
       std::cerr << "Found unreasonable weight in fWeightArray" << std::endl;
       std::cerr << "iWeight:" << iWeight << std::endl;
       std::cerr << "fWeightArray[iWeight]:" << fWeightArray[iWeight] << std::endl;
-      throw;
+      throw std::runtime_error("Invalid setup");
     }
   }
 }
@@ -310,7 +310,7 @@ void OscProbCalcerBase::PrintWeights() {
     if (fWeightArray[i] == DUMMYVAL) {
       std::cerr << "Found oscillation probability which has not been correctly calculated!" << std::endl;
       std::cerr << "This indicates that the mapping between the propagator and fWeightArray is incorrect" << std::endl;
-      throw;
+      throw std::runtime_error("Invalid setup");
     }
   }
   */
@@ -321,7 +321,7 @@ void OscProbCalcerBase::PrintWeights() {
     if (Probabilities[iProb].Probability == DUMMYVAL) {
       std::cerr << "Found oscillation probability which has not been correctly calculated!" << std::endl;
       std::cerr << "This indicates that the mapping between the propagator and fWeightArray is incorrect" << std::endl;
-      throw;
+      throw std::runtime_error("Invalid setup");
     } 
   }
   
@@ -330,7 +330,7 @@ void OscProbCalcerBase::PrintWeights() {
 int OscProbCalcerBase::ReturnEnergyIndexFromValue(FLOAT_T EnergyVal) {
   if (!fEnergyArraySet) {
     std::cerr << "Can not find Energy index as Energy array has not been set" << std::endl;
-    throw;
+    throw std::runtime_error("Invalid setup");
   }
 
   int EnergyIndex = -1;
@@ -344,7 +344,7 @@ int OscProbCalcerBase::ReturnEnergyIndexFromValue(FLOAT_T EnergyVal) {
   if (EnergyIndex == -1) {
     std::cerr << "Did not find Energy in the array used in calculating oscillation probabilities" << std::endl;
     std::cerr << "Requested Energy:" << EnergyVal << std::endl;
-    throw;
+    throw std::runtime_error("Invalid setup");
   }
 
   if (fVerbose >= NuOscillator::INFO) {std::cout << "Returning Energy index:" << EnergyIndex << " for Energy value:" << EnergyVal << " in Implementation:" << fImplementationName << std::endl;}
@@ -354,7 +354,7 @@ int OscProbCalcerBase::ReturnEnergyIndexFromValue(FLOAT_T EnergyVal) {
 int OscProbCalcerBase::ReturnCosineZIndexFromValue(FLOAT_T CosineZVal) {
   if (!fCosineZArraySet) {
     std::cerr << "Can not find CosineZ index as CosineZ array has not been set" << std::endl;
-    throw;
+    throw std::runtime_error("Invalid setup");
   }
 
   int CosineZIndex = -1;
@@ -368,7 +368,7 @@ int OscProbCalcerBase::ReturnCosineZIndexFromValue(FLOAT_T CosineZVal) {
   if (CosineZIndex == -1) {
     std::cerr << "Did not find CosineZ in the array used in calculating oscillation probabilities" << std::endl;
     std::cerr << "Requested CosineZ:" << CosineZVal << std::endl;
-    throw;
+    throw std::runtime_error("Invalid setup");
   }
 
   if (fVerbose >= NuOscillator::INFO) {std::cout << "Returning CosineZ index:" << CosineZIndex << " for CosineZ value:" << CosineZVal << " in Implementation:" << fImplementationName << std::endl;}
@@ -384,7 +384,7 @@ int OscProbCalcerBase::ReturnOscChannelIndexFromFlavours(int InitFlav, int Final
 
   std::cerr << "Did not find reasonable oscillation channel index for the requested generated flavour: " << InitFlav << " and detected flavour: " << FinalFlav << std::endl;
   PrintKnownOscillationChannels();
-  throw;
+  throw std::runtime_error("Invalid setup");
 }
 
 int OscProbCalcerBase::ReturnNuTypeFromFlavour(int NuFlav) {
@@ -400,7 +400,7 @@ int OscProbCalcerBase::ReturnNuTypeFromFlavour(int NuFlav) {
   std::cerr << "Requested Neutrino type is not defined within the NeutrinoType map!" << std::endl;
   std::cerr << "NuFlav:" << NuFlav << std::endl;
   std::cerr << "Associated NuType:" << NuType << std::endl;
-  throw;
+  throw std::runtime_error("Invalid setup");
 }
 
 void OscProbCalcerBase::IntialiseWeightArray() {
@@ -408,7 +408,7 @@ void OscProbCalcerBase::IntialiseWeightArray() {
   fNWeights = DefineWeightArraySize();
   if (fNWeights <= 0) {
     std::cerr << "Number of weights which will be stored is less than 0. This indicates a fault in the calculation specific code: DefineWeightArraySize() is incorrect or has overflow-ed the 'long' type used as the return type" << std::endl;
-    throw;
+    throw std::runtime_error("Invalid setup");
   }
 
   if (fVerbose >= NuOscillator::INFO) {std::cout << "Asked OscProbCalcerBase implementation:" << fImplementationName << " for the size and got " << fNWeights << std::endl;}
@@ -420,7 +420,7 @@ void OscProbCalcerBase::IntialiseWeightArray() {
 void OscProbCalcerBase::InitialiseNeutrinoTypesArray(int Size) {
   if (Size <= 0) {
     std::cerr << "Attempting to initialise fNeutrinoTypes array with size:" << Size << std::endl;
-    throw;
+    throw std::runtime_error("Invalid setup");
   }
   fNeutrinoTypes = std::vector<int>(Size,DUMMYVAL);
   if (fVerbose >= NuOscillator::INFO) {std::cout << "Initialising fNeutrinoTypes to be of size:" << Size << " in Implementation:" << fImplementationName << std::endl;}
@@ -442,20 +442,20 @@ void OscProbCalcerBase::CheckNuFlavourMapping() {
     std::cerr << "fNNeutrinoTypes:" << fNNeutrinoTypes << std::endl;
     std::cerr << "fNOscillationChannels:" << fNOscillationChannels << std::endl;
     std::cerr << "DUMMYVAL:" << DUMMYVAL << std::endl;
-    throw;
+    throw std::runtime_error("Invalid setup");
   }
 
   if (fNNeutrinoTypes != (int)fNeutrinoTypes.size()) {
     std::cerr << "fNeutrinoTypes array not equal in size to fNNeutrinoTypes" << std::endl;
     std::cerr << "fNNeutrinoTypes:" << fNNeutrinoTypes << std::endl;
     std::cerr << "fNeutrinoTypes.size():" << fNeutrinoTypes.size() << std::endl;
-    throw;
+    throw std::runtime_error("Invalid setup");
   }
   for (int iNuType=0;iNuType<fNNeutrinoTypes;iNuType++) {
     if (fNeutrinoTypes[iNuType]==DUMMYVAL) {
       std::cerr << "Found DUMMYVAL in fNeutrinoTypes" << std::endl;
       std::cerr << "iNuType:" << iNuType << std::endl;
-      throw;
+      throw std::runtime_error("Invalid setup");
     }
   }
 
@@ -463,13 +463,13 @@ void OscProbCalcerBase::CheckNuFlavourMapping() {
     std::cerr << "fOscillationChannels array not equal in size to fNOscillationChannels" << std::endl;
     std::cerr << "fNOscillationChannels:" << fNOscillationChannels << std::endl;
     std::cerr << "fOscillationChannels.size():" << fOscillationChannels.size() << std::endl;
-    throw;
+    throw std::runtime_error("Invalid setup");
   }
   for (int iNuFlav=0;iNuFlav<fNOscillationChannels;iNuFlav++) {
     if (fOscillationChannels[iNuFlav].DetectedFlavour == 0 || fOscillationChannels[iNuFlav].GeneratedFlavour == 0) {
       std::cerr << "Found DUMMYVAL in fOscillationChannels" << std::endl;
       std::cerr << "iNuFlav:" << iNuFlav << std::endl;
-      throw;
+      throw std::runtime_error("Invalid setup");
     }
   }
 
@@ -487,7 +487,7 @@ bool OscProbCalcerBase::SanityCheck() {
     std::cerr << "fPropagatorSet:" << fPropagatorSet << std::endl;
     std::cerr << "fWeightArrayInit:" << fWeightArrayInit << std::endl;
     std::cerr << "fNuMappingSet:" << fNuMappingSet << std::endl;
-    throw; 
+    throw std::runtime_error("Invalid setup"); 
   } else {
     if (fVerbose >= NuOscillator::INFO) {std::cout << "Implementation:" << fImplementationName << " passed SanityCheck" << std::endl;}
   }

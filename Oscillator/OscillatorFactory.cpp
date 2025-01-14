@@ -29,12 +29,12 @@ OscillatorBase* OscillatorFactory::CreateOscillator(YAML::Node Config) {
   } else {
     std::cerr << "OscillatorFactory was provided with unknown calculation type:" << OscillatorType << std::endl;
     std::cerr << "Please fix any mistakes or implement the calculator type at:" << __LINE__ << " : " << __FILE__ << std::endl;
-    throw;
+    throw std::runtime_error("Invalid setup");
   }
 
   if (Oscillator == NULL) {
     std::cerr << "Did not successfully setup the correct return variable 'Oscillator'" << std::endl;
-    throw;
+    throw std::runtime_error("Invalid setup");
   }
 
   return Oscillator;

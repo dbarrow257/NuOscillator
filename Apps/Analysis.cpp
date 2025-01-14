@@ -83,7 +83,7 @@ int main() {
     } else {
       std::cerr << "Did not find viable oscillation parameters to hand to the oscillation probability calculater" << std::endl;
       std::cerr << "Oscillator->ReturnNOscParams():" << Oscillators[iOsc]->ReturnNOscParams() << std::endl;
-      throw;
+      throw std::runtime_error("Invalid setup");
     }
   
     if (PrintWeights) {

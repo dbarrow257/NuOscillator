@@ -54,13 +54,13 @@ std::vector<FLOAT_T> OscillatorBinned::ReadBinEdgesFromFile(std::string TFileNam
   TFile* File = new TFile(TFileName.c_str());
   if (!File || File->IsZombie()) {
     std::cerr << "Could not find file:" << TFileName << std::endl;
-    throw;
+    throw std::runtime_error("Invalid setup");
   }
 
   TH1* Histogram = (TH1*)File->Get(HistogramName.c_str());
   if (!Histogram) {
     std::cerr << "Could not find Histogram:" << HistogramName << " in File:" << TFileName << std::endl;
-    throw;
+    throw std::runtime_error("Invalid setup");
   }
 
   BinEdges.resize(Histogram->GetNbinsX()+1);
@@ -114,7 +114,7 @@ const FLOAT_T* OscillatorBinned::ReturnWeightPointer(int InitNuFlav, int FinalNu
   }
   if (EnergyIndex == -1) {
     std::cerr << "Invalid bin found in OscillatorBinned::ReturnWeightPointer - Did not find the correct bin for Energy:" << EnergyVal << std::endl;
-    throw;
+    throw std::runtime_error("Invalid setup");
   }
   EnergyValBinCenter = EnergyAxisBinCenters[EnergyIndex];
 
@@ -136,7 +136,7 @@ const FLOAT_T* OscillatorBinned::ReturnWeightPointer(int InitNuFlav, int FinalNu
     }
     if (CosineZIndex == -1) {
       std::cerr << "Invalid bin found in OscillatorBinned::ReturnWeightPointer - Did not find the correct bin for CosineZ:" << CosineZVal << std::endl;
-      throw;
+      throw std::runtime_error("Invalid setup");
     }
     CosineZValBinCenter = CosineZAxisBinCenters[CosineZIndex];
   }
