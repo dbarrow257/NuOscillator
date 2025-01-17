@@ -98,7 +98,7 @@ int main() {
       } else {
         std::cerr << "Did not find viable oscillation parameters to hand to the oscillation probability calculater" << std::endl;
         std::cerr << "Oscillator->ReturnNOscParams():" << Oscillators[iOsc]->ReturnNOscParams() << std::endl;
-        throw;
+        throw std::runtime_error("Invalid setup");
       }
       auto t2_single = high_resolution_clock::now();
       duration<double, std::milli> ms_single_double = t2_single-t1_single;

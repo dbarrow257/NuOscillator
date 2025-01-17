@@ -14,7 +14,7 @@ using std::chrono::milliseconds;
 int main(int argc, char **argv) {
   if (argc != 2) {
     std::cerr << "./SingleOscillator InputConfig.yaml" << std::endl;
-    throw;
+    throw std::runtime_error("Invalid setup");
   }
   std::string ConfigName = argv[1];
   
@@ -84,7 +84,7 @@ int main(int argc, char **argv) {
     } else {
       std::cerr << "Did not find viable oscillation parameters to hand to the oscillation probability calculater" << std::endl;
       std::cerr << "Oscillator->ReturnNOscParams():" << Oscillators[iOsc]->ReturnNOscParams() << std::endl;
-      throw;
+      throw std::runtime_error("Invalid setup");
     }
   
     if (PrintWeights) {

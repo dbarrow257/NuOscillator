@@ -85,7 +85,7 @@ void OscProbCalcerCUDAProb3Linear::CalculateProbabilities(const std::vector<FLOA
   for (int iOscPar=0;iOscPar<=kTH13;iOscPar++) {
     if (OscParams[iOscPar] < 0) {
       std::cerr << "Invalid oscillation parameter (Can not sqrt this value)!:" << OscParams[iOscPar] << std::endl;
-      throw;
+      throw std::runtime_error("Invalid setup");
     }
   }
 

@@ -8,21 +8,21 @@ OscProbCalcerOscProb::OscProbCalcerOscProb(YAML::Node Config_) : OscProbCalcerBa
   //Grab information from the config
   if (!Config_["OscProbCalcerSetup"]["PMNSType"]) {
     std::cerr << "Expected to find a 'PMNSType' Node within the 'OscProbCalcerSetup''Implementation' Node" << std::endl;
-    throw;
+    throw std::runtime_error("YAML node not found");
   }
 
   std::string OscMatrix = Config_["OscProbCalcerSetup"]["PMNSType"].as<std::string>();
 
   if (!Config_["OscProbCalcerSetup"]["PREMFile"]) {
     std::cerr << "Expected to find a 'PREMFile' Node within the 'OscProbCalcerSetup''Implementation' Node" << std::endl;
-    throw;
+    throw std::runtime_error("YAML node not found");
   }
 
   premfile = Config_["OscProbCalcerSetup"]["PREMFile"].as<std::string>();
 
   if (!Config_["OscProbCalcerSetup"]["DetDepth"]) {
     std::cerr << "Expected to find a 'DetDepth' Node within the 'OscProbCalcerSetup''Implementation' Node" << std::endl;
-    throw;
+    throw std::runtime_error("YAML node not found");
   }
 
   fDetDepth = Config_["OscProbCalcerSetup"]["DetDepth"].as<double>();
@@ -820,7 +820,7 @@ int OscProbCalcerOscProb::PMNS_StrToInt(std::string PMNSType) {
   }
   else {
     std::cerr << "Invalid PMNS matrix type provided:" << PMNSType << std::endl;
-    throw;
+    throw std::runtime_error("Invalid setup");
   }
   
   return -1;
@@ -863,7 +863,7 @@ int OscProbCalcerOscProb::GetNOscParams(int OscType) {
   }
   else {
     std::cerr << "Invalid PMNS matrix type provided:" << OscType << std::endl;
-    throw;
+    throw std::runtime_error("Invalid setup");
   }
 
   return -1;
