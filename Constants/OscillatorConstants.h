@@ -62,6 +62,11 @@ namespace NuOscillator
   
 }
 
+inline std::vector<FLOAT_T> ReturnOscParams_Basic() {
+  std::vector<FLOAT_T> OscParams_Basic = {3.07e-1,5.28e-1,2.18e-2,7.53e-5,2.509e-3,-1.601};
+  return OscParams_Basic;
+}
+
 inline std::vector<FLOAT_T> ReturnOscParams_Atm() {
   std::vector<FLOAT_T> OscParams_Atm = {3.07e-1,5.28e-1,2.18e-2,7.53e-5,2.509e-3,-1.601,25.0};
   return OscParams_Atm;
@@ -103,6 +108,10 @@ inline std::vector<std::string> ReturnKnownConfigs() {
 
 #if UseNuFASTLinear == 1
   ConfigNames.push_back("./Configs/Binned_NuFASTLinear.yaml");
+#endif
+
+#if UseOscProb == 1
+  ConfigNames.push_back("./Configs/Binned_OscProb.yaml");
 #endif  
 
   return ConfigNames;
@@ -128,7 +137,7 @@ inline int NeutrinoFlavour_StrToInt(std::string NuFlav) {
     return NuOscillator::kSterile3;
   } else {
     std::cerr << "Could not convert input string:" << NuFlav << " to known enum value in NeutrinoFlavours" << std::endl;
-    throw;
+    throw std::runtime_error("Invalid setup");
   }
   
   return -1;
@@ -157,7 +166,7 @@ inline std::string NeutrinoFlavour_IntToStr(int NuFlav) {
     return "Sterile3";
   default:
     std::cerr << "Recieved unknown NeutrinoFlavour:" << NuFlav << " which is inconsistent with those in enum 'NeutrinoFlavours'" << std::endl;
-    throw;
+    throw std::runtime_error("Invalid setup");
   }
   return "";
 }
@@ -176,7 +185,7 @@ inline int Verbosity_StrToInt(std::string Verbosity) {
     return NuOscillator::INFO;
   } else {
     std::cerr << "Invalid verbosity provided:" << Verbosity << std::endl;
-    throw;
+    throw std::runtime_error("Invalid setup");
   }
   
   return -1;
@@ -209,7 +218,7 @@ inline NuOscillator::OscillationChannel ReturnOscillationChannel(std::string Inp
 inline std::vector<FLOAT_T> logspace(FLOAT_T Emin, FLOAT_T  Emax, int nDiv) {
   if (nDiv==0) {
     std::cerr << "Requested log spacing distribution with 0 divisions" << std::endl;
-    throw;
+    throw std::runtime_error("Invalid setup");
   }
 
   std::vector<FLOAT_T> logpoints(nDiv+1, 0.0);
@@ -240,7 +249,7 @@ inline std::vector<FLOAT_T> logspace(FLOAT_T Emin, FLOAT_T  Emax, int nDiv) {
 inline std::vector<FLOAT_T> linspace(FLOAT_T Emin, FLOAT_T Emax, int nDiv) {
   if (nDiv==0) {
     std::cerr << "Requested linear spacing distribution with 0 divisions" << std::endl;
-    throw;
+    throw std::runtime_error("Invalid setup");
   }
 
   std::vector<FLOAT_T> linpoints(nDiv+1, 0.0);

@@ -86,7 +86,7 @@ void OscProbCalcerNuFASTLinear::CalculateProbabilities(const std::vector<FLOAT_T
 	if (Weight<0. || Weight > 1.) {
 	  std::cout << "s12sq:" << s12sq << " s13sq:" << s13sq << " s23sq:" << s23sq << " delta:" << delta << " Dmsq21:" << Dmsq21 << " Dmsq31:" << Dmsq31 << " L:" << L << " E:" << E << " rho:" << rho << " Ye:" << Ye << " N_Newton:" << N_Newton << std::endl;
 	  std::cout << "iOscProb:" << iOscProb << " iNuType:" << iNuType << " iOscChannel:" << iOscChannel << " IndexToFill:" << IndexToFill << " fWeightArray[IndexToFill+iOscProb]:" << Weight << std::endl;
-	  throw;
+	  throw std::runtime_error("Invalid probability");
 	}
 	
 	fWeightArray[IndexToFill+iOscProb] = Weight;

@@ -21,6 +21,15 @@ jobs:
           - os: Alma9
             file: Docs/DockerFiles/Alma9/Dockerfile
             tag: alma9latest
+            cmakeoptions: -DUseDoubles=1
+          - os: Alma9 float
+            file: Docs/DockerFiles/Alma9/Dockerfile
+            tag: alma9latest
+            cmakeoptions: -DUseDoubles=0
+          - os: Rocky9
+            file: Docs/DockerFiles/Rocky9/Dockerfile
+            tag: rocky9latest
+            cmakeoptions: -DUseGPU=1
 
     name: Build CI ${{ matrix.os }}
 
@@ -31,4 +40,4 @@ jobs:
       run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
 
     - name: Build the Docker image
-      run: docker build . --file ${{ matrix.file }} --tag ghcr.io/${{ github.repository_owner }}/nuoscillator:${{ matrix.tag }} --build-arg NUOSCILLATOR_VERSION=${{ github.head_ref }}
+      run: docker build . --file ${{ matrix.file }} --tag ghcr.io/${{ github.repository_owner }}/nuoscillator:${{ matrix.tag }} --build-arg NUOSCILLATOR_VERSION=${{ github.head_ref }} --build-arg CMAKE_OPTIONS="${{ matrix.cmakeoptions }}"

@@ -16,12 +16,12 @@ include(${CMAKE_CURRENT_LIST_DIR}/cmake/Modules/NuOscillatorUtils.cmake)
 # By default GPU is off
 DefineEnabledRequiredSwitch(UseGPU 0)
 
-set(NUOSCILLATOR_VERSION 1.0.3)
+set(NUOSCILLATOR_VERSION 1.1.0)
 
 if(${UseGPU} EQUAL 0)
-    project(NUOSCILLATOR VERSION ${NUOSCILLATOR_VERSION} LANGUAGES CXX)
+  project(NUOSCILLATOR VERSION ${NUOSCILLATOR_VERSION} LANGUAGES CXX)
 else()
-    project(NUOSCILLATOR VERSION ${NUOSCILLATOR_VERSION} LANGUAGES CXX CUDA)
+  project(NUOSCILLATOR VERSION ${NUOSCILLATOR_VERSION} LANGUAGES CXX CUDA)
 endif()
 
 LIST(APPEND CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake/Modules)
@@ -29,7 +29,7 @@ LIST(APPEND CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake/Modules)
 #Changes default install path to be a subdirectory of the build dir.
 #Can set build dir at configure time with -DCMAKE_INSTALL_PREFIX=/install/path
 if(CMAKE_INSTALL_PREFIX STREQUAL "" OR CMAKE_INSTALL_PREFIX STREQUAL
-  "/usr/local")
+    "/usr/local")
   set(CMAKE_INSTALL_PREFIX "${CMAKE_BINARY_DIR}/${CMAKE_SYSTEM_NAME}")
 elseif(NOT DEFINED CMAKE_INSTALL_PREFIX)
   set(CMAKE_INSTALL_PREFIX "${CMAKE_BINARY_DIR}/${CMAKE_SYSTEM_NAME}")
@@ -55,14 +55,16 @@ DefineEnabledRequiredSwitch(UseCUDAProb3Linear 0)
 DefineEnabledRequiredSwitch(UseProb3ppLinear 0)
 DefineEnabledRequiredSwitch(UseProbGPULinear 0)
 DefineEnabledRequiredSwitch(UseNuFASTLinear 0)
+DefineEnabledRequiredSwitch(UseOscProb 0)
 
 # KS: NuFastLinear by default
-if(UseCUDAProb3       EQUAL 0 AND
-   UseCUDAProb3Linear EQUAL 0 AND
-   UseProb3ppLinear   EQUAL 0 AND
-   UseProbGPULinear   EQUAL 0 AND
-   UseNuFASTLinear    EQUAL 0)
-    set(UseNuFASTLinear 1)
+if(UseCUDAProb3        EQUAL 0 AND
+    UseCUDAProb3Linear EQUAL 0 AND
+    UseProb3ppLinear   EQUAL 0 AND
+    UseProbGPULinear   EQUAL 0 AND
+    UseNuFASTLinear    EQUAL 0 AND
+    UseOscProb         EQUAL 0)
+  set(UseNuFASTLinear 1)
 endif()
 
 LIST(APPEND ALL_Engines
@@ -71,7 +73,8 @@ LIST(APPEND ALL_Engines
   Prob3ppLinear
   ProbGPULinear
   NuFASTLinear
-  )
+  OscProb
+)
 cmessage(STATUS "NuOscillator Features: ")
 foreach(f ${ALL_Engines})
   cmessage(STATUS "     ${f}: ${Use${f}}")
@@ -79,29 +82,29 @@ endforeach()
 
 cmessage(STATUS "Required variables being used:")
 if(${UseGPU} EQUAL 1)
-    cmessage(STATUS "\tUsing GPU")
+  cmessage(STATUS "\tUsing GPU")
 else()
-    cmessage(STATUS "\tNot using GPU")
-
-    if(${UseProbGPULinear} EQUAL 1)
-        cmessage(FATAL_ERROR "ProbGPULinear calculator can only be used when using GPU")
-    endif()
+  cmessage(STATUS "\tNot using GPU")
+  
+  if(${UseProbGPULinear} EQUAL 1)
+    cmessage(FATAL_ERROR "ProbGPULinear calculator can only be used when using GPU")
+  endif()
 endif()
 
 if(${UseMultithreading} EQUAL 1)
-    cmessage(STATUS "\tUsing Multithreading with nThreads=$ENV{OMP_NUM_THREADS}")
+  cmessage(STATUS "\tUsing Multithreading with nThreads=$ENV{OMP_NUM_THREADS}")
 else()
-    cmessage(STATUS "\tNot using Multithreading")
+  cmessage(STATUS "\tNot using Multithreading")
 endif()
 
 if(${UseDoubles} EQUAL 1)
-    cmessage(STATUS "\tUsing FLOAT_T=double")
+  cmessage(STATUS "\tUsing FLOAT_T=double")
 else()
-    cmessage(STATUS "\tUsing FLOAT_T=float")
+  cmessage(STATUS "\tUsing FLOAT_T=float")
 endif()
 
 if(${UseCUDAProb3} EQUAL 1 AND ${UseCUDAProb3Linear} EQUAL 1)
-    cmessage(FATAL_ERROR "CUDAProb3 and CUDAProb3Linear and not able to be built at the same time")
+  cmessage(FATAL_ERROR "CUDAProb3 and CUDAProb3Linear and not able to be built at the same time")
 endif()
 
 if(${UseMultithreading} EQUAL 1)
@@ -110,7 +113,7 @@ if(${UseMultithreading} EQUAL 1)
 endif()
 
 if(NOT DEFINED NuOscillator_Compiler_Flags)
-    set(NuOscillator_Compiler_Flags "")
+  set(NuOscillator_Compiler_Flags "")
 endif()
 
 separate_arguments(NuOscillator_Compiler_Flags)
@@ -119,26 +122,26 @@ cmessage(STATUS "Set compiler options: ${NuOscillator_Compiler_Flags}")
 add_compile_options(${NuOscillator_Compiler_Flags})
 
 if(${UseGPU} EQUAL 1)
-	#KS: Allow user to define CMAKE_CUDA_ARCHITECTURES
-	if(NOT DEFINED CMAKE_CUDA_ARCHITECTURES)
-		#KS: See this for more info https://cmake.org/cmake/help/latest/prop_tgt/CUDA_ARCHITECTURES.html
-	if( ${CMAKE_VERSION} VERSION_GREATER_EQUAL 3.23 )
-		set(CMAKE_CUDA_ARCHITECTURES all )
-			#KS: Consider using native, requires cmake 3.24... will be terrible for containers but should results in more optimised code
-		#set(CMAKE_CUDA_ARCHITECTURES native )
-	else()
-	#KS: Apparently with newer cmake and GPU
-		set(CMAKE_CUDA_ARCHITECTURES 60 61 70 75 80 86)
-	endif()
-	#KS: Bit hacky but to properly pass cuda flags we need
-	string(REPLACE ";" " " CMAKE_CUDA_ARCHITECTURES_STRING "${CMAKE_CUDA_ARCHITECTURES}")
-	else()
-	#KS this may look hacky however CPM isn't build for passing stuff like this. If CMAKE_CUDA_ARCHITECTURES is passed CPM it will be string not list. Thus we convert it to list
-	set(CMAKE_CUDA_ARCHITECTURES_STRING ${CMAKE_CUDA_ARCHITECTURES})
-	string(REPLACE " " ";" CMAKE_CUDA_ARCHITECTURES "${CMAKE_CUDA_ARCHITECTURES}")
-	endif()
-
-    cmessage(STATUS "Set CUDA ARCHITECTURES options: ${CMAKE_CUDA_ARCHITECTURES_STRING}")
+  #KS: Allow user to define CMAKE_CUDA_ARCHITECTURES
+  if(NOT DEFINED CMAKE_CUDA_ARCHITECTURES)
+    #KS: See this for more info https://cmake.org/cmake/help/latest/prop_tgt/CUDA_ARCHITECTURES.html
+    if( ${CMAKE_VERSION} VERSION_GREATER_EQUAL 3.23 )
+      set(CMAKE_CUDA_ARCHITECTURES all )
+      #KS: Consider using native, requires cmake 3.24... will be terrible for containers but should results in more optimised code
+      #set(CMAKE_CUDA_ARCHITECTURES native )
+    else()
+      #KS: Apparently with newer cmake and GPU
+      set(CMAKE_CUDA_ARCHITECTURES 60 61 70 75 80 86)
+    endif()
+    #KS: Bit hacky but to properly pass cuda flags we need
+    string(REPLACE ";" " " CMAKE_CUDA_ARCHITECTURES_STRING "${CMAKE_CUDA_ARCHITECTURES}")
+  else()
+    #KS this may look hacky however CPM isn't build for passing stuff like this. If CMAKE_CUDA_ARCHITECTURES is passed CPM it will be string not list. Thus we convert it to list
+    set(CMAKE_CUDA_ARCHITECTURES_STRING ${CMAKE_CUDA_ARCHITECTURES})
+    string(REPLACE " " ";" CMAKE_CUDA_ARCHITECTURES "${CMAKE_CUDA_ARCHITECTURES}")
+  endif()
+  
+  cmessage(STATUS "Set CUDA ARCHITECTURES options: ${CMAKE_CUDA_ARCHITECTURES_STRING}")
 endif()
 
 #================================================================================================
@@ -163,111 +166,139 @@ endif()
 find_package(ROOT 6.18 REQUIRED)
 
 if(${UseCUDAProb3} EQUAL 1)
-	   CPMFindPackage(
-		NAME CUDAProb3
-		GITHUB_REPOSITORY "dbarrow257/CUDAProb3"
-		GIT_TAG "develop"
-		DOWNLOAD_ONLY
-	   )
-	   if(NOT CUDAProb3_ADDED)
-	   	  cmessage(FATAL_ERROR "Could not download CUDAProb3")
-	   endif()
-
-	   target_compile_definitions(NuOscillatorCompilerOptions INTERFACE UseCUDAProb3=1)
+  CPMFindPackage(
+    NAME CUDAProb3
+    GITHUB_REPOSITORY "dbarrow257/CUDAProb3"
+    GIT_TAG "develop"
+    DOWNLOAD_ONLY
+  )
+  if(NOT CUDAProb3_ADDED)
+    cmessage(FATAL_ERROR "Could not download CUDAProb3")
+  endif()
+  
+  target_compile_definitions(NuOscillatorCompilerOptions INTERFACE UseCUDAProb3=1)
 endif()
 
 if(${UseCUDAProb3Linear} EQUAL 1)
-	if(${UseGPU} EQUAL 1)
-		CPMFindPackage(
-			NAME CUDAProb3
-        		GITHUB_REPOSITORY "mach3-software/CUDAProb3"
-        		GIT_TAG "main"
-			OPTIONS
-			"GPU_ON ON"
-			"CMAKE_CUDA_ARCHITECTURES ${CMAKE_CUDA_ARCHITECTURES_STRING}"
-    			)
-    else()
+  if(${UseGPU} EQUAL 1)
     CPMFindPackage(
-        NAME CUDAProb3
-        GITHUB_REPOSITORY "mach3-software/CUDAProb3"
-        GIT_TAG "main"
-        OPTIONS
-        "CPU_ONLY ON"
-        "GPU_ON OFF"
-        )
+      NAME CUDAProb3
+      GITHUB_REPOSITORY "mach3-software/CUDAProb3"
+      GIT_TAG "main"
+      OPTIONS
+      "GPU_ON ON"
+      "CMAKE_CUDA_ARCHITECTURES ${CMAKE_CUDA_ARCHITECTURES_STRING}"
+    )
+  else()
+    CPMFindPackage(
+      NAME CUDAProb3
+      GITHUB_REPOSITORY "mach3-software/CUDAProb3"
+      GIT_TAG "main"
+      OPTIONS
+      "CPU_ONLY ON"
+      "GPU_ON OFF"
+    )
     # KS: Terrible hack because CUDAProb3Beam is mess :(
     install(TARGETS CUDAProb3Beam
-        EXPORT NuOscillator-targets
-        LIBRARY DESTINATION lib/
-        PUBLIC_HEADER DESTINATION include/CUDAProb3Beam)
-	endif()
-	if(NOT TARGET CUDAProb3Beam OR NOT TARGET CUDAProb3Atmos)
-		cmessage(FATAL_ERROR "Could not find CUDAProb3Linear")
-	endif()
-	target_compile_definitions(NuOscillatorCompilerOptions INTERFACE UseCUDAProb3Linear=1)
+      EXPORT NuOscillator-targets
+      LIBRARY DESTINATION lib/
+      PUBLIC_HEADER DESTINATION include/CUDAProb3Beam)
+  endif()
+  if(NOT TARGET CUDAProb3Beam OR NOT TARGET CUDAProb3Atmos)
+    cmessage(FATAL_ERROR "Could not find CUDAProb3Linear")
+  endif()
+  target_compile_definitions(NuOscillatorCompilerOptions INTERFACE UseCUDAProb3Linear=1)
 endif()
 
 if(${UseGPU} EQUAL 1)
-	if(${UseProbGPULinear} EQUAL 1)
-		   CPMFindPackage(
-		   	NAME ProbGPU
-			GIT_TAG main
-			GITHUB_REPOSITORY dbarrow257/ProbGPU
-			OPTIONS
-			"CMAKE_CUDA_ARCHITECTURES ${CMAKE_CUDA_ARCHITECTURES_STRING}"
-			)
-		   if(NOT TARGET ProbGPU)
-			cmessage(FATAL_ERROR "Could not find ProbGPU")
-		   endif()
-
-		target_compile_definitions(NuOscillatorCompilerOptions INTERFACE UseProbGPULinear=1)
-	endif()
+  if(${UseProbGPULinear} EQUAL 1)
+    CPMFindPackage(
+      NAME ProbGPU
+      GIT_TAG main
+      GITHUB_REPOSITORY dbarrow257/ProbGPU
+      OPTIONS
+      "CMAKE_CUDA_ARCHITECTURES ${CMAKE_CUDA_ARCHITECTURES_STRING}"
+    )
+    if(NOT TARGET ProbGPU)
+      cmessage(FATAL_ERROR "Could not find ProbGPU")
+    endif()
+    
+    target_compile_definitions(NuOscillatorCompilerOptions INTERFACE UseProbGPULinear=1)
+  endif()
 endif()
 
 if(${UseProb3ppLinear} EQUAL 1)
-    CPMAddPackage(
-        NAME Prob3plusplus
-        VERSION 3.10.4
-        GITHUB_REPOSITORY rogerwendell/Prob3plusplus
-        GIT_TAG main
-    )
-
-    if(NOT TARGET Prob3plusplus)
-        cmessage(FATAL_ERROR "Could not find Prob3plusplus")
-    endif()
-    target_compile_definitions(NuOscillatorCompilerOptions INTERFACE UseProb3ppLinear=1)
-
-    install(TARGETS Prob3plusplus
-        EXPORT NuOscillator-targets
-        LIBRARY DESTINATION lib/)
+  CPMAddPackage(
+    NAME Prob3plusplus
+    VERSION 3.10.4
+    GITHUB_REPOSITORY rogerwendell/Prob3plusplus
+    GIT_TAG main
+  )
+  
+  if(NOT TARGET Prob3plusplus)
+    cmessage(FATAL_ERROR "Could not find Prob3plusplus")
+  endif()
+  target_compile_definitions(NuOscillatorCompilerOptions INTERFACE UseProb3ppLinear=1)
+  
+  install(TARGETS Prob3plusplus
+    EXPORT NuOscillator-targets
+    LIBRARY DESTINATION lib/)
 endif()
 
 if(${UseNuFASTLinear} EQUAL 1)
-    CPMAddPackage(
-      	NAME NuFAST
-      	GIT_TAG v1.0
-      	GITHUB_REPOSITORY PeterDenton/NuFast
-      	DOWNLOAD_ONLY
-      )
-      target_compile_definitions(NuOscillatorCompilerOptions INTERFACE UseNuFASTLinear=1)
+  CPMAddPackage(
+    NAME NuFAST
+    GIT_TAG v1.0
+    GITHUB_REPOSITORY PeterDenton/NuFast
+    DOWNLOAD_ONLY
+  )
+  target_compile_definitions(NuOscillatorCompilerOptions INTERFACE UseNuFASTLinear=1)
+endif()
+
+if(${UseOscProb} EQUAL 1)
+  CPMAddPackage(
+    NAME OscProb
+    GITHUB_REPOSITORY joaoabcoelho/OscProb
+    GIT_TAG master
+  )
+  
+  CPMAddPackage(
+    NAME Eigen
+    VERSION 3.4.0
+    URL https://gitlab.com/libeigen/eigen/-/archive/3.4.0/eigen-3.4.0.tar.gz
+    DOWNLOAD_ONLY YES
+  )
+  if(Eigen_ADDED)
+    add_library(Eigen INTERFACE IMPORTED)
+    target_include_directories(Eigen INTERFACE ${Eigen_SOURCE_DIR})
+  endif()
+  
+  execute_process(COMMAND make WORKING_DIRECTORY ${OscProb_SOURCE_DIR})
+  
+  add_library(OSCPROB INTERFACE IMPORTED)
+  target_include_directories(OSCPROB INTERFACE  ${OscProb_SOURCE_DIR})
+  
+  target_compile_definitions(NuOscillatorCompilerOptions INTERFACE UseOscProb=1)
+  
+  set(OSCPROB_LIB_DIR ${OscProb_SOURCE_DIR}/lib)
 endif()
 
 if(${UseGPU} EQUAL 1)
-    target_compile_definitions(NuOscillatorCompilerOptions INTERFACE UseGPU=1)
+  target_compile_definitions(NuOscillatorCompilerOptions INTERFACE UseGPU=1)
 else()
-    target_compile_definitions(NuOscillatorCompilerOptions INTERFACE UseGPU=0)
+  target_compile_definitions(NuOscillatorCompilerOptions INTERFACE UseGPU=0)
 endif()
 
 if(${UseMultithreading} EQUAL 1)
-    target_compile_definitions(NuOscillatorCompilerOptions INTERFACE UseMultithreading=1)
+  target_compile_definitions(NuOscillatorCompilerOptions INTERFACE UseMultithreading=1)
 else()
-    target_compile_definitions(NuOscillatorCompilerOptions INTERFACE UseMultithreading=0)
+  target_compile_definitions(NuOscillatorCompilerOptions INTERFACE UseMultithreading=0)
 endif()
 
 if(${UseDoubles} EQUAL 1)
-    target_compile_definitions(NuOscillatorCompilerOptions INTERFACE UseDoubles=1)
+  target_compile_definitions(NuOscillatorCompilerOptions INTERFACE UseDoubles=1)
 else()
-    target_compile_definitions(NuOscillatorCompilerOptions INTERFACE UseDoubles=0)
+  target_compile_definitions(NuOscillatorCompilerOptions INTERFACE UseDoubles=0)
 endif()
 
 #================================================================================================
@@ -290,8 +321,8 @@ install(DIRECTORY Constants DESTINATION ${CMAKE_INSTALL_PREFIX}/)
 
 set_target_properties(NuOscillatorCompilerOptions PROPERTIES EXPORT_NAME CompilerOptions)
 install(TARGETS NuOscillatorCompilerOptions
-    EXPORT NuOscillator-targets
-    LIBRARY DESTINATION lib/)
+  EXPORT NuOscillator-targets
+  LIBRARY DESTINATION lib/)
 
 #================================================================================================
 
@@ -302,18 +333,18 @@ target_link_libraries(NuOscillator INTERFACE Oscillator OscProbCalcer NuOscillat
 set_target_properties(NuOscillator PROPERTIES EXPORT_NAME All)
 
 install(TARGETS NuOscillator
-    EXPORT NuOscillator-targets
-    LIBRARY DESTINATION lib/)
+  EXPORT NuOscillator-targets
+  LIBRARY DESTINATION lib/)
 
 install(EXPORT NuOscillator-targets
-        FILE NuOscillatorTargets.cmake
-        NAMESPACE NuOscillator::
-        DESTINATION ${CMAKE_INSTALL_PREFIX}/
+  FILE NuOscillatorTargets.cmake
+  NAMESPACE NuOscillator::
+  DESTINATION ${CMAKE_INSTALL_PREFIX}/
 )
 
 install(DIRECTORY
-    Configs
-    DESTINATION ${CMAKE_BINARY_DIR}/NuOscillatorConfigs)
+  Configs
+  DESTINATION ${CMAKE_BINARY_DIR}/NuOscillatorConfigs)
 
 add_library(NuOscillator::All ALIAS NuOscillator)
 
@@ -323,17 +354,17 @@ include(CMakePackageConfigHelpers)
 configure_package_config_file(
   ${CMAKE_CURRENT_LIST_DIR}/cmake/Templates/NuOscillatorConfig.cmake.in ${CMAKE_BINARY_DIR}/NuOscillatorConfig.cmake
   INSTALL_DESTINATION
-    /this/is/ignored/for/some/reason/thanks/kitware
+  /this/is/ignored/for/some/reason/thanks/kitware
   NO_SET_AND_CHECK_MACRO
   NO_CHECK_REQUIRED_COMPONENTS_MACRO)
 
-  write_basic_package_version_file(${CMAKE_BINARY_DIR}/NuOscillatorConfigVersion.cmake
+write_basic_package_version_file(${CMAKE_BINARY_DIR}/NuOscillatorConfigVersion.cmake
   VERSION ${NUOSCILLATOR_VERSION}
   COMPATIBILITY AnyNewerVersion)
 
 install(FILES
-    ${CMAKE_BINARY_DIR}/NuOscillatorConfig.cmake
-    ${CMAKE_BINARY_DIR}/NuOscillatorConfigVersion.cmake
+  ${CMAKE_BINARY_DIR}/NuOscillatorConfig.cmake
+  ${CMAKE_BINARY_DIR}/NuOscillatorConfigVersion.cmake
   DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/cmake/NuOscillator)
 
 include(nuoscillator-config)
