@@ -146,6 +146,6 @@ int OscProbCalcerCUDAProb3::ReturnWeightArrayIndex(int NuTypeIndex, int OscChanI
 }
 
 long OscProbCalcerCUDAProb3::DefineWeightArraySize() {
-  long nCalculationPoints = fNEnergyPoints * fNCosineZPoints * fNOscillationChannels * fNNeutrinoTypes;
+  long nCalculationPoints = static_cast<long>(fNEnergyPoints) * fNCosineZPoints * fNOscillationChannels * fNNeutrinoTypes;
   return nCalculationPoints;
 }

@@ -468,7 +468,7 @@ int OscProbCalcerOscProb::ReturnWeightArrayIndex(int NuTypeIndex, int OscChanInd
 }
 
 long OscProbCalcerOscProb::DefineWeightArraySize() {
-  long nCalculationPoints = fNEnergyPoints * fNCosineZPoints * fNOscillationChannels * fNNeutrinoTypes;
+  long nCalculationPoints = static_cast<long>(fNEnergyPoints) * fNCosineZPoints * fNOscillationChannels * fNNeutrinoTypes;
   return nCalculationPoints;
 }
 
