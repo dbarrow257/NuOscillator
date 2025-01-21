@@ -88,7 +88,7 @@ void OscProbCalcerNuFASTLinear::CalculateProbabilities(const std::vector<FLOAT_T
 	  std::cout << "iOscProb:" << iOscProb << " iNuType:" << iNuType << " iOscChannel:" << iOscChannel << " IndexToFill:" << IndexToFill << " fWeightArray[IndexToFill+iOscProb]:" << Weight << std::endl;
 	  throw std::runtime_error("Invalid probability");
 	}
-	
+
 	fWeightArray[IndexToFill+iOscProb] = Weight;
       }
       
@@ -103,6 +103,6 @@ int OscProbCalcerNuFASTLinear::ReturnWeightArrayIndex(int NuTypeIndex, int OscCh
 }
 
 long OscProbCalcerNuFASTLinear::DefineWeightArraySize() {
-  long nCalculationPoints = fNEnergyPoints * fNOscillationChannels * fNNeutrinoTypes;
+  long nCalculationPoints = static_cast<long>(fNEnergyPoints) * fNOscillationChannels * fNNeutrinoTypes;
   return nCalculationPoints;
 }
