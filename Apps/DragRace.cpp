@@ -71,7 +71,7 @@ int main(int argc, char **argv) {
 
   std::cout << "Finished setup in executable" << std::endl;
   std::cout << "========================================================" << std::endl;
-  std::cout << "Starting drag race in executable" << std::endl;
+  std::cout << "Starting drag race in executable - number of iterations:" << nThrows << std::endl;
 
   std::vector< std::vector<double> > ReweightTimes(Oscillators.size());
   for (size_t iOsc=0;iOsc<Oscillators.size();iOsc++) {
