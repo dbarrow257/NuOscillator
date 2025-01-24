@@ -4,7 +4,8 @@ General:
   CalculationType: "Unbinned"
 
 OscProbCalcerSetup:
-  ImplementationName: "CUDAProb3Linear"
+  ImplementationName: "CUDAProb3"
+  EarthModelFileName: "./build/_deps/cudaprob3-src/models/PREM_4layer.dat"
   OscChannelMapping:
     - Entry: "Electron:Electron"
     - Entry: "Electron:Muon"
