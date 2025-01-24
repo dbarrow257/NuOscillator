@@ -48,4 +48,4 @@ jobs:
       run: |
         source /opt/NuOscillator/build/Linux/bin/setup.NuOscillator.sh
         cd /opt/NuOscillator/
-        build/Linux/bin//${{ matrix.name }}
+        build/Linux/bin//${{ matrix.name }} 10
