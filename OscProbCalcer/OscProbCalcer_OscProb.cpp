@@ -1,4 +1,5 @@
 #include "OscProbCalcer_OscProb.h"
+#include <fstream>
 
 OscProbCalcerOscProb::OscProbCalcerOscProb(YAML::Node Config_) : OscProbCalcerBase(Config_)
 {
@@ -53,6 +54,9 @@ OscProbCalcerOscProb::~OscProbCalcerOscProb() {
 }
 
 void OscProbCalcerOscProb::SetupPropagator() {
+
+  std::ifstream file(premfile);
+  if(!file) throw std::runtime_error("could not open PREM file " + premfile);
 
   PremModel = OscProb::PremModel(premfile);
 
