@@ -259,7 +259,7 @@ if(${UseOscProb} EQUAL 1)
   CPMAddPackage(
     NAME OscProb
     GITHUB_REPOSITORY joaoabcoelho/OscProb
-    GIT_TAG master
+    GIT_TAG v2.1.2
   )
   
   CPMAddPackage(
