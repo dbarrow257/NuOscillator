@@ -171,7 +171,7 @@ Public Types</h2></td></tr>
 , <a class="el" href="classOscProbCalcerOscProb.html#a0aaf27fac6252d17cf989964af0526c4ad73493f9ebb53af94bfa5d9cbed66988">kDownCoup</a> = kDCP+12
 <br />
  }</td></tr>
-<tr class="memdesc:a0aaf27fac6252d17cf989964af0526c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Definition of extra oscillation parameters for PMNS_NSI class kEps quantity reprensenting the intensity of NSI wrt standard matter effects between the different flavours kDelta complex phases between the different flavours (non diag elements) kElecCoup electron coupling kUpCoup u-quark coupling kDownCoup d-quark coupling.  <a href="classOscProbCalcerOscProb.html#a0aaf27fac6252d17cf989964af0526c4">More...</a><br /></td></tr>
+<tr class="memdesc:a0aaf27fac6252d17cf989964af0526c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Definition of extra oscillation parameters for PMNS_NSI class kEps quantity reprensenting the intensity of NSI wrt standard matter effects between the different flavours kDelta complex phases between the different flavours (non diag elements kElecCoup electron coupling kUpCoup u-quark coupling kDownCoup d-quark coupling.  <a href="classOscProbCalcerOscProb.html#a0aaf27fac6252d17cf989964af0526c4">More...</a><br /></td></tr>
 <tr class="separator:a0aaf27fac6252d17cf989964af0526c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5a43c0273d6af70b9165e6da5317679d" id="r_a5a43c0273d6af70b9165e6da5317679d"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerOscProb.html#a5a43c0273d6af70b9165e6da5317679d">OscParams_SNSI</a> { <a class="el" href="classOscProbCalcerOscProb.html#a5a43c0273d6af70b9165e6da5317679da78d412508cf58155dcb11508f85fa5ce">kLightMass</a> = kDownCoup+1
  }</td></tr>
@@ -311,6 +311,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ab24de45630cf49e438d5f7cb551f1e7a" id="r_ab24de45630cf49e438d5f7cb551f1e7a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerOscProb.html#ab24de45630cf49e438d5f7cb551f1e7a">CalculateProbabilities</a> (const std::vector&lt; <a class="el" href="OscillatorConstants_8h.html#acb53b45d3e1b677a15c2ef27b266b1ca">FLOAT_T</a> &gt; &amp;<a class="el" href="classOscProbCalcerOscProb.html#afe48140827f760b4cf4294320b99ee99">OscParams</a>) override</td></tr>
 <tr class="memdesc:ab24de45630cf49e438d5f7cb551f1e7a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate some oscillation probabilities for a particular oscillation parameter set.  <br /></td></tr>
 <tr class="separator:ab24de45630cf49e438d5f7cb551f1e7a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0aa5191f699003f06a604e8c972d318f" id="r_a0aa5191f699003f06a604e8c972d318f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerOscProb.html#a0aa5191f699003f06a604e8c972d318f">CalcProbPMNS</a> (OscProb::PMNS_Base *myPMNS)</td></tr>
+<tr class="memdesc:a0aa5191f699003f06a604e8c972d318f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate some oscillation probabilities for a particular oscillation parameter set.  <br /></td></tr>
+<tr class="separator:a0aa5191f699003f06a604e8c972d318f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2149cc22cc06cfaf2791d96ae7b2f463" id="r_a2149cc22cc06cfaf2791d96ae7b2f463"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerOscProb.html#a2149cc22cc06cfaf2791d96ae7b2f463">CalcProbPMNS_Fast</a> (const std::vector&lt; <a class="el" href="OscillatorConstants_8h.html#acb53b45d3e1b677a15c2ef27b266b1ca">FLOAT_T</a> &gt; &amp;<a class="el" href="classOscProbCalcerOscProb.html#afe48140827f760b4cf4294320b99ee99">OscParams</a>)</td></tr>
 <tr class="memdesc:a2149cc22cc06cfaf2791d96ae7b2f463"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate some oscillation probabilities for a particular oscillation parameter set.  <br /></td></tr>
 <tr class="separator:a2149cc22cc06cfaf2791d96ae7b2f463"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -350,9 +353,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:acf26debd4447c0607d80372523f16862" id="r_acf26debd4447c0607d80372523f16862"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerOscProb.html#acf26debd4447c0607d80372523f16862">GetNOscParams</a> (int OscType)</td></tr>
 <tr class="memdesc:acf26debd4447c0607d80372523f16862"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return number of parameters needed for a particular type of PMNS matrix.  <br /></td></tr>
 <tr class="separator:acf26debd4447c0607d80372523f16862"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a819aa9c9744312e51281469669442521" id="r_a819aa9c9744312e51281469669442521"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerOscProb.html#a819aa9c9744312e51281469669442521">SetPMNSParams_Fast</a> (OscProb::PMNS_Fast *Fast, const std::vector&lt; <a class="el" href="OscillatorConstants_8h.html#acb53b45d3e1b677a15c2ef27b266b1ca">FLOAT_T</a> &gt; &amp;<a class="el" href="classOscProbCalcerOscProb.html#afe48140827f760b4cf4294320b99ee99">OscParams</a>)</td></tr>
-<tr class="memdesc:a819aa9c9744312e51281469669442521"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set parameters for PMNS_Fast.  <br /></td></tr>
-<tr class="separator:a819aa9c9744312e51281469669442521"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a77428f171673a3b8117f352dce0e8261" id="r_a77428f171673a3b8117f352dce0e8261"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerOscProb.html#a77428f171673a3b8117f352dce0e8261">SetPMNSParams</a> (OscProb::PMNS_Base *pmns, const std::vector&lt; <a class="el" href="OscillatorConstants_8h.html#acb53b45d3e1b677a15c2ef27b266b1ca">FLOAT_T</a> &gt; &amp;<a class="el" href="classOscProbCalcerOscProb.html#afe48140827f760b4cf4294320b99ee99">OscParams</a>)</td></tr>
+<tr class="memdesc:a77428f171673a3b8117f352dce0e8261"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set parameters for PMNS_Base.  <br /></td></tr>
+<tr class="separator:a77428f171673a3b8117f352dce0e8261"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad6d6e10727684e71472ba4d3d21a67b8" id="r_ad6d6e10727684e71472ba4d3d21a67b8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerOscProb.html#ad6d6e10727684e71472ba4d3d21a67b8">SetPMNSParams_Sterile</a> (OscProb::PMNS_Sterile *Sterile, const std::vector&lt; <a class="el" href="OscillatorConstants_8h.html#acb53b45d3e1b677a15c2ef27b266b1ca">FLOAT_T</a> &gt; &amp;<a class="el" href="classOscProbCalcerOscProb.html#afe48140827f760b4cf4294320b99ee99">OscParams</a>)</td></tr>
 <tr class="memdesc:ad6d6e10727684e71472ba4d3d21a67b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set parameters for PMNS_Sterile with up to 3 additional neutrino states.  <br /></td></tr>
 <tr class="separator:ad6d6e10727684e71472ba4d3d21a67b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -465,6 +468,12 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:ae4fc4394bef8e13bac6183535cadd18f" id="r_ae4fc4394bef8e13bac6183535cadd18f"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerOscProb.html#ae4fc4394bef8e13bac6183535cadd18f">fDetDepth</a></td></tr>
 <tr class="memdesc:ae4fc4394bef8e13bac6183535cadd18f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Double storing the detector depth in km.  <br /></td></tr>
 <tr class="separator:ae4fc4394bef8e13bac6183535cadd18f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aad7e9ad4894bff286a8aca966b37b575" id="r_aad7e9ad4894bff286a8aca966b37b575"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerOscProb.html#aad7e9ad4894bff286a8aca966b37b575">fMaxGenFlavour</a></td></tr>
+<tr class="memdesc:aad7e9ad4894bff286a8aca966b37b575"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum generated flavour for ProbMatrix calculation.  <br /></td></tr>
+<tr class="separator:aad7e9ad4894bff286a8aca966b37b575"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5bac12226d77a6d72d6bd3af6ff6730a" id="r_a5bac12226d77a6d72d6bd3af6ff6730a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerOscProb.html#a5bac12226d77a6d72d6bd3af6ff6730a">fMaxDetFlavour</a></td></tr>
+<tr class="memdesc:a5bac12226d77a6d72d6bd3af6ff6730a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum detected flavour for ProbMatrix calculation.  <br /></td></tr>
+<tr class="separator:a5bac12226d77a6d72d6bd3af6ff6730a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
@@ -757,7 +766,7 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition of extra oscillation parameters for PMNS_NSI class kEps quantity reprensenting the intensity of NSI wrt standard matter effects between the different flavours kDelta complex phases between the different flavours (non diag elements) kElecCoup electron coupling kUpCoup u-quark coupling kDownCoup d-quark coupling. </p>
+<p>Definition of extra oscillation parameters for PMNS_NSI class kEps quantity reprensenting the intensity of NSI wrt standard matter effects between the different flavours kDelta complex phases between the different flavours (non diag elements kElecCoup electron coupling kUpCoup u-quark coupling kDownCoup d-quark coupling. </p>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a0aaf27fac6252d17cf989964af0526c4a2531c688914df471150d9f3b08b6172e" name="a0aaf27fac6252d17cf989964af0526c4a2531c688914df471150d9f3b08b6172e"></a>kEps_ee&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="a0aaf27fac6252d17cf989964af0526c4a1488cf0cdf55d89311f5611cfe1e9ef4" name="a0aaf27fac6252d17cf989964af0526c4a1488cf0cdf55d89311f5611cfe1e9ef4"></a>kEps_emu&#160;</td><td class="fielddoc"></td></tr>
@@ -982,6 +991,33 @@ Additional Inherited Members</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="a0aa5191f699003f06a604e8c972d318f" name="a0aa5191f699003f06a604e8c972d318f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0aa5191f699003f06a604e8c972d318f">&#9670;&#160;</a></span>CalcProbPMNS()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void OscProbCalcerOscProb::CalcProbPMNS </td>
+          <td>(</td>
+          <td class="paramtype">OscProb::PMNS_Base *&#160;</td>
+          <td class="paramname"><em>myPMNS</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Calculate some oscillation probabilities for a particular oscillation parameter set. </p>
+<p>Calculator oscillation probabilities with any PMNS object. This function both calculates and stores the oscillation probabilities in <a class="el" href="classOscProbCalcerBase.html#a89ca55fe94b0f4b7710ca61d97bacdba" title="Vector which stores the oscillation probabilities.">fWeightArray</a>.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">myPMNS</td><td>The PMNS object to compute </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="a15a545077a6ebb2423582163eb793eae" name="a15a545077a6ebb2423582163eb793eae"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a15a545077a6ebb2423582163eb793eae">&#9670;&#160;</a></span>CalcProbPMNS_Decay()</h2>
 
@@ -1420,6 +1456,44 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
+<a id="a77428f171673a3b8117f352dce0e8261" name="a77428f171673a3b8117f352dce0e8261"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a77428f171673a3b8117f352dce0e8261">&#9670;&#160;</a></span>SetPMNSParams()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void OscProbCalcerOscProb::SetPMNSParams </td>
+          <td>(</td>
+          <td class="paramtype">OscProb::PMNS_Base *&#160;</td>
+          <td class="paramname"><em>pmns</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; <a class="el" href="OscillatorConstants_8h.html#acb53b45d3e1b677a15c2ef27b266b1ca">FLOAT_T</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>OscParams</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set parameters for PMNS_Base. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">PMNS</td><td>object of any class </td></tr>
+    <tr><td class="paramname">OscParams</td><td>The parameter set to calculate oscillation probabilities at</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Sets relevant parameters for PMNS Matrix </dd></dl>
+
+</div>
+</div>
 <a id="a4d8f15e4dcaf18b92593aa1012e2f767" name="a4d8f15e4dcaf18b92593aa1012e2f767"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a4d8f15e4dcaf18b92593aa1012e2f767">&#9670;&#160;</a></span>SetPMNSParams_Decay()</h2>
 
@@ -1488,44 +1562,6 @@ Additional Inherited Members</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">Deco</td><td>object of class PMNS_Deco </td></tr>
-    <tr><td class="paramname">OscParams</td><td>The parameter set to calculate oscillation probabilities at</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Sets relevant parameters for PMNS Matrix </dd></dl>
-
-</div>
-</div>
-<a id="a819aa9c9744312e51281469669442521" name="a819aa9c9744312e51281469669442521"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a819aa9c9744312e51281469669442521">&#9670;&#160;</a></span>SetPMNSParams_Fast()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void OscProbCalcerOscProb::SetPMNSParams_Fast </td>
-          <td>(</td>
-          <td class="paramtype">OscProb::PMNS_Fast *&#160;</td>
-          <td class="paramname"><em>Fast</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const std::vector&lt; <a class="el" href="OscillatorConstants_8h.html#acb53b45d3e1b677a15c2ef27b266b1ca">FLOAT_T</a> &gt; &amp;&#160;</td>
-          <td class="paramname"><em>OscParams</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Set parameters for PMNS_Fast. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">Fast</td><td>object of class PMNS_Fast </td></tr>
     <tr><td class="paramname">OscParams</td><td>The parameter set to calculate oscillation probabilities at</td></tr>
   </table>
   </dd>
@@ -1813,6 +1849,54 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Double storing the detector depth in km. </p>
+
+</div>
+</div>
+<a id="a5bac12226d77a6d72d6bd3af6ff6730a" name="a5bac12226d77a6d72d6bd3af6ff6730a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5bac12226d77a6d72d6bd3af6ff6730a">&#9670;&#160;</a></span>fMaxDetFlavour</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int OscProbCalcerOscProb::fMaxDetFlavour</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Maximum detected flavour for ProbMatrix calculation. </p>
+
+</div>
+</div>
+<a id="aad7e9ad4894bff286a8aca966b37b575" name="aad7e9ad4894bff286a8aca966b37b575"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aad7e9ad4894bff286a8aca966b37b575">&#9670;&#160;</a></span>fMaxGenFlavour</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int OscProbCalcerOscProb::fMaxGenFlavour</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Maximum generated flavour for ProbMatrix calculation. </p>
 
 </div>
 </div>
