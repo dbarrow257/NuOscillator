@@ -21,8 +21,8 @@ jobs:
       fail-fast: false  # Prevents cancellation of remaining jobs if one fails
       matrix:
         include:
-		- name: DragRace
-		- argument: 10
+	  - name: DragRace
+	    argument: 10
     container:
       image: ghcr.io/mach3-software/mach3:alma9latest
 
