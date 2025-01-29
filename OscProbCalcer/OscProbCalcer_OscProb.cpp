@@ -1,6 +1,5 @@
 #include "OscProbCalcer_OscProb.h"
-
-#include "TMath.h"
+#include <fstream>
 
 OscProbCalcerOscProb::OscProbCalcerOscProb(YAML::Node Config_) : OscProbCalcerBase(Config_)
 {
@@ -35,7 +34,16 @@ OscProbCalcerOscProb::OscProbCalcerOscProb(YAML::Node Config_) : OscProbCalcerBa
 
   fOscType = PMNS_StrToInt(OscMatrix);
   fNOscParams = GetNOscParams(fOscType);
-  
+
+  fMaxGenFlavour = 1;
+  fMaxDetFlavour = 1;
+  for (int iOscChannel = 0; iOscChannel < fNOscillationChannels; iOscChannel++) {
+    int gflv = fOscillationChannels[iOscChannel].GeneratedFlavour;
+    int dflv = fOscillationChannels[iOscChannel].DetectedFlavour;
+    if(gflv>fMaxGenFlavour) fMaxGenFlavour = gflv;
+    if(dflv>fMaxDetFlavour) fMaxDetFlavour = dflv;
+  }
+
   std::cout << "PMNS Type : " << fOscType << std::endl;
   std::cout << "Number of parameters : " << fNOscParams << std::endl;
   std::cout << "PREM Model : " << premfile << std::endl;
@@ -46,7 +54,10 @@ OscProbCalcerOscProb::~OscProbCalcerOscProb() {
 }
 
 void OscProbCalcerOscProb::SetupPropagator() {
-  
+
+  std::ifstream file(premfile);
+  if(!file) throw std::runtime_error("could not open PREM file " + premfile);
+
   PremModel = OscProb::PremModel(premfile);
 
 }
@@ -58,7 +69,7 @@ void OscProbCalcerOscProb::CalculateProbabilities(const std::vector<FLOAT_T>& Os
   PremModel.SetDetPos(det_radius);
 
   switch(fOscType) {
-    case kFast: 
+    case kFast:
       CalcProbPMNS_Fast(OscParams);
       break;
 
@@ -77,7 +88,7 @@ void OscProbCalcerOscProb::CalculateProbabilities(const std::vector<FLOAT_T>& Os
     case kDecay:
       CalcProbPMNS_Decay(OscParams);
       break;
-    
+
     case kDeco:
       CalcProbPMNS_Deco(OscParams);
       break;
@@ -107,36 +118,30 @@ void OscProbCalcerOscProb::CalculateProbabilities(const std::vector<FLOAT_T>& Os
   }
 }
 
-void OscProbCalcerOscProb::CalcProbPMNS_Fast(const std::vector<FLOAT_T>& OscParams) {
-  double energy, cosZ;
-  double weight;
-  int index;
+void OscProbCalcerOscProb::CalcProbPMNS(OscProb::PMNS_Base* myPMNS) {
 
-  OscProb::PMNS_Fast myPMNS;
+  for (int iNuType = 0; iNuType < fNNeutrinoTypes; iNuType++) {
 
-  SetPMNSParams_Fast(&myPMNS, OscParams);
-  
+    myPMNS->SetIsNuBar(fNeutrinoTypes[iNuType]==Nubar);
 
-  for (int iCosineZ = 0; iCosineZ < fNCosineZPoints; iCosineZ++) {
+    for (int iCosineZ = 0; iCosineZ < fNCosineZPoints; iCosineZ++) {
 
-    cosZ = fCosineZArray[iCosineZ];
+      PremModel.FillPath(fCosineZArray[iCosineZ]);
 
-    PremModel.FillPath(cosZ);
+      myPMNS->SetPath(PremModel.GetNuPath());
 
-    myPMNS.SetPath(PremModel.GetNuPath());
-    
-    for (int iEnergy = 0; iEnergy < fNEnergyPoints; iEnergy++) {
+      for (int iEnergy = 0; iEnergy < fNEnergyPoints; iEnergy++) {
 
-      energy = fEnergyArray[iEnergy];
-
-      for (int iNuType = 0; iNuType < fNNeutrinoTypes; iNuType++) {
-
-        myPMNS.SetIsNuBar(fNeutrinoTypes[iNuType]==Nubar);
+        OscProb::matrixD probMatrix = myPMNS->ProbMatrix(fMaxGenFlavour,
+                                                         fMaxDetFlavour,
+                                                         fEnergyArray[iEnergy]);
 
         for (int iOscChannel = 0; iOscChannel < fNOscillationChannels; iOscChannel++) {
-          
-          weight = myPMNS.Prob(fOscillationChannels[iOscChannel].GeneratedFlavour-1, fOscillationChannels[iOscChannel].DetectedFlavour-1, energy);
-          index = ReturnWeightArrayIndex(iNuType, iOscChannel, iEnergy, iCosineZ);
+
+          int gflv = fOscillationChannels[iOscChannel].GeneratedFlavour-1;
+          int dflv = fOscillationChannels[iOscChannel].DetectedFlavour-1;
+          double weight = probMatrix[gflv][dflv];
+          int index = ReturnWeightArrayIndex(iNuType, iOscChannel, iEnergy, iCosineZ);
 
           fWeightArray[index] = weight;
 
@@ -145,377 +150,128 @@ void OscProbCalcerOscProb::CalcProbPMNS_Fast(const std::vector<FLOAT_T>& OscPara
       }
     }
   }
+
+}
+
+void OscProbCalcerOscProb::CalcProbPMNS_Fast(const std::vector<FLOAT_T>& OscParams) {
+
+  OscProb::PMNS_Fast myPMNS;
+  SetPMNSParams(&myPMNS, OscParams);
+  return CalcProbPMNS(&myPMNS);
 
 }
 
 void OscProbCalcerOscProb::CalcProbPMNS_Sterile(const std::vector<FLOAT_T>& OscParams, int neutrino_number) {
-  double energy, cosZ;
-  double weight;
-  int index;
 
   OscProb::PMNS_Sterile myPMNS(neutrino_number);
-
   SetPMNSParams_Sterile(&myPMNS, OscParams);
-  
+
   std::cout << "Proba with PMNS Sterile and " << neutrino_number << " neutrinos" << std::endl;
 
-  for (int iCosineZ = 0; iCosineZ < fNCosineZPoints; iCosineZ++) {
+  return CalcProbPMNS(&myPMNS);
 
-    cosZ = fCosineZArray[iCosineZ];
-
-    PremModel.FillPath(cosZ);
-
-    myPMNS.SetPath(PremModel.GetNuPath());
-    
-    for (int iEnergy = 0; iEnergy < fNEnergyPoints; iEnergy++) {
-
-      energy = fEnergyArray[iEnergy];
-
-      for (int iNuType = 0; iNuType < fNNeutrinoTypes; iNuType++) {
-
-        myPMNS.SetIsNuBar(fNeutrinoTypes[iNuType]==Nubar);
-
-        for (int iOscChannel = 0; iOscChannel < fNOscillationChannels; iOscChannel++) {
-          
-          weight = myPMNS.Prob(fOscillationChannels[iOscChannel].GeneratedFlavour-1, fOscillationChannels[iOscChannel].DetectedFlavour-1, energy);
-          index = ReturnWeightArrayIndex(iNuType, iOscChannel, iEnergy, iCosineZ);
-
-          fWeightArray[index] = weight;
-
-        }
-
-      }
-    }
-  }
 }
 
 void OscProbCalcerOscProb::CalcProbPMNS_Decay(const std::vector<FLOAT_T>& OscParams) {
-  double energy, cosZ;
-  double weight;
-  int index;
 
   OscProb::PMNS_Decay myPMNS;
-
   SetPMNSParams_Decay(&myPMNS, OscParams);
+  return CalcProbPMNS(&myPMNS);
 
-  for (int iCosineZ = 0; iCosineZ < fNCosineZPoints; iCosineZ++) {
-
-    cosZ = fCosineZArray[iCosineZ];
-
-    PremModel.FillPath(cosZ);
-
-    myPMNS.SetPath(PremModel.GetNuPath());
-    
-    for (int iEnergy = 0; iEnergy < fNEnergyPoints; iEnergy++) {
-
-      energy = fEnergyArray[iEnergy];
-
-      for (int iNuType = 0; iNuType < fNNeutrinoTypes; iNuType++) {
-
-        myPMNS.SetIsNuBar(fNeutrinoTypes[iNuType]==Nubar);
-
-        for (int iOscChannel = 0; iOscChannel < fNOscillationChannels; iOscChannel++) {
-          
-          weight = myPMNS.Prob(fOscillationChannels[iOscChannel].GeneratedFlavour-1, fOscillationChannels[iOscChannel].DetectedFlavour-1, energy);
-          index = ReturnWeightArrayIndex(iNuType, iOscChannel, iEnergy, iCosineZ);
-
-          fWeightArray[index] = weight;
-
-        }
-
-      }
-    }
-  }
 }
 
 void OscProbCalcerOscProb::CalcProbPMNS_Deco(const std::vector<FLOAT_T>& OscParams) {
-  double energy, cosZ;
-  double weight;
-  int index;
 
   OscProb::PMNS_Deco myPMNS;
-
   SetPMNSParams_Deco(&myPMNS, OscParams);
+  return CalcProbPMNS(&myPMNS);
 
-  for (int iCosineZ = 0; iCosineZ < fNCosineZPoints; iCosineZ++) {
-
-    cosZ = fCosineZArray[iCosineZ];
-
-    PremModel.FillPath(cosZ);
-
-    myPMNS.SetPath(PremModel.GetNuPath());
-    
-    for (int iEnergy = 0; iEnergy < fNEnergyPoints; iEnergy++) {
-
-      energy = fEnergyArray[iEnergy];
-
-      for (int iNuType = 0; iNuType < fNNeutrinoTypes; iNuType++) {
-
-        myPMNS.SetIsNuBar(fNeutrinoTypes[iNuType]==Nubar);
-
-        for (int iOscChannel = 0; iOscChannel < fNOscillationChannels; iOscChannel++) {
-          
-          weight = myPMNS.Prob(fOscillationChannels[iOscChannel].GeneratedFlavour-1, fOscillationChannels[iOscChannel].DetectedFlavour-1, energy);
-          index = ReturnWeightArrayIndex(iNuType, iOscChannel, iEnergy, iCosineZ);
-
-          fWeightArray[index] = weight;
-
-        }
-
-      }
-    }
-  }
 }
 
 void OscProbCalcerOscProb::CalcProbPMNS_NSI(const std::vector<FLOAT_T>& OscParams) {
-  double energy, cosZ;
-  double weight;
-  int index;
 
   OscProb::PMNS_NSI myPMNS;
-
   SetPMNSParams_NSI(&myPMNS, OscParams);
+  return CalcProbPMNS(&myPMNS);
 
-  for (int iCosineZ = 0; iCosineZ < fNCosineZPoints; iCosineZ++) {
-
-    cosZ = fCosineZArray[iCosineZ];
-
-    PremModel.FillPath(cosZ);
-
-    myPMNS.SetPath(PremModel.GetNuPath());
-    
-    for (int iEnergy = 0; iEnergy < fNEnergyPoints; iEnergy++) {
-
-      energy = fEnergyArray[iEnergy];
-
-      for (int iNuType = 0; iNuType < fNNeutrinoTypes; iNuType++) {
-
-        myPMNS.SetIsNuBar(fNeutrinoTypes[iNuType]==Nubar);
-
-        for (int iOscChannel = 0; iOscChannel < fNOscillationChannels; iOscChannel++) {
-          
-          weight = myPMNS.Prob(fOscillationChannels[iOscChannel].GeneratedFlavour-1, fOscillationChannels[iOscChannel].DetectedFlavour-1, energy);
-          index = ReturnWeightArrayIndex(iNuType, iOscChannel, iEnergy, iCosineZ);
-
-          fWeightArray[index] = weight;
-
-        }
-
-      }
-    }
-  }
 }
 
 void OscProbCalcerOscProb::CalcProbPMNS_SNSI(const std::vector<FLOAT_T>& OscParams) {
-  double energy, cosZ;
-  double weight;
-  int index;
 
   OscProb::PMNS_SNSI myPMNS;
-
   SetPMNSParams_SNSI(&myPMNS, OscParams);
+  return CalcProbPMNS(&myPMNS);
 
-  for (int iCosineZ = 0; iCosineZ < fNCosineZPoints; iCosineZ++) {
-
-    cosZ = fCosineZArray[iCosineZ];
-
-    PremModel.FillPath(cosZ);
-
-    myPMNS.SetPath(PremModel.GetNuPath());
-    
-    for (int iEnergy = 0; iEnergy < fNEnergyPoints; iEnergy++) {
-
-      energy = fEnergyArray[iEnergy];
-
-      for (int iNuType = 0; iNuType < fNNeutrinoTypes; iNuType++) {
-
-        myPMNS.SetIsNuBar(fNeutrinoTypes[iNuType]==Nubar);
-
-        for (int iOscChannel = 0; iOscChannel < fNOscillationChannels; iOscChannel++) {
-          
-          weight = myPMNS.Prob(fOscillationChannels[iOscChannel].GeneratedFlavour-1, fOscillationChannels[iOscChannel].DetectedFlavour-1, energy);
-          index = ReturnWeightArrayIndex(iNuType, iOscChannel, iEnergy, iCosineZ);
-
-          fWeightArray[index] = weight;
-
-        }
-
-      }
-    }
-  }
 }
 
 void OscProbCalcerOscProb::CalcProbPMNS_Iter(const std::vector<FLOAT_T>& OscParams) {
-  double energy, cosZ;
-  double weight;
-  int index;
 
   OscProb::PMNS_Iter myPMNS;
-
   SetPMNSParams_Iter(&myPMNS, OscParams);
+  return CalcProbPMNS(&myPMNS);
 
-  for (int iCosineZ = 0; iCosineZ < fNCosineZPoints; iCosineZ++) {
-
-    cosZ = fCosineZArray[iCosineZ];
-
-    PremModel.FillPath(cosZ);
-
-    myPMNS.SetPath(PremModel.GetNuPath());
-    
-    for (int iEnergy = 0; iEnergy < fNEnergyPoints; iEnergy++) {
-
-      energy = fEnergyArray[iEnergy];
-
-      for (int iNuType = 0; iNuType < fNNeutrinoTypes; iNuType++) {
-
-        myPMNS.SetIsNuBar(fNeutrinoTypes[iNuType]==Nubar);
-
-        for (int iOscChannel = 0; iOscChannel < fNOscillationChannels; iOscChannel++) {
-          
-          weight = myPMNS.Prob(fOscillationChannels[iOscChannel].GeneratedFlavour-1, fOscillationChannels[iOscChannel].DetectedFlavour-1, energy);
-          index = ReturnWeightArrayIndex(iNuType, iOscChannel, iEnergy, iCosineZ);
-
-          fWeightArray[index] = weight;
-
-        }
-
-      }
-    }
-  }
 }
 
 void OscProbCalcerOscProb::CalcProbPMNS_NUNM(const std::vector<FLOAT_T>& OscParams) {
-  double energy, cosZ;
-  double weight;
-  int index;
 
   OscProb::PMNS_NUNM myPMNS;
-
   SetPMNSParams_NUNM(&myPMNS, OscParams);
+  return CalcProbPMNS(&myPMNS);
 
-  for (int iCosineZ = 0; iCosineZ < fNCosineZPoints; iCosineZ++) {
-
-    cosZ = fCosineZArray[iCosineZ];
-
-    PremModel.FillPath(cosZ);
-
-    myPMNS.SetPath(PremModel.GetNuPath());
-    
-    for (int iEnergy = 0; iEnergy < fNEnergyPoints; iEnergy++) {
-
-      energy = fEnergyArray[iEnergy];
-
-      for (int iNuType = 0; iNuType < fNNeutrinoTypes; iNuType++) {
-
-        myPMNS.SetIsNuBar(fNeutrinoTypes[iNuType]==Nubar);
-
-        for (int iOscChannel = 0; iOscChannel < fNOscillationChannels; iOscChannel++) {
-          
-          weight = myPMNS.Prob(fOscillationChannels[iOscChannel].GeneratedFlavour-1, fOscillationChannels[iOscChannel].DetectedFlavour-1, energy);
-          index = ReturnWeightArrayIndex(iNuType, iOscChannel, iEnergy, iCosineZ);
-
-          fWeightArray[index] = weight;
-
-        }
-
-      }
-    }
-  }
 }
 
 void OscProbCalcerOscProb::CalcProbPMNS_LIV(const std::vector<FLOAT_T>& OscParams) {
-  double energy, cosZ;
-  double weight;
-  int index;
 
   OscProb::PMNS_LIV myPMNS;
-
   SetPMNSParams_LIV(&myPMNS, OscParams);
+  return CalcProbPMNS(&myPMNS);
 
-  for (int iCosineZ = 0; iCosineZ < fNCosineZPoints; iCosineZ++) {
-
-    cosZ = fCosineZArray[iCosineZ];
-
-    PremModel.FillPath(cosZ);
-
-    myPMNS.SetPath(PremModel.GetNuPath());
-    
-    for (int iEnergy = 0; iEnergy < fNEnergyPoints; iEnergy++) {
-
-      energy = fEnergyArray[iEnergy];
-
-      for (int iNuType = 0; iNuType < fNNeutrinoTypes; iNuType++) {
-
-        myPMNS.SetIsNuBar(fNeutrinoTypes[iNuType]==Nubar);
-
-        for (int iOscChannel = 0; iOscChannel < fNOscillationChannels; iOscChannel++) {
-          
-          weight = myPMNS.Prob(fOscillationChannels[iOscChannel].GeneratedFlavour-1, fOscillationChannels[iOscChannel].DetectedFlavour-1, energy);
-          index = ReturnWeightArrayIndex(iNuType, iOscChannel, iEnergy, iCosineZ);
-
-          fWeightArray[index] = weight;
-
-        }
-
-      }
-    }
-  }
 }
 
-int OscProbCalcerOscProb::ReturnWeightArrayIndex(int NuTypeIndex, int OscChanIndex, int EnergyIndex, int CosineZIndex) {
-  int IndexToReturn = NuTypeIndex*fNOscillationChannels*fNCosineZPoints*fNEnergyPoints + OscChanIndex*fNCosineZPoints*fNEnergyPoints + CosineZIndex*fNEnergyPoints + EnergyIndex;
+int OscProbCalcerOscProb::ReturnWeightArrayIndex(int NuTypeIndex,
+                                                 int OscChanIndex,
+                                                 int EnergyIndex,
+                                                 int CosineZIndex) {
+  int IndexToReturn = ((NuTypeIndex *  fNOscillationChannels +
+                        OscChanIndex) * fNCosineZPoints +
+                        CosineZIndex) * fNEnergyPoints +
+                        EnergyIndex;
   return IndexToReturn;
 }
 
 long OscProbCalcerOscProb::DefineWeightArraySize() {
-  long nCalculationPoints = fNEnergyPoints * fNCosineZPoints * fNOscillationChannels * fNNeutrinoTypes;
+  long nCalculationPoints = static_cast<long>(fNEnergyPoints) *
+                            fNCosineZPoints *
+                            fNOscillationChannels *
+                            fNNeutrinoTypes;
   return nCalculationPoints;
 }
 
-void OscProbCalcerOscProb::SetPMNSParams_Fast(OscProb::PMNS_Fast *Fast, const std::vector<FLOAT_T>& OscParams) {
-  double th12, th13, th23;
-  double dm21, dm31;
-  double dcp;
+void OscProbCalcerOscProb::SetPMNSParams(OscProb::PMNS_Base* pmns,
+                                         const std::vector<FLOAT_T>& OscParams) {
 
-  th12 = asin(sqrt(OscParams[kTH12]));
-  th13 = asin(sqrt(OscParams[kTH13]));
-  th23 = asin(sqrt(OscParams[kTH23]));
-  dcp = OscParams[kDCP];
-  dm21 = OscParams[kDM12];
+  double th12 = asin(sqrt(OscParams[kTH12]));
+  double th13 = asin(sqrt(OscParams[kTH13]));
+  double th23 = asin(sqrt(OscParams[kTH23]));
+  double dcp  = OscParams[kDCP];
+  double dm21 = OscParams[kDM12];
 
   //Need to convert OscParams[kDM23] to kDM31
-  dm31 = OscParams[kDM23]+OscParams[kDM12]; // eV^2
+  double dm31 = OscParams[kDM23] + OscParams[kDM12]; // eV^2
 
   // Set PMNS parameters
-  Fast->SetDm(2, dm21);
-  Fast->SetDm(3, dm31);
-  Fast->SetAngle(1,2, th12);
-  Fast->SetAngle(1,3, th13);
-  Fast->SetAngle(2,3, th23);
-  Fast->SetDelta(1,3, dcp);
+  pmns->SetDm(2, dm21);
+  pmns->SetDm(3, dm31);
+  pmns->SetAngle(1,2, th12);
+  pmns->SetAngle(1,3, th13);
+  pmns->SetAngle(2,3, th23);
+  pmns->SetDelta(1,3, dcp);
+
 }
 
-void OscProbCalcerOscProb::SetPMNSParams_Sterile(OscProb::PMNS_Sterile *Sterile, const std::vector<FLOAT_T>& OscParams) {
-  double th12, th13, th23;
-  double dm21, dm31;
-  double dcp;
-
-  th12 = asin(sqrt(OscParams[kTH12]));
-  th13 = asin(sqrt(OscParams[kTH13]));
-  th23 = asin(sqrt(OscParams[kTH23]));
-  dcp = OscParams[kDCP];
-  dm21 = OscParams[kDM12];
-
-  //Need to convert OscParams[kDM23] to kDM31
-  dm31 = OscParams[kDM23]+OscParams[kDM12]; // eV^2
-
-  // Set PMNS parameters for standard oscillation
-  Sterile->SetDm(2, dm21);
-  Sterile->SetDm(3, dm31);
-  Sterile->SetAngle(1,2, th12);
-  Sterile->SetAngle(1,3, th13);
-  Sterile->SetAngle(2,3, th23);
-  Sterile->SetDelta(1,3, dcp);
+void OscProbCalcerOscProb::SetPMNSParams_Sterile(OscProb::PMNS_Sterile* Sterile,
+                                                 const std::vector<FLOAT_T>& OscParams) {
+  SetPMNSParams(Sterile, OscParams);
 
   //Set PMNS parameters for first sterile state
   Sterile->SetDm(4, OscParams[kDM14]);
@@ -553,168 +309,77 @@ void OscProbCalcerOscProb::SetPMNSParams_Sterile(OscProb::PMNS_Sterile *Sterile,
 
 }
 
-void OscProbCalcerOscProb::SetPMNSParams_Decay(OscProb::PMNS_Decay *Decay, const std::vector<FLOAT_T>& OscParams) {
-  double th12, th13, th23;
-  double dm21, dm31;
-  double dcp;
-  double alpha2, alpha3;
+void OscProbCalcerOscProb::SetPMNSParams_Decay(OscProb::PMNS_Decay* Decay,
+                                               const std::vector<FLOAT_T>& OscParams) {
 
-  th12 = asin(sqrt(OscParams[kTH12]));
-  th13 = asin(sqrt(OscParams[kTH13]));
-  th23 = asin(sqrt(OscParams[kTH23]));
-  dcp = OscParams[kDCP];
-  dm21 = OscParams[kDM12];
-  alpha2 = OscParams[kAlpha2];
-  alpha3 = OscParams[kAlpha3];
+  SetPMNSParams(Decay, OscParams);
 
-  //Need to convert OscParams[kDM23] to kDM31
-  dm31 = OscParams[kDM23]+OscParams[kDM12]; // eV^2
+  // Set Decay parameters
+  Decay->SetAlpha2(OscParams[kAlpha2]);
+  Decay->SetAlpha3(OscParams[kAlpha3]);
 
-  // Set PMNS parameters
-  Decay->SetDm(2, dm21);
-  Decay->SetDm(3, dm31);
-  Decay->SetAngle(1,2, th12);
-  Decay->SetAngle(1,3, th13);
-  Decay->SetAngle(2,3, th23);
-  Decay->SetDelta(1,3, dcp);
-  Decay->SetAlpha2(alpha2);
-  Decay->SetAlpha3(alpha3);
 }
 
-void OscProbCalcerOscProb::SetPMNSParams_Deco(OscProb::PMNS_Deco *Deco, const std::vector<FLOAT_T>& OscParams) {
-  double th12, th13, th23;
-  double dm21, dm31;
-  double dcp;
-  double gamma21, gamma31;
-  double deco_angle, power;
+void OscProbCalcerOscProb::SetPMNSParams_Deco(OscProb::PMNS_Deco* Deco,
+                                              const std::vector<FLOAT_T>& OscParams) {
 
-  th12 = asin(sqrt(OscParams[kTH12]));
-  th13 = asin(sqrt(OscParams[kTH13]));
-  th23 = asin(sqrt(OscParams[kTH23]));
-  dcp = OscParams[kDCP];
-  dm21 = OscParams[kDM12];
-  gamma21 = OscParams[kGamma21];
-  gamma31 = OscParams[kGamma31];
-  deco_angle = OscParams[kDecoAngle];
-  power = OscParams[kPower];
+  SetPMNSParams(Deco, OscParams);
 
-  //Need to convert OscParams[kDM23] to kDM31
-  dm31 = OscParams[kDM23]+OscParams[kDM12]; // eV^2
+  // Set Deco parameters
+  Deco->SetGamma(2, OscParams[kGamma21]);
+  Deco->SetGamma(3, OscParams[kGamma31]);
+  Deco->SetDecoAngle(OscParams[kDecoAngle]);
+  Deco->SetPower(OscParams[kPower]);
 
-  // Set PMNS parameters
-  Deco->SetDm(2, dm21);
-  Deco->SetDm(3, dm31);
-  Deco->SetAngle(1,2, th12);
-  Deco->SetAngle(1,3, th13);
-  Deco->SetAngle(2,3, th23);
-  Deco->SetDelta(1,3, dcp);
-  Deco->SetGamma(2, gamma21);
-  Deco->SetGamma(3, gamma31);
-  Deco->SetDecoAngle(deco_angle);
-  Deco->SetPower(power);
 }
 
-void OscProbCalcerOscProb::SetPMNSParams_NSI(OscProb::PMNS_NSI *NSI, const std::vector<FLOAT_T>& OscParams) {
-  double th12, th13, th23;
-  double dm21, dm31;
-  double dcp;
+void OscProbCalcerOscProb::SetPMNSParams_NSI(OscProb::PMNS_NSI* NSI,
+                                             const std::vector<FLOAT_T>& OscParams) {
+  SetPMNSParams(NSI, OscParams);
 
-  th12 = asin(sqrt(OscParams[kTH12]));
-  th13 = asin(sqrt(OscParams[kTH13]));
-  th23 = asin(sqrt(OscParams[kTH23]));
-  dcp = OscParams[kDCP];
-  dm21 = OscParams[kDM12];
+  // Set NSI parameters
+  NSI->SetNSI(OscParams[kEps_ee],
+              OscParams[kEps_emu],
+              OscParams[kEps_etau],
+              OscParams[kEps_mumu],
+              OscParams[kEps_mutau],
+              OscParams[kEps_tautau],
+              OscParams[kDelta_emu],
+              OscParams[kDelta_etau],
+              OscParams[kDelta_mutau]);
 
-  //Need to convert OscParams[kDM23] to kDM31
-  dm31 = OscParams[kDM23]+OscParams[kDM12]; // eV^2
+  NSI->SetFermCoup(OscParams[kElecCoup],
+                   OscParams[kUpCoup],
+                   OscParams[kDownCoup]);
 
-  // Set PMNS parameters
-  NSI->SetDm(2, dm21);
-  NSI->SetDm(3, dm31);
-  NSI->SetAngle(1,2, th12);
-  NSI->SetAngle(1,3, th13);
-  NSI->SetAngle(2,3, th23);
-  NSI->SetDelta(1,3, dcp);
-  NSI->SetNSI(OscParams[kEps_ee], OscParams[kEps_emu], OscParams[kEps_etau], OscParams[kEps_mumu], OscParams[kEps_mutau], OscParams[kEps_tautau],
-              OscParams[kDelta_emu], OscParams[kDelta_etau], OscParams[kDelta_mutau]);
-  NSI->SetFermCoup(OscParams[kElecCoup], OscParams[kUpCoup], OscParams[kDownCoup]);
 }
 
-void OscProbCalcerOscProb::SetPMNSParams_SNSI(OscProb::PMNS_SNSI *SNSI, const std::vector<FLOAT_T>& OscParams) {
-  double th12, th13, th23;
-  double dm21, dm31;
-  double dcp;
+void OscProbCalcerOscProb::SetPMNSParams_SNSI(OscProb::PMNS_SNSI* SNSI,
+                                              const std::vector<FLOAT_T>& OscParams) {
 
-  th12 = asin(sqrt(OscParams[kTH12]));
-  th13 = asin(sqrt(OscParams[kTH13]));
-  th23 = asin(sqrt(OscParams[kTH23]));
-  dcp = OscParams[kDCP];
-  dm21 = OscParams[kDM12];
+  SetPMNSParams_NSI(SNSI, OscParams);
 
-  //Need to convert OscParams[kDM23] to kDM31
-  dm31 = OscParams[kDM23]+OscParams[kDM12]; // eV^2
-
-  // Set PMNS parameters
-  SNSI->SetDm(2, dm21);
-  SNSI->SetDm(3, dm31);
-  SNSI->SetAngle(1,2, th12);
-  SNSI->SetAngle(1,3, th13);
-  SNSI->SetAngle(2,3, th23);
-  SNSI->SetDelta(1,3, dcp);
-  SNSI->SetNSI(OscParams[kEps_ee], OscParams[kEps_emu], OscParams[kEps_etau], OscParams[kEps_mumu], OscParams[kEps_mutau], OscParams[kEps_tautau],
-              OscParams[kDelta_emu], OscParams[kDelta_etau], OscParams[kDelta_mutau]);
-  SNSI->SetFermCoup(OscParams[kElecCoup], OscParams[kUpCoup], OscParams[kDownCoup]);
+  // Set SNSI parameters
   SNSI->SetLowestMass(OscParams[kLightMass]);
+
 }
 
-void OscProbCalcerOscProb::SetPMNSParams_Iter(OscProb::PMNS_Iter *Iter, const std::vector<FLOAT_T>& OscParams) {
-  double th12, th13, th23;
-  double dm21, dm31;
-  double dcp;
-  double prec;
+void OscProbCalcerOscProb::SetPMNSParams_Iter(OscProb::PMNS_Iter* Iter,
+                                              const std::vector<FLOAT_T>& OscParams) {
 
-  prec = OscParams[kPrec];
+  SetPMNSParams(Iter, OscParams);
 
-  th12 = asin(sqrt(OscParams[kTH12]));
-  th13 = asin(sqrt(OscParams[kTH13]));
-  th23 = asin(sqrt(OscParams[kTH23]));
-  dcp = OscParams[kDCP];
-  dm21 = OscParams[kDM12];
+  // Set Iter parameters
+  Iter->SetPrec(OscParams[kPrec]);
 
-  //Need to convert OscParams[kDM23] to kDM31
-  dm31 = OscParams[kDM23]+OscParams[kDM12]; // eV^2
-
-  // Set PMNS parameters
-  Iter->SetDm(2, dm21);
-  Iter->SetDm(3, dm31);
-  Iter->SetAngle(1,2, th12);
-  Iter->SetAngle(1,3, th13);
-  Iter->SetAngle(2,3, th23);
-  Iter->SetDelta(1,3, dcp);
-  Iter->SetPrec(prec);
 }
 
-void OscProbCalcerOscProb::SetPMNSParams_NUNM(OscProb::PMNS_NUNM *NUNM, const std::vector<FLOAT_T>& OscParams) {
-  double th12, th13, th23;
-  double dm21, dm31;
-  double dcp;
- 
-  th12 = asin(sqrt(OscParams[kTH12]));
-  th13 = asin(sqrt(OscParams[kTH13]));
-  th23 = asin(sqrt(OscParams[kTH23]));
-  dcp = OscParams[kDCP];
-  dm21 = OscParams[kDM12];
+void OscProbCalcerOscProb::SetPMNSParams_NUNM(OscProb::PMNS_NUNM* NUNM,
+                                              const std::vector<FLOAT_T>& OscParams) {
 
-  //Need to convert OscParams[kDM23] to kDM31
-  dm31 = OscParams[kDM23]+OscParams[kDM12]; // eV^2
+  SetPMNSParams(NUNM, OscParams);
 
   // Set PMNS parameters
-  NUNM->SetDm(2, dm21);
-  NUNM->SetDm(3, dm31);
-  NUNM->SetAngle(1,2, th12);
-  NUNM->SetAngle(1,3, th13);
-  NUNM->SetAngle(2,3, th23);
-  NUNM->SetDelta(1,3, dcp);
   NUNM->SetAlpha_11(OscParams[kAlpha11]);
   NUNM->SetAlpha_22(OscParams[kAlpha22]);
   NUNM->SetAlpha_33(OscParams[kAlpha33]);
@@ -722,30 +387,14 @@ void OscProbCalcerOscProb::SetPMNSParams_NUNM(OscProb::PMNS_NUNM *NUNM, const st
   NUNM->SetAlpha_31(OscParams[kAlpha31], OscParams[kPhi31]);
   NUNM->SetAlpha_32(OscParams[kAlpha32], OscParams[kPhi32]);
   NUNM->SetFracVnc(OscParams[kFracVnc]);
+
 }
 
 void OscProbCalcerOscProb::SetPMNSParams_LIV(OscProb::PMNS_LIV *LIV, const std::vector<FLOAT_T>& OscParams) {
-  double th12, th13, th23;
-  double dm21, dm31;
-  double dcp;
- 
-  th12 = asin(sqrt(OscParams[kTH12]));
-  th13 = asin(sqrt(OscParams[kTH13]));
-  th23 = asin(sqrt(OscParams[kTH23]));
-  dcp = OscParams[kDCP];
-  dm21 = OscParams[kDM12];
 
-  //Need to convert OscParams[kDM23] to kDM31
-  dm31 = OscParams[kDM23]+OscParams[kDM12]; // eV^2
+  SetPMNSParams(LIV, OscParams);
 
-  // Set PMNS parameters
-  LIV->SetDm(2, dm21);
-  LIV->SetDm(3, dm31);
-  LIV->SetAngle(1,2, th12);
-  LIV->SetAngle(1,3, th13);
-  LIV->SetAngle(2,3, th23);
-  LIV->SetDelta(1,3, dcp);
-
+  // Set LIV parameters
   LIV->SetaT(0, 0, 3, OscParams[kaT_ee_3], 0.);
   LIV->SetaT(0, 1, 3, OscParams[kaT_emu_3], OscParams[kDelta_emu_3]);
   LIV->SetaT(0, 2, 3, OscParams[kaT_etau_3], OscParams[kDelta_etau_3]);
@@ -787,10 +436,10 @@ void OscProbCalcerOscProb::SetPMNSParams_LIV(OscProb::PMNS_LIV *LIV, const std::
 int OscProbCalcerOscProb::PMNS_StrToInt(std::string PMNSType) {
   if (PMNSType == "Fast" || PMNSType == "fast") {
     return kFast;
-  } 
+  }
   else if (PMNSType == "Sterile+1" || PMNSType == "Sterile1") {
     return kPMNSSterile1;
-  } 
+  }
   else if (PMNSType == "Sterile+2" || PMNSType == "Sterile2") {
     return kPMNSSterile2;
   }
@@ -822,7 +471,7 @@ int OscProbCalcerOscProb::PMNS_StrToInt(std::string PMNSType) {
     std::cerr << "Invalid PMNS matrix type provided:" << PMNSType << std::endl;
     throw std::runtime_error("Invalid setup");
   }
-  
+
   return -1;
 }
 
