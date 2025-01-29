@@ -88,7 +88,7 @@ inline std::vector<std::string> ReturnKnownConfigs() {
   std::vector<std::string> ConfigNames;
 
 #if UseCUDAProb3 == 1
-  ConfigNames.push_back("./Configs/Binned_CUDAProb3.yaml");
+  ConfigNames.push_back("./Configs/Unbinned_CUDAProb3.yaml");
 #endif
 
 #if UseCUDAProb3Linear == 1
@@ -108,7 +108,7 @@ inline std::vector<std::string> ReturnKnownConfigs() {
 #endif
 
 #if UseOscProb == 1
-  ConfigNames.push_back("./Configs/Binned_OscProb.yaml");
+  ConfigNames.push_back("./Configs/Unbinned_OscProb.yaml");
 #endif  
 
   return ConfigNames;

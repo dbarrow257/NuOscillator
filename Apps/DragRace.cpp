@@ -14,10 +14,15 @@ using std::chrono::duration_cast;
 using std::chrono::duration;
 using std::chrono::milliseconds;
 
-int main() {
+int main(int argc, char **argv) {
+  if (argc != 2) {
+    std::cerr << "DragRace nIterations" << std::endl;
+    throw std::runtime_error("Invalid setup");
+  }
+  int nThrows = atoi(argv[1]);
   
-  std::vector<FLOAT_T> EnergyArray = logspace(0.1,100.,1e5);
-  std::vector<FLOAT_T> CosineZArray = linspace(-1.0,1.0,1);
+  std::vector<FLOAT_T> EnergyArray = logspace(0.1,100.,1e3);
+  std::vector<FLOAT_T> CosineZArray = linspace(-1.0,1.0,1e3);
 
   std::vector<FLOAT_T> OscParams_Basic = ReturnOscParams_Basic();
   std::vector<FLOAT_T> OscParams_Atm = ReturnOscParams_Atm();
@@ -66,9 +71,8 @@ int main() {
 
   std::cout << "Finished setup in executable" << std::endl;
   std::cout << "========================================================" << std::endl;
-  std::cout << "Starting drag race in executable" << std::endl;
+  std::cout << "Starting drag race in executable - number of iterations:" << nThrows << std::endl;
 
-  int nThrows = 1000;
   std::vector< std::vector<double> > ReweightTimes(Oscillators.size());
   for (size_t iOsc=0;iOsc<Oscillators.size();iOsc++) {
     ReweightTimes[iOsc].resize(nThrows);
