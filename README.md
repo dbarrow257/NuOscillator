@@ -9,6 +9,7 @@ The framework has been adapted to integrate seamlessly with oscillation fitters 
 [![Container Image](https://img.shields.io/badge/Container-Image-brightgreen)](https://github.com/dbarrow257/NuOscillator/pkgs/container/nuoscillator)
 [![Code - Doxygen](https://img.shields.io/badge/Code-Doxygen-2ea44f)](https://dbarrow257.github.io/NuOscillator/)
 [![Build CI](https://github.com/dbarrow257/NuOscillator/actions/workflows/CIBuild.yml/badge.svg)](https://github.com/dbarrow257/NuOscillator/actions/workflows/CIBuild.yml)
+[![DOI](https://zenodo.org/badge/642420445.svg)](https://doi.org/10.5281/zenodo.14771935)
 
 ## How to start
 ```bash
