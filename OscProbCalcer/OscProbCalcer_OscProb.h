@@ -59,7 +59,17 @@ class OscProbCalcerOscProb : public OscProbCalcerBase {
    * the oscillation probabilities in #fWeightArray.
    *
    */
-  void CalcProbPMNS();
+  void CalcProbPMNS(const std::vector<FLOAT_T>& OscParams);
+
+  /**
+   * @brief Set the neutrino path for a given cosine value
+   *
+   * Uses PremModel unless Linear OscMode, in which case a fixed baseline is used
+   *
+   * @param OscParams The parameter which may contain the baseline values
+   * @param iCosineZ the index of the zenith bin (0 for Linear)
+   */
+  void SetPath(const std::vector<FLOAT_T>& OscParams, int iCosineZ);
 
   /**
    * @brief Return implementation specific index in the weight array for a specific combination of neutrino oscillation channel, energy and cosine zenith
@@ -256,6 +266,11 @@ private:
    * @brief String storing the path of the density table file used to setup the Earth model
    */
   std::string premfile;
+
+  /**
+   * @brief String storing the type of propagation (Linear or other)
+   */
+  std::string fPropMode;
 
   /**
    * @brief Double storing the detector depth in km

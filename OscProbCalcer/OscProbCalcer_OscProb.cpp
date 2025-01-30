@@ -36,6 +36,13 @@ OscProbCalcerOscProb::OscProbCalcerOscProb(YAML::Node Config_) :
   }
 
   fDetDepth = Config_["OscProbCalcerSetup"]["DetDepth"].as<double>();
+
+  if (!Config_["OscProbCalcerSetup"]["PropMode"]) {
+    std::cerr << "Expected to find a 'PropMode' Node within the 'OscProbCalcerSetup''Implementation' Node" << std::endl;
+    throw std::runtime_error("YAML node not found");
+  }
+
+  fPropMode = Config_["OscProbCalcerSetup"]["PropMode"].as<std::string>();
   //=======
 
   fNNeutrinoTypes = 2;
@@ -45,6 +52,10 @@ OscProbCalcerOscProb::OscProbCalcerOscProb(YAML::Node Config_) :
 
   fOscType = PMNS_StrToInt(OscMatrix);
   fNOscParams = GetNOscParams();
+  if(fPropMode=="Linear") {
+    fNOscParams += 3;
+    fNCosineZPoints = 1;
+  }
 
   fMaxGenFlavour = 1;
   fMaxDetFlavour = 1;
@@ -101,11 +112,26 @@ void OscProbCalcerOscProb::CalculateProbabilities(const std::vector<FLOAT_T>& Os
 
   SetPMNSParams(OscParams);
 
-  CalcProbPMNS();
+  CalcProbPMNS(OscParams);
 
 }
 
-void OscProbCalcerOscProb::CalcProbPMNS() {
+void OscProbCalcerOscProb::SetPath(const std::vector<FLOAT_T>& OscParams,
+                                   int iCosineZ) {
+
+  if(fPropMode=="Linear") {
+    fPMNSObj->SetLength ( OscParams[fNOscParams - 3] );
+    fPMNSObj->SetDensity( OscParams[fNOscParams - 2] );
+    fPMNSObj->SetZoA    ( OscParams[fNOscParams - 1] );
+  }
+  else {
+    PremModel.FillPath(fCosineZArray[iCosineZ]);
+    fPMNSObj->SetPath(PremModel.GetNuPath());
+  }
+
+}
+
+void OscProbCalcerOscProb::CalcProbPMNS(const std::vector<FLOAT_T>& OscParams) {
 
   for (int iNuType = 0; iNuType < fNNeutrinoTypes; iNuType++) {
 
@@ -113,9 +139,7 @@ void OscProbCalcerOscProb::CalcProbPMNS() {
 
     for (int iCosineZ = 0; iCosineZ < fNCosineZPoints; iCosineZ++) {
 
-      PremModel.FillPath(fCosineZArray[iCosineZ]);
-
-      fPMNSObj->SetPath(PremModel.GetNuPath());
+      SetPath(OscParams, iCosineZ);
 
       for (int iEnergy = 0; iEnergy < fNEnergyPoints; iEnergy++) {
 
