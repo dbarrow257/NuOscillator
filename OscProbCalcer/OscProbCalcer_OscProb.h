@@ -3,15 +3,7 @@
 
 #include "OscProbCalcerBase.h"
 
-#include "inc/PMNS_Fast.h"
-#include "inc/PMNS_Sterile.h"
-#include "inc/PMNS_Decay.h"
-#include "inc/PMNS_Deco.h"
-#include "inc/PMNS_NSI.h"
-#include "inc/PMNS_Iter.h"
-#include "inc/PMNS_NUNM.h"
-#include "inc/PMNS_SNSI.h"
-#include "inc/PMNS_LIV.h"
+#include "inc/PMNS_Base.h"
 #include "inc/PremModel.h"
 
 /**
@@ -43,7 +35,7 @@ class OscProbCalcerOscProb : public OscProbCalcerBase {
    */
   virtual ~OscProbCalcerOscProb();
 
-  // ========================================================================================================================================================================
+  // ==========================================================================
   // Functions which need implementation specific code
 
   /**
@@ -66,100 +58,8 @@ class OscProbCalcerOscProb : public OscProbCalcerBase {
    * Calculator oscillation probabilities with any PMNS object. This function both calculates and stores
    * the oscillation probabilities in #fWeightArray.
    *
-   * @param myPMNS The PMNS object to compute
    */
-  void CalcProbPMNS(OscProb::PMNS_Base* myPMNS);
-
-  /**
-   * @brief Calculate some oscillation probabilities for a particular oscillation parameter set
-   *
-   * Calculator oscillation probabilities with PMNS_Fast object. This function both calculates and stores
-   * the oscillation probabilities in #fWeightArray.
-   *
-   * @param OscParams The parameter set to calculate oscillation probabilities at
-   */
-  void CalcProbPMNS_Fast(const std::vector<FLOAT_T>& OscParams);
-
-  /**
-   * @brief Calculate some oscillation probabilities for a particular oscillation parameter set
-   *
-   * Calculator oscillation probabilities with PMNS_Sterile object for up to 3 additonal neutrino states. This function both calculates and stores
-   * the oscillation probabilities in #fWeightArray.
-   *
-   * @param OscParams The parameter set to calculate oscillation probabilities at
-   * @param neutrino_number Total number of neutrino states to consider
-   */
-  void CalcProbPMNS_Sterile(const std::vector<FLOAT_T>& OscParams, int neutrino_number=4);
-
-   /**
-   * @brief Calculate some oscillation probabilities for a particular oscillation parameter set
-   *
-   * Calculator oscillation probabilities with PMNS_Decay object. This function both calculates and stores
-   * the oscillation probabilities in #fWeightArray.
-   *
-   * @param OscParams The parameter set to calculate oscillation probabilities at
-   */
-  void CalcProbPMNS_Decay(const std::vector<FLOAT_T>& OscParams);
-
-  /**
-   * @brief Calculate some oscillation probabilities for a particular oscillation parameter set
-   *
-   * Calculator oscillation probabilities with PMNS_Deco object. This function both calculates and stores
-   * the oscillation probabilities in #fWeightArray.
-   *
-   * @param OscParams The parameter set to calculate oscillation probabilities at
-   */
-  void CalcProbPMNS_Deco(const std::vector<FLOAT_T>& OscParams);
-
-  /**
-   * @brief Calculate some oscillation probabilities for a particular oscillation parameter set
-   *
-   * Calculator oscillation probabilities with PMNS_NSI object. This function both calculates and stores
-   * the oscillation probabilities in #fWeightArray.
-   *
-   * @param OscParams The parameter set to calculate oscillation probabilities at
-   */
-  void CalcProbPMNS_NSI(const std::vector<FLOAT_T>& OscParams);
-
-  /**
-   * @brief Calculate some oscillation probabilities for a particular oscillation parameter set
-   *
-   * Calculator oscillation probabilities with PMNS_SNSI object. This function both calculates and stores
-   * the oscillation probabilities in #fWeightArray.
-   *
-   * @param OscParams The parameter set to calculate oscillation probabilities at
-   */
-  void CalcProbPMNS_SNSI(const std::vector<FLOAT_T>& OscParams);
-
-    /**
-   * @brief Calculate some oscillation probabilities for a particular oscillation parameter set
-   *
-   * Calculator oscillation probabilities with PMNS_Iter object. This function both calculates and stores
-   * the oscillation probabilities in #fWeightArray.
-   *
-   * @param OscParams The parameter set to calculate oscillation probabilities at
-   */
-  void CalcProbPMNS_Iter(const std::vector<FLOAT_T>& OscParams);
-
-   /**
-   * @brief Calculate some oscillation probabilities for a particular oscillation parameter set
-   *
-   * Calculator oscillation probabilities with PMNS_NUNM object. This function both calculates and stores
-   * the oscillation probabilities in #fWeightArray.
-   *
-   * @param OscParams The parameter set to calculate oscillation probabilities at
-   */
-  void CalcProbPMNS_NUNM(const std::vector<FLOAT_T>& OscParams);
-
-     /**
-   * @brief Calculate some oscillation probabilities for a particular oscillation parameter set
-   *
-   * Calculator oscillation probabilities with PMNS_LIV object. This function both calculates and stores
-   * the oscillation probabilities in #fWeightArray.
-   *
-   * @param OscParams The parameter set to calculate oscillation probabilities at
-   */
-  void CalcProbPMNS_LIV(const std::vector<FLOAT_T>& OscParams);
+  void CalcProbPMNS();
 
   /**
    * @brief Return implementation specific index in the weight array for a specific combination of neutrino oscillation channel, energy and cosine zenith
@@ -176,124 +76,50 @@ class OscProbCalcerOscProb : public OscProbCalcerBase {
   /**
    * @brief Define the size of fWeightArray
    *
-   * This is implementation specific because because NuFAST is setup to calculate all oscillation channels together, whilst others calculate only a single oscillation channel.
+   * This is implementation specific because because NuFAST is setup to
+   * calculate all oscillation channels together, whilst others calculate
+   * only a single oscillation channel.
    *
    * @return Length that #fWeightArray should be initialised to
    */
   long DefineWeightArraySize() override;
 
-  // ========================================================================================================================================================================
+  // ==========================================================================
   // Functions which help setup implementation specific code
 
   /**
- * @brief Return the PMNS Matrix type corresponding to a particular string
- *
- * @param PMNSType String to convert to enum value
- *
- * @return Enum value describing the PMNS Matrix to use
- */
+   * @brief Return the PMNS Matrix type corresponding to a particular string
+   *
+   * @param PMNSType String to convert to enum value
+   *
+   * @return Enum value describing the PMNS Matrix to use
+   */
   int PMNS_StrToInt(std::string PMNSType);
 
   /**
- * @brief Return number of parameters needed for a particular type of PMNS matrix
- *
- * @param OscType int value corresponding to type of PMNS matrix
- *
- * @return number of parameters needed for the type of PMNS matrix
- */
-  int GetNOscParams(int OscType);
+   * @brief Return number of parameters needed for a particular type of PMNS matrix
+   *
+   * @return number of parameters needed for the type of PMNS matrix
+   */
+  int GetNOscParams();
 
   /**
- * @brief Set parameters for PMNS_Base
- *
- * @param PMNS object of any class
- * @param OscParams  The parameter set to calculate oscillation probabilities at
- *
- * @return Sets relevant parameters for PMNS Matrix
- */
-  void SetPMNSParams(OscProb::PMNS_Base* pmns, const std::vector<FLOAT_T>& OscParams);
+   * @brief Return a new instance of the appropriate PMNS object given OscType
+   *
+   * @return a PMNS object pointer
+   */
+  OscProb::PMNS_Base* GetPMNSObj();
 
   /**
- * @brief Set parameters for PMNS_Sterile with up to 3 additional neutrino states
- *
- * @param Sterile object of class PMNS_Sterile
- * @param OscParams  The parameter set to calculate oscillation probabilities at
- *
- * @return Sets relevant parameters for PMNS Matrix
- */
-  void SetPMNSParams_Sterile(OscProb::PMNS_Sterile* Sterile, const std::vector<FLOAT_T>& OscParams);
+   * @brief Set parameters for PMNS_Base
+   *
+   * @param OscParams  The parameter set to calculate oscillation probabilities at
+   *
+   * @return Sets relevant parameters for PMNS object
+   */
+  void SetPMNSParams(const std::vector<FLOAT_T>& OscParams);
 
-   /**
- * @brief Set parameters for PMNS_Decay
- *
- * @param Decay object of class PMNS_Decay
- * @param OscParams  The parameter set to calculate oscillation probabilities at
- *
- * @return Sets relevant parameters for PMNS Matrix
- */
-  void SetPMNSParams_Decay(OscProb::PMNS_Decay* Decay, const std::vector<FLOAT_T>& OscParams);
-
-  /**
- * @brief Set parameters for PMNS_Deco
- *
- * @param Deco object of class PMNS_Deco
- * @param OscParams  The parameter set to calculate oscillation probabilities at
- *
- * @return Sets relevant parameters for PMNS Matrix
- */
-  void SetPMNSParams_Deco(OscProb::PMNS_Deco* Deco, const std::vector<FLOAT_T>& OscParams);
-
-  /**
- * @brief Set parameters for PMNS_NSI
- *
- * @param NSI object of class PMNS_NSI
- * @param OscParams  The parameter set to calculate oscillation probabilities at
- *
- * @return Sets relevant parameters for PMNS Matrix
- */
-  void SetPMNSParams_NSI(OscProb::PMNS_NSI* NSI, const std::vector<FLOAT_T>& OscParams);
-
-   /**
- * @brief Set parameters for PMNS_SNSI
- *
- * @param SNSI object of class PMNS_SNSI
- * @param OscParams  The parameter set to calculate oscillation probabilities at
- *
- * @return Sets relevant parameters for PMNS Matrix
- */
-  void SetPMNSParams_SNSI(OscProb::PMNS_SNSI* SNSI, const std::vector<FLOAT_T>& OscParams);
-
-  /**
- * @brief Set parameters for PMNS_Iter
- *
- * @param Iter object of class PMNS_Iter
- * @param OscParams  The parameter set to calculate oscillation probabilities at
- *
- * @return Sets relevant parameters for PMNS Matrix
- */
-  void SetPMNSParams_Iter(OscProb::PMNS_Iter* Iter, const std::vector<FLOAT_T>& OscParams);
-
-  /**
- * @brief Set parameters for PMNS_NUNM
- *
- * @param NUNM object of class PMNS_NUNM
- * @param OscParams  The parameter set to calculate oscillation probabilities at
- *
- * @return Sets relevant parameters for PMNS Matrix
- */
-  void SetPMNSParams_NUNM(OscProb::PMNS_NUNM* NUNM, const std::vector<FLOAT_T>& OscParams);
-
-    /**
- * @brief Set parameters for PMNS_LIV
- *
- * @param LIV object of class PMNS_LIV
- * @param OscParams  The parameter set to calculate oscillation probabilities at
- *
- * @return Sets relevant parameters for PMNS Matrix
- */
-  void SetPMNSParams_LIV(OscProb::PMNS_LIV* LIV, const std::vector<FLOAT_T>& OscParams);
-
-  // ========================================================================================================================================================================
+  // ==========================================================================
   // Variables which are needed for implementation specific code
 
   /**
@@ -304,18 +130,29 @@ class OscProbCalcerOscProb : public OscProbCalcerBase {
   enum OscParams{kTH12, kTH23, kTH13, kDM12, kDM23, kDCP, kNOscParams};
 
   /**
-   * @brief Definition of extra oscillation parameters for PMNS_Sterile class with up to 3 additional neutrinos
+   * @brief Definition of extra oscillation parameters for PMNS_Sterile class with 1 additional neutrino
    * kTHij -> mixing angle between states i and j
    * kDeltaij -> CP violating phase between states i and j
    * kDM1j -> mass squared difference between states 1 and j in eV^2
    */
-  enum OscParams_Sterile{kTH14 = kNOscParams, kTH24, kTH34, kDM14,
-                         kDelta14, kDelta24,
-                         kTH15, kTH25, kTH35, kTH45, kDM15,
-                         kDelta15, kDelta25, kDelta35,
-                         kTH16, kTH26, kTH36, kTH46, kTH56, kDM16,
-                         kDelta16, kDelta26, kDelta36, kDelta46,
-                         kNOscParams_Sterile};
+  enum OscParams_Sterile1{kTH14 = kNOscParams, kTH24, kTH34, kDM14,
+                          kDelta14, kDelta24, kNOscParams_Sterile1};
+  /**
+   * @brief Definition of extra oscillation parameters for PMNS_Sterile class with 2 additional neutrinos
+   * kTHij -> mixing angle between states i and j
+   * kDeltaij -> CP violating phase between states i and j
+   * kDM1j -> mass squared difference between states 1 and j in eV^2
+   */
+  enum OscParams_Sterile2{kTH15 = kNOscParams_Sterile1, kTH25, kTH35, kTH45, kDM15,
+                          kDelta15, kDelta25, kDelta35, kNOscParams_Sterile2};
+  /**
+   * @brief Definition of extra oscillation parameters for PMNS_Sterile class with 3 additional neutrinos
+   * kTHij -> mixing angle between states i and j
+   * kDeltaij -> CP violating phase between states i and j
+   * kDM1j -> mass squared difference between states 1 and j in eV^2
+   */
+  enum OscParams_Sterile3{kTH16 = kNOscParams_Sterile2, kTH26, kTH36, kTH46, kTH56, kDM16,
+                          kDelta16, kDelta26, kDelta36, kDelta46, kNOscParams_Sterile3};
 
   /**
    * @brief Definition of extra oscillation parameters for PMNS_Decay class
@@ -325,22 +162,22 @@ class OscProbCalcerOscProb : public OscProbCalcerBase {
   enum OscParams_Decay{kAlpha2 = kNOscParams, kAlpha3, kNOscParams_Decay};
 
     /**
-   * @brief Definition of extra oscillation parameters for PMNS_Deco class
-   * kGamma21 decoherence parameter between mass states 1 and 2
-   * kGamma31 decoherence parameter between mass states 3 and 1
-   * kDecoAngle decoherence angle
-   * kPower power index of decoherence energy dependence
-   */
+     * @brief Definition of extra oscillation parameters for PMNS_Deco class
+     * kGamma21 decoherence parameter between mass states 1 and 2
+     * kGamma31 decoherence parameter between mass states 3 and 1
+     * kDecoAngle decoherence angle
+     * kPower power index of decoherence energy dependence
+     */
   enum OscParams_Deco{kGamma21 = kNOscParams, kGamma31, kDecoAngle, kPower, kNOscParams_Deco};
 
    /**
-   * @brief Definition of extra oscillation parameters for PMNS_NSI class
-   * kEps quantity reprensenting the intensity of NSI wrt standard matter effects between the different flavours
-   * kDelta complex phases between the different flavours (non diag elements
-   * kElecCoup electron coupling
-   * kUpCoup u-quark coupling
-   * kDownCoup d-quark coupling
-   */
+     * @brief Definition of extra oscillation parameters for PMNS_NSI class
+     * kEps quantity reprensenting the intensity of NSI wrt standard matter effects between the different flavours
+     * kDelta complex phases between the different flavours (non diag elements
+     * kElecCoup electron coupling
+     * kUpCoup u-quark coupling
+     * kDownCoup d-quark coupling
+     */
   enum OscParams_NSI{kEps_ee = kNOscParams, kEps_emu, kEps_etau, kEps_mumu,
                      kEps_mutau, kEps_tautau, kDelta_emu, kDelta_etau,
                      kDelta_mutau, kElecCoup, kUpCoup, kDownCoup,
@@ -354,7 +191,7 @@ class OscProbCalcerOscProb : public OscProbCalcerBase {
    */
   enum OscParams_SNSI{kLightMass = kNOscParams_NSI, kNOscParams_SNSI};
 
-   /**
+  /**
    * @brief Definition of extra oscillation parameters for PMNS_Iter class
    * kPrec defines precision of the iterative method
    */
@@ -395,9 +232,9 @@ class OscProbCalcerOscProb : public OscProbCalcerBase {
   enum NuType{Nu=1,Nubar=-1};
 
   /**
-  * @brief Different types of PMNS matrices currently supported within the analysis
-  * LIV and SNSI still to be implemented at some point
-  */
+   * @brief Different types of PMNS matrices currently supported within the analysis
+   * LIV and SNSI still to be implemented at some point
+   */
   enum PMNSMatrix{kFast, kPMNSSterile1, kPMNSSterile2, kPMNSSterile3,
                   kDecay, kDeco, kNSI, kSNSI, kIter, kNUNM, kLIV};
 
@@ -434,6 +271,11 @@ private:
    * @brief Maximum detected flavour for ProbMatrix calculation
    */
   int fMaxDetFlavour;
+
+  /**
+   * @brief Pointer to generic PMNS object
+   */
+  OscProb::PMNS_Base* fPMNSObj;
 
 };
 
