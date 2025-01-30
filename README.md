@@ -86,7 +86,7 @@ This give full freedom to users in how to configure NuOscillator.
 ## How to Use in Fitting Framework
 First initialise factory to produce engine defined by config. See exmaples of configs [here](https://github.com/dbarrow257/NuOscillator/tree/main/Configs)
 ```cpp
-OscillatorFactory* OscillFactory = new OscillatorFactory();
+auto OscillFactory = std::make_unique<OscillatorFactory>();
 
 std::string NuOscillatorConfigFile = "configs/NuFASTLinear.yaml");
 NuOscProbCalcers = OscillFactory->CreateOscillator(NuOscillatorConfigFile);
@@ -103,7 +103,7 @@ std::sort(EnergyArray.begin(),EnergyArray.end());
 Lastly pass energy vector and finish setup
 ```cpp
 if (!NuOscProbCalcers->EvalPointsSetInConstructor()) {
-NuOscProbCalcers->SetEnergyArrayInCalcer(EnergyArray);
+  NuOscProbCalcers->SetEnergyArrayInCalcer(EnergyArray);
 }
 NuOscProbCalcers->Setup();
 ```
