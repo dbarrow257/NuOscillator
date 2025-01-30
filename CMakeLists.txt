@@ -92,15 +92,19 @@ else()
 endif()
 
 if(${UseMultithreading} EQUAL 1)
-  cmessage(STATUS "\tUsing Multithreading with nThreads=$ENV{OMP_NUM_THREADS}")
+  if(DEFINED ENV{OMP_NUM_THREADS} AND NOT "$ENV{OMP_NUM_THREADS}" STREQUAL "")
+    cmessage(STATUS "\tUsing Multithreading with nThreads=$ENV{OMP_NUM_THREADS}")
+  else()
+    execute_process(
+      COMMAND lscpu
+      COMMAND awk -F: "/^(CPU\\(s\\)|CPU):/ {gsub(/^[ \\t]+/, \"\", \$2); print \$2; exit}"
+      OUTPUT_VARIABLE CPU_COUNT
+      OUTPUT_STRIP_TRAILING_WHITESPACE
+    )
+    cmessage(STATUS "\tUsing Multithreading with nThreads=${CPU_COUNT}")
+  endif()
 else()
   cmessage(STATUS "\tNot using Multithreading")
-endif()
-
-if(${UseDoubles} EQUAL 1)
-  cmessage(STATUS "\tUsing FLOAT_T=double")
-else()
-  cmessage(STATUS "\tUsing FLOAT_T=float")
 endif()
 
 if(${UseCUDAProb3} EQUAL 1 AND ${UseCUDAProb3Linear} EQUAL 1)

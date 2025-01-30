@@ -1,4 +1,10 @@
 # NuOscillator
+NuOscillator is a wrapper around oscillation calculators,
+enabling the computation of oscillation probabilities for various configurations,
+including beam oscillations, atmospheric oscillations, and sterile neutrinos with NSI effects.
+
+The framework has been adapted to integrate seamlessly with oscillation fitters like
+[MaCh3](https://github.com/mach3-software/MaCh3/tree/develop).
 
 [![Container Image](https://img.shields.io/badge/Container-Image-brightgreen)](https://github.com/dbarrow257/NuOscillator/pkgs/container/nuoscillator)
 [![Code - Doxygen](https://img.shields.io/badge/Code-Doxygen-2ea44f)](https://dbarrow257.github.io/NuOscillator/)
