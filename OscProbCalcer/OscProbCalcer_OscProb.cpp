@@ -84,6 +84,7 @@ void OscProbCalcerOscProb::SetupPropagator() {
 
   PremModel = OscProb::PremModel(premfile);
 
+  if(fPMNSObj) delete fPMNSObj;
   fPMNSObj = GetPMNSObj();
 
 }
