@@ -129,6 +129,11 @@ class OscProbCalcerOscProb : public OscProbCalcerBase {
    */
   void SetPMNSParams(const std::vector<FLOAT_T>& OscParams);
 
+  /**
+   * @brief Auxilliary function to handle ignored cosineZ cases
+   */
+  int GetNCosineZ();
+
   // ==========================================================================
   // Variables which are needed for implementation specific code
 
@@ -260,17 +265,12 @@ private:
    * Paths used by PMNS objects for neutrino propagation
    * Earth model implemented as succession of spherical shells with uniform density
    */
-  OscProb::PremModel PremModel;
+  OscProb::PremModel fPremModel;
 
   /**
    * @brief String storing the path of the density table file used to setup the Earth model
    */
-  std::string premfile;
-
-  /**
-   * @brief String storing the type of propagation (Linear or other)
-   */
-  std::string fPropMode;
+  std::string fPremFile;
 
   /**
    * @brief Double storing the detector depth in km

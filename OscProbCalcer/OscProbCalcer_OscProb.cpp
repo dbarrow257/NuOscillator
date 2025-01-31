@@ -17,32 +17,34 @@ OscProbCalcerOscProb::OscProbCalcerOscProb(YAML::Node Config_) :
   //=======
   //Grab information from the config
   if (!Config_["OscProbCalcerSetup"]["PMNSType"]) {
-    std::cerr << "Expected to find a 'PMNSType' Node within the 'OscProbCalcerSetup''Implementation' Node" << std::endl;
+    std::cerr << "Expected to find a 'PMNSType' Node within the 'OscProbCalcerSetup' Node" << std::endl;
     throw std::runtime_error("YAML node not found");
   }
 
-  std::string OscMatrix = Config_["OscProbCalcerSetup"]["PMNSType"].as<std::string>();
+  std::string PMNSType = Config_["OscProbCalcerSetup"]["PMNSType"].as<std::string>();
 
-  if (!Config_["OscProbCalcerSetup"]["PREMFile"]) {
-    std::cerr << "Expected to find a 'PREMFile' Node within the 'OscProbCalcerSetup''Implementation' Node" << std::endl;
+  if (!Config_["General"]["CosineZIgnored"]) {
+    std::cerr << "Expected to find a 'CosineZIgnored' Node within the 'General' Node" << std::endl;
     throw std::runtime_error("YAML node not found");
   }
 
-  premfile = Config_["OscProbCalcerSetup"]["PREMFile"].as<std::string>();
+  IgnoreCosineZBinning(Config_["General"]["CosineZIgnored"].as<bool>());
 
-  if (!Config_["OscProbCalcerSetup"]["DetDepth"]) {
-    std::cerr << "Expected to find a 'DetDepth' Node within the 'OscProbCalcerSetup''Implementation' Node" << std::endl;
-    throw std::runtime_error("YAML node not found");
+  if (!fCosineZIgnored) {
+    if (!Config_["OscProbCalcerSetup"]["PREMFile"]) {
+      std::cerr << "Expected to find a 'PREMFile' Node within the 'OscProbCalcerSetup' Node" << std::endl;
+      throw std::runtime_error("YAML node not found");
+    }
+
+    fPremFile = Config_["OscProbCalcerSetup"]["PREMFile"].as<std::string>();
+
+    if (!Config_["OscProbCalcerSetup"]["DetDepth"]) {
+      std::cerr << "Expected to find a 'DetDepth' Node within the 'OscProbCalcerSetup' Node" << std::endl;
+      throw std::runtime_error("YAML node not found");
+    }
+
+    fDetDepth = Config_["OscProbCalcerSetup"]["DetDepth"].as<double>();
   }
-
-  fDetDepth = Config_["OscProbCalcerSetup"]["DetDepth"].as<double>();
-
-  if (!Config_["OscProbCalcerSetup"]["PropMode"]) {
-    std::cerr << "Expected to find a 'PropMode' Node within the 'OscProbCalcerSetup''Implementation' Node" << std::endl;
-    throw std::runtime_error("YAML node not found");
-  }
-
-  fPropMode = Config_["OscProbCalcerSetup"]["PropMode"].as<std::string>();
   //=======
 
   fNNeutrinoTypes = 2;
@@ -50,13 +52,9 @@ OscProbCalcerOscProb::OscProbCalcerOscProb(YAML::Node Config_) :
   fNeutrinoTypes[0] = Nu;
   fNeutrinoTypes[1] = Nubar;
 
-  fOscType = PMNS_StrToInt(OscMatrix);
+  fOscType = PMNS_StrToInt(PMNSType);
   fNOscParams = GetNOscParams();
-  if(fPropMode=="Linear") {
-    fNOscParams += 3;
-    IgnoreCosineZBinning(true);
-    fNCosineZPoints = 1;
-  }
+  if(fCosineZIgnored) fNOscParams += 3;
 
   fMaxGenFlavour = 1;
   fMaxDetFlavour = 1;
@@ -67,22 +65,36 @@ OscProbCalcerOscProb::OscProbCalcerOscProb(YAML::Node Config_) :
     if(dflv>fMaxDetFlavour) fMaxDetFlavour = dflv;
   }
 
-  std::cout << "PMNS Type : " << fOscType << std::endl;
+  std::cout << "PMNS Type : " << PMNSType << std::endl;
   std::cout << "Number of parameters : " << fNOscParams << std::endl;
-  std::cout << "PREM Model : " << premfile << std::endl;
-  std::cout << "Detector depth : " << fDetDepth << "km" << std::endl;
+  std::cout << "Propagation Method : ";
+  if (fCosineZIgnored) std::cout << "Linear" << std::endl;
+  else {
+    std::cout << "Atmospheric" << std::endl;
+    std::cout << "PREM Model : " << fPremFile << std::endl;
+    std::cout << "Detector depth : " << fDetDepth << "km" << std::endl;
+  }
 }
 
 OscProbCalcerOscProb::~OscProbCalcerOscProb() {
   delete fPMNSObj;
 }
 
+int OscProbCalcerOscProb::GetNCosineZ() {
+  return fCosineZIgnored ? 1 : fNCosineZPoints;
+}
+
 void OscProbCalcerOscProb::SetupPropagator() {
 
-  std::ifstream file(premfile);
-  if(!file) throw std::runtime_error("could not open PREM file " + premfile);
+  if(!fCosineZIgnored) {
+    std::ifstream file(fPremFile);
+    if(!file) throw std::runtime_error("could not open PREM file " + fPremFile);
 
-  PremModel = OscProb::PremModel(premfile);
+    double det_radius = 6371. - fDetDepth;
+
+    fPremModel.SetDetPos(det_radius);
+    fPremModel.LoadModel(fPremFile);
+  }
 
   if(fPMNSObj) delete fPMNSObj;
   fPMNSObj = GetPMNSObj();
@@ -108,10 +120,6 @@ OscProb::PMNS_Base* OscProbCalcerOscProb::GetPMNSObj() {
 
 void OscProbCalcerOscProb::CalculateProbabilities(const std::vector<FLOAT_T>& OscParams) {
 
-  double det_radius = 6371. - fDetDepth;
-
-  PremModel.SetDetPos(det_radius);
-
   SetPMNSParams(OscParams);
 
   CalcProbPMNS(OscParams);
@@ -121,14 +129,14 @@ void OscProbCalcerOscProb::CalculateProbabilities(const std::vector<FLOAT_T>& Os
 void OscProbCalcerOscProb::SetPath(const std::vector<FLOAT_T>& OscParams,
                                    int iCosineZ) {
 
-  if(fPropMode=="Linear") {
+  if(fCosineZIgnored) {
     fPMNSObj->SetLength ( OscParams[fNOscParams - 3] );
     fPMNSObj->SetDensity( OscParams[fNOscParams - 2] );
     fPMNSObj->SetZoA    ( OscParams[fNOscParams - 1] );
   }
   else {
-    PremModel.FillPath(fCosineZArray[iCosineZ]);
-    fPMNSObj->SetPath(PremModel.GetNuPath());
+    fPremModel.FillPath(fCosineZArray[iCosineZ]);
+    fPMNSObj->SetPath(fPremModel.GetNuPath());
   }
 
 }
@@ -139,15 +147,15 @@ void OscProbCalcerOscProb::CalcProbPMNS(const std::vector<FLOAT_T>& OscParams) {
 
     fPMNSObj->SetIsNuBar(fNeutrinoTypes[iNuType]==Nubar);
 
-    for (int iCosineZ = 0; iCosineZ < fNCosineZPoints; iCosineZ++) {
+    for (int iCosineZ = 0; iCosineZ < GetNCosineZ(); iCosineZ++) {
 
       SetPath(OscParams, iCosineZ);
 
       for (int iEnergy = 0; iEnergy < fNEnergyPoints; iEnergy++) {
 
         OscProb::matrixD probMatrix = fPMNSObj->ProbMatrix(fMaxGenFlavour,
-                                                          fMaxDetFlavour,
-                                                          fEnergyArray[iEnergy]);
+                                                           fMaxDetFlavour,
+                                                           fEnergyArray[iEnergy]);
 
         for (int iOscChannel = 0; iOscChannel < fNOscillationChannels; iOscChannel++) {
 
@@ -171,7 +179,7 @@ int OscProbCalcerOscProb::ReturnWeightArrayIndex(int NuTypeIndex,
                                                  int EnergyIndex,
                                                  int CosineZIndex) {
   int IndexToReturn = ((NuTypeIndex *  fNOscillationChannels +
-                        OscChanIndex) * fNCosineZPoints +
+                        OscChanIndex) * GetNCosineZ() +
                         std::max(CosineZIndex,0)) * fNEnergyPoints +
                         EnergyIndex;
   return IndexToReturn;
@@ -179,7 +187,7 @@ int OscProbCalcerOscProb::ReturnWeightArrayIndex(int NuTypeIndex,
 
 long OscProbCalcerOscProb::DefineWeightArraySize() {
   long nCalculationPoints = static_cast<long>(fNEnergyPoints) *
-                            fNCosineZPoints *
+                            GetNCosineZ() *
                             fNOscillationChannels *
                             fNNeutrinoTypes;
   return nCalculationPoints;
