@@ -54,6 +54,7 @@ OscProbCalcerOscProb::OscProbCalcerOscProb(YAML::Node Config_) :
   fNOscParams = GetNOscParams();
   if(fPropMode=="Linear") {
     fNOscParams += 3;
+    IgnoreCosineZBinning(true);
     fNCosineZPoints = 1;
   }
 
@@ -170,7 +171,7 @@ int OscProbCalcerOscProb::ReturnWeightArrayIndex(int NuTypeIndex,
                                                  int CosineZIndex) {
   int IndexToReturn = ((NuTypeIndex *  fNOscillationChannels +
                         OscChanIndex) * fNCosineZPoints +
-                        CosineZIndex) * fNEnergyPoints +
+                        std::max(CosineZIndex,0)) * fNEnergyPoints +
                         EnergyIndex;
   return IndexToReturn;
 }
