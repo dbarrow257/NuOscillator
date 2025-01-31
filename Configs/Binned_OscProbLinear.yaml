@@ -1,14 +1,19 @@
 General:
   Verbosity: "NONE"
-  CosineZIgnored: false
-  CalculationType: "Unbinned"
+  CosineZIgnored: true
+  CalculationType: "Binned"
+
+Binned:
+  FileName: "./Inputs/ExampleAtmosphericBinning.root"
+  EnergyAxisHistName: "EnergyAxisBinning"
+  CosineZAxisHistName: "CosineZAxisBinning"
 
 OscProbCalcerSetup:
   ImplementationName: "OscProb"
   PMNSType: "Fast"
   PREMFile: "./build/_deps/oscprob-src/PremTables/prem_15layers.txt"
   DetDepth: 1.5
-  PropMode: "Atm"
+  PropMode: "Linear"
   OscChannelMapping:
     - Entry: "Electron:Electron"
     - Entry: "Electron:Muon"

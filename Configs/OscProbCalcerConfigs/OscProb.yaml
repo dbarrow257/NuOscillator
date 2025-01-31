@@ -6,6 +6,7 @@ OscProbCalcerSetup:
   PMNSType: "Fast"
   PREMFile: "./build/_deps/oscprob-src/PremTables/prem_15layers.txt"
   DetDepth: 1.5
+  PropMode: "Atm"
   OscChannelMapping:
     - Entry: "Electron:Electron"
     - Entry: "Electron:Muon"
@@ -16,8 +17,3 @@ OscProbCalcerSetup:
     - Entry: "Tau:Electron"
     - Entry: "Tau:Muon"
     - Entry: "Tau:Tau"
-
-
-
-
-    
