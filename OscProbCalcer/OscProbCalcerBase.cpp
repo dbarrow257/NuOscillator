@@ -302,10 +302,12 @@ void OscProbCalcerBase::SanitiseProbabilities() {
     if ((fWeightArray[iWeight] > -1.0*PrecisionLimit) && (fWeightArray[iWeight] < 0)) {
       //Check if it's just below 0 (within some precision) and set to 0 if it is
       fWeightArray[iWeight] = 0.;
+      continue;
     }
     if ((fWeightArray[iWeight] > 1.0) && (fWeightArray[iWeight] < (1.0+PrecisionLimit))) {
       //Check if it's just above 1 (within some precision) and set to 1 if it is
       fWeightArray[iWeight] = 1.;
+      continue;
     }
     if (fWeightArray[iWeight] > (1.0+PrecisionLimit)) {
       //Check if it's above 1.0+PrecisionLimit
