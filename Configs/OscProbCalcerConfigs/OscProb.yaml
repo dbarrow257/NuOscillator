@@ -1,5 +1,6 @@
 General:
   Verbosity: "NONE"
+  CosineZIgnored: false
 
 OscProbCalcerSetup:
   ImplementationName: "OscProb"
@@ -16,8 +17,3 @@ OscProbCalcerSetup:
     - Entry: "Tau:Electron"
     - Entry: "Tau:Muon"
     - Entry: "Tau:Tau"
-
-
-
-
-    
