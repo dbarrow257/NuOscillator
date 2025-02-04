@@ -8,8 +8,8 @@ LABEL compiler="GNU 11.3.1"
 LABEL root_version="v6.26.10"
 LABEL org.opencontainers.image.description="Official NuOscillator container"
 
-ARG CMAKE_OPTIONS
-ENV CMAKE_OPTIONS=${CMAKE_OPTIONS:-DUseDoubles=1 -DUseMultithreading=1}
+ARG CMAKE_OPTIONS="-DUseDoubles=1 -DUseMultithreading=1"
+ENV CMAKE_OPTIONS="$CMAKE_OPTIONS"
 
 # Declare the build argument
 ARG NUOSCILLATOR_VERSION
