@@ -35,8 +35,10 @@ OscProbCalcerBase::OscProbCalcerBase(YAML::Node InputConfig_) {
   fWeightArrayInit = false;
   fNuMappingSet = false;
 
-  Config = InputConfig_;
+  PrecisionLimit = 1.0e-6;
   
+  Config = InputConfig_;
+
   std::string Verbosity = Config["General"]["Verbosity"].as<std::string>();
   fVerbose = Verbosity_StrToInt(Verbosity);
 
@@ -44,7 +46,16 @@ OscProbCalcerBase::OscProbCalcerBase(YAML::Node InputConfig_) {
     std::cerr << "Did not find the 'OscProbCalcerSetup' Node within the config" << std::endl;
     throw std::runtime_error("Invalid setup");
   }
+  
+  if (Config["OscProbCalcerSetup"]["PrecisionLimit"]) {
+    //Update the default valye of 1.0e-6
+    PrecisionLimit = Config["OscProbCalcerSetup"]["PrecisionLimit"].as<FLOAT_T>();
+  }
 
+  if (!Config["OscProbCalcerSetup"]["ImplementationName"]) {
+    std::cerr << "Did not find the 'OscProbCalcerSetup''ImplementationName' Node within the config" << std::endl;
+    throw std::runtime_error("Invalid setup");
+  }
   fImplementationName = Config["OscProbCalcerSetup"]["ImplementationName"].as<std::string>();
   if (fVerbose >= NuOscillator::INFO) {
     std::cout << "From config, found implementation:" << fImplementationName << std::endl;
@@ -55,7 +66,6 @@ OscProbCalcerBase::OscProbCalcerBase(YAML::Node InputConfig_) {
     throw std::runtime_error("Invalid setup");
   }
   InitialiseOscillationChannelMapping();
-
 }
 
 OscProbCalcerBase::~OscProbCalcerBase() {
@@ -271,13 +281,41 @@ void OscProbCalcerBase::Reweight(const std::vector<FLOAT_T>& OscParams) {
 
 void OscProbCalcerBase::SanitiseProbabilities() {
   for (int iWeight=0;iWeight<fNWeights;++iWeight) {
-    if (std::isnan(fWeightArray[iWeight]) || fWeightArray[iWeight] < 0.0 || fWeightArray[iWeight] > 1.001) {
-      std::cerr << "Found unreasonable weight in fWeightArray" << std::endl;
+    if (std::isnan(fWeightArray[iWeight])) {
+      std::cerr << "Found nan probability in fWeightArray" << std::endl;
+      std::cerr << "iWeight:" << iWeight << std::endl;
+      throw std::runtime_error("Invalid probability");
+    }
+
+
+    if ((fWeightArray[iWeight] >= 0.0) && (fWeightArray[iWeight] <= 1.0)) {
+      //Check if it's between 0.0 and 1.0, if so continue to next event
+      continue;
+    }
+    if (fWeightArray[iWeight] < -1.0*PrecisionLimit) {
+      //Check if it's below 0.0-PrecisionLimit
+      std::cerr << "Found probability which is below the allowable precision of: 0.0-" << PrecisionLimit << std::endl;
       std::cerr << "iWeight:" << iWeight << std::endl;
       std::cerr << "fWeightArray[iWeight]:" << fWeightArray[iWeight] << std::endl;
-      throw std::runtime_error("Invalid setup");
+      throw std::runtime_error("Probability below zero");
+    }
+    if ((fWeightArray[iWeight] > -1.0*PrecisionLimit) && (fWeightArray[iWeight] < 0)) {
+      //Check if it's just below 0 (within some precision) and set to 0 if it is
+      fWeightArray[iWeight] = 0.;
+    }
+    if ((fWeightArray[iWeight] > 1.0) && (fWeightArray[iWeight] < (1.0+PrecisionLimit))) {
+      //Check if it's just above 1 (within some precision) and set to 1 if it is
+      fWeightArray[iWeight] = 1.;
+    }
+    if (fWeightArray[iWeight] > (1.0+PrecisionLimit)) {
+      //Check if it's above 1.0+PrecisionLimit
+      std::cerr << "Found probability which is above the allowable precision of: 1.0+" << PrecisionLimit << std::endl;
+      std::cerr << "iWeight:" << iWeight << std::endl;
+      std::cerr << "fWeightArray[iWeight]:" << fWeightArray[iWeight] << std::endl;
+      throw std::runtime_error("Probability below zero");
     }
   }
+  
 }
 
 bool OscProbCalcerBase::AreOscParamsChanged(const std::vector<FLOAT_T>& OscParamsToCheck) {
