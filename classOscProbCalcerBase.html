@@ -298,6 +298,9 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:a39eb705727ef5a18a9433196555348d6" id="r_a39eb705727ef5a18a9433196555348d6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerBase.html#a39eb705727ef5a18a9433196555348d6">fNuMappingSet</a></td></tr>
 <tr class="memdesc:a39eb705727ef5a18a9433196555348d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Boolean declaring whether <a class="el" href="classOscProbCalcerBase.html#addb978a4699373acea20bf908405c8af" title="The mapping of neutrino types to uniquely defined integers (i.e. index)">fNeutrinoTypes</a> and <a class="el" href="classOscProbCalcerBase.html#a9d3596ff47e31e6fe6855d092588c38a" title="The mapping of oscillation channels which have been requested from the YAML config.">fOscillationChannels</a> have been initialised correctly.  <br /></td></tr>
 <tr class="separator:a39eb705727ef5a18a9433196555348d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad8011dc225caeb64d40bf2cb7df3af1e" id="r_ad8011dc225caeb64d40bf2cb7df3af1e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="OscillatorConstants_8h.html#acb53b45d3e1b677a15c2ef27b266b1ca">FLOAT_T</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerBase.html#ad8011dc225caeb64d40bf2cb7df3af1e">PrecisionLimit</a></td></tr>
+<tr class="memdesc:ad8011dc225caeb64d40bf2cb7df3af1e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Precision limit which allows a slight unphysical probability to pass the SanitiseProbabilities check.  <br /></td></tr>
+<tr class="separator:ad8011dc225caeb64d40bf2cb7df3af1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Oscillation calculation engine (CUDAProb3, ProbGPU, Prob3++, etc.) implementation agnostic base class. </p>
@@ -2098,6 +2101,30 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Boolean declaring whether <a class="el" href="classOscProbCalcerBase.html#a89ca55fe94b0f4b7710ca61d97bacdba" title="Vector which stores the oscillation probabilities.">fWeightArray</a> has been initialised correctly. </p>
+
+</div>
+</div>
+<a id="ad8011dc225caeb64d40bf2cb7df3af1e" name="ad8011dc225caeb64d40bf2cb7df3af1e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad8011dc225caeb64d40bf2cb7df3af1e">&#9670;&#160;</a></span>PrecisionLimit</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="OscillatorConstants_8h.html#acb53b45d3e1b677a15c2ef27b266b1ca">FLOAT_T</a> OscProbCalcerBase::PrecisionLimit</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Precision limit which allows a slight unphysical probability to pass the SanitiseProbabilities check. </p>
 
 </div>
 </div>
