@@ -8,5 +8,7 @@ var searchData=
   ['oscparams_5fnsi_5',['OscParams_NSI',['../classOscProbCalcerOscProb.html#a0aaf27fac6252d17cf989964af0526c4',1,'OscProbCalcerOscProb']]],
   ['oscparams_5fnunm_6',['OscParams_NUNM',['../classOscProbCalcerOscProb.html#a4bb4e4a1e916943e9f8b48a8f3c61190',1,'OscProbCalcerOscProb']]],
   ['oscparams_5fsnsi_7',['OscParams_SNSI',['../classOscProbCalcerOscProb.html#a5a43c0273d6af70b9165e6da5317679d',1,'OscProbCalcerOscProb']]],
-  ['oscparams_5fsterile_8',['OscParams_Sterile',['../classOscProbCalcerOscProb.html#a3eff2a4eef9d3692fa696280fc2c285f',1,'OscProbCalcerOscProb']]]
+  ['oscparams_5fsterile1_8',['OscParams_Sterile1',['../classOscProbCalcerOscProb.html#a4942ec2165fe1b917a0806944617e206',1,'OscProbCalcerOscProb']]],
+  ['oscparams_5fsterile2_9',['OscParams_Sterile2',['../classOscProbCalcerOscProb.html#a6eac86816e45382d033a8e7ad1a3ad21',1,'OscProbCalcerOscProb']]],
+  ['oscparams_5fsterile3_10',['OscParams_Sterile3',['../classOscProbCalcerOscProb.html#a0efa9a175085445785b034d063a5b20e',1,'OscProbCalcerOscProb']]]
 ];

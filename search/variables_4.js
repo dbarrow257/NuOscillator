@@ -25,8 +25,11 @@ var searchData=
   ['foscprobcalcer_22',['fOscProbCalcer',['../classOscillatorBase.html#addf56ce729e9b76700741fc2d8a32b7f',1,'OscillatorBase']]],
   ['foscprobcalcerset_23',['fOscProbCalcerSet',['../classOscillatorBase.html#af47a1f1b03c183022c741fbf8549d406',1,'OscillatorBase']]],
   ['fosctype_24',['fOscType',['../classOscProbCalcerOscProb.html#a96189e894b4b0928f6744dfe8163c35b',1,'OscProbCalcerOscProb']]],
-  ['fpropagatorset_25',['fPropagatorSet',['../classOscProbCalcerBase.html#a4258db5c5c9fcd503c294a3ab996203f',1,'OscProbCalcerBase']]],
-  ['fverbose_26',['fverbose',['../classOscillatorBase.html#aefea428bfddb9afd64b289d7e21d7892',1,'OscillatorBase::fVerbose'],['../classOscProbCalcerBase.html#afd90d7924214b849c24a6040e0d25042',1,'OscProbCalcerBase::fVerbose']]],
-  ['fweightarray_27',['fWeightArray',['../classOscProbCalcerBase.html#a89ca55fe94b0f4b7710ca61d97bacdba',1,'OscProbCalcerBase']]],
-  ['fweightarrayinit_28',['fWeightArrayInit',['../classOscProbCalcerBase.html#a3798ecd36b75b027f2c36ff1ebc5414a',1,'OscProbCalcerBase']]]
+  ['fpmnsobj_25',['fPMNSObj',['../classOscProbCalcerOscProb.html#a048964b5bc7d669c22be316194935796',1,'OscProbCalcerOscProb']]],
+  ['fpremfile_26',['fPremFile',['../classOscProbCalcerOscProb.html#a8c9ea2e5f0407678111ecbe44f46dd34',1,'OscProbCalcerOscProb']]],
+  ['fpremmodel_27',['fPremModel',['../classOscProbCalcerOscProb.html#ab1d11ed0c79ffabcfdef3cbbd688bfe4',1,'OscProbCalcerOscProb']]],
+  ['fpropagatorset_28',['fPropagatorSet',['../classOscProbCalcerBase.html#a4258db5c5c9fcd503c294a3ab996203f',1,'OscProbCalcerBase']]],
+  ['fverbose_29',['fverbose',['../classOscillatorBase.html#aefea428bfddb9afd64b289d7e21d7892',1,'OscillatorBase::fVerbose'],['../classOscProbCalcerBase.html#afd90d7924214b849c24a6040e0d25042',1,'OscProbCalcerBase::fVerbose']]],
+  ['fweightarray_30',['fWeightArray',['../classOscProbCalcerBase.html#a89ca55fe94b0f4b7710ca61d97bacdba',1,'OscProbCalcerBase']]],
+  ['fweightarrayinit_31',['fWeightArrayInit',['../classOscProbCalcerBase.html#a3798ecd36b75b027f2c36ff1ebc5414a',1,'OscProbCalcerBase']]]
 ];
