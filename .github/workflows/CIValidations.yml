@@ -22,6 +22,7 @@ jobs:
       matrix:
         include:
           - name: DragRace
+            argument: 10
     container:
       image: ghcr.io/mach3-software/mach3:alma9latest
 
@@ -48,4 +49,4 @@ jobs:
       run: |
         source /opt/NuOscillator/build/Linux/bin/setup.NuOscillator.sh
         cd /opt/NuOscillator/
-        build/Linux/bin//${{ matrix.name }}
+        build/Linux/bin//${{ matrix.name }} ${{ matrix.argument }}

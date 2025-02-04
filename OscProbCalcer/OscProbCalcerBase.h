@@ -472,6 +472,11 @@ class OscProbCalcerBase {
    * @brief Boolean declaring whether #fNeutrinoTypes and #fOscillationChannels have been initialised correctly
    */
   bool fNuMappingSet;
+
+  /**
+   * @brief Precision limit which allows a slight unphysical probability to pass the SanitiseProbabilities check
+   */
+  FLOAT_T PrecisionLimit;
 };
 
 #endif

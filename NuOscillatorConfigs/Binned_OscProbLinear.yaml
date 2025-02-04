@@ -1,10 +1,16 @@
 General:
   Verbosity: "NONE"
-  CosineZIgnored: false
-  CalculationType: "Unbinned"
+  CosineZIgnored: true
+  CalculationType: "Binned"
+
+Binned:
+  FileName: "./Inputs/ExampleAtmosphericBinning.root"
+  EnergyAxisHistName: "EnergyAxisBinning"
+  CosineZAxisHistName: "CosineZAxisBinning"
 
 OscProbCalcerSetup:
-  ImplementationName: "CUDAProb3Linear"
+  ImplementationName: "OscProb"
+  PMNSType: "Fast"
   OscChannelMapping:
     - Entry: "Electron:Electron"
     - Entry: "Electron:Muon"

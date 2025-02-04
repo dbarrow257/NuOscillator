@@ -1,8 +1,15 @@
 # NuOscillator
+NuOscillator is a wrapper around oscillation calculators,
+enabling the computation of oscillation probabilities for various configurations,
+including beam oscillations, atmospheric oscillations, and sterile neutrinos with NSI effects.
+
+The framework has been adapted to integrate seamlessly with oscillation fitters like
+[MaCh3](https://github.com/mach3-software/MaCh3/tree/develop).
 
 [![Container Image](https://img.shields.io/badge/Container-Image-brightgreen)](https://github.com/dbarrow257/NuOscillator/pkgs/container/nuoscillator)
 [![Code - Doxygen](https://img.shields.io/badge/Code-Doxygen-2ea44f)](https://dbarrow257.github.io/NuOscillator/)
 [![Build CI](https://github.com/dbarrow257/NuOscillator/actions/workflows/CIBuild.yml/badge.svg)](https://github.com/dbarrow257/NuOscillator/actions/workflows/CIBuild.yml)
+[![DOI](https://zenodo.org/badge/642420445.svg)](https://doi.org/10.5281/zenodo.14771935)
 
 ## How to start
 ```bash
@@ -78,9 +85,9 @@ This give full freedom to users in how to configure NuOscillator.
 
 
 ## How to Use in Fitting Framework
-First initialise factory to produce engine defined by config. See exmaples of configs [here](https://github.com/dbarrow257/NuOscillator/tree/main/Configs)
+First initialise factory to produce engine defined by config. See exmaples of configs [here](https://github.com/dbarrow257/NuOscillator/tree/main/NuOscillatorConfigs)
 ```cpp
-OscillatorFactory* OscillFactory = new OscillatorFactory();
+auto OscillFactory = std::make_unique<OscillatorFactory>();
 
 std::string NuOscillatorConfigFile = "configs/NuFASTLinear.yaml");
 NuOscProbCalcers = OscillFactory->CreateOscillator(NuOscillatorConfigFile);
@@ -97,7 +104,13 @@ std::sort(EnergyArray.begin(),EnergyArray.end());
 Lastly pass energy vector and finish setup
 ```cpp
 if (!NuOscProbCalcers->EvalPointsSetInConstructor()) {
-NuOscProbCalcers->SetEnergyArrayInCalcer(EnergyArray);
+  NuOscProbCalcers->SetEnergyArrayInCalcer(EnergyArray);
 }
 NuOscProbCalcers->Setup();
 ```
+
+## Intended extensions
+
+- Inclusion of NuSQUIDS oscillation engine
+- Better handling of oscillation parameter pass through
+- Inclusion of linear propagation in OscProb
