@@ -319,7 +319,7 @@ set(LIBDEST ${CMAKE_INSTALL_PREFIX}/lib)
 configure_file(cmake/Templates/setup.NuOscillator.sh.in "${PROJECT_BINARY_DIR}/setup.NuOscillator.sh" @ONLY)
 install(FILES "${PROJECT_BINARY_DIR}/setup.NuOscillator.sh" DESTINATION ${CMAKE_INSTALL_PREFIX}/bin)
 
-install(DIRECTORY Configs DESTINATION ${CMAKE_INSTALL_PREFIX}/)
+install(DIRECTORY NuOscillatorConfigs DESTINATION ${CMAKE_INSTALL_PREFIX}/)
 install(DIRECTORY Inputs DESTINATION ${CMAKE_INSTALL_PREFIX}/)
 install(DIRECTORY Constants DESTINATION ${CMAKE_INSTALL_PREFIX}/)
 
@@ -347,7 +347,7 @@ install(EXPORT NuOscillator-targets
 )
 
 install(DIRECTORY
-  Configs
+  NuOscillatorConfigs
   DESTINATION ${CMAKE_BINARY_DIR}/NuOscillatorConfigs)
 
 add_library(NuOscillator::All ALIAS NuOscillator)

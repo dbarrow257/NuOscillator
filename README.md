@@ -85,7 +85,7 @@ This give full freedom to users in how to configure NuOscillator.
 
 
 ## How to Use in Fitting Framework
-First initialise factory to produce engine defined by config. See exmaples of configs [here](https://github.com/dbarrow257/NuOscillator/tree/main/Configs)
+First initialise factory to produce engine defined by config. See exmaples of configs [here](https://github.com/dbarrow257/NuOscillator/tree/main/NuOscillatorConfigs)
 ```cpp
 auto OscillFactory = std::make_unique<OscillatorFactory>();
 
