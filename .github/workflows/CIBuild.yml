@@ -21,11 +21,15 @@ jobs:
           - os: Alma9
             file: Docs/DockerFiles/Alma9/Dockerfile
             tag: alma9latest
-            cmakeoptions: -DUseDoubles=1
+            cmakeoptions: -DUseDoubles=1 -DUseMultithreading=1
           - os: Alma9 float
             file: Docs/DockerFiles/Alma9/Dockerfile
             tag: alma9latest
-            cmakeoptions: -DUseDoubles=0
+            cmakeoptions: -DUseDoubles=0 -DUseMultithreading=1
+          - os: Alma9 w/o multithread
+            file: Docs/DockerFiles/Alma9/Dockerfile
+            tag: alma9latest
+            cmakeoptions: -DUseDoubles=0 -DUseMultithreading=0
           - os: Rocky9
             file: Docs/DockerFiles/Rocky9/Dockerfile
             tag: rocky9latest
