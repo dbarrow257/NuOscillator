@@ -43,7 +43,7 @@ class OscillatorBase {
    *
    * @param OscParams Vector of oscillation parameters to calculate probabities at.
    */
-  void CalculateProbabilities(std::vector<FLOAT_T> OscParams);
+  void CalculateProbabilities(const std::vector<FLOAT_T>& OscParams);
 
   /**
    * @brief Return number of expected oscillation parameters for a particular OscProbCalcerBase::OscProbCalcerBase() instance in #fOscProbCalcers.

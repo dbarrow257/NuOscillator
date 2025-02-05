@@ -42,6 +42,7 @@ void OscillatorBase::InitialiseOscProbCalcer() {
   OscProbCalcerFactory* OscProbCalcFactory = new OscProbCalcerFactory();
   fOscProbCalcer = OscProbCalcFactory->CreateOscProbCalcer(Config);
   fOscProbCalcerSet = true;
+  delete OscProbCalcFactory;
 }
 
 void OscillatorBase::SetEnergyArrayInCalcer(std::vector<FLOAT_T> Array) {
@@ -67,7 +68,7 @@ void OscillatorBase::SetCosineZArrayInCalcer(std::vector<FLOAT_T> Array) {
 }
 
 // It is assumed that all OscProbCalcers within a single instance of an OscillatorBase object take the same oscillation probabilities
-void OscillatorBase::CalculateProbabilities(std::vector<FLOAT_T> OscParams) {
+void OscillatorBase::CalculateProbabilities(const std::vector<FLOAT_T>& OscParams) {
   if (fVerbose >= NuOscillator::INFO) {std::cout << "Calculating oscillation probabilities using OscProbCalcer Implementation:" << fOscProbCalcer->ReturnImplementationName() << " in OscillatorBase object" << std::endl;}
   fOscProbCalcer->Reweight(OscParams);
 }
