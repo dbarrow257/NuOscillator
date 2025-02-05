@@ -1,7 +1,7 @@
 var searchData=
 [
   ['neutrinoflavour_5finttostr_0',['NeutrinoFlavour_IntToStr',['../OscillatorConstants_8h.html#aafe499aaf98e40e170c6eadbae810927',1,'OscillatorConstants.h']]],
-  ['neutrinoflavour_5fstrtoint_1',['NeutrinoFlavour_StrToInt',['../OscillatorConstants_8h.html#ad19cbfc161146a607b0ce926a1aa8d72',1,'OscillatorConstants.h']]],
+  ['neutrinoflavour_5fstrtoint_1',['NeutrinoFlavour_StrToInt',['../OscillatorConstants_8h.html#a29a165250407b8e35f22da6607462094',1,'OscillatorConstants.h']]],
   ['neutrinoflavours_2',['NeutrinoFlavours',['../namespaceNuOscillator.html#a6cf913aba678fd3c7cfc73e57d2e3ec9',1,'NuOscillator']]],
   ['nneutrinoflavours_3',['nNeutrinoFlavours',['../namespaceNuOscillator.html#a6cf913aba678fd3c7cfc73e57d2e3ec9af53b9fa353fd29bc63d3d27717db89a2',1,'NuOscillator']]],
   ['nnuflavours_4',['nNuFlavours',['../namespaceNuOscillator.html#a3698298828abcd28ca0aa98ef888701baf42ae95a043cb504cee3ee40e9f96157',1,'NuOscillator']]],

@@ -103,9 +103,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a7899a75b398c562eb6dd40ae4564471a" id="r_a7899a75b398c562eb6dd40ae4564471a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscillatorBase.html#a7899a75b398c562eb6dd40ae4564471a">SanityCheck</a> ()</td></tr>
 <tr class="memdesc:a7899a75b398c562eb6dd40ae4564471a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perform a sanity check which ensures that #fOscProbCalcers have been set correctly.  <br /></td></tr>
 <tr class="separator:a7899a75b398c562eb6dd40ae4564471a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae20578f0cbc096bc9be6f128d51ced00" id="r_ae20578f0cbc096bc9be6f128d51ced00"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscillatorBase.html#ae20578f0cbc096bc9be6f128d51ced00">CalculateProbabilities</a> (std::vector&lt; <a class="el" href="OscillatorConstants_8h.html#acb53b45d3e1b677a15c2ef27b266b1ca">FLOAT_T</a> &gt; OscParams)</td></tr>
-<tr class="memdesc:ae20578f0cbc096bc9be6f128d51ced00"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate the oscillation probabilities for the providied oscillation probabilities.  <br /></td></tr>
-<tr class="separator:ae20578f0cbc096bc9be6f128d51ced00"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a83710719fbb0c06ecd39a6e88f187cec" id="r_a83710719fbb0c06ecd39a6e88f187cec"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscillatorBase.html#a83710719fbb0c06ecd39a6e88f187cec">CalculateProbabilities</a> (const std::vector&lt; <a class="el" href="OscillatorConstants_8h.html#acb53b45d3e1b677a15c2ef27b266b1ca">FLOAT_T</a> &gt; &amp;OscParams)</td></tr>
+<tr class="memdesc:a83710719fbb0c06ecd39a6e88f187cec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate the oscillation probabilities for the providied oscillation probabilities.  <br /></td></tr>
+<tr class="separator:a83710719fbb0c06ecd39a6e88f187cec"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a82d25d3bfb7b03446b75d6320e5697f6" id="r_a82d25d3bfb7b03446b75d6320e5697f6"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscillatorBase.html#a82d25d3bfb7b03446b75d6320e5697f6">ReturnNOscParams</a> ()</td></tr>
 <tr class="memdesc:a82d25d3bfb7b03446b75d6320e5697f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return number of expected oscillation parameters for a particular <a class="el" href="classOscProbCalcerBase.html#a577215656c88457f96a30bb4631a9688" title="Default constructor.">OscProbCalcerBase::OscProbCalcerBase()</a> instance in #fOscProbCalcers.  <br /></td></tr>
 <tr class="separator:a82d25d3bfb7b03446b75d6320e5697f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -293,8 +293,8 @@ Private Attributes</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="ae20578f0cbc096bc9be6f128d51ced00" name="ae20578f0cbc096bc9be6f128d51ced00"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae20578f0cbc096bc9be6f128d51ced00">&#9670;&#160;</a></span>CalculateProbabilities()</h2>
+<a id="a83710719fbb0c06ecd39a6e88f187cec" name="a83710719fbb0c06ecd39a6e88f187cec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a83710719fbb0c06ecd39a6e88f187cec">&#9670;&#160;</a></span>CalculateProbabilities()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -302,7 +302,7 @@ Private Attributes</h2></td></tr>
         <tr>
           <td class="memname">void OscillatorBase::CalculateProbabilities </td>
           <td>(</td>
-          <td class="paramtype">std::vector&lt; <a class="el" href="OscillatorConstants_8h.html#acb53b45d3e1b677a15c2ef27b266b1ca">FLOAT_T</a> &gt;&#160;</td>
+          <td class="paramtype">const std::vector&lt; <a class="el" href="OscillatorConstants_8h.html#acb53b45d3e1b677a15c2ef27b266b1ca">FLOAT_T</a> &gt; &amp;&#160;</td>
           <td class="paramname"><em>OscParams</em></td><td>)</td>
           <td></td>
         </tr>
@@ -499,7 +499,7 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Print the oscillation probabilities for a particular <a class="el" href="classOscProbCalcerBase.html#a577215656c88457f96a30bb4631a9688" title="Default constructor.">OscProbCalcerBase::OscProbCalcerBase()</a> instance in <a class="el" href="classOscillatorBase.html#addf56ce729e9b76700741fc2d8a32b7f" title="The instance of OscProbCalcerBase()">fOscProbCalcer</a>. </p>
-<p>Print the calculated oscillation probability values for a particular <a class="el" href="classOscProbCalcerBase.html#a577215656c88457f96a30bb4631a9688" title="Default constructor.">OscProbCalcerBase::OscProbCalcerBase()</a> instance in #fOscProbCalcers. This is typically performed after a call to <a class="el" href="classOscillatorBase.html#ae20578f0cbc096bc9be6f128d51ced00" title="Calculate the oscillation probabilities for the providied oscillation probabilities.">CalculateProbabilities()</a> </p>
+<p>Print the calculated oscillation probability values for a particular <a class="el" href="classOscProbCalcerBase.html#a577215656c88457f96a30bb4631a9688" title="Default constructor.">OscProbCalcerBase::OscProbCalcerBase()</a> instance in #fOscProbCalcers. This is typically performed after a call to <a class="el" href="classOscillatorBase.html#a83710719fbb0c06ecd39a6e88f187cec" title="Calculate the oscillation probabilities for the providied oscillation probabilities.">CalculateProbabilities()</a> </p>
 
 </div>
 </div>
@@ -745,7 +745,7 @@ Private Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Pointer to the memory address where the calculated oscillation probability for events of the specific requested type will be stored </dd></dl>
 
-<p>Implemented in <a class="el" href="classOscillatorBinned.html#ab1789acd6951b6e484a6952c01edec31">OscillatorBinned</a>, and <a class="el" href="classOscillatorUnbinned.html#a5878f9d140734cd4745b8ad552a6d4ef">OscillatorUnbinned</a>.</p>
+<p>Implemented in <a class="el" href="classOscillatorBinned.html#a45b8d8a9a439b13106f2309b342bd5eb">OscillatorBinned</a>, and <a class="el" href="classOscillatorUnbinned.html#a5f2a3ac84e8b12454c8c4b3fb04dab7b">OscillatorUnbinned</a>.</p>
 
 </div>
 </div>
