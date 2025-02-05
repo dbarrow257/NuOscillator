@@ -44,7 +44,13 @@ jobs:
             exec: SingleOscProbCalcer
             argument: NuOscillatorConfigs/OscProbCalcerConfigs/CUDAProb3Linear.yaml
             new_output: CUDAProb3Linear_New.txt
-            old_output: CUDAProb3Linear_Stored.txt	      	    
+            old_output: CUDAProb3Linear_Stored.txt
+          - name: CUDAProb3 Comparison
+            cmake_options: -DUseCUDAProb3=1
+            exec: SingleOscProbCalcer
+            argument: NuOscillatorConfigs/OscProbCalcerConfigs/CUDAProb3.yaml
+            new_output: CUDAProb3Atm_New.txt
+            old_output: CUDAProb3Atm_Stored.txt	      	    	    
 
     container:
       image: ghcr.io/mach3-software/mach3:alma9latest
