@@ -65,6 +65,9 @@ OscProbCalcerOscProb::OscProbCalcerOscProb(YAML::Node Config_) :
     if(dflv>fMaxDetFlavour) fMaxDetFlavour = dflv;
   }
 
+  if (fCosineZIgnored) fImplementationName += "Linear";
+  fImplementationName += "-" + PMNSType;
+
   std::cout << "PMNS Type : " << PMNSType << std::endl;
   std::cout << "Number of parameters : " << fNOscParams << std::endl;
   std::cout << "Propagation Method : ";
