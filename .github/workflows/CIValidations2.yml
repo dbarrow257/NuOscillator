@@ -18,7 +18,7 @@ jobs:
     name: ${{ matrix.name }}
 
     strategy:
-      fail-fast: false  # Prevents cancellation of remaining jobs if one fails
+      fail-fast: true
       matrix:
         include:
           - name: NuFASTLinear Comparison
