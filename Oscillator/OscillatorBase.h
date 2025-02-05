@@ -86,6 +86,13 @@ class OscillatorBase {
   int ReturnNEnergyPoints();
 
   /**
+   * @brief Return the number of CosineZ points which are being evaluated in the OscProbCalcerBase::OscProbCalcerBase() object
+   *
+   * @return Returns an integer describing the number of CosineZ points which are being evaluated in the OscProbCalcerBase::OscProbCalcerBase() object
+   */
+  int ReturnNCosineZPoints();
+
+  /**
    * @brief Check whether a particular OscProbCalcerBase::OscProbCalcerBase() instance has a particular oscillation channel
    *
    * @param GeneratedFlavour The oscillation channel generated neutrino flavour to check for
@@ -205,7 +212,7 @@ class OscillatorBase {
   
   // ========================================================================================================================================================================
   // Protected virtual functions which are calculation implementation agnostic
-  
+
   // ========================================================================================================================================================================
   // Basic protected variables required for oscillation probability calculation
 

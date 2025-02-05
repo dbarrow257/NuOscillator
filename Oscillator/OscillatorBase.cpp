@@ -87,6 +87,10 @@ int OscillatorBase::ReturnNEnergyPoints() {
   return fOscProbCalcer->ReturnNEnergyPoints();
 }
 
+int OscillatorBase::ReturnNCosineZPoints() {
+  return fOscProbCalcer->ReturnNCosineZPoints();
+}
+
 const FLOAT_T* OscillatorBase::ReturnPointerToWeightinCalcer(int InitNuFlav, int FinalNuFlav, FLOAT_T EnergyVal, FLOAT_T CosineZVal) {
   const FLOAT_T* Pointer = fOscProbCalcer->ReturnPointerToWeight(InitNuFlav,FinalNuFlav,EnergyVal,CosineZVal);
   return Pointer;
