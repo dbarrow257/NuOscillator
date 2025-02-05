@@ -56,7 +56,7 @@ jobs:
             exec: SingleOscProbCalcer
             argument: NuOscillatorConfigs/OscProbCalcerConfigs/OscProb.yaml
             new_output: OscProbAtm_New.txt
-            old_output: OscProbAtm_Stored.txt      	    
+            old_output: OscProbAtm_Stored.txt
 
     container:
       image: ghcr.io/mach3-software/mach3:alma9latest
