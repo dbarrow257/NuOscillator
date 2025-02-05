@@ -59,4 +59,4 @@ jobs:
       run: |
         source /opt/NuOscillator/build/Linux/bin/setup.NuOscillator.sh
         cd /opt/NuOscillator/
-        build/Linux/bin//${{ matrix.name }} ${{ matrix.argument }}
+        build/Linux/bin//${{ matrix.exec }} ${{ matrix.argument }}
