@@ -27,6 +27,12 @@ jobs:
             argument: NuOscillatorConfigs/OscProbCalcerConfigs/NuFASTLinear.yaml
             new_output: NuFASTLinear_New.txt
             old_output: NuFASTLinear_Stored.txt
+          - name: OscProbLinear Comparison
+            cmake_options: -DUseOscProb=1
+            exec: SingleOscProbCalcer
+            argument: NuOscillatorConfigs/OscProbCalcerConfigs/OscProbLinear.yaml
+            new_output: OscProbLinear_New.txt
+            old_output: OscProbLinear_Stored.txt	  
 
     container:
       image: ghcr.io/mach3-software/mach3:alma9latest
