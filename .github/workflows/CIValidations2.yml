@@ -21,49 +21,49 @@ jobs:
       fail-fast: true
       matrix:
         include:
-          - name: NuFASTLinear OscProbCalcer Comparison
+          - name: OscProbCalcer NuFASTLinear Comparison
             cmake_options: -DUseNuFASTLinear=1
             exec: SingleOscProbCalcer
             argument: NuOscillatorConfigs/OscProbCalcerConfigs/NuFASTLinear.yaml
             new_output: NuFASTLinear_New.txt
             old_output: NuFASTLinear_Stored.txt
-          - name: OscProbLinear OscProbCalcer Comparison
+          - name: OscProbCalcer OscProbLinear Comparison
             cmake_options: -DUseOscProb=1
             exec: SingleOscProbCalcer
             argument: NuOscillatorConfigs/OscProbCalcerConfigs/OscProbLinear.yaml
             new_output: OscProbLinear_New.txt
             old_output: OscProbLinear_Stored.txt
-          - name: Prob3ppLinear OscProbCalcer Comparison
+          - name: OscProbCalcer Prob3ppLinear Comparison
             cmake_options: -DUseProb3ppLinear=1
             exec: SingleOscProbCalcer
             argument: NuOscillatorConfigs/OscProbCalcerConfigs/Prob3ppLinear.yaml
             new_output: Prob3ppLinear_New.txt
             old_output: Prob3ppLinear_Stored.txt
-          - name: CUDAProb3Linear OscProbCalcer Comparison
+          - name: OscProbCalcer CUDAProb3Linear Comparison
             cmake_options: -DUseCUDAProb3Linear=1
             exec: SingleOscProbCalcer
             argument: NuOscillatorConfigs/OscProbCalcerConfigs/CUDAProb3Linear.yaml
             new_output: CUDAProb3Linear_New.txt
             old_output: CUDAProb3Linear_Stored.txt
-          - name: CUDAProb3 OscProbCalcer Comparison
+          - name: OscProbCalcer CUDAProb3 Comparison
             cmake_options: -DUseCUDAProb3=1
             exec: SingleOscProbCalcer
             argument: NuOscillatorConfigs/OscProbCalcerConfigs/CUDAProb3.yaml
             new_output: CUDAProb3Atm_New.txt
             old_output: CUDAProb3Atm_Stored.txt
-          - name: OscProb OscProbCalcer Comparison
+          - name: OscProbCalcer OscProb Comparison
             cmake_options: -DUseOscProb=1
             exec: SingleOscProbCalcer
             argument: NuOscillatorConfigs/OscProbCalcerConfigs/OscProb.yaml
             new_output: OscProbAtm_New.txt
             old_output: OscProbAtm_Stored.txt
-          - name: OscProb BinnedOscillator Comparison
+          - name: BinnedOscillator OscProb Comparison
             cmake_options: -DUseOscProb=1
             exec: SingleOscillator
             argument: NuOscillatorConfigs/Binned_OscProb.yaml
             new_output: OscProb_BinnedOscillator_New.txt
             old_output: OscProb_BinnedOscillator_Stored.txt
-          - name: OscProb UnbinnedOscillator Comparison
+          - name: UnbinnedOscillator OscProb Comparison
             cmake_options: -DUseOscProb=1
             exec: SingleOscillator
             argument: NuOscillatorConfigs/Unbinned_OscProb.yaml
