@@ -68,7 +68,7 @@ jobs:
             exec: SingleOscillator
             argument: NuOscillatorConfigs/Unbinned_OscProb.yaml
             new_output: OscProb_UnbinnedOscillator_New.txt
-            old_output: OscProb_UnbinnedOscillator_Stored.txt	    
+            old_output: OscProb_UnbinnedOscillator_Stored.txt
 
     container:
       image: ghcr.io/mach3-software/mach3:alma9latest
