@@ -1,6 +1,6 @@
 # Performs unit and integration testing
 
-name: Validations CI
+name: DragRace
 
 # The events that trigger the workflow
 on:
