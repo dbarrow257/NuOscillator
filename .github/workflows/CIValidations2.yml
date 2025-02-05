@@ -24,7 +24,7 @@ jobs:
           - name: NuFASTLinear Comparison
             cmake_options: -DUseNuFASTLinear=1
             exec: SingleOscProbCalcer
-            argument: NuOscillatorConfigs/Unbinned_NuFASTLinear.yaml
+            argument: NuOscillatorConfigs/OscProbCalcerConfigs/NuFASTLinear.yaml
             new_output: NuFASTLinear_New.txt
             old_output: NuFASTLinear_Stored.txt
 
