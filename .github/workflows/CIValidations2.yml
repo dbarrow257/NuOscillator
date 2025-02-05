@@ -32,7 +32,13 @@ jobs:
             exec: SingleOscProbCalcer
             argument: NuOscillatorConfigs/OscProbCalcerConfigs/OscProbLinear.yaml
             new_output: OscProbLinear_New.txt
-            old_output: OscProbLinear_Stored.txt	  
+            old_output: OscProbLinear_Stored.txt	
+          - name: Prob3ppLinear Comparison
+            cmake_options: -DUseProb3ppLinear=1
+            exec: SingleOscProbCalcer
+            argument: NuOscillatorConfigs/OscProbCalcerConfigs/Prob3ppLinear.yaml
+            new_output: Prob3ppLinear_New.txt
+            old_output: Prob3ppLinear_Stored.txt	      
 
     container:
       image: ghcr.io/mach3-software/mach3:alma9latest
