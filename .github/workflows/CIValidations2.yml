@@ -45,7 +45,6 @@ jobs:
             argument: NuOscillatorConfigs/OscProbCalcerConfigs/CUDAProb3Linear.yaml
             new_output: CUDAProb3Linear_New.txt
             old_output: CUDAProb3Linear_Stored.txt
-	    
           - name: CUDAProb3 Comparison
             cmake_options: -DUseCUDAProb3=1
             exec: SingleOscProbCalcer
