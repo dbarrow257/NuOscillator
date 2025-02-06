@@ -38,7 +38,7 @@ jobs:
     - name: Get NuOscillator
       run: |
         cd /opt/
-        git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/dbarrow257/NuOscillator.git gh-plots
+        git clone https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/dbarrow257/NuOscillator.git Plot
         cd NuOscillator
         git checkout ${{ github.head_ref }}
         mkdir build
