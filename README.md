@@ -111,9 +111,9 @@ NuOscProbCalcers->Setup();
 
 ## Benchmark
 **Beam**
-![Timing Distribution](https://github.com/dbarrow257/NuOscillator/raw/gh-plots/TimingDistributionBeam.png)
+![Timing Distribution Beam](https://github.com/dbarrow257/NuOscillator/raw/gh-plots/TimingDistributionBeam.png)
 **Atmospheric**
-![Timing Distribution](https://github.com/dbarrow257/NuOscillator/raw/gh-plots/TimingDistributionATM.png)
+![Timing Distribution ATM](https://github.com/dbarrow257/NuOscillator/raw/gh-plots/TimingDistributionATM.png)
 
 
 ## Intended extensions

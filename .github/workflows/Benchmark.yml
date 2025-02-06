@@ -4,7 +4,7 @@ name: PlotUpdate
 # The events that trigger the workflow
 on:
   push:
-    branches: [ main, feature_botPLOT ]
+    branches: [ main ]
 
 permissions:
   contents: write
