@@ -64,7 +64,7 @@ Following neutrino oscillation calculators are available:
 | ProbGPULinear    | GPU        | Beam       | [Ref](http://dx.doi.org/10.3204/DESY-PROC-2014-05/23)   |
 | Prob3++Linear    | CPU        | Beam       |            |
 | NuFastLinear     | CPU        | Beam       | [Ref](https://doi.org/10.48550/arXiv.2405.02400)        |
-| OscProb          | CPU        | Atm        |            |
+| OscProb          | CPU        | Beam/Atm   |            |
 
 ## GPU
 Some engines requires gpu like `ProbGPULinear` other can use both CPU and GPU. To use GPU functionality remember about
