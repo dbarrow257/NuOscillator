@@ -1,29 +1,4 @@
 var searchData=
 [
-  ['oscillatorbase_2ecpp_0',['OscillatorBase.cpp',['../OscillatorBase_8cpp.html',1,'']]],
-  ['oscillatorbase_2eh_1',['OscillatorBase.h',['../OscillatorBase_8h.html',1,'']]],
-  ['oscillatorbinned_2ecpp_2',['OscillatorBinned.cpp',['../OscillatorBinned_8cpp.html',1,'']]],
-  ['oscillatorbinned_2eh_3',['OscillatorBinned.h',['../OscillatorBinned_8h.html',1,'']]],
-  ['oscillatorconstants_2eh_4',['OscillatorConstants.h',['../OscillatorConstants_8h.html',1,'']]],
-  ['oscillatorfactory_2ecpp_5',['OscillatorFactory.cpp',['../OscillatorFactory_8cpp.html',1,'']]],
-  ['oscillatorfactory_2eh_6',['OscillatorFactory.h',['../OscillatorFactory_8h.html',1,'']]],
-  ['oscillatorunbinned_2ecpp_7',['OscillatorUnbinned.cpp',['../OscillatorUnbinned_8cpp.html',1,'']]],
-  ['oscillatorunbinned_2eh_8',['OscillatorUnbinned.h',['../OscillatorUnbinned_8h.html',1,'']]],
-  ['oscprobcalcer_5fcudaprob3_2ecpp_9',['OscProbCalcer_CUDAProb3.cpp',['../OscProbCalcer__CUDAProb3_8cpp.html',1,'']]],
-  ['oscprobcalcer_5fcudaprob3_2eh_10',['OscProbCalcer_CUDAProb3.h',['../OscProbCalcer__CUDAProb3_8h.html',1,'']]],
-  ['oscprobcalcer_5fcudaprob3linear_2ecpp_11',['OscProbCalcer_CUDAProb3Linear.cpp',['../OscProbCalcer__CUDAProb3Linear_8cpp.html',1,'']]],
-  ['oscprobcalcer_5fcudaprob3linear_2eh_12',['OscProbCalcer_CUDAProb3Linear.h',['../OscProbCalcer__CUDAProb3Linear_8h.html',1,'']]],
-  ['oscprobcalcer_5fnufastlinear_2ecpp_13',['OscProbCalcer_NuFASTLinear.cpp',['../OscProbCalcer__NuFASTLinear_8cpp.html',1,'']]],
-  ['oscprobcalcer_5fnufastlinear_2eh_14',['OscProbCalcer_NuFASTLinear.h',['../OscProbCalcer__NuFASTLinear_8h.html',1,'']]],
-  ['oscprobcalcer_5foscprob_2ecpp_15',['OscProbCalcer_OscProb.cpp',['../OscProbCalcer__OscProb_8cpp.html',1,'']]],
-  ['oscprobcalcer_5foscprob_2eh_16',['OscProbCalcer_OscProb.h',['../OscProbCalcer__OscProb_8h.html',1,'']]],
-  ['oscprobcalcer_5fprob3pplinear_2ecpp_17',['OscProbCalcer_Prob3ppLinear.cpp',['../OscProbCalcer__Prob3ppLinear_8cpp.html',1,'']]],
-  ['oscprobcalcer_5fprob3pplinear_2eh_18',['OscProbCalcer_Prob3ppLinear.h',['../OscProbCalcer__Prob3ppLinear_8h.html',1,'']]],
-  ['oscprobcalcer_5fprobgpulinear_2ecpp_19',['OscProbCalcer_ProbGPULinear.cpp',['../OscProbCalcer__ProbGPULinear_8cpp.html',1,'']]],
-  ['oscprobcalcer_5fprobgpulinear_2eh_20',['OscProbCalcer_ProbGPULinear.h',['../OscProbCalcer__ProbGPULinear_8h.html',1,'']]],
-  ['oscprobcalcerbase_2ecpp_21',['OscProbCalcerBase.cpp',['../OscProbCalcerBase_8cpp.html',1,'']]],
-  ['oscprobcalcerbase_2eh_22',['OscProbCalcerBase.h',['../OscProbCalcerBase_8h.html',1,'']]],
-  ['oscprobcalcercomparison_2ecpp_23',['OscProbCalcerComparison.cpp',['../OscProbCalcerComparison_8cpp.html',1,'']]],
-  ['oscprobcalcerfactory_2ecpp_24',['OscProbCalcerFactory.cpp',['../OscProbCalcerFactory_8cpp.html',1,'']]],
-  ['oscprobcalcerfactory_2eh_25',['OscProbCalcerFactory.h',['../OscProbCalcerFactory_8h.html',1,'']]]
+  ['makeexamplebinning_2ecpp_0',['MakeExampleBinning.cpp',['../MakeExampleBinning_8cpp.html',1,'']]]
 ];

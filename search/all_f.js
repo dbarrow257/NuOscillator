@@ -12,7 +12,7 @@ var searchData=
   ['returnhassetenergyarray_9',['ReturnHasSetEnergyArray',['../classOscProbCalcerBase.html#a8fcb9012d7b02f26ea162199cc49329e',1,'OscProbCalcerBase']]],
   ['returnimplementationname_10',['returnimplementationname',['../classOscillatorBase.html#a73c7125b40f297f9f7a7926a16302d39',1,'OscillatorBase::ReturnImplementationName()'],['../classOscProbCalcerBase.html#a6cd5f71eef2be66b95ca5ba009951c6c',1,'OscProbCalcerBase::ReturnImplementationName()']]],
   ['returnknownconfigs_11',['ReturnKnownConfigs',['../OscillatorConstants_8h.html#aa2a9727c96b0774a51f391856e807a51',1,'OscillatorConstants.h']]],
-  ['returnncosinezpoints_12',['ReturnNCosineZPoints',['../classOscProbCalcerBase.html#aa9cd0e18a66c2ff37ccfeb4c2466d8bd',1,'OscProbCalcerBase']]],
+  ['returnncosinezpoints_12',['returnncosinezpoints',['../classOscProbCalcerBase.html#aa9cd0e18a66c2ff37ccfeb4c2466d8bd',1,'OscProbCalcerBase::ReturnNCosineZPoints()'],['../classOscillatorBase.html#a7623bfcb02447488601dbcec1fb1d96c',1,'OscillatorBase::ReturnNCosineZPoints()']]],
   ['returnnenergypoints_13',['returnnenergypoints',['../classOscillatorBase.html#ad4ddb63501af70235579de7268b33482',1,'OscillatorBase::ReturnNEnergyPoints()'],['../classOscProbCalcerBase.html#aaf19fbac6a5309f5a2e6cb8b2c8daec9',1,'OscProbCalcerBase::ReturnNEnergyPoints()']]],
   ['returnnoscparams_14',['returnnoscparams',['../classOscillatorBase.html#a82d25d3bfb7b03446b75d6320e5697f6',1,'OscillatorBase::ReturnNOscParams()'],['../classOscProbCalcerBase.html#a1f8e0ab26f02a55a89efe2bdbd7bd17a',1,'OscProbCalcerBase::ReturnNOscParams()']]],
   ['returnnutypefromflavour_15',['ReturnNuTypeFromFlavour',['../classOscProbCalcerBase.html#a3fb5c893d31c3017a8a3c26bcd221562',1,'OscProbCalcerBase']]],
