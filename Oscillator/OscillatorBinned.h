@@ -49,6 +49,8 @@ class OscillatorBinned : public OscillatorBase {
    * @return Pointer to the memory address where the calculated oscillation probability for events of the specific requested type will be stored
    */
   const FLOAT_T* ReturnWeightPointer(int InitNuFlav, int FinalNuFlav, FLOAT_T EnergyVal, FLOAT_T CosineZVal=DUMMYVAL) override;
+
+  std::vector<FLOAT_T> ReturnBinEdgesForPlotting(bool ReturnEnergy) override;
   
   // ========================================================================================================================================================================
   // Public virtual functions which need calculater specific implementations

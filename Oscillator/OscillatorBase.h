@@ -165,6 +165,8 @@ class OscillatorBase {
    */
   virtual const FLOAT_T* ReturnWeightPointer(int InitNuFlav, int FinalNuFlav, FLOAT_T EnergyVal, FLOAT_T CosineZVal=DUMMYVAL) = 0;
 
+  virtual std::vector<FLOAT_T> ReturnBinEdgesForPlotting(bool ReturnEnergy) = 0;
+
  protected:
   /**
    * @brief Default constructor
