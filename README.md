@@ -113,4 +113,3 @@ NuOscProbCalcers->Setup();
 
 - Inclusion of NuSQUIDS oscillation engine
 - Better handling of oscillation parameter pass through
-- Inclusion of linear propagation in OscProb
