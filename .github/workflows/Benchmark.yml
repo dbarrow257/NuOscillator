@@ -9,7 +9,7 @@ on:
     branches: [ feature_botPLOT  ]
 
 permissions:
-  contents: read
+  contents: write
   packages: write
 
 jobs:
