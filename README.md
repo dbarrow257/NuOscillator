@@ -109,6 +109,13 @@ if (!NuOscProbCalcers->EvalPointsSetInConstructor()) {
 NuOscProbCalcers->Setup();
 ```
 
+## Benchmark
+**Beam**
+![Timing Distribution Beam](https://github.com/dbarrow257/NuOscillator/raw/gh-plots/TimingDistributionBeam.png)
+**Atmospheric**
+![Timing Distribution ATM](https://github.com/dbarrow257/NuOscillator/raw/gh-plots/TimingDistributionATM.png)
+
+
 ## Intended extensions
 
 - Inclusion of NuSQUIDS oscillation engine

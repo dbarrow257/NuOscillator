@@ -49,6 +49,18 @@ class OscillatorBinned : public OscillatorBase {
    * @return Pointer to the memory address where the calculated oscillation probability for events of the specific requested type will be stored
    */
   const FLOAT_T* ReturnWeightPointer(int InitNuFlav, int FinalNuFlav, FLOAT_T EnergyVal, FLOAT_T CosineZVal=DUMMYVAL) override;
+
+  /**
+   * @brief Return a vector of bin edges used for oscillation probability plotting
+   *
+   * Return the binning used to group the energy/cosineZ when associating an MC event to a probability
+   *
+   * @param ReturnEnergy Flag used to identify whether to return Energy or CosineZ binning
+   *
+   * @return Vector of bin edges which are used for plotting purposes
+   *
+   */
+  std::vector<FLOAT_T> ReturnBinEdgesForPlotting(bool ReturnEnergy) override;
   
   // ========================================================================================================================================================================
   // Public virtual functions which need calculater specific implementations
