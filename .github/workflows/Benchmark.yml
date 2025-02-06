@@ -1,12 +1,10 @@
-# Performs unit and integration testing
+# Update Benchmarking plots
 name: PlotUpdate
 
 # The events that trigger the workflow
 on:
-  pull_request:
-    branches: [ main ]
   push:
-    branches: [ feature_botPLOT  ]
+    branches: [ main, feature_botPLOT ]
 
 permissions:
   contents: write
@@ -19,13 +17,13 @@ jobs:
     name: ${{ matrix.name }}
 
     strategy:
-      fail-fast: false  # Prevents cancellation of remaining jobs if one fails
+      fail-fast: false  # KS: Prevents cancellation of remaining jobs if one fails
       matrix:
         include:
           - name: PlotUpdate
             cmake_options: -DUseCUDAProb3Linear=1 -DUseNuFASTLinear=1
             exec: DragRace
-            argument: 10 NuOscillatorConfigs/Binned_CUDAProb3Linear.yaml NuOscillatorConfigs/Binned_NuFASTLinear.yaml
+            argument: 1000 NuOscillatorConfigs/Binned_CUDAProb3Linear.yaml NuOscillatorConfigs/Binned_NuFASTLinear.yaml
     container:
       image: ghcr.io/mach3-software/mach3:alma9latest
 
@@ -66,7 +64,7 @@ jobs:
     - name: Convert PDF to PNG
       run: |
         cd Plot
-        convert -density 300 TimingDistribution.pdf[0] -quality 100 TimingDistribution.png
+        convert -density 150 'TimingDistribution.pdf[0]' -trim TimingDistribution.png
 
     - name: Configure Git and Push Update
       run: |
