@@ -38,7 +38,7 @@ jobs:
     - name: Get NuOscillator
       run: |
         cd /opt/
-        git clone https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/dbarrow257/NuOscillator.git Plot
+        git clone https://github.com/dbarrow257/NuOscillator.git NuOscillator
         cd NuOscillator
         git checkout ${{ github.head_ref }}
         mkdir build
@@ -58,7 +58,7 @@ jobs:
 
     - name: Checkout different branch
       run: |
-        git clone https://${{ secrets.GITHUB_TOKEN }}@github.com/dbarrow257/NuOscillator.git Plot
+        git clone https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/dbarrow257/NuOscillator.git Plot
         cd Plot
         git checkout gh-plots
         mv /opt/NuOscillator/TimingDistribution.pdf .
