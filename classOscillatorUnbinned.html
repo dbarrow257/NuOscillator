@@ -104,6 +104,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a5f2a3ac84e8b12454c8c4b3fb04dab7b" id="r_a5f2a3ac84e8b12454c8c4b3fb04dab7b"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="OscillatorConstants_8h.html#acb53b45d3e1b677a15c2ef27b266b1ca">FLOAT_T</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscillatorUnbinned.html#a5f2a3ac84e8b12454c8c4b3fb04dab7b">ReturnWeightPointer</a> (int InitNuFlav, int FinalNuFlav, <a class="el" href="OscillatorConstants_8h.html#acb53b45d3e1b677a15c2ef27b266b1ca">FLOAT_T</a> EnergyVal, <a class="el" href="OscillatorConstants_8h.html#acb53b45d3e1b677a15c2ef27b266b1ca">FLOAT_T</a> CosineZVal=<a class="el" href="OscillatorConstants_8h.html#ae3a7da283c400b8c7e8fb8f27042d7dc">DUMMYVAL</a>) override</td></tr>
 <tr class="memdesc:a5f2a3ac84e8b12454c8c4b3fb04dab7b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return a pointer to the oscillation probability for the requested event attributes.  <br /></td></tr>
 <tr class="separator:a5f2a3ac84e8b12454c8c4b3fb04dab7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aed482ae985bffece326040d41419d986" id="r_aed482ae985bffece326040d41419d986"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="OscillatorConstants_8h.html#acb53b45d3e1b677a15c2ef27b266b1ca">FLOAT_T</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscillatorUnbinned.html#aed482ae985bffece326040d41419d986">ReturnBinEdgesForPlotting</a> (bool ReturnEnergy) override</td></tr>
+<tr class="memdesc:aed482ae985bffece326040d41419d986"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return a vector of bin edges used for oscillation probability plotting.  <br /></td></tr>
+<tr class="separator:aed482ae985bffece326040d41419d986"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classOscillatorBase"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classOscillatorBase')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classOscillatorBase.html">OscillatorBase</a></td></tr>
 <tr class="memitem:abf6deb9c36ae2554ecf64aaa529b3d66 inherit pub_methods_classOscillatorBase" id="r_abf6deb9c36ae2554ecf64aaa529b3d66"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscillatorBase.html#abf6deb9c36ae2554ecf64aaa529b3d66">~OscillatorBase</a> ()</td></tr>
 <tr class="memdesc:abf6deb9c36ae2554ecf64aaa529b3d66 inherit pub_methods_classOscillatorBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor.  <br /></td></tr>
@@ -287,6 +290,44 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+</div>
+</div>
+<a id="aed482ae985bffece326040d41419d986" name="aed482ae985bffece326040d41419d986"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aed482ae985bffece326040d41419d986">&#9670;&#160;</a></span>ReturnBinEdgesForPlotting()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; <a class="el" href="OscillatorConstants_8h.html#acb53b45d3e1b677a15c2ef27b266b1ca">FLOAT_T</a> &gt; OscillatorUnbinned::ReturnBinEdgesForPlotting </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>ReturnEnergy</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Return a vector of bin edges used for oscillation probability plotting. </p>
+<p>Return a binning which ensures exactly one single evaluation point in each bin</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ReturnEnergy</td><td>Flag used to identify whether to return Energy or CosineZ binning</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Vector of bin edges which are used for plotting purposes </dd></dl>
+
+<p>Implements <a class="el" href="classOscillatorBase.html#a63e34ab4e9af91cf3a757225db7dd4b8">OscillatorBase</a>.</p>
 
 </div>
 </div>

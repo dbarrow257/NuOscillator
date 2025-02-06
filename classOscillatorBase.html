@@ -145,6 +145,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a7ae58a9b626a8b7cccc2494d6cf1b604" id="r_a7ae58a9b626a8b7cccc2494d6cf1b604"><td class="memItemLeft" align="right" valign="top">virtual const <a class="el" href="OscillatorConstants_8h.html#acb53b45d3e1b677a15c2ef27b266b1ca">FLOAT_T</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscillatorBase.html#a7ae58a9b626a8b7cccc2494d6cf1b604">ReturnWeightPointer</a> (int InitNuFlav, int FinalNuFlav, <a class="el" href="OscillatorConstants_8h.html#acb53b45d3e1b677a15c2ef27b266b1ca">FLOAT_T</a> EnergyVal, <a class="el" href="OscillatorConstants_8h.html#acb53b45d3e1b677a15c2ef27b266b1ca">FLOAT_T</a> CosineZVal=<a class="el" href="OscillatorConstants_8h.html#ae3a7da283c400b8c7e8fb8f27042d7dc">DUMMYVAL</a>)=0</td></tr>
 <tr class="memdesc:a7ae58a9b626a8b7cccc2494d6cf1b604"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return a pointer to the oscillation probability for the requested event attributes.  <br /></td></tr>
 <tr class="separator:a7ae58a9b626a8b7cccc2494d6cf1b604"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a63e34ab4e9af91cf3a757225db7dd4b8" id="r_a63e34ab4e9af91cf3a757225db7dd4b8"><td class="memItemLeft" align="right" valign="top">virtual std::vector&lt; <a class="el" href="OscillatorConstants_8h.html#acb53b45d3e1b677a15c2ef27b266b1ca">FLOAT_T</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscillatorBase.html#a63e34ab4e9af91cf3a757225db7dd4b8">ReturnBinEdgesForPlotting</a> (bool ReturnEnergy)=0</td></tr>
+<tr class="memdesc:a63e34ab4e9af91cf3a757225db7dd4b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return a vector of bin edges which can be used to plot the oscillation probability.  <br /></td></tr>
+<tr class="separator:a63e34ab4e9af91cf3a757225db7dd4b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
@@ -503,6 +506,44 @@ Private Attributes</h2></td></tr>
 
 <p>Print the oscillation probabilities for a particular <a class="el" href="classOscProbCalcerBase.html#a577215656c88457f96a30bb4631a9688" title="Default constructor.">OscProbCalcerBase::OscProbCalcerBase()</a> instance in <a class="el" href="classOscillatorBase.html#addf56ce729e9b76700741fc2d8a32b7f" title="The instance of OscProbCalcerBase()">fOscProbCalcer</a>. </p>
 <p>Print the calculated oscillation probability values for a particular <a class="el" href="classOscProbCalcerBase.html#a577215656c88457f96a30bb4631a9688" title="Default constructor.">OscProbCalcerBase::OscProbCalcerBase()</a> instance in #fOscProbCalcers. This is typically performed after a call to <a class="el" href="classOscillatorBase.html#a83710719fbb0c06ecd39a6e88f187cec" title="Calculate the oscillation probabilities for the providied oscillation probabilities.">CalculateProbabilities()</a> </p>
+
+</div>
+</div>
+<a id="a63e34ab4e9af91cf3a757225db7dd4b8" name="a63e34ab4e9af91cf3a757225db7dd4b8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a63e34ab4e9af91cf3a757225db7dd4b8">&#9670;&#160;</a></span>ReturnBinEdgesForPlotting()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual std::vector&lt; <a class="el" href="OscillatorConstants_8h.html#acb53b45d3e1b677a15c2ef27b266b1ca">FLOAT_T</a> &gt; OscillatorBase::ReturnBinEdgesForPlotting </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>ReturnEnergy</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Return a vector of bin edges which can be used to plot the oscillation probability. </p>
+<p>If we want to plot the oscillation probabilties, we need to define a binning which can be used to create the histogram. This is implementation dependent because the binned implementation should return the binning used to define the probability binning, but event-by-event needs to return a binning such that a single evaluation point falls in a single bin</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ReturnEnergy</td><td>Flag to return the binning for Energy or CosineZ</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Vector of bin edges which should be used to create a histogram for plotting purposes </dd></dl>
+
+<p>Implemented in <a class="el" href="classOscillatorBinned.html#a846963bfed241f8f1d70c1a24b3968f7">OscillatorBinned</a>, and <a class="el" href="classOscillatorUnbinned.html#aed482ae985bffece326040d41419d986">OscillatorUnbinned</a>.</p>
 
 </div>
 </div>
