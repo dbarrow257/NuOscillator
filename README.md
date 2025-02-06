@@ -110,7 +110,7 @@ NuOscProbCalcers->Setup();
 ```
 
 ## Benchmark
-[View Timing Distribution (PDF)](https://github.com/dbarrow257/NuOscillator/blob/gh-plots/TimingDistribution.pdf)
+![Timing Distribution](https://github.com/dbarrow257/NuOscillator/raw/gh-plots/TimingDistribution.png)
 
 ## Intended extensions
 
