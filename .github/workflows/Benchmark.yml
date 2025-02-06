@@ -21,9 +21,9 @@ jobs:
       matrix:
         include:
           - name: PlotUpdate Beam
-            cmake_options: -DUseCUDAProb3Linear=1 -DUseNuFASTLinear=1
+            cmake_options: -DUseCUDAProb3Linear=1 -DUseNuFASTLinear=1 -DUseProb3ppLinear=1 -DUseOscProb=1
             exec: DragRace
-            argument: 1000 NuOscillatorConfigs/Binned_CUDAProb3Linear.yaml NuOscillatorConfigs/Binned_NuFASTLinear.yaml
+            argument: 1000 NuOscillatorConfigs/Binned_CUDAProb3Linear.yaml NuOscillatorConfigs/Binned_NuFASTLinear.yaml NuOscillatorConfigs/Binned_Prob3ppLinear.yaml NuOscillatorConfigs/Binned_OscProbLinear.yaml
             title: TimingDistributionBeam.png
           - name: PlotUpdate ATM
             exec: DragRace
