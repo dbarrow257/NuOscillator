@@ -61,7 +61,8 @@ jobs:
         git clone https://github.com/dbarrow257/NuOscillator.git Plot
         cd Plot
         git checkout gh-plots
-        mv ../NuOscillator/TimingDistribution.pdf .
+        ls /opt/NuOscillator/
+        mv /opt/NuOscillator/TimingDistribution.pdf .
 
     - name: Convert PDF to PNG
       run: |
