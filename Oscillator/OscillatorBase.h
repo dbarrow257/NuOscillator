@@ -172,6 +172,17 @@ class OscillatorBase {
    */
   virtual const FLOAT_T* ReturnWeightPointer(int InitNuFlav, int FinalNuFlav, FLOAT_T EnergyVal, FLOAT_T CosineZVal=DUMMYVAL) = 0;
 
+  /**
+   * @brief Return a vector of bin edges which can be used to plot the oscillation probability
+   *
+   * If we want to plot the oscillation probabilties, we need to define a binning which can be used to create the histogram. This is implementation dependent
+   * because the binned implementation should return the binning used to define the probability binning, but event-by-event needs to return a binning such
+   * that a single evaluation point falls in a single bin
+   *
+   * @param ReturnEnergy Flag to return the binning for Energy or CosineZ
+   *
+   * @return Vector of bin edges which should be used to create a histogram for plotting purposes
+   */
   virtual std::vector<FLOAT_T> ReturnBinEdgesForPlotting(bool ReturnEnergy) = 0;
 
  protected:
