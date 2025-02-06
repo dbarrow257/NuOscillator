@@ -5,7 +5,6 @@ name: PlotUpdate
 on:
   pull_request:
     branches: [ main ]
-on:
   push:
     branches: [ feature_botPLOT  ]
 
