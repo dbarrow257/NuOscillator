@@ -38,7 +38,7 @@ jobs:
     - name: Get NuOscillator
       run: |
         cd /opt/
-        git clone https://github.com/dbarrow257/NuOscillator.git NuOscillator
+        git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/dbarrow257/NuOscillator.git gh-plots
         cd NuOscillator
         git checkout ${{ github.head_ref }}
         mkdir build
@@ -61,7 +61,6 @@ jobs:
         git clone https://${{ secrets.GITHUB_TOKEN }}@github.com/dbarrow257/NuOscillator.git Plot
         cd Plot
         git checkout gh-plots
-        ls /opt/NuOscillator/
         mv /opt/NuOscillator/TimingDistribution.pdf .
 
     - name: Convert PDF to PNG
@@ -76,4 +75,4 @@ jobs:
         git config --global user.name "github-actions"
         git add TimingDistribution.png TimingDistribution.pdf
         git commit -m "Update plot"
-        git push origin gh-plots
+        git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/dbarrow257/NuOscillator.git gh-plots
