@@ -61,6 +61,9 @@ int main(int argc, char **argv) {
     }
   }
 
+  std::cout << "========================================================" << std::endl;
+  std::cout << "Setting up Oscillators" << std::endl;
+
   Oscillator->Setup();
   
   std::cout << "Finished setup in executable" << std::endl;
@@ -102,8 +105,8 @@ int main(int argc, char **argv) {
 	NuType = -1;
       }
       
-      for (int iGeneratedFlavour=1;iGeneratedFlavour<=3;iGeneratedFlavour++) {
-	for (int iDetectedFlavour=1;iDetectedFlavour<=3;iDetectedFlavour++) {
+      for (int iGeneratedFlavour=1;iGeneratedFlavour<NuOscillator::nNeutrinoFlavours;iGeneratedFlavour++) {
+	for (int iDetectedFlavour=1;iDetectedFlavour<NuOscillator::nNeutrinoFlavours;iDetectedFlavour++) {
 	  
 	  int GenFlav = iGeneratedFlavour * NuType;
 	  int DetFlav = iDetectedFlavour * NuType;
@@ -115,6 +118,8 @@ int main(int argc, char **argv) {
 	    Title += " (Neutrino)";
 	  }
 	  Title += " ;Energy [GeV];Cosine Z";
+
+	  if (!Oscillator->HasOscProbCalcerGotOscillationChannel(std::abs(GenFlav),std::abs(DetFlav))) continue;
 	  
 	  if (Oscillator->CosineZIgnored()) {
 	    std::vector<FLOAT_T> EnergyBinning = Oscillator->ReturnBinEdgesForPlotting(true);
@@ -134,6 +139,7 @@ int main(int argc, char **argv) {
 	    
 	    Hist->Draw();
 	    Canv->Print(OutputName);
+	    delete Hist;
 	  } else {
 	    std::vector<FLOAT_T> EnergyBinning = Oscillator->ReturnBinEdgesForPlotting(true);
 	    std::vector<FLOAT_T> CosineZBinning = Oscillator->ReturnBinEdgesForPlotting(false);
@@ -155,6 +161,7 @@ int main(int argc, char **argv) {
 	    
 	    Hist->Draw("COLZ");
 	    Canv->Print(OutputName);
+	    delete Hist;
 	  }
 	}
 	
@@ -163,5 +170,7 @@ int main(int argc, char **argv) {
     }
 
     Canv->Print(OutputName+"]");
+    delete Canv;
   }
+
 }
