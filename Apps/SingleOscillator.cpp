@@ -2,6 +2,7 @@
 
 #include "Constants/OscillatorConstants.h"
 
+#include "TStyle.h"
 #include "TCanvas.h"
 #include "TH1.h"
 #include "TH2.h"
@@ -21,9 +22,12 @@ int main(int argc, char **argv) {
     throw std::runtime_error("Invalid setup");
   }
   std::string ConfigName = argv[1];
+
+  gStyle->SetOptStat(0);
   
   bool PrintWeights = true;
-
+  bool Plot = true;
+  
   std::vector<FLOAT_T> EnergyArray = logspace(0.1,100.,1e3);
   std::vector<FLOAT_T> CosineZArray = linspace(-1.0,1.0,1e3);
 
@@ -84,48 +88,78 @@ int main(int argc, char **argv) {
   std::cout << "Finished reweight in executable" << std::endl;
   std::cout << "========================================================" << std::endl;
 
-  TCanvas* Canv = new TCanvas;
-  Canv->SetLogx(true);
+  if (Plot) {
+    TCanvas* Canv = new TCanvas;
+    TString OutputName = "Probability.pdf";
+    Canv->Print(OutputName+"[");
+    Canv->SetLogx(true);
 
-  if (Oscillator->CosineZIgnored()) {
-    std::vector<FLOAT_T> EnergyBinning = Oscillator->ReturnBinEdgesForPlotting(true);
-    
-    TH1D* Hist = new TH1D("Probability","",EnergyBinning.size()-1,EnergyBinning.data());
-    for (int xBin=1;xBin<=Hist->GetNbinsX();xBin++) {
-      FLOAT_T Prob;
-      
-      if (Oscillator->EvalPointsSetInConstructor()) {
-	Prob = Oscillator->ReturnOscillationProbability(1,1,Hist->GetXaxis()->GetBinCenter(xBin));
-      } else {
-	Prob = Oscillator->ReturnOscillationProbability(1,1,EnergyArray[xBin-1]);
+    for (int iNuType=0;iNuType<2;iNuType++) {
+      int NuType = 1;
+      if (iNuType==1) {
+	NuType = -1;
       }
       
-      Hist->SetBinContent(xBin,Prob);
-    }
-    
-    Hist->Draw();
-    Canv->Print("Probability.pdf");
-  } else {
-    std::vector<FLOAT_T> EnergyBinning = Oscillator->ReturnBinEdgesForPlotting(true);
-    std::vector<FLOAT_T> CosineZBinning = Oscillator->ReturnBinEdgesForPlotting(false);
-    
-    TH2D* Hist = new TH2D("Oscillogram","",EnergyBinning.size()-1,EnergyBinning.data(),CosineZBinning.size()-1,CosineZBinning.data());
-    for (int xBin=1;xBin<=Hist->GetNbinsX();xBin++) {
-      for (int yBin=1;yBin<=Hist->GetNbinsY();yBin++) {
-	FLOAT_T Prob;
-	
-	if (Oscillator->EvalPointsSetInConstructor()) {
-	  Prob = Oscillator->ReturnOscillationProbability(1,1,Hist->GetXaxis()->GetBinCenter(xBin),Hist->GetYaxis()->GetBinCenter(yBin));
-	} else {
-	  Prob = Oscillator->ReturnOscillationProbability(1,1,EnergyArray[xBin-1],CosineZArray[yBin-1]);
+      for (int iGeneratedFlavour=1;iGeneratedFlavour<=3;iGeneratedFlavour++) {
+	for (int iDetectedFlavour=1;iDetectedFlavour<=3;iDetectedFlavour++) {
+	  
+	  int GenFlav = iGeneratedFlavour * NuType;
+	  int DetFlav = iDetectedFlavour * NuType;
+
+	  TString Title = NeutrinoFlavour_IntToStr(std::abs(GenFlav))+" #rightarrow "+NeutrinoFlavour_IntToStr(std::abs(DetFlav));
+	  if (NuType < 0) {
+	    Title += " (Anti Neutrino)";
+	  } else {
+	    Title += " (Neutrino)";
+	  }
+	  Title += " ;Energy [GeV];Cosine Z";
+	  
+	  if (Oscillator->CosineZIgnored()) {
+	    std::vector<FLOAT_T> EnergyBinning = Oscillator->ReturnBinEdgesForPlotting(true);
+	    
+	    TH1D* Hist = new TH1D(Form("Probability_%i_%i_%i",NuType,GenFlav,DetFlav),Title,EnergyBinning.size()-1,EnergyBinning.data());
+	    for (int xBin=1;xBin<=Hist->GetNbinsX();xBin++) {
+	      FLOAT_T Prob;
+	      
+	      if (Oscillator->EvalPointsSetInConstructor()) {
+		Prob = Oscillator->ReturnOscillationProbability(GenFlav,DetFlav,Hist->GetXaxis()->GetBinCenter(xBin));
+	      } else {
+		Prob = Oscillator->ReturnOscillationProbability(GenFlav,DetFlav,EnergyArray[xBin-1]);
+	      }
+	      
+	      Hist->SetBinContent(xBin,Prob);
+	    }
+	    
+	    Hist->Draw();
+	    Canv->Print(OutputName);
+	  } else {
+	    std::vector<FLOAT_T> EnergyBinning = Oscillator->ReturnBinEdgesForPlotting(true);
+	    std::vector<FLOAT_T> CosineZBinning = Oscillator->ReturnBinEdgesForPlotting(false);
+	    
+	    TH2D* Hist = new TH2D(Form("Oscillogram_%i_%i_%i",NuType,GenFlav,DetFlav),Title,EnergyBinning.size()-1,EnergyBinning.data(),CosineZBinning.size()-1,CosineZBinning.data());
+	    for (int xBin=1;xBin<=Hist->GetNbinsX();xBin++) {
+	      for (int yBin=1;yBin<=Hist->GetNbinsY();yBin++) {
+		FLOAT_T Prob;
+		
+		if (Oscillator->EvalPointsSetInConstructor()) {
+		  Prob = Oscillator->ReturnOscillationProbability(GenFlav,DetFlav,Hist->GetXaxis()->GetBinCenter(xBin),Hist->GetYaxis()->GetBinCenter(yBin));
+		} else {
+		  Prob = Oscillator->ReturnOscillationProbability(GenFlav,DetFlav,EnergyArray[xBin-1],CosineZArray[yBin-1]);
+		}
+		
+		Hist->SetBinContent(xBin,yBin,Prob);
+	      }
+	    }
+	    
+	    Hist->Draw("COLZ");
+	    Canv->Print(OutputName);
+	  }
 	}
 	
-	Hist->SetBinContent(xBin,yBin,Prob);
       }
+      
     }
-    
-    Hist->Draw("COLZ");
-    Canv->Print("Oscillogram.pdf");
-  }
 
+    Canv->Print(OutputName+"]");
+  }
 }
