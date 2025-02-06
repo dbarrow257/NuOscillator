@@ -22,7 +22,7 @@ jobs:
       fail-fast: false  # Prevents cancellation of remaining jobs if one fails
       matrix:
         include:
-          - name: DragRace_Atm_Binned
+          - name: PlotUpdate
             cmake_options: -DUseCUDAProb3Linear=1 -DUseNuFASTLinear=1
             exec: DragRace
             argument: 10 NuOscillatorConfigs/Binned_CUDAProb3Linear.yaml NuOscillatorConfigs/Binned_NuFASTLinear.yaml
@@ -58,7 +58,7 @@ jobs:
 
     - name: Checkout different branch
       run: |
-        git clone https://github.com/dbarrow257/NuOscillator.git Plot
+        git clone https://${{ secrets.GITHUB_TOKEN }}@github.com/dbarrow257/NuOscillator.git Plot
         cd Plot
         git checkout gh-plots
         ls /opt/NuOscillator/
@@ -76,4 +76,4 @@ jobs:
         git config --global user.name "github-actions"
         git add TimingDistribution.png TimingDistribution.pdf
         git commit -m "Update plot"
-        git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/dbarrow257/NuOscillator.git gh-plots
+        git push origin gh-plots
