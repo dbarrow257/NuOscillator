@@ -26,7 +26,9 @@ int main(int argc, char **argv) {
   gStyle->SetOptStat(0);
   
   bool PrintWeights = true;
-  bool Plot = true;
+
+  //Don't plot by default
+  bool Plot = false;
   
   std::vector<FLOAT_T> EnergyArray = logspace(0.1,100.,1e3);
   std::vector<FLOAT_T> CosineZArray = linspace(-1.0,1.0,15);
