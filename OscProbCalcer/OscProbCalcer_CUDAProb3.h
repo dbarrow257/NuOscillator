@@ -2,6 +2,9 @@
 #define __OSCILLATOR_CUDAPROB3_H__
 
 #include "OscProbCalcerBase.h"
+#include "TH2D.h"
+#include "TH3D.h"
+#include "TFile.h"
 
 #include <memory>
 
@@ -84,7 +87,11 @@ class OscProbCalcerCUDAProb3 : public OscProbCalcerBase {
   
   // ========================================================================================================================================================================
   //Functions which help setup implementation specific code
-
+  
+  /**
+  * @brief Set the variables needed to use the production heights averaging.
+  */
+  void SetProductionHeightsAveraging();
   // ========================================================================================================================================================================
   // Variables which are needed for implementation specific code
 
@@ -122,6 +129,16 @@ class OscProbCalcerCUDAProb3 : public OscProbCalcerBase {
    * @brief The name of the Earth Density file being used in a particular instance of OscProbCalcerCUDAProb3()
    */
   std::string EarthDensityFile;
+
+  /**
+   * @brief  Option to use Production Heights averaginhg in a particular instance of OscProbCalcerCUDAProb3()
+   */
+  bool UseProductionHeightsAve;
+  
+  /**
+   * @brief The name of the Production Heights file being used in a particular instance of OscProbCalcerCUDAProb3()
+   */
+  std::string ProductionHeightsFile;
 };
 
 #endif
