@@ -11,7 +11,7 @@ Binned:
 OscProbCalcerSetup:
   ImplementationName: "OscProb"
   PMNSType: "Fast"
-  PREMFile: "./build/_deps/oscprob-src/PremTables/prem_15layers.txt"
+  PREMFile: "./Inputs/prem_4+1layers.txt"
   DetDepth: 1.5
   OscChannelMapping:
     - Entry: "Electron:Electron"
