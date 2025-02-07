@@ -89,6 +89,7 @@ int main(int argc, char **argv) {
       //Throw dcp to some new value
       FLOAT_T RandVal = static_cast <FLOAT_T> (rand()) / static_cast <FLOAT_T> (RAND_MAX);
       OscParams_Atm[5] = RandVal;
+      OscParams_Basic[5] = RandVal;
       OscParams_Beam_woYe[5] = RandVal;
       OscParams_Beam_wYe[5] = RandVal;
 
