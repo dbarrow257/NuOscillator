@@ -127,11 +127,9 @@ void OscProbCalcerCUDAProb3::CalculateProbabilities(const std::vector<FLOAT_T>& 
       // Mapping which links the oscillation channel, neutrino type and energy/cosineZ index to the fWeightArray index
       int IndexToFill = iNuType*fNOscillationChannels*CopyArrSize + iOscChannel*CopyArrSize;
       for (int iOscProb=0;iOscProb<CopyArrSize;iOscProb++) {
-	
 	// Sometimes CUDAProb3 can return *slightly* unphysical oscillation probabilities
 	CopyArr[iOscProb] = CopyArr[iOscProb] > 0.0 ? CopyArr[iOscProb] : 0.0;
 	CopyArr[iOscProb] = CopyArr[iOscProb] < 1.0 ? CopyArr[iOscProb] : 1.0;
-	
 	fWeightArray[IndexToFill+iOscProb] = CopyArr[iOscProb];
       }
     }
@@ -141,7 +139,7 @@ void OscProbCalcerCUDAProb3::CalculateProbabilities(const std::vector<FLOAT_T>& 
 }
 
 int OscProbCalcerCUDAProb3::ReturnWeightArrayIndex(int NuTypeIndex, int OscChanIndex, int EnergyIndex, int CosineZIndex) {
-  int IndexToReturn = NuTypeIndex*fNOscillationChannels*fNCosineZPoints*fNEnergyPoints + OscChanIndex*fNCosineZPoints*fNEnergyPoints + CosineZIndex*fNEnergyPoints + EnergyIndex;
+  int IndexToReturn = NuTypeIndex*fNOscillationChannels*fNCosineZPoints*fNEnergyPoints + OscChanIndex*fNCosineZPoints*fNEnergyPoints + EnergyIndex*fNCosineZPoints + CosineZIndex;
   return IndexToReturn;
 }
 

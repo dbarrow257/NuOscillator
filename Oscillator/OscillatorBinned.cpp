@@ -98,3 +98,11 @@ const FLOAT_T* OscillatorBinned::ReturnWeightPointer(int InitNuFlav, int FinalNu
 
   return ReturnPointerToWeightinCalcer(InitNuFlav,FinalNuFlav,EnergyValBinCenter,CosineZValBinCenter);
 }
+
+std::vector<FLOAT_T> OscillatorBinned::ReturnBinEdgesForPlotting(bool ReturnEnergy) {
+  if (ReturnEnergy) {
+    return EnergyAxisBinEdges;
+  } else {
+    return CosineZAxisBinEdges;
+  }
+}

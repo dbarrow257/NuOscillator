@@ -122,7 +122,7 @@ inline std::vector<std::string> ReturnKnownConfigs() {
  *
  * @return Enum value in #NeutrinoFlavours
  */
-inline int NeutrinoFlavour_StrToInt(std::string NuFlav) {
+inline int NeutrinoFlavour_StrToInt(const std::string& NuFlav) {
   if (NuFlav == "Electron" || NuFlav == "electron") {
     return NuOscillator::kElectron;
   } else if (NuFlav == "Muon" || NuFlav == "muon") {
@@ -178,7 +178,7 @@ inline std::string NeutrinoFlavour_IntToStr(int NuFlav) {
  *
  * @return Enum value describing the verbosity level
  */
-inline int Verbosity_StrToInt(std::string Verbosity) {
+inline int Verbosity_StrToInt(const std::string& Verbosity) {
   if (Verbosity == "NONE") {
     return NuOscillator::NONE;
   } else if (Verbosity == "INFO") {
@@ -198,7 +198,7 @@ inline int Verbosity_StrToInt(std::string Verbosity) {
  *
  * @return NuOscillator::OscillationChannel() structure with generated and detected neutrino flavours
  */
-inline NuOscillator::OscillationChannel ReturnOscillationChannel(std::string InputString) {
+inline NuOscillator::OscillationChannel ReturnOscillationChannel(const std::string& InputString) {
   std::string GeneratedFlavour = "";
   std::string DetectedFlavour = "";
 

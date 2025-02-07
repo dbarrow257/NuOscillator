@@ -5,7 +5,9 @@ foreach(app
         Analysis
         SingleOscillator
         SingleOscProbCalcer
-	OscProbCalcerComparison)
+	OscProbCalcerComparison
+	MakeExampleBinning
+      )
 
         add_executable(${app} ${app}.cpp)
         add_dependencies(OscApps ${app})

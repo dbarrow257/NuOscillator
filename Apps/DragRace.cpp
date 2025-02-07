@@ -7,6 +7,7 @@
 #include <chrono>
 
 #include "TH1D.h"
+#include "TLegend.h"
 #include "TCanvas.h"
 
 using std::chrono::high_resolution_clock;
@@ -15,8 +16,8 @@ using std::chrono::duration;
 using std::chrono::milliseconds;
 
 int main(int argc, char **argv) {
-  if (argc != 2) {
-    std::cerr << "DragRace nIterations" << std::endl;
+  if (argc < 2) {
+    std::cerr << "DragRace nIterations [OscillatorConfig1 OscillatorConfig2 ...]" << std::endl;
     throw std::runtime_error("Invalid setup");
   }
   int nThrows = atoi(argv[1]);
@@ -36,8 +37,15 @@ int main(int argc, char **argv) {
   OscillatorFactory* OscFactory = new OscillatorFactory();
   OscillatorBase* Oscillator;
 
-  //Get the standard set of config names
-  std::vector<std::string> ConfigNames = ReturnKnownConfigs();
+  //Get the standard set of config names or use what is provided from the arguments
+  std::vector<std::string> ConfigNames;
+  if (argc == 2) {
+    ConfigNames = ReturnKnownConfigs();
+  } else {
+    for (int i=2;i<argc;i++) {
+      ConfigNames.push_back(argv[i]);
+    }
+  }
 
   for (size_t iConfig=0;iConfig<ConfigNames.size();iConfig++) {
     std::cout << "========================================================" << std::endl;
@@ -57,16 +65,10 @@ int main(int argc, char **argv) {
       }
     }
 
+    Oscillator->Setup();
+    
     //Append OscillatorBase* object to the vector
     Oscillators.push_back(Oscillator);
-  }
-
-  std::cout << "========================================================" << std::endl;
-  std::cout << "Setting up Oscillators" << std::endl;
-
-  // Setup propagators
-  for (size_t iOsc=0;iOsc<Oscillators.size();iOsc++) {
-    Oscillators[iOsc]->Setup();
   }
 
   std::cout << "Finished setup in executable" << std::endl;
@@ -112,30 +114,42 @@ int main(int argc, char **argv) {
     auto t2 = high_resolution_clock::now();
     duration<double, std::milli> ms_double = t2 - t1;
 
-    std::cout << Oscillators[iOsc]->ReturnImplementationName() << " ended drag race - took " << ms_double.count()/nThrows << " milliseconds per reweight (Using nEnergyPoints = " << Oscillators[iOsc]->ReturnNEnergyPoints() << ")" << std::endl;
+    if (Oscillators[iOsc]->CosineZIgnored()) {
+      std::cout << Oscillators[iOsc]->ReturnImplementationName() << " ended drag race - took " << ms_double.count()/nThrows << " milliseconds per reweight (Using nEnergyPoints = " << Oscillators[iOsc]->ReturnNEnergyPoints() << ")" << std::endl;
+    } else {
+      std::cout << Oscillators[iOsc]->ReturnImplementationName() << " ended drag race - took " << ms_double.count()/nThrows << " milliseconds per reweight (Using nEnergyPoints = " << Oscillators[iOsc]->ReturnNEnergyPoints() << ", nCosineZPoints = " << Oscillators[iOsc]->ReturnNCosineZPoints() << ")" << std::endl;
+    }
   }
 
-  TCanvas* Canv = new TCanvas;
-
-  std::vector<TH1D*> TimeDistributions(Oscillators.size());
+  double Min = 1e8;
+  double Max = -1e8;
   for (size_t iOsc=0;iOsc<Oscillators.size();iOsc++) {
-
-    double Min = 1e8;
-    double Max = -1e8;
     for (int iThrow=0;iThrow<nThrows;iThrow++) {
       if (ReweightTimes[iOsc][iThrow] > Max) Max = ReweightTimes[iOsc][iThrow];
       if (ReweightTimes[iOsc][iThrow] < Min) Min = ReweightTimes[iOsc][iThrow];
     }
-    
-    TimeDistributions[iOsc] = new TH1D((Oscillators[iOsc]->ReturnImplementationName()).c_str(),";Reweight Time [ms];",30,Min-0.1*(Max-Min),Max+0.1*(Max-Min));
-    for (int iThrow=0;iThrow<nThrows;iThrow++) {
-      TimeDistributions[iOsc]->Fill(ReweightTimes[iOsc][iThrow]);
-    }
-
-    TimeDistributions[iOsc]->Draw();
-    Canv->Print((Oscillators[iOsc]->ReturnImplementationName()+"_TimeDistribution.pdf").c_str());
   }
 
+  TCanvas* Canv = new TCanvas;
+  for (size_t iOsc=0;iOsc<Oscillators.size();iOsc++) {
+    TH1D* TimeDistribution = new TH1D((Oscillators[iOsc]->ReturnImplementationName()).c_str(),";Reweight Time [ms];",60,Min-0.1*(Max-Min),Max+0.1*(Max-Min));
+    TimeDistribution->SetStats(false);
+    for (int iThrow=0;iThrow<nThrows;iThrow++) {
+      TimeDistribution->Fill(ReweightTimes[iOsc][iThrow]);
+    }
+
+    TimeDistribution->SetLineColor(iOsc+1);
+    if (iOsc==0) {
+      TimeDistribution->Draw();
+    } else {
+      TimeDistribution->Draw("SAME");
+    }
+  }
+  TLegend* Leg = Canv->BuildLegend(0.1,0.9,0.9,0.99);
+  Leg->SetNColumns(3);
+  Leg->Draw("SAME");
+  Canv->Print("TimingDistribution.pdf");
+  
   std::cout << "Finished drag race in executable" << std::endl;
   std::cout << "========================================================" << std::endl;
 
