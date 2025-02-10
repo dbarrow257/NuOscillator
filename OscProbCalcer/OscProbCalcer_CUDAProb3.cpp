@@ -18,11 +18,19 @@ OscProbCalcerCUDAProb3::OscProbCalcerCUDAProb3(YAML::Node Config_) : OscProbCalc
   //=======
   //Grab information from the config
   EarthDensityFile = Config_["OscProbCalcerSetup"]["EarthModelFileName"].as<std::string>();
-  std::cout << "EarthDensityFile:" << EarthDensityFile << std::endl;
+  if (fVerbose >= NuOscillator::INFO){std::cout << "EarthDensityFile:" << EarthDensityFile << std::endl;}
   UseProductionHeightsAve = Config_["OscProbCalcerSetup"]["UseProductionHeightsAveraging"].as<bool>();
   if(UseProductionHeightsAve){
-  ProductionHeightsFile = Config_["OscProbCalcerSetup"]["ProductionHeightsFileName"].as<std::string>();
-  std::cout << "ProductionHeightsFile:" << ProductionHeightsFile << std::endl;
+    ProductionHeightsFile = Config_["OscProbCalcerSetup"]["ProductionHeightsFileName"].as<std::string>();
+    if (fVerbose >= NuOscillator::INFO){std::cout << "ProductionHeightsFile:" << ProductionHeightsFile << std::endl;}
+    // Read histogram suffixes 
+    ProductionHeightsHistFlavourSuffixes.resize(6);
+    ProductionHeightsHistFlavourSuffixes[0] = Config_["OscProbCalcerSetup"]["ProductionHeightsHistFlavourSuffixes"]["Nue"].as<std::string>();
+    ProductionHeightsHistFlavourSuffixes[1] = Config_["OscProbCalcerSetup"]["ProductionHeightsHistFlavourSuffixes"]["Numu"].as<std::string>();
+    ProductionHeightsHistFlavourSuffixes[2] = Config_["OscProbCalcerSetup"]["ProductionHeightsHistFlavourSuffixes"]["Nutau"].as<std::string>();
+    ProductionHeightsHistFlavourSuffixes[3] = Config_["OscProbCalcerSetup"]["ProductionHeightsHistFlavourSuffixes"]["Nuebar"].as<std::string>();
+    ProductionHeightsHistFlavourSuffixes[4] = Config_["OscProbCalcerSetup"]["ProductionHeightsHistFlavourSuffixes"]["Numubar"].as<std::string>();
+    ProductionHeightsHistFlavourSuffixes[5] = Config_["OscProbCalcerSetup"]["ProductionHeightsHistFlavourSuffixes"]["Nutaubar"].as<std::string>();
   }
   //=======
 
@@ -157,7 +165,7 @@ long OscProbCalcerCUDAProb3::DefineWeightArraySize() {
 }
 
 void OscProbCalcerCUDAProb3::SetProductionHeightsAveraging(){
-  std::cout<<"Setting up production heights for averaging..."<<std::endl;
+  if (fVerbose >= NuOscillator::INFO){std::cout<<"Setting up production heights for averaging..."<<std::endl;}
   // Open prod heights file
   TFile* File = new TFile(ProductionHeightsFile.c_str());
   if (!File || File->IsZombie()) {
@@ -170,12 +178,12 @@ void OscProbCalcerCUDAProb3::SetProductionHeightsAveraging(){
   int NNeutrinoFlavours = 3;
   NeutrinoFlavourNames[0].resize(NNeutrinoFlavours);
   NeutrinoFlavourNames[1].resize(NNeutrinoFlavours);
-  NeutrinoFlavourNames[0][0] = "nue";
-  NeutrinoFlavourNames[0][1] = "numu";
-  NeutrinoFlavourNames[0][2] = "numu"; //nutau doesn't have a prod height table 
-  NeutrinoFlavourNames[1][0] = "nuebar";
-  NeutrinoFlavourNames[1][1] = "numubar";
-  NeutrinoFlavourNames[1][2] = "numubar";//nutaubar doesn't have a prod height table 
+  NeutrinoFlavourNames[0][0] = ProductionHeightsHistFlavourSuffixes[0].c_str();
+  NeutrinoFlavourNames[0][1] = ProductionHeightsHistFlavourSuffixes[1].c_str();
+  NeutrinoFlavourNames[0][2] = ProductionHeightsHistFlavourSuffixes[2].c_str();
+  NeutrinoFlavourNames[1][0] = ProductionHeightsHistFlavourSuffixes[3].c_str();
+  NeutrinoFlavourNames[1][1] = ProductionHeightsHistFlavourSuffixes[4].c_str();
+  NeutrinoFlavourNames[1][2] = ProductionHeightsHistFlavourSuffixes[5].c_str();
 
   std::vector<std::vector<TH3D*>> vecHist;
   vecHist.resize(fNNeutrinoTypes);
@@ -264,5 +272,5 @@ void OscProbCalcerCUDAProb3::SetProductionHeightsAveraging(){
   propagator->SetNumberOfProductionHeightBinsForAveraging(NProductionHeightAveragingBins);
   propagator->setProductionHeightList(ProductionHeightProbabilitiesList,ProductionHeightsList);
   
-  std::cout<<"Done"<<std::endl;
+  if (fVerbose >= NuOscillator::INFO){std::cout<<"Completed SetProductionHeightsAveraging()"<<std::endl;}
 }
