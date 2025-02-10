@@ -80,6 +80,11 @@ foreach(f ${ALL_Engines})
   cmessage(STATUS "     ${f}: ${Use${f}}")
 endforeach()
 
+if(UseCUDAProb3Linear EQUAL 1 AND UseGPU EQUAL 1)
+  cmessage(WARNING "Right now GPU support for CUDAProb3Linear is broken, turning OFF GPU support")
+  set(UseGPU 0)
+endif()
+
 cmessage(STATUS "Required variables being used:")
 if(${UseGPU} EQUAL 1)
   cmessage(STATUS "\tUsing GPU")
