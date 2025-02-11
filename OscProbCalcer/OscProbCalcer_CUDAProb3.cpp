@@ -223,7 +223,7 @@ void OscProbCalcerCUDAProb3::SetProductionHeightsAveraging(){
 
   // Get number of height points
   int NProductionHeightAveragingBins = vecHist[0][0]->GetNbinsZ();
-  if(NProductionHeightAveragingBins!=cudaprob3::Constants<FLOAT_T>::MaxProdHeightBins()){
+  if(NProductionHeightAveragingBins>cudaprob3::Constants<FLOAT_T>::MaxProdHeightBins()){
     std::cerr << "Different number of height bins:" << NProductionHeightAveragingBins << std::endl;
     std::cerr << "Expected:" << cudaprob3::Constants<FLOAT_T>::MaxProdHeightBins() << std::endl;
   }
