@@ -2,6 +2,9 @@
 #define __OSCILLATOR_CUDAPROB3_H__
 
 #include "OscProbCalcerBase.h"
+#include "TH2D.h"
+#include "TH3D.h"
+#include "TFile.h"
 
 #include <memory>
 
@@ -84,7 +87,12 @@ class OscProbCalcerCUDAProb3 : public OscProbCalcerBase {
   
   // ========================================================================================================================================================================
   //Functions which help setup implementation specific code
-
+  
+  /**
+  * @brief Set the variables needed to use the production heights averaging.
+  */
+  void SetProductionHeightsAveraging();
+  
   // ========================================================================================================================================================================
   // Variables which are needed for implementation specific code
 
@@ -122,6 +130,26 @@ class OscProbCalcerCUDAProb3 : public OscProbCalcerBase {
    * @brief The name of the Earth Density file being used in a particular instance of OscProbCalcerCUDAProb3()
    */
   std::string EarthDensityFile;
+
+  /**
+   * @brief  Option to use Production Heights averaging in a particular instance of OscProbCalcerCUDAProb3()
+   */
+  bool UseProductionHeightsAve;
+  
+  /**
+   * @brief The name of the Production Heights file being used in a particular instance of OscProbCalcerCUDAProb3()
+   *
+   * The file should contain a collection of TH3Ds named "ProductionHeight_nu" + flavour suffixes, to be defined in [OscProbCalcerSetup][ProductionHeightsHistFlavourSuffixes].
+   * The binning in x (Energy) and y (CosineZ) must be the same specified in the config file under [Binned][FileName].
+   * The heights used for the average correspond to the lower edges of the z-axis bins.
+   */
+  std::string ProductionHeightsFile;
+
+   /**
+   * @brief The flavour suffixes strings of the TH3Ds in ProductionHeightsFile, read from the configuration file under [OscProbCalcerSetup][ProductionHeightsHistFlavourSuffixes] .
+   */
+  std::vector<std::string> ProductionHeightsHistFlavourSuffixes;
+
 };
 
 #endif
