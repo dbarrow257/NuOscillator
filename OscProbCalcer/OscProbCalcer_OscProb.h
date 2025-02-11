@@ -142,7 +142,7 @@ class OscProbCalcerOscProb : public OscProbCalcerBase {
    * Base parameters for standard 3x3 oscillation matrix, works as is for PMNS_Fast class
    * DetDepth is the detector depth and is expected in km
    */
-  enum OscParams{kTH12, kTH23, kTH13, kDM12, kDM23, kDCP, kNOscParams};
+  enum OscParams{kTH12, kTH23, kTH13, kDM12, kDM23, kDCP, kPRODH, kNOscParams};
 
   /**
    * @brief Definition of extra oscillation parameters for PMNS_Sterile class with 1 additional neutrino

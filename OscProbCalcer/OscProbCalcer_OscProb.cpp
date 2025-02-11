@@ -138,6 +138,7 @@ void OscProbCalcerOscProb::SetPath(const std::vector<FLOAT_T>& OscParams,
     fPMNSObj->SetZoA    ( OscParams[fNOscParams - 1] );
   }
   else {
+    fPremModel.SetTopLayerSize(OscParams[kPRODH]);
     fPremModel.FillPath(fCosineZArray[iCosineZ]);
     fPMNSObj->SetPath(fPremModel.GetNuPath());
   }
