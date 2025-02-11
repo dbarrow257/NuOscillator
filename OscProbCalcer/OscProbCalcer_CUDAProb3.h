@@ -2,9 +2,6 @@
 #define __OSCILLATOR_CUDAPROB3_H__
 
 #include "OscProbCalcerBase.h"
-#include "TH2D.h"
-#include "TH3D.h"
-#include "TFile.h"
 
 #include <memory>
 
@@ -87,19 +84,47 @@ class OscProbCalcerCUDAProb3 : public OscProbCalcerBase {
   
   // ========================================================================================================================================================================
   //Functions which help setup implementation specific code
-  
+
   /**
-  * @brief Set the variables needed to use the production heights averaging.
-  */
-  void SetProductionHeightsAveraging();
-  
+ * @brief Return the PMNS Matrix type corresponding to a particular string 
+ * 
+ * @param PMNSType String to convert to enum value
+ *
+ * @return Enum value describing the PMNS Matrix to use
+ */
+  int PMNS_StrToInt(std::string PMNSType);
+
+  /**
+ * @brief Return number of parameters needed for a particular type of PMNS matrix
+ * 
+ * @param OscType int value corresponding to type of PMNS matrix
+ *
+ * @return number of parameters needed for the type of PMNS matrix
+ */
+  int GetNOscParams(int OscType);
+
   // ========================================================================================================================================================================
   // Variables which are needed for implementation specific code
+
+  /**
+  * @brief ...
+  */
+  enum PMNSMatrix{kStandard=0, k4layers=1};
+
+  /**
+   * @brief ...
+   */
+  int fOscType;
 
   /**
    * @brief Definition of oscillation parameters which are expected in this CUDAProb3 implementation
    */
   enum OscParams{kTH12, kTH23, kTH13, kDM12, kDM23, kDCP, kPRODH, kNOscParams};
+
+  /**
+   * @brief ...
+   */
+  enum OscParams_PREM4layers{kBoundLayers12=kPRODH+1, kBoundLayers23=kPRODH+2, kBoundLayers34=kPRODH+3, kBoundLayers45=kPRODH+4, kWeightLayer1=kPRODH+5, kWeightLayer2=kPRODH+6, kWeightLayer3=kPRODH+7, kWeightLayer4=kPRODH+8};
 
   /**
    * @brief Define the neutrino and antineutrino values expected by this implementation
@@ -132,24 +157,9 @@ class OscProbCalcerCUDAProb3 : public OscProbCalcerBase {
   std::string EarthDensityFile;
 
   /**
-   * @brief  Option to use Production Heights averaging in a particular instance of OscProbCalcerCUDAProb3()
+   * @brief  Option to ... OscProbCalcerCUDAProb3()
    */
-  bool UseProductionHeightsAve;
-  
-  /**
-   * @brief The name of the Production Heights file being used in a particular instance of OscProbCalcerCUDAProb3()
-   *
-   * The file should contain a collection of TH3Ds named "ProductionHeight_nu" + flavour suffixes, to be defined in [OscProbCalcerSetup][ProductionHeightsHistFlavourSuffixes].
-   * The binning in x (Energy) and y (CosineZ) must be the same specified in the config file under [Binned][FileName].
-   * The heights used for the average correspond to the lower edges of the z-axis bins.
-   */
-  std::string ProductionHeightsFile;
-
-   /**
-   * @brief The flavour suffixes strings of the TH3Ds in ProductionHeightsFile, read from the configuration file under [OscProbCalcerSetup][ProductionHeightsHistFlavourSuffixes] .
-   */
-  std::vector<std::string> ProductionHeightsHistFlavourSuffixes;
-
+  bool UseEarthModelSystematics;
 };
 
 #endif

@@ -18,23 +18,23 @@ OscProbCalcerCUDAProb3::OscProbCalcerCUDAProb3(YAML::Node Config_) : OscProbCalc
   //=======
   //Grab information from the config
   EarthDensityFile = Config_["OscProbCalcerSetup"]["EarthModelFileName"].as<std::string>();
-  if (fVerbose >= NuOscillator::INFO){std::cout << "EarthDensityFile:" << EarthDensityFile << std::endl;}
-  UseProductionHeightsAve = Config_["OscProbCalcerSetup"]["UseProductionHeightsAveraging"].as<bool>();
-  if(UseProductionHeightsAve){
-    ProductionHeightsFile = Config_["OscProbCalcerSetup"]["ProductionHeightsFileName"].as<std::string>();
-    if (fVerbose >= NuOscillator::INFO){std::cout << "ProductionHeightsFile:" << ProductionHeightsFile << std::endl;}
-    // Read histogram suffixes 
-    ProductionHeightsHistFlavourSuffixes.resize(6);
-    ProductionHeightsHistFlavourSuffixes[0] = Config_["OscProbCalcerSetup"]["ProductionHeightsHistFlavourSuffixes"]["Nue"].as<std::string>();
-    ProductionHeightsHistFlavourSuffixes[1] = Config_["OscProbCalcerSetup"]["ProductionHeightsHistFlavourSuffixes"]["Numu"].as<std::string>();
-    ProductionHeightsHistFlavourSuffixes[2] = Config_["OscProbCalcerSetup"]["ProductionHeightsHistFlavourSuffixes"]["Nutau"].as<std::string>();
-    ProductionHeightsHistFlavourSuffixes[3] = Config_["OscProbCalcerSetup"]["ProductionHeightsHistFlavourSuffixes"]["Nuebar"].as<std::string>();
-    ProductionHeightsHistFlavourSuffixes[4] = Config_["OscProbCalcerSetup"]["ProductionHeightsHistFlavourSuffixes"]["Numubar"].as<std::string>();
-    ProductionHeightsHistFlavourSuffixes[5] = Config_["OscProbCalcerSetup"]["ProductionHeightsHistFlavourSuffixes"]["Nutaubar"].as<std::string>();
+  std::cout << "EarthDensityFile:" << EarthDensityFile << std::endl;
+
+  std::string OscMatrix = "Standard";
+  UseEarthModelSystematics = Config_["OscProbCalcerSetup"]["UseEarthModelSystematics"].as<bool>();
+  if(UseEarthModelSystematics){
+    std::cout<<"Using Earth Model systematics"<<std::endl;
+    OscMatrix = Config_["OscProbCalcerSetup"]["EarthModelType"].as<std::string>();
   }
+  
   //=======
 
-  fNOscParams = kNOscParams;
+  //fNOscParams = kNOscParams;
+  fOscType = PMNS_StrToInt(OscMatrix);
+  fNOscParams = GetNOscParams(fOscType);
+
+  std::cout << "PMNS Type : " << fOscType << std::endl;
+  std::cout << "Number of parameters : " << fNOscParams << std::endl;
 
   fNNeutrinoTypes = 2;
   InitialiseNeutrinoTypesArray(fNNeutrinoTypes);
@@ -114,8 +114,36 @@ void OscProbCalcerCUDAProb3::CalculateProbabilities(const std::vector<FLOAT_T>& 
 
   propagator->setNeutrinoMasses(dm12sq, dm23sq);
   propagator->setProductionHeight(prodH);
-  if(UseProductionHeightsAve){
-    SetProductionHeightsAveraging();
+  
+  //Modify the Earth model
+  if(UseEarthModelSystematics){
+
+    std::vector<FLOAT_T> EarthBoundaries;
+    std::vector<FLOAT_T> EarthWeights;
+
+    if(fOscType == k4layers){
+      EarthBoundaries.resize(3);
+      EarthWeights.resize(4);
+      FLOAT_T boundary_layers12 = OscParams[kBoundLayers12];
+      FLOAT_T boundary_layers23 = OscParams[kBoundLayers23];
+      FLOAT_T boundary_layers34 = OscParams[kBoundLayers34];
+      FLOAT_T boundary_layers45 = OscParams[kBoundLayers45];
+      FLOAT_T weight_layer1 = OscParams[kWeightLayer1];
+      FLOAT_T weight_layer2 = OscParams[kWeightLayer2];
+      FLOAT_T weight_layer3 = OscParams[kWeightLayer3];
+      FLOAT_T weight_layer4 = OscParams[kWeightLayer4];
+
+      EarthBoundaries = {boundary_layers12, boundary_layers23, boundary_layers34, boundary_layers45};
+      EarthWeights = {weight_layer1, weight_layer2, weight_layer3, weight_layer4};
+    }
+
+    // Check if the model is a set of polynomials
+    if(propagator->PolynomialDensity()){
+      propagator->ModifyEarthModelPoly(EarthBoundaries, EarthWeights);
+    }
+    else{
+      propagator->ModifyEarthModel(EarthBoundaries, EarthWeights);
+    }
   }
 
   // CUDAProb3 calculates oscillation probabilites for each NeutrinoType, so need to copy them from the calculator into fWeightArray
@@ -164,113 +192,32 @@ long OscProbCalcerCUDAProb3::DefineWeightArraySize() {
   return nCalculationPoints;
 }
 
-void OscProbCalcerCUDAProb3::SetProductionHeightsAveraging(){
-  if (fVerbose >= NuOscillator::INFO){std::cout<<"Setting up production heights for averaging..."<<std::endl;}
-  // Open prod heights file
-  TFile* File = new TFile(ProductionHeightsFile.c_str());
-  if (!File || File->IsZombie()) {
-    std::cerr << "Could not open: " << ProductionHeightsFile << std::endl;
-    throw;
+int OscProbCalcerCUDAProb3::GetNOscParams(int OscType) {
+  if (OscType == kStandard) {
+    return kNOscParams;
+  }
+  else if (OscType == k4layers) {
+    return kNOscParams+8;
+  }
+  else {
+    std::cerr << "Invalid PMNS matrix type provided:" << OscType << std::endl;
+    throw std::runtime_error("Invalid setup");
   }
 
-  // Read TH2Ds
-  std::vector<std::vector<TString>> NeutrinoFlavourNames(2);
-  int NNeutrinoFlavours = 3;
-  NeutrinoFlavourNames[0].resize(NNeutrinoFlavours);
-  NeutrinoFlavourNames[1].resize(NNeutrinoFlavours);
-  NeutrinoFlavourNames[0][0] = ProductionHeightsHistFlavourSuffixes[0].c_str();
-  NeutrinoFlavourNames[0][1] = ProductionHeightsHistFlavourSuffixes[1].c_str();
-  NeutrinoFlavourNames[0][2] = ProductionHeightsHistFlavourSuffixes[2].c_str();
-  NeutrinoFlavourNames[1][0] = ProductionHeightsHistFlavourSuffixes[3].c_str();
-  NeutrinoFlavourNames[1][1] = ProductionHeightsHistFlavourSuffixes[4].c_str();
-  NeutrinoFlavourNames[1][2] = ProductionHeightsHistFlavourSuffixes[5].c_str();
+  return -1;
+}
 
-  std::vector<std::vector<TH3D*>> vecHist;
-  vecHist.resize(fNNeutrinoTypes);
-  for (int iNuType=0;iNuType<fNNeutrinoTypes;iNuType++){
-    vecHist[iNuType].resize(NNeutrinoFlavours);
+int OscProbCalcerCUDAProb3::PMNS_StrToInt(std::string PMNSType) {
+  if (PMNSType == "Standard") {
+    return kStandard;
+  } 
+  else if (PMNSType == "4layers") {
+    return k4layers;
   }
-
-  for (int iNuType=0;iNuType<fNNeutrinoTypes;iNuType++){
-    for (int iNuFlav=0;iNuFlav<NNeutrinoFlavours;iNuFlav++){
-      TString HistName = "ProductionHeight_"+NeutrinoFlavourNames[iNuType][iNuFlav];
-      TH3D* Hist = (TH3D*)File->Get(HistName);
-
-      if(!Hist){
-        std::cerr << HistName << " not found in File:" << ProductionHeightsFile << std::endl;
-        File->ls();
-        std::cerr << __LINE__ << " : " << __FILE__ << std::endl;
-        throw;
-      }
-
-      vecHist[iNuType][iNuFlav] = Hist;
-
-      if(vecHist[iNuType][iNuFlav]->GetNbinsX()!=fNEnergyPoints){
-        std::cerr << HistName << " has different number of X bins:" << vecHist[iNuType][iNuFlav]->GetNbinsX() << std::endl;
-        std::cerr << "Expected:" << fNEnergyPoints << std::endl;
-        std::cerr << __LINE__ << " : " << __FILE__ << std::endl;
-        throw;
-      }
-
-      if(vecHist[iNuType][iNuFlav]->GetNbinsY() != fNCosineZPoints){
-        std::cerr << HistName << " has different number of Y bins:" << vecHist[iNuType][iNuFlav]->GetNbinsY() << std::endl;
-        std::cerr << "Expected:" << fNCosineZPoints << std::endl;
-        std::cerr << __LINE__ << " : " << __FILE__ << std::endl;
-        throw;
-      }
-    }
-  }
-
-  // Get number of height points
-  int NProductionHeightAveragingBins = vecHist[0][0]->GetNbinsZ();
-  if(NProductionHeightAveragingBins>cudaprob3::Constants<FLOAT_T>::MaxProdHeightBins()){
-    std::cerr << "Different number of height bins:" << NProductionHeightAveragingBins << std::endl;
-    std::cerr << "Expected:" << cudaprob3::Constants<FLOAT_T>::MaxProdHeightBins() << std::endl;
-  }
-
-  // Make 1D array with probabilities
-  int ProductionHeightProbabilitiesListSize = NNeutrinoFlavours*fNNeutrinoTypes*fNCosineZPoints*fNEnergyPoints*NProductionHeightAveragingBins;
-  std::vector<FLOAT_T> ProductionHeightProbabilitiesList(ProductionHeightProbabilitiesListSize);
-  int index = 0;
-  for (int iNuType=0;iNuType<fNNeutrinoTypes;iNuType++){
-    for(int iNuFlav=0;iNuFlav<NNeutrinoFlavours;iNuFlav++){
-      for (int ibin_E=0;ibin_E<fNEnergyPoints;ibin_E++){
-        for (int ibin_Z=0;ibin_Z<fNCosineZPoints;ibin_Z++){
-          double Total = 0.;
-
-          for (int iProductionHeight=0;iProductionHeight<NProductionHeightAveragingBins;iProductionHeight++){
-            double dP_dh = vecHist[iNuType][iNuFlav]->GetBinContent(ibin_E+1,ibin_Z+1,iProductionHeight+1);
-            double dh = vecHist[iNuType][iNuFlav]->GetZaxis()->GetBinWidth(iProductionHeight+1);
-
-            ProductionHeightProbabilitiesList[index] = dP_dh * dh;
-            Total += ProductionHeightProbabilitiesList[index];
-
-            index += 1;
-          }
-
-          if (fabs(Total-1.) > 1e-6) {
-            std::cerr << "Probabilities integrated over production height do not sum to 1" << std::endl;
-            std::cerr << "Total:" << Total << std::endl;
-            for (int iProductionHeight=0;iProductionHeight<NProductionHeightAveragingBins;iProductionHeight++) {
-              std::cout << "iProductionHeight:" << iProductionHeight << " | dP_dh:" << vecHist[iNuType][iNuFlav]->GetBinContent(ibin_E+1,ibin_Z+1,iProductionHeight+1) << std::endl;
-            }
-            std::cerr << __LINE__ << " : " << __FILE__ << std::endl;
-            throw;
-          }
-        }
-      }
-    }
-  }
-
-  // Make list of heights
-  std::vector<FLOAT_T> ProductionHeightsList(NProductionHeightAveragingBins+1);
-  for(int iBinH=0; iBinH<NProductionHeightAveragingBins+1; iBinH++){
-    ProductionHeightsList[iBinH] = vecHist[0][0]->GetZaxis()->GetBinLowEdge(iBinH+1);
+  else {
+    std::cerr << "Invalid PMNS matrix type provided:" << PMNSType << std::endl;
+    throw std::runtime_error("Invalid setup");
   }
   
-  // Set in propagator
-  propagator->SetNumberOfProductionHeightBinsForAveraging(NProductionHeightAveragingBins);
-  propagator->setProductionHeightList(ProductionHeightProbabilitiesList,ProductionHeightsList);
-  
-  if (fVerbose >= NuOscillator::INFO){std::cout<<"Completed SetProductionHeightsAveraging()"<<std::endl;}
+  return -1;
 }
