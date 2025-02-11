@@ -81,8 +81,7 @@ foreach(f ${ALL_Engines})
 endforeach()
 
 if(UseCUDAProb3Linear EQUAL 1 AND UseGPU EQUAL 1)
-  cmessage(WARNING "Right now GPU support for CUDAProb3Linear is broken, turning OFF GPU support")
-  set(UseGPU 0)
+  cmessage(FATAL_ERROR "Right now GPU support for CUDAProb3Linear is broken, please use different engine or turn off GPU")
 endif()
 
 cmessage(STATUS "Required variables being used:")
