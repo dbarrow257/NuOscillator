@@ -54,7 +54,11 @@ OscProbCalcerOscProb::OscProbCalcerOscProb(YAML::Node Config_) :
 
   fOscType = PMNS_StrToInt(PMNSType);
   fNOscParams = GetNOscParams();
-  if(fCosineZIgnored) fNOscParams += 3;
+
+  // This is needed to treat neutrino path parameters due to how these have
+  // been used so far with classes with less flexibility
+  if(fCosineZIgnored) fNOscParams += 3; // L, rho, Z/A
+  else fNOscParams += 1; // production height
 
   fMaxGenFlavour = 1;
   fMaxDetFlavour = 1;
@@ -138,7 +142,7 @@ void OscProbCalcerOscProb::SetPath(const std::vector<FLOAT_T>& OscParams,
     fPMNSObj->SetZoA    ( OscParams[fNOscParams - 1] );
   }
   else {
-    fPremModel.SetTopLayerSize(OscParams[kPRODH]);
+    fPremModel.SetTopLayerSize(OscParams[fNOscParams - 1]);
     fPremModel.FillPath(fCosineZArray[iCosineZ]);
     fPMNSObj->SetPath(fPremModel.GetNuPath());
   }
