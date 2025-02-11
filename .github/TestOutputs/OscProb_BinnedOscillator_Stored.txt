@@ -6,7 +6,7 @@ OscillatorFactory creating OscillatorBase object from config: NuOscillatorConfig
 PMNS Type : Fast
 Number of parameters : 6
 Propagation Method : Atmospheric
-PREM Model : ./Inputs/prem_4+1layers.txt
+PREM Model : ./Inputs/OscProb_prem_4+1layers.txt
 Detector depth : 1.5km
 ========================================================
 Setting up Oscillators
