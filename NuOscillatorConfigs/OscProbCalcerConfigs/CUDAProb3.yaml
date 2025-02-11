@@ -4,6 +4,15 @@ General:
 OscProbCalcerSetup:
   ImplementationName: "CUDAProb3"
   EarthModelFileName: "./build/_deps/cudaprob3-src/models/PREM_4layer.dat"
+  UseProductionHeightsAveraging: false
+  ProductionHeightsFileName: "./inputs/ProdHeightDist_E561_cZ520_N1_hbin2.5.root"
+  ProductionHeightsHistFlavourSuffixes:
+    Nue: "nue"
+    Numu: "numu"
+    Nutau: "numu"
+    Nuebar: "nuebar"
+    Numubar: "numubar"
+    Nutaubar: "numubar"
   OscChannelMapping:
     - Entry: "Electron:Electron"
     - Entry: "Electron:Muon"
@@ -14,13 +23,3 @@ OscProbCalcerSetup:
     - Entry: "Tau:Electron"
     - Entry: "Tau:Muon"
     - Entry: "Tau:Tau"
-
-  UseProductionHeightsAveraging: false
-  ProductionHeightsFileName: "./inputs/ProdHeightDist_E561_cZ520_N1_hbin2.5.root"
-  ProductionHeightsHistFlavourSuffixes:
-    Nue: "nue"
-    Numu: "numu"
-    Nutau: "numu"
-    Nuebar: "nuebar"
-    Numubar: "numubar"
-    Nutaubar: "numubar"
