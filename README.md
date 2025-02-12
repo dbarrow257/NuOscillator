@@ -122,7 +122,7 @@ NuOscProbCalcers->Setup();
 **Beam**
 
 ### CPU vs GPU
-**Ubinned**
+**Unbinned**
 ![Timing Distribution ATM](https://github.com/dbarrow257/NuOscillator/raw/gh-plots/TimingDistributionUnBinned_GPUvsCPU.png)
 
 **Binned**
