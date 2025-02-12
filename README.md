@@ -110,11 +110,24 @@ NuOscProbCalcers->Setup();
 ```
 
 ## Benchmark
+### CPU only
 **Beam**
+
 ![Timing Distribution Beam](https://github.com/dbarrow257/NuOscillator/raw/gh-plots/TimingDistributionBeam.png)
+
 **Atmospheric**
+
 ![Timing Distribution ATM](https://github.com/dbarrow257/NuOscillator/raw/gh-plots/TimingDistributionATM.png)
 
+**Beam**
+
+### CPU vs GPU
+**Ubinned**
+![Timing Distribution ATM](https://github.com/dbarrow257/NuOscillator/raw/gh-plots/TimingDistributionUnBinned_GPUvsCPU.png)
+
+**Binned**
+
+![Timing Distribution ATM](https://github.com/dbarrow257/NuOscillator/raw/gh-plots/TimingDistributionBinned_GPUvsCPU.png)
 
 ## Intended extensions
 
