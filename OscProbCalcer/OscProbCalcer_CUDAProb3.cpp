@@ -33,22 +33,15 @@ OscProbCalcerCUDAProb3::OscProbCalcerCUDAProb3(YAML::Node Config_) : OscProbCalc
     ProductionHeightsHistFlavourSuffixes[5] = Config_["OscProbCalcerSetup"]["ProductionHeightsHistFlavourSuffixes"]["Nutaubar"].as<std::string>();
   }
 
-  std::string OscMatrix = "Standard";
+  fNOscParams = kNOscParams;
+
   UseEarthModelSystematics = Config_["OscProbCalcerSetup"]["UseEarthModelSystematics"].as<bool>();
   if(UseEarthModelSystematics){
     if (fVerbose >= NuOscillator::INFO){std::cout<<"Using Earth Model systematics"<<std::endl;}
-    OscMatrix = Config_["OscProbCalcerSetup"]["EarthModelType"].as<std::string>();
+    nLayers = Config_["OscProbCalcerSetup"]["Layers"].as<int>();
+    fNOscParams +=  2*nLayers;
   }
-  
   //=======
-
-  fOscType = PMNS_StrToInt(OscMatrix);
-  fNOscParams = GetNOscParams(fOscType);
-
-  if (fVerbose >= NuOscillator::INFO){
-    std::cout << "PMNS Type : " << fOscType << std::endl;
-    std::cout << "Number of parameters : " << fNOscParams << std::endl;
-  }
 
   fNNeutrinoTypes = 2;
   InitialiseNeutrinoTypesArray(fNNeutrinoTypes);
@@ -128,40 +121,13 @@ void OscProbCalcerCUDAProb3::CalculateProbabilities(const std::vector<FLOAT_T>& 
 
   propagator->setNeutrinoMasses(dm12sq, dm23sq);
   propagator->setProductionHeight(prodH);
+
   if(UseProductionHeightsAve){
     SetProductionHeightsAveraging();
   }
 
-
-  //Modify the Earth model - Make that into a funtion, e.g. ModifyEarthModel();
   if(UseEarthModelSystematics){
-
-    std::vector<FLOAT_T> EarthBoundaries;
-    std::vector<FLOAT_T> EarthWeights;
-
-    if(fOscType == k4layers){
-      EarthBoundaries.resize(3);
-      EarthWeights.resize(4);
-      FLOAT_T boundary_layers12 = OscParams[kBoundLayers12];
-      FLOAT_T boundary_layers23 = OscParams[kBoundLayers23];
-      FLOAT_T boundary_layers34 = OscParams[kBoundLayers34];
-      FLOAT_T boundary_layers45 = OscParams[kBoundLayers45];
-      FLOAT_T weight_layer1 = OscParams[kWeightLayer1];
-      FLOAT_T weight_layer2 = OscParams[kWeightLayer2];
-      FLOAT_T weight_layer3 = OscParams[kWeightLayer3];
-      FLOAT_T weight_layer4 = OscParams[kWeightLayer4];
-
-      EarthBoundaries = {boundary_layers12, boundary_layers23, boundary_layers34, boundary_layers45};
-      EarthWeights = {weight_layer1, weight_layer2, weight_layer3, weight_layer4};
-    }
-
-    // Check if the model is a set of polynomials
-    if(propagator->PolynomialDensity()){
-      propagator->ModifyEarthModelPoly(EarthBoundaries, EarthWeights);
-    }
-    else{
-      propagator->ModifyEarthModel(EarthBoundaries, EarthWeights);
-    }
+    ApplyEarthModelSystematics(OscParams);
   }
 
   // CUDAProb3 calculates oscillation probabilites for each NeutrinoType, so need to copy them from the calculator into fWeightArray
@@ -321,32 +287,29 @@ void OscProbCalcerCUDAProb3::SetProductionHeightsAveraging(){
   if (fVerbose >= NuOscillator::INFO){std::cout<<"Completed SetProductionHeightsAveraging()"<<std::endl;}
 }
 
-int OscProbCalcerCUDAProb3::GetNOscParams(int OscType) {
-  if (OscType == kStandard) {
-    return kNOscParams;
-  }
-  else if (OscType == k4layers) {
-    return kNOscParams+8;
-  }
-  else {
-    std::cerr << "Invalid PMNS matrix type provided:" << OscType << std::endl;
-    throw std::runtime_error("Invalid setup");
+void OscProbCalcerCUDAProb3::ApplyEarthModelSystematics(const std::vector<FLOAT_T>& OscParams){
+  int n_layers = propagator->getNlayerBoundaries()-1;
+  if(n_layers!=nLayers){
+      std::cerr<<"Number of layers set in config differs from the one in "<<EarthDensityFile<<std::endl;
+      std::cerr<<"Expected: "<<nLayers<<"    Got: "<<n_layers<<std::endl;
   }
 
-  return -1;
-}
+  std::vector<FLOAT_T> EarthBoundaries(nLayers);
+  std::vector<FLOAT_T> EarthWeights(nLayers);
 
-int OscProbCalcerCUDAProb3::PMNS_StrToInt(std::string PMNSType) {
-  if (PMNSType == "Standard") {
-    return kStandard;
-  } 
-  else if (PMNSType == "4layers") {
-    return k4layers;
+  int kLayerBoundaries = kPRODH + 1;
+  int kLayerWeights = kLayerBoundaries + nLayers;
+    
+  for(int iLayer = 0; iLayer<nLayers; iLayer++){
+    EarthBoundaries[iLayer] = OscParams[kLayerBoundaries+iLayer];
+    EarthWeights[iLayer] = OscParams[kLayerWeights+iLayer];
   }
-  else {
-    std::cerr << "Invalid PMNS matrix type provided:" << PMNSType << std::endl;
-    throw std::runtime_error("Invalid setup");
+    
+  // Check if the model is a set of polynomials
+  if(propagator->PolynomialDensity()){
+    propagator->ModifyEarthModelPoly(EarthBoundaries, EarthWeights);
   }
-  
-  return -1;
+  else{
+    propagator->ModifyEarthModel(EarthBoundaries, EarthWeights);
+  }
 }

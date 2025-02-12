@@ -26,4 +26,4 @@ OscProbCalcerSetup:
     Nutaubar: "numubar"
 
   UseEarthModelSystematics: false
-  EarthModelType: "4layers"
+  Layers: 4
