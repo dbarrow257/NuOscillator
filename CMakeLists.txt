@@ -80,10 +80,6 @@ foreach(f ${ALL_Engines})
   cmessage(STATUS "     ${f}: ${Use${f}}")
 endforeach()
 
-if(UseCUDAProb3Linear EQUAL 1 AND UseGPU EQUAL 1)
-  cmessage(FATAL_ERROR "Right now GPU support for CUDAProb3Linear is broken, please use different engine or turn off GPU")
-endif()
-
 cmessage(STATUS "Required variables being used:")
 if(${UseGPU} EQUAL 1)
   cmessage(STATUS "\tUsing GPU")
@@ -200,6 +196,10 @@ if(${UseCUDAProb3Linear} EQUAL 1)
       "GPU_ON ON"
       "CMAKE_CUDA_ARCHITECTURES ${CMAKE_CUDA_ARCHITECTURES_STRING}"
     )
+   # KS: This is bit hacky but CUDAProb3Linear is a mess. Whole functions are written in header file
+   # and someone wrote them to be hidden under GPU_ON and wrote shitty cmake which do not propagate this definition.
+   # Therefore NuOscillator is fixing other people mess
+   target_compile_definitions(NuOscillatorCompilerOptions INTERFACE GPU_ON)
   else()
     CPMFindPackage(
       NAME CUDAProb3
