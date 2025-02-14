@@ -89,6 +89,7 @@ int main(int argc, char **argv) {
       //Throw dcp to some new value
       FLOAT_T RandVal = static_cast <FLOAT_T> (rand()) / static_cast <FLOAT_T> (RAND_MAX);
       OscParams_Atm[5] = RandVal;
+      OscParams_Basic[5] = RandVal;
       OscParams_Beam_woYe[5] = RandVal;
       OscParams_Beam_wYe[5] = RandVal;
 
@@ -131,8 +132,13 @@ int main(int argc, char **argv) {
   }
 
   TCanvas* Canv = new TCanvas;
+  std::vector<FLOAT_T> TimingArray = logspace(Min*pow(Min/Max,0.1),
+                                              Max*pow(Max/Min,0.1),
+                                              60);
   for (size_t iOsc=0;iOsc<Oscillators.size();iOsc++) {
-    TH1D* TimeDistribution = new TH1D((Oscillators[iOsc]->ReturnImplementationName()).c_str(),";Reweight Time [ms];",60,Min-0.1*(Max-Min),Max+0.1*(Max-Min));
+    TH1D* TimeDistribution = new TH1D((Oscillators[iOsc]->ReturnImplementationName()).c_str(),
+                                      ";Reweight Time [ms];",
+                                      60,&TimingArray[0]);
     TimeDistribution->SetStats(false);
     for (int iThrow=0;iThrow<nThrows;iThrow++) {
       TimeDistribution->Fill(ReweightTimes[iOsc][iThrow]);
@@ -144,10 +150,12 @@ int main(int argc, char **argv) {
     } else {
       TimeDistribution->Draw("SAME");
     }
+    TimeDistribution->GetXaxis()->SetMoreLogLabels();
   }
   TLegend* Leg = Canv->BuildLegend(0.1,0.9,0.9,0.99);
   Leg->SetNColumns(3);
   Leg->Draw("SAME");
+  gPad->SetLogx();
   Canv->Print("TimingDistribution.pdf");
   
   std::cout << "Finished drag race in executable" << std::endl;

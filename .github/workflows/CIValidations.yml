@@ -43,11 +43,10 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
-
     - name: Get NuOscillator
       run: |
         cd /opt/
-        git clone https://github.com/dbarrow257/NuOscillator.git NuOscillator
+        git clone ${{ github.event.pull_request.head.repo.clone_url }} NuOscillator
         cd NuOscillator
         git checkout ${{ github.head_ref }}
         mkdir build
