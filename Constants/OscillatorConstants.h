@@ -88,23 +88,23 @@ inline std::vector<std::string> ReturnKnownConfigs() {
   std::vector<std::string> ConfigNames;
 
 #if UseCUDAProb3 == 1
-  ConfigNames.push_back("./Configs/Binned_CUDAProb3.yaml");
+  ConfigNames.push_back("./NuOscillatorConfigs/Unbinned_CUDAProb3.yaml");
 #endif
 
 #if UseCUDAProb3Linear == 1
-  ConfigNames.push_back("./Configs/Binned_CUDAProb3Linear.yaml");
+  ConfigNames.push_back("./NuOscillatorConfigs/Binned_CUDAProb3Linear.yaml");
 #endif
 
 #if UseProbGPULinear == 1
-  ConfigNames.push_back("./Configs/Binned_ProbGPULinear.yaml");
+  ConfigNames.push_back("./NuOscillatorConfigs/Binned_ProbGPULinear.yaml");
 #endif
 
 #if UseProb3ppLinear == 1
-  ConfigNames.push_back("./Configs/Binned_Prob3ppLinear.yaml");
+  ConfigNames.push_back("./NuOscillatorConfigs/Binned_Prob3ppLinear.yaml");
 #endif
 
 #if UseNuFASTLinear == 1
-  ConfigNames.push_back("./Configs/Binned_NuFASTLinear.yaml");
+  ConfigNames.push_back("./NuOscillatorConfigs/Binned_NuFASTLinear.yaml");
 #endif
 
 #if UseNuSQUIDSLinear == 1
@@ -112,7 +112,7 @@ inline std::vector<std::string> ReturnKnownConfigs() {
 #endif
   
 #if UseOscProb == 1
-  ConfigNames.push_back("./Configs/Binned_OscProb.yaml");
+  ConfigNames.push_back("./NuOscillatorConfigs/Unbinned_OscProb.yaml");
 #endif  
 
   return ConfigNames;
@@ -123,7 +123,7 @@ inline std::vector<std::string> ReturnKnownConfigs() {
  *
  * @return Enum value in #NeutrinoFlavours
  */
-inline int NeutrinoFlavour_StrToInt(std::string NuFlav) {
+inline int NeutrinoFlavour_StrToInt(const std::string& NuFlav) {
   if (NuFlav == "Electron" || NuFlav == "electron") {
     return NuOscillator::kElectron;
   } else if (NuFlav == "Muon" || NuFlav == "muon") {
@@ -138,7 +138,7 @@ inline int NeutrinoFlavour_StrToInt(std::string NuFlav) {
     return NuOscillator::kSterile3;
   } else {
     std::cerr << "Could not convert input string:" << NuFlav << " to known enum value in NeutrinoFlavours" << std::endl;
-    throw;
+    throw std::runtime_error("Invalid setup");
   }
   
   return -1;
@@ -167,7 +167,7 @@ inline std::string NeutrinoFlavour_IntToStr(int NuFlav) {
     return "Sterile3";
   default:
     std::cerr << "Recieved unknown NeutrinoFlavour:" << NuFlav << " which is inconsistent with those in enum 'NeutrinoFlavours'" << std::endl;
-    throw;
+    throw std::runtime_error("Invalid setup");
   }
   return "";
 }
@@ -179,14 +179,14 @@ inline std::string NeutrinoFlavour_IntToStr(int NuFlav) {
  *
  * @return Enum value describing the verbosity level
  */
-inline int Verbosity_StrToInt(std::string Verbosity) {
+inline int Verbosity_StrToInt(const std::string& Verbosity) {
   if (Verbosity == "NONE") {
     return NuOscillator::NONE;
   } else if (Verbosity == "INFO") {
     return NuOscillator::INFO;
   } else {
     std::cerr << "Invalid verbosity provided:" << Verbosity << std::endl;
-    throw;
+    throw std::runtime_error("Invalid setup");
   }
   
   return -1;
@@ -199,7 +199,7 @@ inline int Verbosity_StrToInt(std::string Verbosity) {
  *
  * @return NuOscillator::OscillationChannel() structure with generated and detected neutrino flavours
  */
-inline NuOscillator::OscillationChannel ReturnOscillationChannel(std::string InputString) {
+inline NuOscillator::OscillationChannel ReturnOscillationChannel(const std::string& InputString) {
   std::string GeneratedFlavour = "";
   std::string DetectedFlavour = "";
 
@@ -219,7 +219,7 @@ inline NuOscillator::OscillationChannel ReturnOscillationChannel(std::string Inp
 inline std::vector<FLOAT_T> logspace(FLOAT_T Emin, FLOAT_T  Emax, int nDiv) {
   if (nDiv==0) {
     std::cerr << "Requested log spacing distribution with 0 divisions" << std::endl;
-    throw;
+    throw std::runtime_error("Invalid setup");
   }
 
   std::vector<FLOAT_T> logpoints(nDiv+1, 0.0);
@@ -250,7 +250,7 @@ inline std::vector<FLOAT_T> logspace(FLOAT_T Emin, FLOAT_T  Emax, int nDiv) {
 inline std::vector<FLOAT_T> linspace(FLOAT_T Emin, FLOAT_T Emax, int nDiv) {
   if (nDiv==0) {
     std::cerr << "Requested linear spacing distribution with 0 divisions" << std::endl;
-    throw;
+    throw std::runtime_error("Invalid setup");
   }
 
   std::vector<FLOAT_T> linpoints(nDiv+1, 0.0);

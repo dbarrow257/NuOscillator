@@ -1,5 +1,3 @@
 Could have the neutrino type(Still to do)/flavour mapping(Done) read in from config to allow the RAM-optimised MaCh3 event-by-event approach used more easily
 
 Could use CSV files to read binning rather than ROOT such that I could remove the dependency
-
-Culd include OscProbCalcerFactory class

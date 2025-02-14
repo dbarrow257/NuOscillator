@@ -61,6 +61,6 @@ int OscProbCalcerProbGPULinear::ReturnWeightArrayIndex(int NuTypeIndex, int OscC
 }
 
 long OscProbCalcerProbGPULinear::DefineWeightArraySize() {
-  long nCalculationPoints = fNEnergyPoints * fNOscillationChannels * fNNeutrinoTypes;
+  long nCalculationPoints = static_cast<long>(fNEnergyPoints) * fNOscillationChannels * fNNeutrinoTypes;
   return nCalculationPoints;
 }

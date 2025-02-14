@@ -19,7 +19,7 @@ jobs:
       fail-fast: false  # KS: Prevents cancellation of remaining jobs if one fails
       matrix:
         include:
-          - os: Alma9
+          - os: alma9
             file: Docs/DockerFiles/Alma9/Dockerfile
             tag_latest: alma9latest
 
@@ -35,7 +35,7 @@ jobs:
     - name: Build Docker image
       run: |
         if [ "${{ github.event_name }}" == 'release' ]; then
-          docker build . --file ${{ matrix.file }} --tag ghcr.io/${{ github.repository_owner }}/nuoscillator:${{ matrix.os }}v${{ github.event.release.tag_name }} --build-arg NUOSCILLATOR_VERSION=main
+          docker build . --file ${{ matrix.file }} --tag ghcr.io/${{ github.repository_owner }}/nuoscillator:${{ matrix.os }}${{ github.event.release.tag_name }} --build-arg NUOSCILLATOR_VERSION=main
         else
           docker build . --file ${{ matrix.file }} --tag ghcr.io/${{ github.repository_owner }}/nuoscillator:${{ matrix.tag_latest }} --build-arg NUOSCILLATOR_VERSION=main
         fi

@@ -43,7 +43,7 @@ class OscillatorBase {
    *
    * @param OscParams Vector of oscillation parameters to calculate probabities at.
    */
-  void CalculateProbabilities(std::vector<FLOAT_T> OscParams);
+  void CalculateProbabilities(const std::vector<FLOAT_T>& OscParams);
 
   /**
    * @brief Return number of expected oscillation parameters for a particular OscProbCalcerBase::OscProbCalcerBase() instance in #fOscProbCalcers.
@@ -84,6 +84,13 @@ class OscillatorBase {
    * @return Returns an integer describing the number of Energy points which are being evaluated in the OscProbCalcerBase::OscProbCalcerBase() object
    */
   int ReturnNEnergyPoints();
+
+  /**
+   * @brief Return the number of CosineZ points which are being evaluated in the OscProbCalcerBase::OscProbCalcerBase() object
+   *
+   * @return Returns an integer describing the number of CosineZ points which are being evaluated in the OscProbCalcerBase::OscProbCalcerBase() object
+   */
+  int ReturnNCosineZPoints();
 
   /**
    * @brief Check whether a particular OscProbCalcerBase::OscProbCalcerBase() instance has a particular oscillation channel
@@ -165,6 +172,19 @@ class OscillatorBase {
    */
   virtual const FLOAT_T* ReturnWeightPointer(int InitNuFlav, int FinalNuFlav, FLOAT_T EnergyVal, FLOAT_T CosineZVal=DUMMYVAL) = 0;
 
+  /**
+   * @brief Return a vector of bin edges which can be used to plot the oscillation probability
+   *
+   * If we want to plot the oscillation probabilties, we need to define a binning which can be used to create the histogram. This is implementation dependent
+   * because the binned implementation should return the binning used to define the probability binning, but event-by-event needs to return a binning such
+   * that a single evaluation point falls in a single bin
+   *
+   * @param ReturnEnergy Flag to return the binning for Energy or CosineZ
+   *
+   * @return Vector of bin edges which should be used to create a histogram for plotting purposes
+   */
+  virtual std::vector<FLOAT_T> ReturnBinEdgesForPlotting(bool ReturnEnergy) = 0;
+
  protected:
   /**
    * @brief Default constructor
@@ -205,7 +225,7 @@ class OscillatorBase {
   
   // ========================================================================================================================================================================
   // Protected virtual functions which are calculation implementation agnostic
-  
+
   // ========================================================================================================================================================================
   // Basic protected variables required for oscillation probability calculation
 

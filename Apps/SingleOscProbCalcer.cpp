@@ -15,14 +15,14 @@ using std::chrono::milliseconds;
 int main(int argc, char **argv) {
   if (argc != 2) {
     std::cerr << "./SingleOscProbCalcer InputConfig.yaml" << std::endl;
-    throw;
+    throw std::runtime_error("Invalid setup");
   }
   std::string OscProbCalcerConfigname = argv[1];
 
-  bool PrintWeights = false;
+  bool PrintWeights = true;
   
   std::vector<FLOAT_T> EnergyArray = logspace(0.1,100.,1e3);
-  std::vector<FLOAT_T> CosineZArray = linspace(-1.0,1.0,1e3);
+  std::vector<FLOAT_T> CosineZArray = linspace(-1.0,1.0,15);
 
   std::vector<FLOAT_T> OscParams_Basic = ReturnOscParams_Basic();
   std::vector<FLOAT_T> OscParams_Atm = ReturnOscParams_Atm();
@@ -66,7 +66,7 @@ int main(int argc, char **argv) {
   } else {
     std::cerr << "Did not find viable oscillation parameters to hand to the oscillation probability calculater" << std::endl;
     std::cerr << "Oscillator->ReturnNOscParams():" << Calcer->ReturnNOscParams() << std::endl;
-    throw;
+    throw std::runtime_error("Invalid setup");
   }
 
   if (PrintWeights) {

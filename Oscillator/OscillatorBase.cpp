@@ -42,13 +42,14 @@ void OscillatorBase::InitialiseOscProbCalcer() {
   OscProbCalcerFactory* OscProbCalcFactory = new OscProbCalcerFactory();
   fOscProbCalcer = OscProbCalcFactory->CreateOscProbCalcer(Config);
   fOscProbCalcerSet = true;
+  delete OscProbCalcFactory;
 }
 
 void OscillatorBase::SetEnergyArrayInCalcer(std::vector<FLOAT_T> Array) {
   if (fOscProbCalcer->ReturnHasSetEnergyArray()) {
     std::cerr << "Have already set the Energy array in the requested OscProbCalcer" << std::endl;
     std::cerr << "This seems like a fault in the setup" << std::endl;
-    throw;
+    throw std::runtime_error("Invalid setup");
   }
   if (fVerbose >= NuOscillator::INFO) {
     std::cout << "Setting Energy array in OscProbCalcer Implementation:" << fOscProbCalcer->ReturnImplementationName() << " in OscillatorBase object" << std::endl;
@@ -60,14 +61,14 @@ void OscillatorBase::SetCosineZArrayInCalcer(std::vector<FLOAT_T> Array) {
   if (fOscProbCalcer->ReturnHasSetCosineZArray()) {
     std::cerr << "Have already set the CosineZ array in the requested OscProbCalcer" << std::endl;
     std::cerr << "This seems like a fault in the setup"<< std::endl;
-    throw;
+    throw std::runtime_error("Invalid setup");
   }
   if (fVerbose >= NuOscillator::INFO) {std::cout << "Setting CosineZ array in OscProbCalcer Implementation:" << fOscProbCalcer->ReturnImplementationName() << " in OscillatorBase object" << std::endl;}
   fOscProbCalcer->SetCosineZArray(Array);
 }
 
 // It is assumed that all OscProbCalcers within a single instance of an OscillatorBase object take the same oscillation probabilities
-void OscillatorBase::CalculateProbabilities(std::vector<FLOAT_T> OscParams) {
+void OscillatorBase::CalculateProbabilities(const std::vector<FLOAT_T>& OscParams) {
   if (fVerbose >= NuOscillator::INFO) {std::cout << "Calculating oscillation probabilities using OscProbCalcer Implementation:" << fOscProbCalcer->ReturnImplementationName() << " in OscillatorBase object" << std::endl;}
   fOscProbCalcer->Reweight(OscParams);
 }
@@ -87,6 +88,10 @@ int OscillatorBase::ReturnNEnergyPoints() {
   return fOscProbCalcer->ReturnNEnergyPoints();
 }
 
+int OscillatorBase::ReturnNCosineZPoints() {
+  return fOscProbCalcer->ReturnNCosineZPoints();
+}
+
 const FLOAT_T* OscillatorBase::ReturnPointerToWeightinCalcer(int InitNuFlav, int FinalNuFlav, FLOAT_T EnergyVal, FLOAT_T CosineZVal) {
   const FLOAT_T* Pointer = fOscProbCalcer->ReturnPointerToWeight(InitNuFlav,FinalNuFlav,EnergyVal,CosineZVal);
   return Pointer;
@@ -104,7 +109,7 @@ void OscillatorBase::SanityCheck() {
     std::cerr << "fCosineZIgnored:" << fCosineZIgnored << std::endl;
     std::cerr << "fOscProbCalcer->SanityCheck():" << fOscProbCalcer->SanityCheck() << std::endl;
     std::cerr << "fOscProbCalcer->ReturnCosineZIgnored():" << fOscProbCalcer->ReturnCosineZIgnored() << std::endl;
-    throw;
+    throw std::runtime_error("Invalid setup");
   } else {
     if (fVerbose >= NuOscillator::INFO) {std::cout << "OscillatorBase instance passed SanityCheck" << std::endl;}
   }

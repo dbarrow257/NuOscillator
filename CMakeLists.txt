@@ -16,7 +16,7 @@ include(${CMAKE_CURRENT_LIST_DIR}/cmake/Modules/NuOscillatorUtils.cmake)
 # By default GPU is off
 DefineEnabledRequiredSwitch(UseGPU 0)
 
-set(NUOSCILLATOR_VERSION 1.1.0)
+set(NUOSCILLATOR_VERSION 1.2.0)
 
 if(${UseGPU} EQUAL 0)
   project(NUOSCILLATOR VERSION ${NUOSCILLATOR_VERSION} LANGUAGES CXX)
@@ -96,15 +96,22 @@ else()
 endif()
 
 if(${UseMultithreading} EQUAL 1)
-  cmessage(STATUS "\tUsing Multithreading with nThreads=$ENV{OMP_NUM_THREADS}")
+  if(DEFINED ENV{OMP_NUM_THREADS} AND NOT "$ENV{OMP_NUM_THREADS}" STREQUAL "")
+    cmessage(STATUS "\tUsing Multithreading with nThreads=$ENV{OMP_NUM_THREADS}")
+  else()
+    execute_process(
+      COMMAND lscpu
+      COMMAND awk -F: "/^(CPU\\(s\\)|CPU):/ {gsub(/^[ \\t]+/, \"\", \$2); print \$2; exit}"
+      OUTPUT_VARIABLE CPU_COUNT
+      OUTPUT_STRIP_TRAILING_WHITESPACE
+    )
+    cmessage(STATUS "\tUsing Multithreading with nThreads=${CPU_COUNT}")
+  endif()
 else()
   cmessage(STATUS "\tNot using Multithreading")
-endif()
-
-if(${UseDoubles} EQUAL 1)
-  cmessage(STATUS "\tUsing FLOAT_T=double")
-else()
-  cmessage(STATUS "\tUsing FLOAT_T=float")
+  if(${UseCUDAProb3} EQUAL 1 OR ${UseCUDAProb3Linear} EQUAL 1)
+    cmessage(FATAL_ERROR "CUDAProb3 do not support Multithreading turn off. Please enable it or use different engine")
+  endif()
 endif()
 
 if(${UseCUDAProb3} EQUAL 1 AND ${UseCUDAProb3Linear} EQUAL 1)
@@ -193,6 +200,10 @@ if(${UseCUDAProb3Linear} EQUAL 1)
       "GPU_ON ON"
       "CMAKE_CUDA_ARCHITECTURES ${CMAKE_CUDA_ARCHITECTURES_STRING}"
     )
+   # KS: This is bit hacky but CUDAProb3Linear is a mess. Whole functions are written in header file
+   # and someone wrote them to be hidden under GPU_ON and wrote shitty cmake which do not propagate this definition.
+   # Therefore NuOscillator is fixing other people mess
+   target_compile_definitions(NuOscillatorCompilerOptions INTERFACE GPU_ON)
   else()
     CPMFindPackage(
       NAME CUDAProb3
@@ -263,7 +274,7 @@ if(${UseOscProb} EQUAL 1)
   CPMAddPackage(
     NAME OscProb
     GITHUB_REPOSITORY joaoabcoelho/OscProb
-    GIT_TAG master
+    GIT_TAG v2.1.2
   )
   
   CPMAddPackage(
@@ -361,7 +372,7 @@ set(LIBDEST ${CMAKE_INSTALL_PREFIX}/lib)
 configure_file(cmake/Templates/setup.NuOscillator.sh.in "${PROJECT_BINARY_DIR}/setup.NuOscillator.sh" @ONLY)
 install(FILES "${PROJECT_BINARY_DIR}/setup.NuOscillator.sh" DESTINATION ${CMAKE_INSTALL_PREFIX}/bin)
 
-install(DIRECTORY Configs DESTINATION ${CMAKE_INSTALL_PREFIX}/)
+install(DIRECTORY NuOscillatorConfigs DESTINATION ${CMAKE_INSTALL_PREFIX}/)
 install(DIRECTORY Inputs DESTINATION ${CMAKE_INSTALL_PREFIX}/)
 install(DIRECTORY Constants DESTINATION ${CMAKE_INSTALL_PREFIX}/)
 
@@ -389,7 +400,7 @@ install(EXPORT NuOscillator-targets
 )
 
 install(DIRECTORY
-  Configs
+  NuOscillatorConfigs
   DESTINATION ${CMAKE_BINARY_DIR}/NuOscillatorConfigs)
 
 add_library(NuOscillator::All ALIAS NuOscillator)
