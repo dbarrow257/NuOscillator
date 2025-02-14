@@ -27,7 +27,7 @@ namespace NuOscillator
   /**
    * @brief Different verbosity levels for console output
    */
-  enum Verbosity{NONE=0,INFO=1};
+  enum Verbosity{NONE=0,INFO=1,VERBOSE=2};
   
   /**
    * @brief Different neutrino flavours currently supported within the analysis
@@ -183,6 +183,8 @@ inline int Verbosity_StrToInt(const std::string& Verbosity) {
     return NuOscillator::NONE;
   } else if (Verbosity == "INFO") {
     return NuOscillator::INFO;
+  } else if (Verbosity == "VERBOSE") {
+    return NuOscillator::VERBOSE;
   } else {
     std::cerr << "Invalid verbosity provided:" << Verbosity << std::endl;
     throw std::runtime_error("Invalid setup");

@@ -217,7 +217,7 @@ const FLOAT_T* OscProbCalcerBase::ReturnPointerToWeight(int InitNuFlav, int Fina
     throw std::runtime_error("Invalid setup");
   }
 
-  if (fVerbose >= NuOscillator::INFO) {std::cout << "Implementation:" << fImplementationName << " returned pointer to index " << WeightArrayIndex << std::endl;}
+  if (fVerbose >= NuOscillator::VERBOSE) {std::cout << "Implementation:" << fImplementationName << " returned pointer to index " << WeightArrayIndex << std::endl;}
   return &(fWeightArray[WeightArrayIndex]);
 }
 
@@ -413,7 +413,7 @@ int OscProbCalcerBase::ReturnEnergyIndexFromValue(FLOAT_T EnergyVal) {
     throw std::runtime_error("Invalid setup");
   }
 
-  if (fVerbose >= NuOscillator::INFO) {std::cout << "Returning Energy index:" << EnergyIndex << " for Energy value:" << EnergyVal << " in Implementation:" << fImplementationName << std::endl;}
+  if (fVerbose >= NuOscillator::VERBOSE) {std::cout << "Returning Energy index:" << EnergyIndex << " for Energy value:" << EnergyVal << " in Implementation:" << fImplementationName << std::endl;}
   return EnergyIndex;
 }
 
@@ -437,7 +437,7 @@ int OscProbCalcerBase::ReturnCosineZIndexFromValue(FLOAT_T CosineZVal) {
     throw std::runtime_error("Invalid setup");
   }
 
-  if (fVerbose >= NuOscillator::INFO) {std::cout << "Returning CosineZ index:" << CosineZIndex << " for CosineZ value:" << CosineZVal << " in Implementation:" << fImplementationName << std::endl;}
+  if (fVerbose >= NuOscillator::VERBOSE) {std::cout << "Returning CosineZ index:" << CosineZIndex << " for CosineZ value:" << CosineZVal << " in Implementation:" << fImplementationName << std::endl;}
   return CosineZIndex;
 }
 
@@ -458,7 +458,7 @@ int OscProbCalcerBase::ReturnNuTypeFromFlavour(int NuFlav) {
   
   for (int iType=0;iType<fNNeutrinoTypes;iType++) {
     if (NuType == fNeutrinoTypes[iType]) {
-      if (fVerbose >= NuOscillator::INFO) {std::cout << "Returning type:" << iType << " for NuFlav:" << NuFlav << " in Implementation:" << fImplementationName << std::endl;}
+      if (fVerbose >= NuOscillator::VERBOSE) {std::cout << "Returning type:" << iType << " for NuFlav:" << NuFlav << " in Implementation:" << fImplementationName << std::endl;}
       return iType;
     }
   }

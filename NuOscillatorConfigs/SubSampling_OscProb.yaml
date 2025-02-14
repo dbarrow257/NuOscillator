@@ -1,6 +1,6 @@
 General:
   Verbosity: "INFO"
-  CosineZIgnored: true
+  CosineZIgnored: false
   CalculationType: "SubSampling"
 
 SubSampling:
@@ -11,7 +11,10 @@ SubSampling:
   FineCosineZAxisHistName: "FineCosZ"
 
 OscProbCalcerSetup:
-  ImplementationName: "NuFASTLinear"
+  ImplementationName: "OscProb"
+  PMNSType: "Fast"
+  PREMFile: "./build/_deps/oscprob-src/PremTables/prem_15layers.txt"
+  DetDepth: 1.5
   OscChannelMapping:
     - Entry: "Electron:Electron"
     - Entry: "Electron:Muon"

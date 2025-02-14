@@ -115,6 +115,12 @@ void OscillatorSubSampling::SetupOscillatorImplementation() {
 	  int GlobalBin = iNuType*nOscillationChannels*nCoarseCosineZBins*nCoarseEnergyBins + iOscChan*nCoarseCosineZBins*nCoarseEnergyBins + CoarseCosineZBin*nCoarseEnergyBins + CoarseEnergyBin;
 	  if ((GlobalBin < 0) || (GlobalBin >= TotalCoarseBins)) {
 	    std::cerr << "Invalid global bin found:" << GlobalBin << std::endl;
+
+	    std::cerr << "iNuType: " << iNuType << std::endl;
+	    std::cerr << "iOscChan: " << iOscChan << std::endl;
+	    std::cerr << "CoarseCosineZBin: " << CoarseCosineZBin << std::endl;
+	    std::cerr << "CoarseEnergyBin: " << CoarseEnergyBin << std::endl;
+	    
 	    throw;
 	  }
 	  OscillationProbabilitiesToAverage[GlobalBin].push_back(OscProbPointer);
@@ -151,8 +157,26 @@ const FLOAT_T* OscillatorSubSampling::ReturnWeightPointer(int InitNuFlav, int Fi
   int CoarseCosineZBin = FindBinIndexFromEdges(CosineZVal,CoarseCosineZAxisBinEdges);
 
   int OscChanIndex = -1;
+  for (size_t iOscChan=0;iOscChan<OscillationChannels.size();iOscChan++) {
+    if (OscillationChannels[iOscChan].GeneratedFlavour == std::abs(InitNuFlav) && OscillationChannels[iOscChan].DetectedFlavour == std::abs(FinalNuFlav)) {
+      OscChanIndex = iOscChan;
+      break;
+    }
+  }
+  if (OscChanIndex == -1) {
+    std::cerr << "Did not find valid oscillation channel" << std::endl;
+    throw;
+  }
 
-  int GlobalBin = OscChanIndex*nCoarseCosineZBins*nCoarseEnergyBins + CoarseCosineZBin*nCoarseEnergyBins + CoarseEnergyBin;
+  if (InitNuFlav*FinalNuFlav < 0) {
+    std::cerr << "Invalid InitNuFlav and FinalNuFlav" << std::endl;
+    std::cerr << "InitNuFlav: " << InitNuFlav << std::endl;
+    std::cerr << "FinalNuFlav: " << FinalNuFlav << std::endl;
+    throw;
+  }
+  int NuTypeIndex = fOscProbCalcer->ReturnNuTypeFromFlavour(InitNuFlav);
+
+  int GlobalBin = NuTypeIndex*nOscillationChannels*nCoarseCosineZBins*nCoarseEnergyBins + OscChanIndex*nCoarseCosineZBins*nCoarseEnergyBins + CoarseCosineZBin*nCoarseEnergyBins + CoarseEnergyBin;
   if ((GlobalBin < 0) || (GlobalBin > AveragedOscillationProbabilities.size())) {
     std::cerr << "Invalid Global Bin index in OscillatorSubSampling::ReturnWeightPointer" << std::endl;
     std::cerr << "CoarseEnergyBin:" << CoarseEnergyBin << std::endl;
@@ -172,5 +196,13 @@ void OscillatorSubSampling::PostCalculateProbabilities() {
     }
     Avg /= OscillationProbabilitiesToAverage[iBin].size();
     AveragedOscillationProbabilities[iBin] = Avg;
+  }
+}
+
+std::vector<FLOAT_T> OscillatorSubSampling::ReturnBinEdgesForPlotting(bool ReturnEnergy) {
+  if (ReturnEnergy) {
+    return CoarseEnergyAxisBinEdges;
+  } else {
+    return CoarseCosineZAxisBinEdges;
   }
 }

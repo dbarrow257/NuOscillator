@@ -184,6 +184,16 @@ class OscProbCalcerBase {
    */
   bool ReturnHasSetCosineZArray() {return fCosineZArraySet;}
 
+  /**
+   * @brief Return the index in #fNeutrinoTypes for a particular neutrino flavour (neutrino or antineutrino)
+   *
+   * Neutrino flavour mapping is defined in #fNeutrinoTypes, so for a particular events flavour, the index in the mapping is returned to aide in #fWeightArray mapping
+   *
+   * @param NuFlav Initial neutrino type (neutrino or antineutrino) 
+   * @return Index in #fNeutrinoTypes
+   */
+  int ReturnNuTypeFromFlavour(int NuFlav);
+
   // ========================================================================================================================================================================
   // Public virtual functions which need calculater specific implementations
 
@@ -305,15 +315,6 @@ class OscProbCalcerBase {
    */
   int ReturnOscChannelIndexFromFlavours(int InitNuFlav, int FinalNuFlav);
 
-  /**
-   * @brief Return the index in #fNeutrinoTypes for a particular neutrino flavour (neutrino or antineutrino)
-   *
-   * Neutrino flavour mapping is defined in #fNeutrinoTypes, so for a particular events flavour, the index in the mapping is returned to aide in #fWeightArray mapping
-   *
-   * @param NuFlav Initial neutrino type (neutrino or antineutrino) 
-   * @return Index in #fNeutrinoTypes
-   */
-  int ReturnNuTypeFromFlavour(int NuFlav);
 
   // ========================================================================================================================================================================
   // Protected virtual functions which are calculation implementation agnostic
