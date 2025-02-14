@@ -232,7 +232,7 @@ int OscProbCalcerNuSQUIDSLinear::PMNS_StrToInt(std::string OscModel) {
 int OscProbCalcerNuSQUIDSLinear::GetNOscParams(int OscModel) {
   switch (OscModel) {
   case kDecoherence:
-    return kNOscParams;
+    return kNOscParams_Decoh;
   default:
     std::cerr << "Unknown OscModel:" << OscModel << std::endl;
     throw;
