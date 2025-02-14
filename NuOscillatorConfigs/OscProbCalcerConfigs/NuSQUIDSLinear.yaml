@@ -4,6 +4,7 @@ General:
 OscProbCalcerSetup:
   ImplementationName: "NuSQUIDSLinear"
   OscModel: "Decoherence"
+  DecoherenceModel: "RandomizeState"  
   IntegrationStep: "500.0"
   RelativeError: "1.0e-5"
   AbsoluteError: "1.0e-5"  

@@ -38,6 +38,15 @@ OscProbCalcerNuSQUIDSLinear::OscProbCalcerNuSQUIDSLinear(YAML::Node Config_) : O
     throw;
   }
   osc_model = Config_["OscProbCalcerSetup"]["OscModel"].as<std::string>();
+
+  //DB ToDo: Querry enum rather than use string comparison
+  if (osc_model == "Decoherence") {
+    if (!Config_["OscProbCalcerSetup"]["DecoherenceModel"]) {
+      std::cerr << "Expected to find a 'DecoherenceModel' Node within the 'OscProbCalcerSetup''Implementation' Node" << std::endl;
+      throw;
+    }
+    decoherence_model = Config_["OscProbCalcerSetup"]["DecoherenceModel"].as<std::string>();
+  }
   //=======
 
   fNNeutrinoTypes = 2;
@@ -90,6 +99,21 @@ void OscProbCalcerNuSQUIDSLinear::SetupPropagator() {
   nus_decoh->Set_abs_error(abs_error);
   nubars_decoh->Set_rel_error(rel_error);
   nubars_decoh->Set_abs_error(abs_error);
+
+  //Decoh specific stuff
+  //DB ToDo: Querry enum rather than use string comparison
+  if (osc_model == "Decoherence") {
+    if (decoherence_model == "RandomizePhase") {
+      nusquids_decoherence_model = nusquids::nuSQUIDSDecoh::DecoherenceModel::RandomizePhase;
+    } else if (decoherence_model == "RandomizeState") {
+      nusquids_decoherence_model = nusquids::nuSQUIDSDecoh::DecoherenceModel::RandomizeState;
+    } else if (decoherence_model == "NeutrinoLoss") {
+      nusquids_decoherence_model = nusquids::nuSQUIDSDecoh::DecoherenceModel::NeutrinoLoss;
+    } else {
+      std::cerr << "The decoherence_model requested is not implemented. Given:" << decoherence_model << std::endl;
+      throw;
+    }
+  }
 }
 
 void OscProbCalcerNuSQUIDSLinear::CalculateProbabilities(const std::vector<FLOAT_T>& OscParams) {
@@ -123,12 +147,12 @@ void OscProbCalcerNuSQUIDSLinear::CalculateProbabilities(const std::vector<FLOAT
   nubars_decoh->Set_Track(track_env1);
 
   //Set the decoherence model and parameters for neutrinos
-  nus_decoh->Set_DecoherenceGammaMatrix(nusquids::nuSQUIDSDecoh::DecoherenceModel::RandomizeState, OscParams[kEnergyStrength]*units.eV);
+  nus_decoh->Set_DecoherenceGammaMatrix(nusquids_decoherence_model, OscParams[kEnergyStrength]*units.eV);
   nus_decoh->Set_DecoherenceGammaEnergyDependence(OscParams[kEnergyDep]);
   nus_decoh->Set_DecoherenceGammaEnergyScale(OscParams[kEnergyScale]*units.GeV);
 
   //Set the decoherence model and parameters for anti-neutrinos
-  nubars_decoh->Set_DecoherenceGammaMatrix(nusquids::nuSQUIDSDecoh::DecoherenceModel::RandomizeState, OscParams[kEnergyStrength]*units.eV);
+  nubars_decoh->Set_DecoherenceGammaMatrix(nusquids_decoherence_model, OscParams[kEnergyStrength]*units.eV);
   nubars_decoh->Set_DecoherenceGammaEnergyDependence(OscParams[kEnergyDep]);
   nubars_decoh->Set_DecoherenceGammaEnergyScale(OscParams[kEnergyScale]*units.GeV);
   

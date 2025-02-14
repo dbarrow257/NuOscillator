@@ -143,6 +143,9 @@ class OscProbCalcerNuSQUIDSLinear : public OscProbCalcerBase {
   double rel_error;
   double abs_error;
   std::string osc_model;
+
+  std::string decoherence_model;
+  nusquids::nuSQUIDSDecoh::DecoherenceModel nusquids_decoherence_model;
 };
 
 #endif
