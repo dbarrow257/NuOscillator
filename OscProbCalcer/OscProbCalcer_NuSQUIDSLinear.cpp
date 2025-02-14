@@ -17,53 +17,27 @@ OscProbCalcerNuSQUIDSLinear::OscProbCalcerNuSQUIDSLinear(YAML::Node Config_) : O
 
   //Errors
 
-  //TODO Combine absolute and relative errors across Nu and NuBar
-
   //NusRelativeError
-  if (!Config_["OscProbCalcerSetup"]["NusRelativeError"]) {
-    std::cerr << "Expected to find a 'NusRelativeError' Node within the 'OscProbCalcerSetup''Implementation' Node" << std::endl;
+  if (!Config_["OscProbCalcerSetup"]["RelativeError"]) {
+    std::cerr << "Expected to find a 'RelativeError' Node within the 'OscProbCalcerSetup''Implementation' Node" << std::endl;
     throw;
   }
-  nus_rel_error = Config_["OscProbCalcerSetup"]["NusRelativeError"].as<double>();
+  rel_error = Config_["OscProbCalcerSetup"]["RelativeError"].as<double>();
 
   //NusAbsoluteError
-  if (!Config_["OscProbCalcerSetup"]["NusAbsoluteError"]) {
-    std::cerr << "Expected to find a 'NusAbsoluteError' Node within the 'OscProbCalcerSetup''Implementation' Node" << std::endl;
+  if (!Config_["OscProbCalcerSetup"]["AbsoluteError"]) {
+    std::cerr << "Expected to find a 'AbsoluteError' Node within the 'OscProbCalcerSetup''Implementation' Node" << std::endl;
     throw;
   }
 
-  nus_abs_error = Config_["OscProbCalcerSetup"]["NusAbsoluteError"].as<double>();
+  abs_error = Config_["OscProbCalcerSetup"]["AbsoluteError"].as<double>();
 
-  //NubarsRelativeError
-  if (!Config_["OscProbCalcerSetup"]["NubarsRelativeError"]) {
-    std::cerr << "Expected to find a 'NubarsRelativeError' Node within the 'OscProbCalcerSetup''Implementation' Node" << std::endl;
+  //OscModel
+  if (!Config_["OscProbCalcerSetup"]["OscModel"]) {
+    std::cerr << "Expected to find a 'OscModel' Node within the 'OscProbCalcerSetup''Implementation' Node" << std::endl;
     throw;
   }
-
-  nubars_rel_error = Config_["OscProbCalcerSetup"]["NubarsRelativeError"].as<double>();
-
-  //NubarsAbsoluteError
-  if (!Config_["OscProbCalcerSetup"]["NubarsAbsoluteError"]) {
-    std::cerr << "Expected to find a 'NubarsAbsoluteError' Node within the 'OscProbCalcerSetup''Implementation' Node" << std::endl;
-    throw;
-  }
-
-  nubars_abs_error = Config_["OscProbCalcerSetup"]["NubarsAbsoluteError"].as<double>();
-
-  //NusBSMModel
-  if (!Config_["OscProbCalcerSetup"]["NusBSMModel"]) {
-    std::cerr << "Expected to find a 'NusBSMModel' Node within the 'OscProbCalcerSetup''Implementation' Node" << std::endl;
-    throw;
-  }
-  nus_bsm_model = Config_["OscProbCalcerSetup"]["NusBSMModel"].as<std::string>();
-
-  //TODO Cleanup NusBSMModel/PMNSType
-  if (!Config_["OscProbCalcerSetup"]["PMNSType"]) {
-    std::cerr << "Expected to find a 'PMNSType' Node within the 'OscProbCalcerSetup''Implementation' Node" << std::endl;
-    throw;
-  }
-
-  std::string OscMatrix = Config_["OscProbCalcerSetup"]["PMNSType"].as<std::string>();
+  osc_model = Config_["OscProbCalcerSetup"]["OscModel"].as<std::string>();
   //=======
 
   fNNeutrinoTypes = 2;
@@ -71,7 +45,7 @@ OscProbCalcerNuSQUIDSLinear::OscProbCalcerNuSQUIDSLinear(YAML::Node Config_) : O
   fNeutrinoTypes[0] = Nu;
   fNeutrinoTypes[1] = Nubar;
 
-  fOscType = PMNS_StrToInt(OscMatrix);
+  fOscType = PMNS_StrToInt(osc_model);
   fNOscParams = GetNOscParams(fOscType);
 
   // This implementation only considers linear propagation, thus no requirement to set cosineZ array
@@ -112,10 +86,10 @@ void OscProbCalcerNuSQUIDSLinear::SetupPropagator() {
   nubars_decoh->Set_GSL_step(gsl_odeiv2_step_rk4);
 
   //Setting the numerical precision of gsl integrator.
-  nus_decoh->Set_rel_error(nus_rel_error);
-  nus_decoh->Set_abs_error(nus_abs_error);
-  nubars_decoh->Set_rel_error(nubars_rel_error);
-  nubars_decoh->Set_abs_error(nubars_abs_error);
+  nus_decoh->Set_rel_error(rel_error);
+  nus_decoh->Set_abs_error(abs_error);
+  nubars_decoh->Set_rel_error(rel_error);
+  nubars_decoh->Set_abs_error(abs_error);
 }
 
 void OscProbCalcerNuSQUIDSLinear::CalculateProbabilities(const std::vector<FLOAT_T>& OscParams) {

@@ -140,11 +140,9 @@ class OscProbCalcerNuSQUIDSLinear : public OscProbCalcerBase {
 
   double zenith_angle;
   double integration_step;
-  double nus_rel_error;
-  double nus_abs_error;
-  double nubars_rel_error;
-  double nubars_abs_error;
-  std::string nus_bsm_model;
+  double rel_error;
+  double abs_error;
+  std::string osc_model;
 };
 
 #endif
