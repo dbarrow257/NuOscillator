@@ -177,16 +177,6 @@ void OscProbCalcerNuSQUIDSLinear::SetupPropagator() {
   nus_decoh->Set_abs_error(nus_abs_error);
   nubars_decoh->Set_rel_error(nubars_rel_error);
   nubars_decoh->Set_abs_error(nubars_abs_error);
-
-  //Set the decoherence model and parameters for neutrinos
-  nus_decoh->Set_DecoherenceGammaMatrix(nusquids::nuSQUIDSDecoh::DecoherenceModel::RandomizeState, nus_gamma_strength*units.eV); // reference (default) value: nus_gamma_strength = 9.48e-18 
-  nus_decoh->Set_DecoherenceGammaEnergyDependence(nus_gamma_energy_dependence); // reference (default) value: nus_gamma_energy_dependence = 2
-  nus_decoh->Set_DecoherenceGammaEnergyScale(nus_gamma_energy_scale*units.GeV); // reference (default) value: nus_gamma_energy_dependence = 1.0
-
-  //Set the decoherence model and parameters for anti-neutrinos
-  nubars_decoh->Set_DecoherenceGammaMatrix(nusquids::nuSQUIDSDecoh::DecoherenceModel::RandomizeState, nubars_gamma_strength*units.eV);
-  nubars_decoh->Set_DecoherenceGammaEnergyDependence(nubars_gamma_energy_dependence);
-  nubars_decoh->Set_DecoherenceGammaEnergyScale(nubars_gamma_energy_scale*units.GeV);
 }
 
 void OscProbCalcerNuSQUIDSLinear::CalculateProbabilities(const std::vector<FLOAT_T>& OscParams) {
@@ -219,6 +209,16 @@ void OscProbCalcerNuSQUIDSLinear::CalculateProbabilities(const std::vector<FLOAT
   nubars_decoh->Set_Body(constdens_env1);
   nubars_decoh->Set_Track(track_env1);
 
+  //Set the decoherence model and parameters for neutrinos
+  nus_decoh->Set_DecoherenceGammaMatrix(nusquids::nuSQUIDSDecoh::DecoherenceModel::RandomizeState, nus_gamma_strength*units.eV); // reference (default) value: nus_gamma_strength = 9.48e-18 
+  nus_decoh->Set_DecoherenceGammaEnergyDependence(nus_gamma_energy_dependence); // reference (default) value: nus_gamma_energy_dependence = 2
+  nus_decoh->Set_DecoherenceGammaEnergyScale(nus_gamma_energy_scale*units.GeV); // reference (default) value: nus_gamma_energy_dependence = 1.0
+
+  //Set the decoherence model and parameters for anti-neutrinos
+  nubars_decoh->Set_DecoherenceGammaMatrix(nusquids::nuSQUIDSDecoh::DecoherenceModel::RandomizeState, nubars_gamma_strength*units.eV);
+  nubars_decoh->Set_DecoherenceGammaEnergyDependence(nubars_gamma_energy_dependence);
+  nubars_decoh->Set_DecoherenceGammaEnergyScale(nubars_gamma_energy_scale*units.GeV);
+  
   // Construct the initial state
   // E_range is an array that contains all the energies.
   nusquids::marray<double,1> E_range = nus_decoh->GetERange();
