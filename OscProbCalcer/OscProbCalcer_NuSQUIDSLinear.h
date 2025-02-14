@@ -86,18 +86,18 @@ class OscProbCalcerNuSQUIDSLinear : public OscProbCalcerBase {
    * @brief Definition of oscillation parameters which are expected in this ProbGPU implementation
    */
   enum OscParams_PMNS{kTH12, kTH23, kTH13, kDM12, kDM23, kDCP, kPATHL, kDENS, kELECDENS, kNOscParams_PMNS};
-
+  
   enum OscParams_Decoh{kEnergyStrength=kNOscParams_PMNS, kEnergyDep, kEnergyScale, kNOscParams_Decoh};
- 
+  
   /**
- * @brief Return the PMNS Matrix type corresponding to a particular string 
- * 
- * @param PMNSType String to convert to enum value
- *
- * @return Enum value describing the PMNS Matrix to use
- */
+   * @brief Return the PMNS Matrix type corresponding to a particular string 
+   * 
+   * @param PMNSType String to convert to enum value
+   *
+   * @return Enum value describing the PMNS Matrix to use
+   */
   int PMNS_StrToInt(std::string OscModel);
-
+  
   /**
    * @brief Return number of parameters needed for a particular type of PMNS matrix
    * 
@@ -107,16 +107,12 @@ class OscProbCalcerNuSQUIDSLinear : public OscProbCalcerBase {
    */
   int GetNOscParams(int OscType);
   
-  /**
-   * @brief ToDo
-   * 
-   */
   enum OscModels{kDecoherence=1};
   
   /**
    * @brief Define the type for the PMNS matrix
    */
-  int fOscType;
+  int fOscModel;
 
   /**
    * @brief Define the neutrino and antineutrino values expected by this implementation
