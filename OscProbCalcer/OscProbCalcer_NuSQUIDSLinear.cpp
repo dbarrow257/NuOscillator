@@ -6,13 +6,6 @@ OscProbCalcerNuSQUIDSLinear::OscProbCalcerNuSQUIDSLinear(YAML::Node Config_) : O
 {
   //=======
   //Grab information from the config
-  //ZenithAngle
-  if (!Config_["OscProbCalcerSetup"]["ZenithAngle"]) {
-    std::cerr << "Expected to find a 'ZenithAngle' Node within the 'OscProbCalcerSetup''Implementation' Node" << std::endl;
-    throw;
-  }
-
-  zenith_angle = Config_["OscProbCalcerSetup"]["ZenithAngle"].as<double>();
 
   //IntegrationStep
   if (!Config_["OscProbCalcerSetup"]["IntegrationStep"]) {
@@ -23,13 +16,14 @@ OscProbCalcerNuSQUIDSLinear::OscProbCalcerNuSQUIDSLinear(YAML::Node Config_) : O
   integration_step = Config_["OscProbCalcerSetup"]["IntegrationStep"].as<double>();
 
   //Errors
+
+  //TODO Combine absolute and relative errors across Nu and NuBar
+
   //NusRelativeError
   if (!Config_["OscProbCalcerSetup"]["NusRelativeError"]) {
     std::cerr << "Expected to find a 'NusRelativeError' Node within the 'OscProbCalcerSetup''Implementation' Node" << std::endl;
     throw;
   }
-
-//  prem_model = Config_["OscProbCalcerSetup"]["NusRelativeError"].as<std::string>();
   nus_rel_error = Config_["OscProbCalcerSetup"]["NusRelativeError"].as<double>();
 
   //NusAbsoluteError
@@ -56,64 +50,14 @@ OscProbCalcerNuSQUIDSLinear::OscProbCalcerNuSQUIDSLinear(YAML::Node Config_) : O
 
   nubars_abs_error = Config_["OscProbCalcerSetup"]["NubarsAbsoluteError"].as<double>();
 
-  //Decoherence setup
-  //NusGammaStrength
-  if (!Config_["OscProbCalcerSetup"]["NusGammaStrength"]) {
-    std::cerr << "Expected to find a 'NusGammaStrength' Node within the 'OscProbCalcerSetup''Implementation' Node" << std::endl;
-    throw;
-  }
-
-  nus_gamma_strength = Config_["OscProbCalcerSetup"]["NusGammaStrength"].as<double>();
-
-  //NusGammaEnergyDependence
-  if (!Config_["OscProbCalcerSetup"]["NusGammaEnergyDependence"]) {
-    std::cerr << "Expected to find a 'NusGammaEnergyDependence' Node within the 'OscProbCalcerSetup''Implementation' Node" << std::endl;
-    throw;
-  }
-
-  nus_gamma_energy_dependence = Config_["OscProbCalcerSetup"]["NusGammaEnergyDependence"].as<double>();
-
-  //NusGammaEnergyScale
-  if (!Config_["OscProbCalcerSetup"]["NusGammaEnergyScale"]) {
-    std::cerr << "Expected to find a 'NusGammaEnergyScale' Node within the 'OscProbCalcerSetup''Implementation' Node" << std::endl;
-    throw;
-  }
-
-  nus_gamma_energy_scale = Config_["OscProbCalcerSetup"]["NusGammaEnergyScale"].as<double>();
-
-  //Nubars
-  //NubarsGammaStrength
-  if (!Config_["OscProbCalcerSetup"]["NubarsGammaStrength"]) {
-    std::cerr << "Expected to find a 'NubarsGammaStrength' Node within the 'OscProbCalcerSetup''Implementation' Node" << std::endl;
-    throw;
-  }
-
-  nubars_gamma_strength = Config_["OscProbCalcerSetup"]["NusGammaStrength"].as<double>();
-
-  //NubarsGammaEnergyDependence
-  if (!Config_["OscProbCalcerSetup"]["NubarsGammaEnergyDependence"]) {
-    std::cerr << "Expected to find a 'NubarsGammaEnergyDependence' Node within the 'OscProbCalcerSetup''Implementation' Node" << std::endl;
-    throw;
-  }
-
-  nubars_gamma_energy_dependence = Config_["OscProbCalcerSetup"]["NubarsGammaEnergyDependence"].as<double>();
-
-  //NubarsGammaEnergyScale
-  if (!Config_["OscProbCalcerSetup"]["NubarsGammaEnergyScale"]) {
-    std::cerr << "Expected to find a 'NubarsGammaEnergyScale' Node within the 'OscProbCalcerSetup''Implementation' Node" << std::endl;
-    throw;
-  }
-
-  nubars_gamma_energy_scale = Config_["OscProbCalcerSetup"]["NubarsGammaEnergyScale"].as<double>();
-
   //NusBSMModel
   if (!Config_["OscProbCalcerSetup"]["NusBSMModel"]) {
     std::cerr << "Expected to find a 'NusBSMModel' Node within the 'OscProbCalcerSetup''Implementation' Node" << std::endl;
     throw;
   }
-
   nus_bsm_model = Config_["OscProbCalcerSetup"]["NusBSMModel"].as<std::string>();
 
+  //TODO Cleanup NusBSMModel/PMNSType
   if (!Config_["OscProbCalcerSetup"]["PMNSType"]) {
     std::cerr << "Expected to find a 'PMNSType' Node within the 'OscProbCalcerSetup''Implementation' Node" << std::endl;
     throw;
@@ -158,11 +102,6 @@ void OscProbCalcerNuSQUIDSLinear::SetupPropagator() {
 
   nus_base->Set_h_max(integration_step*units.km );
   //  nus_base->Set_DecoherenceGammaMatrix(nusquids::nuSQUIDSDecoh::DecoherenceModel::RandomizeState, nus_gamma_strength*units.eV);
-
-  //Here we define the trajectory that the particle follows and the object for more examples
-  // of how construct a track and object look body_track example.
-  //zenith angle, neutrinos crossing the earth
-  double phi = acos(zenith_angle);
 
   //Here we set the maximum size for the integration step, important for fast or sharp variations of the density.
   nus_decoh->Set_h_max( integration_step*units.km );
@@ -210,14 +149,14 @@ void OscProbCalcerNuSQUIDSLinear::CalculateProbabilities(const std::vector<FLOAT
   nubars_decoh->Set_Track(track_env1);
 
   //Set the decoherence model and parameters for neutrinos
-  nus_decoh->Set_DecoherenceGammaMatrix(nusquids::nuSQUIDSDecoh::DecoherenceModel::RandomizeState, nus_gamma_strength*units.eV); // reference (default) value: nus_gamma_strength = 9.48e-18 
-  nus_decoh->Set_DecoherenceGammaEnergyDependence(nus_gamma_energy_dependence); // reference (default) value: nus_gamma_energy_dependence = 2
-  nus_decoh->Set_DecoherenceGammaEnergyScale(nus_gamma_energy_scale*units.GeV); // reference (default) value: nus_gamma_energy_dependence = 1.0
+  nus_decoh->Set_DecoherenceGammaMatrix(nusquids::nuSQUIDSDecoh::DecoherenceModel::RandomizeState, OscParams[kEnergyStrength]*units.eV);
+  nus_decoh->Set_DecoherenceGammaEnergyDependence(OscParams[kEnergyDep]);
+  nus_decoh->Set_DecoherenceGammaEnergyScale(OscParams[kEnergyScale]*units.GeV);
 
   //Set the decoherence model and parameters for anti-neutrinos
-  nubars_decoh->Set_DecoherenceGammaMatrix(nusquids::nuSQUIDSDecoh::DecoherenceModel::RandomizeState, nubars_gamma_strength*units.eV);
-  nubars_decoh->Set_DecoherenceGammaEnergyDependence(nubars_gamma_energy_dependence);
-  nubars_decoh->Set_DecoherenceGammaEnergyScale(nubars_gamma_energy_scale*units.GeV);
+  nubars_decoh->Set_DecoherenceGammaMatrix(nusquids::nuSQUIDSDecoh::DecoherenceModel::RandomizeState, OscParams[kEnergyStrength]*units.eV);
+  nubars_decoh->Set_DecoherenceGammaEnergyDependence(OscParams[kEnergyDep]);
+  nubars_decoh->Set_DecoherenceGammaEnergyScale(OscParams[kEnergyScale]*units.GeV);
   
   // Construct the initial state
   // E_range is an array that contains all the energies.

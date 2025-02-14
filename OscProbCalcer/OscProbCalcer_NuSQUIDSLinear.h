@@ -85,7 +85,7 @@ class OscProbCalcerNuSQUIDSLinear : public OscProbCalcerBase {
   /**
    * @brief Definition of oscillation parameters which are expected in this ProbGPU implementation
    */
-  enum OscParams{kTH12, kTH23, kTH13, kDM12, kDM23, kDCP, kPATHL, kDENS, kELECDENS, kNOscParams};
+  enum OscParams{kTH12, kTH23, kTH13, kDM12, kDM23, kDCP, kPATHL, kDENS, kELECDENS, kEnergyStrength, kEnergyDep, kEnergyScale, kNOscParams};
  
   /**
  * @brief Return the PMNS Matrix type corresponding to a particular string 
@@ -144,12 +144,6 @@ class OscProbCalcerNuSQUIDSLinear : public OscProbCalcerBase {
   double nus_abs_error;
   double nubars_rel_error;
   double nubars_abs_error;
-  double nus_gamma_strength;
-  double nus_gamma_energy_dependence;
-  double nus_gamma_energy_scale;
-  double nubars_gamma_strength;
-  double nubars_gamma_energy_dependence;
-  double nubars_gamma_energy_scale;
   std::string nus_bsm_model;
 };
 
