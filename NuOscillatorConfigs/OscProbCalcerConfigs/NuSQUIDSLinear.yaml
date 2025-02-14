@@ -3,6 +3,10 @@ General:
 
 OscProbCalcerSetup:
   ImplementationName: "NuSQUIDSLinear"
+  OscModel: "Decoherence"
+  IntegrationStep: "500.0"
+  RelativeError: "1.0e-5"
+  AbsoluteError: "1.0e-5"  
   OscChannelMapping:
     - Entry: "Electron:Electron"
     - Entry: "Electron:Muon"
