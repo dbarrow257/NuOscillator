@@ -94,23 +94,23 @@ class OscProbCalcerNuSQUIDSLinear : public OscProbCalcerBase {
  *
  * @return Enum value describing the PMNS Matrix to use
  */
-  int PMNS_StrToInt(std::string PMNSType);
+  int PMNS_StrToInt(std::string OscModel);
 
   /**
- * @brief Return number of parameters needed for a particular type of PMNS matrix
- * 
- * @param OscType int value corresponding to type of PMNS matrix
- *
- * @return number of parameters needed for the type of PMNS matrix
- */
+   * @brief Return number of parameters needed for a particular type of PMNS matrix
+   * 
+   * @param OscType int value corresponding to type of PMNS matrix
+   *
+   * @return number of parameters needed for the type of PMNS matrix
+   */
   int GetNOscParams(int OscType);
-
-/**
-  * @brief Different types of PMNS matrices currently supported within the analysis
-  * LIV and SNSI still to be implemented at some point
-  */
-  enum PMNSMatrix{kFast=0, kPMNSSterile1=1, kPMNSSterile2=2, kPMNSSterile3=3, kDecay=4, kDeco=5, kNSI=6, kIter=7, kNUNM=8, kLIV=9, kSNSI=10, kPMNSSM=11};
-
+  
+  /**
+   * @brief ToDo
+   * 
+   */
+  enum OscModels{kDecoherence=1};
+  
   /**
    * @brief Define the type for the PMNS matrix
    */
@@ -121,28 +121,17 @@ class OscProbCalcerNuSQUIDSLinear : public OscProbCalcerBase {
    */
   enum NuType{Nu=1,Nubar=-1};
 
+  squids::Const units;
+  
   nusquids::nuSQUIDS* nus_base;
   nusquids::nuSQUIDS* nubars_base;
-  
-  nusquids::nuSQUIDS* nus_pmns;
-  nusquids::nuSQUIDS* nubars_pmns;
   
   nusquids::nuSQUIDSDecoh* nus_decoh;
   nusquids::nuSQUIDSDecoh* nubars_decoh;
 
-  nuSQUIDSNSI* nus_NSI;
-  nuSQUIDSNSI* nubars_NSI;
-  
-  nusquids::nuSQUIDSLV* nus_LV;
-  nusquids::nuSQUIDSLV* nubarss_LV;
-
-  squids::Const units;
-
-  double zenith_angle;
   double integration_step;
   double rel_error;
   double abs_error;
-  std::string osc_model;
 
   std::string decoherence_model;
   nusquids::nuSQUIDSDecoh::DecoherenceModel nusquids_decoherence_model;
