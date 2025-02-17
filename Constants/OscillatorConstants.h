@@ -272,7 +272,7 @@ inline std::vector<FLOAT_T> linspace(FLOAT_T Emin, FLOAT_T Emax, int nDiv) {
   return linpoints;
 }
 
-inline std::vector<FLOAT_T> ReadBinEdgesFromFile(std::string TFileName, std::string HistogramName, bool IsCosineZAxis, int Verbose=NuOscillator::Verbosity::NONE) {
+inline std::vector<FLOAT_T> ReadBinEdgesFromFile(std::string TFileName, std::string HistogramName, int Verbose=NuOscillator::Verbosity::NONE) {
   std::vector<FLOAT_T> BinEdges;
 
   TFile* File = new TFile(TFileName.c_str());

@@ -42,12 +42,12 @@ void OscillatorSubSampling::Initialise() {
   //=======
   // Grab the bin edges and centers for both coarse and fine binning
   
-  CoarseEnergyAxisBinEdges = ReadBinEdgesFromFile(FileName,CoarseEnergyAxisHistName,false);
-  FineEnergyAxisBinEdges = ReadBinEdgesFromFile(FileName,FineEnergyAxisHistName,false);
+  CoarseEnergyAxisBinEdges = ReadBinEdgesFromFile(FileName,CoarseEnergyAxisHistName);
+  FineEnergyAxisBinEdges = ReadBinEdgesFromFile(FileName,FineEnergyAxisHistName);
   FineEnergyAxisBinCenters = ReturnBinCentersFromBinEdges(FineEnergyAxisBinEdges);
   if (!fCosineZIgnored) {
-    CoarseCosineZAxisBinEdges = ReadBinEdgesFromFile(FileName,CoarseCosineZAxisHistName,true);
-    FineCosineZAxisBinEdges = ReadBinEdgesFromFile(FileName,FineCosineZAxisHistName,true);
+    CoarseCosineZAxisBinEdges = ReadBinEdgesFromFile(FileName,CoarseCosineZAxisHistName);
+    FineCosineZAxisBinEdges = ReadBinEdgesFromFile(FileName,FineCosineZAxisHistName);
     FineCosineZAxisBinCenters = ReturnBinCentersFromBinEdges(FineCosineZAxisBinEdges);
   } else {
     CoarseCosineZAxisBinEdges = std::vector<FLOAT_T>();
@@ -83,7 +83,7 @@ void OscillatorSubSampling::SetupOscillatorImplementation() {
   nOscillationChannels = OscillationChannels.size();
   
   nCoarseEnergyBins = CoarseEnergyAxisBinEdges.size()-1.;
-  nCoarseCosineZBins = FineCosineZAxisBinEdges.size()-1.; //This will be equal to 1 for non-atmospheric OscProbCalcers because of the dummy values defined in the Intialisation function
+  nCoarseCosineZBins = CoarseCosineZAxisBinEdges.size()-1.; //This will be equal to 1 for non-atmospheric OscProbCalcers because of the dummy values defined in the Intialisation function
 
   nFineEnergyBins = FineEnergyAxisBinCenters.size();
   nFineCosineZBins = FineCosineZAxisBinCenters.size(); //This will be equal to 1 for non-atmospheric OscProbCalcers because of the dummy values defined in the Intialisation function
@@ -195,6 +195,12 @@ void OscillatorSubSampling::PostCalculateProbabilities() {
       Avg += *(OscillationProbabilitiesToAverage[iBin][iPtr]);
     }
     Avg /= OscillationProbabilitiesToAverage[iBin].size();
+
+    if(OscillationProbabilitiesToAverage[iBin].size()==0){
+      std::cerr<<"Division by zero encountered in SubSampling."<<std::endl;
+      throw;
+    }
+
     AveragedOscillationProbabilities[iBin] = Avg;
   }
 }

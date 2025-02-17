@@ -29,10 +29,10 @@ void OscillatorBinned::Initialise() {
   CosineZAxisHistName = Config[fCalculationTypeName]["CosineZAxisHistName"].as<std::string>();
   //=======
 
-  EnergyAxisBinEdges = ReadBinEdgesFromFile(FileName,EnergyAxisHistName,false);
+  EnergyAxisBinEdges = ReadBinEdgesFromFile(FileName,EnergyAxisHistName);
   EnergyAxisBinCenters = ReturnBinCentersFromBinEdges(EnergyAxisBinEdges);
   if (!fCosineZIgnored) {
-    CosineZAxisBinEdges = ReadBinEdgesFromFile(FileName,CosineZAxisHistName,true);
+    CosineZAxisBinEdges = ReadBinEdgesFromFile(FileName,CosineZAxisHistName);
     CosineZAxisBinCenters = ReturnBinCentersFromBinEdges(CosineZAxisBinEdges);
   }
 
