@@ -307,8 +307,8 @@ if(${UseNuSQUIDSLinear} EQUAL 1)
   ExternalProject_Add(SQUIDS
     GIT_REPOSITORY https://github.com/jsalvado/SQuIDS.git
     GIT_TAG master
-    BINARY_DIR = <SOURCE_DIR> 
-    CONFIGURE_HANDLED_BY_BUILD true
+    BUILD_IN_SOURCE = 1
+    CONFIGURE_HANDLED_BY_BUILD false
     CONFIGURE_COMMAND <SOURCE_DIR>/configure --with-gsl=${GSL_ROOT_DIR} --prefix=<INSTALL_DIR>
     BUILD_COMMAND make
     INSTALL_COMMAND make install
@@ -323,8 +323,8 @@ if(${UseNuSQUIDSLinear} EQUAL 1)
   ExternalProject_Add(NUSQUIDS
     GIT_REPOSITORY https://github.com/arguelles/nuSQuIDS.git
     GIT_TAG master
-    BINARY_DIR = <SOURCE_DIR>
-    CONFIGURE_HANDLED_BY_BUILD true
+    BUILD_IN_SOURCE = 1
+    CONFIGURE_HANDLED_BY_BUILD false
     CONFIGURE_COMMAND <SOURCE_DIR>/configure --with-gsl=${GSL_ROOT_DIR} --with-hdf5=${HDF5_INCLUDE_DIRS}/../ --with-squids=${CMAKE_CURRENT_BINARY_DIR}/SQUIDS-prefix --prefix=<INSTALL_DIR>
     BUILD_COMMAND make examples
     INSTALL_COMMAND make install
@@ -333,7 +333,8 @@ if(${UseNuSQUIDSLinear} EQUAL 1)
   SET(NUSQUIDS_SRC_DIR ${CMAKE_CURRENT_BINARY_DIR}/NUSQUIDS-prefix/src/NUSQUIDS/)
   SET(NUSQUIDS_INC_DIR ${CMAKE_CURRENT_BINARY_DIR}/NUSQUIDS-prefix/include/)
   SET(NUSQUIDS_LIB_DIR ${CMAKE_CURRENT_BINARY_DIR}/NUSQUIDS-prefix/lib/)
-  
+
+  add_dependencies(NUSQUIDS SQUIDS)
   add_library(NUSQUIDS::NUSQUIDS SHARED IMPORTED)
   set_target_properties(NUSQUIDS::NUSQUIDS PROPERTIES IMPORTED_LOCATION ${NUSQUIDS_LIB_DIR}/libnuSQuIDS.so)
 
