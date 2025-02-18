@@ -128,8 +128,6 @@ void OscProbCalcerNuSQUIDSLinear::CalculateProbabilities(const std::vector<FLOAT
   nus_base->Set_SquareMassDifference(2,OscParams[kDM12] + OscParams[kDM23]); // \Delta m_13
   //nus_base->Set_CPPhase(0,2,OscParams[kDCP]);
 
-  std::cout << "Setting LV parameters: " << OscParams[kemu] << ", " << OscParams[kmutau] << std::endl;
-
   // Set mixing angles and masses for anti-neutrinos
   nubars_base->Set_MixingAngle(0,1,asin(sqrt(OscParams[kTH12]))); // \theta_12
   nubars_base->Set_MixingAngle(0,2,asin(sqrt(OscParams[kTH13]))); // \theta_13
@@ -155,6 +153,12 @@ void OscProbCalcerNuSQUIDSLinear::CalculateProbabilities(const std::vector<FLOAT
   nusquids::marray<double,1> E_range = nus_base->GetERange();
   // Array that contains the initial state of the system, fist component is energy and second every one of the flavors
   nusquids::marray<double,2> inistate{E_range.size(),static_cast<size_t>(NuOscillator::kTau)};
+
+  //DB Temp
+  nus_base->Set_rel_error(rel_error);
+  nus_base->Set_abs_error(abs_error);
+  nubars_base->Set_rel_error(rel_error);
+  nubars_base->Set_abs_error(abs_error);
   
   switch (fOscModel) {
   case kDecoherence:
@@ -169,25 +173,18 @@ void OscProbCalcerNuSQUIDSLinear::CalculateProbabilities(const std::vector<FLOAT
     nubars_decoh->Set_DecoherenceGammaEnergyScale(OscParams[kEnergyScale]*units.GeV);
     break;
   case kLIV:
-    gsl_complex zero {0.0*units.eV,0.0*units.eV};
-
-    std::cout << "OscParams[kmutau]*units.GeV:" << OscParams[kmutau]*units.GeV << std::endl;
-    std::cout << "OscParams[kemu]*units.GeV:" << OscParams[kemu]*units.GeV << std::endl;
-
-    gsl_complex cmutau {OscParams[kmutau]*units.GeV,OscParams[kemu]*units.GeV};
-    LVParameters non_null_LIV{ zero, cmutau };
+    gsl_complex c_EMu{OscParams[kEMuReal]*units.GeV, OscParams[kEMuImg]*units.GeV};
+    gsl_complex c_MuTau{OscParams[kMuTauReal]*units.GeV, OscParams[kMuTauImg]*units.GeV};
+    LVParameters LIVPars{c_EMu,c_MuTau};
     
-    nus_LIV->Set_LV_OpMatrix(non_null_LIV);
+    nus_LIV->Set_LV_OpMatrix(LIVPars);
     nus_LIV->Set_LV_EnergyPower(0.0);
     
-    nubars_LIV->Set_LV_OpMatrix(non_null_LIV);
+    nubars_LIV->Set_LV_OpMatrix(LIVPars);
     nubars_LIV->Set_LV_EnergyPower(0.0);
     break;
   }
 
-  nus_base->Set_ProgressBar(true);
-  nubars_base->Set_ProgressBar(true);
- 
   // Index counter to have a handle on where neutrino oscillation probs are stored in array fWeightArray
   int index_counter = 0;
 
@@ -202,9 +199,16 @@ void OscProbCalcerNuSQUIDSLinear::CalculateProbabilities(const std::vector<FLOAT
 	inistate[i][k] = (k == nu_flavor) ? 1.0 : 0.0;
       }
     }
-    
-    //Set the initial state in nuSQuIDS object
-    nus_base->Set_initial_state(inistate,nusquids::flavor);
+
+    switch (fOscModel) {
+    case kLIV:
+      //Set the initial state in nuSQuIDS object
+      nus_LIV->Set_initial_state(inistate,nusquids::flavor);
+      break;
+    default:
+      //Set the initial state in nuSQuIDS object
+      nus_base->Set_initial_state(inistate,nusquids::flavor);
+    }
     
     //Propagate the neutrinos in the earth for the path defined in path
     nus_base->EvolveState();
@@ -219,19 +223,26 @@ void OscProbCalcerNuSQUIDSLinear::CalculateProbabilities(const std::vector<FLOAT
       }
     }
   }
-  
+
   // Now the same for anti-neutrinos:
   for(int nu_flavor = 0; nu_flavor < NuOscillator::kTau; nu_flavor++){
+
     // Set initial state for the electron neutrinos (k==0), muon neutrinos (k==1) and tau neutrinos (k==2), other flavors to 0.0
     for ( int i = 0 ; i < inistate.extent(0); i++){
       for ( int k = 0; k < inistate.extent(1); k ++){
 	inistate[i][k] = (k == nu_flavor) ? 1.0 : 0.0;
       }
     }
-    
-    //Set the initial state in nuSQuIDS object
-    nubars_base->Set_initial_state(inistate,nusquids::flavor);
-    
+
+    switch (fOscModel) {
+    case kLIV:
+      //Set the initial state in nuSQuIDS object
+      nubars_LIV->Set_initial_state(inistate,nusquids::flavor);
+      break;
+    default:
+      //Set the initial state in nuSQuIDS object
+      nubars_base->Set_initial_state(inistate,nusquids::flavor);
+    }
     //Propagate the neutrinos in the earth for the path defined in path
     nubars_base->EvolveState();
     

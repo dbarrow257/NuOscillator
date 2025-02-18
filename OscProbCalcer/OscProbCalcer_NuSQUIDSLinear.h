@@ -89,7 +89,7 @@ class OscProbCalcerNuSQUIDSLinear : public OscProbCalcerBase {
   
   enum OscParams_Decoh{kEnergyStrength=kNOscParams_PMNS, kEnergyDep, kEnergyScale, kNOscParams_Decoh};
   
-  enum OscParams_LIV{kemu=kNOscParams_PMNS, kmutau, kNOscParams_LIV};
+  enum OscParams_LIV{kEMuReal=kNOscParams_PMNS, kEMuImg, kMuTauReal, kMuTauImg, kNOscParams_LIV};
 
   /**
    * @brief Return the PMNS Matrix type corresponding to a particular string 

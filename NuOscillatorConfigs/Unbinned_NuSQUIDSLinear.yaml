@@ -5,11 +5,12 @@ General:
 
 OscProbCalcerSetup:
   ImplementationName: "NuSQUIDSLinear"
+  PrecisionLimit: 1e-3
   OscModel: "LIV" # Decoherence, LIV
   DecoherenceModel: "RandomizeState"
-  IntegrationStep: "500.0"
-  RelativeError: "1.0e-5"
-  AbsoluteError: "1.0e-5"
+  IntegrationStep: "5.0"
+  RelativeError: "1.0e-15"
+  AbsoluteError: "1.0e-15"
   OscChannelMapping:
     - Entry: "Electron:Electron"
     - Entry: "Electron:Muon"
