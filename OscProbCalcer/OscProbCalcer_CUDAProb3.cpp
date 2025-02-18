@@ -34,8 +34,13 @@ OscProbCalcerCUDAProb3::OscProbCalcerCUDAProb3(YAML::Node Config_) : OscProbCalc
   }
 
   fNOscParams = kNOscParams;
-
-  UseEarthModelSystematics = Config_["OscProbCalcerSetup"]["UseEarthModelSystematics"].as<bool>();
+	
+  if(!Config_["OscProbCalcerSetup"]["UseEarthModelSystematics"]){
+    UseEarthModelSystematics = false;
+    if (fVerbose >= NuOscillator::INFO){std::cout<<"Earth Model systematics not set in config file."<<std::endl;}
+  }
+  else{UseEarthModelSystematics = Config_["OscProbCalcerSetup"]["UseEarthModelSystematics"].as<bool>();}
+  
   if(UseEarthModelSystematics){
     if (fVerbose >= NuOscillator::INFO){std::cout<<"Using Earth Model systematics"<<std::endl;}
     nLayers = Config_["OscProbCalcerSetup"]["Layers"].as<int>();
