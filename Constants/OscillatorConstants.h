@@ -98,7 +98,7 @@ inline std::vector<std::string> ReturnKnownConfigs() {
   std::vector<std::string> ConfigNames;
 
 #if UseCUDAProb3 == 1
-  ConfigNames.push_back("./NuOscillatorConfigs/Unbinned_CUDAProb3.yaml");
+  ConfigNames.push_back("./NuOscillatorConfigs/Binned_CUDAProb3.yaml");
 #endif
 
 #if UseCUDAProb3Linear == 1
@@ -118,11 +118,11 @@ inline std::vector<std::string> ReturnKnownConfigs() {
 #endif
 
 #if UseNuSQUIDSLinear == 1
-  ConfigNames.push_back("./Configs/Unbinned_NuSQUIDSLinear.yaml");
+  ConfigNames.push_back("./NuOscillatorConfigs/Binned_NuSQUIDSLinear.yaml");
 #endif
   
 #if UseOscProb == 1
-  ConfigNames.push_back("./NuOscillatorConfigs/Unbinned_OscProb.yaml");
+  ConfigNames.push_back("./NuOscillatorConfigs/Binned_OscProb.yaml");
 #endif  
 
   return ConfigNames;

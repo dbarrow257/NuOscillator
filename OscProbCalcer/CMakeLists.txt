@@ -71,6 +71,9 @@ if(${UseNuSQUIDSLinear} EQUAL 1)
   endforeach(VAR)
   target_sources(OscProbCalcer PRIVATE OscProbCalcer_NuSQUIDSLinear.cpp)
   list(APPEND HEADERS OscProbCalcer_NuSQUIDSLinear.h)
+
+  add_dependencies(OscProbCalcer SQUIDS)
+  add_dependencies(OscProbCalcer NUSQUIDS)
 endif()
 
 if(${UseOscProb} EQUAL 1)
