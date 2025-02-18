@@ -116,7 +116,12 @@ endif()
 
 if(${UseMultithreading} EQUAL 1)
   target_compile_options(NuOscillatorCompilerOptions INTERFACE -fopenmp)
-  target_link_libraries(NuOscillatorCompilerOptions INTERFACE gomp)
+  # KS: Not a clue why clang need different...
+  if(CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+    target_link_libraries(NuOscillatorCompilerOptions INTERFACE omp)
+  else()
+    target_link_libraries(NuOscillatorCompilerOptions INTERFACE gomp)
+  endif()
 endif()
 
 if(NOT DEFINED NuOscillator_Compiler_Flags)
@@ -196,6 +201,10 @@ if(${UseCUDAProb3Linear} EQUAL 1)
       "GPU_ON ON"
       "CMAKE_CUDA_ARCHITECTURES ${CMAKE_CUDA_ARCHITECTURES_STRING}"
     )
+   # KS: This is bit hacky but CUDAProb3Linear is a mess. Whole functions are written in header file
+   # and someone wrote them to be hidden under GPU_ON and wrote shitty cmake which do not propagate this definition.
+   # Therefore NuOscillator is fixing other people mess
+   target_compile_definitions(NuOscillatorCompilerOptions INTERFACE GPU_ON)
   else()
     CPMFindPackage(
       NAME CUDAProb3
