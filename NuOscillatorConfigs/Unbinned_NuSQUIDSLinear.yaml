@@ -6,7 +6,7 @@ General:
 OscProbCalcerSetup:
   ImplementationName: "NuSQUIDSLinear"
   PrecisionLimit: 1e-3
-  OscModel: "NSI" # Decoherence, LIV, NSI
+  OscModel: "SM" # SM, Decoherence, LIV, NSI
   NSIMuTauCoupling: 1.0e-2
   #DecoherenceModel: "RandomizeState"
   IntegrationStep: "5.0"

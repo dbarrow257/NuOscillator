@@ -75,9 +75,17 @@ void OscProbCalcerNuSQUIDSLinear::SetupPropagator() {
   }
 
   switch (fOscModel) {
+    case kSM:
+    nus_PMNS = new nusquids::nuSQUIDS(3, neutrino); // neutrinos
+    nubars_PMNS = new nusquids::nuSQUIDS(3, antineutrino); // anti-neutrinos
+
+    nus_base = nus_PMNS;
+    nubars_base = nubars_PMNS;
+    break;
+
   case kDecoherence:
     nus_decoh = new nusquids::nuSQUIDSDecoh(E_range, NuOscillator::kTau, nusquids::neutrino, false);
-    nubars_decoh = new nusquids::nuSQUIDSDecoh(E_range, NuOscillator::kTau, nusquids::antineutrino, false); // anti-neutrinos
+    nubars_decoh = new nusquids::nuSQUIDSDecoh(E_range, NuOscillator::kTau, nusquids::antineutrino, false);
     
     nus_base = nus_decoh;
     nubars_base = nubars_decoh;
@@ -178,6 +186,9 @@ void OscProbCalcerNuSQUIDSLinear::CalculateProbabilities(const std::vector<FLOAT
   nubars_base->Set_abs_error(abs_error);
   
   switch (fOscModel) {
+  case kSM:
+    nus_PMNS->Set_E(10.0*units.GeV);
+    break;
   case kDecoherence:
     //Set the decoherence model and parameters for neutrinos
     nus_decoh->Set_DecoherenceGammaMatrix(nusquids_decoherence_model, OscParams[kEnergyStrength]*units.eV);
@@ -252,6 +263,9 @@ void OscProbCalcerNuSQUIDSLinear::CalculateProbabilities(const std::vector<FLOAT
     }
 
     switch (fOscModel) {
+    case kSM:
+      nubars_PMNS->Set_E(10.0*units.GeV);
+      break;
     case kLIV:
       //Set the initial state in nuSQuIDS object
       nubars_LIV->Set_initial_state(inistate,nusquids::flavor);
@@ -276,6 +290,9 @@ void OscProbCalcerNuSQUIDSLinear::CalculateProbabilities(const std::vector<FLOAT
 }
 
 int OscProbCalcerNuSQUIDSLinear::PMNS_StrToInt(std::string OscModel) {
+  if (OscModel=="SM") {
+    return kSM;
+  }
   if (OscModel=="Decoherence") {
     return kDecoherence;
   }
@@ -285,7 +302,7 @@ int OscProbCalcerNuSQUIDSLinear::PMNS_StrToInt(std::string OscModel) {
   if (OscModel=="NSI") {
     return kNSI;
   }
-  
+
   std::cerr << "Unknown OscModel string provided:" << OscModel << std::endl;
   throw std::runtime_error("Invalid OscModel");
   return -1;
@@ -293,6 +310,8 @@ int OscProbCalcerNuSQUIDSLinear::PMNS_StrToInt(std::string OscModel) {
 
 int OscProbCalcerNuSQUIDSLinear::GetNOscParams(int OscModel) {
   switch (OscModel) {
+  case kSM:
+    return kNOscParams_PMNS;
   case kDecoherence:
     return kNOscParams_Decoh;
   case kLIV:

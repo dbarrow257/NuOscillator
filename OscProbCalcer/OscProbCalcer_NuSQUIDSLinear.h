@@ -83,12 +83,18 @@ class OscProbCalcerNuSQUIDSLinear : public OscProbCalcerBase {
   // Variables which are needed for implementation specific code
 
   /**
-   * @brief Definition of oscillation parameters which are expected in this ProbGPU implementation
+   * @brief Definition of Standard Model oscillation parameters (same as BSM Non-Standard Interactions parameters) which are expected in this ProbGPU implementation
    */
   enum OscParams_PMNS{kTH12, kTH23, kTH13, kDM12, kDM23, kDCP, kPATHL, kDENS, kELECDENS, kNOscParams_PMNS};
-  
+
+  /**
+   * @brief Definition of Standard Model oscillation parameters and additional parameters characterising the Beyond-the-Standard-Model physics (Decoherence)
+   */
   enum OscParams_Decoh{kEnergyStrength=kNOscParams_PMNS, kEnergyDep, kEnergyScale, kNOscParams_Decoh};
   
+  /**
+   * @brief Definition of Standard Model oscillation parameters and additional parameters characterising the Beyond-the-Standard-Model physics (Lorentz-Violation Invariance)
+   */
   enum OscParams_LIV{kEMuReal=kNOscParams_PMNS, kEMuImg, kMuTauReal, kMuTauImg, kNOscParams_LIV};
 
   /**
@@ -108,7 +114,14 @@ class OscProbCalcerNuSQUIDSLinear : public OscProbCalcerBase {
    * @return number of parameters needed for the type of PMNS matrix
    */
   int GetNOscParams(int OscType);
-  
+ 
+  /**
+   * @brief Set enums corresponding to BSM model 
+   * 
+   * @param BSMModel String to convert to enum value
+   *
+   * @return Enum value describing the BSMModel to use
+   */
   enum OscModels{kSM=0, kDecoherence=1, kLIV=2, kNSI=3};
   
   /**
@@ -121,31 +134,88 @@ class OscProbCalcerNuSQUIDSLinear : public OscProbCalcerBase {
    */
   enum NuType{Nu=1,Nubar=-1};
 
+  /**
+   * @brief Define a Const object for handling the units
+   */
   squids::Const units;
   
+  /**
+   * @brief Declaration of the NuSQUIDS base class object for neutrinos
+   */
   nusquids::nuSQUIDS* nus_base;
+
+  /**
+   * @brief Declaration of the NuSQUIDS base class object for anti-neutrinos
+   */
   nusquids::nuSQUIDS* nubars_base;
 
+  /**
+   * @brief Declaration of the NuSQUIDS SM (PMNS) derived class object for neutrinos
+   */
   nusquids::nuSQUIDS* nus_PMNS;
+  /**
+   * @brief Declaration of the NuSQUIDS SM (PMNS) derived class object for anti-neutrinos
+   */
   nusquids::nuSQUIDS* nubars_PMNS;
   
+  /**
+   * @brief Declaration of the NuSQUIDS BSM (Decoherence) derived class object for neutrinos
+   */
   nusquids::nuSQUIDSDecoh* nus_decoh;
+
+  /**
+   * @brief Declaration of the NuSQUIDS BSM (Decoherence) derived class object for anti-neutrinos
+   */
   nusquids::nuSQUIDSDecoh* nubars_decoh;
 
+  /**
+   * @brief Declaration of the string to choose the decoherence model
+   */
+  std::string decoherence_model;
+
+  /**
+   * @brief Declaration of the NuSQUIDS BSM (Decoherence) model object
+   */
+  nusquids::nuSQUIDSDecoh::DecoherenceModel nusquids_decoherence_model;
+
+  /**
+   * @brief Declaration of the NuSQUIDS BSM (Lorentz-Violation Invariance) derived class object for neutrinos
+   */
   nusquids::nuSQUIDSLV* nus_LIV;
+  /**
+   * @brief Declaration of the NuSQUIDS BSM (Lorentz-Violation Invariance) derived class object for anti-neutrinos
+   */
   nusquids::nuSQUIDSLV* nubars_LIV;
 
+  /**
+   * @brief Declaration of the NuSQUIDS BSM (Non-Standard Interactions) derived class object for neutrinos
+   */
   nuSQUIDSNSI* nus_NSI;
+
+  /**
+   * @brief Declaration of the NuSQUIDS BSM (Non-Standard Interactions) derived class object for anti-neutrinos
+   */
   nuSQUIDSNSI* nubars_NSI;
 
-  double integration_step;
-  double rel_error;
-  double abs_error;
-
+  /**
+   * @brief Declaration of the muon-neutrino to tau-neutrino coupling for the NSI computation
+   */
   FLOAT_T nsi_mutau_coupling;
 
-  std::string decoherence_model;
-  nusquids::nuSQUIDSDecoh::DecoherenceModel nusquids_decoherence_model;
+  /**
+   * @brief Declaration of the integration step
+   */
+  double integration_step;
+
+  /**
+   * @brief Declaration of the relative error
+   */
+  double rel_error;
+
+  /**
+   * @brief Declaration of the absolute error
+   */
+  double abs_error;
 };
 
 #endif
