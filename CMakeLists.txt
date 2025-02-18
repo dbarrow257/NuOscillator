@@ -116,7 +116,12 @@ endif()
 
 if(${UseMultithreading} EQUAL 1)
   target_compile_options(NuOscillatorCompilerOptions INTERFACE -fopenmp)
-  target_link_libraries(NuOscillatorCompilerOptions INTERFACE gomp)
+  # KS: Not a clue why clang need different...
+  if(CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+    target_link_libraries(NuOscillatorCompilerOptions INTERFACE omp)
+  else()
+    target_link_libraries(NuOscillatorCompilerOptions INTERFACE gomp)
+  endif()
 endif()
 
 if(NOT DEFINED NuOscillator_Compiler_Flags)
