@@ -24,15 +24,5 @@ OscProbCalcerSetup:
     - Entry: "Tau:Muon"
     - Entry: "Tau:Tau"
 
-  UseProductionHeightsAveraging: false
-  ProductionHeightsFileName: "./inputs/ProdHeightDist_E561_cZ520_N1_hbin2.5.root"
-  ProductionHeightsHistFlavourSuffixes:
-    Nue: "nue"
-    Numu: "numu"
-    Nutau: "numu"
-    Nuebar: "nuebar"
-    Numubar: "numubar"
-    Nutaubar: "numubar"
-
   UseEarthModelSystematics: false
   Layers: 4
