@@ -95,7 +95,7 @@ class OscProbCalcerNuSQUIDSLinear : public OscProbCalcerBase {
   /**
    * @brief Definition of Standard Model oscillation parameters and additional parameters characterising the Beyond-the-Standard-Model physics (Lorentz-Violation Invariance)
    */
-  enum OscParams_LIV{kEMuReal=kNOscParams_PMNS, kEMuImg, kMuTauReal, kMuTauImg, kNOscParams_LIV};
+  enum OscParams_LIV{kEMuReal=kNOscParams_PMNS, kEMuImg, kMuTauReal, kMuTauImg, kEnergyPower, kNOscParams_LIV};
 
   /**
    * @brief Return the PMNS Matrix type corresponding to a particular string 
@@ -216,6 +216,11 @@ class OscProbCalcerNuSQUIDSLinear : public OscProbCalcerBase {
    * @brief Declaration of the absolute error
    */
   double abs_error;
+
+  /**
+   * @brief Number of neutrino flavours considered in the analysis
+   */
+  int nNeutrinoFlavours;
 };
 
 #endif

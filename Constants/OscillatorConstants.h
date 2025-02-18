@@ -85,7 +85,7 @@ inline std::vector<FLOAT_T> ReturnOscParams_Beam_wYe_wDeco() {
 }
 
 inline std::vector<FLOAT_T> ReturnOscParams_Beam_wYe_wLIV() {
-  std::vector<FLOAT_T> OscParams_Beam_wYe_wLIV = {3.07e-1,5.28e-1,2.18e-2,7.53e-5,2.509e-3,-1.601,250.0,2.6,0.5,1.0e-23,0.0,1.0e-23,0.0};
+  std::vector<FLOAT_T> OscParams_Beam_wYe_wLIV = {3.07e-1,5.28e-1,2.18e-2,7.53e-5,2.509e-3,-1.601,250.0,2.6,0.5,1.0e-23,0.0,1.0e-23,0.0,0.0};
   return OscParams_Beam_wYe_wLIV;
 }
 
