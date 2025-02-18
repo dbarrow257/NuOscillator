@@ -89,6 +89,8 @@ class OscProbCalcerNuSQUIDSLinear : public OscProbCalcerBase {
   
   enum OscParams_Decoh{kEnergyStrength=kNOscParams_PMNS, kEnergyDep, kEnergyScale, kNOscParams_Decoh};
   
+  enum OscParams_LIV{kemu=kNOscParams_PMNS, kmutau, kNOscParams_LIV};
+
   /**
    * @brief Return the PMNS Matrix type corresponding to a particular string 
    * 
@@ -107,7 +109,7 @@ class OscProbCalcerNuSQUIDSLinear : public OscProbCalcerBase {
    */
   int GetNOscParams(int OscType);
   
-  enum OscModels{kDecoherence=1};
+  enum OscModels{kSM=0, kDecoherence=1, kLIV=2, kNSI=3};
   
   /**
    * @brief Define the type for the PMNS matrix
@@ -123,9 +125,13 @@ class OscProbCalcerNuSQUIDSLinear : public OscProbCalcerBase {
   
   nusquids::nuSQUIDS* nus_base;
   nusquids::nuSQUIDS* nubars_base;
-  
+ 
+
   nusquids::nuSQUIDSDecoh* nus_decoh;
   nusquids::nuSQUIDSDecoh* nubars_decoh;
+
+  nusquids::nuSQUIDSLV* nus_LIV;
+  nusquids::nuSQUIDSLV* nubars_LIV;
 
   double integration_step;
   double rel_error;

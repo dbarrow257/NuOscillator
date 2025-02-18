@@ -69,11 +69,19 @@ void OscProbCalcerNuSQUIDSLinear::SetupPropagator() {
   switch (fOscModel) {
   case kDecoherence:
     nus_decoh = new nusquids::nuSQUIDSDecoh(E_range, NuOscillator::kTau, nusquids::neutrino, true);
-    nubars_decoh = new nusquids::nuSQUIDSDecoh(E_range, NuOscillator::kTau, nusquids::antineutrino, false); // anti-neutrinos
+    nubars_decoh = new nusquids::nuSQUIDSDecoh(E_range, NuOscillator::kTau, nusquids::antineutrino, true); // anti-neutrinos
     
     nus_base = nus_decoh;
     nubars_base = nubars_decoh;
     break;
+
+  case kLIV:
+    nus_LIV = new nusquids::nuSQUIDSLV(E_range, NuOscillator::kTau, nusquids::neutrino, true);
+    nubars_LIV = new nusquids::nuSQUIDSLV(E_range, NuOscillator::kTau, nusquids::antineutrino, true);
+    nus_base = nus_LIV;
+    nubars_base = nubars_LIV;
+    std::cerr << "fOscModel provided:" << fOscModel << std::endl;
+      break;
   default:
     std::cerr << "Unknown fOscModel provided:" << fOscModel << std::endl;
     throw std::runtime_error("Invalid OscMode");
@@ -106,6 +114,32 @@ void OscProbCalcerNuSQUIDSLinear::SetupPropagator() {
       throw std::runtime_error("Invalid decoherence model");
     }
     break;
+
+  case kLIV:
+    //Value for the epsilon mutau
+//    double re_c_mutau =1.0e-23*units.GeV;
+
+//    std::cout << "Setting LV parameters: " << OscParams[kemu] << ", " << OscParams[kDM12] << std::endl;
+    std::cerr << "A" << std::endl;
+    //Lorentz violation parameters
+    gsl_complex zero {0.0*units.eV,0.0*units.eV};
+//    LVParameters null {zero, zero};
+    std::cerr << "B" << std::endl;
+//    nus_LIV->Set_LV_OpMatrix(null);
+    std::cerr << "C" << std::endl;
+//    nubars_LIV->Set_LV_OpMatrix(null);
+//    nus_LIV->Set_LV_EnergyPower(0.0);
+    std::cerr << "D" << std::endl;
+//    nubars_LIV->Set_LV_EnergyPower(0.0);
+
+    gsl_complex cmutau {kmutau*units.GeV*units.eV,0.0*units.eV};
+    LVParameters non_null_LIV{ zero, cmutau };
+    nus_LIV->Set_LV_OpMatrix(non_null_LIV);
+    nubars_LIV->Set_LV_OpMatrix(non_null_LIV);
+    nus_LIV->Set_LV_EnergyPower(0.0);
+    nubars_LIV->Set_LV_EnergyPower(0.0);
+    std::cerr << "E" << std::endl;
+  break;
   }
 }
 
@@ -118,6 +152,8 @@ void OscProbCalcerNuSQUIDSLinear::CalculateProbabilities(const std::vector<FLOAT
   nus_base->Set_SquareMassDifference(1,OscParams[kDM12]); // \Delta m_12
   nus_base->Set_SquareMassDifference(2,OscParams[kDM12] + OscParams[kDM23]); // \Delta m_13
   nus_base->Set_CPPhase(0,2,OscParams[kDCP]);
+
+    std::cout << "Setting LV parameters: " << OscParams[kemu] << ", " << OscParams[kmutau] << std::endl;
 
   // Set mixing angles and masses for anti-neutrinos
   nubars_base->Set_MixingAngle(0,1,asin(sqrt(OscParams[kTH12]))); // \theta_12
@@ -222,6 +258,9 @@ int OscProbCalcerNuSQUIDSLinear::PMNS_StrToInt(std::string OscModel) {
   if (OscModel=="Decoherence") {
     return kDecoherence;
   }
+  if (OscModel=="LIV") {
+    return kLIV;
+  }
   
   std::cerr << "Unknown OscModel string provided:" << OscModel << std::endl;
   throw std::runtime_error("Invalid OscModel");
@@ -232,6 +271,8 @@ int OscProbCalcerNuSQUIDSLinear::GetNOscParams(int OscModel) {
   switch (OscModel) {
   case kDecoherence:
     return kNOscParams_Decoh;
+  case kLIV:
+    return kNOscParams_LIV;
   default:
     std::cerr << "Unknown OscModel:" << OscModel << std::endl;
     throw std::runtime_error("Invalid OscModel");
