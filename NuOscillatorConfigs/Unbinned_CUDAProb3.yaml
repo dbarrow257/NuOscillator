@@ -26,5 +26,5 @@ OscProbCalcerSetup:
     - Entry: "Tau:Muon"
     - Entry: "Tau:Tau"
 
-    UseEarthModelSystematics: false
-    Layers: 4
+  UseEarthModelSystematics: false
+  Layers: 4
