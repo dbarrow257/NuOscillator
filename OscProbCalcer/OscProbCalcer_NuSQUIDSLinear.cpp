@@ -43,6 +43,14 @@ OscProbCalcerNuSQUIDSLinear::OscProbCalcerNuSQUIDSLinear(YAML::Node Config_) : O
     }
     decoherence_model = Config_["OscProbCalcerSetup"]["DecoherenceModel"].as<std::string>();
   }
+
+  if (fOscModel == kNSI) {
+    if (!Config_["OscProbCalcerSetup"]["NSIMuTauCoupling"]) {
+      std::cerr << "Expected to find a 'NSIMuTauCoupling' Node within the 'OscProbCalcerSetup''Implementation' Node" << std::endl;
+      throw std::runtime_error("YAML node not found");
+    }
+    nsi_mutau_coupling = Config_["OscProbCalcerSetup"]["NSIMuTauCoupling"].as<FLOAT_T>();
+  }
   //=======
 
   fNNeutrinoTypes = 2;
@@ -78,10 +86,19 @@ void OscProbCalcerNuSQUIDSLinear::SetupPropagator() {
   case kLIV:
     nus_LIV = new nusquids::nuSQUIDSLV(E_range, NuOscillator::kTau, nusquids::neutrino, true);
     nubars_LIV = new nusquids::nuSQUIDSLV(E_range, NuOscillator::kTau, nusquids::antineutrino, true);
+
     nus_base = nus_LIV;
     nubars_base = nubars_LIV;
-    std::cerr << "fOscModel provided:" << fOscModel << std::endl;
     break;
+
+  case kNSI:
+    nus_NSI = new nuSQUIDSNSI(nsi_mutau_coupling, E_range, NuOscillator::kTau, nusquids::neutrino, true);
+    nubars_NSI = new nuSQUIDSNSI(nsi_mutau_coupling, E_range, NuOscillator::kTau, nusquids::antineutrino, true);
+
+    nus_base = nus_NSI;
+    nubars_base = nubars_NSI;
+    break;
+    
   default:
     std::cerr << "Unknown fOscModel provided:" << fOscModel << std::endl;
     throw std::runtime_error("Invalid OscMode");
@@ -265,6 +282,9 @@ int OscProbCalcerNuSQUIDSLinear::PMNS_StrToInt(std::string OscModel) {
   if (OscModel=="LIV") {
     return kLIV;
   }
+  if (OscModel=="NSI") {
+    return kNSI;
+  }
   
   std::cerr << "Unknown OscModel string provided:" << OscModel << std::endl;
   throw std::runtime_error("Invalid OscModel");
@@ -277,6 +297,8 @@ int OscProbCalcerNuSQUIDSLinear::GetNOscParams(int OscModel) {
     return kNOscParams_Decoh;
   case kLIV:
     return kNOscParams_LIV;
+  case kNSI:
+    return kNOscParams_PMNS;
   default:
     std::cerr << "Unknown OscModel:" << OscModel << std::endl;
     throw std::runtime_error("Invalid OscModel");

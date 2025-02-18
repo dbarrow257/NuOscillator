@@ -125,17 +125,24 @@ class OscProbCalcerNuSQUIDSLinear : public OscProbCalcerBase {
   
   nusquids::nuSQUIDS* nus_base;
   nusquids::nuSQUIDS* nubars_base;
- 
 
+  nusquids::nuSQUIDS* nus_PMNS;
+  nusquids::nuSQUIDS* nubars_PMNS;
+  
   nusquids::nuSQUIDSDecoh* nus_decoh;
   nusquids::nuSQUIDSDecoh* nubars_decoh;
 
   nusquids::nuSQUIDSLV* nus_LIV;
   nusquids::nuSQUIDSLV* nubars_LIV;
 
+  nuSQUIDSNSI* nus_NSI;
+  nuSQUIDSNSI* nubars_NSI;
+
   double integration_step;
   double rel_error;
   double abs_error;
+
+  FLOAT_T nsi_mutau_coupling;
 
   std::string decoherence_model;
   nusquids::nuSQUIDSDecoh::DecoherenceModel nusquids_decoherence_model;
