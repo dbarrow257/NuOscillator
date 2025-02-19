@@ -55,6 +55,7 @@ DefineEnabledRequiredSwitch(UseCUDAProb3Linear 0)
 DefineEnabledRequiredSwitch(UseProb3ppLinear 0)
 DefineEnabledRequiredSwitch(UseProbGPULinear 0)
 DefineEnabledRequiredSwitch(UseNuFASTLinear 0)
+DefineEnabledRequiredSwitch(UseNuSQUIDSLinear 0)
 DefineEnabledRequiredSwitch(UseOscProb 0)
 
 # KS: NuFastLinear by default
@@ -63,6 +64,7 @@ if(UseCUDAProb3        EQUAL 0 AND
     UseProb3ppLinear   EQUAL 0 AND
     UseProbGPULinear   EQUAL 0 AND
     UseNuFASTLinear    EQUAL 0 AND
+    UseNuSQUIDSLinear  EQUAL 0 AND
     UseOscProb         EQUAL 0)
   set(UseNuFASTLinear 1)
 endif()
@@ -73,8 +75,10 @@ LIST(APPEND ALL_Engines
   Prob3ppLinear
   ProbGPULinear
   NuFASTLinear
+  NuSQUIDSLinear
   OscProb
 )
+
 cmessage(STATUS "NuOscillator Features: ")
 foreach(f ${ALL_Engines})
   cmessage(STATUS "     ${f}: ${Use${f}}")
@@ -116,7 +120,12 @@ endif()
 
 if(${UseMultithreading} EQUAL 1)
   target_compile_options(NuOscillatorCompilerOptions INTERFACE -fopenmp)
-  target_link_libraries(NuOscillatorCompilerOptions INTERFACE gomp)
+  # KS: Not a clue why clang need different...
+  if(CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+    target_link_libraries(NuOscillatorCompilerOptions INTERFACE omp)
+  else()
+    target_link_libraries(NuOscillatorCompilerOptions INTERFACE gomp)
+  endif()
 endif()
 
 if(NOT DEFINED NuOscillator_Compiler_Flags)
@@ -293,6 +302,49 @@ if(${UseOscProb} EQUAL 1)
   
   set(OSCPROB_LIB_DIR ${OscProb_SOURCE_DIR}/lib)
 endif()
+
+if(${UseNuSQUIDSLinear} EQUAL 1)
+  find_package(GSL REQUIRED)
+  find_package(HDF5 REQUIRED COMPONENTS CXX)
+
+  include(ExternalProject)
+
+  ExternalProject_Add(SQUIDS
+    GIT_REPOSITORY https://github.com/jsalvado/SQuIDS.git
+    GIT_TAG master
+    BUILD_IN_SOURCE = 1
+    CONFIGURE_HANDLED_BY_BUILD false
+    CONFIGURE_COMMAND <SOURCE_DIR>/configure --with-gsl=${GSL_ROOT_DIR} --prefix=<INSTALL_DIR>
+    BUILD_COMMAND make
+    INSTALL_COMMAND make install
+  )
+
+  SET(SQUIDS_INC_DIR ${CMAKE_CURRENT_BINARY_DIR}/SQUIDS-prefix/include)
+  SET(SQUIDS_LIB_DIR ${CMAKE_CURRENT_BINARY_DIR}/SQUIDS-prefix/lib)
+
+  add_library(SQUIDS::SQUIDS SHARED IMPORTED)
+  set_target_properties(SQUIDS::SQUIDS PROPERTIES IMPORTED_LOCATION ${SQUIDS_LIB_DIR}/libSQuIDS.so)
+  
+  ExternalProject_Add(NUSQUIDS
+    GIT_REPOSITORY https://github.com/arguelles/nuSQuIDS.git
+    GIT_TAG master
+    BUILD_IN_SOURCE = 1
+    CONFIGURE_HANDLED_BY_BUILD false
+    CONFIGURE_COMMAND <SOURCE_DIR>/configure --with-gsl=${GSL_ROOT_DIR} --with-hdf5=${HDF5_INCLUDE_DIRS}/../ --with-squids=${CMAKE_CURRENT_BINARY_DIR}/SQUIDS-prefix --prefix=<INSTALL_DIR>
+    BUILD_COMMAND make examples
+    INSTALL_COMMAND make install
+  )
+
+  SET(NUSQUIDS_SRC_DIR ${CMAKE_CURRENT_BINARY_DIR}/NUSQUIDS-prefix/src/NUSQUIDS/)
+  SET(NUSQUIDS_INC_DIR ${CMAKE_CURRENT_BINARY_DIR}/NUSQUIDS-prefix/include/)
+  SET(NUSQUIDS_LIB_DIR ${CMAKE_CURRENT_BINARY_DIR}/NUSQUIDS-prefix/lib/)
+
+  add_dependencies(NUSQUIDS SQUIDS)
+  add_library(NUSQUIDS::NUSQUIDS SHARED IMPORTED)
+  set_target_properties(NUSQUIDS::NUSQUIDS PROPERTIES IMPORTED_LOCATION ${NUSQUIDS_LIB_DIR}/libnuSQuIDS.so)
+
+  target_compile_definitions(NuOscillatorCompilerOptions INTERFACE UseNuSQUIDSLinear=1)
+endif()    
 
 if(${UseGPU} EQUAL 1)
   target_compile_definitions(NuOscillatorCompilerOptions INTERFACE UseGPU=1)

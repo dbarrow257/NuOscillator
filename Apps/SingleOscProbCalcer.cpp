@@ -28,7 +28,9 @@ int main(int argc, char **argv) {
   std::vector<FLOAT_T> OscParams_Atm = ReturnOscParams_Atm();
   std::vector<FLOAT_T> OscParams_Beam_woYe = ReturnOscParams_Beam_woYe();
   std::vector<FLOAT_T> OscParams_Beam_wYe = ReturnOscParams_Beam_wYe();
-  
+  std::vector<FLOAT_T> OscParams_Beam_wYe_wDeco = ReturnOscParams_Beam_wYe_wDeco();
+  std::vector<FLOAT_T> OscParams_Beam_wYe_wLIV = ReturnOscParams_Beam_wYe_wLIV();
+
   std::cout << "========================================================" << std::endl;
   std::cout << "Starting setup in executable" << std::endl;
 
@@ -58,7 +60,11 @@ int main(int argc, char **argv) {
   if (Calcer->ReturnNOscParams() == (int)OscParams_Beam_woYe.size()) {
     Calcer->Reweight(OscParams_Beam_woYe);
   } else if (Calcer->ReturnNOscParams() == (int)OscParams_Beam_wYe.size()) {
-    Calcer->Reweight(OscParams_Beam_wYe); 
+    Calcer->Reweight(OscParams_Beam_wYe);
+  } else if (Calcer->ReturnNOscParams() == (int)OscParams_Beam_wYe_wDeco.size()) {
+    Calcer->Reweight(OscParams_Beam_wYe_wDeco); 
+  } else if (Calcer->ReturnNOscParams() == (int)OscParams_Beam_wYe_wLIV.size()) {
+    Calcer->Reweight(OscParams_Beam_wYe_wLIV);
   } else if (Calcer->ReturnNOscParams() == (int)OscParams_Atm.size()) {
     Calcer->Reweight(OscParams_Atm);
   } else if (Calcer->ReturnNOscParams() == (int)OscParams_Basic.size()) {

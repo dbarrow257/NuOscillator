@@ -87,12 +87,18 @@ class OscProbCalcerCUDAProb3 : public OscProbCalcerBase {
   
   // ========================================================================================================================================================================
   //Functions which help setup implementation specific code
-  
+
   /**
   * @brief Set the variables needed to use the production heights averaging.
   */
   void SetProductionHeightsAveraging();
   
+  /**
+   * @brief Apply a new set of parameters to set the density model of the Earth in CUDAProb3
+   *
+   * @param OscParams The full parameter set to calculate oscillation probabilities at 
+   */
+  void ApplyEarthModelSystematics(const std::vector<FLOAT_T>& OscParams);
   // ========================================================================================================================================================================
   // Variables which are needed for implementation specific code
 
@@ -139,7 +145,7 @@ class OscProbCalcerCUDAProb3 : public OscProbCalcerBase {
   /**
    * @brief The name of the Production Heights file being used in a particular instance of OscProbCalcerCUDAProb3()
    *
-   * The file should contain a collection of TH3Ds named "ProductionHeight_nu" + flavour suffixes, to be defined in [OscProbCalcerSetup][ProductionHeightsHistFlavourSuffixes].
+   * The file should contain a collection of TH3Ds named "ProductionHeight_" + flavour suffixes, to be defined in [OscProbCalcerSetup][ProductionHeightsHistFlavourSuffixes].
    * The binning in x (Energy) and y (CosineZ) must be the same specified in the config file under [Binned][FileName].
    * The heights used for the average correspond to the lower edges of the z-axis bins.
    */
@@ -150,6 +156,15 @@ class OscProbCalcerCUDAProb3 : public OscProbCalcerBase {
    */
   std::vector<std::string> ProductionHeightsHistFlavourSuffixes;
 
+  /**
+   * @brief  Option to apply density model systematics in OscProbCalcerCUDAProb3()
+   */
+  bool UseEarthModelSystematics;
+
+  /**
+   * @brief  Number of Earth layers
+   */
+  int nLayers;
 };
 
 #endif

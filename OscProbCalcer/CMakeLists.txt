@@ -58,6 +58,24 @@ if(${UseNuFASTLinear} EQUAL 1)
   list(APPEND HEADERS OscProbCalcer_NuFASTLinear.h)
 endif()
 
+if(${UseNuSQUIDSLinear} EQUAL 1)
+  include_directories(${SQUIDS_INC_DIR})
+  include_directories(${NUSQUIDS_INC_DIR})
+  include_directories(${NUSQUIDS_SRC_DIR})
+
+  set(NUSQUIDSEXAMPLES nuSQUIDSDecoh.o)
+
+  target_link_libraries(OscProbCalcer GSL::gsl GSL::gslcblas HDF5::HDF5 SQUIDS::SQUIDS NUSQUIDS::NUSQUIDS)
+  foreach(VAR ${NUSQUIDSEXAMPLES})
+    target_link_libraries(OscProbCalcer ${NUSQUIDS_SRC_DIR}/build/${VAR})
+  endforeach(VAR)
+  target_sources(OscProbCalcer PRIVATE OscProbCalcer_NuSQUIDSLinear.cpp)
+  list(APPEND HEADERS OscProbCalcer_NuSQUIDSLinear.h)
+
+  add_dependencies(OscProbCalcer SQUIDS)
+  add_dependencies(OscProbCalcer NUSQUIDS)
+endif()
+
 if(${UseOscProb} EQUAL 1)
   target_sources(OscProbCalcer PRIVATE OscProbCalcer_OscProb.cpp)
   target_link_libraries(OscProbCalcer ${OscProb_SOURCE_DIR}/lib/libOscProb.so)
