@@ -38,10 +38,13 @@ jobs:
             exec: DragRace
             argument: 10 NuOscillatorConfigs/Unbinned_CUDAProb3Linear.yaml NuOscillatorConfigs/Unbinned_NuFASTLinear.yaml NuOscillatorConfigs/Unbinned_Prob3ppLinear.yaml NuOscillatorConfigs/Unbinned_OscProbLinear.yaml NuOscillatorConfigs/Unbinned_NuSQUIDSLinear.yaml
     container:
-      image: ghcr.io/mach3-software/mach3:alma9latest
+      image: ghcr.io/mach3-software/mach3:alma9v1.4.1
 
     steps:
     - uses: actions/checkout@v4
+
+    - name: Get hdf5
+      run: dnf install -y hdf5 hdf5-devel
 
     - name: Get NuOscillator
       run: |
