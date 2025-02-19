@@ -90,8 +90,9 @@ Inheritance diagram for OscillatorBase:</div>
  <div class="center">
   <img src="classOscillatorBase.png" usemap="#OscillatorBase_map" alt=""/>
   <map id="OscillatorBase_map" name="OscillatorBase_map">
-<area href="classOscillatorBinned.html" title="Binned Oscillation calculation implementation class." alt="OscillatorBinned" shape="rect" coords="0,56,119,80"/>
-<area href="classOscillatorUnbinned.html" title="Unbinned Oscillation calculation implementation class." alt="OscillatorUnbinned" shape="rect" coords="129,56,248,80"/>
+<area href="classOscillatorBinned.html" title="Binned Oscillation calculation implementation class." alt="OscillatorBinned" shape="rect" coords="0,56,139,80"/>
+<area href="classOscillatorSubSampling.html" title="SubSampling Oscillation calculation implementation class." alt="OscillatorSubSampling" shape="rect" coords="149,56,288,80"/>
+<area href="classOscillatorUnbinned.html" title="Unbinned Oscillation calculation implementation class." alt="OscillatorUnbinned" shape="rect" coords="298,56,437,80"/>
   </map>
 </div></div>
 <table class="memberdecls">
@@ -160,6 +161,12 @@ Protected Member Functions</h2></td></tr>
 <tr class="memitem:a67d2a5f1fc2f47dd077ffc1fa1e505d6" id="r_a67d2a5f1fc2f47dd077ffc1fa1e505d6"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="OscillatorConstants_8h.html#acb53b45d3e1b677a15c2ef27b266b1ca">FLOAT_T</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscillatorBase.html#a67d2a5f1fc2f47dd077ffc1fa1e505d6">ReturnPointerToWeightinCalcer</a> (int InitNuFlav, int FinalNuFlav, <a class="el" href="OscillatorConstants_8h.html#acb53b45d3e1b677a15c2ef27b266b1ca">FLOAT_T</a> EnergyVal, <a class="el" href="OscillatorConstants_8h.html#acb53b45d3e1b677a15c2ef27b266b1ca">FLOAT_T</a> CosineZVal=<a class="el" href="OscillatorConstants_8h.html#ae3a7da283c400b8c7e8fb8f27042d7dc">DUMMYVAL</a>)</td></tr>
 <tr class="memdesc:a67d2a5f1fc2f47dd077ffc1fa1e505d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return a pointer to the oscillation probability memory address in a particular index of #fOscProbCalcers for a particular event.  <br /></td></tr>
 <tr class="separator:a67d2a5f1fc2f47dd077ffc1fa1e505d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8770c4e4d3634598c8ee935a38ec7a45" id="r_a8770c4e4d3634598c8ee935a38ec7a45"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscillatorBase.html#a8770c4e4d3634598c8ee935a38ec7a45">PostCalculateProbabilities</a> ()</td></tr>
+<tr class="memdesc:a8770c4e4d3634598c8ee935a38ec7a45"><td class="mdescLeft">&#160;</td><td class="mdescRight">Do follow-up calculations with the oscillation probabilities. E.g.: averages in the SubSampling CalculationType.  <br /></td></tr>
+<tr class="separator:a8770c4e4d3634598c8ee935a38ec7a45"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac4bcbb48cfe00a51aeeaeb184707054f" id="r_ac4bcbb48cfe00a51aeeaeb184707054f"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscillatorBase.html#ac4bcbb48cfe00a51aeeaeb184707054f">SetupOscillatorImplementation</a> ()</td></tr>
+<tr class="memdesc:ac4bcbb48cfe00a51aeeaeb184707054f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Setup specific oscillator implementation.  <br /></td></tr>
+<tr class="separator:ac4bcbb48cfe00a51aeeaeb184707054f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
@@ -489,6 +496,35 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
+<a id="a8770c4e4d3634598c8ee935a38ec7a45" name="a8770c4e4d3634598c8ee935a38ec7a45"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8770c4e4d3634598c8ee935a38ec7a45">&#9670;&#160;</a></span>PostCalculateProbabilities()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void OscillatorBase::PostCalculateProbabilities </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Do follow-up calculations with the oscillation probabilities. E.g.: averages in the SubSampling CalculationType. </p>
+
+<p>Reimplemented in <a class="el" href="classOscillatorSubSampling.html#a4d9d46337bec3c2ce541657db8ec72ae">OscillatorSubSampling</a>.</p>
+
+</div>
+</div>
 <a id="a8694c5f8be7e667eaaf6e30901dae167" name="a8694c5f8be7e667eaaf6e30901dae167"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a8694c5f8be7e667eaaf6e30901dae167">&#9670;&#160;</a></span>PrintWeights()</h2>
 
@@ -543,7 +579,7 @@ Private Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Vector of bin edges which should be used to create a histogram for plotting purposes </dd></dl>
 
-<p>Implemented in <a class="el" href="classOscillatorBinned.html#a846963bfed241f8f1d70c1a24b3968f7">OscillatorBinned</a>, and <a class="el" href="classOscillatorUnbinned.html#aed482ae985bffece326040d41419d986">OscillatorUnbinned</a>.</p>
+<p>Implemented in <a class="el" href="classOscillatorBinned.html#a846963bfed241f8f1d70c1a24b3968f7">OscillatorBinned</a>, <a class="el" href="classOscillatorSubSampling.html#a800c07c7e6ede85303fe084afc82faf2">OscillatorSubSampling</a>, and <a class="el" href="classOscillatorUnbinned.html#aed482ae985bffece326040d41419d986">OscillatorUnbinned</a>.</p>
 
 </div>
 </div>
@@ -809,7 +845,7 @@ Private Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Pointer to the memory address where the calculated oscillation probability for events of the specific requested type will be stored </dd></dl>
 
-<p>Implemented in <a class="el" href="classOscillatorBinned.html#a45b8d8a9a439b13106f2309b342bd5eb">OscillatorBinned</a>, and <a class="el" href="classOscillatorUnbinned.html#a5f2a3ac84e8b12454c8c4b3fb04dab7b">OscillatorUnbinned</a>.</p>
+<p>Implemented in <a class="el" href="classOscillatorSubSampling.html#ac8d028f569ab9b92b0e972dc6a09f31e">OscillatorSubSampling</a>, <a class="el" href="classOscillatorBinned.html#a45b8d8a9a439b13106f2309b342bd5eb">OscillatorBinned</a>, and <a class="el" href="classOscillatorUnbinned.html#a5f2a3ac84e8b12454c8c4b3fb04dab7b">OscillatorUnbinned</a>.</p>
 
 </div>
 </div>
@@ -904,6 +940,35 @@ Private Attributes</h2></td></tr>
 
 <p>Setup each instance of <a class="el" href="classOscProbCalcerBase.html#a577215656c88457f96a30bb4631a9688" title="Default constructor.">OscProbCalcerBase::OscProbCalcerBase()</a> instance in <a class="el" href="classOscillatorBase.html#addf56ce729e9b76700741fc2d8a32b7f" title="The instance of OscProbCalcerBase()">fOscProbCalcer</a>. </p>
 <p>Setup function is public so that <a class="el" href="classOscProbCalcerBase.html#a577215656c88457f96a30bb4631a9688" title="Default constructor.">OscProbCalcerBase::OscProbCalcerBase()</a> instances, when using the unbinned calculation implementation, can be setup. The unbinned implementation assumes that the Energy and CosineZ arrays will be set after the <a class="el" href="classOscillatorBase.html" title="Oscillation calculation (binned, unbinned, etc.) implementation agnostic base class.">OscillatorBase()</a> object has been initialised. </p>
+
+</div>
+</div>
+<a id="ac4bcbb48cfe00a51aeeaeb184707054f" name="ac4bcbb48cfe00a51aeeaeb184707054f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac4bcbb48cfe00a51aeeaeb184707054f">&#9670;&#160;</a></span>SetupOscillatorImplementation()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void OscillatorBase::SetupOscillatorImplementation </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Setup specific oscillator implementation. </p>
+
+<p>Reimplemented in <a class="el" href="classOscillatorSubSampling.html#a126d8228cbcfe9e019101e4b61496862">OscillatorSubSampling</a>.</p>
 
 </div>
 </div>

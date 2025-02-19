@@ -134,6 +134,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a1f8e0ab26f02a55a89efe2bdbd7bd17a" id="r_a1f8e0ab26f02a55a89efe2bdbd7bd17a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerBase.html#a1f8e0ab26f02a55a89efe2bdbd7bd17a">ReturnNOscParams</a> ()</td></tr>
 <tr class="memdesc:a1f8e0ab26f02a55a89efe2bdbd7bd17a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the number of oscillation parameters the specific implementation expects.  <br /></td></tr>
 <tr class="separator:a1f8e0ab26f02a55a89efe2bdbd7bd17a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a564f25ba530329ec7d183bf41e0006b5" id="r_a564f25ba530329ec7d183bf41e0006b5"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="structNuOscillator_1_1OscillationChannel.html">NuOscillator::OscillationChannel</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerBase.html#a564f25ba530329ec7d183bf41e0006b5">ReturnOscChannels</a> ()</td></tr>
+<tr class="memdesc:a564f25ba530329ec7d183bf41e0006b5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the oscillation channels the specific implementation expects.  <br /></td></tr>
+<tr class="separator:a564f25ba530329ec7d183bf41e0006b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae6f8426575e35d5d652c37b9701579b4" id="r_ae6f8426575e35d5d652c37b9701579b4"><td class="memItemLeft" align="right" valign="top">std::vector&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerBase.html#ae6f8426575e35d5d652c37b9701579b4">ReturnNeutrinoTypes</a> ()</td></tr>
+<tr class="memdesc:ae6f8426575e35d5d652c37b9701579b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the neutrino types the specific implementation expects.  <br /></td></tr>
+<tr class="separator:ae6f8426575e35d5d652c37b9701579b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a858f9f4f07f0d2106f2e277ef3cdfddb" id="r_a858f9f4f07f0d2106f2e277ef3cdfddb"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="OscillatorConstants_8h.html#acb53b45d3e1b677a15c2ef27b266b1ca">FLOAT_T</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerBase.html#a858f9f4f07f0d2106f2e277ef3cdfddb">ReturnOscParamsCurr</a> ()</td></tr>
 <tr class="memdesc:a858f9f4f07f0d2106f2e277ef3cdfddb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the oscillation parameters which were used for the last calculation.  <br /></td></tr>
 <tr class="separator:a858f9f4f07f0d2106f2e277ef3cdfddb"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -170,6 +176,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ae58cd1d08c79b7bb8087398059713f3a" id="r_ae58cd1d08c79b7bb8087398059713f3a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerBase.html#ae58cd1d08c79b7bb8087398059713f3a">ReturnHasSetCosineZArray</a> ()</td></tr>
 <tr class="memdesc:ae58cd1d08c79b7bb8087398059713f3a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return whether the instance of <a class="el" href="classOscProbCalcerBase.html" title="Oscillation calculation engine (CUDAProb3, ProbGPU, Prob3++, etc.) implementation agnostic base class...">OscProbCalcerBase()</a> has already been assigned the CosineZ binning.  <br /></td></tr>
 <tr class="separator:ae58cd1d08c79b7bb8087398059713f3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3fb5c893d31c3017a8a3c26bcd221562" id="r_a3fb5c893d31c3017a8a3c26bcd221562"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerBase.html#a3fb5c893d31c3017a8a3c26bcd221562">ReturnNuTypeFromFlavour</a> (int NuFlav)</td></tr>
+<tr class="memdesc:a3fb5c893d31c3017a8a3c26bcd221562"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the index in <a class="el" href="classOscProbCalcerBase.html#addb978a4699373acea20bf908405c8af" title="The mapping of neutrino types to uniquely defined integers (i.e. index)">fNeutrinoTypes</a> for a particular neutrino flavour (neutrino or antineutrino)  <br /></td></tr>
+<tr class="separator:a3fb5c893d31c3017a8a3c26bcd221562"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
@@ -191,18 +200,6 @@ Protected Member Functions</h2></td></tr>
 <tr class="memitem:ab9068d0366d8573f2ecbb42926f34af4" id="r_ab9068d0366d8573f2ecbb42926f34af4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerBase.html#ab9068d0366d8573f2ecbb42926f34af4">ResetCurrOscParams</a> ()</td></tr>
 <tr class="memdesc:ab9068d0366d8573f2ecbb42926f34af4"><td class="mdescLeft">&#160;</td><td class="mdescRight">(Re-)Initialise the saved oscillation parameters in <a class="el" href="classOscProbCalcerBase.html#abc4e79d55f1e9400a62b1b06c2c2b900" title="Vector which stores the saved oscillation probabilities.">fOscParamsCurr</a>  <br /></td></tr>
 <tr class="separator:ab9068d0366d8573f2ecbb42926f34af4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a544cb51c9f535c0fe99d280bd018c9e0" id="r_a544cb51c9f535c0fe99d280bd018c9e0"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerBase.html#a544cb51c9f535c0fe99d280bd018c9e0">ReturnCosineZIndexFromValue</a> (<a class="el" href="OscillatorConstants_8h.html#acb53b45d3e1b677a15c2ef27b266b1ca">FLOAT_T</a> CosineZVal)</td></tr>
-<tr class="memdesc:a544cb51c9f535c0fe99d280bd018c9e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the index in <a class="el" href="classOscProbCalcerBase.html#af7c32cdec95ac8ae9dc27b057c27ace8" title="The vector of CosineZ values being evaluated by the oscillation probability engine.">fCosineZArray</a> for a particular value of CosineZ. If it's not found, throws an error.  <br /></td></tr>
-<tr class="separator:a544cb51c9f535c0fe99d280bd018c9e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3e403eec0be920f928a2e3a7af274785" id="r_a3e403eec0be920f928a2e3a7af274785"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerBase.html#a3e403eec0be920f928a2e3a7af274785">ReturnEnergyIndexFromValue</a> (<a class="el" href="OscillatorConstants_8h.html#acb53b45d3e1b677a15c2ef27b266b1ca">FLOAT_T</a> EnergyVal)</td></tr>
-<tr class="memdesc:a3e403eec0be920f928a2e3a7af274785"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the index in <a class="el" href="classOscProbCalcerBase.html#a79551cba7b9cf9b05fd595449b98c6b1" title="The vector of Energy values being evaluated by the oscillation probability engine.">fEnergyArray</a> for a particular value of Energy. If it's not found, throws an error.  <br /></td></tr>
-<tr class="separator:a3e403eec0be920f928a2e3a7af274785"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa85abd21df41dcbbf0cac4f1b154137b" id="r_aa85abd21df41dcbbf0cac4f1b154137b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerBase.html#aa85abd21df41dcbbf0cac4f1b154137b">ReturnOscChannelIndexFromFlavours</a> (int InitNuFlav, int FinalNuFlav)</td></tr>
-<tr class="memdesc:aa85abd21df41dcbbf0cac4f1b154137b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loop through <a class="el" href="classOscProbCalcerBase.html#a9d3596ff47e31e6fe6855d092588c38a" title="The mapping of oscillation channels which have been requested from the YAML config.">fOscillationChannels</a> and determine which index corresponds to the requested flavours.  <br /></td></tr>
-<tr class="separator:aa85abd21df41dcbbf0cac4f1b154137b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3fb5c893d31c3017a8a3c26bcd221562" id="r_a3fb5c893d31c3017a8a3c26bcd221562"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerBase.html#a3fb5c893d31c3017a8a3c26bcd221562">ReturnNuTypeFromFlavour</a> (int NuFlav)</td></tr>
-<tr class="memdesc:a3fb5c893d31c3017a8a3c26bcd221562"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the index in <a class="el" href="classOscProbCalcerBase.html#addb978a4699373acea20bf908405c8af" title="The mapping of neutrino types to uniquely defined integers (i.e. index)">fNeutrinoTypes</a> for a particular neutrino flavour (neutrino or antineutrino)  <br /></td></tr>
-<tr class="separator:a3fb5c893d31c3017a8a3c26bcd221562"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9505021a01a42ce1e459430ec2ba2f99" id="r_a9505021a01a42ce1e459430ec2ba2f99"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerBase.html#a9505021a01a42ce1e459430ec2ba2f99">InitialiseNeutrinoTypesArray</a> (int Size)</td></tr>
 <tr class="memdesc:a9505021a01a42ce1e459430ec2ba2f99"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialise the <a class="el" href="classOscProbCalcerBase.html#addb978a4699373acea20bf908405c8af" title="The mapping of neutrino types to uniquely defined integers (i.e. index)">fNeutrinoTypes</a> mapping array to a particular size with dummy values.  <br /></td></tr>
 <tr class="separator:a9505021a01a42ce1e459430ec2ba2f99"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -218,6 +215,15 @@ Protected Member Functions</h2></td></tr>
 <tr class="memitem:a604f6c463a8fc1f33ff867162d2adafd" id="r_a604f6c463a8fc1f33ff867162d2adafd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerBase.html#a604f6c463a8fc1f33ff867162d2adafd">SanitiseProbabilities</a> ()</td></tr>
 <tr class="memdesc:a604f6c463a8fc1f33ff867162d2adafd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ensure that the oscillation probabilities are within [0.,1.] range, if not throw error.  <br /></td></tr>
 <tr class="separator:a604f6c463a8fc1f33ff867162d2adafd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a544cb51c9f535c0fe99d280bd018c9e0" id="r_a544cb51c9f535c0fe99d280bd018c9e0"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerBase.html#a544cb51c9f535c0fe99d280bd018c9e0">ReturnCosineZIndexFromValue</a> (<a class="el" href="OscillatorConstants_8h.html#acb53b45d3e1b677a15c2ef27b266b1ca">FLOAT_T</a> CosineZVal)</td></tr>
+<tr class="memdesc:a544cb51c9f535c0fe99d280bd018c9e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the index in <a class="el" href="classOscProbCalcerBase.html#af7c32cdec95ac8ae9dc27b057c27ace8" title="The vector of CosineZ values being evaluated by the oscillation probability engine.">fCosineZArray</a> for a particular value of CosineZ. If it's not found, throws an error.  <br /></td></tr>
+<tr class="separator:a544cb51c9f535c0fe99d280bd018c9e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3e403eec0be920f928a2e3a7af274785" id="r_a3e403eec0be920f928a2e3a7af274785"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerBase.html#a3e403eec0be920f928a2e3a7af274785">ReturnEnergyIndexFromValue</a> (<a class="el" href="OscillatorConstants_8h.html#acb53b45d3e1b677a15c2ef27b266b1ca">FLOAT_T</a> EnergyVal)</td></tr>
+<tr class="memdesc:a3e403eec0be920f928a2e3a7af274785"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the index in <a class="el" href="classOscProbCalcerBase.html#a79551cba7b9cf9b05fd595449b98c6b1" title="The vector of Energy values being evaluated by the oscillation probability engine.">fEnergyArray</a> for a particular value of Energy. If it's not found, throws an error.  <br /></td></tr>
+<tr class="separator:a3e403eec0be920f928a2e3a7af274785"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa85abd21df41dcbbf0cac4f1b154137b" id="r_aa85abd21df41dcbbf0cac4f1b154137b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerBase.html#aa85abd21df41dcbbf0cac4f1b154137b">ReturnOscChannelIndexFromFlavours</a> (int InitNuFlav, int FinalNuFlav)</td></tr>
+<tr class="memdesc:aa85abd21df41dcbbf0cac4f1b154137b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loop through <a class="el" href="classOscProbCalcerBase.html#a9d3596ff47e31e6fe6855d092588c38a" title="The mapping of oscillation channels which have been requested from the YAML config.">fOscillationChannels</a> and determine which index corresponds to the requested flavours.  <br /></td></tr>
+<tr class="separator:aa85abd21df41dcbbf0cac4f1b154137b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa4c6ecb7c6a0936a36810183658ce165" id="r_aa4c6ecb7c6a0936a36810183658ce165"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerBase.html#aa4c6ecb7c6a0936a36810183658ce165">CalculateProbabilities</a> (const std::vector&lt; <a class="el" href="OscillatorConstants_8h.html#acb53b45d3e1b677a15c2ef27b266b1ca">FLOAT_T</a> &gt; &amp;OscParams)=0</td></tr>
 <tr class="memdesc:aa4c6ecb7c6a0936a36810183658ce165"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate some oscillation probabilities for a particular oscillation parameter set.  <br /></td></tr>
 <tr class="separator:aa4c6ecb7c6a0936a36810183658ce165"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -1058,6 +1064,34 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
+<a id="ae6f8426575e35d5d652c37b9701579b4" name="ae6f8426575e35d5d652c37b9701579b4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae6f8426575e35d5d652c37b9701579b4">&#9670;&#160;</a></span>ReturnNeutrinoTypes()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; int &gt; OscProbCalcerBase::ReturnNeutrinoTypes </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Return the neutrino types the specific implementation expects. </p>
+<dl class="section return"><dt>Returns</dt><dd>Return the neutrino types the specific implementation expects </dd></dl>
+
+</div>
+</div>
 <a id="a1f8e0ab26f02a55a89efe2bdbd7bd17a" name="a1f8e0ab26f02a55a89efe2bdbd7bd17a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a1f8e0ab26f02a55a89efe2bdbd7bd17a">&#9670;&#160;</a></span>ReturnNOscParams()</h2>
 
@@ -1091,9 +1125,6 @@ Private Attributes</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">int OscProbCalcerBase::ReturnNuTypeFromFlavour </td>
@@ -1103,11 +1134,6 @@ Private Attributes</h2></td></tr>
           <td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 <p>Return the index in <a class="el" href="classOscProbCalcerBase.html#addb978a4699373acea20bf908405c8af" title="The mapping of neutrino types to uniquely defined integers (i.e. index)">fNeutrinoTypes</a> for a particular neutrino flavour (neutrino or antineutrino) </p>
@@ -1193,6 +1219,34 @@ Private Attributes</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The index which corresponds to the requested neutrino flavours </dd></dl>
+
+</div>
+</div>
+<a id="a564f25ba530329ec7d183bf41e0006b5" name="a564f25ba530329ec7d183bf41e0006b5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a564f25ba530329ec7d183bf41e0006b5">&#9670;&#160;</a></span>ReturnOscChannels()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; <a class="el" href="structNuOscillator_1_1OscillationChannel.html">NuOscillator::OscillationChannel</a> &gt; OscProbCalcerBase::ReturnOscChannels </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Return the oscillation channels the specific implementation expects. </p>
+<dl class="section return"><dt>Returns</dt><dd>Return the oscillation channels the specific implementation expects </dd></dl>
 
 </div>
 </div>
