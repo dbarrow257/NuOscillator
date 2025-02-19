@@ -32,9 +32,21 @@ OscProbCalcerCUDAProb3::OscProbCalcerCUDAProb3(YAML::Node Config_) : OscProbCalc
     ProductionHeightsHistFlavourSuffixes[4] = Config_["OscProbCalcerSetup"]["ProductionHeightsHistFlavourSuffixes"]["Numubar"].as<std::string>();
     ProductionHeightsHistFlavourSuffixes[5] = Config_["OscProbCalcerSetup"]["ProductionHeightsHistFlavourSuffixes"]["Nutaubar"].as<std::string>();
   }
-  //=======
 
   fNOscParams = kNOscParams;
+	
+  if(!Config_["OscProbCalcerSetup"]["UseEarthModelSystematics"]){
+    UseEarthModelSystematics = false;
+    if (fVerbose >= NuOscillator::INFO){std::cout<<"Earth Model systematics not set in config file."<<std::endl;}
+  }
+  else{UseEarthModelSystematics = Config_["OscProbCalcerSetup"]["UseEarthModelSystematics"].as<bool>();}
+  
+  if(UseEarthModelSystematics){
+    if (fVerbose >= NuOscillator::INFO){std::cout<<"Using Earth Model systematics"<<std::endl;}
+    nLayers = Config_["OscProbCalcerSetup"]["Layers"].as<int>();
+    fNOscParams +=  2*nLayers;
+  }
+  //=======
 
   fNNeutrinoTypes = 2;
   InitialiseNeutrinoTypesArray(fNNeutrinoTypes);
@@ -114,8 +126,13 @@ void OscProbCalcerCUDAProb3::CalculateProbabilities(const std::vector<FLOAT_T>& 
 
   propagator->setNeutrinoMasses(dm12sq, dm23sq);
   propagator->setProductionHeight(prodH);
+
   if(UseProductionHeightsAve){
     SetProductionHeightsAveraging();
+  }
+
+  if(UseEarthModelSystematics){
+    ApplyEarthModelSystematics(OscParams);
   }
 
   // CUDAProb3 calculates oscillation probabilites for each NeutrinoType, so need to copy them from the calculator into fWeightArray
@@ -273,4 +290,31 @@ void OscProbCalcerCUDAProb3::SetProductionHeightsAveraging(){
   propagator->setProductionHeightList(ProductionHeightProbabilitiesList,ProductionHeightsList);
   
   if (fVerbose >= NuOscillator::INFO){std::cout<<"Completed SetProductionHeightsAveraging()"<<std::endl;}
+}
+
+void OscProbCalcerCUDAProb3::ApplyEarthModelSystematics(const std::vector<FLOAT_T>& OscParams){
+  int n_layers = propagator->getNlayerBoundaries()-1;
+  if(n_layers!=nLayers){
+      std::cerr<<"Number of layers set in config differs from the one in "<<EarthDensityFile<<std::endl;
+      std::cerr<<"Expected: "<<nLayers<<"    Got: "<<n_layers<<std::endl;
+  }
+
+  std::vector<FLOAT_T> EarthBoundaries(nLayers);
+  std::vector<FLOAT_T> EarthWeights(nLayers);
+
+  int kLayerBoundaries = kPRODH + 1;
+  int kLayerWeights = kLayerBoundaries + nLayers;
+    
+  for(int iLayer = 0; iLayer<nLayers; iLayer++){
+    EarthBoundaries[iLayer] = OscParams[kLayerBoundaries+iLayer];
+    EarthWeights[iLayer] = OscParams[kLayerWeights+iLayer];
+  }
+    
+  // Check if the model is a set of polynomials
+  if(propagator->PolynomialDensity()){
+    propagator->ModifyEarthModelPoly(EarthBoundaries, EarthWeights);
+  }
+  else{
+    propagator->ModifyEarthModel(EarthBoundaries, EarthWeights);
+  }
 }
