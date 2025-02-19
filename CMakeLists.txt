@@ -79,9 +79,14 @@ LIST(APPEND ALL_Engines
   OscProb
 )
 
+set(NuOscillator_Engines_Enabled "")
 cmessage(STATUS "NuOscillator Features: ")
 foreach(f ${ALL_Engines})
-  cmessage(STATUS "     ${f}: ${Use${f}}")
+  set(engine_var "Use${f}")
+  cmessage(STATUS "     ${f}: ${${engine_var}}")
+  if(DEFINED ${engine_var} AND ${${engine_var}})
+    list(APPEND NuOscillator_Engines_Enabled ${f})
+  endif()
 endforeach()
 
 cmessage(STATUS "Required variables being used:")
