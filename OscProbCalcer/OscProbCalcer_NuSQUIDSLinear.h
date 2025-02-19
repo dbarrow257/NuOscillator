@@ -150,25 +150,6 @@ class OscProbCalcerNuSQUIDSLinear : public OscProbCalcerBase {
   nusquids::nuSQUIDS* nubars_base;
 
   /**
-   * @brief Declaration of the NuSQUIDS SM (PMNS) derived class object for neutrinos
-   */
-  nusquids::nuSQUIDS* nus_PMNS;
-  /**
-   * @brief Declaration of the NuSQUIDS SM (PMNS) derived class object for anti-neutrinos
-   */
-  nusquids::nuSQUIDS* nubars_PMNS;
-  
-  /**
-   * @brief Declaration of the NuSQUIDS BSM (Decoherence) derived class object for neutrinos
-   */
-  nusquids::nuSQUIDSDecoh* nus_decoh;
-
-  /**
-   * @brief Declaration of the NuSQUIDS BSM (Decoherence) derived class object for anti-neutrinos
-   */
-  nusquids::nuSQUIDSDecoh* nubars_decoh;
-
-  /**
    * @brief Declaration of the string to choose the decoherence model
    */
   std::string decoherence_model;
