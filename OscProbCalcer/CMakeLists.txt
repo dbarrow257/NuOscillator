@@ -2,7 +2,7 @@ set(HEADERS OscProbCalcerBase.h OscProbCalcerFactory.h)
 
 add_library(OscProbCalcer SHARED OscProbCalcerBase.cpp OscProbCalcerFactory.cpp)
 
-target_link_libraries(OscProbCalcer yaml-cpp NuOscillatorCompilerOptions)
+target_link_libraries(OscProbCalcer yaml-cpp NuOscillatorCompilerOptions ROOT::Core)
 
 target_include_directories(OscProbCalcer PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}/../>

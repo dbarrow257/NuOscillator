@@ -1,5 +1,10 @@
 #include "Oscillator/OscillatorFactory.h"
 
+#include "OscillatorBinned.h"
+#include "OscillatorUnbinned.h"
+#include "OscillatorSubSampling.h"
+
+
 #include <iostream>
 
 OscillatorFactory::OscillatorFactory() {
@@ -25,6 +30,9 @@ OscillatorBase* OscillatorFactory::CreateOscillator(YAML::Node Config) {
     Oscillator = (OscillatorBase*)ImpOscillator;
   } else if (OscillatorType == "Binned") {
     OscillatorBinned* ImpOscillator = new OscillatorBinned(Config);
+    Oscillator = (OscillatorBase*)ImpOscillator;
+  } else if (OscillatorType == "SubSampling") {
+    OscillatorSubSampling* ImpOscillator = new OscillatorSubSampling(Config);
     Oscillator = (OscillatorBase*)ImpOscillator;
   } else {
     std::cerr << "OscillatorFactory was provided with unknown calculation type:" << OscillatorType << std::endl;

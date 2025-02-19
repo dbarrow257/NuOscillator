@@ -70,33 +70,6 @@ class OscillatorBinned : public OscillatorBase {
   // ========================================================================================================================================================================
   // Protected functions which are calculation implementation agnostic  
 
-  /**
-   * @brief Read bin edges from input file and histogram
-   *
-   * Read the histogram (TH1) from the file (TFile). Bin edges are read for each dimension independently. If correlated binning is required, a new class implementation
-   * should be added.
-   *
-   * @param TFileName Name of TFile to read
-   * @param HistogramName Name of TH1 to read from TFile
-   * @param IsCosineZAxis Denotes whether the axis currently being read is the Energy or CosineZ axis
-   *
-   * @return Vector of bin edges
-   */
-  std::vector<FLOAT_T> ReadBinEdgesFromFile(std::string TFileName, std::string HistogramName, bool IsCosineZAxis);
-
-  /**
-   * @brief Return the bin center values from the bin edges
-   *
-   * Return a vector of bin center values from the input bin edges. This is done as the OscProbCalcerBase::OscProbCalcerBase() object needs specific value to calculate
-   * the oscillation probability. Hence, when using binned oscillation probabilities, a choice of what value to provide to OscProbCalcerBase::SetEnergyArray() needs to be
-   * made. The choice taken here is to use the center of the bin.
-   *
-   * @param BinEdges A vector of bin edges
-   *
-   * @return A vector of bin centers
-   */
-  std::vector<FLOAT_T> ReturnBinCentersFromBinEdges(std::vector<FLOAT_T> BinEdges);
-
   // ========================================================================================================================================================================
   // Protected virtual functions which are calculation implementation agnostic
 

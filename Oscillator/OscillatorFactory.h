@@ -2,8 +2,6 @@
 #define __OSCILLATORFACTORY_H__
 
 #include "OscillatorBase.h"
-#include "OscillatorBinned.h"
-#include "OscillatorUnbinned.h"
 
 #include "yaml-cpp/yaml.h"
 

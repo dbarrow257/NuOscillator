@@ -5,6 +5,9 @@
 
 #include <math.h>
 
+#include "TFile.h"
+#include "TH1.h"
+
 #if UseDoubles==1
 using FLOAT_T = double;
 #else
@@ -24,7 +27,7 @@ namespace NuOscillator
   /**
    * @brief Different verbosity levels for console output
    */
-  enum Verbosity{NONE=0,INFO=1};
+  enum Verbosity{NONE=0,INFO=1,VERBOSE=2};
   
   /**
    * @brief Different neutrino flavours currently supported within the analysis
@@ -194,6 +197,8 @@ inline int Verbosity_StrToInt(const std::string& Verbosity) {
     return NuOscillator::NONE;
   } else if (Verbosity == "INFO") {
     return NuOscillator::INFO;
+  } else if (Verbosity == "VERBOSE") {
+    return NuOscillator::VERBOSE;
   } else {
     std::cerr << "Invalid verbosity provided:" << Verbosity << std::endl;
     throw std::runtime_error("Invalid setup");
@@ -226,6 +231,14 @@ inline NuOscillator::OscillationChannel ReturnOscillationChannel(const std::stri
   return OscChannel;
 }
 
+/**
+ * @brief Generate vector of logarithmically spaced points 
+ *
+ * @param Emin lower limit
+ * @param Emax upper limit
+ * @param nDiv Number of divisions
+ * @return Vector of logarithmically spaced points between Emin and Emax with nDiv divisions
+ */
 inline std::vector<FLOAT_T> logspace(FLOAT_T Emin, FLOAT_T  Emax, int nDiv) {
   if (nDiv==0) {
     std::cerr << "Requested log spacing distribution with 0 divisions" << std::endl;
@@ -257,6 +270,14 @@ inline std::vector<FLOAT_T> logspace(FLOAT_T Emin, FLOAT_T  Emax, int nDiv) {
   return logpoints;
 }
 
+/**
+ * @brief Generate vector of linearly spaced points 
+ *
+ * @param Emin lower limit
+ * @param Emax upper limit
+ * @param nDiv Number of divisions
+ * @return Vector of linearly spaced points between Emin and Emax with nDiv divisions
+ */
 inline std::vector<FLOAT_T> linspace(FLOAT_T Emin, FLOAT_T Emax, int nDiv) {
   if (nDiv==0) {
     std::cerr << "Requested linear spacing distribution with 0 divisions" << std::endl;
@@ -279,6 +300,65 @@ inline std::vector<FLOAT_T> linspace(FLOAT_T Emin, FLOAT_T Emax, int nDiv) {
   linpoints[nDiv] = Emax;
 
   return linpoints;
+}
+
+/**
+ * @brief Read bin edges from input template histogram 
+ *
+ * @param TFileName File name
+ * @param HistogramName Histogram name
+ * @param Verbose Verbosity level
+ * @return Vector of bin edges
+ */
+inline std::vector<FLOAT_T> ReadBinEdgesFromFile(std::string TFileName, std::string HistogramName, int Verbose=NuOscillator::Verbosity::NONE) {
+  std::vector<FLOAT_T> BinEdges;
+
+  TFile* File = new TFile(TFileName.c_str());
+  if (!File || File->IsZombie()) {
+    std::cerr << "Could not find file:" << TFileName << std::endl;
+    throw std::runtime_error("Invalid input file.");
+  }
+
+  TH1* Histogram = (TH1*)File->Get(HistogramName.c_str());
+  if (!Histogram) {
+    std::cerr << "Could not find Histogram:" << HistogramName << " in File:" << TFileName << std::endl;
+    throw std::runtime_error("Invalid input file.");
+  }
+
+  BinEdges.resize(Histogram->GetNbinsX()+1);
+  for (int iBin=0;iBin<=Histogram->GetNbinsX();iBin++) {
+    BinEdges[iBin] = Histogram->GetBinLowEdge(iBin+1);
+  }
+
+  delete Histogram;
+  delete File;
+
+  if (Verbose >= NuOscillator::INFO) {
+    std::cout << "Bin edges successfully read from File:" << TFileName << " , Histogram:" << HistogramName << " :=" << std::endl;
+    for (size_t i=0;i<BinEdges.size();i++) {
+      std::cout << BinEdges[i] << ", ";
+    }
+    std::cout << std::endl;
+  }
+
+  return BinEdges;
+}
+
+/**
+ * @brief Return the bin centers given the bin edges of a template histogram
+ *
+ * @param BinEdges Vector of bin edges
+ * @return Vector of bin centers
+ */
+inline std::vector<FLOAT_T> ReturnBinCentersFromBinEdges(std::vector<FLOAT_T> BinEdges) {
+  int nBins = BinEdges.size()-1;
+  std::vector<FLOAT_T> BinCenters = std::vector<FLOAT_T>(nBins);
+
+  for (int iBin=0;iBin<nBins;iBin++) {
+    BinCenters[iBin] = (BinEdges[iBin]+BinEdges[iBin+1])/2.0;
+  }
+
+  return BinCenters;
 }
 
 #endif

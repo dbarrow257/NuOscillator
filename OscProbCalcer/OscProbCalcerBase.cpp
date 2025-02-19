@@ -78,6 +78,11 @@ void OscProbCalcerBase::SetEnergyArray(std::vector<FLOAT_T> EnergyArray) {
     return;
   }
 
+  if (EnergyArray.size()==0) {
+    std::cerr << "Invalid array passed to OscProbCalcerBase::SetEnergyArray as it has size 0" << std::endl;
+    throw std::runtime_error("Invalid setup");
+  }
+
   fEnergyArray = EnergyArray;
   for (size_t iEnergy=0;iEnergy<fEnergyArray.size();iEnergy++) {
     if (fEnergyArray[iEnergy] <= 0) {
@@ -97,7 +102,13 @@ void OscProbCalcerBase::SetEnergyArray(std::vector<FLOAT_T> EnergyArray) {
 
   fNEnergyPoints = EnergyArray.size();
   fEnergyArraySet = true;
-  if (fVerbose >= NuOscillator::INFO) {std::cout << "Set EnergyArray in implementation:" << fImplementationName << std::endl;}
+  if (fVerbose >= NuOscillator::INFO) {
+    std::cout << "Set EnergyArray in implementation:" << fImplementationName << " -" << std::endl;
+    for (size_t iEnergy=1;iEnergy<fEnergyArray.size();iEnergy++) {
+      std::cout << fEnergyArray[iEnergy] << ", ";
+    }
+    std::cout << std::endl;
+  }
 }
 
 void OscProbCalcerBase::SetCosineZArray(std::vector<FLOAT_T> CosineZArray) {
@@ -111,6 +122,11 @@ void OscProbCalcerBase::SetCosineZArray(std::vector<FLOAT_T> CosineZArray) {
     // Already defined the CosineZ array, or the implementation is designed such not to care about it
     if (fVerbose >= NuOscillator::INFO) {std::cout << "CosineZArray was already found to be set in implementation:" << fImplementationName << std::endl;}
     return;
+  }
+
+  if (CosineZArray.size()==0) {
+    std::cerr << "Invalid array passed to OscProbCalcerBase::SetCosineZArray as it has size 0" << std::endl;
+    throw std::runtime_error("Invalid setup");
   }
 
   fCosineZArray = CosineZArray;
@@ -188,15 +204,25 @@ const FLOAT_T* OscProbCalcerBase::ReturnPointerToWeight(int InitNuFlav, int Fina
   }
   int EnergyIndex = ReturnEnergyIndexFromValue(Energy);
 
-  int WeightArrayIndex = ReturnWeightArrayIndex(NuTypeIndex,OscChanIndex,EnergyIndex,CosineZIndex);
+  int WeightArrayIndex;
+  if (!ReturnCosineZIgnored()) {
+    WeightArrayIndex = ReturnWeightArrayIndex(NuTypeIndex,OscChanIndex,EnergyIndex,CosineZIndex);
+  } else {
+    WeightArrayIndex = ReturnWeightArrayIndex(NuTypeIndex,OscChanIndex,EnergyIndex);
+  }
+  
   if (WeightArrayIndex < 0 || WeightArrayIndex >= (int)fWeightArray.size()) {
     std::cerr << "Array index in fWeightArray is outside of the array size. This indicates that the implementation of ReturnWeightArrayIndex is incorrect." << std::endl;
+    std::cerr << "NuTypeIndex:" << NuTypeIndex << std::endl;
+    std::cerr << "OscChanIndex:" << OscChanIndex << std::endl;
+    std::cerr << "CosineZIndex:" << CosineZIndex << std::endl;
+    std::cerr << "EnergyIndex:" << EnergyIndex << std::endl;
     std::cerr << "WeightArrayIndex:" << WeightArrayIndex << std::endl;
     std::cerr << "fWeightArray.size():" << fWeightArray.size() << std::endl;
     throw std::runtime_error("Invalid setup");
   }
 
-  if (fVerbose >= NuOscillator::INFO) {std::cout << "Implementation:" << fImplementationName << " returned pointer to index " << WeightArrayIndex << std::endl;}
+  if (fVerbose >= NuOscillator::VERBOSE) {std::cout << "Implementation:" << fImplementationName << " returned pointer to index " << WeightArrayIndex << std::endl;}
   return &(fWeightArray[WeightArrayIndex]);
 }
 
@@ -384,10 +410,15 @@ int OscProbCalcerBase::ReturnEnergyIndexFromValue(FLOAT_T EnergyVal) {
   if (EnergyIndex == -1) {
     std::cerr << "Did not find Energy in the array used in calculating oscillation probabilities" << std::endl;
     std::cerr << "Requested Energy:" << EnergyVal << std::endl;
+    std::cerr << "Binning - " << std::endl;
+    for (size_t iEnergy=0;iEnergy<fEnergyArray.size();iEnergy++) {
+      std::cerr << fEnergyArray[iEnergy] << ", ";
+    }
+    std::cerr << std::endl;
     throw std::runtime_error("Invalid setup");
   }
 
-  if (fVerbose >= NuOscillator::INFO) {std::cout << "Returning Energy index:" << EnergyIndex << " for Energy value:" << EnergyVal << " in Implementation:" << fImplementationName << std::endl;}
+  if (fVerbose >= NuOscillator::VERBOSE) {std::cout << "Returning Energy index:" << EnergyIndex << " for Energy value:" << EnergyVal << " in Implementation:" << fImplementationName << std::endl;}
   return EnergyIndex;
 }
 
@@ -411,7 +442,7 @@ int OscProbCalcerBase::ReturnCosineZIndexFromValue(FLOAT_T CosineZVal) {
     throw std::runtime_error("Invalid setup");
   }
 
-  if (fVerbose >= NuOscillator::INFO) {std::cout << "Returning CosineZ index:" << CosineZIndex << " for CosineZ value:" << CosineZVal << " in Implementation:" << fImplementationName << std::endl;}
+  if (fVerbose >= NuOscillator::VERBOSE) {std::cout << "Returning CosineZ index:" << CosineZIndex << " for CosineZ value:" << CosineZVal << " in Implementation:" << fImplementationName << std::endl;}
   return CosineZIndex;
 }
 
@@ -432,7 +463,7 @@ int OscProbCalcerBase::ReturnNuTypeFromFlavour(int NuFlav) {
   
   for (int iType=0;iType<fNNeutrinoTypes;iType++) {
     if (NuType == fNeutrinoTypes[iType]) {
-      if (fVerbose >= NuOscillator::INFO) {std::cout << "Returning type:" << iType << " for NuFlav:" << NuFlav << " in Implementation:" << fImplementationName << std::endl;}
+      if (fVerbose >= NuOscillator::VERBOSE) {std::cout << "Returning type:" << iType << " for NuFlav:" << NuFlav << " in Implementation:" << fImplementationName << std::endl;}
       return iType;
     }
   }

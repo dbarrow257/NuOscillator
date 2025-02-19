@@ -89,7 +89,7 @@ class OscProbCalcerBase {
    * @brief Print the oscillation channels which a particular instance has been configured with
    */
   void PrintKnownOscillationChannels();
-
+  
   /**
    * @brief Check whether a particular oscillation channel has been configured in a particular instance of OscProbCalcerBase::OscProbCalcerBase()
    *
@@ -105,6 +105,18 @@ class OscProbCalcerBase {
    * @return Return the number of oscillation parameters the specific implementation expects
    */  
   int ReturnNOscParams() {return fNOscParams;}
+
+  /**
+   * @brief Return the oscillation channels the specific implementation expects
+   * @return Return the oscillation channels the specific implementation expects
+   */
+  std::vector<NuOscillator::OscillationChannel> ReturnOscChannels() {return fOscillationChannels;}
+
+  /**
+   * @brief Return the neutrino types the specific implementation expects
+   * @return Return the neutrino types the specific implementation expects
+   */
+  std::vector<int> ReturnNeutrinoTypes() {return fNeutrinoTypes;}
 
   /**
    * @brief Return the oscillation parameters which were used for the last calculation
@@ -181,6 +193,16 @@ class OscProbCalcerBase {
    */
   bool ReturnHasSetCosineZArray() {return fCosineZArraySet;}
 
+  /**
+   * @brief Return the index in #fNeutrinoTypes for a particular neutrino flavour (neutrino or antineutrino)
+   *
+   * Neutrino flavour mapping is defined in #fNeutrinoTypes, so for a particular events flavour, the index in the mapping is returned to aide in #fWeightArray mapping
+   *
+   * @param NuFlav Initial neutrino type (neutrino or antineutrino) 
+   * @return Index in #fNeutrinoTypes
+   */
+  int ReturnNuTypeFromFlavour(int NuFlav);
+
   // ========================================================================================================================================================================
   // Public virtual functions which need calculater specific implementations
 
@@ -244,6 +266,35 @@ class OscProbCalcerBase {
   void ResetCurrOscParams();
 
   /**
+   * @brief Initialise the #fNeutrinoTypes mapping array to a particular size with dummy values
+   *
+   * @param Size Size of array to initialise
+   */
+  void InitialiseNeutrinoTypesArray(int Size);
+  
+  /**
+   * @brief Read the [OscProbCalcerSetup][Implementation][OscChannelMapping] YAML node and configure #fOscillationChannels
+   */
+  void InitialiseOscillationChannelMapping();
+
+  /**
+   * @brief Check that the NuType/NuFlav mapping is set correctly based on the inputs from the particular implementation
+   *
+   * Ensures that the mapping variables (#fNeutrinoTypes, #fOscillationChannels) are the expected size and filled with reasonable values
+   */
+  void CheckNuFlavourMapping();
+
+  /**
+   * @brief Initialise the array in which the oscillation probabilities will be stored with dummy values
+   */
+  void IntialiseWeightArray();
+
+  /**
+   * @brief Ensure that the oscillation probabilities are within [0.,1.] range, if not throw error
+   */
+  void SanitiseProbabilities();
+
+      /**
    * @brief Return the index in #fCosineZArray for a particular value of CosineZ. If it's not found, throws an error
    *
    * Determine the index in #fCosineZArray for a particular value of CosineZ
@@ -273,44 +324,6 @@ class OscProbCalcerBase {
    */
   int ReturnOscChannelIndexFromFlavours(int InitNuFlav, int FinalNuFlav);
 
-  /**
-   * @brief Return the index in #fNeutrinoTypes for a particular neutrino flavour (neutrino or antineutrino)
-   *
-   * Neutrino flavour mapping is defined in #fNeutrinoTypes, so for a particular events flavour, the index in the mapping is returned to aide in #fWeightArray mapping
-   *
-   * @param NuFlav Initial neutrino type (neutrino or antineutrino) 
-   * @return Index in #fNeutrinoTypes
-   */
-  int ReturnNuTypeFromFlavour(int NuFlav);
-
-  /**
-   * @brief Initialise the #fNeutrinoTypes mapping array to a particular size with dummy values
-   *
-   * @param Size Size of array to initialise
-   */
-  void InitialiseNeutrinoTypesArray(int Size);
-  
-  /**
-   * @brief Read the [OscProbCalcerSetup][Implementation][OscChannelMapping] YAML node and configure #fOscillationChannels
-   */
-  void InitialiseOscillationChannelMapping();
-
-  /**
-   * @brief Check that the NuType/NuFlav mapping is set correctly based on the inputs from the particular implementation
-   *
-   * Ensures that the mapping variables (#fNeutrinoTypes, #fOscillationChannels) are the expected size and filled with reasonable values
-   */
-  void CheckNuFlavourMapping();
-
-  /**
-   * @brief Initialise the array in which the oscillation probabilities will be stored with dummy values
-   */
-  void IntialiseWeightArray();
-
-  /**
-   * @brief Ensure that the oscillation probabilities are within [0.,1.] range, if not throw error
-   */
-  void SanitiseProbabilities();
 
   // ========================================================================================================================================================================
   // Protected virtual functions which are calculation implementation agnostic

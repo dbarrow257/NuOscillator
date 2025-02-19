@@ -2,12 +2,14 @@ set(HEADERS
         OscillatorBase.h
         OscillatorUnbinned.h
         OscillatorBinned.h
+	OscillatorSubSampling.h
         OscillatorFactory.h)
 
 add_library(Oscillator SHARED
         OscillatorBase.cpp
         OscillatorUnbinned.cpp
         OscillatorBinned.cpp
+	OscillatorSubSampling.cpp
         OscillatorFactory.cpp)
 
 
