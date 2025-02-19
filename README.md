@@ -36,7 +36,7 @@ Recommended way is to use CPM within you CmakeList.txt
 ```Cmake
 CPMAddPackage(
   NAME NuOscillator
-    VERSION 0.0
+    VERSION v1.2.1
     GITHUB_REPOSITORY "dbarrow257/NuOscillator"
     GIT_TAG "main"
     OPTIONS
@@ -49,6 +49,7 @@ CPMAddPackage(
     "UseProbGPULinear 0"
     "UseProb3ppLinear 0"
     "UseNuFASTLinear  1"
+    "UseNuSQUIDSLinear 0"
     "UseOscProb  1"
 )
 ```
@@ -131,5 +132,4 @@ NuOscProbCalcers->Setup();
 
 ## Intended extensions
 
-- Inclusion of NuSQUIDS oscillation engine
 - Better handling of oscillation parameter pass through
