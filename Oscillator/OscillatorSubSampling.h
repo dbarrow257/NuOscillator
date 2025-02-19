@@ -80,21 +80,61 @@ class OscillatorSubSampling : public OscillatorBase {
 
   void Initialise();
 
+  /**
+   * @brief Calculated coarse bin probabilities, defined as the average over the fine bin probabilities inside a particular coarse bin
+   */
   void PostCalculateProbabilities();
 
+  /**
+   * @brief Setup the oscillator
+   */
   void SetupOscillatorImplementation();
   
+  /**
+   * @brief Return the index of the bin in which a given value would be.
+   *
+   *
+   * @param Val Value whose bin index is desired.
+   * @param BinEdges Binning used
+   *
+   * @return Index of the bin in which the input value is located.
+   *
+   */
   int FindBinIndexFromEdges(FLOAT_T Val, std::vector<FLOAT_T> BinEdges);
 
-  std::vector<FLOAT_T> AveragedOscillationProbabilities; //Vector holding averaged Probabilities [length = nBins]                                                                                                     
-  std::vector< std::vector<const FLOAT_T*> > OscillationProbabilitiesToAverage; //Vector holding the pointers to the fine oscillation probabilities to average across [length = nBins][length = nFineBinsInCoarseBin]
+  /**
+   * @brief Vector holding averaged Probabilities [length = nBins]
+   */
+  std::vector<FLOAT_T> AveragedOscillationProbabilities;         
 
+  /**
+   * @brief Vector holding the pointers to the fine oscillation probabilities to average across [length = nBins][length = nFineBinsInCoarseBin]
+   */                                                                                             
+  std::vector< std::vector<const FLOAT_T*> > OscillationProbabilitiesToAverage; 
+
+  /**
+   * @brief Number of Coarse Energy Bins
+   */
   size_t nCoarseEnergyBins;
+
+  /**
+   * @brief Number of Coarse CosineZ Bins
+   */
   size_t nCoarseCosineZBins;
 
+  /**
+   * @brief Number of Fine Energy Bins
+   */
   size_t nFineEnergyBins;
+
+  /**
+   * @brief Number of Fine CosineZ Bins
+   */
   size_t nFineCosineZBins;
 
+  /**
+   * @brief Number of Total Coarse Bins
+   */
   size_t TotalCoarseBins;
 
   std::vector<NuOscillator::OscillationChannel> OscillationChannels;

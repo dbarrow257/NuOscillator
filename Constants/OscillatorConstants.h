@@ -278,13 +278,13 @@ inline std::vector<FLOAT_T> ReadBinEdgesFromFile(std::string TFileName, std::str
   TFile* File = new TFile(TFileName.c_str());
   if (!File || File->IsZombie()) {
     std::cerr << "Could not find file:" << TFileName << std::endl;
-    throw;
+    throw std::runtime_error("Invalid input file.");
   }
 
   TH1* Histogram = (TH1*)File->Get(HistogramName.c_str());
   if (!Histogram) {
     std::cerr << "Could not find Histogram:" << HistogramName << " in File:" << TFileName << std::endl;
-    throw;
+    throw std::runtime_error("Invalid input file.");
   }
 
   BinEdges.resize(Histogram->GetNbinsX()+1);

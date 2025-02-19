@@ -121,7 +121,7 @@ void OscillatorSubSampling::SetupOscillatorImplementation() {
 	    std::cerr << "CoarseCosineZBin: " << CoarseCosineZBin << std::endl;
 	    std::cerr << "CoarseEnergyBin: " << CoarseEnergyBin << std::endl;
 	    
-	    throw;
+	    throw std::runtime_error("Fatal error in OscillatorSubSampling::SetupOscillatorImplementation()");
 	  }
 	  OscillationProbabilitiesToAverage[GlobalBin].push_back(OscProbPointer);
 	}
@@ -138,7 +138,7 @@ int OscillatorSubSampling::FindBinIndexFromEdges(FLOAT_T Val, std::vector<FLOAT_
     std::cerr << "Val:" << Val << std::endl;
     std::cerr << "BinEdges[0]:" << BinEdges[0] << std::endl;
     std::cerr << "BinEdges[BinEdges.size()-1]:" << BinEdges[BinEdges.size()-1] << std::endl;
-    throw;
+    throw std::runtime_error("Fatal error in OscillatorSubSampling::FindBinIndexFromEdges()") ;
   }
   for (size_t iBin=0;iBin<BinEdges.size()-1;iBin++) {
     if ((Val >= BinEdges[iBin]) && (Val < BinEdges[iBin+1])) {
@@ -147,7 +147,7 @@ int OscillatorSubSampling::FindBinIndexFromEdges(FLOAT_T Val, std::vector<FLOAT_
   }
 
   std::cerr << "Did not find a sufficient bin for the value" << std::endl;
-  throw;
+  throw std::runtime_error("Fatal error in OscillatorSubSampling::FindBinIndexFromEdges()");
 
   return -1;
 }
@@ -165,14 +165,14 @@ const FLOAT_T* OscillatorSubSampling::ReturnWeightPointer(int InitNuFlav, int Fi
   }
   if (OscChanIndex == -1) {
     std::cerr << "Did not find valid oscillation channel" << std::endl;
-    throw;
+    throw std::runtime_error("Fatal error in OscillatorSubSampling::ReturnWeightPointer()");
   }
 
   if (InitNuFlav*FinalNuFlav < 0) {
     std::cerr << "Invalid InitNuFlav and FinalNuFlav" << std::endl;
     std::cerr << "InitNuFlav: " << InitNuFlav << std::endl;
     std::cerr << "FinalNuFlav: " << FinalNuFlav << std::endl;
-    throw;
+    throw std::runtime_error("Fatal error in OscillatorSubSampling::ReturnWeightPointer()");
   }
   int NuTypeIndex = fOscProbCalcer->ReturnNuTypeFromFlavour(InitNuFlav);
 
@@ -182,7 +182,7 @@ const FLOAT_T* OscillatorSubSampling::ReturnWeightPointer(int InitNuFlav, int Fi
     std::cerr << "CoarseEnergyBin:" << CoarseEnergyBin << std::endl;
     std::cerr << "CoarseCosineZBin:" << CoarseCosineZBin << std::endl;
     std::cerr << "GlobalBin:" << GlobalBin << std::endl;
-    throw;
+    throw std::runtime_error("Fatal error in OscillatorSubSampling::ReturnWeightPointer()");
   }
   
   return &(AveragedOscillationProbabilities[GlobalBin]);
@@ -198,7 +198,7 @@ void OscillatorSubSampling::PostCalculateProbabilities() {
 
     if(OscillationProbabilitiesToAverage[iBin].size()==0){
       std::cerr<<"Division by zero encountered in SubSampling."<<std::endl;
-      throw;
+      throw std::runtime_error("Fatal error in OscillatorSubSampling::PostCalculateProbabilities()");
     }
 
     AveragedOscillationProbabilities[iBin] = Avg;

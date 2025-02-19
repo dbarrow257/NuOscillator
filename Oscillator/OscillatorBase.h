@@ -226,7 +226,14 @@ class OscillatorBase {
   // ========================================================================================================================================================================
   // Protected virtual functions which are calculation implementation agnostic
 
+  /**
+   * @brief Do follow-up calculations with the oscillation probabilities. E.g.: averages in the SubSampling CalculationType.
+   */
   virtual void PostCalculateProbabilities() {}
+
+  /**
+   * @brief Setup specific oscillator implementation
+   */
   virtual void SetupOscillatorImplementation() {}
 
   // ========================================================================================================================================================================

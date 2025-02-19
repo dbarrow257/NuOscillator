@@ -106,7 +106,16 @@ class OscProbCalcerBase {
    */  
   int ReturnNOscParams() {return fNOscParams;}
 
+  /**
+   * @brief Return the oscillation channels the specific implementation expects
+   * @return Return the oscillation channels the specific implementation expects
+   */
   std::vector<NuOscillator::OscillationChannel> ReturnOscChannels() {return fOscillationChannels;}
+
+  /**
+   * @brief Return the neutrino types the specific implementation expects
+   * @return Return the neutrino types the specific implementation expects
+   */
   std::vector<int> ReturnNeutrinoTypes() {return fNeutrinoTypes;}
 
   /**

@@ -80,7 +80,7 @@ void OscProbCalcerBase::SetEnergyArray(std::vector<FLOAT_T> EnergyArray) {
 
   if (EnergyArray.size()==0) {
     std::cerr << "Invalid array passed to OscProbCalcerBase::SetEnergyArray as it has size 0" << std::endl;
-    throw;
+    throw std::runtime_error("Invalid setup");
   }
 
   fEnergyArray = EnergyArray;
@@ -122,6 +122,11 @@ void OscProbCalcerBase::SetCosineZArray(std::vector<FLOAT_T> CosineZArray) {
     // Already defined the CosineZ array, or the implementation is designed such not to care about it
     if (fVerbose >= NuOscillator::INFO) {std::cout << "CosineZArray was already found to be set in implementation:" << fImplementationName << std::endl;}
     return;
+  }
+
+  if (CosineZArray.size()==0) {
+    std::cerr << "Invalid array passed to OscProbCalcerBase::SetCosineZArray as it has size 0" << std::endl;
+    throw std::runtime_error("Invalid setup");
   }
 
   fCosineZArray = CosineZArray;
