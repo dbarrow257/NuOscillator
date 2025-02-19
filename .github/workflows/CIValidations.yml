@@ -30,18 +30,21 @@ jobs:
             exec: DragRace
             argument: 10 NuOscillatorConfigs/Unbinned_CUDAProb3.yaml NuOscillatorConfigs/Unbinned_OscProb.yaml
           - name: DragRace_Linear_Binned
-            cmake_options: -DUseCUDAProb3Linear=1 -DUseNuFASTLinear=1 -DUseProb3ppLinear=1 -DUseOscProb=1
+            cmake_options: -DUseCUDAProb3Linear=1 -DUseNuFASTLinear=1 -DUseProb3ppLinear=1 -DUseOscProb=1 -DUseNuSQUIDSLinear=1
             exec: DragRace
-            argument: 10 NuOscillatorConfigs/Binned_CUDAProb3Linear.yaml NuOscillatorConfigs/Binned_NuFASTLinear.yaml NuOscillatorConfigs/Binned_Prob3ppLinear.yaml NuOscillatorConfigs/Binned_OscProbLinear.yaml
+            argument: 10 NuOscillatorConfigs/Binned_CUDAProb3Linear.yaml NuOscillatorConfigs/Binned_NuFASTLinear.yaml NuOscillatorConfigs/Binned_Prob3ppLinear.yaml NuOscillatorConfigs/Binned_OscProbLinear.yaml NuOscillatorConfigs/Binned_NuSQUIDSLinear.yaml
           - name: DragRace_Linear_Unbinned
-            cmake_options: -DUseCUDAProb3Linear=1 -DUseNuFASTLinear=1 -DUseProb3ppLinear=1 -DUseOscProb=1
+            cmake_options: -DUseCUDAProb3Linear=1 -DUseNuFASTLinear=1 -DUseProb3ppLinear=1 -DUseOscProb=1 -DUseNuSQUIDSLinear=1
             exec: DragRace
-            argument: 10 NuOscillatorConfigs/Unbinned_CUDAProb3Linear.yaml NuOscillatorConfigs/Unbinned_NuFASTLinear.yaml NuOscillatorConfigs/Unbinned_Prob3ppLinear.yaml NuOscillatorConfigs/Unbinned_OscProbLinear.yaml
+            argument: 10 NuOscillatorConfigs/Unbinned_CUDAProb3Linear.yaml NuOscillatorConfigs/Unbinned_NuFASTLinear.yaml NuOscillatorConfigs/Unbinned_Prob3ppLinear.yaml NuOscillatorConfigs/Unbinned_OscProbLinear.yaml NuOscillatorConfigs/Unbinned_NuSQUIDSLinear.yaml
     container:
-      image: ghcr.io/mach3-software/mach3:alma9latest
+      image: ghcr.io/mach3-software/mach3:alma9v1.4.1
 
     steps:
     - uses: actions/checkout@v4
+
+    - name: Get hdf5
+      run: dnf install -y hdf5 hdf5-devel
 
     - name: Get NuOscillator
       run: |
