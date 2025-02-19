@@ -4,6 +4,9 @@
 
 OscProbCalcerNuSQUIDSLinear::OscProbCalcerNuSQUIDSLinear(YAML::Node Config_) : OscProbCalcerBase(Config_)
 {
+  nus_base = nullptr;
+  nubars_base = nullptr;
+
   //=======
   //Grab information from the config
 
@@ -76,6 +79,8 @@ OscProbCalcerNuSQUIDSLinear::OscProbCalcerNuSQUIDSLinear(YAML::Node Config_) : O
 }
 
 OscProbCalcerNuSQUIDSLinear::~OscProbCalcerNuSQUIDSLinear() {
+  if(nus_base != nullptr) delete nus_base;
+  if(nubars_base != nullptr) delete nubars_base;
 }
 
 void OscProbCalcerNuSQUIDSLinear::SetupPropagator() {
@@ -87,35 +92,27 @@ void OscProbCalcerNuSQUIDSLinear::SetupPropagator() {
 
   switch (fOscModel) {
   case kSM:
-    nus_PMNS = new nusquids::nuSQUIDS(E_range, nNeutrinoFlavours, nusquids::neutrino, false); // neutrinos
-    nubars_PMNS = new nusquids::nuSQUIDS(E_range, nNeutrinoFlavours, nusquids::antineutrino, false); // antineutrinos
+    nus_base = new nusquids::nuSQUIDS(E_range, nNeutrinoFlavours, nusquids::neutrino, false); // neutrinos
+    nubars_base = new nusquids::nuSQUIDS(E_range, nNeutrinoFlavours, nusquids::antineutrino, false); // antineutrinos
     
-    nus_base = nus_PMNS;
-    nubars_base = nubars_PMNS;
     break;
-    
+
   case kDecoherence:
-    nus_decoh = new nusquids::nuSQUIDSDecoh(E_range, nNeutrinoFlavours, nusquids::neutrino, false);
-    nubars_decoh = new nusquids::nuSQUIDSDecoh(E_range, nNeutrinoFlavours, nusquids::antineutrino, false);
+    nus_base = new nusquids::nuSQUIDSDecoh(E_range, nNeutrinoFlavours, nusquids::neutrino, false);
+    nubars_base = new nusquids::nuSQUIDSDecoh(E_range, nNeutrinoFlavours, nusquids::antineutrino, false);
     
-    nus_base = nus_decoh;
-    nubars_base = nubars_decoh;
     break;
 
   case kLIV:
-    nus_LIV = new nusquids::nuSQUIDSLV(E_range, nNeutrinoFlavours, nusquids::neutrino, false);
-    nubars_LIV = new nusquids::nuSQUIDSLV(E_range, nNeutrinoFlavours, nusquids::antineutrino, false);
+    nus_base = new nusquids::nuSQUIDSLV(E_range, nNeutrinoFlavours, nusquids::neutrino, false);
+    nubars_base = new nusquids::nuSQUIDSLV(E_range, nNeutrinoFlavours, nusquids::antineutrino, false);
 
-    nus_base = nus_LIV;
-    nubars_base = nubars_LIV;
     break;
 
   case kNSI:
-    nus_NSI = new nuSQUIDSNSI(nsi_mutau_coupling, E_range, nNeutrinoFlavours, nusquids::neutrino, false);
-    nubars_NSI = new nuSQUIDSNSI(nsi_mutau_coupling, E_range, nNeutrinoFlavours, nusquids::antineutrino, false);
+    nus_base = new nuSQUIDSNSI(nsi_mutau_coupling, E_range, nNeutrinoFlavours, nusquids::neutrino, false);
+    nubars_base = new nuSQUIDSNSI(nsi_mutau_coupling, E_range, nNeutrinoFlavours, nusquids::antineutrino, false);
 
-    nus_base = nus_NSI;
-    nubars_base = nubars_NSI;
     break;
     
   default:
@@ -191,7 +188,10 @@ void OscProbCalcerNuSQUIDSLinear::CalculateProbabilities(const std::vector<FLOAT
   nusquids::marray<double,2> inistate{E_range.size(),static_cast<size_t>(nNeutrinoFlavours)};
   
   switch (fOscModel) {
-  case kDecoherence:
+  case kDecoherence: {
+    auto* nus_decoh = static_cast<nusquids::nuSQUIDSDecoh*>(nus_base);
+    auto* nubars_decoh = static_cast<nusquids::nuSQUIDSDecoh*>(nubars_base);
+
     //Set the decoherence model and parameters for neutrinos
     nus_decoh->Set_DecoherenceGammaMatrix(nusquids_decoherence_model, OscParams[kEnergyStrength]*units.eV);
     nus_decoh->Set_DecoherenceGammaEnergyDependence(OscParams[kEnergyDep]);
@@ -202,18 +202,21 @@ void OscProbCalcerNuSQUIDSLinear::CalculateProbabilities(const std::vector<FLOAT
     nubars_decoh->Set_DecoherenceGammaEnergyDependence(OscParams[kEnergyDep]);
     nubars_decoh->Set_DecoherenceGammaEnergyScale(OscParams[kEnergyScale]*units.GeV);
     break;
-    
-  case kLIV:
+  }
+  case kLIV: {
     gsl_complex c_EMu{OscParams[kEMuReal]*units.GeV, OscParams[kEMuImg]*units.GeV};
     gsl_complex c_MuTau{OscParams[kMuTauReal]*units.GeV, OscParams[kMuTauImg]*units.GeV};
     LVParameters LIVPars{c_EMu,c_MuTau};
-    
+    auto* nus_LIV = static_cast<nusquids::nuSQUIDSLV*>(nus_base);
+    auto* nubars_LIV = static_cast<nusquids::nuSQUIDSLV*>(nubars_base);
+
     nus_LIV->Set_LV_OpMatrix(LIVPars);
     nus_LIV->Set_LV_EnergyPower(OscParams[kEnergyPower]);
     
     nubars_LIV->Set_LV_OpMatrix(LIVPars);
     nubars_LIV->Set_LV_EnergyPower(OscParams[kEnergyPower]);
     break;
+  }
   }
 
   // Index counter to have a handle on where neutrino oscillation probs are stored in array fWeightArray
@@ -227,14 +230,14 @@ void OscProbCalcerNuSQUIDSLinear::CalculateProbabilities(const std::vector<FLOAT
     // Set initial state for the electron neutrinos (k==0), muon neutrinos (k==1) and tau neutrinos (k==2), other flavors to 0.0
     for ( int i = 0 ; i < inistate.extent(0); i++){
       for ( int k = 0; k < inistate.extent(1); k ++){
-	inistate[i][k] = (k == nu_flavor) ? 1.0 : 0.0;
+        inistate[i][k] = (k == nu_flavor) ? 1.0 : 0.0;
       }
     }
 
     switch (fOscModel) {
     case kLIV:
       //Set the initial state in nuSQuIDS object
-      nus_LIV->Set_initial_state(inistate,nusquids::flavor);
+      static_cast<nusquids::nuSQUIDSLV*>(nus_base)->Set_initial_state(inistate,nusquids::flavor);
       break;
     default:
       //Set the initial state in nuSQuIDS object
@@ -249,8 +252,8 @@ void OscProbCalcerNuSQUIDSLinear::CalculateProbabilities(const std::vector<FLOAT
     //and vacuum oscillations are solved analytically for the given energy.
     for(int fl=0; fl<nNeutrinoFlavours; fl++){
       for(int i = 0; i < fNEnergyPoints; i++) {
-	fWeightArray[index_counter] = nus_base->EvalFlavor(fl, fEnergyArray[i]*units.GeV);
-	index_counter++;
+        fWeightArray[index_counter] = nus_base->EvalFlavor(fl, fEnergyArray[i]*units.GeV);
+        index_counter++;
       }
     }
   }
@@ -261,14 +264,14 @@ void OscProbCalcerNuSQUIDSLinear::CalculateProbabilities(const std::vector<FLOAT
     // Set initial state for the electron neutrinos (k==0), muon neutrinos (k==1) and tau neutrinos (k==2), other flavors to 0.0
     for ( int i = 0 ; i < inistate.extent(0); i++){
       for ( int k = 0; k < inistate.extent(1); k ++){
-	inistate[i][k] = (k == nu_flavor) ? 1.0 : 0.0;
+        inistate[i][k] = (k == nu_flavor) ? 1.0 : 0.0;
       }
     }
 
     switch (fOscModel) {
     case kLIV:
       //Set the initial state in nuSQuIDS object
-      nubars_LIV->Set_initial_state(inistate,nusquids::flavor);
+      static_cast<nusquids::nuSQUIDSLV*>(nubars_base)->Set_initial_state(inistate,nusquids::flavor);
       break;
     default:
       //Set the initial state in nuSQuIDS object
@@ -282,8 +285,8 @@ void OscProbCalcerNuSQUIDSLinear::CalculateProbabilities(const std::vector<FLOAT
     //and vacuum oscillations are solved analytically for the given energy.
     for(int fl=0; fl < nNeutrinoFlavours; fl++){
       for(int i = 0; i < fNEnergyPoints; i++) {
-	fWeightArray[index_counter] = nubars_base->EvalFlavor(fl, fEnergyArray[i]*units.GeV);
-	index_counter++;
+        fWeightArray[index_counter] = nubars_base->EvalFlavor(fl, fEnergyArray[i]*units.GeV);
+        index_counter++;
       }
     }
   }
@@ -332,6 +335,6 @@ int OscProbCalcerNuSQUIDSLinear::ReturnWeightArrayIndex(int NuTypeIndex, int Osc
 }
 
 long OscProbCalcerNuSQUIDSLinear::DefineWeightArraySize() {
-  long nCalculationPoints = fNEnergyPoints * fNOscillationChannels * fNNeutrinoTypes;
+  long nCalculationPoints = static_cast<long>(fNEnergyPoints) * fNOscillationChannels * fNNeutrinoTypes;
   return nCalculationPoints;
 }
