@@ -76,11 +76,11 @@ jobs:
             new_output: OscProb_UnbinnedOscillator_New.txt
             old_output: OscProb_UnbinnedOscillator_Stored.txt
 
-    container:
-      image: ghcr.io/mach3-software/mach3:alma9latest
-
     steps:
     - uses: actions/checkout@v4
+
+    - name: Build the Docker image
+      run: docker build . --file ${{ matrix.file }} --tag ghcr.io/${{ github.repository_owner }}/nuoscillator:${{ matrix.tag }} --build-arg NUOSCILLATOR_VERSION=${{ github.head_ref }} --build-arg CMAKE_OPTIONS="${{ matrix.cmakeoptions }}"
 
     - name: Get NuOscillator
       run: |
