@@ -76,11 +76,14 @@ jobs:
             new_output: OscProb_UnbinnedOscillator_New.txt
             old_output: OscProb_UnbinnedOscillator_Stored.txt
 
+    container:
+      image: ghcr.io/mach3-software/mach3:alma9v1.4.1
+
     steps:
     - uses: actions/checkout@v4
 
-    - name: Build the Docker image
-      run: docker build . --file Docs/DockerFiles/Alma9/Dockerfile --tag ghcr.io/${{ github.repository_owner }}/nuoscillator:alma9latest --build-arg NUOSCILLATOR_VERSION=${{ github.head_ref }} --build-arg CMAKE_OPTIONS="${{ matrix.cmake_options }}"
+    - name: Get hdf5
+      run: dnf install -y hdf5 hdf5-devel
 
     - name: Get NuOscillator
       run: |
