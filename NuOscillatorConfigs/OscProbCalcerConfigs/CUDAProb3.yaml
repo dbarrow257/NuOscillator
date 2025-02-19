@@ -4,6 +4,8 @@ General:
 OscProbCalcerSetup:
   ImplementationName: "CUDAProb3"
   EarthModelFileName: "./build/_deps/cudaprob3-src/models/PREM_4layer.dat"
+  UseEarthModelSystematics: false
+  Layers: 4  
   UseProductionHeightsAveraging: false
   ProductionHeightsFileName: "./inputs/ProdHeightDist_E561_cZ520_N1_hbin2.5.root"
   ProductionHeightsHistFlavourSuffixes:
@@ -23,6 +25,3 @@ OscProbCalcerSetup:
     - Entry: "Tau:Electron"
     - Entry: "Tau:Muon"
     - Entry: "Tau:Tau"
-
-  UseEarthModelSystematics: false
-  Layers: 4
