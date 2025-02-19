@@ -92,9 +92,10 @@ Inheritance diagram for OscProbCalcerBase:</div>
 <area href="classOscProbCalcerCUDAProb3.html" title="Oscillation calculation engine for linear and atmospheric propagation in CUDAProb3." alt="OscProbCalcerCUDAProb3" shape="rect" coords="0,56,205,80"/>
 <area href="classOscProbCalcerCUDAProb3Linear.html" title="Oscillation calculation engine for linear propagation in CUDAProb3." alt="OscProbCalcerCUDAProb3Linear" shape="rect" coords="215,56,420,80"/>
 <area href="classOscProbCalcerNuFASTLinear.html" title="Oscillation calculation engine for linear propagation in NuFAST." alt="OscProbCalcerNuFASTLinear" shape="rect" coords="430,56,635,80"/>
-<area href="classOscProbCalcerOscProb.html" title="Oscillation calculation engine for linear propagation in NuFAST." alt="OscProbCalcerOscProb" shape="rect" coords="645,56,850,80"/>
-<area href="classOscProbCalcerProb3ppLinear.html" title="Oscillation calculation engine for linear propagation in Prob3pp." alt="OscProbCalcerProb3ppLinear" shape="rect" coords="860,56,1065,80"/>
-<area href="classOscProbCalcerProbGPULinear.html" title="Oscillation calculation engine for linear propagation in ProbGPU." alt="OscProbCalcerProbGPULinear" shape="rect" coords="1075,56,1280,80"/>
+<area href="classOscProbCalcerNuSQUIDSLinear.html" title="Oscillation calculation engine for linear propagation in NuSQUIDS." alt="OscProbCalcerNuSQUIDSLinear" shape="rect" coords="645,56,850,80"/>
+<area href="classOscProbCalcerOscProb.html" title="Oscillation calculation engine for linear propagation in NuFAST." alt="OscProbCalcerOscProb" shape="rect" coords="860,56,1065,80"/>
+<area href="classOscProbCalcerProb3ppLinear.html" title="Oscillation calculation engine for linear propagation in Prob3pp." alt="OscProbCalcerProb3ppLinear" shape="rect" coords="1075,56,1280,80"/>
+<area href="classOscProbCalcerProbGPULinear.html" title="Oscillation calculation engine for linear propagation in ProbGPU." alt="OscProbCalcerProbGPULinear" shape="rect" coords="1290,56,1495,80"/>
   </map>
 </div></div>
 <table class="memberdecls">
@@ -472,7 +473,7 @@ Private Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Implemented in <a class="el" href="classOscProbCalcerCUDAProb3.html#a03c608186f983a45c987cd590f542603">OscProbCalcerCUDAProb3</a>, <a class="el" href="classOscProbCalcerCUDAProb3Linear.html#aec5daa492534cb4e74e2a3e70a6e844d">OscProbCalcerCUDAProb3Linear</a>, <a class="el" href="classOscProbCalcerNuFASTLinear.html#a040676a34df2cfa8efe30e1dea470e8c">OscProbCalcerNuFASTLinear</a>, <a class="el" href="classOscProbCalcerOscProb.html#ab24de45630cf49e438d5f7cb551f1e7a">OscProbCalcerOscProb</a>, <a class="el" href="classOscProbCalcerProb3ppLinear.html#aa30e11160973739e5d99becd2e227848">OscProbCalcerProb3ppLinear</a>, and <a class="el" href="classOscProbCalcerProbGPULinear.html#ac7eee5038457154cebd11d79590e0191">OscProbCalcerProbGPULinear</a>.</p>
+<p>Implemented in <a class="el" href="classOscProbCalcerCUDAProb3.html#a03c608186f983a45c987cd590f542603">OscProbCalcerCUDAProb3</a>, <a class="el" href="classOscProbCalcerCUDAProb3Linear.html#aec5daa492534cb4e74e2a3e70a6e844d">OscProbCalcerCUDAProb3Linear</a>, <a class="el" href="classOscProbCalcerNuFASTLinear.html#a040676a34df2cfa8efe30e1dea470e8c">OscProbCalcerNuFASTLinear</a>, <a class="el" href="classOscProbCalcerNuSQUIDSLinear.html#ab88fd12a7d5c9d7fca1f1b85cb2582ae">OscProbCalcerNuSQUIDSLinear</a>, <a class="el" href="classOscProbCalcerOscProb.html#ab24de45630cf49e438d5f7cb551f1e7a">OscProbCalcerOscProb</a>, <a class="el" href="classOscProbCalcerProb3ppLinear.html#aa30e11160973739e5d99becd2e227848">OscProbCalcerProb3ppLinear</a>, and <a class="el" href="classOscProbCalcerProbGPULinear.html#ac7eee5038457154cebd11d79590e0191">OscProbCalcerProbGPULinear</a>.</p>
 
 </div>
 </div>
@@ -531,7 +532,7 @@ Private Attributes</h2></td></tr>
 <p>This is implementation specific because some propagators calculate all oscillation channels together, whilst others calculate only a single oscillation channel.</p>
 <dl class="section return"><dt>Returns</dt><dd>Length that <a class="el" href="classOscProbCalcerBase.html#a89ca55fe94b0f4b7710ca61d97bacdba" title="Vector which stores the oscillation probabilities.">fWeightArray</a> should be initialised to </dd></dl>
 
-<p>Implemented in <a class="el" href="classOscProbCalcerCUDAProb3.html#a28e2ef6cb780f3ec3e883faecfe920fb">OscProbCalcerCUDAProb3</a>, <a class="el" href="classOscProbCalcerCUDAProb3Linear.html#afee60c57ac0ee8eb03f4a4edfca2e5ca">OscProbCalcerCUDAProb3Linear</a>, <a class="el" href="classOscProbCalcerNuFASTLinear.html#a214847bcdf5f39d4be56682e88f5ffec">OscProbCalcerNuFASTLinear</a>, <a class="el" href="classOscProbCalcerOscProb.html#ad9c0c291ad1ab93e5613e68a661fb522">OscProbCalcerOscProb</a>, <a class="el" href="classOscProbCalcerProb3ppLinear.html#a2c94697ac7530a28be80d076406ec13a">OscProbCalcerProb3ppLinear</a>, and <a class="el" href="classOscProbCalcerProbGPULinear.html#a90596567b6e6bfd8b180e229863eb2df">OscProbCalcerProbGPULinear</a>.</p>
+<p>Implemented in <a class="el" href="classOscProbCalcerCUDAProb3.html#a28e2ef6cb780f3ec3e883faecfe920fb">OscProbCalcerCUDAProb3</a>, <a class="el" href="classOscProbCalcerCUDAProb3Linear.html#afee60c57ac0ee8eb03f4a4edfca2e5ca">OscProbCalcerCUDAProb3Linear</a>, <a class="el" href="classOscProbCalcerNuFASTLinear.html#a214847bcdf5f39d4be56682e88f5ffec">OscProbCalcerNuFASTLinear</a>, <a class="el" href="classOscProbCalcerNuSQUIDSLinear.html#a7278b4b35fae5f287008a8273c98647c">OscProbCalcerNuSQUIDSLinear</a>, <a class="el" href="classOscProbCalcerOscProb.html#ad9c0c291ad1ab93e5613e68a661fb522">OscProbCalcerOscProb</a>, <a class="el" href="classOscProbCalcerProb3ppLinear.html#a2c94697ac7530a28be80d076406ec13a">OscProbCalcerProb3ppLinear</a>, and <a class="el" href="classOscProbCalcerProbGPULinear.html#a90596567b6e6bfd8b180e229863eb2df">OscProbCalcerProbGPULinear</a>.</p>
 
 </div>
 </div>
@@ -1384,7 +1385,7 @@ Private Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Index in <a class="el" href="classOscProbCalcerBase.html#a89ca55fe94b0f4b7710ca61d97bacdba" title="Vector which stores the oscillation probabilities.">fWeightArray</a> which corresponds to the given inputs </dd></dl>
 
-<p>Implemented in <a class="el" href="classOscProbCalcerCUDAProb3.html#a16efa9a082301954fed4c0181816433c">OscProbCalcerCUDAProb3</a>, <a class="el" href="classOscProbCalcerCUDAProb3Linear.html#a77f43455d2a6336faf2b747376f8bcbe">OscProbCalcerCUDAProb3Linear</a>, <a class="el" href="classOscProbCalcerProbGPULinear.html#a9be993a122b13f14355df50709b59cca">OscProbCalcerProbGPULinear</a>, <a class="el" href="classOscProbCalcerNuFASTLinear.html#a843d73a4f6fd2e71fd209cf0fc0a3db9">OscProbCalcerNuFASTLinear</a>, <a class="el" href="classOscProbCalcerOscProb.html#ae59df77b7ceb497ad65e42d2e1749345">OscProbCalcerOscProb</a>, and <a class="el" href="classOscProbCalcerProb3ppLinear.html#a420628e29c875a72872734b7c5d3c345">OscProbCalcerProb3ppLinear</a>.</p>
+<p>Implemented in <a class="el" href="classOscProbCalcerCUDAProb3.html#a16efa9a082301954fed4c0181816433c">OscProbCalcerCUDAProb3</a>, <a class="el" href="classOscProbCalcerCUDAProb3Linear.html#a77f43455d2a6336faf2b747376f8bcbe">OscProbCalcerCUDAProb3Linear</a>, <a class="el" href="classOscProbCalcerProbGPULinear.html#a9be993a122b13f14355df50709b59cca">OscProbCalcerProbGPULinear</a>, <a class="el" href="classOscProbCalcerNuFASTLinear.html#a843d73a4f6fd2e71fd209cf0fc0a3db9">OscProbCalcerNuFASTLinear</a>, <a class="el" href="classOscProbCalcerNuSQUIDSLinear.html#a5a4e381838d6e750f30566e7ac4eeb4a">OscProbCalcerNuSQUIDSLinear</a>, <a class="el" href="classOscProbCalcerOscProb.html#ae59df77b7ceb497ad65e42d2e1749345">OscProbCalcerOscProb</a>, and <a class="el" href="classOscProbCalcerProb3ppLinear.html#a420628e29c875a72872734b7c5d3c345">OscProbCalcerProb3ppLinear</a>.</p>
 
 </div>
 </div>
@@ -1595,7 +1596,7 @@ Private Attributes</h2></td></tr>
 <p>Setup any implementation specific variables/functions. </p>
 <p>Calculator engine specific implementation to setup any variables needed to calculate the oscillation probabilities </p>
 
-<p>Implemented in <a class="el" href="classOscProbCalcerCUDAProb3.html#a82197bc0066dcd31afc753a439ee35b1">OscProbCalcerCUDAProb3</a>, <a class="el" href="classOscProbCalcerCUDAProb3Linear.html#a5aa67c70be0b6c9be5627d48f08baea4">OscProbCalcerCUDAProb3Linear</a>, <a class="el" href="classOscProbCalcerNuFASTLinear.html#adfbfb3c378459aafd41525dde57e2db1">OscProbCalcerNuFASTLinear</a>, <a class="el" href="classOscProbCalcerOscProb.html#a8da169ba5b1cdce215453034e8f72977">OscProbCalcerOscProb</a>, <a class="el" href="classOscProbCalcerProb3ppLinear.html#aec539c23dadd349163fcee7cc2c15644">OscProbCalcerProb3ppLinear</a>, and <a class="el" href="classOscProbCalcerProbGPULinear.html#aa2ef4335e2b53e587132b25cd3e86d17">OscProbCalcerProbGPULinear</a>.</p>
+<p>Implemented in <a class="el" href="classOscProbCalcerCUDAProb3.html#a82197bc0066dcd31afc753a439ee35b1">OscProbCalcerCUDAProb3</a>, <a class="el" href="classOscProbCalcerCUDAProb3Linear.html#a5aa67c70be0b6c9be5627d48f08baea4">OscProbCalcerCUDAProb3Linear</a>, <a class="el" href="classOscProbCalcerNuFASTLinear.html#adfbfb3c378459aafd41525dde57e2db1">OscProbCalcerNuFASTLinear</a>, <a class="el" href="classOscProbCalcerNuSQUIDSLinear.html#a7366b760cda954e029b0a98aa0d5091d">OscProbCalcerNuSQUIDSLinear</a>, <a class="el" href="classOscProbCalcerOscProb.html#a8da169ba5b1cdce215453034e8f72977">OscProbCalcerOscProb</a>, <a class="el" href="classOscProbCalcerProb3ppLinear.html#aec539c23dadd349163fcee7cc2c15644">OscProbCalcerProb3ppLinear</a>, and <a class="el" href="classOscProbCalcerProbGPULinear.html#aa2ef4335e2b53e587132b25cd3e86d17">OscProbCalcerProbGPULinear</a>.</p>
 
 </div>
 </div>

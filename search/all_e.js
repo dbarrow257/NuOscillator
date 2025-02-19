@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['pmns_5fstrtoint_0',['PMNS_StrToInt',['../classOscProbCalcerOscProb.html#a9a6b242e6819e19b2880cab05cc6faa9',1,'OscProbCalcerOscProb']]],
+  ['pmns_5fstrtoint_0',['pmns_strtoint',['../classOscProbCalcerNuSQUIDSLinear.html#abcc2bb8dba8d9d947eed0348bb84a019',1,'OscProbCalcerNuSQUIDSLinear::PMNS_StrToInt()'],['../classOscProbCalcerOscProb.html#a9a6b242e6819e19b2880cab05cc6faa9',1,'OscProbCalcerOscProb::PMNS_StrToInt(std::string PMNSType)']]],
   ['pmnsmatrix_1',['PMNSMatrix',['../classOscProbCalcerOscProb.html#a62fca4b88373b2123e942914e5c4d623',1,'OscProbCalcerOscProb']]],
   ['precisionlimit_2',['PrecisionLimit',['../classOscProbCalcerBase.html#ad8011dc225caeb64d40bf2cb7df3af1e',1,'OscProbCalcerBase']]],
   ['printknownoscillationchannels_3',['PrintKnownOscillationChannels',['../classOscProbCalcerBase.html#a0607bb55dd7abfb62666de7a3132b313',1,'OscProbCalcerBase']]],

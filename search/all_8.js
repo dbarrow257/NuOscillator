@@ -6,5 +6,6 @@ var searchData=
   ['initialiseneutrinotypesarray_3',['InitialiseNeutrinoTypesArray',['../classOscProbCalcerBase.html#a9505021a01a42ce1e459430ec2ba2f99',1,'OscProbCalcerBase']]],
   ['initialiseoscillationchannelmapping_4',['InitialiseOscillationChannelMapping',['../classOscProbCalcerBase.html#ab9b11973eae0bcc6ac17c294151ffdfc',1,'OscProbCalcerBase']]],
   ['initialiseoscprobcalcer_5',['InitialiseOscProbCalcer',['../classOscillatorBase.html#af4703b50260a25117367b02896a96dc1',1,'OscillatorBase']]],
-  ['intialiseweightarray_6',['IntialiseWeightArray',['../classOscProbCalcerBase.html#aad90504e576a3e96c48b6520ac6f895e',1,'OscProbCalcerBase']]]
+  ['integration_5fstep_6',['integration_step',['../classOscProbCalcerNuSQUIDSLinear.html#a178f4868a72e3b05f56c1039a1f9e659',1,'OscProbCalcerNuSQUIDSLinear']]],
+  ['intialiseweightarray_7',['IntialiseWeightArray',['../classOscProbCalcerBase.html#aad90504e576a3e96c48b6520ac6f895e',1,'OscProbCalcerBase']]]
 ];

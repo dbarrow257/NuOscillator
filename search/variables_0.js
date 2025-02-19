@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['bnu_0',['bNu',['../classOscProbCalcerProb3ppLinear.html#a1dd7bd540f57412be19ab284ad86fd44',1,'OscProbCalcerProb3ppLinear']]]
+  ['abs_5ferror_0',['abs_error',['../classOscProbCalcerNuSQUIDSLinear.html#a81fc048fd9ed4fe3160ffc0e5eaf863e',1,'OscProbCalcerNuSQUIDSLinear']]]
 ];

@@ -1,8 +1,6 @@
 var searchData=
 [
-  ['earthdensityfile_0',['EarthDensityFile',['../classOscProbCalcerCUDAProb3.html#ae4dbd21cea1138a27254b1321ea0ce6b',1,'OscProbCalcerCUDAProb3']]],
-  ['energy_1',['Energy',['../structNuOscillator_1_1OscillationProbability.html#afe67e8c0d6fca60ab1d0fde386996cbc',1,'NuOscillator::OscillationProbability']]],
-  ['energyaxisbincenters_2',['EnergyAxisBinCenters',['../classOscillatorBinned.html#ae92aceeec9c7e0d588ea58a2a458f128',1,'OscillatorBinned']]],
-  ['energyaxisbinedges_3',['EnergyAxisBinEdges',['../classOscillatorBinned.html#a210cb8d3efc6c0af55a8b25b76041576',1,'OscillatorBinned']]],
-  ['energyaxishistname_4',['EnergyAxisHistName',['../classOscillatorBinned.html#adb510cfba161f90db5b1c9fa1b6d0f09',1,'OscillatorBinned']]]
+  ['decoherence_5fmodel_0',['decoherence_model',['../classOscProbCalcerNuSQUIDSLinear.html#a58d664f2d7fd0a5c2532274445f7d816',1,'OscProbCalcerNuSQUIDSLinear']]],
+  ['detectedflavour_1',['DetectedFlavour',['../structNuOscillator_1_1OscillationChannel.html#a26d9e007e52c1e812115e5e2e3407c17',1,'NuOscillator::OscillationChannel']]],
+  ['doubled_5fangle_2',['doubled_angle',['../classOscProbCalcerProb3ppLinear.html#ab33100f0088f332e00e040fc9d5ed03a',1,'OscProbCalcerProb3ppLinear::doubled_angle'],['../classOscProbCalcerProbGPULinear.html#a88066578434efb5c07b349f9e034ba35',1,'OscProbCalcerProbGPULinear::doubled_angle']]]
 ];
