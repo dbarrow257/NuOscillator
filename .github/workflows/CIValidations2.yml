@@ -50,7 +50,7 @@ jobs:
             exec: SingleOscProbCalcer
             argument: NuOscillatorConfigs/OscProbCalcerConfigs/NuSQUIDSLinear.yaml
             new_output: NuSQUIDSLinear_New.txt
-            old_output: NuSQUIDSLinear_Stored.txt	    
+            old_output: NuSQUIDSLinear_Stored.txt
           - name: OscProbCalcer CUDAProb3 Comparison
             cmake_options: -DUseCUDAProb3=1
             exec: SingleOscProbCalcer
