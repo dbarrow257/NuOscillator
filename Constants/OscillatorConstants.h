@@ -217,6 +217,14 @@ inline NuOscillator::OscillationChannel ReturnOscillationChannel(const std::stri
   return OscChannel;
 }
 
+/**
+ * @brief Generate vector of logarithmically spaced points 
+ *
+ * @param Emin lower limit
+ * @param Emax upper limit
+ * @param nDiv Number of divisions
+ * @return Vector of logarithmically spaced points between Emin and Emax with nDiv divisions
+ */
 inline std::vector<FLOAT_T> logspace(FLOAT_T Emin, FLOAT_T  Emax, int nDiv) {
   if (nDiv==0) {
     std::cerr << "Requested log spacing distribution with 0 divisions" << std::endl;
@@ -248,6 +256,14 @@ inline std::vector<FLOAT_T> logspace(FLOAT_T Emin, FLOAT_T  Emax, int nDiv) {
   return logpoints;
 }
 
+/**
+ * @brief Generate vector of linearly spaced points 
+ *
+ * @param Emin lower limit
+ * @param Emax upper limit
+ * @param nDiv Number of divisions
+ * @return Vector of linearly spaced points between Emin and Emax with nDiv divisions
+ */
 inline std::vector<FLOAT_T> linspace(FLOAT_T Emin, FLOAT_T Emax, int nDiv) {
   if (nDiv==0) {
     std::cerr << "Requested linear spacing distribution with 0 divisions" << std::endl;
@@ -272,6 +288,14 @@ inline std::vector<FLOAT_T> linspace(FLOAT_T Emin, FLOAT_T Emax, int nDiv) {
   return linpoints;
 }
 
+/**
+ * @brief Read bin edges from input template histogram 
+ *
+ * @param TFileName File name
+ * @param HistogramName Histogram name
+ * @param Verbose Verbosity level
+ * @return Vector of bin edges
+ */
 inline std::vector<FLOAT_T> ReadBinEdgesFromFile(std::string TFileName, std::string HistogramName, int Verbose=NuOscillator::Verbosity::NONE) {
   std::vector<FLOAT_T> BinEdges;
 
@@ -306,6 +330,12 @@ inline std::vector<FLOAT_T> ReadBinEdgesFromFile(std::string TFileName, std::str
   return BinEdges;
 }
 
+/**
+ * @brief Return the bin centers given the bin edges of a template histogram
+ *
+ * @param BinEdges Vector of bin edges
+ * @return Vector of bin centers
+ */
 inline std::vector<FLOAT_T> ReturnBinCentersFromBinEdges(std::vector<FLOAT_T> BinEdges) {
   int nBins = BinEdges.size()-1;
   std::vector<FLOAT_T> BinCenters = std::vector<FLOAT_T>(nBins);

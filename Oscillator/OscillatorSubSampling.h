@@ -25,6 +25,13 @@ class OscillatorSubSampling : public OscillatorBase {
    */
   OscillatorSubSampling(std::string ConfigName_);
 
+  /**
+   * @brief Default constructor
+   *
+   * Default constructor
+   *
+   * @param Config_ YAML node used to set runtime constants
+   */
   OscillatorSubSampling(YAML::Node Config_);
 
   /**
@@ -78,6 +85,9 @@ class OscillatorSubSampling : public OscillatorBase {
 
  private:
 
+  /**
+   * @brief Initialise Oscillator instance: read energies and cosineZs, set them in Calcer
+   */
   void Initialise();
 
   /**
@@ -137,10 +147,24 @@ class OscillatorSubSampling : public OscillatorBase {
    */
   size_t TotalCoarseBins;
 
+  /**
+   * @brief Oscillation channels in NuOscillator::OscillationChannel format
+   */
   std::vector<NuOscillator::OscillationChannel> OscillationChannels;
+
+  /**
+   * @brief Number of oscillation channels
+   */
   size_t nOscillationChannels;
 
+  /**
+   * @brief Vector of indices for the neutrino types 
+   */
   std::vector<int> NeutrinoTypes;
+
+  /**
+   * @brief Number of neutrino types 
+   */
   size_t nNeutrinoTypes;
   
   // ========================================================================================================================================================================
@@ -152,33 +176,52 @@ class OscillatorSubSampling : public OscillatorBase {
   std::string FileName;
 
   /**
-   * @brief The name of the histogram which contains the Energy axis binning
+   * @brief The name of the histogram which contains the Energy axis coarse binning
    */
   std::string CoarseEnergyAxisHistName;
-  std::string FineEnergyAxisHistName;
+
   /**
-   * @brief The name of the histogram which contains the CosineZ axis binning
+   * @brief The name of the histogram which contains the Energy axis fine binning
+   */
+  std::string FineEnergyAxisHistName;
+
+  /**
+   * @brief The name of the histogram which contains the CosineZ axis coarse binning
    */
   std::string CoarseCosineZAxisHistName;
+
+  /**
+   * @brief The name of the histogram which contains the CosineZ axis fine binning
+   */
   std::string FineCosineZAxisHistName;
 
   /**
-   * @brief A vector of Energy axis bin edges
+   * @brief A vector of Energy axis coarse bin edges
    */
   std::vector<FLOAT_T> CoarseEnergyAxisBinEdges;
-  std::vector<FLOAT_T> FineEnergyAxisBinEdges;
+
   /**
-   * @brief A vector of CosineZ axis bin edges
+   * @brief A vector of Energy axis fine bin edges
+   */
+  std::vector<FLOAT_T> FineEnergyAxisBinEdges;
+
+  /**
+   * @brief A vector of CosineZ axis coarse bin edges
    */
   std::vector<FLOAT_T> CoarseCosineZAxisBinEdges;
+
+  /**
+   * @brief A vector of CosineZ axis fine bin edges
+   */
   std::vector<FLOAT_T> FineCosineZAxisBinEdges;
 
   /**
-   * @brief A vector of Energy axis bin centers
+   * @brief A vector of Energy axis fine bin centers
    */
   std::vector<FLOAT_T> FineEnergyAxisBinCenters;
+  
   /**
-   * @brief A vector of CosineZ axis bin centers
+   * @brief A vector of CosineZ axis fine bin centers
    */
   std::vector<FLOAT_T> FineCosineZAxisBinCenters;
 
