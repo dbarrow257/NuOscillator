@@ -9,6 +9,17 @@ OscProbCalcerNuFASTLinear::OscProbCalcerNuFASTLinear(YAML::Node Config_) : OscPr
   //=======
   //Grab information from the config
 
+  // --------------------------------------------------------------------- //
+  // Set the number of Newton-Raphson iterations which sets the precision. //
+  // 0 is close to the single precision limit and is better than DUNE/HK   //
+  // in the high statistics regime. Increasig N_Newton to 1,2,... rapidly  //
+  // improves the precision at a modest computational cost                 //
+  // --------------------------------------------------------------------- //
+  N_Newton = 3;
+  if (Config_["OscProbCalcerSetup"]["nNewtonIter"]) {
+    N_Newton = Config_["OscProbCalcerSetup"]["nNewtonIters"].as<int>();
+  }
+  
   //=======
 
   fNOscParams = kNOscParams;
@@ -32,7 +43,6 @@ void OscProbCalcerNuFASTLinear::SetupPropagator() {
 void OscProbCalcerNuFASTLinear::CalculateProbabilities(const std::vector<FLOAT_T>& OscParams) {
   double L, E, rho, Ye, probs_returned[3][3];
   double s12sq, s13sq, s23sq, delta, Dmsq21, Dmsq31;
-  int N_Newton;
 
   // ------------------------------- //
   // Set the experimental parameters //
@@ -41,14 +51,6 @@ void OscProbCalcerNuFASTLinear::CalculateProbabilities(const std::vector<FLOAT_T
   rho = OscParams[kDENS]; // g/cc
   Ye = OscParams[kELECDENS];
   
-  // --------------------------------------------------------------------- //
-  // Set the number of Newton-Raphson iterations which sets the precision. //
-  // 0 is close to the single precision limit and is better than DUNE/HK   //
-  // in the high statistics regime. Increasig N_Newton to 1,2,... rapidly  //
-  // improves the precision at a modest computational cost                 //
-  // --------------------------------------------------------------------- //
-  N_Newton = 3;
-
   // ------------------------------------- //
   // Set the vacuum oscillation parameters //
   // ------------------------------------- //
@@ -77,18 +79,7 @@ void OscProbCalcerNuFASTLinear::CalculateProbabilities(const std::vector<FLOAT_T
 	// Mapping which links the oscillation channel, neutrino type and energy index to the fWeightArray index
 	int IndexToFill = iNuType*fNOscillationChannels*fNEnergyPoints + iOscChannel*fNEnergyPoints;
 
-	
 	double Weight = probs_returned[fOscillationChannels[iOscChannel].GeneratedFlavour-1][fOscillationChannels[iOscChannel].DetectedFlavour-1];
-
-	//Cancel floating point precision
-	if (Weight<0. && Weight>-1e-6) {Weight = 0.;}
-
-	if (Weight<0. || Weight > 1.) {
-	  std::cout << "s12sq:" << s12sq << " s13sq:" << s13sq << " s23sq:" << s23sq << " delta:" << delta << " Dmsq21:" << Dmsq21 << " Dmsq31:" << Dmsq31 << " L:" << L << " E:" << E << " rho:" << rho << " Ye:" << Ye << " N_Newton:" << N_Newton << std::endl;
-	  std::cout << "iOscProb:" << iOscProb << " iNuType:" << iNuType << " iOscChannel:" << iOscChannel << " IndexToFill:" << IndexToFill << " fWeightArray[IndexToFill+iOscProb]:" << Weight << std::endl;
-	  throw std::runtime_error("Invalid probability");
-	}
-
 	fWeightArray[IndexToFill+iOscProb] = Weight;
       }
       

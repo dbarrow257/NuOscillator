@@ -86,6 +86,11 @@ class OscProbCalcerNuFASTLinear : public OscProbCalcerBase {
    * @brief Define the neutrino and antineutrino values expected by this implementation
    */
   enum NuType{Nu=1,Nubar=-1};
+
+  /**
+   * @brief Define the number of newton iterations used within calculation
+   */
+  int N_Newton;
   
 };
 
