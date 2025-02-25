@@ -5,9 +5,10 @@ var searchData=
   ['coarseenergyaxisbinedges_2',['CoarseEnergyAxisBinEdges',['../classOscillatorSubSampling.html#a0fca491ca114659698fdc6d9fdf609c1',1,'OscillatorSubSampling']]],
   ['coarseenergyaxishistname_3',['CoarseEnergyAxisHistName',['../classOscillatorSubSampling.html#a143e4ca0c385fe87926558e94e51f4bd',1,'OscillatorSubSampling']]],
   ['config_4',['config',['../classOscillatorBase.html#a107793cd97329b6cc39a743b11fae4fb',1,'OscillatorBase::Config'],['../classOscProbCalcerBase.html#a30be1c6a99db86418aee3d6cd32009c0',1,'OscProbCalcerBase::Config']]],
-  ['configname_5',['ConfigName',['../classOscProbCalcerCUDAProb3.html#a683fd6d4cfb63674d9924c5b74514515',1,'OscProbCalcerCUDAProb3']]],
-  ['cosinez_6',['CosineZ',['../structNuOscillator_1_1OscillationProbability.html#adb3379d47bb34e87a56da408fd668f85',1,'NuOscillator::OscillationProbability']]],
-  ['cosinezaxisbincenters_7',['CosineZAxisBinCenters',['../classOscillatorBinned.html#a5c3d32dfecf9c323ed139a197af36e3d',1,'OscillatorBinned']]],
-  ['cosinezaxisbinedges_8',['CosineZAxisBinEdges',['../classOscillatorBinned.html#a2a471cf189a3cf40f95cff104a71fedf',1,'OscillatorBinned']]],
-  ['cosinezaxishistname_9',['CosineZAxisHistName',['../classOscillatorBinned.html#a50d0a10ad138873374c325011224d6a5',1,'OscillatorBinned']]]
+  ['copyarr_5',['CopyArr',['../classOscProbCalcerCUDAProb3.html#ad8ffb3aa1f1a73d852e001da176168f8',1,'OscProbCalcerCUDAProb3']]],
+  ['copyarrsize_6',['CopyArrSize',['../classOscProbCalcerCUDAProb3.html#a201f35f38151317c078fe816e253b3f2',1,'OscProbCalcerCUDAProb3']]],
+  ['cosinez_7',['CosineZ',['../structNuOscillator_1_1OscillationProbability.html#adb3379d47bb34e87a56da408fd668f85',1,'NuOscillator::OscillationProbability']]],
+  ['cosinezaxisbincenters_8',['CosineZAxisBinCenters',['../classOscillatorBinned.html#a5c3d32dfecf9c323ed139a197af36e3d',1,'OscillatorBinned']]],
+  ['cosinezaxisbinedges_9',['CosineZAxisBinEdges',['../classOscillatorBinned.html#a2a471cf189a3cf40f95cff104a71fedf',1,'OscillatorBinned']]],
+  ['cosinezaxishistname_10',['CosineZAxisHistName',['../classOscillatorBinned.html#a50d0a10ad138873374c325011224d6a5',1,'OscillatorBinned']]]
 ];

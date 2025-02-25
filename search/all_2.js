@@ -8,13 +8,14 @@ var searchData=
   ['coarseenergyaxisbinedges_5',['CoarseEnergyAxisBinEdges',['../classOscillatorSubSampling.html#a0fca491ca114659698fdc6d9fdf609c1',1,'OscillatorSubSampling']]],
   ['coarseenergyaxishistname_6',['CoarseEnergyAxisHistName',['../classOscillatorSubSampling.html#a143e4ca0c385fe87926558e94e51f4bd',1,'OscillatorSubSampling']]],
   ['config_7',['config',['../classOscillatorBase.html#a107793cd97329b6cc39a743b11fae4fb',1,'OscillatorBase::Config'],['../classOscProbCalcerBase.html#a30be1c6a99db86418aee3d6cd32009c0',1,'OscProbCalcerBase::Config']]],
-  ['configname_8',['ConfigName',['../classOscProbCalcerCUDAProb3.html#a683fd6d4cfb63674d9924c5b74514515',1,'OscProbCalcerCUDAProb3']]],
-  ['cosinez_9',['CosineZ',['../structNuOscillator_1_1OscillationProbability.html#adb3379d47bb34e87a56da408fd668f85',1,'NuOscillator::OscillationProbability']]],
-  ['cosinezaxisbincenters_10',['CosineZAxisBinCenters',['../classOscillatorBinned.html#a5c3d32dfecf9c323ed139a197af36e3d',1,'OscillatorBinned']]],
-  ['cosinezaxisbinedges_11',['CosineZAxisBinEdges',['../classOscillatorBinned.html#a2a471cf189a3cf40f95cff104a71fedf',1,'OscillatorBinned']]],
-  ['cosinezaxishistname_12',['CosineZAxisHistName',['../classOscillatorBinned.html#a50d0a10ad138873374c325011224d6a5',1,'OscillatorBinned']]],
-  ['cosinezignored_13',['CosineZIgnored',['../classOscillatorBase.html#a39e513c5f4a492e9300ed277c48478a7',1,'OscillatorBase']]],
-  ['createoscillator_14',['createoscillator',['../classOscillatorFactory.html#a6a5605305da0bff03fc4f14966fb0e71',1,'OscillatorFactory::CreateOscillator(std::string ConfigName_)'],['../classOscillatorFactory.html#a20a983eb6a89cb30c26552b79b252065',1,'OscillatorFactory::CreateOscillator(YAML::Node Config)']]],
-  ['createoscprobcalcer_15',['createoscprobcalcer',['../classOscProbCalcerFactory.html#a4eadb3266545d37843ddf17aa0f8884f',1,'OscProbCalcerFactory::CreateOscProbCalcer(std::string OscProbCalcerConfigName_)'],['../classOscProbCalcerFactory.html#a5cd877cdd9c57eaffc7c51f75be3a5cb',1,'OscProbCalcerFactory::CreateOscProbCalcer(YAML::Node OscProbCalcerConfig)']]],
-  ['cudaprob3_16',['cudaprob3',['../namespacecudaprob3.html',1,'']]]
+  ['copyarr_8',['CopyArr',['../classOscProbCalcerCUDAProb3.html#ad8ffb3aa1f1a73d852e001da176168f8',1,'OscProbCalcerCUDAProb3']]],
+  ['copyarrsize_9',['CopyArrSize',['../classOscProbCalcerCUDAProb3.html#a201f35f38151317c078fe816e253b3f2',1,'OscProbCalcerCUDAProb3']]],
+  ['cosinez_10',['CosineZ',['../structNuOscillator_1_1OscillationProbability.html#adb3379d47bb34e87a56da408fd668f85',1,'NuOscillator::OscillationProbability']]],
+  ['cosinezaxisbincenters_11',['CosineZAxisBinCenters',['../classOscillatorBinned.html#a5c3d32dfecf9c323ed139a197af36e3d',1,'OscillatorBinned']]],
+  ['cosinezaxisbinedges_12',['CosineZAxisBinEdges',['../classOscillatorBinned.html#a2a471cf189a3cf40f95cff104a71fedf',1,'OscillatorBinned']]],
+  ['cosinezaxishistname_13',['CosineZAxisHistName',['../classOscillatorBinned.html#a50d0a10ad138873374c325011224d6a5',1,'OscillatorBinned']]],
+  ['cosinezignored_14',['CosineZIgnored',['../classOscillatorBase.html#a39e513c5f4a492e9300ed277c48478a7',1,'OscillatorBase']]],
+  ['createoscillator_15',['createoscillator',['../classOscillatorFactory.html#a6a5605305da0bff03fc4f14966fb0e71',1,'OscillatorFactory::CreateOscillator(std::string ConfigName_)'],['../classOscillatorFactory.html#a20a983eb6a89cb30c26552b79b252065',1,'OscillatorFactory::CreateOscillator(YAML::Node Config)']]],
+  ['createoscprobcalcer_16',['createoscprobcalcer',['../classOscProbCalcerFactory.html#a4eadb3266545d37843ddf17aa0f8884f',1,'OscProbCalcerFactory::CreateOscProbCalcer(std::string OscProbCalcerConfigName_)'],['../classOscProbCalcerFactory.html#a5cd877cdd9c57eaffc7c51f75be3a5cb',1,'OscProbCalcerFactory::CreateOscProbCalcer(YAML::Node OscProbCalcerConfig)']]],
+  ['cudaprob3_17',['cudaprob3',['../namespacecudaprob3.html',1,'']]]
 ];

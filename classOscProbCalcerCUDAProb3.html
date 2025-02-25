@@ -229,9 +229,6 @@ Private Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
-<tr class="memitem:a683fd6d4cfb63674d9924c5b74514515" id="r_a683fd6d4cfb63674d9924c5b74514515"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerCUDAProb3.html#a683fd6d4cfb63674d9924c5b74514515">ConfigName</a></td></tr>
-<tr class="memdesc:a683fd6d4cfb63674d9924c5b74514515"><td class="mdescLeft">&#160;</td><td class="mdescRight">The name of the config used to setup the particular instance of <a class="el" href="classOscProbCalcerCUDAProb3.html" title="Oscillation calculation engine for linear and atmospheric propagation in CUDAProb3.">OscProbCalcerCUDAProb3()</a>  <br /></td></tr>
-<tr class="separator:a683fd6d4cfb63674d9924c5b74514515"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a24cff00f20d7bd72a055174a19586a4d" id="r_a24cff00f20d7bd72a055174a19586a4d"><td class="memItemLeft" align="right" valign="top">std::vector&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerCUDAProb3.html#a24cff00f20d7bd72a055174a19586a4d">OscChannels</a></td></tr>
 <tr class="memdesc:a24cff00f20d7bd72a055174a19586a4d"><td class="mdescLeft">&#160;</td><td class="mdescRight">The mapping of the oscillation channels defined in <a class="el" href="classOscProbCalcerBase.html#a9d3596ff47e31e6fe6855d092588c38a" title="The mapping of oscillation channels which have been requested from the YAML config.">fOscillationChannels</a> to the CUDAProb3 constants.  <br /></td></tr>
 <tr class="separator:a24cff00f20d7bd72a055174a19586a4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -259,6 +256,12 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:a3cf27ad5d1392fce5656845e94647123" id="r_a3cf27ad5d1392fce5656845e94647123"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerCUDAProb3.html#a3cf27ad5d1392fce5656845e94647123">nLayers</a></td></tr>
 <tr class="memdesc:a3cf27ad5d1392fce5656845e94647123"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of Earth layers.  <br /></td></tr>
 <tr class="separator:a3cf27ad5d1392fce5656845e94647123"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a201f35f38151317c078fe816e253b3f2" id="r_a201f35f38151317c078fe816e253b3f2"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerCUDAProb3.html#a201f35f38151317c078fe816e253b3f2">CopyArrSize</a></td></tr>
+<tr class="memdesc:a201f35f38151317c078fe816e253b3f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Size of the array to be copied.  <br /></td></tr>
+<tr class="separator:a201f35f38151317c078fe816e253b3f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad8ffb3aa1f1a73d852e001da176168f8" id="r_ad8ffb3aa1f1a73d852e001da176168f8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="OscillatorConstants_8h.html#acb53b45d3e1b677a15c2ef27b266b1ca">FLOAT_T</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerCUDAProb3.html#ad8ffb3aa1f1a73d852e001da176168f8">CopyArr</a></td></tr>
+<tr class="memdesc:ad8ffb3aa1f1a73d852e001da176168f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to the array used for copying oscillation probabilities.  <br /></td></tr>
+<tr class="separator:ad8ffb3aa1f1a73d852e001da176168f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
@@ -731,8 +734,8 @@ Additional Inherited Members</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a id="a683fd6d4cfb63674d9924c5b74514515" name="a683fd6d4cfb63674d9924c5b74514515"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a683fd6d4cfb63674d9924c5b74514515">&#9670;&#160;</a></span>ConfigName</h2>
+<a id="ad8ffb3aa1f1a73d852e001da176168f8" name="ad8ffb3aa1f1a73d852e001da176168f8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad8ffb3aa1f1a73d852e001da176168f8">&#9670;&#160;</a></span>CopyArr</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -741,7 +744,7 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::string OscProbCalcerCUDAProb3::ConfigName</td>
+          <td class="memname"><a class="el" href="OscillatorConstants_8h.html#acb53b45d3e1b677a15c2ef27b266b1ca">FLOAT_T</a>* OscProbCalcerCUDAProb3::CopyArr</td>
         </tr>
       </table>
   </td>
@@ -751,7 +754,31 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>The name of the config used to setup the particular instance of <a class="el" href="classOscProbCalcerCUDAProb3.html" title="Oscillation calculation engine for linear and atmospheric propagation in CUDAProb3.">OscProbCalcerCUDAProb3()</a> </p>
+<p>Pointer to the array used for copying oscillation probabilities. </p>
+
+</div>
+</div>
+<a id="a201f35f38151317c078fe816e253b3f2" name="a201f35f38151317c078fe816e253b3f2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a201f35f38151317c078fe816e253b3f2">&#9670;&#160;</a></span>CopyArrSize</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int OscProbCalcerCUDAProb3::CopyArrSize</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Size of the array to be copied. </p>
 
 </div>
 </div>
