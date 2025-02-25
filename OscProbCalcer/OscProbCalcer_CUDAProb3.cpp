@@ -75,7 +75,7 @@ OscProbCalcerCUDAProb3::OscProbCalcerCUDAProb3(YAML::Node Config_) : OscProbCalc
 }
 
 OscProbCalcerCUDAProb3::~OscProbCalcerCUDAProb3() {
-
+  delete[] CopyArr;
 }
 
 void OscProbCalcerCUDAProb3::SetupPropagator() {
@@ -104,7 +104,11 @@ void OscProbCalcerCUDAProb3::SetupPropagator() {
   propagator->setCosineList(fCosineZArray);
   propagator->setDensityFromFile(EarthDensityFile);
 
-  if (fVerbose >= NuOscillator::INFO) {std::cout << "Setup CUDAProb3 oscillation probability calculater" << std::endl;}
+  if (fVerbose >= NuOscillator::INFO) {std::cout << "Setup CUDAProb3 oscillation probability calculator" << std::endl;}
+
+  // CUDAProb3 calculates oscillation probabilites for each NeutrinoType, so need to copy them from the calculator into fWeightArray
+  CopyArrSize = fNEnergyPoints * fNCosineZPoints;
+  CopyArr = new FLOAT_T[CopyArrSize];
 }
  
 void OscProbCalcerCUDAProb3::CalculateProbabilities(const std::vector<FLOAT_T>& OscParams) {
@@ -135,10 +139,6 @@ void OscProbCalcerCUDAProb3::CalculateProbabilities(const std::vector<FLOAT_T>& 
     ApplyEarthModelSystematics(OscParams);
   }
 
-  // CUDAProb3 calculates oscillation probabilites for each NeutrinoType, so need to copy them from the calculator into fWeightArray
-  int CopyArrSize = fNEnergyPoints * fNCosineZPoints;
-  FLOAT_T* CopyArr = new FLOAT_T[CopyArrSize];
-
   for (int iNuType=0;iNuType<fNNeutrinoTypes;iNuType++) {
 
     NeutrinoType NuType;
@@ -167,8 +167,6 @@ void OscProbCalcerCUDAProb3::CalculateProbabilities(const std::vector<FLOAT_T>& 
       }
     }
   }
-
-  delete[] CopyArr;
 }
 
 int OscProbCalcerCUDAProb3::ReturnWeightArrayIndex(int NuTypeIndex, int OscChanIndex, int EnergyIndex, int CosineZIndex) {

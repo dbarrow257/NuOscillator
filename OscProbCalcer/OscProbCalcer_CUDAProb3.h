@@ -113,11 +113,6 @@ class OscProbCalcerCUDAProb3 : public OscProbCalcerBase {
   enum NuType{Nubar=-1, Nu=1};
 
   /**
-   * @brief The name of the config used to setup the particular instance of OscProbCalcerCUDAProb3()
-   */
-  std::string ConfigName;
-
-  /**
    * @brief The mapping of the oscillation channels defined in #fOscillationChannels to the CUDAProb3 constants
    */
   std::vector<int> OscChannels;
@@ -165,6 +160,17 @@ class OscProbCalcerCUDAProb3 : public OscProbCalcerBase {
    * @brief  Number of Earth layers
    */
   int nLayers;
+
+  /**
+   * @brief Size of the array to be copied.
+   */
+  int CopyArrSize;
+
+  /**
+   * @brief Pointer to the array used for copying oscillation probabilities.
+   */
+  FLOAT_T* CopyArr;
+
 };
 
 #endif
