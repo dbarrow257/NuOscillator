@@ -311,10 +311,10 @@ endif()
 if(${UseNuSQUIDSLinear} EQUAL 1)
   find_package(GSL REQUIRED)
 
-  find_package(HDF5 QUIET)
+  find_package(HDF5 QUIET COMPONENTS CXX)
 
   if(NOT ${HDF5_FOUND})
-    find_package(HDF5 QUIET COMPONENTS CXX)
+    find_package(HDF5 QUIET)
   endif()
 
   if(NOT ${HDF5_FOUND})
