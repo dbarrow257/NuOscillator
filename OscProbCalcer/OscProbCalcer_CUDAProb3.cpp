@@ -88,11 +88,7 @@ void OscProbCalcerCUDAProb3::SetupPropagator() {
 
   nThreads = 1;
 #if UseMultithreading == 1
-#pragma omp parallel
-  {
-#pragma omp single
-    nThreads = omp_get_num_threads();
-  }
+  nThreads = omp_get_max_threads();
 #endif
 
   if (fVerbose >= NuOscillator::INFO) {std::cout << "Using CPU CUDAProb3 propagator with " << nThreads << " threads" << std::endl;}

@@ -28,7 +28,7 @@ source Linux/bin/setup.NuOscillator.sh
 then you can check if everything runs correctly by
 ```bash
 cd ../
-./build/Linux/bin/DragRace
+./build/Linux/bin/DragRace 1000 NuOscillatorConfigs/Binned_NuFASTLinear.yaml
 ```
 
 ## How to Integrate in Framework

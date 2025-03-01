@@ -62,13 +62,9 @@ void OscProbCalcerCUDAProb3Linear::SetupPropagator() {
 #else
 
   nThreads = 1;
-#if UseMultithreading == 1
-#pragma omp parallel
-  {
-#pragma omp single
-    nThreads = omp_get_num_threads();
-  }
-#endif
+  #if UseMultithreading == 1
+  nThreads = omp_get_max_threads();
+  #endif
 
   if (fVerbose >= NuOscillator::INFO) {std::cout << "Using CPU CUDAProb3Linear propagator with fNEnergyPoints:" << fNEnergyPoints << " and:" << nThreads << " threads" << std::endl;}
   propagator = std::unique_ptr< Propagator< FLOAT_T > > ( new BeamCpuPropagator<FLOAT_T>(fNEnergyPoints, nThreads)); // MultiThread CPU propagator
