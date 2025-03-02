@@ -48,27 +48,24 @@ void OscProbCalcerNuFASTLinear::SetupPropagator() {
 }
 
 void OscProbCalcerNuFASTLinear::CalculateProbabilities(const std::vector<FLOAT_T>& OscParams) {
-  double L, E, rho, Ye;
-  double s12sq, s13sq, s23sq, delta, Dmsq21, Dmsq31;
-
   // ------------------------------- //
   // Set the experimental parameters //
   // ------------------------------- //
-  L = OscParams[kPATHL]; // km
-  rho = OscParams[kDENS]; // g/cc
-  Ye = OscParams[kELECDENS];
+  const double L = OscParams[kPATHL]; // km
+  const double rho = OscParams[kDENS]; // g/cc
+  const double Ye = OscParams[kELECDENS];
   
   // ------------------------------------- //
   // Set the vacuum oscillation parameters //
   // ------------------------------------- //
-  s12sq = OscParams[kTH12];
-  s13sq = OscParams[kTH13];
-  s23sq = OscParams[kTH23];
-  delta = OscParams[kDCP];
-  Dmsq21 = OscParams[kDM12];
+  const double s12sq = OscParams[kTH12];
+  const double s13sq = OscParams[kTH13];
+  const double s23sq = OscParams[kTH23];
+  const double delta = OscParams[kDCP];
+  const double Dmsq21 = OscParams[kDM12];
 
   //Need to convert OscParams[kDM23] to kDM31
-  Dmsq31 = OscParams[kDM23]+OscParams[kDM12]; // eV^2
+  const double Dmsq31 = OscParams[kDM23]+OscParams[kDM12]; // eV^2
   
   // ------------------------------------------ //
   // Calculate all 9 oscillations probabilities //
@@ -80,7 +77,7 @@ void OscProbCalcerNuFASTLinear::CalculateProbabilities(const std::vector<FLOAT_T
     for (int iNuType=0;iNuType<fNNeutrinoTypes;iNuType++) {
       double probs_returned[3][3];
       //+ve energy for neutrinos, -ve energy for antineutrinos
-      E = fEnergyArray[iOscProb] * fNeutrinoTypes[iNuType];
+      const double E = fEnergyArray[iOscProb] * fNeutrinoTypes[iNuType];
 
       Probability_Matter_LBL(s12sq, s13sq, s23sq, delta, Dmsq21, Dmsq31, L, E, rho, Ye, N_Newton, &probs_returned);
 
@@ -89,9 +86,9 @@ void OscProbCalcerNuFASTLinear::CalculateProbabilities(const std::vector<FLOAT_T
       #endif
       for (int iOscChannel=0;iOscChannel<fNOscillationChannels;iOscChannel++) {
         // Mapping which links the oscillation channel, neutrino type and energy index to the fWeightArray index
-        int IndexToFill = iNuType*fNOscillationChannels*fNEnergyPoints + iOscChannel*fNEnergyPoints;
+        const int IndexToFill = iNuType*fNOscillationChannels*fNEnergyPoints + iOscChannel*fNEnergyPoints;
 
-        double Weight = probs_returned[fOscillationChannels[iOscChannel].GeneratedFlavour-1][fOscillationChannels[iOscChannel].DetectedFlavour-1];
+        const double Weight = probs_returned[fOscillationChannels[iOscChannel].GeneratedFlavour-1][fOscillationChannels[iOscChannel].DetectedFlavour-1];
         fWeightArray[IndexToFill+iOscProb] = Weight;
       }
       
