@@ -318,7 +318,7 @@ if(${UseNuSQUIDSLinear} EQUAL 1)
   endif()
 
   if(NOT ${HDF5_FOUND})
-    message(FATAL "Did not find HDF5")
+    cmessage(FATAL "Did not find HDF5")
   endif()
 
   include(ExternalProject)
