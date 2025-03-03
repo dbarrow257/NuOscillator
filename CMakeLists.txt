@@ -312,13 +312,8 @@ if(${UseNuSQUIDSLinear} EQUAL 1)
   find_package(GSL REQUIRED)
 
   find_package(HDF5 QUIET COMPONENTS CXX)
-
   if(NOT ${HDF5_FOUND})
-    find_package(HDF5 QUIET)
-  endif()
-
-  if(NOT ${HDF5_FOUND})
-    cmessage(FATAL "Did not find HDF5")
+    find_package(HDF5 QUIET REQUIRED)
   endif()
 
   include(ExternalProject)
