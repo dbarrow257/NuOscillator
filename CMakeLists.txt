@@ -203,7 +203,7 @@ endif()
 if(${UseCUDAProb3Linear} EQUAL 1)
   if(${UseGPU} EQUAL 1)
     CPMFindPackage(
-      NAME CUDAProb3
+      NAME CUDAProb3Linear
       GITHUB_REPOSITORY "mach3-software/CUDAProb3"
       GIT_TAG "main"
       OPTIONS
@@ -216,7 +216,7 @@ if(${UseCUDAProb3Linear} EQUAL 1)
    target_compile_definitions(NuOscillatorCompilerOptions INTERFACE GPU_ON)
   else()
     CPMFindPackage(
-      NAME CUDAProb3
+      NAME CUDAProb3Linear
       GITHUB_REPOSITORY "mach3-software/CUDAProb3"
       GIT_TAG "main"
       OPTIONS
@@ -263,6 +263,9 @@ if(${UseProb3ppLinear} EQUAL 1)
   if(NOT TARGET Prob3plusplus)
     cmessage(FATAL_ERROR "Could not find Prob3plusplus")
   endif()
+
+  # KS: Add additional compilation flags to be used for Prob3++
+  target_compile_options(Prob3plusplus PRIVATE ${NuOscillator_Compiler_Flags})
   target_compile_definitions(NuOscillatorCompilerOptions INTERFACE UseProb3ppLinear=1)
   
   install(TARGETS Prob3plusplus
