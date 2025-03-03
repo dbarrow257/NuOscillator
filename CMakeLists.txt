@@ -310,7 +310,11 @@ endif()
 
 if(${UseNuSQUIDSLinear} EQUAL 1)
   find_package(GSL REQUIRED)
-  find_package(HDF5 REQUIRED COMPONENTS CXX)
+
+  find_package(HDF5 QUIET COMPONENTS CXX)
+  if(NOT ${HDF5_FOUND})
+    find_package(HDF5 QUIET REQUIRED)
+  endif()
 
   include(ExternalProject)
 
