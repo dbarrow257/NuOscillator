@@ -306,6 +306,11 @@ void OscProbCalcerBase::Reweight(const std::vector<FLOAT_T>& OscParams) {
 }
 
 void OscProbCalcerBase::SanitiseProbabilities() {
+
+  // Precompute these here
+  const double lower_limit = -1.0*PrecisionLimit;
+  const double upper_limit = 1.0 + PrecisionLimit;
+
   for (int iWeight=0;iWeight<fNWeights;++iWeight) {
     if (std::isnan(fWeightArray[iWeight])) {
       std::cerr << "Found nan probability in fWeightArray" << std::endl;
@@ -313,29 +318,28 @@ void OscProbCalcerBase::SanitiseProbabilities() {
       throw std::runtime_error("Invalid probability");
     }
 
-
     if ((fWeightArray[iWeight] >= 0.0) && (fWeightArray[iWeight] <= 1.0)) {
       //Check if it's between 0.0 and 1.0, if so continue to next event
       continue;
     }
-    if (fWeightArray[iWeight] < -1.0*PrecisionLimit) {
+    if (fWeightArray[iWeight] < lower_limit) {
       //Check if it's below 0.0-PrecisionLimit
       std::cerr << "Found probability which is below the allowable precision of: 0.0-" << PrecisionLimit << std::endl;
       std::cerr << "iWeight:" << iWeight << std::endl;
       std::cerr << "fWeightArray[iWeight]:" << fWeightArray[iWeight] << std::endl;
       throw std::runtime_error("Probability below zero");
     }
-    if ((fWeightArray[iWeight] > -1.0*PrecisionLimit) && (fWeightArray[iWeight] < 0)) {
+    if ((fWeightArray[iWeight] > lower_limit) && (fWeightArray[iWeight] < 0)) {
       //Check if it's just below 0 (within some precision) and set to 0 if it is
       fWeightArray[iWeight] = 0.;
       continue;
     }
-    if ((fWeightArray[iWeight] > 1.0) && (fWeightArray[iWeight] < (1.0+PrecisionLimit))) {
+    if ((fWeightArray[iWeight] > 1.0) && (fWeightArray[iWeight] < (upper_limit))) {
       //Check if it's just above 1 (within some precision) and set to 1 if it is
       fWeightArray[iWeight] = 1.;
       continue;
     }
-    if (fWeightArray[iWeight] > (1.0+PrecisionLimit)) {
+    if (fWeightArray[iWeight] > (upper_limit)) {
       //Check if it's above 1.0+PrecisionLimit
       std::cerr << "Found probability which is above the allowable precision of: 1.0+" << PrecisionLimit << std::endl;
       std::cerr << "iWeight:" << iWeight << std::endl;
