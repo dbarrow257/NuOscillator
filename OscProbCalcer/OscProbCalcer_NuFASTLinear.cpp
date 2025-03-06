@@ -76,7 +76,6 @@ void OscProbCalcerNuFASTLinear::CalculateProbabilities(const std::vector<FLOAT_T
   #endif
   for (int iOscProb=0;iOscProb<fNEnergyPoints;iOscProb++) {
     for (int iNuType=0;iNuType<fNNeutrinoTypes;iNuType++) {
-      double probs_returned[3][3];
       //+ve energy for neutrinos, -ve energy for antineutrinos
       const double E = fEnergyArray[iOscProb] * fNeutrinoTypes[iNuType];
 
