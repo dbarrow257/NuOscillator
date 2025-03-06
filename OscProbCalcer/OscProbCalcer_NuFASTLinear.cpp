@@ -67,15 +67,15 @@ void OscProbCalcerNuFASTLinear::CalculateProbabilities(const std::vector<FLOAT_T
   //Need to convert OscParams[kDM23] to kDM31
   const double Dmsq31 = OscParams[kDM23]+OscParams[kDM12]; // eV^2
   
+  double probs_returned[3][3];
   // ------------------------------------------ //
   // Calculate all 9 oscillations probabilities //
   // ------------------------------------------ //
   #if UseMultithreading == 1
-  #pragma omp parallel for collapse(2)
+  #pragma omp parallel for collapse(2) private(probs_returned)
   #endif
   for (int iOscProb=0;iOscProb<fNEnergyPoints;iOscProb++) {
     for (int iNuType=0;iNuType<fNNeutrinoTypes;iNuType++) {
-      double probs_returned[3][3];
       //+ve energy for neutrinos, -ve energy for antineutrinos
       const double E = fEnergyArray[iOscProb] * fNeutrinoTypes[iNuType];
 
@@ -91,7 +91,6 @@ void OscProbCalcerNuFASTLinear::CalculateProbabilities(const std::vector<FLOAT_T
         const double Weight = probs_returned[fOscillationChannels[iOscChannel].GeneratedFlavour-1][fOscillationChannels[iOscChannel].DetectedFlavour-1];
         fWeightArray[IndexToFill+iOscProb] = Weight;
       }
-      
     }
   }
 
