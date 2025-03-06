@@ -100,6 +100,11 @@ void OscProbCalcerCUDAProb3::SetupPropagator() {
   propagator->setCosineList(fCosineZArray);
   propagator->setDensityFromFile(EarthDensityFile);
 
+  if(UseProductionHeightsAve){
+    propagator->setProductionHeight(15.);  
+    SetProductionHeightsAveraging();
+  }
+
   if (fVerbose >= NuOscillator::INFO) {std::cout << "Setup CUDAProb3 oscillation probability calculator" << std::endl;}
 
   // CUDAProb3 calculates oscillation probabilites for each NeutrinoType, so need to copy them from the calculator into fWeightArray
@@ -125,10 +130,9 @@ void OscProbCalcerCUDAProb3::CalculateProbabilities(const std::vector<FLOAT_T>& 
   FLOAT_T prodH   = OscParams[kPRODH];
 
   propagator->setNeutrinoMasses(dm12sq, dm23sq);
-  propagator->setProductionHeight(prodH);
-
-  if(UseProductionHeightsAve){
-    SetProductionHeightsAveraging();
+  
+  if(!UseProductionHeightsAve){
+    propagator->setProductionHeight(prodH);  
   }
 
   if(UseEarthModelSystematics){
