@@ -98,8 +98,8 @@ void OscProbCalcerNuSQUIDSLinear::SetupPropagator() {
     break;
 
   case kDecoherence:
-    nus_base = new nusquids::nuSQUIDSDecoh(E_range, nNeutrinoFlavours, nusquids::neutrino, false);
-    nubars_base = new nusquids::nuSQUIDSDecoh(E_range, nNeutrinoFlavours, nusquids::antineutrino, false);
+    nus_base = new nusquids::nuSQUIDSDecoh(E_range, nNeutrinoFlavours, nusquids::neutrino, true);
+    nubars_base = new nusquids::nuSQUIDSDecoh(E_range, nNeutrinoFlavours, nusquids::antineutrino, true);
     
     break;
 
