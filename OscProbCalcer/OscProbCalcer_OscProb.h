@@ -104,7 +104,7 @@ class OscProbCalcerOscProb : public OscProbCalcerBase {
    *
    * @return Enum value describing the PMNS Matrix to use
    */
-  int PMNS_StrToInt(std::string PMNSType);
+  int PMNS_StrToInt(const std::string& PMNSType);
 
   /**
    * @brief Return number of parameters needed for a particular type of PMNS matrix
