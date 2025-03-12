@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['pmns_5fstrtoint_0',['pmns_strtoint',['../classOscProbCalcerNuSQUIDSLinear.html#abcc2bb8dba8d9d947eed0348bb84a019',1,'OscProbCalcerNuSQUIDSLinear::PMNS_StrToInt()'],['../classOscProbCalcerOscProb.html#a9a6b242e6819e19b2880cab05cc6faa9',1,'OscProbCalcerOscProb::PMNS_StrToInt(std::string PMNSType)']]],
+  ['pmns_5fstrtoint_0',['pmns_strtoint',['../classOscProbCalcerNuSQUIDSLinear.html#abcc2bb8dba8d9d947eed0348bb84a019',1,'OscProbCalcerNuSQUIDSLinear::PMNS_StrToInt()'],['../classOscProbCalcerOscProb.html#ad0f6e738e79e8042e5dc6127378de21e',1,'OscProbCalcerOscProb::PMNS_StrToInt(const std::string &amp;PMNSType)']]],
   ['pmnsmatrix_1',['PMNSMatrix',['../classOscProbCalcerOscProb.html#a62fca4b88373b2123e942914e5c4d623',1,'OscProbCalcerOscProb']]],
   ['postcalculateprobabilities_2',['postcalculateprobabilities',['../classOscillatorBase.html#a8770c4e4d3634598c8ee935a38ec7a45',1,'OscillatorBase::PostCalculateProbabilities()'],['../classOscillatorSubSampling.html#a4d9d46337bec3c2ce541657db8ec72ae',1,'OscillatorSubSampling::PostCalculateProbabilities()']]],
   ['precisionlimit_3',['PrecisionLimit',['../classOscProbCalcerBase.html#ad8011dc225caeb64d40bf2cb7df3af1e',1,'OscProbCalcerBase']]],
