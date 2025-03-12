@@ -165,12 +165,15 @@ void OscProbCalcerOscProb::CalcProbPMNS(const std::vector<FLOAT_T>& OscParams) {
                                                            fMaxDetFlavour,
                                                            fEnergyArray[iEnergy]);
 
+        #if UseMultithreading == 1
+        #pragma omp simd
+        #endif
         for (int iOscChannel = 0; iOscChannel < fNOscillationChannels; iOscChannel++) {
 
-          int gflv = fOscillationChannels[iOscChannel].GeneratedFlavour-1;
-          int dflv = fOscillationChannels[iOscChannel].DetectedFlavour-1;
-          double weight = probMatrix[gflv][dflv];
-          int index = ReturnWeightArrayIndex(iNuType, iOscChannel, iEnergy, iCosineZ);
+          const int gflv = fOscillationChannels[iOscChannel].GeneratedFlavour-1;
+          const int dflv = fOscillationChannels[iOscChannel].DetectedFlavour-1;
+          const double weight = probMatrix[gflv][dflv];
+          const int index = ReturnWeightArrayIndex(iNuType, iOscChannel, iEnergy, iCosineZ);
 
           fWeightArray[index] = weight;
 
@@ -341,7 +344,7 @@ void OscProbCalcerOscProb::SetPMNSParams(const std::vector<FLOAT_T>& OscParams) 
 
 }
 
-int OscProbCalcerOscProb::PMNS_StrToInt(std::string PMNSType) {
+int OscProbCalcerOscProb::PMNS_StrToInt(const std::string& PMNSType) {
 
   if (PMNSType == "Fast" || PMNSType == "fast")          return kFast;
   if (PMNSType == "Sterile+1" || PMNSType == "Sterile1") return kPMNSSterile1;
