@@ -17,7 +17,7 @@ using std::chrono::milliseconds;
 
 int main(int argc, char **argv) {
   if (argc < 2) {
-    std::cerr << "DragRace nIterations [OscillatorConfig1 OscillatorConfig2 ...]" << std::endl;
+    std::cerr << argv[0] << " nIterations [OscillatorConfig1 OscillatorConfig2 ...]" << std::endl;
     throw std::runtime_error("Invalid setup");
   }
   int nThrows = atoi(argv[1]);

@@ -196,7 +196,7 @@ if(${UseCUDAProb3} EQUAL 1)
   if(NOT CUDAProb3_ADDED)
     cmessage(FATAL_ERROR "Could not download CUDAProb3")
   endif()
-  
+
   target_compile_definitions(NuOscillatorCompilerOptions INTERFACE UseCUDAProb3=1)
 endif()
 
@@ -247,7 +247,7 @@ if(${UseGPU} EQUAL 1)
     if(NOT TARGET ProbGPU)
       cmessage(FATAL_ERROR "Could not find ProbGPU")
     endif()
-    
+
     target_compile_definitions(NuOscillatorCompilerOptions INTERFACE UseProbGPULinear=1)
   endif()
 endif()
@@ -259,7 +259,7 @@ if(${UseProb3ppLinear} EQUAL 1)
     GITHUB_REPOSITORY rogerwendell/Prob3plusplus
     GIT_TAG main
   )
-  
+
   if(NOT TARGET Prob3plusplus)
     cmessage(FATAL_ERROR "Could not find Prob3plusplus")
   endif()
@@ -267,7 +267,7 @@ if(${UseProb3ppLinear} EQUAL 1)
   # KS: Add additional compilation flags to be used for Prob3++
   target_compile_options(Prob3plusplus PRIVATE ${NuOscillator_Compiler_Flags})
   target_compile_definitions(NuOscillatorCompilerOptions INTERFACE UseProb3ppLinear=1)
-  
+
   install(TARGETS Prob3plusplus
     EXPORT NuOscillator-targets
     LIBRARY DESTINATION lib/)
@@ -289,7 +289,7 @@ if(${UseOscProb} EQUAL 1)
     GITHUB_REPOSITORY joaoabcoelho/OscProb
     GIT_TAG v2.1.2
   )
-  
+
   CPMAddPackage(
     NAME Eigen
     VERSION 3.4.0
@@ -300,14 +300,14 @@ if(${UseOscProb} EQUAL 1)
     add_library(Eigen INTERFACE IMPORTED)
     target_include_directories(Eigen INTERFACE ${Eigen_SOURCE_DIR})
   endif()
-  
+
   execute_process(COMMAND make WORKING_DIRECTORY ${OscProb_SOURCE_DIR})
-  
+
   add_library(OSCPROB INTERFACE IMPORTED)
   target_include_directories(OSCPROB INTERFACE  ${OscProb_SOURCE_DIR})
-  
+
   target_compile_definitions(NuOscillatorCompilerOptions INTERFACE UseOscProb=1)
-  
+
   set(OSCPROB_LIB_DIR ${OscProb_SOURCE_DIR}/lib)
 endif()
 
@@ -336,7 +336,7 @@ if(${UseNuSQUIDSLinear} EQUAL 1)
 
   add_library(SQUIDS::SQUIDS SHARED IMPORTED)
   set_target_properties(SQUIDS::SQUIDS PROPERTIES IMPORTED_LOCATION ${SQUIDS_LIB_DIR}/libSQuIDS.so)
-  
+
   ExternalProject_Add(NUSQUIDS
     GIT_REPOSITORY https://github.com/arguelles/nuSQuIDS.git
     GIT_TAG master
@@ -356,7 +356,7 @@ if(${UseNuSQUIDSLinear} EQUAL 1)
   set_target_properties(NUSQUIDS::NUSQUIDS PROPERTIES IMPORTED_LOCATION ${NUSQUIDS_LIB_DIR}/libnuSQuIDS.so)
 
   target_compile_definitions(NuOscillatorCompilerOptions INTERFACE UseNuSQUIDSLinear=1)
-endif()    
+endif()
 
 if(${UseGPU} EQUAL 1)
   target_compile_definitions(NuOscillatorCompilerOptions INTERFACE UseGPU=1)

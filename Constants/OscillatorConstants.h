@@ -62,31 +62,60 @@ namespace NuOscillator
   
 }
 
+/**
+ * @brief Returns the basic oscillation parameters.
+ * @return Vector of oscillation parameters.
+ */
 inline std::vector<FLOAT_T> ReturnOscParams_Basic() {
   std::vector<FLOAT_T> OscParams_Basic = {3.07e-1,5.28e-1,2.18e-2,7.53e-5,2.509e-3,-1.601};
   return OscParams_Basic;
 }
 
+/**
+ * @brief Returns the oscillation parameters for atmospheric neutrinos, with production height.
+ *
+ * @return Vector of oscillation parameters.
+ */
 inline std::vector<FLOAT_T> ReturnOscParams_Atm() {
   std::vector<FLOAT_T> OscParams_Atm = {3.07e-1,5.28e-1,2.18e-2,7.53e-5,2.509e-3,-1.601,25.0};
   return OscParams_Atm;
 }
 
+/**
+ * @brief Returns the oscillation parameters for beam neutrinos, with baseline and density. Without electron density
+ *
+ * @return Vector of oscillation parameters.
+ */
 inline std::vector<FLOAT_T> ReturnOscParams_Beam_woYe() {
   std::vector<FLOAT_T> OscParams_Beam_woYe = {3.07e-1,5.28e-1,2.18e-2,7.53e-5,2.509e-3,-1.601,250.0,2.6};
   return OscParams_Beam_woYe;
 }
 
+/**
+ * @brief Returns the oscillation parameters for beam neutrinos, with baseline and density. With electron density
+ *
+ * @return Vector of oscillation parameters.
+ */
 inline std::vector<FLOAT_T> ReturnOscParams_Beam_wYe() {
   std::vector<FLOAT_T> OscParams_Beam_wYe = {3.07e-1,5.28e-1,2.18e-2,7.53e-5,2.509e-3,-1.601,250.0,2.6,0.5};
   return OscParams_Beam_wYe;
 }
 
+/**
+ * @brief Returns the oscillation parameters for beam neutrinos, with baseline and density. With electron density and decoherence parameters.
+ *
+ * @return Vector of oscillation parameters.
+ */
 inline std::vector<FLOAT_T> ReturnOscParams_Beam_wYe_wDeco() {
   std::vector<FLOAT_T> OscParams_Beam_wYe_wDeco = {3.07e-1,5.28e-1,2.18e-2,7.53e-5,2.509e-3,-1.601,250.0,2.6,0.5,0.0,2,1.0}; //9.48e-18
   return OscParams_Beam_wYe_wDeco;
 }
 
+/**
+ * @brief Returns the oscillation parameters for beam neutrinos, with baseline and density. With electron density and Lorentz invariant parameters.
+ *
+ * @return Vector of oscillation parameters.
+ */
 inline std::vector<FLOAT_T> ReturnOscParams_Beam_wYe_wLIV() {
   std::vector<FLOAT_T> OscParams_Beam_wYe_wLIV = {3.07e-1,5.28e-1,2.18e-2,7.53e-5,2.509e-3,-1.601,250.0,2.6,0.5,1.0e-23,0.0,1.0e-23,0.0,0.0};
   return OscParams_Beam_wYe_wLIV;
@@ -164,7 +193,7 @@ inline int NeutrinoFlavour_StrToInt(const std::string& NuFlav) {
  *
  * @return Name of neutrino flavour
  */
-inline std::string NeutrinoFlavour_IntToStr(int NuFlav) {
+inline std::string NeutrinoFlavour_IntToStr(const int NuFlav) {
   switch (NuFlav) {
   case NuOscillator::kElectron: 
     return "Electron";
@@ -224,7 +253,7 @@ inline NuOscillator::OscillationChannel ReturnOscillationChannel(const std::stri
     DetectedFlavour = InputString.substr(Delimiter+1,InputString.size());
   } else {
     std::cerr << "Expected a string formatted as: 'GeneratedNeutrinoFlavour:DetectedNeutrinoFlavour'" << std::endl;
-    std::cerr << "Recieved:" << InputString << std::endl;
+    std::cerr << "Received:" << InputString << std::endl;
   }
   
   NuOscillator::OscillationChannel OscChannel = {NeutrinoFlavour_StrToInt(GeneratedFlavour),NeutrinoFlavour_StrToInt(DetectedFlavour)};

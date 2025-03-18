@@ -18,7 +18,7 @@ using std::chrono::milliseconds;
 
 int main(int argc, char **argv) {
   if (argc != 2) {
-    std::cerr << "./SingleOscillator InputConfig.yaml" << std::endl;
+    std::cerr << argv[0] << " InputConfig.yaml" << std::endl;
     throw std::runtime_error("Invalid setup");
   }
   std::string ConfigName = argv[1];
@@ -164,13 +164,10 @@ int main(int argc, char **argv) {
 	    delete Hist;
 	  }
 	}
-	
       }
-      
     }
 
     Canv->Print(OutputName+"]");
     delete Canv;
   }
-
 }
