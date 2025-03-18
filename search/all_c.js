@@ -3,7 +3,7 @@ var searchData=
   ['n_5fnewton_0',['N_Newton',['../classOscProbCalcerNuFASTLinear.html#a4a06d4792c263ab8564f7a14de412b30',1,'OscProbCalcerNuFASTLinear']]],
   ['ncoarsecosinezbins_1',['nCoarseCosineZBins',['../classOscillatorSubSampling.html#a630a2579046de037344ce7de8f0220b0',1,'OscillatorSubSampling']]],
   ['ncoarseenergybins_2',['nCoarseEnergyBins',['../classOscillatorSubSampling.html#acc5e27176181d299d6fdef4f4adbca2a',1,'OscillatorSubSampling']]],
-  ['neutrinoflavour_5finttostr_3',['NeutrinoFlavour_IntToStr',['../OscillatorConstants_8h.html#aafe499aaf98e40e170c6eadbae810927',1,'OscillatorConstants.h']]],
+  ['neutrinoflavour_5finttostr_3',['NeutrinoFlavour_IntToStr',['../OscillatorConstants_8h.html#a7b176932c5252767115bc66118401f6c',1,'OscillatorConstants.h']]],
   ['neutrinoflavour_5fstrtoint_4',['NeutrinoFlavour_StrToInt',['../OscillatorConstants_8h.html#a29a165250407b8e35f22da6607462094',1,'OscillatorConstants.h']]],
   ['neutrinoflavours_5',['NeutrinoFlavours',['../namespaceNuOscillator.html#a6cf913aba678fd3c7cfc73e57d2e3ec9',1,'NuOscillator']]],
   ['neutrinotypes_6',['NeutrinoTypes',['../classOscillatorSubSampling.html#a1a1becad139b2eff5d4791c89ea648bf',1,'OscillatorSubSampling']]],
