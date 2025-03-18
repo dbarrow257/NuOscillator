@@ -14,7 +14,7 @@ using std::chrono::milliseconds;
 
 int main(int argc, char **argv) {
   if (argc != 2) {
-    std::cerr << "./SingleOscProbCalcer InputConfig.yaml" << std::endl;
+    std::cerr << argv[0] << " InputConfig.yaml" << std::endl;
     throw std::runtime_error("Invalid setup");
   }
   std::string OscProbCalcerConfigname = argv[1];
@@ -39,7 +39,7 @@ int main(int argc, char **argv) {
 
   OscProbCalcerFactory* OscProbCalcFactory = new OscProbCalcerFactory();
   OscProbCalcerBase* Calcer = OscProbCalcFactory->CreateOscProbCalcer(OscProbCalcerConfigname);
-
+  delete OscProbCalcFactory;
   std::cout << "========================================================" << std::endl;
   std::cout << "Setting up Oscillators" << std::endl;
 

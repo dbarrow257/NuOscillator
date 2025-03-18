@@ -19,7 +19,6 @@ using std::chrono::duration;
 using std::chrono::milliseconds;
 
 int main() {
-
   std::string FileExt = ".png";
   
   //============================================================================================================
