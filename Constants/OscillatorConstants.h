@@ -107,7 +107,7 @@ inline std::vector<FLOAT_T> ReturnOscParams_Beam_wYe() {
  * @return Vector of oscillation parameters.
  */
 inline std::vector<FLOAT_T> ReturnOscParams_Beam_wYe_wDeco() {
-  std::vector<FLOAT_T> OscParams_Beam_wYe_wDeco = {3.07e-1,5.28e-1,2.18e-2,7.53e-5,2.509e-3,-1.601,250.0,2.6,0.5,0.0,2,1.0}; //9.48e-18
+  std::vector<FLOAT_T> OscParams_Beam_wYe_wDeco = {3.07e-1,5.28e-1,2.18e-2,7.53e-5,2.509e-3,-1.601,250.0,2.6,0.5,9.48e-18,2.0,1.0}; //9.48e-18
   return OscParams_Beam_wYe_wDeco;
 }
 
@@ -130,31 +130,31 @@ inline std::vector<std::string> ReturnKnownConfigs() {
   std::vector<std::string> ConfigNames;
 
 #if UseCUDAProb3 == 1
-  ConfigNames.push_back("./NuOscillatorConfigs/Binned_CUDAProb3.yaml");
+  ConfigNames.push_back("./NuOscillatorConfigs/Unbinned_CUDAProb3.yaml");
 #endif
 
 #if UseCUDAProb3Linear == 1
-  ConfigNames.push_back("./NuOscillatorConfigs/Binned_CUDAProb3Linear.yaml");
+  ConfigNames.push_back("./NuOscillatorConfigs/Unbinned_CUDAProb3Linear.yaml");
 #endif
 
 #if UseProbGPULinear == 1
-  ConfigNames.push_back("./NuOscillatorConfigs/Binned_ProbGPULinear.yaml");
+  ConfigNames.push_back("./NuOscillatorConfigs/Unbinned_ProbGPULinear.yaml");
 #endif
 
 #if UseProb3ppLinear == 1
-  ConfigNames.push_back("./NuOscillatorConfigs/Binned_Prob3ppLinear.yaml");
+  ConfigNames.push_back("./NuOscillatorConfigs/Unbinned_Prob3ppLinear.yaml");
 #endif
 
 #if UseNuFASTLinear == 1
-  ConfigNames.push_back("./NuOscillatorConfigs/Binned_NuFASTLinear.yaml");
+  ConfigNames.push_back("./NuOscillatorConfigs/Unbinned_NuFASTLinear.yaml");
 #endif
 
 #if UseNuSQUIDSLinear == 1
-  ConfigNames.push_back("./NuOscillatorConfigs/Binned_NuSQUIDSLinear.yaml");
+  ConfigNames.push_back("./NuOscillatorConfigs/Unbinned_NuSQUIDSLinear.yaml");
 #endif
   
 #if UseOscProb == 1
-  ConfigNames.push_back("./NuOscillatorConfigs/Binned_OscProb.yaml");
+  ConfigNames.push_back("./NuOscillatorConfigs/Unbinned_OscProb.yaml");
 #endif  
 
   return ConfigNames;

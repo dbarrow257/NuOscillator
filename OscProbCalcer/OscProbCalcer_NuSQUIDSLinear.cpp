@@ -92,26 +92,26 @@ void OscProbCalcerNuSQUIDSLinear::SetupPropagator() {
 
   switch (fOscModel) {
   case kSM:
-    nus_base = new nusquids::nuSQUIDS(E_range, nNeutrinoFlavours, nusquids::neutrino, false); // neutrinos
-    nubars_base = new nusquids::nuSQUIDS(E_range, nNeutrinoFlavours, nusquids::antineutrino, false); // antineutrinos
+    nus_base = new nusquids::nuSQUIDS(E_range, nNeutrinoFlavours, nusquids::neutrino, true); // neutrinos
+    nubars_base = new nusquids::nuSQUIDS(E_range, nNeutrinoFlavours, nusquids::antineutrino, true); // antineutrinos
     
     break;
 
   case kDecoherence:
-    nus_base = new nusquids::nuSQUIDSDecoh(E_range, nNeutrinoFlavours, nusquids::neutrino, false);
-    nubars_base = new nusquids::nuSQUIDSDecoh(E_range, nNeutrinoFlavours, nusquids::antineutrino, false);
+    nus_base = new nusquids::nuSQUIDSDecoh(E_range, nNeutrinoFlavours, nusquids::neutrino, true);
+    nubars_base = new nusquids::nuSQUIDSDecoh(E_range, nNeutrinoFlavours, nusquids::antineutrino, true);
     
     break;
 
   case kLIV:
-    nus_base = new nusquids::nuSQUIDSLV(E_range, nNeutrinoFlavours, nusquids::neutrino, false);
-    nubars_base = new nusquids::nuSQUIDSLV(E_range, nNeutrinoFlavours, nusquids::antineutrino, false);
+    nus_base = new nusquids::nuSQUIDSLV(E_range, nNeutrinoFlavours, nusquids::neutrino, true);
+    nubars_base = new nusquids::nuSQUIDSLV(E_range, nNeutrinoFlavours, nusquids::antineutrino, true);
 
     break;
 
   case kNSI:
-    nus_base = new nuSQUIDSNSI(nsi_mutau_coupling, E_range, nNeutrinoFlavours, nusquids::neutrino, false);
-    nubars_base = new nuSQUIDSNSI(nsi_mutau_coupling, E_range, nNeutrinoFlavours, nusquids::antineutrino, false);
+    nus_base = new nuSQUIDSNSI(nsi_mutau_coupling, E_range, nNeutrinoFlavours, nusquids::neutrino, true);
+    nubars_base = new nuSQUIDSNSI(nsi_mutau_coupling, E_range, nNeutrinoFlavours, nusquids::antineutrino, true);
 
     break;
     
