@@ -44,7 +44,7 @@ OscProbCalcerCUDAProb3::OscProbCalcerCUDAProb3(YAML::Node Config_) : OscProbCalc
   if(UseEarthModelSystematics){
     if (fVerbose >= NuOscillator::INFO){std::cout<<"Using Earth Model systematics"<<std::endl;}
     nLayers = Config_["OscProbCalcerSetup"]["Layers"].as<int>();
-    fNOscParams +=  2*nLayers;
+    fNOscParams +=  3*nLayers;
   }
   //=======
 
@@ -296,13 +296,20 @@ void OscProbCalcerCUDAProb3::ApplyEarthModelSystematics(const std::vector<FLOAT_
 
   std::vector<FLOAT_T> EarthBoundaries(nLayers);
   std::vector<FLOAT_T> EarthWeights(nLayers);
+  std::vector<FLOAT_T> EarthYps(nLayers+1);
 
-  int kLayerBoundaries = kPRODH + 1;
-  int kLayerWeights = kLayerBoundaries + nLayers;
+  // EarthBoundaries and EarthWeights have nLayers entries, and EarthYps has nLayers+1
+  const int kLayerBoundaries = kPRODH + 1;
+  const int kLayerWeights = kLayerBoundaries + nLayers;
+  const int kLayerYps = kLayerWeights + nLayers;
     
+  // EarthYps has opposite ordering of other two
+  // And inner most entries are set to being the same
+  EarthYps[nLayers] = OscParams[kLayerYps];
   for(int iLayer = 0; iLayer<nLayers; iLayer++){
     EarthBoundaries[iLayer] = OscParams[kLayerBoundaries+iLayer];
     EarthWeights[iLayer] = OscParams[kLayerWeights+iLayer];
+    EarthYps[nLayers-iLayer-1] = OscParams[kLayerYps+iLayer];
   }
     
   // Check if the model is a set of polynomials
@@ -312,4 +319,5 @@ void OscProbCalcerCUDAProb3::ApplyEarthModelSystematics(const std::vector<FLOAT_
   else{
     propagator->ModifyEarthModel(EarthBoundaries, EarthWeights);
   }
+  propagator->setChemicalComposition(EarthYps);
 }
