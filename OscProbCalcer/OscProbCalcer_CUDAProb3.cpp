@@ -121,13 +121,13 @@ void OscProbCalcerCUDAProb3::CalculateProbabilities(const std::vector<FLOAT_T>& 
     }
   }
 
-  FLOAT_T theta12 = asin(sqrt(OscParams[kTH12]));
-  FLOAT_T theta23 = asin(sqrt(OscParams[kTH23]));
-  FLOAT_T theta13 = asin(sqrt(OscParams[kTH13]));
-  FLOAT_T dm12sq  = OscParams[kDM12];
-  FLOAT_T dm23sq  = OscParams[kDM23];
-  FLOAT_T dcp     = OscParams[kDCP];
-  FLOAT_T prodH   = OscParams[kPRODH];
+  const FLOAT_T theta12 = asin(sqrt(OscParams[kTH12]));
+  const FLOAT_T theta23 = asin(sqrt(OscParams[kTH23]));
+  const FLOAT_T theta13 = asin(sqrt(OscParams[kTH13]));
+  const FLOAT_T dm12sq  = OscParams[kDM12];
+  const FLOAT_T dm23sq  = OscParams[kDM23];
+  const FLOAT_T dcp     = OscParams[kDCP];
+  const FLOAT_T prodH   = OscParams[kPRODH];
 
   propagator->setNeutrinoMasses(dm12sq, dm23sq);
   

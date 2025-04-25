@@ -194,12 +194,11 @@ void OscillatorSubSampling::PostCalculateProbabilities() {
     for (size_t iPtr=0;iPtr<OscillationProbabilitiesToAverage[iBin].size();iPtr++) {
       Avg += *(OscillationProbabilitiesToAverage[iBin][iPtr]);
     }
-    Avg /= OscillationProbabilitiesToAverage[iBin].size();
-
     if(OscillationProbabilitiesToAverage[iBin].size()==0){
       std::cerr<<"Division by zero encountered in SubSampling."<<std::endl;
       throw std::runtime_error("Fatal error in OscillatorSubSampling::PostCalculateProbabilities()");
     }
+    Avg /= OscillationProbabilitiesToAverage[iBin].size();
 
     AveragedOscillationProbabilities[iBin] = Avg;
   }

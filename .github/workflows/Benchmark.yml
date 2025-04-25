@@ -30,6 +30,12 @@ jobs:
             cmake_options: -DUseCUDAProb3=1 -DUseOscProb=1
             argument: 50 NuOscillatorConfigs/Binned_CUDAProb3.yaml NuOscillatorConfigs/Binned_OscProb.yaml
             title: TimingDistributionATM.png
+          - name: PlotUpdate ATM
+            exec: DragRace
+            cmake_options: -DUseCUDAProb3=1 -DUseOscProb=1
+            argument: 50 NuOscillatorConfigs/SubSampling_CUDAProb3.yaml NuOscillatorConfigs/SubSampling_OscProb.yaml
+            title: TimingDistributionATM_SubSampling.png
+
     container:
       image: ghcr.io/mach3-software/mach3:alma9v1.4.1
 
