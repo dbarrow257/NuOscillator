@@ -117,11 +117,13 @@ NuOscProbCalcers->Setup();
 
 ![Timing Distribution Beam](https://github.com/dbarrow257/NuOscillator/raw/gh-plots/TimingDistributionBeam.png)
 
-**Atmospheric**
+**Atmospheric Binned**
 
 ![Timing Distribution ATM](https://github.com/dbarrow257/NuOscillator/raw/gh-plots/TimingDistributionATM.png)
 
-**Beam**
+**Atmospheric Subsampling**
+
+![Timing Distribution ATM](https://github.com/dbarrow257/NuOscillator/raw/gh-plots/TimingDistributionATM_SubSampling)
 
 ### CPU vs GPU
 **Unbinned**
