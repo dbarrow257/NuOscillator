@@ -218,7 +218,7 @@ if(${UseCUDAProb3Linear} EQUAL 1)
     CPMFindPackage(
       NAME CUDAProb3Linear
       GITHUB_REPOSITORY "mach3-software/CUDAProb3"
-      GIT_TAG "main"
+      GIT_TAG "v1.0.0"
       OPTIONS
       "CPU_ONLY ON"
       "GPU_ON OFF"
