@@ -79,6 +79,39 @@ LIST(APPEND ALL_Engines
   OscProb
 )
 
+########################################################
+#Default Branches
+
+if(NOT DEFINED CUDAProb3_BRANCH)
+  set(CUDAProb3_BRANCH "develop")
+endif()
+
+if(NOT DEFINED CUDAProb3Linear_BRANCH)
+  set(CUDAProb3Linear_BRANCH "v1.0.1")
+endif()
+
+if(NOT DEFINED Prob3ppLinear_BRANCH)
+  set(Prob3ppLinear_BRANCH "main")
+endif()
+
+if(NOT DEFINED ProbGPULinear_BRANCH)
+  set(ProbGPULinear_BRANCH "main")
+endif()
+
+if(NOT DEFINED NuFASTLinear_BRANCH)
+  set(NuFASTLinear_BRANCH "v1.0")
+endif()
+
+if(NOT DEFINED NuSQUIDSLinear_BRANCH)
+  set(NuSQUIDSLinear_BRANCH "master")
+endif()
+
+if(NOT DEFINED OscProb_BRANCH)
+  set(OscProb_BRANCH "v2.1.2")
+endif()
+
+########################################################
+
 set(NuOscillator_Engines_Enabled "")
 cmessage(STATUS "NuOscillator Features: ")
 foreach(f ${ALL_Engines})
@@ -190,7 +223,7 @@ if(${UseCUDAProb3} EQUAL 1)
   CPMFindPackage(
     NAME CUDAProb3
     GITHUB_REPOSITORY "dbarrow257/CUDAProb3"
-    GIT_TAG "develop"
+    GIT_TAG ${CUDAProb3_BRANCH}
     DOWNLOAD_ONLY
   )
   if(NOT CUDAProb3_ADDED)
@@ -205,7 +238,7 @@ if(${UseCUDAProb3Linear} EQUAL 1)
     CPMFindPackage(
       NAME CUDAProb3Linear
       GITHUB_REPOSITORY "mach3-software/CUDAProb3"
-      GIT_TAG "v1.0.1"
+      GIT_TAG ${CUDAProb3Linear_BRANCH}
       OPTIONS
       "GPU_ON ON"
       "CMAKE_CUDA_ARCHITECTURES ${CMAKE_CUDA_ARCHITECTURES_STRING}"
@@ -218,7 +251,7 @@ if(${UseCUDAProb3Linear} EQUAL 1)
     CPMFindPackage(
       NAME CUDAProb3Linear
       GITHUB_REPOSITORY "mach3-software/CUDAProb3"
-      GIT_TAG "v1.0.1"
+      GIT_TAG ${CUDAProb3Linear_BRANCH}
       OPTIONS
       "CPU_ONLY ON"
       "GPU_ON OFF"
@@ -239,7 +272,7 @@ if(${UseGPU} EQUAL 1)
   if(${UseProbGPULinear} EQUAL 1)
     CPMFindPackage(
       NAME ProbGPU
-      GIT_TAG main
+      GIT_TAG ${ProbGPULinear_BRANCH}
       GITHUB_REPOSITORY dbarrow257/ProbGPU
       OPTIONS
       "CMAKE_CUDA_ARCHITECTURES ${CMAKE_CUDA_ARCHITECTURES_STRING}"
@@ -257,7 +290,7 @@ if(${UseProb3ppLinear} EQUAL 1)
     NAME Prob3plusplus
     VERSION 3.10.4
     GITHUB_REPOSITORY rogerwendell/Prob3plusplus
-    GIT_TAG main
+    GIT_TAG ${Prob3ppLinear_BRANCH}
   )
 
   if(NOT TARGET Prob3plusplus)
@@ -276,7 +309,7 @@ endif()
 if(${UseNuFASTLinear} EQUAL 1)
   CPMAddPackage(
     NAME NuFAST
-    GIT_TAG v1.0
+    GIT_TAG ${NuFASTLinear_BRANCH}
     GITHUB_REPOSITORY PeterDenton/NuFast
     DOWNLOAD_ONLY
   )
@@ -285,7 +318,7 @@ endif()
 
 if(${UseOscProb} EQUAL 1)
   CPMAddPackage(
-    NAME OscProb
+    NAME ${OscProb_BRANCH}
     GITHUB_REPOSITORY joaoabcoelho/OscProb
     GIT_TAG v2.1.2
   )
@@ -339,7 +372,7 @@ if(${UseNuSQUIDSLinear} EQUAL 1)
 
   ExternalProject_Add(NUSQUIDS
     GIT_REPOSITORY https://github.com/arguelles/nuSQuIDS.git
-    GIT_TAG master
+    GIT_TAG ${NuSQUIDSLinear_BRANCH}
     BUILD_IN_SOURCE = 1
     CONFIGURE_HANDLED_BY_BUILD false
     CONFIGURE_COMMAND <SOURCE_DIR>/configure --with-gsl=${GSL_ROOT_DIR} --with-hdf5=${HDF5_INCLUDE_DIRS}/../ --with-squids=${CMAKE_CURRENT_BINARY_DIR}/SQUIDS-prefix --prefix=<INSTALL_DIR>
