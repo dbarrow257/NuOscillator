@@ -55,17 +55,16 @@ OscProbCalcerCUDAProb3Linear::~OscProbCalcerCUDAProb3Linear() {
 
 void OscProbCalcerCUDAProb3Linear::SetupPropagator() {
 
+  nThreads = 1;
+#if UseMultithreading == 1
+  nThreads = omp_get_max_threads();
+#endif
+  
 #if UseGPU == 1
   if (fVerbose >= NuOscillator::INFO) {std::cout << "Using GPU CUDAProb3Linear propagator" << std::endl;}
-  propagator = std::unique_ptr< Propagator<FLOAT_T> > ( new BeamCudaPropagatorSingle(0, fNEnergyPoints));
+  propagator = std::unique_ptr< Propagator<FLOAT_T> > ( new BeamCudaPropagatorSingle(0, fNEnergyPoints, nThreads));
   fImplementationName += "-GPU";
 #else
-
-  nThreads = 1;
-  #if UseMultithreading == 1
-  nThreads = omp_get_max_threads();
-  #endif
-
   if (fVerbose >= NuOscillator::INFO) {std::cout << "Using CPU CUDAProb3Linear propagator with fNEnergyPoints:" << fNEnergyPoints << " and:" << nThreads << " threads" << std::endl;}
   propagator = std::unique_ptr< Propagator< FLOAT_T > > ( new BeamCpuPropagator<FLOAT_T>(fNEnergyPoints, nThreads)); // MultiThread CPU propagator
   fImplementationName += "-CPU-"+std::to_string(nThreads);
