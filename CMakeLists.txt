@@ -205,7 +205,7 @@ if(${UseCUDAProb3Linear} EQUAL 1)
     CPMFindPackage(
       NAME CUDAProb3Linear
       GITHUB_REPOSITORY "mach3-software/CUDAProb3"
-      GIT_TAG "v1.0.0"
+      GIT_TAG "v1.0.1"
       OPTIONS
       "GPU_ON ON"
       "CMAKE_CUDA_ARCHITECTURES ${CMAKE_CUDA_ARCHITECTURES_STRING}"
@@ -218,7 +218,7 @@ if(${UseCUDAProb3Linear} EQUAL 1)
     CPMFindPackage(
       NAME CUDAProb3Linear
       GITHUB_REPOSITORY "mach3-software/CUDAProb3"
-      GIT_TAG "v1.0.0"
+      GIT_TAG "v1.0.1"
       OPTIONS
       "CPU_ONLY ON"
       "GPU_ON OFF"
