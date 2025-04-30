@@ -318,9 +318,9 @@ endif()
 
 if(${UseOscProb} EQUAL 1)
   CPMAddPackage(
-    NAME ${OscProb_BRANCH}
+    NAME OscProb
     GITHUB_REPOSITORY joaoabcoelho/OscProb
-    GIT_TAG v2.1.2
+    GIT_TAG ${OscProb_BRANCH}
   )
 
   CPMAddPackage(
