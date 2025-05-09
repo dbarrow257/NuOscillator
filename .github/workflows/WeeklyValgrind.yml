@@ -1,5 +1,5 @@
 # Update Benchmarking plots
-name: PlotUpdate
+name: Weekly Valgrind
 
 # The events that trigger the workflow
 on:
@@ -22,7 +22,7 @@ jobs:
       fail-fast: false  # KS: Prevents cancellation of remaining jobs if one fails
       matrix:
         include:
-          - name: PlotUpdate Beam
+          - name: Weekly Valgrind
             cmake_options: -DUseCUDAProb3=1 -DUseOscProb=1 -DUseNuFASTLinear=1 -DUseProb3ppLinear=1 -DUseOscProb=1 -DUseNuSQUIDSLinear=1
             exec: DragRace
             argument: 1 NuOscillatorConfigs/Binned_CUDAProb3.yaml NuOscillatorConfigs/Binned_OscProb.yaml NuOscillatorConfigs/Binned_NuFASTLinear.yaml NuOscillatorConfigs/Binned_Prob3ppLinear.yaml NuOscillatorConfigs/Binned_OscProbLinear.yaml NuOscillatorConfigs/Binned_NuSQUIDSLinear.yaml
@@ -42,7 +42,7 @@ jobs:
         cd /opt/
         git clone https://github.com/dbarrow257/NuOscillator.git NuOscillator
         cd NuOscillator
-        git checkout ${{ github.head_ref }}
+        git checkout main
         mkdir build
         cd build
         cmake ../ -DUseGPU=0 -DUseMultithreading=1 -DUseDoubles=1 ${{ matrix.cmake_options }}
@@ -79,4 +79,4 @@ jobs:
         git add Valgrind${{ matrix.title }}.txt
         git add Massif${{ matrix.title }}.txt
         git commit -m "Update Valgrind ${{ matrix.title }} files"
-        git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/dbarrow257/NuOscillator.git gh-plots
+        git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/dbarrow257/NuOscillator.git gh-profiling
