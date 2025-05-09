@@ -1,0 +1,80 @@
+# Update Benchmarking plots
+name: Weekly Valgrind
+
+# The events that trigger the workflow
+on:
+  schedule:
+    - cron: '0 0 * * 1' # Every Monday at midnight
+
+permissions:
+  contents: write
+  packages: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    name: ${{ matrix.name }}
+
+    strategy:
+      fail-fast: false  # KS: Prevents cancellation of remaining jobs if one fails
+      matrix:
+        include:
+          - name: Weekly Valgrind
+            cmake_options: -DUseCUDAProb3=1 -DUseOscProb=1 -DUseNuFASTLinear=1 -DUseProb3ppLinear=1 -DUseOscProb=1 -DUseNuSQUIDSLinear=1
+            exec: DragRace
+            argument: 1 NuOscillatorConfigs/Binned_CUDAProb3.yaml NuOscillatorConfigs/Binned_OscProb.yaml NuOscillatorConfigs/Binned_NuFASTLinear.yaml NuOscillatorConfigs/Binned_Prob3ppLinear.yaml NuOscillatorConfigs/Binned_OscProbLinear.yaml NuOscillatorConfigs/Binned_NuSQUIDSLinear.yaml
+            title: NuOscillator
+
+    container:
+      image: ghcr.io/mach3-software/mach3:alma9v1.4.1
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Get hdf5
+      run: dnf install -y hdf5 hdf5-devel
+
+    - name: Get NuOscillator
+      run: |
+        cd /opt/
+        git clone https://github.com/dbarrow257/NuOscillator.git NuOscillator
+        cd NuOscillator
+        git checkout main
+        mkdir build
+        cd build
+        cmake ../ -DUseGPU=0 -DUseMultithreading=1 -DUseDoubles=1 ${{ matrix.cmake_options }}
+        # Install Valgrind
+        dnf install valgrind -y
+
+    - name: Build NuOscillator
+      run: |
+        cd /opt/NuOscillator/build
+        make -j4 install # Build the project
+
+    - name: Validations
+      run: |
+        source /opt/NuOscillator/build/Linux/bin/setup.NuOscillator.sh
+        cd /opt/NuOscillator/
+        valgrind --suppressions="$ROOTSYS/etc/valgrind-root.supp" --log-file="Valgrind${{ matrix.title }}.txt" --leak-check=yes --track-origins=yes --leak-check=full --show-leak-kinds=all  build/Linux/bin//${{ matrix.exec }} ${{ matrix.argument }}
+
+        valgrind --tool=massif --massif-out-file=Massif${{ matrix.title }}.txt build/Linux/bin//${{ matrix.exec }} ${{ matrix.argument }}
+
+    - name: Checkout different branch
+      run: |
+        git clone https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/dbarrow257/NuOscillator.git Plot
+        cd Plot
+        git checkout gh-profiling
+        mv /opt/NuOscillator/Valgrind${{ matrix.title }}.txt .
+        mv /opt/NuOscillator/Massif${{ matrix.title }}.txt .
+
+
+    - name: Configure Git and Push Update
+      run: |
+        cd Plot
+        git config --global user.email "github-actions@github.com"
+        git config --global user.name "github-actions"
+        git add Valgrind${{ matrix.title }}.txt
+        git add Massif${{ matrix.title }}.txt
+        git commit -m "Update Valgrind ${{ matrix.title }} files"
+        git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/dbarrow257/NuOscillator.git gh-profiling

@@ -166,4 +166,5 @@ int main(int argc, char **argv) {
   }
   Oscillators.clear();
   delete OscFactory;
+  delete Leg;
 }
