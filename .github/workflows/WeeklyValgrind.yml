@@ -5,8 +5,6 @@ name: Weekly Valgrind
 on:
   schedule:
     - cron: '0 0 * * 1' # Every Monday at midnight
-  pull_request:
-    branches: [ main ]
 
 permissions:
   contents: write
