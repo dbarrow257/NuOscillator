@@ -1,0 +1,18 @@
+<map id="OscProbCalcerCUDAProb3Linear" name="OscProbCalcerCUDAProb3Linear">
+<area shape="rect" id="Node000001" title="Oscillation calculation engine for linear propagation in CUDAProb3." alt="" coords="815,73,1031,99"/>
+<area shape="rect" id="Node000002" href="$classOscProbCalcerBase.html" title="Oscillation calculation engine (CUDAProb3, ProbGPU, Prob3++, etc.) implementation agnostic base class..." alt="" coords="542,73,682,99"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="697,84,814,84,814,89,697,89"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="202,5,319,31"/>
+<area shape="poly" id="edge7_Node000001_Node000003" title=" " alt="" coords="335,15,498,22,687,45,847,70,846,75,686,50,497,27,334,21"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="335,31,367,37,543,71,542,76,366,42,334,36"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="178,66,342,107"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="358,84,542,84,542,89,358,89"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="180,164,341,190"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="356,183,392,181,428,176,463,165,496,149,504,141,507,131,511,120,520,109,541,97,544,102,523,114,515,123,512,133,508,144,499,154,465,170,429,181,392,186,356,188"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="222,213,299,239"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="314,235,358,239,406,238,454,227,476,217,496,203,504,193,508,183,508,160,507,135,511,122,519,110,541,95,544,100,523,113,515,124,512,136,513,159,513,184,509,196,499,207,478,221,456,232,407,243,358,244,314,240"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="5,206,129,247"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="144,224,221,224,221,229,144,229"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="521,123,703,164"/>
+<area shape="poly" id="edge8_Node000001_Node000008" title=" " alt="" coords="718,121,849,97,850,102,719,127"/>
+</map>

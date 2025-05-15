@@ -1,0 +1,9 @@
+<map id="OscillatorBase" name="OscillatorBase">
+<area shape="rect" id="Node000001" title="Oscillation calculation (binned, unbinned, etc.) implementation agnostic base class." alt="" coords="169,5,275,31"/>
+<area shape="rect" id="Node000002" href="$classOscillatorBinned.html" title="Binned Oscillation calculation implementation class." alt="" coords="5,79,122,105"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="183,40,92,81,89,76,181,35"/>
+<area shape="rect" id="Node000003" href="$classOscillatorSubSampling.html" title="SubSampling Oscillation calculation implementation class." alt="" coords="146,79,299,105"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="225,46,225,79,220,79,220,46"/>
+<area shape="rect" id="Node000004" href="$classOscillatorUnbinned.html" title="Unbinned Oscillation calculation implementation class." alt="" coords="323,79,455,105"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="265,35,361,76,359,81,263,40"/>
+</map>

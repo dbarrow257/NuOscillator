@@ -1,0 +1,21 @@
+<map id="OscProbCalcerCUDAProb3" name="OscProbCalcerCUDAProb3">
+<area shape="rect" id="Node000001" title="Oscillation calculation engine for linear and atmospheric propagation in CUDAProb3." alt="" coords="928,253,1108,279"/>
+<area shape="rect" id="Node000002" href="$classOscProbCalcerBase.html" title="Oscillation calculation engine (CUDAProb3, ProbGPU, Prob3++, etc.) implementation agnostic base class..." alt="" coords="542,164,682,190"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="690,191,956,250,955,255,688,196"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="202,5,319,31"/>
+<area shape="poly" id="edge7_Node000001_Node000003" title=" " alt="" coords="335,10,414,11,498,22,577,44,655,72,730,104,801,138,921,203,998,251,995,255,918,208,798,142,728,109,653,77,575,49,497,27,413,17,335,16"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="334,31,498,69,531,91,561,116,602,162,598,165,557,120,528,95,496,74,333,36"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="178,66,342,107"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="358,87,428,96,498,113,551,136,593,161,590,166,548,141,496,118,427,101,357,93"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="180,164,341,190"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="356,174,542,174,542,180,356,180"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="222,233,299,259"/>
+<area shape="poly" id="edge9_Node000001_Node000006" title=" " alt="" coords="315,245,927,261,927,266,315,250"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="314,233,543,188,544,193,315,238"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="5,226,129,267"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="144,244,221,244,221,249,144,249"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="521,314,703,355"/>
+<area shape="poly" id="edge8_Node000001_Node000008" title=" " alt="" coords="718,324,809,313,903,297,977,277,978,282,904,302,809,318,719,329"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="532,380,692,406"/>
+<area shape="poly" id="edge10_Node000001_Node000009" title=" " alt="" coords="707,393,804,385,854,374,903,358,934,341,962,319,1003,278,1007,281,966,323,937,345,905,363,856,379,805,390,708,398"/>
+</map>

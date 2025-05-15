@@ -1,0 +1,27 @@
+<map id="Oscillator/OscillatorSubSampling.h" name="Oscillator/OscillatorSubSampling.h">
+<area shape="rect" id="Node000001" title=" " alt="" coords="313,5,471,46"/>
+<area shape="rect" id="Node000002" href="$OscillatorBase_8h.html" title=" " alt="" coords="334,94,450,120"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="395,46,395,78,390,78,390,46"/>
+<area shape="rect" id="Node000003" href="$OscProbCalcerBase_8h.html" title=" " alt="" coords="292,168,493,208"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="395,120,395,152,390,152,390,120"/>
+<area shape="rect" id="Node000004" href="$OscillatorConstants_8h.html" title=" " alt="" coords="145,256,354,282"/>
+<area shape="poly" id="edge13_Node000002_Node000004" title=" " alt="" coords="354,123,316,141,298,154,282,169,271,186,263,205,255,242,249,241,258,203,267,184,278,166,294,150,313,137,352,118"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="479,256,593,282"/>
+<area shape="poly" id="edge14_Node000002_Node000011" title=" " alt="" coords="433,118,472,137,491,150,508,166,519,184,527,203,536,241,531,242,522,205,514,186,503,169,488,154,469,141,431,123"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="358,211,286,251,283,246,355,207"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="350,330,403,356"/>
+<area shape="poly" id="edge11_Node000003_Node000008" title=" " alt="" coords="393,209,382,315,376,314,387,208"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="428,330,485,356"/>
+<area shape="poly" id="edge10_Node000003_Node000010" title=" " alt="" coords="403,208,448,314,443,317,398,210"/>
+<area shape="poly" id="edge12_Node000003_Node000011" title=" " alt="" coords="429,207,502,246,499,251,427,211"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="181,330,241,356"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="245,283,227,317,222,315,241,281"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="265,330,325,356"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="259,281,281,315,277,318,255,284"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="5,330,62,356"/>
+<area shape="poly" id="edge6_Node000004_Node000007" title=" " alt="" coords="214,285,77,330,75,325,212,280"/>
+<area shape="poly" id="edge7_Node000004_Node000008" title=" " alt="" coords="272,280,343,320,340,324,270,285"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="86,330,157,356"/>
+<area shape="poly" id="edge8_Node000004_Node000009" title=" " alt="" coords="229,285,158,324,155,320,226,280"/>
+<area shape="poly" id="edge9_Node000004_Node000010" title=" " alt="" coords="285,280,414,324,412,329,284,285"/>
+</map>

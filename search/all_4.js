@@ -5,5 +5,7 @@ var searchData=
   ['energyaxisbincenters_2',['EnergyAxisBinCenters',['../classOscillatorBinned.html#ae92aceeec9c7e0d588ea58a2a458f128',1,'OscillatorBinned']]],
   ['energyaxisbinedges_3',['EnergyAxisBinEdges',['../classOscillatorBinned.html#a210cb8d3efc6c0af55a8b25b76041576',1,'OscillatorBinned']]],
   ['energyaxishistname_4',['EnergyAxisHistName',['../classOscillatorBinned.html#adb510cfba161f90db5b1c9fa1b6d0f09',1,'OscillatorBinned']]],
-  ['evalpointssetinconstructor_5',['EvalPointsSetInConstructor',['../classOscillatorBase.html#aa043632bc554bce3f19e74318af66e03',1,'OscillatorBase']]]
+  ['engines_5',['Implemented Engines',['../index.html#autotoc_md3',1,'']]],
+  ['evalpointssetinconstructor_6',['EvalPointsSetInConstructor',['../classOscillatorBase.html#aa043632bc554bce3f19e74318af66e03',1,'OscillatorBase']]],
+  ['extensions_7',['Intended extensions',['../index.html#autotoc_md10',1,'']]]
 ];

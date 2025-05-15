@@ -5,7 +5,7 @@ var searchData=
   ['postcalculateprobabilities_2',['postcalculateprobabilities',['../classOscillatorBase.html#a8770c4e4d3634598c8ee935a38ec7a45',1,'OscillatorBase::PostCalculateProbabilities()'],['../classOscillatorSubSampling.html#a4d9d46337bec3c2ce541657db8ec72ae',1,'OscillatorSubSampling::PostCalculateProbabilities()']]],
   ['precisionlimit_3',['PrecisionLimit',['../classOscProbCalcerBase.html#ad8011dc225caeb64d40bf2cb7df3af1e',1,'OscProbCalcerBase']]],
   ['printknownoscillationchannels_4',['PrintKnownOscillationChannels',['../classOscProbCalcerBase.html#a0607bb55dd7abfb62666de7a3132b313',1,'OscProbCalcerBase']]],
-  ['printweights_5',['printweights',['../classOscillatorBase.html#a8694c5f8be7e667eaaf6e30901dae167',1,'OscillatorBase::PrintWeights()'],['../classOscProbCalcerBase.html#a7a1502b29dfe0ea8e0e48725a4520abc',1,'OscProbCalcerBase::PrintWeights()']]],
+  ['printweights_5',['printweights',['../classOscProbCalcerBase.html#a7a1502b29dfe0ea8e0e48725a4520abc',1,'OscProbCalcerBase::PrintWeights()'],['../classOscillatorBase.html#a8694c5f8be7e667eaaf6e30901dae167',1,'OscillatorBase::PrintWeights()']]],
   ['probability_6',['Probability',['../structNuOscillator_1_1OscillationProbability.html#ae654427199fa3e6ba115b6a9d7ce2f1a',1,'NuOscillator::OscillationProbability']]],
   ['productionheightsfile_7',['ProductionHeightsFile',['../classOscProbCalcerCUDAProb3.html#a29c48ed9e4e369be18b52b89faa19c86',1,'OscProbCalcerCUDAProb3']]],
   ['productionheightshistflavoursuffixes_8',['ProductionHeightsHistFlavourSuffixes',['../classOscProbCalcerCUDAProb3.html#a735ffa6816b8d5c9a929c70964851323',1,'OscProbCalcerCUDAProb3']]],

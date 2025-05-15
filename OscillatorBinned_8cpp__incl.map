@@ -1,0 +1,32 @@
+<map id="Oscillator/OscillatorBinned.cpp" name="Oscillator/OscillatorBinned.cpp">
+<area shape="rect" id="Node000001" title=" " alt="" coords="424,5,623,31"/>
+<area shape="rect" id="Node000002" href="$OscillatorBinned_8h.html" title=" " alt="" coords="268,79,453,105"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="497,34,403,75,401,70,495,29"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="335,389,395,414"/>
+<area shape="poly" id="edge17_Node000001_Node000007" title=" " alt="" coords="522,32,509,89,503,126,501,164,501,248,498,298,490,319,475,342,445,369,410,388,408,383,442,365,471,339,485,317,493,297,495,248,495,164,498,125,504,88,517,31"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="451,389,508,414"/>
+<area shape="poly" id="edge18_Node000001_Node000008" title=" " alt="" coords="529,31,543,88,549,125,551,164,551,248,546,285,534,321,500,377,496,375,529,318,541,284,546,248,546,164,544,126,538,89,524,32"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="548,389,619,414"/>
+<area shape="poly" id="edge16_Node000001_Node000010" title=" " alt="" coords="537,30,556,53,577,85,595,123,602,164,602,248,598,316,590,374,585,373,593,316,597,248,597,164,590,124,573,87,552,56,533,33"/>
+<area shape="rect" id="Node000003" href="$OscillatorBase_8h.html" title=" " alt="" coords="299,153,415,178"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="363,105,361,137,356,137,357,105"/>
+<area shape="rect" id="Node000004" href="$OscProbCalcerBase_8h.html" title=" " alt="" coords="113,226,315,267"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="336,181,264,221,261,216,334,176"/>
+<area shape="rect" id="Node000005" href="$OscillatorConstants_8h.html" title=" " alt="" coords="114,315,322,341"/>
+<area shape="poly" id="edge14_Node000003_Node000005" title=" " alt="" coords="359,179,351,221,342,246,328,269,301,293,270,311,267,306,298,289,324,265,337,244,346,220,353,178"/>
+<area shape="rect" id="Node000012" title=" " alt="" coords="346,315,461,341"/>
+<area shape="poly" id="edge15_Node000003_Node000012" title=" " alt="" coords="363,178,398,299,393,301,358,180"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="218,267,219,299,214,300,212,268"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="102,389,155,414"/>
+<area shape="poly" id="edge12_Node000004_Node000009" title=" " alt="" coords="159,270,128,289,104,316,100,330,101,345,114,375,109,377,96,347,95,330,100,314,125,285,156,265"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="5,389,63,414"/>
+<area shape="poly" id="edge11_Node000004_Node000011" title=" " alt="" coords="168,270,130,290,94,317,69,346,49,377,45,374,64,343,91,313,128,286,166,265"/>
+<area shape="poly" id="edge13_Node000004_Node000012" title=" " alt="" coords="262,265,361,306,359,311,260,270"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="188,389,248,414"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="221,341,221,373,215,373,215,341"/>
+<area shape="poly" id="edge6_Node000005_Node000007" title=" " alt="" coords="244,339,327,379,325,384,242,344"/>
+<area shape="poly" id="edge7_Node000005_Node000008" title=" " alt="" coords="263,339,437,386,435,391,262,344"/>
+<area shape="poly" id="edge8_Node000005_Node000009" title=" " alt="" coords="205,343,157,381,154,377,201,339"/>
+<area shape="poly" id="edge9_Node000005_Node000010" title=" " alt="" coords="281,339,533,388,532,393,280,344"/>
+<area shape="poly" id="edge10_Node000005_Node000011" title=" " alt="" coords="188,344,78,386,76,381,186,339"/>
+</map>

@@ -3,7 +3,7 @@ var searchData=
   ['fcalculationtypename_0',['fCalculationTypeName',['../classOscillatorBase.html#a863309fe4680d7dbc76c045c4041f87d',1,'OscillatorBase']]],
   ['fcosinezarray_1',['fCosineZArray',['../classOscProbCalcerBase.html#af7c32cdec95ac8ae9dc27b057c27ace8',1,'OscProbCalcerBase']]],
   ['fcosinezarrayset_2',['fCosineZArraySet',['../classOscProbCalcerBase.html#afd9fe2aa6d97a77da7dea42ed2134763',1,'OscProbCalcerBase']]],
-  ['fcosinezignored_3',['fcosinezignored',['../classOscillatorBase.html#a49382f9a473e2b3b99851e770caec47c',1,'OscillatorBase::fCosineZIgnored'],['../classOscProbCalcerBase.html#a74c8b6fbb5f76a4aafa96d399e1cc253',1,'OscProbCalcerBase::fCosineZIgnored']]],
+  ['fcosinezignored_3',['fcosinezignored',['../classOscProbCalcerBase.html#a74c8b6fbb5f76a4aafa96d399e1cc253',1,'OscProbCalcerBase::fCosineZIgnored'],['../classOscillatorBase.html#a49382f9a473e2b3b99851e770caec47c',1,'OscillatorBase::fCosineZIgnored']]],
   ['fdetdepth_4',['fDetDepth',['../classOscProbCalcerOscProb.html#ae4fc4394bef8e13bac6183535cadd18f',1,'OscProbCalcerOscProb']]],
   ['fenergyarray_5',['fEnergyArray',['../classOscProbCalcerBase.html#a79551cba7b9cf9b05fd595449b98c6b1',1,'OscProbCalcerBase']]],
   ['fenergyarrayset_6',['fEnergyArraySet',['../classOscProbCalcerBase.html#af1bbed7bc7d4e24cc7e64c5d2c93adde',1,'OscProbCalcerBase']]],
@@ -36,7 +36,7 @@ var searchData=
   ['fpremfile_33',['fPremFile',['../classOscProbCalcerOscProb.html#a8c9ea2e5f0407678111ecbe44f46dd34',1,'OscProbCalcerOscProb']]],
   ['fpremmodel_34',['fPremModel',['../classOscProbCalcerOscProb.html#ab1d11ed0c79ffabcfdef3cbbd688bfe4',1,'OscProbCalcerOscProb']]],
   ['fpropagatorset_35',['fPropagatorSet',['../classOscProbCalcerBase.html#a4258db5c5c9fcd503c294a3ab996203f',1,'OscProbCalcerBase']]],
-  ['fverbose_36',['fverbose',['../classOscillatorBase.html#aefea428bfddb9afd64b289d7e21d7892',1,'OscillatorBase::fVerbose'],['../classOscProbCalcerBase.html#afd90d7924214b849c24a6040e0d25042',1,'OscProbCalcerBase::fVerbose']]],
+  ['fverbose_36',['fverbose',['../classOscProbCalcerBase.html#afd90d7924214b849c24a6040e0d25042',1,'OscProbCalcerBase::fVerbose'],['../classOscillatorBase.html#aefea428bfddb9afd64b289d7e21d7892',1,'OscillatorBase::fVerbose']]],
   ['fweightarray_37',['fWeightArray',['../classOscProbCalcerBase.html#a89ca55fe94b0f4b7710ca61d97bacdba',1,'OscProbCalcerBase']]],
   ['fweightarrayinit_38',['fWeightArrayInit',['../classOscProbCalcerBase.html#a3798ecd36b75b027f2c36ff1ebc5414a',1,'OscProbCalcerBase']]]
 ];

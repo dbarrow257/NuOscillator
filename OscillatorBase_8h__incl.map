@@ -1,0 +1,25 @@
+<map id="Oscillator/OscillatorBase.h" name="Oscillator/OscillatorBase.h">
+<area shape="rect" id="Node000001" title=" " alt="" coords="305,5,480,31"/>
+<area shape="rect" id="Node000002" href="$OscProbCalcerBase_8h.html" title=" " alt="" coords="292,79,493,120"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="395,31,395,64,390,64,390,31"/>
+<area shape="rect" id="Node000003" href="$OscillatorConstants_8h.html" title=" " alt="" coords="145,168,354,193"/>
+<area shape="poly" id="edge12_Node000001_Node000003" title=" " alt="" coords="354,34,316,53,298,65,282,81,271,98,263,116,255,153,249,152,258,115,267,95,278,77,294,61,313,48,352,29"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="479,168,593,193"/>
+<area shape="poly" id="edge13_Node000001_Node000010" title=" " alt="" coords="433,29,472,48,491,61,508,77,519,95,527,115,536,152,531,153,522,116,514,98,503,81,488,65,469,52,431,34"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="358,123,286,162,283,157,355,118"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="350,241,403,267"/>
+<area shape="poly" id="edge10_Node000002_Node000007" title=" " alt="" coords="393,120,382,226,376,225,387,120"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="428,241,485,267"/>
+<area shape="poly" id="edge9_Node000002_Node000009" title=" " alt="" coords="403,119,448,226,443,228,398,121"/>
+<area shape="poly" id="edge11_Node000002_Node000010" title=" " alt="" coords="429,118,502,157,499,162,427,123"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="181,241,241,267"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="245,195,227,229,222,226,241,192"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="265,241,325,267"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="259,192,281,227,277,230,255,195"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="5,241,62,267"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="214,196,77,241,75,236,212,191"/>
+<area shape="poly" id="edge6_Node000003_Node000007" title=" " alt="" coords="272,192,343,231,340,236,270,196"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="86,241,157,267"/>
+<area shape="poly" id="edge7_Node000003_Node000008" title=" " alt="" coords="229,196,158,236,155,231,226,192"/>
+<area shape="poly" id="edge8_Node000003_Node000009" title=" " alt="" coords="285,191,414,235,412,240,284,196"/>
+</map>

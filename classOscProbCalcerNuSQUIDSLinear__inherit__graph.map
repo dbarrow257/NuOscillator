@@ -1,0 +1,5 @@
+<map id="OscProbCalcerNuSQUIDSLinear" name="OscProbCalcerNuSQUIDSLinear">
+<area shape="rect" id="Node000001" title="Oscillation calculation engine for linear propagation in NuSQUIDS." alt="" coords="5,79,219,105"/>
+<area shape="rect" id="Node000002" href="$classOscProbCalcerBase.html" title="Oscillation calculation engine (CUDAProb3, ProbGPU, Prob3++, etc.) implementation agnostic base class..." alt="" coords="42,5,182,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="115,46,115,79,109,79,109,46"/>
+</map>

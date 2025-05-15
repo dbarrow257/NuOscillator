@@ -1,0 +1,9 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="Node000000" href="$classOscillatorBase.html" title="Oscillation calculation (binned, unbinned, etc.) implementation agnostic base class." alt="" coords="5,55,112,80"/>
+<area shape="rect" id="Node000001" href="$classOscillatorBinned.html" title="Binned Oscillation calculation implementation class." alt="" coords="178,5,295,31"/>
+<area shape="poly" id="edge1_Node000000_Node000001" title=" " alt="" coords="121,47,186,29,188,34,123,53"/>
+<area shape="rect" id="Node000002" href="$classOscillatorSubSampling.html" title="SubSampling Oscillation calculation implementation class." alt="" coords="160,55,313,80"/>
+<area shape="poly" id="edge2_Node000000_Node000002" title=" " alt="" coords="127,65,159,65,159,70,127,70"/>
+<area shape="rect" id="Node000003" href="$classOscillatorUnbinned.html" title="Unbinned Oscillation calculation implementation class." alt="" coords="171,104,302,130"/>
+<area shape="poly" id="edge3_Node000000_Node000003" title=" " alt="" coords="123,82,188,101,186,106,121,88"/>
+</map>

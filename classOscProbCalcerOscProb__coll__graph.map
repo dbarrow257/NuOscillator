@@ -1,0 +1,16 @@
+<map id="OscProbCalcerOscProb" name="OscProbCalcerOscProb">
+<area shape="rect" id="Node000001" title="Oscillation calculation engine for linear propagation in NuFAST." alt="" coords="710,227,870,252"/>
+<area shape="rect" id="Node000002" href="$classOscProbCalcerBase.html" title="Oscillation calculation engine (CUDAProb3, ProbGPU, Prob3++, etc.) implementation agnostic base class..." alt="" coords="521,153,661,179"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="643,182,754,224,752,229,641,187"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="202,5,319,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="335,16,416,27,459,39,499,57,527,78,552,104,584,151,580,154,548,108,524,82,496,62,457,44,415,32,334,21"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="178,55,342,96"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="358,75,428,84,498,102,542,125,576,151,573,155,539,130,496,107,427,89,358,80"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="180,153,341,179"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="357,164,521,164,521,169,357,169"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="222,223,299,248"/>
+<area shape="poly" id="edge7_Node000001_Node000006" title=" " alt="" coords="315,233,709,236,709,242,315,239"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="313,222,497,184,529,177,530,182,498,189,314,227"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="5,215,129,256"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="144,233,221,233,221,238,144,238"/>
+</map>

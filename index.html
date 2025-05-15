@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>NuOscillator: Main Page</title>
+<title>NuOscillator: NuOscillator</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,7 +21,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">NuOscillator<span id="projectnumber">&#160;v1.2.1</span>
+   <div id="projectname">NuOscillator<span id="projectnumber">&#160;v1.3.1</span>
    </div>
   </td>
  </tr>
@@ -68,10 +68,105 @@ $(function() {
 </div>
 </div>
 
-<div class="header">
-  <div class="headertitle"><div class="title">NuOscillator Documentation</div></div>
+<div><div class="header">
+  <div class="headertitle"><div class="title"><a class="el" href="namespaceNuOscillator.html">NuOscillator</a> </div></div>
 </div><!--header-->
 <div class="contents">
+<div class="textblock"><p><a class="anchor" id="md_README"></a><a class="el" href="namespaceNuOscillator.html">NuOscillator</a> is a wrapper around oscillation calculators, enabling the computation of oscillation probabilities for various configurations, including beam oscillations, atmospheric oscillations, and sterile neutrinos with NSI effects.</p>
+<p>The framework has been adapted to integrate seamlessly with oscillation fitters like <a href="https://github.com/mach3-software/MaCh3/tree/develop">MaCh3</a>.</p>
+<p><a href="https://github.com/dbarrow257/NuOscillator/pkgs/container/nuoscillator"><img src="https://img.shields.io/badge/Container-Image-brightgreen" alt="Container Image" class="inline"/></a> <a href="https://dbarrow257.github.io/NuOscillator/"><img src="https://img.shields.io/badge/Code-Doxygen-2ea44f" alt="Code - Doxygen" class="inline"/></a> <a href="https://github.com/dbarrow257/NuOscillator/actions/workflows/CIBuild.yml"><img src="https://github.com/dbarrow257/NuOscillator/actions/workflows/CIBuild.yml/badge.svg" alt="Build CI" style="pointer-events: none;" class="inline"/></a> <a href="https://doi.org/10.5281/zenodo.14771935"><img src="https://zenodo.org/badge/642420445.svg" alt="DOI" style="pointer-events: none;" class="inline"/></a></p>
+<h1><a class="anchor" id="autotoc_md1"></a>
+How to start</h1>
+<div class="fragment"><div class="line">mkdir build;</div>
+<div class="line">cd build;</div>
+<div class="line">cmake ../ -DUseGPU=0 -DUseMultithreading=1 -DUseDoubles=0 -DUseCUDAProb3=0 -DUseCUDAProb3Linear=1 -DUseProb3ppLinear=1 -DUseNuFASTLinear=1 -DUseProbGPULinear=0</div>
+<div class="line">make -jN [Where N is number of threads]</div>
+<div class="line">make install</div>
+</div><!-- fragment --><p>don't forget about </p><div class="fragment"><div class="line">source Linux/bin/setup.NuOscillator.sh</div>
+</div><!-- fragment --><p>then you can check if everything runs correctly by </p><div class="fragment"><div class="line">cd ../</div>
+<div class="line">./build/Linux/bin/DragRace 1000 NuOscillatorConfigs/Binned_NuFASTLinear.yaml</div>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md2"></a>
+How to Integrate in Framework</h1>
+<p>Recommended way is to use CPM within you CmakeList.txt </p><div class="fragment"><div class="line">CPMAddPackage(</div>
+<div class="line">  NAME NuOscillator</div>
+<div class="line">    VERSION v1.2.1</div>
+<div class="line">    GITHUB_REPOSITORY &quot;dbarrow257/NuOscillator&quot;</div>
+<div class="line">    GIT_TAG &quot;main&quot;</div>
+<div class="line">    OPTIONS</div>
+<div class="line">    &quot;UseGPU 0&quot;</div>
+<div class="line">    &quot;UseMultithreading 1&quot;</div>
+<div class="line">    &quot;UseDoubles 1&quot;</div>
+<div class="line"> </div>
+<div class="line">    &quot;UseCUDAProb3Linear 0&quot;</div>
+<div class="line">    &quot;UseCUDAProb3 0&quot;</div>
+<div class="line">    &quot;UseProbGPULinear 0&quot;</div>
+<div class="line">    &quot;UseProb3ppLinear 0&quot;</div>
+<div class="line">    &quot;UseNuFASTLinear  1&quot;</div>
+<div class="line">    &quot;UseNuSQUIDSLinear 0&quot;</div>
+<div class="line">    &quot;UseOscProb  1&quot;</div>
+<div class="line">)</div>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md3"></a>
+Implemented Engines</h1>
+<p><code>UseCUDAProb3</code> etc. refers to implemented engines. Engines are loaded via yaml config files. In principle you can compile all of them and select one you want to use via config.</p>
+<p>Following neutrino oscillation calculators are available: </p><table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Oscillator   </th><th class="markdownTableHeadNone">Hardware   </th><th class="markdownTableHeadNone">Source   </th><th class="markdownTableHeadNone">Reference    </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">CUDAProb3Linear   </td><td class="markdownTableBodyNone">CPU/GPU   </td><td class="markdownTableBodyNone">Beam   </td><td class="markdownTableBodyNone"></td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">CUDAProb3   </td><td class="markdownTableBodyNone">CPU/GPU   </td><td class="markdownTableBodyNone">Atm   </td><td class="markdownTableBodyNone"><a href="https://doi.org/10.1016/j.cpc.2018.07.022">Ref</a>    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">ProbGPULinear   </td><td class="markdownTableBodyNone">GPU   </td><td class="markdownTableBodyNone">Beam   </td><td class="markdownTableBodyNone"><a href="http://dx.doi.org/10.3204/DESY-PROC-2014-05/23">Ref</a>    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">Prob3++Linear   </td><td class="markdownTableBodyNone">CPU   </td><td class="markdownTableBodyNone">Beam   </td><td class="markdownTableBodyNone"></td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">NuFastLinear   </td><td class="markdownTableBodyNone">CPU   </td><td class="markdownTableBodyNone">Beam   </td><td class="markdownTableBodyNone"><a href="https://doi.org/10.48550/arXiv.2405.02400">Ref</a>    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">OscProb   </td><td class="markdownTableBodyNone">CPU   </td><td class="markdownTableBodyNone">Beam/Atm   </td><td class="markdownTableBodyNone"><a href="https://doi.org/10.5281/zenodo.6347002">Ref</a>    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">NuSQUIDSLinear   </td><td class="markdownTableBodyNone">CPU   </td><td class="markdownTableBodyNone">Beam   </td><td class="markdownTableBodyNone"><a href="https://doi.org/10.1016/j.cpc.2022.108346">Ref</a>   </td></tr>
+</table>
+<h1><a class="anchor" id="autotoc_md4"></a>
+GPU</h1>
+<p>Some engines requires gpu like <code>ProbGPULinear</code> other can use both CPU and GPU. To use GPU functionality remember about </p><div class="fragment"><div class="line">cmake ../ -DUseGPU=1</div>
+</div><!-- fragment --><p> You can also pass CUDA architectures via cmake to ensure consistent architectures in multiple packages: </p><div class="fragment"><div class="line">cmake ../ -DCMAKE_CUDA_ARCHITECTURES=&quot;all&quot;</div>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md5"></a>
+Compiler Flags</h1>
+<p><a class="el" href="namespaceNuOscillator.html">NuOscillator</a> natively doesn't include many c++ compiler flags (this include optimalisation flags). Since package is intended to be used withing other (fitting) frameworks we allow to pass compiler flags via cmake. </p><div class="fragment"><div class="line">cmake ../ -DNuOscillator_Compiler_Flags=&quot;-O3;-g;-Wextra;-Wall&quot;</div>
+</div><!-- fragment --><p> This give full freedom to users in how to configure <a class="el" href="namespaceNuOscillator.html">NuOscillator</a>.</p>
+<h1><a class="anchor" id="autotoc_md6"></a>
+How to Use in Fitting Framework</h1>
+<p>First initialise factory to produce engine defined by config. See exmaples of configs <a href="https://github.com/dbarrow257/NuOscillator/tree/main/NuOscillatorConfigs">here</a> </p><div class="fragment"><div class="line"><span class="keyword">auto</span> OscillFactory = std::make_unique&lt;OscillatorFactory&gt;();</div>
+<div class="line"> </div>
+<div class="line">std::string NuOscillatorConfigFile = <span class="stringliteral">&quot;configs/NuFASTLinear.yaml&quot;</span>);</div>
+<div class="line">NuOscProbCalcers = OscillFactory-&gt;CreateOscillator(NuOscillatorConfigFile);</div>
+</div><!-- fragment --><p>Now you need specify energy bins for which oscillation are going to be calculated. Energy must be in GeV! It is good practice to sort energy values as <a class="el" href="namespaceNuOscillator.html">NuOscillator</a> expect them in ascending order. </p><div class="fragment"><div class="line">std::vector&lt;double&gt; EnergyArray = {0, 0.6, 1, 10};</div>
+<div class="line">std::sort(EnergyArray.begin(),EnergyArray.end());</div>
+</div><!-- fragment --><p>Lastly pass energy vector and finish setup </p><div class="fragment"><div class="line"><span class="keywordflow">if</span> (!NuOscProbCalcers-&gt;EvalPointsSetInConstructor()) {</div>
+<div class="line">  NuOscProbCalcers-&gt;SetEnergyArrayInCalcer(EnergyArray);</div>
+<div class="line">}</div>
+<div class="line">NuOscProbCalcers-&gt;Setup();</div>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md7"></a>
+Benchmark</h1>
+<h2><a class="anchor" id="autotoc_md8"></a>
+CPU only</h2>
+<p><b>Beam</b></p>
+<p><img src="https://github.com/dbarrow257/NuOscillator/raw/gh-plots/TimingDistributionBeam.png" alt="Timing Distribution Beam" class="inline"/></p>
+<p><b>Atmospheric Binned</b></p>
+<p><img src="https://github.com/dbarrow257/NuOscillator/raw/gh-plots/TimingDistributionATM.png" alt="Timing Distribution ATM" class="inline"/></p>
+<p><b>Atmospheric Subsampling</b></p>
+<p><img src="https://github.com/dbarrow257/NuOscillator/raw/gh-plots/TimingDistributionATM_SubSampling.png" alt="Timing Distribution ATM" class="inline"/></p>
+<h2><a class="anchor" id="autotoc_md9"></a>
+CPU vs GPU</h2>
+<p><b>Unbinned</b> <img src="https://github.com/dbarrow257/NuOscillator/raw/gh-plots/TimingDistributionUnBinned_GPUvsCPU.png" alt="Timing Distribution ATM" class="inline"/></p>
+<p><b>Binned</b></p>
+<p><img src="https://github.com/dbarrow257/NuOscillator/raw/gh-plots/TimingDistributionBinned_GPUvsCPU.png" alt="Timing Distribution ATM" class="inline"/></p>
+<h1><a class="anchor" id="autotoc_md10"></a>
+Intended extensions</h1>
+<ul>
+<li>Better handling of oscillation parameter pass through </li>
+</ul>
+</div></div><!-- PageDoc -->
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
