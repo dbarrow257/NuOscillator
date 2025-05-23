@@ -91,7 +91,8 @@ if(NOT DEFINED CUDAProb3Linear_BRANCH)
 endif()
 
 if(NOT DEFINED Prob3ppLinear_BRANCH)
-  set(Prob3ppLinear_BRANCH "main")
+  # KS: Let's use commit because Prob3++ has no tags...
+  set(Prob3ppLinear_BRANCH "fa103b1e57fbbe54ac496255adacc703b656edc6")
 endif()
 
 if(NOT DEFINED ProbGPULinear_BRANCH)
