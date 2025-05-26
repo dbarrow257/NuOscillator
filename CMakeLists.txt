@@ -91,8 +91,7 @@ if(NOT DEFINED CUDAProb3Linear_BRANCH)
 endif()
 
 if(NOT DEFINED Prob3ppLinear_BRANCH)
-  # KS: Let's use commit because Prob3++ has no tags...
-  set(Prob3ppLinear_BRANCH "fa103b1e57fbbe54ac496255adacc703b656edc6")
+  set(Prob3ppLinear_BRANCH "v3r20")
 endif()
 
 if(NOT DEFINED ProbGPULinear_BRANCH)
@@ -289,7 +288,6 @@ endif()
 if(${UseProb3ppLinear} EQUAL 1)
   CPMAddPackage(
     NAME Prob3plusplus
-    VERSION 3.10.4
     GITHUB_REPOSITORY rogerwendell/Prob3plusplus
     GIT_TAG ${Prob3ppLinear_BRANCH}
   )
