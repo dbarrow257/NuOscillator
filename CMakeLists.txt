@@ -423,25 +423,25 @@ set(LIBDEST ${CMAKE_INSTALL_PREFIX}/lib)
 # this way even if we move directory we can still use NuOscillator
 if(CUDAProb3_SOURCE_DIR)
   file(RELATIVE_PATH CUDAProb3_RELATIVE_PATH
-       "${CMAKE_BINARY_DIR}"
+       "${CMAKE_INSTALL_PREFIX}"
        "${CUDAProb3_SOURCE_DIR}")
 endif()
 
 if(SQUIDS_LIB_DIR)
   file(RELATIVE_PATH SQUIDS_REL_LIB_PATH
-       "${CMAKE_BINARY_DIR}"
+       "${CMAKE_INSTALL_PREFIX}"
        "${SQUIDS_LIB_DIR}")
 endif()
 
 if(NUSQUIDS_LIB_DIR)
   file(RELATIVE_PATH NUSQUIDS_REL_LIB_PATH
-       "${CMAKE_BINARY_DIR}"
+       "${CMAKE_INSTALL_PREFIX}"
        "${NUSQUIDS_LIB_DIR}")
 endif()
 
 if(OSCPROB_LIB_DIR)
   file(RELATIVE_PATH OSCPROB_REL_LIB_PATH
-       "${CMAKE_BINARY_DIR}"
+       "${CMAKE_INSTALL_PREFIX}"
        "${OSCPROB_LIB_DIR}")
 endif()
 
