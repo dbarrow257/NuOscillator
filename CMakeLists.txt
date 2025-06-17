@@ -419,6 +419,32 @@ add_subdirectory(Apps)
 
 set(LIBDEST ${CMAKE_INSTALL_PREFIX}/lib)
 
+# KS: This extract relative path to CudaProb and others. This allow in setup to use ${NUOSCILLATOR_ROOT}/RELATIVE_PART
+# this way even if we move directory we can still use NuOscillator
+if(CUDAProb3_SOURCE_DIR)
+  file(RELATIVE_PATH CUDAProb3_RELATIVE_PATH
+       "${CMAKE_BINARY_DIR}"
+       "${CUDAProb3_SOURCE_DIR}")
+endif()
+
+if(SQUIDS_LIB_DIR)
+  file(RELATIVE_PATH SQUIDS_REL_LIB_PATH
+       "${CMAKE_BINARY_DIR}"
+       "${SQUIDS_LIB_DIR}")
+endif()
+
+if(NUSQUIDS_LIB_DIR)
+  file(RELATIVE_PATH NUSQUIDS_REL_LIB_PATH
+       "${CMAKE_BINARY_DIR}"
+       "${NUSQUIDS_LIB_DIR}")
+endif()
+
+if(OSCPROB_LIB_DIR)
+  file(RELATIVE_PATH OSCPROB_REL_LIB_PATH
+       "${CMAKE_BINARY_DIR}"
+       "${OSCPROB_LIB_DIR}")
+endif()
+
 configure_file(cmake/Templates/setup.NuOscillator.sh.in "${PROJECT_BINARY_DIR}/setup.NuOscillator.sh" @ONLY)
 install(FILES "${PROJECT_BINARY_DIR}/setup.NuOscillator.sh" DESTINATION ${CMAKE_INSTALL_PREFIX}/bin)
 
