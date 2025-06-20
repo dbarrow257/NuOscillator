@@ -37,6 +37,7 @@ int main() {
   std::vector<FLOAT_T> OscParams_Atm = ReturnOscParams_Atm();
   std::vector<FLOAT_T> OscParams_Beam_woYe = ReturnOscParams_Beam_woYe();
   std::vector<FLOAT_T> OscParams_Beam_wYe = ReturnOscParams_Beam_wYe();
+  std::vector<FLOAT_T> OscParams_Beam_wYe_wDeco = ReturnOscParams_Beam_wYe_wDeco();
 
   std::cout << "========================================================" << std::endl;
   std::cout << "Starting setup in executable" << std::endl;
@@ -97,6 +98,8 @@ int main() {
       Oscillators[iOsc]->CalculateProbabilities(OscParams_Beam_woYe);
     } else if (Oscillators[iOsc]->ReturnNOscParams() == (int)OscParams_Beam_wYe.size()) {
       Oscillators[iOsc]->CalculateProbabilities(OscParams_Beam_wYe);
+    } else if (Oscillators[iOsc]->ReturnNOscParams() == (int)OscParams_Beam_wYe_wDeco.size()) {
+      Oscillators[iOsc]->CalculateProbabilities(OscParams_Beam_wYe_wDeco);
     } else if (Oscillators[iOsc]->ReturnNOscParams() == (int)OscParams_Atm.size()) {
       Oscillators[iOsc]->CalculateProbabilities(OscParams_Atm);
     } else if (Oscillators[iOsc]->ReturnNOscParams() == (int)OscParams_Basic.size()) {
