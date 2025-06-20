@@ -130,31 +130,31 @@ inline std::vector<std::string> ReturnKnownConfigs() {
   std::vector<std::string> ConfigNames;
 
 #if UseCUDAProb3 == 1
-  ConfigNames.push_back("./NuOscillatorConfigs/Unbinned_CUDAProb3.yaml");
+  ConfigNames.push_back("./NuOscillatorConfigs/Binned_CUDAProb3.yaml");
 #endif
 
 #if UseCUDAProb3Linear == 1
-  ConfigNames.push_back("./NuOscillatorConfigs/Unbinned_CUDAProb3Linear.yaml");
+  ConfigNames.push_back("./NuOscillatorConfigs/Binned_CUDAProb3Linear.yaml");
 #endif
 
 #if UseProbGPULinear == 1
-  ConfigNames.push_back("./NuOscillatorConfigs/Unbinned_ProbGPULinear.yaml");
+  ConfigNames.push_back("./NuOscillatorConfigs/Binned_ProbGPULinear.yaml");
 #endif
 
 #if UseProb3ppLinear == 1
-  ConfigNames.push_back("./NuOscillatorConfigs/Unbinned_Prob3ppLinear.yaml");
+  ConfigNames.push_back("./NuOscillatorConfigs/Binned_Prob3ppLinear.yaml");
 #endif
 
 #if UseNuFASTLinear == 1
-  ConfigNames.push_back("./NuOscillatorConfigs/Unbinned_NuFASTLinear.yaml");
+  ConfigNames.push_back("./NuOscillatorConfigs/Binned_NuFASTLinear.yaml");
 #endif
 
 #if UseNuSQUIDSLinear == 1
-  ConfigNames.push_back("./NuOscillatorConfigs/Unbinned_NuSQUIDSLinear.yaml");
+  ConfigNames.push_back("./NuOscillatorConfigs/Binned_NuSQUIDSLinear.yaml");
 #endif
   
 #if UseOscProb == 1
-  ConfigNames.push_back("./NuOscillatorConfigs/Unbinned_OscProb.yaml");
+  ConfigNames.push_back("./NuOscillatorConfigs/Binned_OscProb.yaml");
 #endif  
 
   return ConfigNames;

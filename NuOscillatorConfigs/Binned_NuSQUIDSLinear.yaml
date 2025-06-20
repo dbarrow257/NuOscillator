@@ -12,9 +12,9 @@ OscProbCalcerSetup:
   ImplementationName: "NuSQUIDSLinear"
   PrecisionLimit: 1e-3
   NumNeutrinoFlavours: 3
-  OscModel: "Decoherence" # SM, Decoherence, LIV, NSI
+  OscModel: "SM" # SM, Decoherence, LIV, NSI
   #NSIMuTauCoupling: 1.0e-2
-  DecoherenceModel: "RandomizeState"
+  #DecoherenceModel: "RandomizeState" # RandomizePhase, RandomizeState, NeutrinoLoss
   IntegrationStep: "5.0"
   RelativeError: "1.0e-5"
   AbsoluteError: "1.0e-5"

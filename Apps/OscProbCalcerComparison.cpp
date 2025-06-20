@@ -30,7 +30,7 @@ int main() {
   
   //============================================================================================================
   
-  std::vector<FLOAT_T> EnergyArray = logspace(0.1,10.,100);
+  std::vector<FLOAT_T> EnergyArray = logspace(0.1,10.,1e3);
   std::vector<FLOAT_T> CosineZArray = linspace(-1.0,1.0,1);
 
   std::vector<FLOAT_T> OscParams_Basic = ReturnOscParams_Basic();
