@@ -1,7 +1,7 @@
 ========================================================
 Starting setup in executable
 ========================================================
-Initialising NuOscillatorConfigs/Unbinned_NuSQUIDSLinear.yaml
+Initialising NuOscillatorConfigs/OscProbCalcerConfigs/NuSQUIDSLinear.yaml
 ========================================================
 Setting up Oscillators
 Finished setup in executable
