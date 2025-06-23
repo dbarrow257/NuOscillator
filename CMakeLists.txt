@@ -103,7 +103,7 @@ if(NOT DEFINED NuFASTLinear_BRANCH)
 endif()
 
 if(NOT DEFINED NuSQUIDSLinear_BRANCH)
-  set(NuSQUIDSLinear_BRANCH "master")
+  set(NuSQUIDSLinear_BRANCH "ac55f210ffd2c04a060c0d00b790725f32e20f67")
 endif()
 
 if(NOT DEFINED OscProb_BRANCH)
