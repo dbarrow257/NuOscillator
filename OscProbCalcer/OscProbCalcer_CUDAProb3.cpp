@@ -284,6 +284,9 @@ void OscProbCalcerCUDAProb3::SetProductionHeightsAveraging(){
   propagator->SetNumberOfProductionHeightBinsForAveraging(NProductionHeightAveragingBins);
   propagator->setProductionHeightList(ProductionHeightProbabilitiesList,ProductionHeightsList);
   
+  File->Close();
+  delete File;
+
   if (fVerbose >= NuOscillator::INFO){std::cout<<"Completed SetProductionHeightsAveraging()"<<std::endl;}
 }
 
