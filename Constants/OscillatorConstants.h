@@ -359,7 +359,7 @@ inline std::vector<FLOAT_T> ReadBinEdgesFromFile(std::string TFileName, std::str
     BinEdges[iBin] = Histogram->GetBinLowEdge(iBin+1);
   }
 
-  delete Histogram;
+  File->Close();
   delete File;
 
   if (Verbose >= NuOscillator::INFO) {
