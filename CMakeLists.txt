@@ -83,7 +83,7 @@ LIST(APPEND ALL_Engines
 #Default Branches
 
 if(NOT DEFINED CUDAProb3_BRANCH)
-  set(CUDAProb3_BRANCH "v1.0.0")
+  set(CUDAProb3_BRANCH "v1.1.0")
 endif()
 
 if(NOT DEFINED CUDAProb3Linear_BRANCH)
