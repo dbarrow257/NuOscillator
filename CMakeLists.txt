@@ -309,7 +309,7 @@ if(${UseNuFASTLinear} EQUAL 1)
   CPMAddPackage(
     NAME NuFAST
     GIT_TAG ${NuFASTLinear_BRANCH}
-    GITHUB_REPOSITORY PeterDenton/NuFast
+    GITHUB_REPOSITORY PeterDenton/NuFast-LBL
     DOWNLOAD_ONLY
   )
   target_compile_definitions(NuOscillatorCompilerOptions INTERFACE UseNuFASTLinear=1)
