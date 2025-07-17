@@ -315,6 +315,11 @@ void OscProbCalcerBase::SanitiseProbabilities() {
     if (std::isnan(fWeightArray[iWeight])) {
       std::cerr << "Found nan probability in fWeightArray" << std::endl;
       std::cerr << "iWeight:" << iWeight << std::endl;
+      std::cerr << "fOscParamsCurr: [";
+      for (size_t iOscParam=0;iOscParam<fNOscParams;++iOscParam) {
+        std::cerr << fOscParamsCurr[iOscParam] << ", ";
+      }
+      std::cerr << "]" << std::endl;
       throw std::runtime_error("Invalid probability");
     }
 
@@ -327,6 +332,11 @@ void OscProbCalcerBase::SanitiseProbabilities() {
       std::cerr << "Found probability which is below the allowable precision of: 0.0-" << PrecisionLimit << std::endl;
       std::cerr << "iWeight:" << iWeight << std::endl;
       std::cerr << "fWeightArray[iWeight]:" << fWeightArray[iWeight] << std::endl;
+      std::cerr << "fOscParamsCurr: [";
+      for (size_t iOscParam=0;iOscParam<fNOscParams;++iOscParam) {
+        std::cerr << fOscParamsCurr[iOscParam] << ", ";
+      }
+      std::cerr << "]" << std::endl;
       throw std::runtime_error("Probability below zero");
     }
     if ((fWeightArray[iWeight] > lower_limit) && (fWeightArray[iWeight] < 0)) {
@@ -344,7 +354,12 @@ void OscProbCalcerBase::SanitiseProbabilities() {
       std::cerr << "Found probability which is above the allowable precision of: 1.0+" << PrecisionLimit << std::endl;
       std::cerr << "iWeight:" << iWeight << std::endl;
       std::cerr << "fWeightArray[iWeight]:" << fWeightArray[iWeight] << std::endl;
-      throw std::runtime_error("Probability below zero");
+      std::cerr << "fOscParamsCurr: [";
+      for (size_t iOscParam=0;iOscParam<fNOscParams;++iOscParam) {
+        std::cerr << fOscParamsCurr[iOscParam] << ", ";
+      }
+      std::cerr << "]" << std::endl;
+      throw std::runtime_error("Probability above one");
     }
   }
   
