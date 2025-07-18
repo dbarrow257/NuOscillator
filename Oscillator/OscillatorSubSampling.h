@@ -55,7 +55,7 @@ class OscillatorSubSampling : public OscillatorBase {
    *
    * @return Pointer to the memory address where the calculated oscillation probability for events of the specific requested type will be stored
    */
-  const FLOAT_T* ReturnWeightPointer(int InitNuFlav, int FinalNuFlav, FLOAT_T EnergyVal, FLOAT_T CosineZVal=DUMMYVAL);
+  const FLOAT_T* ReturnWeightPointer(int InitNuFlav, int FinalNuFlav, FLOAT_T EnergyVal, FLOAT_T CosineZVal=DUMMYVAL) override;
 
   /**
    * @brief Return a vector of bin edges used for oscillation probability plotting
@@ -93,12 +93,12 @@ class OscillatorSubSampling : public OscillatorBase {
   /**
    * @brief Calculated coarse bin probabilities, defined as the average over the fine bin probabilities inside a particular coarse bin
    */
-  void PostCalculateProbabilities();
+  void PostCalculateProbabilities() override;
 
   /**
    * @brief Setup the oscillator
    */
-  void SetupOscillatorImplementation();
+  void SetupOscillatorImplementation() override;
   
   /**
    * @brief Return the index of the bin in which a given value would be.
