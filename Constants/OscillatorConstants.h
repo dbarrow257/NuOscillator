@@ -157,6 +157,10 @@ inline std::vector<std::string> ReturnKnownConfigs() {
   ConfigNames.push_back("./NuOscillatorConfigs/Binned_OscProb.yaml");
 #endif  
 
+#if UseNuTens == 1
+  ConfigNames.push_back("./NuOscillatorConfigs/Binned_nuTens.yaml");
+#endif  
+
   return ConfigNames;
 }
 
