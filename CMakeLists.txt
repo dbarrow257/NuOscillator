@@ -586,6 +586,12 @@ if(SNU_LIB_DIR)
        "${SNU_LIB_DIR}")
 endif()
 
+if(nuTens_BINARY_DIR)
+  file(RELATIVE_PATH NUTENS_REL_BUILD_PATH
+       "${CMAKE_INSTALL_PREFIX}"
+       "${nuTens_BINARY_DIR}")
+endif()
+
 configure_file(cmake/Templates/setup.NuOscillator.sh.in "${PROJECT_BINARY_DIR}/setup.NuOscillator.sh" @ONLY)
 install(FILES "${PROJECT_BINARY_DIR}/setup.NuOscillator.sh" DESTINATION ${CMAKE_INSTALL_PREFIX}/bin)
 
