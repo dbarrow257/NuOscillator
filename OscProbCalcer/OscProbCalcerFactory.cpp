@@ -45,7 +45,7 @@
 #endif
 
 #if UseNuTens==1
-#include "OscProbCalcer/OscProbCalcer_nuTens.h"
+#include "OscProbCalcer/OscProbCalcer_nuTensLinear.h"
 #endif
 
 #include <iostream>
