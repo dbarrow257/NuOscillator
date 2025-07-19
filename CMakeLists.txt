@@ -53,6 +53,7 @@ LIST(APPEND ALL_Engines
   OscLibLinear
   GLoBESLinear
   CHIC
+  NuTens
 )
 # KS: Tells whether all oscillators were disabled
 set(ALL_OSCILLATORS_DISABLED TRUE)
@@ -68,6 +69,10 @@ endforeach()
 # KS: NuFastLinear by default
 if(ALL_OSCILLATORS_DISABLED)
   set(UseNuFASTLinear 1)
+endif()
+
+if(NOT DEFINED nuTens_BRANCH)
+  set(nuTens_BRANCH "main")
 endif()
 
 ########################################################
@@ -160,6 +165,19 @@ if(${UseGPU} EQUAL 1)
   cmessage(STATUS "Set CUDA ARCHITECTURES options: ${CMAKE_CUDA_ARCHITECTURES_STRING}")
 endif()
 
+
+if(${UseNuTens} EQUAL 1)
+  CPMFindPackage(
+    NAME nuTens
+    GITHUB_REPOSITORY "ewanwm/nuTens"
+    GIT_TAG ${nuTens_BRANCH}
+    DOWNLOAD_ONLY
+    OPTIONS
+    "NT_PROFILING OFF"
+  )
+
+  target_compile_definitions(NuOscillatorCompilerOptions INTERFACE UseNuTens=1)
+endif()
 
 if(${UseGPU} EQUAL 1)
   target_compile_definitions(NuOscillatorCompilerOptions INTERFACE UseGPU=1)
