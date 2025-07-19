@@ -15,7 +15,7 @@ The framework has been adapted to integrate seamlessly with oscillation fitters 
 ```bash
 mkdir build;
 cd build;
-cmake ../ -DUseGPU=0 -DUseMultithreading=1 -DUseDoubles=0 -DUseCUDAProb3=0 -DUseCUDAProb3Linear=1 -DUseProb3ppLinear=1 -DUseNuFASTLinear=1 -DUseProbGPULinear=0
+cmake ../ -DUseGPU=0 -DUseMultithreading=1 -DUseDoubles=0 -DUseCUDAProb3=0 -DUseCUDAProb3Linear=1 -DUseProb3ppLinear=1 -DUseNuFASTLinear=1 -DUseProbGPULinear=0 -DUseNuTens=1
 make -jN [Where N is number of threads]
 make install
 ```
@@ -29,6 +29,20 @@ then you can check if everything runs correctly by
 ```bash
 cd ../
 ./build/Linux/bin/DragRace 1000 NuOscillatorConfigs/Binned_NuFASTLinear.yaml
+```
+
+### nuTens Specific Installation Instructions
+
+If installing the nuTens engine, you will need to be in a python virtual environment, into which the build system will install pytorch. To create a virtual environment use
+
+```
+python -m venv <env name>
+```
+
+then to activate that environment use
+
+```
+source <env name>/bin/activate
 ```
 
 ## How to Integrate in Framework
@@ -52,6 +66,7 @@ CPMAddPackage(
     "UseNuSQUIDSLinear 0"
     "UseOscProb  1"
     "GLoBESLinear 0"
+    "UseNuTens   1"
 )
 ```
 
@@ -69,6 +84,7 @@ Following neutrino oscillation calculators are available:
 | OscProb          | CPU        | Beam/Atm   | [Ref](https://doi.org/10.5281/zenodo.6347002)           |
 | NuSQUIDSLinear   | CPU        | Beam       | [Ref](https://doi.org/10.1016/j.cpc.2022.108346)        |
 | GLoBESLinear     | CPU        | Beam       | [Ref](https://doi.org/10.1016/j.cpc.2005.01.003)        |
+| NuTensLinear     | CPU        | Beam       | [Ref](https://doi.org/10.5281/zenodo.15873397)          |
 
 ## GPU
 Some engines requires gpu like `ProbGPULinear` other can use both CPU and GPU. To use GPU functionality remember about
