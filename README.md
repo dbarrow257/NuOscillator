@@ -15,7 +15,7 @@ The framework has been adapted to integrate seamlessly with oscillation fitters 
 ```bash
 mkdir build;
 cd build;
-cmake ../ -DUseGPU=0 -DUseMultithreading=1 -DUseDoubles=0 -DUseCUDAProb3=1 -DUseCUDAProb3Linear=1 -DUseProb3pp=1 -DUseProbGPULinear=1 -DUseNuFASTLinear=1 -DUseNuFASTEarth=1 -DUseNuSQUIDSLinear=1 -DUseOscProb=1 -DUseGLoBESLinear=1 -DUseCHIC=1
+cmake ../ -DUseGPU=0 -DUseMultithreading=1 -DUseDoubles=0 -DUseCUDAProb3=1 -DUseCUDAProb3Linear=1 -DUseProb3pp=1 -DUseProbGPULinear=1 -DUseNuFASTLinear=1 -DUseNuFASTEarth=1 -DUseNuSQUIDSLinear=1 -DUseOscProb=1 -DUseGLoBESLinear=1 -DUseCHIC=1 -DUseNuTens=1
 make -jN [Where N is number of threads]
 make install
 ```
@@ -29,6 +29,20 @@ then you can check if everything runs correctly by
 ```bash
 cd ../
 ./build/Linux/bin/DragRace 1000 NuOscillatorConfigs/ExampleOscillationParameters.yaml NuOscillatorConfigs/Binned_NuFASTLinear.yaml
+```
+
+### nuTens Specific Installation Instructions
+
+If installing the nuTens engine, you will need to be in a python virtual environment, into which the build system will install pytorch. To create a virtual environment use
+
+```
+python -m venv <env name>
+```
+
+then to activate that environment use
+
+```
+source <env name>/bin/activate
 ```
 
 ## How to Integrate in Framework
@@ -53,6 +67,7 @@ CPMAddPackage(
     "UseOscProb  1"
     "UseGLoBESLinear 0"
     "UseCHIC 0"
+    "UseNuTens   1"
 )
 ```
 
@@ -74,6 +89,7 @@ Following neutrino oscillation calculators are available:
 | GLoBESLinear     | CPU        | Beam       | PMNS       | [Ref](https://doi.org/10.1016/j.cpc.2005.01.003)        |
 | CHIC             | CPU        | Beam/Atm   | PMNS       | [Ref](https://arxiv.org/pdf/2512.16427)                 |
 | OscLib           | CPU        | Beam       | <details><summary>PMNS + extensions</summary>Non-Standard Interactions (NSI))</details>       | [Ref](https://github.com/cafana/OscLib)                 |
+| NuTensLinear     | CPU        | Beam       | [Ref](https://doi.org/10.5281/zenodo.15873397)          |
 
 ### Engine Requirements
 Requirements for NuOscillator strongly depends on a chosen configuration, for example some engines require minimal of C++17. In addition, some engines require an external library like Eigen. NuOscillator should handle it all internally, if not, should provide useful error.
