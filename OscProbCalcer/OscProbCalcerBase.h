@@ -30,7 +30,7 @@ class OscProbCalcerBase {
    * 
    * @param EnergyArray The Energy array which will be used by the calculation engine
    */
-  void SetEnergyArray(std::vector<FLOAT_T> EnergyArray);
+  virtual void SetEnergyArray(std::vector<FLOAT_T> EnergyArray);
 
   /**
    * @brief Define the CosineZ which will be used when calculating the oscillation probabilities
