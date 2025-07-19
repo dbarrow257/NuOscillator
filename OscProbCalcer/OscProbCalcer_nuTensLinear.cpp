@@ -1,4 +1,4 @@
-#include "OscProbCalcer_nuTens.h"
+#include "OscProbCalcer_nuTensLinear.h"
 
 #include <iostream>
 
