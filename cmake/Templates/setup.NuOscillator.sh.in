@@ -108,4 +108,9 @@ if [[ -n "@SNU_REL_LIB_PATH@" ]]; then
   add_to_LD_LIBRARY_PATH "${NUOSCILLATOR_ROOT}/@SNU_REL_LIB_PATH@"
 fi
 
+if [[ -n "@NUTENS_REL_BUILD_PATH@" ]]; then
+  TORCH_LIB_PATH=`python3 -c 'import os;import torch;print(os.path.abspath(torch.__file__)[:-11])'`/lib
+  add_to_LD_LIBRARY_PATH ${TORCH_LIB_PATH}
+fi
+
 unset SCRIPT_PATH
