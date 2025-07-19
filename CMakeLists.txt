@@ -58,6 +58,7 @@ DefineEnabledRequiredSwitch(UseNuFASTLinear 0)
 DefineEnabledRequiredSwitch(UseNuSQUIDSLinear 0)
 DefineEnabledRequiredSwitch(UseOscProb 0)
 DefineEnabledRequiredSwitch(UseGLoBESLinear  0)
+DefineEnabledRequiredSwitch(UseNuTens 0)
 
 # KS: NuFastLinear by default
 if(UseCUDAProb3        EQUAL 0 AND
@@ -67,7 +68,8 @@ if(UseCUDAProb3        EQUAL 0 AND
     UseNuFASTLinear    EQUAL 0 AND
     UseNuSQUIDSLinear  EQUAL 0 AND
     UseOscProb         EQUAL 0 AND
-    UseGLoBESLinear    EQUAL 0 )
+    UseGLoBESLinear    EQUAL 0 AND
+    UseNuTens          EQUAL 0 )
   set(UseNuFASTLinear 1)
 endif()
 
@@ -80,6 +82,7 @@ LIST(APPEND ALL_Engines
   NuSQUIDSLinear
   OscProb
   GLoBESLinear
+  NuTens
 )
 
 ########################################################
@@ -115,6 +118,10 @@ endif()
 
 if(NOT DEFINED GLoBES_BRANCH)
   set(GLoBES_BRANCH "3.2.18")
+endif()
+
+if(NOT DEFINED nuTens_BRANCH)
+  set(nuTens_BRANCH "main")
 endif()
 
 ########################################################
@@ -491,6 +498,19 @@ if(${UseGLoBESLinear} EQUAL 1)
   )
   add_dependencies(SNU::SNU GLOBES::GLOBES)
   target_compile_definitions(NuOscillatorCompilerOptions INTERFACE UseGLoBESLinear=1)
+endif()
+
+if(${UseNuTens} EQUAL 1)
+  CPMFindPackage(
+    NAME nuTens
+    GITHUB_REPOSITORY "ewanwm/nuTens"
+    GIT_TAG ${nuTens_BRANCH}
+    DOWNLOAD_ONLY
+    OPTIONS
+    "NT_PROFILING OFF"
+  )
+
+  target_compile_definitions(NuOscillatorCompilerOptions INTERFACE UseNuTens=1)
 endif()
 
 if(${UseGPU} EQUAL 1)

@@ -58,6 +58,12 @@ if(${UseNuFASTLinear} EQUAL 1)
   list(APPEND HEADERS OscProbCalcer_NuFASTLinear.h)
 endif()
 
+if(${UseNuTens} EQUAL 1)
+  target_link_libraries(OscProbCalcer nuTens)
+  target_sources(OscProbCalcer PRIVATE OscProbCalcer_nuTensLinear.cpp)
+  list(APPEND HEADERS OscProbCalcer_nuTensLinear.h)
+endif()
+
 if(${UseNuSQUIDSLinear} EQUAL 1)
   include_directories(${SQUIDS_INC_DIR})
   include_directories(${NUSQUIDS_INC_DIR})
