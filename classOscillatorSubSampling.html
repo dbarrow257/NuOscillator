@@ -104,9 +104,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a39df0c091f822560e4f0221ca6eb1335" id="r_a39df0c091f822560e4f0221ca6eb1335"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscillatorSubSampling.html#a39df0c091f822560e4f0221ca6eb1335">~OscillatorSubSampling</a> ()</td></tr>
 <tr class="memdesc:a39df0c091f822560e4f0221ca6eb1335"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor.  <br /></td></tr>
 <tr class="separator:a39df0c091f822560e4f0221ca6eb1335"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac8d028f569ab9b92b0e972dc6a09f31e" id="r_ac8d028f569ab9b92b0e972dc6a09f31e"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="OscillatorConstants_8h.html#acb53b45d3e1b677a15c2ef27b266b1ca">FLOAT_T</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscillatorSubSampling.html#ac8d028f569ab9b92b0e972dc6a09f31e">ReturnWeightPointer</a> (int InitNuFlav, int FinalNuFlav, <a class="el" href="OscillatorConstants_8h.html#acb53b45d3e1b677a15c2ef27b266b1ca">FLOAT_T</a> EnergyVal, <a class="el" href="OscillatorConstants_8h.html#acb53b45d3e1b677a15c2ef27b266b1ca">FLOAT_T</a> CosineZVal=<a class="el" href="OscillatorConstants_8h.html#ae3a7da283c400b8c7e8fb8f27042d7dc">DUMMYVAL</a>)</td></tr>
-<tr class="memdesc:ac8d028f569ab9b92b0e972dc6a09f31e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return a pointer to the oscillation probability for the requested event attributes.  <br /></td></tr>
-<tr class="separator:ac8d028f569ab9b92b0e972dc6a09f31e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a94e8d59cc83b2e69d417522f45da64da" id="r_a94e8d59cc83b2e69d417522f45da64da"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="OscillatorConstants_8h.html#acb53b45d3e1b677a15c2ef27b266b1ca">FLOAT_T</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscillatorSubSampling.html#a94e8d59cc83b2e69d417522f45da64da">ReturnWeightPointer</a> (int InitNuFlav, int FinalNuFlav, <a class="el" href="OscillatorConstants_8h.html#acb53b45d3e1b677a15c2ef27b266b1ca">FLOAT_T</a> EnergyVal, <a class="el" href="OscillatorConstants_8h.html#acb53b45d3e1b677a15c2ef27b266b1ca">FLOAT_T</a> CosineZVal=<a class="el" href="OscillatorConstants_8h.html#ae3a7da283c400b8c7e8fb8f27042d7dc">DUMMYVAL</a>) override</td></tr>
+<tr class="memdesc:a94e8d59cc83b2e69d417522f45da64da"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return a pointer to the oscillation probability for the requested event attributes.  <br /></td></tr>
+<tr class="separator:a94e8d59cc83b2e69d417522f45da64da"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a800c07c7e6ede85303fe084afc82faf2" id="r_a800c07c7e6ede85303fe084afc82faf2"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="OscillatorConstants_8h.html#acb53b45d3e1b677a15c2ef27b266b1ca">FLOAT_T</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscillatorSubSampling.html#a800c07c7e6ede85303fe084afc82faf2">ReturnBinEdgesForPlotting</a> (bool ReturnEnergy) override</td></tr>
 <tr class="memdesc:a800c07c7e6ede85303fe084afc82faf2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return a vector of bin edges used for oscillation probability plotting.  <br /></td></tr>
 <tr class="separator:a800c07c7e6ede85303fe084afc82faf2"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -162,12 +162,12 @@ Private Member Functions</h2></td></tr>
 <tr class="memitem:a4b1e26b037fc65a74ad5e2160686717d" id="r_a4b1e26b037fc65a74ad5e2160686717d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscillatorSubSampling.html#a4b1e26b037fc65a74ad5e2160686717d">Initialise</a> ()</td></tr>
 <tr class="memdesc:a4b1e26b037fc65a74ad5e2160686717d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialise Oscillator instance: read energies and cosineZs, set them in Calcer.  <br /></td></tr>
 <tr class="separator:a4b1e26b037fc65a74ad5e2160686717d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4d9d46337bec3c2ce541657db8ec72ae" id="r_a4d9d46337bec3c2ce541657db8ec72ae"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscillatorSubSampling.html#a4d9d46337bec3c2ce541657db8ec72ae">PostCalculateProbabilities</a> ()</td></tr>
-<tr class="memdesc:a4d9d46337bec3c2ce541657db8ec72ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculated coarse bin probabilities, defined as the average over the fine bin probabilities inside a particular coarse bin.  <br /></td></tr>
-<tr class="separator:a4d9d46337bec3c2ce541657db8ec72ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a126d8228cbcfe9e019101e4b61496862" id="r_a126d8228cbcfe9e019101e4b61496862"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscillatorSubSampling.html#a126d8228cbcfe9e019101e4b61496862">SetupOscillatorImplementation</a> ()</td></tr>
-<tr class="memdesc:a126d8228cbcfe9e019101e4b61496862"><td class="mdescLeft">&#160;</td><td class="mdescRight">Setup the oscillator.  <br /></td></tr>
-<tr class="separator:a126d8228cbcfe9e019101e4b61496862"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a89e6dde3f42b828e3af48bb4f231b853" id="r_a89e6dde3f42b828e3af48bb4f231b853"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscillatorSubSampling.html#a89e6dde3f42b828e3af48bb4f231b853">PostCalculateProbabilities</a> () override</td></tr>
+<tr class="memdesc:a89e6dde3f42b828e3af48bb4f231b853"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculated coarse bin probabilities, defined as the average over the fine bin probabilities inside a particular coarse bin.  <br /></td></tr>
+<tr class="separator:a89e6dde3f42b828e3af48bb4f231b853"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a940a0b2964cd186c01bf60c6ac7e7acd" id="r_a940a0b2964cd186c01bf60c6ac7e7acd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscillatorSubSampling.html#a940a0b2964cd186c01bf60c6ac7e7acd">SetupOscillatorImplementation</a> () override</td></tr>
+<tr class="memdesc:a940a0b2964cd186c01bf60c6ac7e7acd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Setup the oscillator.  <br /></td></tr>
+<tr class="separator:a940a0b2964cd186c01bf60c6ac7e7acd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af5b3540ebf2e2d2a7ebd2158722648c6" id="r_af5b3540ebf2e2d2a7ebd2158722648c6"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscillatorSubSampling.html#af5b3540ebf2e2d2a7ebd2158722648c6">FindBinIndexFromEdges</a> (<a class="el" href="OscillatorConstants_8h.html#acb53b45d3e1b677a15c2ef27b266b1ca">FLOAT_T</a> Val, std::vector&lt; <a class="el" href="OscillatorConstants_8h.html#acb53b45d3e1b677a15c2ef27b266b1ca">FLOAT_T</a> &gt; BinEdges)</td></tr>
 <tr class="memdesc:af5b3540ebf2e2d2a7ebd2158722648c6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the index of the bin in which a given value would be.  <br /></td></tr>
 <tr class="separator:af5b3540ebf2e2d2a7ebd2158722648c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -432,8 +432,8 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="a4d9d46337bec3c2ce541657db8ec72ae" name="a4d9d46337bec3c2ce541657db8ec72ae"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4d9d46337bec3c2ce541657db8ec72ae">&#9670;&#160;</a></span>PostCalculateProbabilities()</h2>
+<a id="a89e6dde3f42b828e3af48bb4f231b853" name="a89e6dde3f42b828e3af48bb4f231b853"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a89e6dde3f42b828e3af48bb4f231b853">&#9670;&#160;</a></span>PostCalculateProbabilities()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -450,7 +450,7 @@ Additional Inherited Members</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">private</span><span class="mlabel">virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -499,8 +499,8 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="ac8d028f569ab9b92b0e972dc6a09f31e" name="ac8d028f569ab9b92b0e972dc6a09f31e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac8d028f569ab9b92b0e972dc6a09f31e">&#9670;&#160;</a></span>ReturnWeightPointer()</h2>
+<a id="a94e8d59cc83b2e69d417522f45da64da" name="a94e8d59cc83b2e69d417522f45da64da"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a94e8d59cc83b2e69d417522f45da64da">&#9670;&#160;</a></span>ReturnWeightPointer()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -540,7 +540,7 @@ Additional Inherited Members</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -562,8 +562,8 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="a126d8228cbcfe9e019101e4b61496862" name="a126d8228cbcfe9e019101e4b61496862"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a126d8228cbcfe9e019101e4b61496862">&#9670;&#160;</a></span>SetupOscillatorImplementation()</h2>
+<a id="a940a0b2964cd186c01bf60c6ac7e7acd" name="a940a0b2964cd186c01bf60c6ac7e7acd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a940a0b2964cd186c01bf60c6ac7e7acd">&#9670;&#160;</a></span>SetupOscillatorImplementation()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -580,7 +580,7 @@ Additional Inherited Members</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">private</span><span class="mlabel">virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
