@@ -1,7 +1,7 @@
 General:
   Verbosity: "NONE"
   CosineZIgnored: true
-  CalculationType: "Binned"
+  CalculationType: "Unbinned"
 
 Binned:
   FileName: "./Inputs/ExampleAtmosphericBinning.root"
