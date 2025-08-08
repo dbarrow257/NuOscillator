@@ -131,7 +131,7 @@ void OscillatorSubSampling::SetupOscillatorImplementation() {
 
   for (size_t iBin = 0; iBin < AveragedOscillationProbabilities.size(); iBin++) {
     if (OscillationProbabilitiesToAverage[iBin].size() == 0) {
-      std::cerr << "Division by zero encountered in "<<__FILE__<<" at bin number: " << iBin
+      std::cerr << "Found bin with zero components to average "<<__FILE__<<" at bin number: " << iBin
       << " in function: " << __func__ << std::endl;
       throw std::runtime_error("Fatal error in " + std::string(__func__) +
       ": Division by zero at bin number " + std::to_string(iBin));
