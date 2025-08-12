@@ -45,6 +45,17 @@ class OscillatorBase {
    */
   void CalculateProbabilities(const std::vector<FLOAT_T>& OscParams);
 
+  void CalculateProbabilities();
+
+  void DefineParameter(std::string ParName_, FLOAT_T* ParValue_) {
+    if (!fOscProbCalcerSet) {
+      std::cerr << "DefineParameter function called before OscProbCalcer set!" << std::endl;
+      throw std::runtime_error("DefineParameter function called before OscProbCalcer set");
+    }
+    
+    fOscProbCalcer->DefineParameter(ParName_,ParValue_);
+  }
+
   /**
    * @brief Return number of expected oscillation parameters for a particular OscProbCalcerBase::OscProbCalcerBase() instance in #fOscProbCalcers.
    *

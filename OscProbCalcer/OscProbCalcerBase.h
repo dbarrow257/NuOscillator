@@ -64,6 +64,9 @@ class OscProbCalcerBase {
    */
   void Reweight();
 
+  //Legacy implementation
+  void Reweight(const std::vector<FLOAT_T>& OscParams_);
+
   /**
    * @brief General function used to setup all variables used within the reweighting
    *
@@ -324,11 +327,14 @@ class OscProbCalcerBase {
   void SetExpectedParameterNames(std::vector<std::string> ExpectedOscParNames_) {
     fExpectedOscillationParameterNames = ExpectedOscParNames_;
     fNOscParams = fExpectedOscillationParameterNames.size();
-    fOscParams = std::vector<FLOAT_T*>(fNOscParams,nullptr);
+
+    fOscParams = std::vector<FLOAT_T*>(fNOscParams,new FLOAT_T(0));
+    
     fOscillationParametersSetCheck = std::vector<bool>(fNOscParams,false);
   }
 
   FLOAT_T GetOscillationParameter(int Index);
+  void CheckOscillationParametersDefined();
 
   // ========================================================================================================================================================================
   // Protected virtual functions which are calculation implementation agnostic
@@ -496,6 +502,9 @@ class OscProbCalcerBase {
   std::vector<FLOAT_T*> fOscParams;
   std::vector<std::string> fExpectedOscillationParameterNames;
   std::vector<bool> fOscillationParametersSetCheck;
+
+  bool fUseLegacyMode;
+  bool fUseLegacyMode_OscParsSet;
 };
 
 #endif

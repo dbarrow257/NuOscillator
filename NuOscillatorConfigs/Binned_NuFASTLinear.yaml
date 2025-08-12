@@ -21,6 +21,7 @@ Binned:
 
 OscProbCalcerSetup:
   ImplementationName: "NuFASTLinear"
+  UseLegacyMode: false
   OscChannelMapping:
     - Entry: "Electron:Electron"
     - Entry: "Electron:Muon"
