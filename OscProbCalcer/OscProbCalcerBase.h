@@ -327,9 +327,7 @@ class OscProbCalcerBase {
   void SetExpectedParameterNames(std::vector<std::string> ExpectedOscParNames_) {
     fExpectedOscillationParameterNames = ExpectedOscParNames_;
     fNOscParams = fExpectedOscillationParameterNames.size();
-
     fOscParams = std::vector<FLOAT_T*>(fNOscParams,new FLOAT_T(0));
-    
     fOscillationParametersSetCheck = std::vector<bool>(fNOscParams,false);
   }
 

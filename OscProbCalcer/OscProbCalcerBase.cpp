@@ -452,14 +452,7 @@ void OscProbCalcerBase::SanitiseProbabilities() {
 }
 
 bool OscProbCalcerBase::AreOscParamsChanged() {
-  std::cout << "fOscParams.size():" << fOscParams.size() << std::endl;
-  
   for (int iParam=0;iParam<fNOscParams;++iParam) {
-    std::cout << "iParam:" << iParam << std::endl;
-    std::cout << "fOscParams[iParam]:" << fOscParams[iParam] << std::endl;
-    std::cout << "*fOscParams[iParam]:" << *fOscParams[iParam] << std::endl;
-    std::cout << "fOscParamsCurr[iParam]:" << fOscParamsCurr[iParam] << std::endl;
-    
     if (*fOscParams[iParam] != fOscParamsCurr[iParam]) {
       if (fVerbose >= NuOscillator::INFO) {std::cout << "Implementation:" << fImplementationName << " was found to have different oscillation parameters than the previous calculation" << std::endl;}
       return true;
