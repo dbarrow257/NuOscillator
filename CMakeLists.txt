@@ -83,7 +83,7 @@ LIST(APPEND ALL_Engines
 #Default Branches
 
 if(NOT DEFINED CUDAProb3_BRANCH)
-  set(CUDAProb3_BRANCH "v1.0.0")
+  set(CUDAProb3_BRANCH "v1.2.0")
 endif()
 
 if(NOT DEFINED CUDAProb3Linear_BRANCH)
@@ -157,11 +157,17 @@ if(${UseCUDAProb3} EQUAL 1 AND ${UseCUDAProb3Linear} EQUAL 1)
 endif()
 
 if(${UseMultithreading} EQUAL 1)
-  target_compile_options(NuOscillatorCompilerOptions INTERFACE -fopenmp)
+  if(CMAKE_CXX_COMPILER_ID STREQUAL "IntelLLVM")
+    #ETA: intel icpx requires this I believe
+    find_package(OpenMP REQUIRED)
+    target_compile_options(NuOscillatorCompilerOptions INTERFACE -qopenmp)
+    target_link_libraries(NuOscillatorCompilerOptions INTERFACE OpenMP::OpenMP_CXX)
   # KS: Not a clue why clang need different...
-  if(CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+  elseif(CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+    target_compile_options(NuOscillatorCompilerOptions INTERFACE -fopenmp)
     target_link_libraries(NuOscillatorCompilerOptions INTERFACE omp)
   else()
+    target_compile_options(NuOscillatorCompilerOptions INTERFACE -fopenmp)
     target_link_libraries(NuOscillatorCompilerOptions INTERFACE gomp)
   endif()
 endif()
@@ -309,7 +315,7 @@ if(${UseNuFASTLinear} EQUAL 1)
   CPMAddPackage(
     NAME NuFAST
     GIT_TAG ${NuFASTLinear_BRANCH}
-    GITHUB_REPOSITORY PeterDenton/NuFast
+    GITHUB_REPOSITORY PeterDenton/NuFast-LBL
     DOWNLOAD_ONLY
   )
   target_compile_definitions(NuOscillatorCompilerOptions INTERFACE UseNuFASTLinear=1)

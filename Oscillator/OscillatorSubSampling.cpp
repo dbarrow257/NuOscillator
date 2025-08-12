@@ -129,6 +129,14 @@ void OscillatorSubSampling::SetupOscillatorImplementation() {
     }
   }
 
+  for (size_t iBin = 0; iBin < AveragedOscillationProbabilities.size(); iBin++) {
+    if (OscillationProbabilitiesToAverage[iBin].size() == 0) {
+      std::cerr << "Found bin with zero components to average "<<__FILE__<<" at bin number: " << iBin
+      << " in function: " << __func__ << std::endl;
+      throw std::runtime_error("Fatal error in " + std::string(__func__) +
+      ": Division by zero at bin number " + std::to_string(iBin));
+    }
+  }
 }
 
 //Should do something smart like binary search but it should work for testing
@@ -189,16 +197,16 @@ const FLOAT_T* OscillatorSubSampling::ReturnWeightPointer(int InitNuFlav, int Fi
 }
 
 void OscillatorSubSampling::PostCalculateProbabilities() {
-  for (size_t iBin=0;iBin<AveragedOscillationProbabilities.size();iBin++) {
+  #if UseMultithreading == 1
+  #pragma omp parallel for
+  #endif
+  for (size_t iBin=0;iBin<AveragedOscillationProbabilities.size();++iBin) {
     FLOAT_T Avg = 0;
-    for (size_t iPtr=0;iPtr<OscillationProbabilitiesToAverage[iBin].size();iPtr++) {
-      Avg += *(OscillationProbabilitiesToAverage[iBin][iPtr]);
+    const auto& Probabilities = OscillationProbabilitiesToAverage[iBin];
+    for (size_t iPtr=0;iPtr<Probabilities.size();++iPtr) {
+      Avg += *(Probabilities[iPtr]);
     }
-    if(OscillationProbabilitiesToAverage[iBin].size()==0){
-      std::cerr<<"Division by zero encountered in SubSampling."<<std::endl;
-      throw std::runtime_error("Fatal error in OscillatorSubSampling::PostCalculateProbabilities()");
-    }
-    Avg /= OscillationProbabilitiesToAverage[iBin].size();
+    Avg /= Probabilities.size();
 
     AveragedOscillationProbabilities[iBin] = Avg;
   }
