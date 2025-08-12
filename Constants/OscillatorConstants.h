@@ -165,7 +165,7 @@ inline std::vector<std::string> ReturnKnownConfigs() {
 #endif
   
 #if UseOscProb == 1
-  ConfigNames.push_back("./NuOscillatorConfigs/Binned_OscProbLinear.yaml");
+  ConfigNames.push_back("./NuOscillatorConfigs/Binned_OscProb.yaml");
 #endif  
 
   return ConfigNames;

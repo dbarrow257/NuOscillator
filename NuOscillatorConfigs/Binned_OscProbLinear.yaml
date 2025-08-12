@@ -1,7 +1,7 @@
 General:
   Verbosity: "NONE"
   CosineZIgnored: true
-  CalculationType: "Unbinned"
+  CalculationType: "Binned"
 
 Binned:
   FileName: "./Inputs/ExampleAtmosphericBinning.root"
@@ -10,7 +10,7 @@ Binned:
 
 OscProbCalcerSetup:
   ImplementationName: "OscProb"
-  PMNSType: "NSI"
+  PMNSType: "Fast"
   OscChannelMapping:
     - Entry: "Electron:Electron"
     - Entry: "Electron:Muon"
