@@ -19,12 +19,14 @@ class OscProbCalcerBase {
  public:
   // ========================================================================================================================================================================
   // Public functions which are calculation implementation agnostic
-
-   /**
-    * @brief Destructor
-    */
-   virtual ~OscProbCalcerBase();
-
+  
+  /**
+   * @brief Destructor
+   */
+  virtual ~OscProbCalcerBase();
+  
+  void DefineParameter(std::string ParName, FLOAT_T* ParValue);
+  
   /**
    * @brief Define the Energy which will be used when calculating the oscillation probabilities
    * 
@@ -59,10 +61,8 @@ class OscProbCalcerBase {
    *
    * This function performs both the implementation specific CalculateProbabilities() function, along with checking whether the oscillation parameters have been
    * updated since the last call. It also calls SanitiseProbabilities().
-   *
-   * @param OscParams The oscillation parameters to calculate the oscillation probability at
    */
-  void Reweight(const std::vector<FLOAT_T>& OscParams);
+  void Reweight();
 
   /**
    * @brief General function used to setup all variables used within the reweighting
@@ -246,19 +246,16 @@ class OscProbCalcerBase {
    * price of a couple of if statements. Whilst in normal MCMC running, this will almost always return true, for sigma variations of systematics, this will almost always
    * return false
    *
-   * @param OscParamsToCheck The oscillation parameters which have been requested for the next calculation
    * @return Boolean whether the OscParamsToCheck match those saved from the last calculation
    */
-  bool AreOscParamsChanged(const std::vector<FLOAT_T>& OscParamsToCheck);
+  bool AreOscParamsChanged();
 
   /**
    * @brief Save the oscillation parameters which have been requested
    * 
    * Save the oscillation parameters which have been used in the probability calculation to #fOscParamsCurr
-   *
-   * @param OscParamsToCheck Parameter set to save
    */
-  void SetCurrOscParams(const std::vector<FLOAT_T>& OscParamsToCheck);
+  void SetCurrOscParams();
 
   /**
    * @brief (Re-)Initialise the saved oscillation parameters in #fOscParamsCurr
@@ -324,6 +321,11 @@ class OscProbCalcerBase {
    */
   int ReturnOscChannelIndexFromFlavours(int InitNuFlav, int FinalNuFlav);
 
+  void SetExpectedParameterNames(std::vector<std::string> ExpectedOscParNames_) {
+    fExpectedOscillationParameterNames = ExpectedOscParNames_;
+    fNOscParams = fExpectedOscillationParameterNames.size();
+    fOscParams.resize(fNOscParams);
+  }
 
   // ========================================================================================================================================================================
   // Protected virtual functions which are calculation implementation agnostic
@@ -336,7 +338,7 @@ class OscProbCalcerBase {
    *
    * @param OscParams The parameter set to calculate oscillation probabilities at
    */
-  virtual void CalculateProbabilities(const std::vector<FLOAT_T>& OscParams) = 0;
+  virtual void CalculateProbabilities() = 0;
 
   /**
    * @brief Setup any implementation specific variables/functions
@@ -426,16 +428,6 @@ class OscProbCalcerBase {
   std::vector<FLOAT_T> fWeightArray;
 
   /**
-   * @brief Store the oscillation parameter set used to calculate the previous and current probabilities
-   */
-  int fNOscParams;
-
-  /**
-   * @brief Vector which stores the saved oscillation probabilities
-   */
-  std::vector<FLOAT_T> fOscParamsCurr;
-
-  /**
    * @brief Define the verbosity of the console output
    */
   int fVerbose;
@@ -455,6 +447,9 @@ class OscProbCalcerBase {
    */
   YAML::Node Config;
 
+  std::vector<std::string> fExpectedOscillationParameterNames;
+  std::vector<FLOAT_T*> fOscParams;
+  
  private:
   // ========================================================================================================================================================================
   // Sanity check variables
@@ -487,6 +482,17 @@ class OscProbCalcerBase {
    * @brief Precision limit which allows a slight unphysical probability to pass the SanitiseProbabilities check
    */
   FLOAT_T PrecisionLimit;
+
+  /**
+   * @brief Store the oscillation parameter set used to calculate the previous and current probabilities
+   */
+  int fNOscParams;
+
+  /**
+   * @brief Vector which stores the saved oscillation probabilities
+   */
+  std::vector<FLOAT_T> fOscParamsCurr;
+
 };
 
 #endif

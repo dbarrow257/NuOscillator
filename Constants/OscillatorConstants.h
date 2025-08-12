@@ -5,6 +5,8 @@
 
 #include <math.h>
 
+#include "yaml-cpp/yaml.h"
+
 #include "TFile.h"
 #include "TH1.h"
 
@@ -399,6 +401,19 @@ inline std::vector<FLOAT_T> ReturnBinCentersFromBinEdges(std::vector<FLOAT_T> Bi
   }
 
   return BinCenters;
+}
+
+inline std::unordered_map<std::string, FLOAT_T> ReturnOscParamsFromConfig(YAML::Node Config) {
+  if (!Config["General"]["OscillationParameters"]) {
+    std::cerr << "General::OscillationParameters node is not defined in the Config!" << std::endl;
+    throw;
+  }
+
+  std::unordered_map<std::string, FLOAT_T> OscillationParameters;
+  for (auto Pair : Config["General"]["OscillationParameters"]) {
+    OscillationParameters[Pair.first.as<std::string>()] = Pair.second.as<FLOAT_T>();
+  }
+  return OscillationParameters;
 }
 
 #endif

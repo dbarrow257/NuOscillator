@@ -3,6 +3,17 @@ General:
   CosineZIgnored: true
   CalculationType: "Binned"
 
+  OscillationParameters:
+    sin2_th12: 3.07e-1
+    sin2_th23: 5.28e-1
+    sin2_th13: 2.18e-2
+    dm2_12: 7.53e-5
+    dm2_23: 2.509e-3
+    delta_cp: -1.601
+    path_length: 250.0
+    matter_density: 2.6
+    electron_density: 0.5 
+
 Binned:
   FileName: "./Inputs/ExampleAtmosphericBinning.root"
   EnergyAxisHistName: "EnergyAxisBinning"
