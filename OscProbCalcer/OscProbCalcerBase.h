@@ -324,8 +324,11 @@ class OscProbCalcerBase {
   void SetExpectedParameterNames(std::vector<std::string> ExpectedOscParNames_) {
     fExpectedOscillationParameterNames = ExpectedOscParNames_;
     fNOscParams = fExpectedOscillationParameterNames.size();
-    fOscParams.resize(fNOscParams);
+    fOscParams = std::vector<FLOAT_T*>(fNOscParams,nullptr);
+    fOscillationParametersSetCheck = std::vector<bool>(fNOscParams,false);
   }
+
+  FLOAT_T GetOscillationParameter(int Index);
 
   // ========================================================================================================================================================================
   // Protected virtual functions which are calculation implementation agnostic
@@ -446,9 +449,6 @@ class OscProbCalcerBase {
    * @brief YAML Config object used to get runtime specific variables
    */
   YAML::Node Config;
-
-  std::vector<std::string> fExpectedOscillationParameterNames;
-  std::vector<FLOAT_T*> fOscParams;
   
  private:
   // ========================================================================================================================================================================
@@ -493,6 +493,9 @@ class OscProbCalcerBase {
    */
   std::vector<FLOAT_T> fOscParamsCurr;
 
+  std::vector<FLOAT_T*> fOscParams;
+  std::vector<std::string> fExpectedOscillationParameterNames;
+  std::vector<bool> fOscillationParametersSetCheck;
 };
 
 #endif

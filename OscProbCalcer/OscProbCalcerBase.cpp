@@ -73,18 +73,6 @@ OscProbCalcerBase::OscProbCalcerBase(YAML::Node InputConfig_) {
 OscProbCalcerBase::~OscProbCalcerBase() {
 }
 
-void OscProbCalcerBase::DefineParameter(std::string ParName_, FLOAT_T* ParValue_) {
-  for (size_t iOscPar=0;iOscPar<fNOscParams;iOscPar++) {
-    if (fExpectedOscillationParameterNames[iOscPar] == ParName_) {
-      fOscParams[iOscPar] = ParValue_;
-      return;
-    }
-  }
-
-  // If you hit this point - then the provided oscillation parameter name is not defined in the engine/model configuration and thus is not valid
-  throw std::runtime_error("Invalid oscillation parameter: "+ParName_);
-}
-
 void OscProbCalcerBase::SetEnergyArray(std::vector<FLOAT_T> EnergyArray) {
   if (fEnergyArraySet) {
     // Already defined the Energy array, or the implementation is designed such not to care about it
@@ -355,6 +343,43 @@ void OscProbCalcerBase::SanitiseProbabilities() {
     }
   }
   
+}
+
+void OscProbCalcerBase::DefineParameter(std::string ParName_, FLOAT_T* ParValue_) {
+  for (size_t iOscPar=0;iOscPar<fNOscParams;iOscPar++) {
+    if (fExpectedOscillationParameterNames[iOscPar] == ParName_) {
+
+      if (!fOscillationParametersSetCheck[iOscPar]) {
+	fOscParams[iOscPar] = ParValue_;
+	fOscillationParametersSetCheck[iOscPar] = true;
+	return;
+      } else {
+	// If we hit here, that means the parameter was set twice which we will treat as an error
+	std::cerr << "Parameter: " << ParName_ << " was found to be set twice which is treated as an error!" << std::endl;
+	throw std::runtime_error("Parameter was set twice:"+ParName_);
+      }
+      
+    }
+  }
+
+  // If you hit this point - then the provided oscillation parameter name is not defined in the engine/model configuration and thus is not valid
+  throw std::runtime_error("Invalid oscillation parameter: "+ParName_);
+}
+
+FLOAT_T OscProbCalcerBase::GetOscillationParameter(int Index) {
+  // Check if the requested index is appropriate value
+  if (!(Index >= 0 && Index < fNOscParams)) {
+    std::cerr << "Oscillation parameter requested - Invalid index:" << Index << std::endl;
+    std::cerr	<< "fNOscParams:" << fNOscParams << std::endl;
+  }
+
+  // Because NuOscillator doesn't own the memory, check it's atleast not a nullptr
+  if (fOscParams[Index] != nullptr) {
+    return *fOscParams[Index];
+  }
+  
+  // If we hit here, the pointer of the requested oscillation parameter is null
+  throw std::runtime_error("Requested oscillation parameter pointer is nullptr");
 }
 
 bool OscProbCalcerBase::AreOscParamsChanged() {

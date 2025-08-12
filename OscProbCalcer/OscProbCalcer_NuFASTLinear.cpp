@@ -54,21 +54,21 @@ void OscProbCalcerNuFASTLinear::CalculateProbabilities() {
   // ------------------------------- //
   // Set the experimental parameters //
   // ------------------------------- //
-  const double L = *fOscParams[kPATHL]; // km
-  const double rho = *fOscParams[kDENS]; // g/cc
-  const double Ye = *fOscParams[kELECDENS];
+  const double L = GetOscillationParameter(kPATHL); // km
+  const double rho = GetOscillationParameter(kDENS); // g/cc
+  const double Ye = GetOscillationParameter(kELECDENS);
   
   // ------------------------------------- //
   // Set the vacuum oscillation parameters //
   // ------------------------------------- //
-  const double s12sq = *fOscParams[kTH12];
-  const double s13sq = *fOscParams[kTH13];
-  const double s23sq = *fOscParams[kTH23];
-  const double delta = *fOscParams[kDCP];
-  const double Dmsq21 = *fOscParams[kDM12];
+  const double s12sq = GetOscillationParameter(kTH12);
+  const double s13sq = GetOscillationParameter(kTH13);
+  const double s23sq = GetOscillationParameter(kTH23);
+  const double delta = GetOscillationParameter(kDCP);
+  const double Dmsq21 = GetOscillationParameter(kDM12);
 
   //Need to convert fOscParams[kDM23] to kDM31
-  const double Dmsq31 = *fOscParams[kDM23]+*fOscParams[kDM12]; // eV^2
+  const double Dmsq31 = GetOscillationParameter(kDM23)+GetOscillationParameter(kDM12); // eV^2
   
   double probs_returned[3][3];
   // ------------------------------------------ //
