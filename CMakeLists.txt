@@ -87,7 +87,7 @@ if(NOT DEFINED CUDAProb3_BRANCH)
 endif()
 
 if(NOT DEFINED CUDAProb3Linear_BRANCH)
-  set(CUDAProb3Linear_BRANCH "dbarrow257/feature/NamespaceRename")
+  set(CUDAProb3Linear_BRANCH "v1.1.0")
 endif()
 
 if(NOT DEFINED Prob3ppLinear_BRANCH)
