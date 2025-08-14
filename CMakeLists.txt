@@ -87,7 +87,7 @@ if(NOT DEFINED CUDAProb3_BRANCH)
 endif()
 
 if(NOT DEFINED CUDAProb3Linear_BRANCH)
-  set(CUDAProb3Linear_BRANCH "v1.0.1")
+  set(CUDAProb3Linear_BRANCH "v1.1.0")
 endif()
 
 if(NOT DEFINED Prob3ppLinear_BRANCH)
@@ -150,10 +150,6 @@ else()
   if(${UseCUDAProb3} EQUAL 1 OR ${UseCUDAProb3Linear} EQUAL 1)
     cmessage(FATAL_ERROR "CUDAProb3 do not support Multithreading turn off. Please enable it or use different engine")
   endif()
-endif()
-
-if(${UseCUDAProb3} EQUAL 1 AND ${UseCUDAProb3Linear} EQUAL 1)
-  cmessage(FATAL_ERROR "CUDAProb3 and CUDAProb3Linear and not able to be built at the same time")
 endif()
 
 if(${UseMultithreading} EQUAL 1)
