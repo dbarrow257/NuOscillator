@@ -9,5 +9,5 @@ var searchData=
   ['probability_6',['Probability',['../structNuOscillator_1_1OscillationProbability.html#ae654427199fa3e6ba115b6a9d7ce2f1a',1,'NuOscillator::OscillationProbability']]],
   ['productionheightsfile_7',['ProductionHeightsFile',['../classOscProbCalcerCUDAProb3.html#a29c48ed9e4e369be18b52b89faa19c86',1,'OscProbCalcerCUDAProb3']]],
   ['productionheightshistflavoursuffixes_8',['ProductionHeightsHistFlavourSuffixes',['../classOscProbCalcerCUDAProb3.html#a735ffa6816b8d5c9a929c70964851323',1,'OscProbCalcerCUDAProb3']]],
-  ['propagator_9',['propagator',['../classcudaprob3_1_1Propagator.html',1,'cudaprob3::Propagator&lt; T &gt;'],['../classOscProbCalcerCUDAProb3.html#ac1f8de8d9c1ccd3895555d1fad6b5bad',1,'OscProbCalcerCUDAProb3::propagator'],['../classOscProbCalcerCUDAProb3Linear.html#a15abf4d1581782f379780e01c30cc31d',1,'OscProbCalcerCUDAProb3Linear::propagator']]]
+  ['propagator_9',['propagator',['../classcudaprob3_1_1Propagator.html',1,'cudaprob3::Propagator&lt; T &gt;'],['../classcudaprob3linear_1_1Propagator.html',1,'cudaprob3linear::Propagator&lt; T &gt;'],['../classOscProbCalcerCUDAProb3.html#ac1f8de8d9c1ccd3895555d1fad6b5bad',1,'OscProbCalcerCUDAProb3::propagator'],['../classOscProbCalcerCUDAProb3Linear.html#adbb5e160739c7e39cf226f295f1aa564',1,'OscProbCalcerCUDAProb3Linear::propagator']]]
 ];
