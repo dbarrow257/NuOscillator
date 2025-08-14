@@ -10,7 +10,7 @@
 /**
  * @brief Includes specific to CUDAProb3 implementation
  */
-namespace cudaprob3 { template<typename T> class Propagator;}
+namespace cudaprob3linear { template<typename T> class Propagator;}
 // ==================================================================
 
 /**
@@ -112,7 +112,7 @@ class OscProbCalcerCUDAProb3Linear : public OscProbCalcerBase {
   /**
    * @brief The instance of the CUDAProb3Linear Propagator being used in a particular instance of OscProbCalcerCUDAProb3Linear()
    */
-  std::unique_ptr< cudaprob3::Propagator< FLOAT_T > > propagator;
+  std::unique_ptr< cudaprob3linear::Propagator< FLOAT_T > > propagator;
 };
 
 #endif

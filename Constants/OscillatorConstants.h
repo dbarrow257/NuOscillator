@@ -122,6 +122,17 @@ inline std::vector<FLOAT_T> ReturnOscParams_Beam_wYe_wLIV() {
 }
 
 /**
+ * @brief Returns the oscillation parameters for beam neutrinos, with baseline and density. With electron density and NSI parameters.
+ *
+ * @return Vector of oscillation parameters.
+ */
+inline std::vector<FLOAT_T> ReturnOscParams_Beam_wYe_wNSI() {
+  //6 PMNS params, 6 Epsilons, 3 Deltas, 3 Coupling strengths, baseline, density, A/Z
+  std::vector<FLOAT_T> OscParams_Beam_wYe_wNSI = {3.07e-1,5.28e-1,2.18e-2,7.53e-5,2.509e-3,-1.601,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,250,2.6,0.5};
+  return OscParams_Beam_wYe_wNSI;
+}
+
+/**
  * @brief Return vector of all config names for each oscillation engine which has been enabled
  *
  * @return Vector of paths to config files

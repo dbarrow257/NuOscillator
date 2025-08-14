@@ -29,7 +29,10 @@ int main(int argc, char **argv) {
   std::vector<FLOAT_T> OscParams_Atm = ReturnOscParams_Atm();
   std::vector<FLOAT_T> OscParams_Beam_woYe = ReturnOscParams_Beam_woYe();
   std::vector<FLOAT_T> OscParams_Beam_wYe = ReturnOscParams_Beam_wYe();
-
+  std::vector<FLOAT_T> OscParams_Beam_wYe_wDeco = ReturnOscParams_Beam_wYe_wDeco();
+  std::vector<FLOAT_T> OscParams_Beam_wYe_wLIV = ReturnOscParams_Beam_wYe_wLIV();
+  std::vector<FLOAT_T> OscParams_Beam_wYe_wNSI = ReturnOscParams_Beam_wYe_wNSI();
+  
   std::cout << "========================================================" << std::endl;
   std::cout << "Starting setup in executable" << std::endl;
 
@@ -94,14 +97,20 @@ int main(int argc, char **argv) {
       OscParams_Beam_wYe[5] = RandVal;
 
       auto t1_single = high_resolution_clock::now();
-      if (Oscillators[iOsc]->ReturnNOscParams() == (int)OscParams_Beam_woYe.size()) {
-        Oscillators[iOsc]->CalculateProbabilities(OscParams_Beam_woYe);
-      } else if (Oscillators[iOsc]->ReturnNOscParams() == (int)OscParams_Beam_wYe.size()) {
-        Oscillators[iOsc]->CalculateProbabilities(OscParams_Beam_wYe);
+      if (Oscillators[iOsc]->ReturnNOscParams() == (int)OscParams_Basic.size()) {
+	Oscillators[iOsc]->CalculateProbabilities(OscParams_Basic);
       } else if (Oscillators[iOsc]->ReturnNOscParams() == (int)OscParams_Atm.size()) {
-        Oscillators[iOsc]->CalculateProbabilities(OscParams_Atm);
-      } else if (Oscillators[iOsc]->ReturnNOscParams() == (int)OscParams_Basic.size()) {
-        Oscillators[iOsc]->CalculateProbabilities(OscParams_Basic);
+	Oscillators[iOsc]->CalculateProbabilities(OscParams_Atm);
+      } else if (Oscillators[iOsc]->ReturnNOscParams() == (int)OscParams_Beam_woYe.size()) {
+	Oscillators[iOsc]->CalculateProbabilities(OscParams_Beam_woYe);
+      } else if (Oscillators[iOsc]->ReturnNOscParams() == (int)OscParams_Beam_wYe.size()) {
+	Oscillators[iOsc]->CalculateProbabilities(OscParams_Beam_wYe);
+      } else if (Oscillators[iOsc]->ReturnNOscParams() == (int)OscParams_Beam_wYe_wDeco.size()) {
+	Oscillators[iOsc]->CalculateProbabilities(OscParams_Beam_wYe_wDeco);
+      } else if (Oscillators[iOsc]->ReturnNOscParams() == (int)OscParams_Beam_wYe_wLIV.size()) {
+	Oscillators[iOsc]->CalculateProbabilities(OscParams_Beam_wYe_wLIV);
+      } else if (Oscillators[iOsc]->ReturnNOscParams() == (int)OscParams_Beam_wYe_wNSI.size()) {
+	Oscillators[iOsc]->CalculateProbabilities(OscParams_Beam_wYe_wNSI);
       } else {
         std::cerr << "Did not find viable oscillation parameters to hand to the oscillation probability calculater" << std::endl;
         std::cerr << "Oscillator->ReturnNOscParams():" << Oscillators[iOsc]->ReturnNOscParams() << std::endl;

@@ -22,6 +22,8 @@ jobs:
           - os: alma9
             file: Docs/DockerFiles/Alma9/Dockerfile
             tag_latest: alma9latest
+            cmakeoptions: -DUseDoubles=1 -DUseMultithreading=1 -DUseCUDAProb3=1 -DUseCUDAProb3Linear=1 -DUseProb3ppLinear=1 -DUseNuFASTLinear=1 -DUseProbGPULinear=0 -DUseOscProb=1 -DUseNuSQUIDSLinear=1
+
 
     name: Image CD ${{ matrix.os }}
 
@@ -35,9 +37,9 @@ jobs:
     - name: Build Docker image
       run: |
         if [ "${{ github.event_name }}" == 'release' ]; then
-          docker build . --file ${{ matrix.file }} --tag ghcr.io/${{ github.repository_owner }}/nuoscillator:${{ matrix.os }}${{ github.event.release.tag_name }} --build-arg NUOSCILLATOR_VERSION=main
+          docker build . --file ${{ matrix.file }} --tag ghcr.io/${{ github.repository_owner }}/nuoscillator:${{ matrix.os }}${{ github.event.release.tag_name }} --build-arg NUOSCILLATOR_VERSION=main --build-arg CMAKE_OPTIONS="${{ matrix.cmakeoptions }}"
         else
-          docker build . --file ${{ matrix.file }} --tag ghcr.io/${{ github.repository_owner }}/nuoscillator:${{ matrix.tag_latest }} --build-arg NUOSCILLATOR_VERSION=main
+          docker build . --file ${{ matrix.file }} --tag ghcr.io/${{ github.repository_owner }}/nuoscillator:${{ matrix.tag_latest }} --build-arg NUOSCILLATOR_VERSION=main --build-arg CMAKE_OPTIONS="${{ matrix.cmakeoptions }}"
         fi
 
     - name: Push Docker image
