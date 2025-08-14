@@ -34,10 +34,7 @@ jobs:
             file: Docs/DockerFiles/Rocky9/Dockerfile
             tag: rocky9latest
             cmakeoptions: -DUseGPU=1 -DUseMultithreading=1 -DUseDoubles=1 -DUseCUDAProb3=1 -DUseCUDAProb3Linear=1 -DUseProb3ppLinear=1 -DUseNuFASTLinear=1 -DUseProbGPULinear=1 -DUseOscProb=1 -DUseNuSQUIDSLinear=1
-          - os: Rocky9 CUDAProb3Linear
-            file: Docs/DockerFiles/Rocky9/Dockerfile
-            tag: rocky9latest
-            cmakeoptions: -DUseGPU=1 -DUseMultithreading=1 -DUseDoubles=1 -DUseCUDAProb3=1 -DUseCUDAProb3Linear=1 -DUseProb3ppLinear=1 -DUseNuFASTLinear=1 -DUseProbGPULinear=1 -DUseOscProb=1 -DUseNuSQUIDSLinear=1
+
 
     name: Build CI ${{ matrix.os }}
 
