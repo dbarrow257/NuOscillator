@@ -202,6 +202,14 @@ class OscProbCalcerBase {
    * @return Index in #fNeutrinoTypes
    */
   int ReturnNuTypeFromFlavour(int NuFlav);
+  
+  /**
+   * @brief Print current oscillation parameters
+   *
+   * Prints the current oscillation parameters which have been used in the calculation
+   */
+  void PrintOscParamsCurr();
+  
 
   // ========================================================================================================================================================================
   // Public virtual functions which need calculater specific implementations
