@@ -31,10 +31,8 @@ RUN git checkout ${NUOSCILLATOR_VERSION}
 RUN mkdir -p ${NuOscillator_INSTALL_DIR}
 WORKDIR ${NuOscillator_INSTALL_DIR}
 RUN cmake -DUseGPU=0 ${CMAKE_OPTIONS} \
-    -DHDF5_ROOT=/usr \
-    -DHDF5_INCLUDE_DIRS=/usr/include \
-    -DHDF5_C_LIBRARY=/usr/lib64/libhdf5.so \
-    -DHDF5_CXX_LIBRARY=/usr/lib64/libhdf5_cpp.so \
+    -DHDF5_DIR=/usr/lib64/cmake/hdf5 \
+    -DHDF5_FIND_COMPONENTS="C;CXX" \
     ${NuOscillator_WORK_DIR}
 RUN make VERBOSE=1 && make install
 
