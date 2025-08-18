@@ -84,6 +84,10 @@ if [[ -n "@CUDAProb3_RELATIVE_PATH@" ]]; then
   export CUDAProb3_DIR="${NUOSCILLATOR_ROOT}/@CUDAProb3_RELATIVE_PATH@"
 fi
 
+if [[ -n "@HDF5_REL_LIB_PATH@" ]]; then
+  add_to_LD_LIBRARY_PATH "${NUOSCILLATOR_ROOT}/@HDF5_REL_LIB_PATH@"
+fi
+
 if [[ -n "@SQUIDS_REL_LIB_PATH@" ]]; then
   add_to_LD_LIBRARY_PATH "${NUOSCILLATOR_ROOT}/@SQUIDS_REL_LIB_PATH@"
 fi
