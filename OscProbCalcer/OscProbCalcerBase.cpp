@@ -66,6 +66,21 @@ OscProbCalcerBase::OscProbCalcerBase(YAML::Node InputConfig_) {
     throw std::runtime_error("Invalid setup");
   }
   InitialiseOscillationChannelMapping();
+
+  fNoSanity = false;
+  if (Config["OscProbCalcerSetup"]["NoSanity"]) {
+    fNoSanity = Config["OscProbCalcerSetup"]["NoSanity"].as<bool>();
+    if (fNoSanity) {
+      std::cout << "=================================== WARNING ===================================" << std::endl;
+      std::cout << "User specified that NoSanity should be applied -" << std::endl;
+      std::cout << "This means that oscillation probabilities returned from the engine are not" << std::endl;
+      std::cout << "checked to be within the strict [0,1] bound." << std::endl;
+      std::cout << "This should only be used in performance sensitive applications and only where" << std::endl;
+      std::cout << "the engine has been throughly checked for your application." << std::endl;
+      std::cout << "Standard recommendation is to not run in this mode!" << std::endl;
+      std::cout << "===============================================================================" << std::endl;
+    }
+  }
 }
 
 OscProbCalcerBase::~OscProbCalcerBase() {
@@ -301,7 +316,7 @@ void OscProbCalcerBase::Reweight(const std::vector<FLOAT_T>& OscParams) {
   SetCurrOscParams(OscParams);
 
   CalculateProbabilities(OscParams);
-  SanitiseProbabilities();
+  if (!fNoSanity) {SanitiseProbabilities();}
   if (fVerbose >= NuOscillator::INFO) {std::cout << "Implementation:" << fImplementationName << " completed reweight and was found to have sensible oscillation weights" << std::endl;}
 }
 
