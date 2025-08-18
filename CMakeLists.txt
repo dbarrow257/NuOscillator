@@ -398,10 +398,10 @@ if(${UseNuSQUIDSLinear} EQUAL 1)
 
   if(BUILTIN_HDF5)
       set(NUSQUIDS_HDF5_DIR "${HDF5_DIR}/")
-      set(NUSQUIDS_DEPENDS "HDF5_project SQUIDS")
+      set(NUSQUIDS_DEPENDS HDF5_project SQUIDS)
   else()
       set(NUSQUIDS_HDF5_DIR "${HDF5_INCLUDE_DIRS}/..")
-      set(NUSQUIDS_DEPENDS "SQUIDS")
+      set(NUSQUIDS_DEPENDS SQUIDS)
   endif()
 
   ExternalProject_Add(NUSQUIDS
