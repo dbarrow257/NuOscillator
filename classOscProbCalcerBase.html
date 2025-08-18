@@ -306,6 +306,9 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:ad8011dc225caeb64d40bf2cb7df3af1e" id="r_ad8011dc225caeb64d40bf2cb7df3af1e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="OscillatorConstants_8h.html#acb53b45d3e1b677a15c2ef27b266b1ca">FLOAT_T</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerBase.html#ad8011dc225caeb64d40bf2cb7df3af1e">PrecisionLimit</a></td></tr>
 <tr class="memdesc:ad8011dc225caeb64d40bf2cb7df3af1e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Precision limit which allows a slight unphysical probability to pass the SanitiseProbabilities check.  <br /></td></tr>
 <tr class="separator:ad8011dc225caeb64d40bf2cb7df3af1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa69f26d2cafe42cf46cfdc1377736e3f" id="r_aa69f26d2cafe42cf46cfdc1377736e3f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerBase.html#aa69f26d2cafe42cf46cfdc1377736e3f">fNoSanity</a></td></tr>
+<tr class="memdesc:aa69f26d2cafe42cf46cfdc1377736e3f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Boolean declaring whether the SanitiseProbabilities function should be called in the Reweight function. This should only be used for performance sensitive applications as when this is false, oscillation probabilities could be returned which are &lt;0, &gt;1, or nan.  <br /></td></tr>
+<tr class="separator:aa69f26d2cafe42cf46cfdc1377736e3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Oscillation calculation engine (CUDAProb3, ProbGPU, Prob3++, etc.) implementation agnostic base class. </p>
@@ -1934,6 +1937,30 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>The number of neutrino types (neutrino and antineutrino) </p>
+
+</div>
+</div>
+<a id="aa69f26d2cafe42cf46cfdc1377736e3f" name="aa69f26d2cafe42cf46cfdc1377736e3f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa69f26d2cafe42cf46cfdc1377736e3f">&#9670;&#160;</a></span>fNoSanity</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool OscProbCalcerBase::fNoSanity</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Boolean declaring whether the SanitiseProbabilities function should be called in the Reweight function. This should only be used for performance sensitive applications as when this is false, oscillation probabilities could be returned which are &lt;0, &gt;1, or nan. </p>
 
 </div>
 </div>
