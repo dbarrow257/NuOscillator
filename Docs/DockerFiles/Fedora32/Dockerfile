@@ -17,9 +17,6 @@ ENV NUOSCILLATOR_VERSION=${NUOSCILLATOR_VERSION:-develop}
 ENV NuOscillator_WORK_DIR=/opt/NuOscillator/
 ENV NuOscillator_INSTALL_DIR=/opt/NuOscillator/build/
 
-# Needed for NuSQUIDS
-RUN dnf install -y hdf5 hdf5-devel
-
 RUN mkdir -p ${NuOscillator_WORK_DIR}
 
 WORKDIR /opt/
@@ -30,10 +27,7 @@ RUN git checkout ${NUOSCILLATOR_VERSION}
 
 RUN mkdir -p ${NuOscillator_INSTALL_DIR}
 WORKDIR ${NuOscillator_INSTALL_DIR}
-RUN cmake -DUseGPU=0 ${CMAKE_OPTIONS} \
-    -DHDF5_DIR=/usr/lib64/cmake/hdf5 \
-    -DHDF5_FIND_COMPONENTS="C;CXX" \
-    ${NuOscillator_WORK_DIR}
+RUN cmake -DUseGPU=0 ${CMAKE_OPTIONS} ${NuOscillator_WORK_DIR}
 RUN make VERBOSE=1 && make install
 
 # KS: Need to set them here, otherwise container using this container will not be able to find NuOscillator
