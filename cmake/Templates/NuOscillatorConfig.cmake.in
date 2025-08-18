@@ -22,6 +22,10 @@ endif()
 
 get_filename_component(NuOscillator_CMAKE_DIR "${CMAKE_CURRENT_LIST_FILE}" PATH)
 
+if(@UseNuSQUIDSLinear@ EQUAL 1)
+  find_package(GSL REQUIRED)
+  find_package(HDF5 REQUIRED COMPONENTS CXX)
+endif()
 
 find_path(NuOscillator_INCLUDE_DIR
   NAMES Oscillator/OscillatorBase.h
