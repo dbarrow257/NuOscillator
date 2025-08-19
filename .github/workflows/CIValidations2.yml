@@ -77,7 +77,7 @@ jobs:
             old_output: OscProb_UnbinnedOscillator_Stored.txt
           - name: BinnedOscillator GLoBESLinear Comparison
             cmake_options: -DUseGLoBESLinear=1
-            exec: SingleOscillator
+            exec: SingleOscProbCalcer
             argument: NuOscillatorConfigs/Binned_GLoBESLinear.yaml.yaml
             new_output: GLoBESLinear_BinnedOscillator_New.txt
             old_output: GLoBESLinear_BinnedOscillator_Stored.txt
