@@ -75,6 +75,12 @@ jobs:
             argument: NuOscillatorConfigs/Unbinned_OscProb.yaml
             new_output: OscProb_UnbinnedOscillator_New.txt
             old_output: OscProb_UnbinnedOscillator_Stored.txt
+          - name: BinnedOscillator GLoBESLinear Comparison
+            cmake_options: -DUseGLoBESLinear=1
+            exec: SingleOscillator
+            argument: NuOscillatorConfigs/Binned_GLoBESLinear.yaml.yaml
+            new_output: GLoBESLinear_BinnedOscillator_New.txt
+            old_output: GLoBESLinear_BinnedOscillator_Stored.txt
 
     container:
       image: ghcr.io/mach3-software/mach3:alma9v1.4.1

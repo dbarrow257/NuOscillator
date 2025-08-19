@@ -22,7 +22,7 @@ jobs:
           - os: alma9
             file: Docs/DockerFiles/Alma9/Dockerfile
             tag_latest: alma9latest
-            cmakeoptions: -DUseDoubles=1 -DUseMultithreading=1 -DUseCUDAProb3=1 -DUseCUDAProb3Linear=1 -DUseProb3ppLinear=1 -DUseNuFASTLinear=1 -DUseProbGPULinear=0 -DUseOscProb=1 -DUseNuSQUIDSLinear=1
+            cmakeoptions: -DUseDoubles=1 -DUseMultithreading=1 -DUseCUDAProb3=1 -DUseCUDAProb3Linear=1 -DUseProb3ppLinear=1 -DUseNuFASTLinear=1 -DUseProbGPULinear=0 -DUseOscProb=1 -DUseNuSQUIDSLinear=1 -DUseGLoBESLinear=1
 
 
     name: Image CD ${{ matrix.os }}

@@ -168,6 +168,10 @@ inline std::vector<std::string> ReturnKnownConfigs() {
   ConfigNames.push_back("./NuOscillatorConfigs/Binned_OscProb.yaml");
 #endif  
 
+#if UseGLoBESLinear == 1
+  ConfigNames.push_back("./NuOscillatorConfigs/Binned_GLoBESLinear.yaml");
+#endif
+
   return ConfigNames;
 }
 

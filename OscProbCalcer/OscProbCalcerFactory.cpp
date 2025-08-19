@@ -28,6 +28,10 @@
 #include "OscProbCalcer/OscProbCalcer_OscProb.h"
 #endif
 
+#if UseGLoBESLinear==1
+#include "OscProbCalcer/OscProbCalcer_GLoBESLinear.h"
+#endif
+
 #include <iostream>
 
 OscProbCalcerFactory::OscProbCalcerFactory() {
@@ -126,6 +130,18 @@ OscProbCalcerBase* OscProbCalcerFactory::CreateOscProbCalcer(YAML::Node OscProbC
 #endif
   }
   
+
+  else if (OscProbCalcerImplementationToCreate == "GLoBESLinear") {
+    #if UseGLoBESLinear==1
+    OscProbCalcerGLoBESLinear* GLoBES = new OscProbCalcerGLoBESLinear(OscProbCalcerConfig);
+    Calcer = (OscProbCalcerBase*)GLoBES;
+    if (Verbose >= NuOscillator::INFO) {std::cout << "Initalised OscProbCalcer Implementation:" << Calcer->ReturnImplementationName() << " in OscProbCalcerFactory object" << std::endl;}
+    #else
+    std::cerr << "OscProbCalcerFactory was requested to create " << OscProbCalcerImplementationToCreate << " OscProbCalcer but Use" << OscProbCalcerImplementationToCreate << " is undefined. Indicates problem in setup" << std::endl;
+    throw std::runtime_error("Invalid setup");
+    #endif
+  }
+
   else {
     std::cerr << "OscProbCalcerFactory was requsted to create " << OscProbCalcerImplementationToCreate << " OscProbCalcer but this is not implemented within " << __FILE__ << std::endl;
     std::cerr << "Please correct the mistake or implement the new OscProbCalcer" << std::endl;
