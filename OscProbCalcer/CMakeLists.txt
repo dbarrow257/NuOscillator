@@ -81,7 +81,15 @@ if(${UseOscProb} EQUAL 1)
   target_link_libraries(OscProbCalcer ${OscProb_SOURCE_DIR}/lib/libOscProb.so)
   target_link_libraries(OscProbCalcer Eigen OSCPROB ROOT::Core)
   list(APPEND HEADERS OscProbCalcer_OscProb.h)
-endif()	 
+endif()
+
+
+if(${UseGLoBESLinear} EQUAL 1)
+  target_sources(OscProbCalcer PRIVATE OscProbCalcer_GLoBESLinear.cpp)
+  target_link_libraries(OscProbCalcer GLOBES::GLOBES)
+  list(APPEND HEADERS OscProbCalcer_GLoBESLinear.h)
+  add_dependencies(OscProbCalcer snu_project globes_project)
+endif()
 
 if (${UseGPU} EQUAL 1)
   set_target_properties(OscProbCalcer PROPERTIES
