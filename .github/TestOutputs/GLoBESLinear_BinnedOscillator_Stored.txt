@@ -1,7 +1,7 @@
 ========================================================
 Starting setup in executable
 ========================================================
-Initialising NuOscillatorConfigs/Binned_GLoBESLinear.yaml
+Initialising NuOscillatorConfigs/OscProbCalcerConfigs/GLoBESLinear.yaml
 ========================================================
 Setting up Oscillators
 Finished setup in executable
