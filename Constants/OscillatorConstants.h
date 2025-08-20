@@ -172,6 +172,10 @@ inline std::vector<std::string> ReturnKnownConfigs() {
   ConfigNames.push_back("./NuOscillatorConfigs/Binned_GLoBESLinear.yaml");
 #endif
 
+  if(ConfigNames.empty()){
+    std::cerr << "I haven't added single config, this could mean you added new engine but forgot about me" << std::endl;
+    throw std::runtime_error("No known configs");
+  }
   return ConfigNames;
 }
 
@@ -354,7 +358,8 @@ inline std::vector<FLOAT_T> linspace(FLOAT_T Emin, FLOAT_T Emax, int nDiv) {
  * @param Verbose Verbosity level
  * @return Vector of bin edges
  */
-inline std::vector<FLOAT_T> ReadBinEdgesFromFile(std::string TFileName, std::string HistogramName, int Verbose=NuOscillator::Verbosity::NONE) {
+inline std::vector<FLOAT_T> ReadBinEdgesFromFile(const std::string& TFileName, const std::string& HistogramName,
+                                                 const int Verbose=NuOscillator::Verbosity::NONE) {
   std::vector<FLOAT_T> BinEdges;
 
   TFile* File = new TFile(TFileName.c_str());
@@ -394,7 +399,7 @@ inline std::vector<FLOAT_T> ReadBinEdgesFromFile(std::string TFileName, std::str
  * @param BinEdges Vector of bin edges
  * @return Vector of bin centers
  */
-inline std::vector<FLOAT_T> ReturnBinCentersFromBinEdges(std::vector<FLOAT_T> BinEdges) {
+inline std::vector<FLOAT_T> ReturnBinCentersFromBinEdges(const std::vector<FLOAT_T>& BinEdges) {
   int nBins = BinEdges.size()-1;
   std::vector<FLOAT_T> BinCenters = std::vector<FLOAT_T>(nBins);
 

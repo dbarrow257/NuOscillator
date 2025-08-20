@@ -2,8 +2,13 @@
 
 #include <iostream>
 
-#include "globes.h"
-#include "glb-modules.h"
+#include "globes/globes.h"
+#include "globes/glb-modules.h"
+// KS: Include the SNU header with C linkage to prevent C++ name mangling
+// This ensures that the functions in snu.h can be linked correctly when compiled in C++.
+extern "C" {
+  #include "snu.h"
+}
 
 OscProbCalcerGLoBESLinear::OscProbCalcerGLoBESLinear(YAML::Node Config_) : OscProbCalcerBase(Config_)
 {
