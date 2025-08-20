@@ -1,0 +1,15 @@
+<map id="OscProbCalcerGLoBESLinear" name="OscProbCalcerGLoBESLinear">
+<area shape="rect" id="Node000001" title="Oscillation calculation engine for linear propagation in GLoBES." alt="" coords="710,108,906,134"/>
+<area shape="rect" id="Node000002" href="$classOscProbCalcerBase.html" title="Oscillation calculation engine (CUDAProb3, ProbGPU, Prob3++, etc.) implementation agnostic base class..." alt="" coords="521,108,661,134"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="676,118,710,118,710,124,676,124"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="202,5,319,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="334,25,414,41,498,66,538,85,571,105,569,110,536,90,496,71,413,46,333,31"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="178,55,342,96"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="358,84,498,102,522,106,521,111,497,107,357,89"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="180,153,341,179"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="356,176,426,177,497,168,537,152,570,132,573,136,539,156,498,173,426,183,356,182"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="222,203,299,228"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="315,219,402,218,450,211,496,197,521,184,544,166,577,132,581,136,547,170,524,188,498,202,451,216,402,223,315,224"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="5,195,129,236"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="144,213,221,213,221,218,144,218"/>
+</map>
