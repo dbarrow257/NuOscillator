@@ -1,0 +1,15 @@
+General:
+  Verbosity: "NONE"
+
+OscProbCalcerSetup:
+  ImplementationName: "GLoBESLinear"
+  OscChannelMapping:
+    - Entry: "Electron:Electron"
+    - Entry: "Electron:Muon"
+    - Entry: "Electron:Tau"
+    - Entry: "Muon:Electron"
+    - Entry: "Muon:Muon"
+    - Entry: "Muon:Tau"
+    - Entry: "Tau:Electron"
+    - Entry: "Tau:Muon"
+    - Entry: "Tau:Tau"
