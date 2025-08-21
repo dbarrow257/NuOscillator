@@ -23,6 +23,7 @@ jobs:
         with:
           repository: dbarrow257/NuOscillator
           path: NuOscillator
+          fetch-depth: 0
 
       # Extract the NuOscillator version from CMakeLists.txt
       - name: Get NuOscillator version
@@ -35,6 +36,7 @@ jobs:
       - name: Get NuOscillator tag version
         run: |
           cd NuOscillator
+          git fetch --tags
           NuOscillator_tag_version=$(git describe --tags $(git rev-list --tags --max-count=1))
           NuOscillator_tag_version=${NuOscillator_tag_version#v}   # remove leading v if present
           echo "Extracted NuOscillator tag version: ${NuOscillator_tag_version}"
