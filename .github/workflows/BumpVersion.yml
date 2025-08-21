@@ -44,6 +44,16 @@ jobs:
           echo "Extracted NuOscillator tag version: ${NuOscillator_tag_version}"
           echo "NUOSCILLATOR_TAG_VERSION=${NuOscillator_tag_version}" >> $GITHUB_ENV
 
+      # Compare versions and set NOTIFY=true if they match
+      - name: Compare versions
+        run: |
+          if [ "${{ env.NUOSCILLATOR_VERSION }}" = "${{ env.NUOSCILLATOR_TAG_VERSION }}" ]; then
+            echo "Versions match! Setting NOTIFY=true"
+            echo "NOTIFY=true" >> $GITHUB_ENV
+          else
+            echo "Versions do not match. No notification."
+          fi
+
       # Notify users if versions match
       - name: Notify users
         if: env.NOTIFY == 'true'
