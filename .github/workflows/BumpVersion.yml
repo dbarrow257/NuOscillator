@@ -54,15 +54,16 @@ jobs:
             echo "Versions do not match. No notification."
           fi
 
-      # Notify users if versions match
+      # Notify users by creating an issue if versions match
       - name: Notify users
         if: env.NOTIFY == 'true'
         uses: actions/github-script@v7
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            await github.issues.create({
-              ...context.repo,
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
               title: "🎉 NuOscillator Version Match",
               body: "Hey @kskwarczynski and @dbarrow257 — the NuOscillator version in `CMakeLists.txt` **matches** the latest Git tag (`${{ env.NUOSCILLATOR_VERSION }}`). Big pog! 🚀",
               assignees: ["kskwarczynski", "dbarrow257"]
