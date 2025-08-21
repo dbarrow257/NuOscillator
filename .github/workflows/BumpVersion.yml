@@ -56,15 +56,20 @@ jobs:
             echo "Versions do not match. No notification."
           fi
 
-      # Notify users by creating an issue if versions match
+      # Notify users by creating a comment with version info
       - name: Comment on issue #154
         uses: actions/github-script@v7
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
+            const version = process.env.NUOSCILLATOR_VERSION;
+            const tag = process.env.NUOSCILLATOR_TAG_VERSION;
             await github.rest.issues.createComment({
               owner: context.repo.owner,
               repo: context.repo.repo,
               issue_number: 154,
-              body: "🎉 Automated comment: NuOscillator version matches the latest tag!"
+              body: `🎉 Automated comment: NuOscillator version \`${version}\` matches the latest tag \`${tag}\`! 🚀`
             })
+        env:
+          NUOSCILLATOR_VERSION: 1.4.3
+          NUOSCILLATOR_TAG_VERSION: 1.4.3
