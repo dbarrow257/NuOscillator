@@ -4,9 +4,9 @@ on:
   workflow_dispatch:
   schedule:
     - cron: "0 12 * * *"  # Runs daily at 12:00
-push:
-  branches:
-    - feature/botSpam
+  push:
+    branches:
+      - feature/botSpam
 
 jobs:
   check-version:
