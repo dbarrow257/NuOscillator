@@ -4,9 +4,6 @@ on:
   workflow_dispatch:
   schedule:
     - cron: "0 12 * * *"  # Runs daily at 12:00
-  push:
-    branches:
-      - feature/botSpam
 
 jobs:
   check-version:
@@ -72,6 +69,3 @@ jobs:
               issue_number: 154,
               body: `🎉 Automated comment: NuOscillator version \`${version}\` matches the latest tag \`${tag}\`! 🚀\n\n@dbarrow257 and @kskwarczynski, please update me`
             })
-        env:
-          NUOSCILLATOR_VERSION: 1.4.3
-          NUOSCILLATOR_TAG_VERSION: 1.4.2
