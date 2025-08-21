@@ -68,7 +68,7 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo,
               issue_number: 154,
-              body: `🎉 Automated comment: NuOscillator version \`${version}\` matches the latest tag \`${tag}\`! 🚀`
+              body: `🎉 Automated comment: NuOscillator version \`${version}\` matches the latest tag \`${tag}\`! 🚀\n\n@dbarrow257 and @kskwarczynski, please update me`
             })
         env:
           NUOSCILLATOR_VERSION: 1.4.3
