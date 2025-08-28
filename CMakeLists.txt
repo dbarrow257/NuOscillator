@@ -72,7 +72,7 @@ if(ALL_OSCILLATORS_DISABLED)
 endif()
 
 if(NOT DEFINED nuTens_BRANCH)
-  set(nuTens_BRANCH "main")
+  set(nuTens_BRANCH "v0.4.0")
 endif()
 
 ########################################################
@@ -167,7 +167,8 @@ endif()
 
 
 if(${UseNuTens} EQUAL 1)
-  CPMFindPackage(
+  message(INFO "Adding nutens")
+  CPMAddPackage(
     NAME nuTens
     GITHUB_REPOSITORY "ewanwm/nuTens"
     GIT_TAG ${nuTens_BRANCH}
