@@ -72,7 +72,7 @@ if(ALL_OSCILLATORS_DISABLED)
 endif()
 
 if(NOT DEFINED nuTens_BRANCH)
-  set(nuTens_BRANCH "v0.4.0")
+  set(nuTens_BRANCH "v0.4.1")
 endif()
 
 ########################################################
