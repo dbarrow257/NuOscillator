@@ -25,29 +25,13 @@ OscProbCalcernuTens::OscProbCalcernuTens(YAML::Node Config_) : OscProbCalcerBase
   NT_PROFILE_BEGINSESSION("OscProbCalcernuTens");
 
   NT_PROFILE();
-
-  //Initialise tensors
-
-  _mat1 = Tensor::zeros({1, 3, 3}, dtypes::kComplexFloat, dtypes::kCPU).requiresGrad(false);
-  _mat2 = Tensor::zeros({1, 3, 3}, dtypes::kComplexFloat, dtypes::kCPU).requiresGrad(false);
-  _mat3 = Tensor::zeros({1, 3, 3}, dtypes::kComplexFloat, dtypes::kCPU).requiresGrad(false);
-
-  // silly workaround for silly problem where setMatterSolver assumes these values are set
-  // and if they aren't, errors errors errors
-  Tensor pmns = getPMNSmatrix(0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
-  tensorPropagator.setMixingMatrix(pmns);
-  tensorPropagator.setMasses(_masses);
-  // I will fix this in nuTens soon :)
   
-  tensorPropagator.setMatterSolver(matterSolver);
-  
-  //=======
   fNOscParams = kNOscParams_PMNS;
 
-  fNNeutrinoTypes = 1;
+  fNNeutrinoTypes = 2;
   InitialiseNeutrinoTypesArray(fNNeutrinoTypes);
   fNeutrinoTypes[0] = Nu;
-  //fNeutrinoTypes[1] = Nubar;
+  fNeutrinoTypes[1] = Nubar;
   #if UseMultithreading == 1
   fImplementationName += "-CPU-"+std::to_string(omp_get_max_threads());
   #else
@@ -64,44 +48,46 @@ OscProbCalcernuTens::~OscProbCalcernuTens() {
 }
 
 void OscProbCalcernuTens::SetupPropagator() {
+
+  tensorPropagator.setParameters(_theta12Tensor, _theta23Tensor, _theta13Tensor, _dcpTensor, _dm21Tensor, _dm31Tensor);
+
 }
 
 void OscProbCalcernuTens::CalculateProbabilities(const std::vector<FLOAT_T>& OscParams) {
   // ------------------------------- //
   // Set the experimental parameters //
   // ------------------------------- //
-  const double L = OscParams[kPATHL]; // km
-  const double rho = OscParams[kDENS]; // g/cc
-  const double Ye = OscParams[kELECDENS];
 
-  tensorPropagator.setBaseline(L * units::km);
-  matterSolver->setDensity(rho * Ye);
+  tensorPropagator.setBaseline(OscParams[kPATHL] * units::km);
+  tensorPropagator.setDensity(OscParams[kDENS] * OscParams[kELECDENS]);
 
   // ------------------------------------------ //
   // Calculate all 9 oscillations probabilities //
   // ------------------------------------------ //
 
-  Tensor pmnsMatrix = getPMNSmatrix(
-    /*theta12=*/OscParams[kTH12], 
-    /*theta23=*/OscParams[kTH23], 
-    /*theta13=*/OscParams[kTH13], 
-    /*dm12=*/OscParams[kDM12], 
-    /*dm23=*/OscParams[kDM23], 
-    /*dcp=*/OscParams[kDCP]
-  );
+  setParamValues(std::asin(std::sqrt(OscParams[kTH12])), std::asin(std::sqrt(OscParams[kTH13])), std::asin(std::sqrt(OscParams[kTH23])), OscParams[kDCP], OscParams[kDM12], OscParams[kDM23]);
 
-  tensorPropagator.setMixingMatrix(pmnsMatrix);
-  tensorPropagator.setMasses(_masses);
-
-  Tensor probs = tensorPropagator.calculateProbs();
-  AccessedTensor<float, 3, dtypes::kCPU> accessedProbs = AccessedTensor<float, 3, dtypes::kCPU>(probs);
-
-  NT_PROFILE("writing probs");
+  Tensor probs;
   
-  for (int iOscProb=0;iOscProb<fNEnergyPoints;iOscProb++) {
-    
-    for (int iNuType=0;iNuType<fNNeutrinoTypes;iNuType++) {
-      
+  NT_PROFILE("writing probs");
+
+  for (int iNuType=0;iNuType<fNNeutrinoTypes;iNuType++) {
+
+    if(fNeutrinoTypes[iNuType] == Nu) {
+
+      tensorPropagator.setAntiNeutrino(false);
+      probs = tensorPropagator.calculateProbs();
+    }
+    else if(fNeutrinoTypes[iNuType] == Nubar) {
+      tensorPropagator.setAntiNeutrino(true);
+      probs = tensorPropagator.calculateProbs();
+    }
+
+    // get AccessedTensor for probabilities to make reading from them faster
+    auto accessedProbs = AccessedTensor<float, 3, dtypes::kCPU>(probs);
+
+    for (int iOscProb=0;iOscProb<fNEnergyPoints;iOscProb++) {
+  
       for ( int iOscChan = 0; iOscChan < fNOscillationChannels ; iOscChan++ ) {
 
         // Mapping which links the oscillation channel, neutrino type and energy index to the fWeightArray index
@@ -109,8 +95,8 @@ void OscProbCalcernuTens::CalculateProbabilities(const std::vector<FLOAT_T>& Osc
 
         double Weight = accessedProbs.getValue(
           iOscProb, 
-          fOscillationChannels[iOscChan].DetectedFlavour - 1,
-          fOscillationChannels[iOscChan].GeneratedFlavour - 1
+          fOscillationChannels[iOscChan].GeneratedFlavour - 1,
+          fOscillationChannels[iOscChan].DetectedFlavour - 1
         );
 
         if(Weight>1.0) {

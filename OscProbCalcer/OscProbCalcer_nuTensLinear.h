@@ -6,7 +6,8 @@
 
 #include <nuTens/tensors/tensor.hpp>
 #include <nuTens/propagator/const-density-solver.hpp>
-#include <nuTens/propagator/propagator.hpp>
+#include <nuTens/propagator/DP-propagator.hpp>
+#include <nuTens/propagator/pmns-matrix.hpp>
 
 //#include "Constants/OscillatorConstants.h"
 
@@ -55,46 +56,17 @@ class OscProbCalcernuTens : public OscProbCalcerBase {
    */
   void SetupPropagator() override;
 
-  inline nuTens::Tensor getPMNSmatrix(float theta12, float theta23, float theta13, float dm12, float dm23, float dcp) {
+  inline void setParamValues(float theta12, float theta13, float theta23, float dcp, float dm12, float dm23) {
 
-    
-    constexpr std::complex<float> imagUnit(0.0, 1.0);
-    float m1, m2, m3;
+    float dm13 = dm12 + dm23;
+  
+    _theta12Tensor.setValue(theta12, 0, 0);
+    _theta13Tensor.setValue(theta13, 0, 0);
+    _theta23Tensor.setValue(theta23, 0, 0);
+    _dcpTensor.setValue(dcp, 0, 0);
+    _dm21Tensor.setValue(-dm12, 0, 0);
+    _dm31Tensor.setValue(-dm13, 0, 0);
 
-    if(dm23 >= 0.0) {
-        m3 = std::sqrt(dm23 + dm12);
-        m2 = std::sqrt(dm12);
-        m1 = 0.0;
-    }
-    else if(dm23 < 0.0) {
-        m2 = std::sqrt(-dm23);
-        m1 = std::sqrt(-dm23 + dm12);
-        m3 = 0.0;
-    }
-
-    _masses.setValue(m1, 0, 0);
-    _masses.setValue(m2, 0, 1);
-    _masses.setValue(m3, 0, 2);
-
-    _mat1.setValue({0, 0, 0}, 1.0);
-    _mat1.setValue({0, 1, 1}, std::cos(theta23));
-    _mat1.setValue({0, 1, 2}, std::sin(theta23));
-    _mat1.setValue({0, 2, 1}, -std::sin(theta23));
-    _mat1.setValue({0, 2, 2}, std::cos(theta23));
-
-    _mat2.setValue({0, 1, 1}, 1.0);
-    _mat2.setValue({0, 0, 0}, std::cos(theta13));
-    _mat2.setValue({0, 0, 2}, std::sin(theta13) * std::exp(-imagUnit * dcp));
-    _mat2.setValue({0, 2, 0}, -std::sin(theta13) * std::exp(imagUnit * dcp));
-    _mat2.setValue({0, 2, 2}, std::cos(theta13));
-
-    _mat3.setValue({0, 2, 2}, 1.0);
-    _mat3.setValue({0, 0, 0}, std::cos(theta12));
-    _mat3.setValue({0, 0, 1}, std::sin(theta12));
-    _mat3.setValue({0, 1, 0}, -std::sin(theta12));
-    _mat3.setValue({0, 1, 1}, std::cos(theta12));
-
-    return nuTens::Tensor::matmul(_mat1, Tensor::matmul(_mat2, _mat3));
   }
 
   /**
@@ -154,17 +126,16 @@ class OscProbCalcernuTens : public OscProbCalcerBase {
    */
   int nThreads;
 
-
-  nuTens::Tensor _mat1;
-  nuTens::Tensor _mat2;
-  nuTens::Tensor _mat3;
-
-  nuTens::AccessedTensor<float, 2, dtypes::kCPU> _masses = AccessedTensor<float, 2, dtypes::kCPU>::zeros({1, 3}, false);
-
+  nuTens::PMNSmatrix pmnsMatrix;
   nuTens::Tensor energiesTensor;
+  nuTens::AccessedTensor<float, 2, dtypes::kCPU> _theta12Tensor = AccessedTensor<float, 2, dtypes::kCPU>::zeros({1, 3}, false);
+  nuTens::AccessedTensor<float, 2, dtypes::kCPU> _theta13Tensor = AccessedTensor<float, 2, dtypes::kCPU>::zeros({1, 3}, false);
+  nuTens::AccessedTensor<float, 2, dtypes::kCPU> _theta23Tensor = AccessedTensor<float, 2, dtypes::kCPU>::zeros({1, 3}, false);
+  nuTens::AccessedTensor<float, 2, dtypes::kCPU> _dcpTensor = AccessedTensor<float, 2, dtypes::kCPU>::zeros({1, 3}, false);
+  nuTens::AccessedTensor<float, 2, dtypes::kCPU> _dm21Tensor = AccessedTensor<float, 2, dtypes::kCPU>::zeros({1, 3}, false);
+  nuTens::AccessedTensor<float, 2, dtypes::kCPU> _dm31Tensor = AccessedTensor<float, 2, dtypes::kCPU>::zeros({1, 3}, false);
 
-  nuTens::Propagator tensorPropagator = Propagator(3, 295 * units::km);
-  std::shared_ptr<nuTens::ConstDensityMatterSolver> matterSolver = std::make_shared<nuTens::ConstDensityMatterSolver>(3, 2.7);
+  nuTens::DPpropagator tensorPropagator = DPpropagator(100.0 * units::km, false, 2.6, 4);
 
 };
 
