@@ -57,6 +57,7 @@ DefineEnabledRequiredSwitch(UseProbGPULinear 0)
 DefineEnabledRequiredSwitch(UseNuFASTLinear 0)
 DefineEnabledRequiredSwitch(UseNuSQUIDSLinear 0)
 DefineEnabledRequiredSwitch(UseOscProb 0)
+DefineEnabledRequiredSwitch(UseOscLib 0)
 DefineEnabledRequiredSwitch(UseGLoBESLinear  0)
 
 # KS: NuFastLinear by default
@@ -67,6 +68,7 @@ if(UseCUDAProb3        EQUAL 0 AND
     UseNuFASTLinear    EQUAL 0 AND
     UseNuSQUIDSLinear  EQUAL 0 AND
     UseOscProb         EQUAL 0 AND
+    UseOscLib         EQUAL 0 AND    
     UseGLoBESLinear    EQUAL 0 )
   set(UseNuFASTLinear 1)
 endif()
@@ -79,6 +81,7 @@ LIST(APPEND ALL_Engines
   NuFASTLinear
   NuSQUIDSLinear
   OscProb
+  OscLib
   GLoBESLinear
 )
 
@@ -111,6 +114,10 @@ endif()
 
 if(NOT DEFINED OscProb_BRANCH)
   set(OscProb_BRANCH "v2.1.2")
+endif()
+
+if(NOT DEFINED OscLib_BRANCH)
+  set(OscLib_BRANCH "v1.0.1")
 endif()
 
 if(NOT DEFINED GLoBES_BRANCH)
@@ -352,6 +359,52 @@ if(${UseOscProb} EQUAL 1)
   set(OSCPROB_LIB_DIR ${OscProb_SOURCE_DIR}/lib)
 endif()
 
+if(${UseOscLib} EQUAL 1)
+  find_package(Boost REQUIRED)
+  find_package(GSL REQUIRED)
+  
+  CPMAddPackage(
+    NAME Eigen
+    VERSION 3.4.0
+    URL https://gitlab.com/libeigen/eigen/-/archive/3.4.0/eigen-3.4.0.tar.gz
+    DOWNLOAD_ONLY YES
+  )
+  if(Eigen_ADDED)
+    add_library(Eigen INTERFACE IMPORTED)
+    target_include_directories(Eigen INTERFACE ${Eigen_SOURCE_DIR})
+  endif()
+
+  CPMAddPackage(
+    NAME OscLib
+    GITHUB_REPOSITORY cafana/OscLib
+    GIT_TAG ${OscLib_BRANCH}
+    DOWNLOAD_ONLY YES
+  )
+
+  execute_process(COMMAND root-config --incdir OUTPUT_VARIABLE ROOT_INC OUTPUT_STRIP_TRAILING_WHITESPACE)
+  execute_process(COMMAND root-config --libdir OUTPUT_VARIABLE ROOTLIBDIR OUTPUT_STRIP_TRAILING_WHITESPACE)
+
+  set(ENV{ROOT_INC} ${ROOT_INC})
+  set(ENV{ROOTLIBDIR} ${ROOTLIBDIR})
+  set(ENV{EIGEN_INC} ${Eigen_SOURCE_DIR})
+  set(ENV{BOOST_INC} ${Boost_INCLUDE_DIRS})
+  set(ENV{GSL_INC} ${GSL_INCLUDE_DIRS})
+  set(ENV{GSL_LIB} ${GSL_LIBRARY})
+  set(ENV{ROOTSYS} ${ROOT_INC}/..)
+  
+  execute_process(COMMAND bash -c "sed -i s#ROOTSYS\}/lib#ROOTLIBDIR\}#g ${OscLib_SOURCE_DIR}/OscLib/Makefile")
+  execute_process(COMMAND make WORKING_DIRECTORY ${OscLib_SOURCE_DIR})
+
+  add_library(OSCLIB INTERFACE IMPORTED)
+  cmessage("DB:"${OscLib_SOURCE_DIR})
+  target_include_directories(OSCLIB INTERFACE  ${OscLib_SOURCE_DIR})
+
+  set(OSCLIB_LIB_DIR ${OscLib_INC}/OscLib/)
+  set(OSCLIB_LIB_DIR ${OscLib_SOURCE_DIR}/OscLib/lib/)
+
+  target_compile_definitions(NuOscillatorCompilerOptions INTERFACE UseOscLib=1)
+endif()
+
 if(${UseNuSQUIDSLinear} EQUAL 1)
   find_package(GSL REQUIRED)
 
@@ -552,6 +605,12 @@ if(OSCPROB_LIB_DIR)
   file(RELATIVE_PATH OSCPROB_REL_LIB_PATH
        "${CMAKE_INSTALL_PREFIX}"
        "${OSCPROB_LIB_DIR}")
+endif()
+
+if(OSCLIB_LIB_DIR)
+    file(RELATIVE_PATH OSCLIB_REL_LIB_PATH
+       "${CMAKE_INSTALL_PREFIX}"
+       "${OSCLIB_LIB_DIR}")
 endif()
 
 if(GLOBES_LIB_DIR)

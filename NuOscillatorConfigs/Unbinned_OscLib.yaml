@@ -4,10 +4,7 @@ General:
   CalculationType: "Unbinned"
 
 OscProbCalcerSetup:
-  ImplementationName: "OscProb"
-  PMNSType: "Fast"
-  PREMFile: "./Inputs/OscProb_prem_4+1layers.txt"
-  DetDepth: 1.5
+  ImplementationName: "OscLib"
   OscChannelMapping:
     - Entry: "Electron:Electron"
     - Entry: "Electron:Muon"
