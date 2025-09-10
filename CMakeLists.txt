@@ -360,6 +360,12 @@ if(${UseOscProb} EQUAL 1)
 endif()
 
 if(${UseOscLib} EQUAL 1)
+  # Check if C++ standard is less than 17
+  if(CMAKE_CXX_STANDARD LESS 17)
+    cmessage(FATAL_ERROR "OscLib requires at least C++17, but you are using C++${CMAKE_CXX_STANDARD}.
+                          Please upgrade your compiler or change the engine.")
+  endif()
+
   find_package(Boost REQUIRED)
   find_package(GSL REQUIRED)
 
