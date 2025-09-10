@@ -68,7 +68,7 @@ if(UseCUDAProb3        EQUAL 0 AND
     UseNuFASTLinear    EQUAL 0 AND
     UseNuSQUIDSLinear  EQUAL 0 AND
     UseOscProb         EQUAL 0 AND
-    UseOscLib         EQUAL 0 AND    
+    UseOscLib          EQUAL 0 AND
     UseGLoBESLinear    EQUAL 0 )
   set(UseNuFASTLinear 1)
 endif()
@@ -362,7 +362,7 @@ endif()
 if(${UseOscLib} EQUAL 1)
   find_package(Boost REQUIRED)
   find_package(GSL REQUIRED)
-  
+
   CPMAddPackage(
     NAME Eigen
     VERSION 3.4.0
@@ -380,28 +380,33 @@ if(${UseOscLib} EQUAL 1)
     GIT_TAG ${OscLib_BRANCH}
     DOWNLOAD_ONLY YES
   )
+  # KS: Collect OscLib sources and header files
+  file(GLOB OSCLIB_SOURCES
+    ${OscLib_SOURCE_DIR}/OscLib/*.cxx
+  )
+  file(GLOB OSCLIB_HEADERS
+    ${OscLib_SOURCE_DIR}/OscLib/*.h
+  )
+  add_library(OscLib SHARED
+    ${OSCLIB_SOURCES}
+  )
 
-  execute_process(COMMAND root-config --incdir OUTPUT_VARIABLE ROOT_INC OUTPUT_STRIP_TRAILING_WHITESPACE)
-  execute_process(COMMAND root-config --libdir OUTPUT_VARIABLE ROOTLIBDIR OUTPUT_STRIP_TRAILING_WHITESPACE)
+  set_target_properties(OscLib PROPERTIES
+    PUBLIC_HEADER "${OSCLIB_HEADERS}"
+    EXPORT_NAME OscLib
+  )
 
-  set(ENV{ROOT_INC} ${ROOT_INC})
-  set(ENV{ROOTLIBDIR} ${ROOTLIBDIR})
-  set(ENV{EIGEN_INC} ${Eigen_SOURCE_DIR})
-  set(ENV{BOOST_INC} ${Boost_INCLUDE_DIRS})
-  set(ENV{GSL_INC} ${GSL_INCLUDE_DIRS})
-  set(ENV{GSL_LIB} ${GSL_LIBRARY})
-  set(ENV{ROOTSYS} ${ROOT_INC}/..)
-  
-  execute_process(COMMAND bash -c "sed -i s#ROOTSYS\}/lib#ROOTLIBDIR\}#g ${OscLib_SOURCE_DIR}/OscLib/Makefile")
-  execute_process(COMMAND make WORKING_DIRECTORY ${OscLib_SOURCE_DIR})
-
-  add_library(OSCLIB INTERFACE IMPORTED)
-  cmessage("DB:"${OscLib_SOURCE_DIR})
-  target_include_directories(OSCLIB INTERFACE  ${OscLib_SOURCE_DIR})
-
-  set(OSCLIB_LIB_DIR ${OscLib_INC}/OscLib/)
-  set(OSCLIB_LIB_DIR ${OscLib_SOURCE_DIR}/OscLib/lib/)
-
+  target_link_libraries(OscLib ROOT::Core Eigen GSL::gsl)
+  # Properly scoped include dirs
+  target_include_directories(OscLib PUBLIC
+      $<BUILD_INTERFACE:${OscLib_SOURCE_DIR}>
+      $<INSTALL_INTERFACE:include>
+  )
+  install(TARGETS OscLib
+    EXPORT NuOscillator-targets
+    LIBRARY DESTINATION lib/
+    PUBLIC_HEADER DESTINATION include/
+  )
   target_compile_definitions(NuOscillatorCompilerOptions INTERFACE UseOscLib=1)
 endif()
 
