@@ -49,40 +49,47 @@ int main(int argc, char **argv) {
     Calcer->SetCosineZArray(CosineZArray);
   }
   Calcer->Setup();
-
+  
   std::cout << "Finished setup in executable" << std::endl;
   std::cout << "========================================================" << std::endl;
   std::cout << "Starting reweight in executable" << std::endl;
 
-  // Reweight and calculate oscillation probabilities
-
-  // These don't have to be explicilty beam or atmospheric specific, all they have to be is equal to the number of oscillation parameters expected by the implementation
-  // If you have some NSO calculater, then it will work providing the length of the vector of oscillation parameters is equal to the number of expected oscillation parameters
-  if (Calcer->ReturnNOscParams() == (int)OscParams_Basic.size()) {
-    Calcer->Reweight(OscParams_Basic);
-  } else if (Calcer->ReturnNOscParams() == (int)OscParams_Atm.size()) {
-    Calcer->Reweight(OscParams_Atm);
-  } else if (Calcer->ReturnNOscParams() == (int)OscParams_Beam_woYe.size()) {
-    Calcer->Reweight(OscParams_Beam_woYe);
-  } else if (Calcer->ReturnNOscParams() == (int)OscParams_Beam_wYe.size()) {
-    Calcer->Reweight(OscParams_Beam_wYe);
-  } else if (Calcer->ReturnNOscParams() == (int)OscParams_Beam_wYe_wDeco.size()) {
-    Calcer->Reweight(OscParams_Beam_wYe_wDeco);
-  } else if (Calcer->ReturnNOscParams() == (int)OscParams_Beam_wYe_wLIV.size()) {
-    Calcer->Reweight(OscParams_Beam_wYe_wLIV);
-  } else if (Calcer->ReturnNOscParams() == (int)OscParams_Beam_wYe_wNSI.size()) {
-    Calcer->Reweight(OscParams_Beam_wYe_wNSI);
-  } else {
-    std::cerr << "Did not find viable oscillation parameters to hand to the oscillation probability calculater" << std::endl;
-    std::cerr << "Oscillator->ReturnNOscParams():" << Calcer->ReturnNOscParams() << std::endl;
-    throw std::runtime_error("Invalid setup");
-  }
-
-  if (PrintWeights) {
-    std::vector<NuOscillator::OscillationProbability> OscProbs = Calcer->ReturnProbabilities();
-    for (int iOscProb=0;iOscProb<(int)OscProbs.size();iOscProb++) {
-      std::cout << iOscProb << " " << OscProbs[iOscProb].NuType << " " << OscProbs[iOscProb].OscChan.GeneratedFlavour << " " << OscProbs[iOscProb].OscChan.DetectedFlavour << " " << OscProbs[iOscProb].Energy << " " << OscProbs[iOscProb].CosineZ << " " << OscProbs[iOscProb].Probability << std::endl;
+  for (int iBL=1;iBL<100;iBL++) {
+    FLOAT_T BL = iBL*10;
+    OscParams_Beam_wYe_wDeco[6] = BL;
+    
+    // Reweight and calculate oscillation probabilities
+    
+    // These don't have to be explicilty beam or atmospheric specific, all they have to be is equal to the number of oscillation parameters expected by the implementation
+    // If you have some NSO calculater, then it will work providing the length of the vector of oscillation parameters is equal to the number of expected oscillation parameters
+    if (Calcer->ReturnNOscParams() == (int)OscParams_Basic.size()) {
+      Calcer->Reweight(OscParams_Basic);
+    } else if (Calcer->ReturnNOscParams() == (int)OscParams_Atm.size()) {
+      Calcer->Reweight(OscParams_Atm);
+    } else if (Calcer->ReturnNOscParams() == (int)OscParams_Beam_woYe.size()) {
+      Calcer->Reweight(OscParams_Beam_woYe);
+    } else if (Calcer->ReturnNOscParams() == (int)OscParams_Beam_wYe.size()) {
+      Calcer->Reweight(OscParams_Beam_wYe);
+    } else if (Calcer->ReturnNOscParams() == (int)OscParams_Beam_wYe_wDeco.size()) {
+      Calcer->Reweight(OscParams_Beam_wYe_wDeco);
+    } else if (Calcer->ReturnNOscParams() == (int)OscParams_Beam_wYe_wLIV.size()) {
+      Calcer->Reweight(OscParams_Beam_wYe_wLIV);
+    } else if (Calcer->ReturnNOscParams() == (int)OscParams_Beam_wYe_wNSI.size()) {
+      Calcer->Reweight(OscParams_Beam_wYe_wNSI);
+    } else {
+      std::cerr << "Did not find viable oscillation parameters to hand to the oscillation probability calculater" << std::endl;
+      std::cerr << "Oscillator->ReturnNOscParams():" << Calcer->ReturnNOscParams() << std::endl;
+      throw std::runtime_error("Invalid setup");
     }
+    
+    if (PrintWeights) {
+      std::vector<NuOscillator::OscillationProbability> OscProbs = Calcer->ReturnProbabilities();
+      //for (int iOscProb=0;iOscProb<(int)OscProbs.size();iOscProb++) {
+      for (int iOscProb=0;iOscProb<10;iOscProb++) {
+	std::cout << iOscProb << " " << OscProbs[iOscProb].NuType << " " << OscProbs[iOscProb].OscChan.GeneratedFlavour << " " << OscProbs[iOscProb].OscChan.DetectedFlavour << " " << OscProbs[iOscProb].Energy << " " << OscProbs[iOscProb].CosineZ << " " << OscProbs[iOscProb].Probability << std::endl;
+      }
+    }
+
   }
   
   std::cout << "Finished reweight in executable" << std::endl;
