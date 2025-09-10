@@ -29,7 +29,7 @@ jobs:
           - os: Alma9 w/o multithread
             file: Docs/DockerFiles/Alma9/Dockerfile
             tag: alma9latest
-            cmakeoptions: -DUseDoubles=0 -DUseMultithreading=0 -DUseCUDAProb3=0 -DUseCUDAProb3Linear=0 -DUseProb3ppLinear=1 -DUseNuFASTLinear=1 -DUseProbGPULinear=0 -DUseOscProb=1 -DUseOscLib=1 -DUseNuSQUIDSLinear=1 -DUseGLoBESLinear=1
+            cmakeoptions: -DUseDoubles=1 -DUseMultithreading=0 -DUseCUDAProb3=0 -DUseCUDAProb3Linear=0 -DUseProb3ppLinear=1 -DUseNuFASTLinear=1 -DUseProbGPULinear=0 -DUseOscProb=1 -DUseOscLib=1 -DUseNuSQUIDSLinear=1 -DUseGLoBESLinear=1
           - os: Rocky9
             file: Docs/DockerFiles/Rocky9/Dockerfile
             tag: rocky9latest
