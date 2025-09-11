@@ -78,6 +78,7 @@ endif()
 if(${UseOscProb} EQUAL 1)
   target_sources(OscProbCalcer PRIVATE OscProbCalcer_OscProb.cpp)
   target_link_libraries(OscProbCalcer Eigen OSCPROB ROOT::Core)
+  target_link_libraries(OscProbCalcer ${OscProb_SOURCE_DIR}/lib/libOscProb.so)
   list(APPEND HEADERS OscProbCalcer_OscProb.h)
 endif()
 

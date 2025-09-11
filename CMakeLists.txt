@@ -345,12 +345,8 @@ if(${UseOscProb} EQUAL 1)
   execute_process(COMMAND make WORKING_DIRECTORY ${OscProb_SOURCE_DIR})
   set(OSCPROB_LIB_DIR ${OscProb_SOURCE_DIR}/lib)
 
-  add_library(OSCPROB SHARED IMPORTED)
-  set_target_properties(OSCPROB PROPERTIES
-    IMPORTED_LOCATION "${OSCPROB_LIB_DIR}/libOscProb.so"
-    INTERFACE_INCLUDE_DIRECTORIES "${OscProb_SOURCE_DIR}/"
-  )
-
+  add_library(OSCPROB INTERFACE IMPORTED)
+  target_include_directories(OSCPROB INTERFACE ${OscProb_SOURCE_DIR})
   target_compile_definitions(NuOscillatorCompilerOptions INTERFACE UseOscProb=1)
 endif()
 
@@ -434,9 +430,7 @@ if(${UseNuSQUIDSLinear} EQUAL 1)
 
   add_dependencies(NUSQUIDS SQUIDS)
   add_library(NUSQUIDS::NUSQUIDS SHARED IMPORTED)
-  set_target_properties(NUSQUIDS::NUSQUIDS PROPERTIES
-              IMPORTED_LOCATION ${NUSQUIDS_LIB_DIR}/libnuSQuIDS.so)
-  #target_link_libraries(NUSQUIDS::NUSQUIDS PRIVATE ${NUSQUIDS_SRC_DIR}/build/NuSQUIDSDecoh)
+  set_target_properties(NUSQUIDS::NUSQUIDS PROPERTIES IMPORTED_LOCATION ${NUSQUIDS_LIB_DIR}/libnuSQuIDS.so)
   target_compile_definitions(NuOscillatorCompilerOptions INTERFACE UseNuSQUIDSLinear=1)
 endif()
 
