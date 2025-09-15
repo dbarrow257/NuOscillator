@@ -20,7 +20,7 @@ heap_tree=empty
 #-----------
 snapshot=2
 #-----------
-time=192652173
+time=192648176
 mem_heap_B=6462263
 mem_heap_extra_B=268825
 mem_stacks_B=0
@@ -384,15 +384,15 @@ n16: 6462263 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
 #-----------
 snapshot=3
 #-----------
-time=302279238
-mem_heap_B=26157089
-mem_heap_extra_B=402575
+time=312791128
+mem_heap_B=26663126
+mem_heap_extra_B=414322
 mem_stacks_B=0
 heap_tree=empty
 #-----------
 snapshot=4
 #-----------
-time=463895487
+time=463891888
 mem_heap_B=58767821
 mem_heap_extra_B=539411
 mem_stacks_B=0
@@ -400,7 +400,7 @@ heap_tree=empty
 #-----------
 snapshot=5
 #-----------
-time=559723260
+time=559719661
 mem_heap_B=62055746
 mem_heap_extra_B=582462
 mem_stacks_B=0
@@ -408,7 +408,7 @@ heap_tree=empty
 #-----------
 snapshot=6
 #-----------
-time=635772502
+time=635768620
 mem_heap_B=65020923
 mem_heap_extra_B=694941
 mem_stacks_B=0
@@ -416,7 +416,7 @@ heap_tree=empty
 #-----------
 snapshot=7
 #-----------
-time=762169044
+time=762165620
 mem_heap_B=68680731
 mem_heap_extra_B=911045
 mem_stacks_B=0
@@ -728,7 +728,7 @@ n12: 68680731 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
 #-----------
 snapshot=8
 #-----------
-time=966165044
+time=968193084
 mem_heap_B=68745818
 mem_heap_extra_B=915918
 mem_stacks_B=0
@@ -736,7 +736,7 @@ heap_tree=empty
 #-----------
 snapshot=9
 #-----------
-time=1135365661
+time=1138341577
 mem_heap_B=80612404
 mem_heap_extra_B=963700
 mem_stacks_B=0
@@ -1060,7 +1060,7 @@ n15: 80612404 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
 #-----------
 snapshot=10
 #-----------
-time=1241810511
+time=1244319485
 mem_heap_B=90340900
 mem_heap_extra_B=964236
 mem_stacks_B=0
@@ -1414,7 +1414,7 @@ n14: 90340900 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
 #-----------
 snapshot=11
 #-----------
-time=1349818670
+time=1352482519
 mem_heap_B=102474988
 mem_heap_extra_B=965388
 mem_stacks_B=0
@@ -1743,13 +1743,13 @@ n13: 102474988 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
 #-----------
 snapshot=12
 #-----------
-time=1453240715
-mem_heap_B=109797988
-mem_heap_extra_B=965340
+time=1463266107
+mem_heap_B=112314966
+mem_heap_extra_B=969186
 mem_stacks_B=0
 heap_tree=detailed
-n13: 109797988 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
- n0: 17400718 in 4194 places, all below massif's threshold (1.00%)
+n12: 112314966 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n0: 18582710 in 4197 places, all below massif's threshold (1.00%)
  n1: 15090080 0x95B8C4B: clang::ASTReader::ReadASTBlock(clang::serialization::ModuleFile&, unsigned int) (in /opt/root/v6-26-10/lib/libCling.so)
   n1: 15090080 0x95C3F68: clang::ASTReader::ReadAST(llvm::StringRef, clang::serialization::ModuleKind, clang::SourceLocation, unsigned int, llvm::SmallVectorImpl<clang::ASTReader::ImportedSubmodule>*) (in /opt/root/v6-26-10/lib/libCling.so)
    n2: 15090080 0x929856A: clang::CompilerInstance::loadModule(clang::SourceLocation, llvm::ArrayRef<std::pair<clang::IdentifierInfo*, clang::SourceLocation> >, clang::Module::NameVisibilityKind, bool) (in /opt/root/v6-26-10/lib/libCling.so)
@@ -1808,6 +1808,57 @@ n13: 109797988 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
                            n0: 13700608 0x1FFF0004F5: ???
        n0: 0 in 1 place, below massif's threshold (1.00%)
     n0: 0 in 1 place, below massif's threshold (1.00%)
+ n1: 12144040 0x6933766: void nusquids::readArrayH5<double, 2u, std::allocator<double> >(long, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, nusquids::marray<double, 2u, std::allocator<double> >&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
+  n4: 12144040 0x6925DA9: nusquids::NeutrinoDISCrossSectionsFromTables::readFlavorHDF5(long, nusquids::marray<double, 1u, std::allocator<double> > const&, nusquids::marray<double, 1u, std::allocator<double> > const&)::{lambda(nusquids::BiCubicInterpolator&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)#2}::operator()(nusquids::BiCubicInterpolator&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) const (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
+   n2: 4857616 0x692866A: nusquids::NeutrinoDISCrossSectionsFromTables::readFlavorHDF5(long, nusquids::marray<double, 1u, std::allocator<double> > const&, nusquids::marray<double, 1u, std::allocator<double> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
+    n1: 2428808 0x6931625: nusquids::NeutrinoDISCrossSectionsFromTables::ReadHDF(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
+     n1: 2428808 0x6931BFF: nusquids::NeutrinoDISCrossSectionsFromTables::NeutrinoDISCrossSectionsFromTables(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
+      n1: 2428808 0x6931E5A: nusquids::loadDefaultCrossSections() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
+       n1: 2428808 0x690F705: nusquids::nuSQUIDS::InitializeInteractions() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
+        n1: 2428808 0x690FC5C: nusquids::nuSQUIDS::EvolveState() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
+         n1: 2428808 0x4B844E2: OscProbCalcerNuSQUIDSLinear::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
+          n1: 2428808 0x4B567EF: OscProbCalcerBase::Reweight(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
+           n1: 2428808 0x487DF59: OscillatorBase::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscillator.so)
+            n0: 2428808 0x40A847: main (in /opt/NuOscillator/build/Linux/bin/DragRace)
+    n1: 2428808 0x6931927: nusquids::NeutrinoDISCrossSectionsFromTables::ReadHDF(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
+     n1: 2428808 0x6931BFF: nusquids::NeutrinoDISCrossSectionsFromTables::NeutrinoDISCrossSectionsFromTables(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
+      n1: 2428808 0x6931E5A: nusquids::loadDefaultCrossSections() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
+       n1: 2428808 0x690F705: nusquids::nuSQUIDS::InitializeInteractions() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
+        n1: 2428808 0x690FC5C: nusquids::nuSQUIDS::EvolveState() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
+         n1: 2428808 0x4B844E2: OscProbCalcerNuSQUIDSLinear::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
+          n1: 2428808 0x4B567EF: OscProbCalcerBase::Reweight(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
+           n1: 2428808 0x487DF59: OscillatorBase::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscillator.so)
+            n0: 2428808 0x40A847: main (in /opt/NuOscillator/build/Linux/bin/DragRace)
+   n1: 2428808 0x69286CD: nusquids::NeutrinoDISCrossSectionsFromTables::readFlavorHDF5(long, nusquids::marray<double, 1u, std::allocator<double> > const&, nusquids::marray<double, 1u, std::allocator<double> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
+    n1: 2428808 0x6931625: nusquids::NeutrinoDISCrossSectionsFromTables::ReadHDF(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
+     n1: 2428808 0x6931BFF: nusquids::NeutrinoDISCrossSectionsFromTables::NeutrinoDISCrossSectionsFromTables(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
+      n1: 2428808 0x6931E5A: nusquids::loadDefaultCrossSections() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
+       n1: 2428808 0x690F705: nusquids::nuSQUIDS::InitializeInteractions() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
+        n1: 2428808 0x690FC5C: nusquids::nuSQUIDS::EvolveState() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
+         n1: 2428808 0x4B844E2: OscProbCalcerNuSQUIDSLinear::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
+          n1: 2428808 0x4B567EF: OscProbCalcerBase::Reweight(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
+           n1: 2428808 0x487DF59: OscillatorBase::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscillator.so)
+            n0: 2428808 0x40A847: main (in /opt/NuOscillator/build/Linux/bin/DragRace)
+   n1: 2428808 0x6928736: nusquids::NeutrinoDISCrossSectionsFromTables::readFlavorHDF5(long, nusquids::marray<double, 1u, std::allocator<double> > const&, nusquids::marray<double, 1u, std::allocator<double> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
+    n1: 2428808 0x6931625: nusquids::NeutrinoDISCrossSectionsFromTables::ReadHDF(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
+     n1: 2428808 0x6931BFF: nusquids::NeutrinoDISCrossSectionsFromTables::NeutrinoDISCrossSectionsFromTables(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
+      n1: 2428808 0x6931E5A: nusquids::loadDefaultCrossSections() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
+       n1: 2428808 0x690F705: nusquids::nuSQUIDS::InitializeInteractions() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
+        n1: 2428808 0x690FC5C: nusquids::nuSQUIDS::EvolveState() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
+         n1: 2428808 0x4B844E2: OscProbCalcerNuSQUIDSLinear::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
+          n1: 2428808 0x4B567EF: OscProbCalcerBase::Reweight(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
+           n1: 2428808 0x487DF59: OscillatorBase::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscillator.so)
+            n0: 2428808 0x40A847: main (in /opt/NuOscillator/build/Linux/bin/DragRace)
+   n1: 2428808 0x692879F: nusquids::NeutrinoDISCrossSectionsFromTables::readFlavorHDF5(long, nusquids::marray<double, 1u, std::allocator<double> > const&, nusquids::marray<double, 1u, std::allocator<double> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
+    n1: 2428808 0x6931625: nusquids::NeutrinoDISCrossSectionsFromTables::ReadHDF(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
+     n1: 2428808 0x6931BFF: nusquids::NeutrinoDISCrossSectionsFromTables::NeutrinoDISCrossSectionsFromTables(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
+      n1: 2428808 0x6931E5A: nusquids::loadDefaultCrossSections() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
+       n1: 2428808 0x690F705: nusquids::nuSQUIDS::InitializeInteractions() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
+        n1: 2428808 0x690FC5C: nusquids::nuSQUIDS::EvolveState() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
+         n1: 2428808 0x4B844E2: OscProbCalcerNuSQUIDSLinear::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
+          n1: 2428808 0x4B567EF: OscProbCalcerBase::Reweight(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
+           n1: 2428808 0x487DF59: OscillatorBase::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscillator.so)
+            n0: 2428808 0x40A847: main (in /opt/NuOscillator/build/Linux/bin/DragRace)
  n1: 9715232 0x69224A8: nusquids::BiCubicInterpolator::BiCubicInterpolator(nusquids::marray<double, 2u, std::allocator<double> >, nusquids::marray<double, 1u, std::allocator<double> >, nusquids::marray<double, 1u, std::allocator<double> >) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
   n4: 9715232 0x6925E64: nusquids::NeutrinoDISCrossSectionsFromTables::readFlavorHDF5(long, nusquids::marray<double, 1u, std::allocator<double> > const&, nusquids::marray<double, 1u, std::allocator<double> > const&)::{lambda(nusquids::BiCubicInterpolator&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)#2}::operator()(nusquids::BiCubicInterpolator&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) const (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
    n1: 2428808 0x692866A: nusquids::NeutrinoDISCrossSectionsFromTables::readFlavorHDF5(long, nusquids::marray<double, 1u, std::allocator<double> > const&, nusquids::marray<double, 1u, std::allocator<double> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
@@ -1894,48 +1945,6 @@ n13: 109797988 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
             n0: 2428808 0x40A847: main (in /opt/NuOscillator/build/Linux/bin/DragRace)
  n1: 9715232 0x6922556: nusquids::BiCubicInterpolator::BiCubicInterpolator(nusquids::marray<double, 2u, std::allocator<double> >, nusquids::marray<double, 1u, std::allocator<double> >, nusquids::marray<double, 1u, std::allocator<double> >) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
   n4: 9715232 0x6925E64: nusquids::NeutrinoDISCrossSectionsFromTables::readFlavorHDF5(long, nusquids::marray<double, 1u, std::allocator<double> > const&, nusquids::marray<double, 1u, std::allocator<double> > const&)::{lambda(nusquids::BiCubicInterpolator&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)#2}::operator()(nusquids::BiCubicInterpolator&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) const (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
-   n1: 2428808 0x692866A: nusquids::NeutrinoDISCrossSectionsFromTables::readFlavorHDF5(long, nusquids::marray<double, 1u, std::allocator<double> > const&, nusquids::marray<double, 1u, std::allocator<double> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
-    n1: 2428808 0x6931625: nusquids::NeutrinoDISCrossSectionsFromTables::ReadHDF(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
-     n1: 2428808 0x6931BFF: nusquids::NeutrinoDISCrossSectionsFromTables::NeutrinoDISCrossSectionsFromTables(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
-      n1: 2428808 0x6931E5A: nusquids::loadDefaultCrossSections() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
-       n1: 2428808 0x690F705: nusquids::nuSQUIDS::InitializeInteractions() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
-        n1: 2428808 0x690FC5C: nusquids::nuSQUIDS::EvolveState() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
-         n1: 2428808 0x4B844E2: OscProbCalcerNuSQUIDSLinear::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
-          n1: 2428808 0x4B567EF: OscProbCalcerBase::Reweight(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
-           n1: 2428808 0x487DF59: OscillatorBase::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscillator.so)
-            n0: 2428808 0x40A847: main (in /opt/NuOscillator/build/Linux/bin/DragRace)
-   n1: 2428808 0x69286CD: nusquids::NeutrinoDISCrossSectionsFromTables::readFlavorHDF5(long, nusquids::marray<double, 1u, std::allocator<double> > const&, nusquids::marray<double, 1u, std::allocator<double> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
-    n1: 2428808 0x6931625: nusquids::NeutrinoDISCrossSectionsFromTables::ReadHDF(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
-     n1: 2428808 0x6931BFF: nusquids::NeutrinoDISCrossSectionsFromTables::NeutrinoDISCrossSectionsFromTables(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
-      n1: 2428808 0x6931E5A: nusquids::loadDefaultCrossSections() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
-       n1: 2428808 0x690F705: nusquids::nuSQUIDS::InitializeInteractions() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
-        n1: 2428808 0x690FC5C: nusquids::nuSQUIDS::EvolveState() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
-         n1: 2428808 0x4B844E2: OscProbCalcerNuSQUIDSLinear::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
-          n1: 2428808 0x4B567EF: OscProbCalcerBase::Reweight(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
-           n1: 2428808 0x487DF59: OscillatorBase::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscillator.so)
-            n0: 2428808 0x40A847: main (in /opt/NuOscillator/build/Linux/bin/DragRace)
-   n1: 2428808 0x6928736: nusquids::NeutrinoDISCrossSectionsFromTables::readFlavorHDF5(long, nusquids::marray<double, 1u, std::allocator<double> > const&, nusquids::marray<double, 1u, std::allocator<double> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
-    n1: 2428808 0x6931625: nusquids::NeutrinoDISCrossSectionsFromTables::ReadHDF(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
-     n1: 2428808 0x6931BFF: nusquids::NeutrinoDISCrossSectionsFromTables::NeutrinoDISCrossSectionsFromTables(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
-      n1: 2428808 0x6931E5A: nusquids::loadDefaultCrossSections() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
-       n1: 2428808 0x690F705: nusquids::nuSQUIDS::InitializeInteractions() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
-        n1: 2428808 0x690FC5C: nusquids::nuSQUIDS::EvolveState() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
-         n1: 2428808 0x4B844E2: OscProbCalcerNuSQUIDSLinear::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
-          n1: 2428808 0x4B567EF: OscProbCalcerBase::Reweight(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
-           n1: 2428808 0x487DF59: OscillatorBase::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscillator.so)
-            n0: 2428808 0x40A847: main (in /opt/NuOscillator/build/Linux/bin/DragRace)
-   n1: 2428808 0x692879F: nusquids::NeutrinoDISCrossSectionsFromTables::readFlavorHDF5(long, nusquids::marray<double, 1u, std::allocator<double> > const&, nusquids::marray<double, 1u, std::allocator<double> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
-    n1: 2428808 0x6931625: nusquids::NeutrinoDISCrossSectionsFromTables::ReadHDF(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
-     n1: 2428808 0x6931BFF: nusquids::NeutrinoDISCrossSectionsFromTables::NeutrinoDISCrossSectionsFromTables(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
-      n1: 2428808 0x6931E5A: nusquids::loadDefaultCrossSections() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
-       n1: 2428808 0x690F705: nusquids::nuSQUIDS::InitializeInteractions() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
-        n1: 2428808 0x690FC5C: nusquids::nuSQUIDS::EvolveState() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
-         n1: 2428808 0x4B844E2: OscProbCalcerNuSQUIDSLinear::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
-          n1: 2428808 0x4B567EF: OscProbCalcerBase::Reweight(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
-           n1: 2428808 0x487DF59: OscillatorBase::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscillator.so)
-            n0: 2428808 0x40A847: main (in /opt/NuOscillator/build/Linux/bin/DragRace)
- n1: 9715232 0x6933766: void nusquids::readArrayH5<double, 2u, std::allocator<double> >(long, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, nusquids::marray<double, 2u, std::allocator<double> >&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
-  n4: 9715232 0x6925DA9: nusquids::NeutrinoDISCrossSectionsFromTables::readFlavorHDF5(long, nusquids::marray<double, 1u, std::allocator<double> > const&, nusquids::marray<double, 1u, std::allocator<double> > const&)::{lambda(nusquids::BiCubicInterpolator&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)#2}::operator()(nusquids::BiCubicInterpolator&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) const (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
    n1: 2428808 0x692866A: nusquids::NeutrinoDISCrossSectionsFromTables::readFlavorHDF5(long, nusquids::marray<double, 1u, std::allocator<double> > const&, nusquids::marray<double, 1u, std::allocator<double> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
     n1: 2428808 0x6931625: nusquids::NeutrinoDISCrossSectionsFromTables::ReadHDF(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
      n1: 2428808 0x6931BFF: nusquids::NeutrinoDISCrossSectionsFromTables::NeutrinoDISCrossSectionsFromTables(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
@@ -2071,22 +2080,20 @@ n13: 109797988 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
                                n0: 4546608 0x1FFF0004F5: ???
     n0: 32232 in 1 place, below massif's threshold (1.00%)
    n0: 189600 in 1 place, below massif's threshold (1.00%)
- n1: 1948760 0x659F33C: ??? (in /usr/lib64/libhdf5.so.200.1.0)
-  n0: 1948760 in 4 places, all below massif's threshold (1.00%)
+ n1: 1973146 0x659F33C: ??? (in /usr/lib64/libhdf5.so.200.1.0)
+  n0: 1973146 in 4 places, all below massif's threshold (1.00%)
  n1: 1733184 0xB0BD92F: llvm::BitstreamCursor::ReadAbbrevRecord() (in /opt/root/v6-26-10/lib/libCling.so)
   n0: 1733184 in 6 places, all below massif's threshold (1.00%)
- n1: 1118208 0xB270D29: clang::Decl::operator new(unsigned long, clang::ASTContext const&, unsigned int, unsigned long) (in /opt/root/v6-26-10/lib/libCling.so)
-  n0: 1118208 in 16 places, all below massif's threshold (1.00%)
 #-----------
 snapshot=13
 #-----------
-time=1563098504
-mem_heap_B=119637966
-mem_heap_extra_B=969170
+time=1568522875
+mem_heap_B=122043462
+mem_heap_extra_B=969754
 mem_stacks_B=0
 heap_tree=detailed
-n12: 119637966 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
- n0: 18619286 in 4197 places, all below massif's threshold (1.00%)
+n12: 122043462 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n0: 18591798 in 4197 places, all below massif's threshold (1.00%)
  n1: 15090080 0x95B8C4B: clang::ASTReader::ReadASTBlock(clang::serialization::ModuleFile&, unsigned int) (in /opt/root/v6-26-10/lib/libCling.so)
   n1: 15090080 0x95C3F68: clang::ASTReader::ReadAST(llvm::StringRef, clang::serialization::ModuleKind, clang::SourceLocation, unsigned int, llvm::SmallVectorImpl<clang::ASTReader::ImportedSubmodule>*) (in /opt/root/v6-26-10/lib/libCling.so)
    n2: 15090080 0x929856A: clang::CompilerInstance::loadModule(clang::SourceLocation, llvm::ArrayRef<std::pair<clang::IdentifierInfo*, clang::SourceLocation> >, clang::Module::NameVisibilityKind, bool) (in /opt/root/v6-26-10/lib/libCling.so)
@@ -2116,6 +2123,66 @@ n12: 119637966 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
                            n0: 15090080 0x1FFF0004F5: ???
        n0: 0 in 1 place, below massif's threshold (1.00%)
     n0: 0 in 1 place, below massif's threshold (1.00%)
+ n1: 14572848 0x6933766: void nusquids::readArrayH5<double, 2u, std::allocator<double> >(long, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, nusquids::marray<double, 2u, std::allocator<double> >&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
+  n4: 14572848 0x6925DA9: nusquids::NeutrinoDISCrossSectionsFromTables::readFlavorHDF5(long, nusquids::marray<double, 1u, std::allocator<double> > const&, nusquids::marray<double, 1u, std::allocator<double> > const&)::{lambda(nusquids::BiCubicInterpolator&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)#2}::operator()(nusquids::BiCubicInterpolator&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) const (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
+   n2: 4857616 0x692866A: nusquids::NeutrinoDISCrossSectionsFromTables::readFlavorHDF5(long, nusquids::marray<double, 1u, std::allocator<double> > const&, nusquids::marray<double, 1u, std::allocator<double> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
+    n1: 2428808 0x6931625: nusquids::NeutrinoDISCrossSectionsFromTables::ReadHDF(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
+     n1: 2428808 0x6931BFF: nusquids::NeutrinoDISCrossSectionsFromTables::NeutrinoDISCrossSectionsFromTables(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
+      n1: 2428808 0x6931E5A: nusquids::loadDefaultCrossSections() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
+       n1: 2428808 0x690F705: nusquids::nuSQUIDS::InitializeInteractions() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
+        n1: 2428808 0x690FC5C: nusquids::nuSQUIDS::EvolveState() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
+         n1: 2428808 0x4B844E2: OscProbCalcerNuSQUIDSLinear::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
+          n1: 2428808 0x4B567EF: OscProbCalcerBase::Reweight(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
+           n1: 2428808 0x487DF59: OscillatorBase::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscillator.so)
+            n0: 2428808 0x40A847: main (in /opt/NuOscillator/build/Linux/bin/DragRace)
+    n1: 2428808 0x6931927: nusquids::NeutrinoDISCrossSectionsFromTables::ReadHDF(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
+     n1: 2428808 0x6931BFF: nusquids::NeutrinoDISCrossSectionsFromTables::NeutrinoDISCrossSectionsFromTables(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
+      n1: 2428808 0x6931E5A: nusquids::loadDefaultCrossSections() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
+       n1: 2428808 0x690F705: nusquids::nuSQUIDS::InitializeInteractions() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
+        n1: 2428808 0x690FC5C: nusquids::nuSQUIDS::EvolveState() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
+         n1: 2428808 0x4B844E2: OscProbCalcerNuSQUIDSLinear::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
+          n1: 2428808 0x4B567EF: OscProbCalcerBase::Reweight(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
+           n1: 2428808 0x487DF59: OscillatorBase::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscillator.so)
+            n0: 2428808 0x40A847: main (in /opt/NuOscillator/build/Linux/bin/DragRace)
+   n2: 4857616 0x69286CD: nusquids::NeutrinoDISCrossSectionsFromTables::readFlavorHDF5(long, nusquids::marray<double, 1u, std::allocator<double> > const&, nusquids::marray<double, 1u, std::allocator<double> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
+    n1: 2428808 0x6931625: nusquids::NeutrinoDISCrossSectionsFromTables::ReadHDF(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
+     n1: 2428808 0x6931BFF: nusquids::NeutrinoDISCrossSectionsFromTables::NeutrinoDISCrossSectionsFromTables(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
+      n1: 2428808 0x6931E5A: nusquids::loadDefaultCrossSections() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
+       n1: 2428808 0x690F705: nusquids::nuSQUIDS::InitializeInteractions() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
+        n1: 2428808 0x690FC5C: nusquids::nuSQUIDS::EvolveState() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
+         n1: 2428808 0x4B844E2: OscProbCalcerNuSQUIDSLinear::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
+          n1: 2428808 0x4B567EF: OscProbCalcerBase::Reweight(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
+           n1: 2428808 0x487DF59: OscillatorBase::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscillator.so)
+            n0: 2428808 0x40A847: main (in /opt/NuOscillator/build/Linux/bin/DragRace)
+    n1: 2428808 0x6931927: nusquids::NeutrinoDISCrossSectionsFromTables::ReadHDF(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
+     n1: 2428808 0x6931BFF: nusquids::NeutrinoDISCrossSectionsFromTables::NeutrinoDISCrossSectionsFromTables(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
+      n1: 2428808 0x6931E5A: nusquids::loadDefaultCrossSections() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
+       n1: 2428808 0x690F705: nusquids::nuSQUIDS::InitializeInteractions() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
+        n1: 2428808 0x690FC5C: nusquids::nuSQUIDS::EvolveState() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
+         n1: 2428808 0x4B844E2: OscProbCalcerNuSQUIDSLinear::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
+          n1: 2428808 0x4B567EF: OscProbCalcerBase::Reweight(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
+           n1: 2428808 0x487DF59: OscillatorBase::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscillator.so)
+            n0: 2428808 0x40A847: main (in /opt/NuOscillator/build/Linux/bin/DragRace)
+   n1: 2428808 0x6928736: nusquids::NeutrinoDISCrossSectionsFromTables::readFlavorHDF5(long, nusquids::marray<double, 1u, std::allocator<double> > const&, nusquids::marray<double, 1u, std::allocator<double> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
+    n1: 2428808 0x6931625: nusquids::NeutrinoDISCrossSectionsFromTables::ReadHDF(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
+     n1: 2428808 0x6931BFF: nusquids::NeutrinoDISCrossSectionsFromTables::NeutrinoDISCrossSectionsFromTables(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
+      n1: 2428808 0x6931E5A: nusquids::loadDefaultCrossSections() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
+       n1: 2428808 0x690F705: nusquids::nuSQUIDS::InitializeInteractions() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
+        n1: 2428808 0x690FC5C: nusquids::nuSQUIDS::EvolveState() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
+         n1: 2428808 0x4B844E2: OscProbCalcerNuSQUIDSLinear::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
+          n1: 2428808 0x4B567EF: OscProbCalcerBase::Reweight(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
+           n1: 2428808 0x487DF59: OscillatorBase::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscillator.so)
+            n0: 2428808 0x40A847: main (in /opt/NuOscillator/build/Linux/bin/DragRace)
+   n1: 2428808 0x692879F: nusquids::NeutrinoDISCrossSectionsFromTables::readFlavorHDF5(long, nusquids::marray<double, 1u, std::allocator<double> > const&, nusquids::marray<double, 1u, std::allocator<double> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
+    n1: 2428808 0x6931625: nusquids::NeutrinoDISCrossSectionsFromTables::ReadHDF(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
+     n1: 2428808 0x6931BFF: nusquids::NeutrinoDISCrossSectionsFromTables::NeutrinoDISCrossSectionsFromTables(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
+      n1: 2428808 0x6931E5A: nusquids::loadDefaultCrossSections() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
+       n1: 2428808 0x690F705: nusquids::nuSQUIDS::InitializeInteractions() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
+        n1: 2428808 0x690FC5C: nusquids::nuSQUIDS::EvolveState() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
+         n1: 2428808 0x4B844E2: OscProbCalcerNuSQUIDSLinear::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
+          n1: 2428808 0x4B567EF: OscProbCalcerBase::Reweight(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
+           n1: 2428808 0x487DF59: OscillatorBase::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscillator.so)
+            n0: 2428808 0x40A847: main (in /opt/NuOscillator/build/Linux/bin/DragRace)
  n1: 13700608 0x95B8DCA: clang::ASTReader::ReadASTBlock(clang::serialization::ModuleFile&, unsigned int) (in /opt/root/v6-26-10/lib/libCling.so)
   n1: 13700608 0x95C3F68: clang::ASTReader::ReadAST(llvm::StringRef, clang::serialization::ModuleKind, clang::SourceLocation, unsigned int, llvm::SmallVectorImpl<clang::ASTReader::ImportedSubmodule>*) (in /opt/root/v6-26-10/lib/libCling.so)
    n2: 13700608 0x929856A: clang::CompilerInstance::loadModule(clang::SourceLocation, llvm::ArrayRef<std::pair<clang::IdentifierInfo*, clang::SourceLocation> >, clang::Module::NameVisibilityKind, bool) (in /opt/root/v6-26-10/lib/libCling.so)
@@ -2298,57 +2365,6 @@ n12: 119637966 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
           n1: 2428808 0x4B567EF: OscProbCalcerBase::Reweight(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
            n1: 2428808 0x487DF59: OscillatorBase::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscillator.so)
             n0: 2428808 0x40A847: main (in /opt/NuOscillator/build/Linux/bin/DragRace)
- n1: 12144040 0x6933766: void nusquids::readArrayH5<double, 2u, std::allocator<double> >(long, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, nusquids::marray<double, 2u, std::allocator<double> >&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
-  n4: 12144040 0x6925DA9: nusquids::NeutrinoDISCrossSectionsFromTables::readFlavorHDF5(long, nusquids::marray<double, 1u, std::allocator<double> > const&, nusquids::marray<double, 1u, std::allocator<double> > const&)::{lambda(nusquids::BiCubicInterpolator&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)#2}::operator()(nusquids::BiCubicInterpolator&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) const (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
-   n2: 4857616 0x692866A: nusquids::NeutrinoDISCrossSectionsFromTables::readFlavorHDF5(long, nusquids::marray<double, 1u, std::allocator<double> > const&, nusquids::marray<double, 1u, std::allocator<double> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
-    n1: 2428808 0x6931625: nusquids::NeutrinoDISCrossSectionsFromTables::ReadHDF(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
-     n1: 2428808 0x6931BFF: nusquids::NeutrinoDISCrossSectionsFromTables::NeutrinoDISCrossSectionsFromTables(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
-      n1: 2428808 0x6931E5A: nusquids::loadDefaultCrossSections() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
-       n1: 2428808 0x690F705: nusquids::nuSQUIDS::InitializeInteractions() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
-        n1: 2428808 0x690FC5C: nusquids::nuSQUIDS::EvolveState() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
-         n1: 2428808 0x4B844E2: OscProbCalcerNuSQUIDSLinear::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
-          n1: 2428808 0x4B567EF: OscProbCalcerBase::Reweight(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
-           n1: 2428808 0x487DF59: OscillatorBase::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscillator.so)
-            n0: 2428808 0x40A847: main (in /opt/NuOscillator/build/Linux/bin/DragRace)
-    n1: 2428808 0x6931927: nusquids::NeutrinoDISCrossSectionsFromTables::ReadHDF(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
-     n1: 2428808 0x6931BFF: nusquids::NeutrinoDISCrossSectionsFromTables::NeutrinoDISCrossSectionsFromTables(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
-      n1: 2428808 0x6931E5A: nusquids::loadDefaultCrossSections() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
-       n1: 2428808 0x690F705: nusquids::nuSQUIDS::InitializeInteractions() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
-        n1: 2428808 0x690FC5C: nusquids::nuSQUIDS::EvolveState() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
-         n1: 2428808 0x4B844E2: OscProbCalcerNuSQUIDSLinear::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
-          n1: 2428808 0x4B567EF: OscProbCalcerBase::Reweight(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
-           n1: 2428808 0x487DF59: OscillatorBase::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscillator.so)
-            n0: 2428808 0x40A847: main (in /opt/NuOscillator/build/Linux/bin/DragRace)
-   n1: 2428808 0x69286CD: nusquids::NeutrinoDISCrossSectionsFromTables::readFlavorHDF5(long, nusquids::marray<double, 1u, std::allocator<double> > const&, nusquids::marray<double, 1u, std::allocator<double> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
-    n1: 2428808 0x6931625: nusquids::NeutrinoDISCrossSectionsFromTables::ReadHDF(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
-     n1: 2428808 0x6931BFF: nusquids::NeutrinoDISCrossSectionsFromTables::NeutrinoDISCrossSectionsFromTables(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
-      n1: 2428808 0x6931E5A: nusquids::loadDefaultCrossSections() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
-       n1: 2428808 0x690F705: nusquids::nuSQUIDS::InitializeInteractions() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
-        n1: 2428808 0x690FC5C: nusquids::nuSQUIDS::EvolveState() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
-         n1: 2428808 0x4B844E2: OscProbCalcerNuSQUIDSLinear::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
-          n1: 2428808 0x4B567EF: OscProbCalcerBase::Reweight(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
-           n1: 2428808 0x487DF59: OscillatorBase::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscillator.so)
-            n0: 2428808 0x40A847: main (in /opt/NuOscillator/build/Linux/bin/DragRace)
-   n1: 2428808 0x6928736: nusquids::NeutrinoDISCrossSectionsFromTables::readFlavorHDF5(long, nusquids::marray<double, 1u, std::allocator<double> > const&, nusquids::marray<double, 1u, std::allocator<double> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
-    n1: 2428808 0x6931625: nusquids::NeutrinoDISCrossSectionsFromTables::ReadHDF(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
-     n1: 2428808 0x6931BFF: nusquids::NeutrinoDISCrossSectionsFromTables::NeutrinoDISCrossSectionsFromTables(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
-      n1: 2428808 0x6931E5A: nusquids::loadDefaultCrossSections() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
-       n1: 2428808 0x690F705: nusquids::nuSQUIDS::InitializeInteractions() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
-        n1: 2428808 0x690FC5C: nusquids::nuSQUIDS::EvolveState() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
-         n1: 2428808 0x4B844E2: OscProbCalcerNuSQUIDSLinear::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
-          n1: 2428808 0x4B567EF: OscProbCalcerBase::Reweight(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
-           n1: 2428808 0x487DF59: OscillatorBase::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscillator.so)
-            n0: 2428808 0x40A847: main (in /opt/NuOscillator/build/Linux/bin/DragRace)
-   n1: 2428808 0x692879F: nusquids::NeutrinoDISCrossSectionsFromTables::readFlavorHDF5(long, nusquids::marray<double, 1u, std::allocator<double> > const&, nusquids::marray<double, 1u, std::allocator<double> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
-    n1: 2428808 0x6931625: nusquids::NeutrinoDISCrossSectionsFromTables::ReadHDF(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
-     n1: 2428808 0x6931BFF: nusquids::NeutrinoDISCrossSectionsFromTables::NeutrinoDISCrossSectionsFromTables(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
-      n1: 2428808 0x6931E5A: nusquids::loadDefaultCrossSections() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
-       n1: 2428808 0x690F705: nusquids::nuSQUIDS::InitializeInteractions() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
-        n1: 2428808 0x690FC5C: nusquids::nuSQUIDS::EvolveState() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
-         n1: 2428808 0x4B844E2: OscProbCalcerNuSQUIDSLinear::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
-          n1: 2428808 0x4B567EF: OscProbCalcerBase::Reweight(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
-           n1: 2428808 0x487DF59: OscillatorBase::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscillator.so)
-            n0: 2428808 0x40A847: main (in /opt/NuOscillator/build/Linux/bin/DragRace)
  n2: 8760472 0xB879E8A: llvm::SmallVectorBase::grow_pod(void*, unsigned long, unsigned long) (in /opt/root/v6-26-10/lib/libCling.so)
   n1: 8319528 0xB545E9A: clang::SourceManager::AllocateLoadedSLocEntries(unsigned int, unsigned int) (in /opt/root/v6-26-10/lib/libCling.so)
    n1: 8319528 0x95B6A76: clang::ASTReader::ReadASTBlock(clang::serialization::ModuleFile&, unsigned int) (in /opt/root/v6-26-10/lib/libCling.so)
@@ -2402,12 +2418,8 @@ n12: 119637966 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
     n1: 1380286 0x9583F9C: clang::ASTReader::ReadSLocEntry(int) [clone .part.0] (in /opt/root/v6-26-10/lib/libCling.so)
      n2: 1380286 0xB5460C5: clang::SourceManager::loadSLocEntry(unsigned int, bool*) const (in /opt/root/v6-26-10/lib/libCling.so)
       n1: 1288644 0x95C4083: clang::ASTReader::ReadAST(llvm::StringRef, clang::serialization::ModuleKind, clang::SourceLocation, unsigned int, llvm::SmallVectorImpl<clang::ASTReader::ImportedSubmodule>*) (in /opt/root/v6-26-10/lib/libCling.so)
-       n2: 1288644 0x929856A: clang::CompilerInstance::loadModule(clang::SourceLocation, llvm::ArrayRef<std::pair<clang::IdentifierInfo*, clang::SourceLocation> >, clang::Module::NameVisibilityKind, bool) (in /opt/root/v6-26-10/lib/libCling.so)
-        n1: 1219839 0x9A89615: clang::Sema::ActOnModuleImport(clang::SourceLocation, clang::SourceLocation, clang::SourceLocation, llvm::ArrayRef<std::pair<clang::IdentifierInfo*, clang::SourceLocation> >) (in /opt/root/v6-26-10/lib/libCling.so)
-         n1: 1219839 0x8D988D1: cling::Interpreter::loadModule(clang::Module*, bool) (in /opt/root/v6-26-10/lib/libCling.so)
-          n1: 1219839 0x8CC5ED6: LoadModule(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, cling::Interpreter&) (in /opt/root/v6-26-10/lib/libCling.so)
-           n0: 1219839 in 5 places, all below massif's threshold (1.00%)
-        n0: 68805 in 1 place, below massif's threshold (1.00%)
+       n1: 1288644 0x929856A: clang::CompilerInstance::loadModule(clang::SourceLocation, llvm::ArrayRef<std::pair<clang::IdentifierInfo*, clang::SourceLocation> >, clang::Module::NameVisibilityKind, bool) (in /opt/root/v6-26-10/lib/libCling.so)
+        n0: 1288644 in 2 places, all below massif's threshold (1.00%)
       n0: 91642 in 9 places, all below massif's threshold (1.00%)
    n0: 15090 in 2 places, all below massif's threshold (1.00%)
   n0: 190462 in 2 places, all below massif's threshold (1.00%)
@@ -2444,20 +2456,89 @@ n12: 119637966 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
                                n0: 4546608 0x1FFF0004F5: ???
     n0: 32232 in 1 place, below massif's threshold (1.00%)
    n0: 189600 in 1 place, below massif's threshold (1.00%)
- n1: 1973146 0x659F33C: ??? (in /usr/lib64/libhdf5.so.200.1.0)
-  n0: 1973146 in 4 places, all below massif's threshold (1.00%)
+ n1: 1977322 0x659F33C: ??? (in /usr/lib64/libhdf5.so.200.1.0)
+  n0: 1977322 in 4 places, all below massif's threshold (1.00%)
  n1: 1733184 0xB0BD92F: llvm::BitstreamCursor::ReadAbbrevRecord() (in /opt/root/v6-26-10/lib/libCling.so)
   n0: 1733184 in 6 places, all below massif's threshold (1.00%)
 #-----------
 snapshot=14
 #-----------
-time=1668106233
-mem_heap_B=129366462
-mem_heap_extra_B=969706
+time=1673531126
+mem_heap_B=131772060
+mem_heap_extra_B=970292
 mem_stacks_B=0
 heap_tree=detailed
-n12: 129366462 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
- n0: 18628374 in 4197 places, all below massif's threshold (1.00%)
+n12: 131772060 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n0: 18600886 in 4197 places, all below massif's threshold (1.00%)
+ n1: 17001656 0x6933766: void nusquids::readArrayH5<double, 2u, std::allocator<double> >(long, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, nusquids::marray<double, 2u, std::allocator<double> >&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
+  n4: 17001656 0x6925DA9: nusquids::NeutrinoDISCrossSectionsFromTables::readFlavorHDF5(long, nusquids::marray<double, 1u, std::allocator<double> > const&, nusquids::marray<double, 1u, std::allocator<double> > const&)::{lambda(nusquids::BiCubicInterpolator&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)#2}::operator()(nusquids::BiCubicInterpolator&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) const (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
+   n2: 4857616 0x692866A: nusquids::NeutrinoDISCrossSectionsFromTables::readFlavorHDF5(long, nusquids::marray<double, 1u, std::allocator<double> > const&, nusquids::marray<double, 1u, std::allocator<double> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
+    n1: 2428808 0x6931625: nusquids::NeutrinoDISCrossSectionsFromTables::ReadHDF(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
+     n1: 2428808 0x6931BFF: nusquids::NeutrinoDISCrossSectionsFromTables::NeutrinoDISCrossSectionsFromTables(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
+      n1: 2428808 0x6931E5A: nusquids::loadDefaultCrossSections() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
+       n1: 2428808 0x690F705: nusquids::nuSQUIDS::InitializeInteractions() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
+        n1: 2428808 0x690FC5C: nusquids::nuSQUIDS::EvolveState() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
+         n1: 2428808 0x4B844E2: OscProbCalcerNuSQUIDSLinear::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
+          n1: 2428808 0x4B567EF: OscProbCalcerBase::Reweight(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
+           n1: 2428808 0x487DF59: OscillatorBase::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscillator.so)
+            n0: 2428808 0x40A847: main (in /opt/NuOscillator/build/Linux/bin/DragRace)
+    n1: 2428808 0x6931927: nusquids::NeutrinoDISCrossSectionsFromTables::ReadHDF(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
+     n1: 2428808 0x6931BFF: nusquids::NeutrinoDISCrossSectionsFromTables::NeutrinoDISCrossSectionsFromTables(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
+      n1: 2428808 0x6931E5A: nusquids::loadDefaultCrossSections() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
+       n1: 2428808 0x690F705: nusquids::nuSQUIDS::InitializeInteractions() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
+        n1: 2428808 0x690FC5C: nusquids::nuSQUIDS::EvolveState() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
+         n1: 2428808 0x4B844E2: OscProbCalcerNuSQUIDSLinear::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
+          n1: 2428808 0x4B567EF: OscProbCalcerBase::Reweight(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
+           n1: 2428808 0x487DF59: OscillatorBase::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscillator.so)
+            n0: 2428808 0x40A847: main (in /opt/NuOscillator/build/Linux/bin/DragRace)
+   n2: 4857616 0x69286CD: nusquids::NeutrinoDISCrossSectionsFromTables::readFlavorHDF5(long, nusquids::marray<double, 1u, std::allocator<double> > const&, nusquids::marray<double, 1u, std::allocator<double> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
+    n1: 2428808 0x6931625: nusquids::NeutrinoDISCrossSectionsFromTables::ReadHDF(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
+     n1: 2428808 0x6931BFF: nusquids::NeutrinoDISCrossSectionsFromTables::NeutrinoDISCrossSectionsFromTables(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
+      n1: 2428808 0x6931E5A: nusquids::loadDefaultCrossSections() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
+       n1: 2428808 0x690F705: nusquids::nuSQUIDS::InitializeInteractions() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
+        n1: 2428808 0x690FC5C: nusquids::nuSQUIDS::EvolveState() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
+         n1: 2428808 0x4B844E2: OscProbCalcerNuSQUIDSLinear::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
+          n1: 2428808 0x4B567EF: OscProbCalcerBase::Reweight(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
+           n1: 2428808 0x487DF59: OscillatorBase::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscillator.so)
+            n0: 2428808 0x40A847: main (in /opt/NuOscillator/build/Linux/bin/DragRace)
+    n1: 2428808 0x6931927: nusquids::NeutrinoDISCrossSectionsFromTables::ReadHDF(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
+     n1: 2428808 0x6931BFF: nusquids::NeutrinoDISCrossSectionsFromTables::NeutrinoDISCrossSectionsFromTables(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
+      n1: 2428808 0x6931E5A: nusquids::loadDefaultCrossSections() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
+       n1: 2428808 0x690F705: nusquids::nuSQUIDS::InitializeInteractions() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
+        n1: 2428808 0x690FC5C: nusquids::nuSQUIDS::EvolveState() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
+         n1: 2428808 0x4B844E2: OscProbCalcerNuSQUIDSLinear::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
+          n1: 2428808 0x4B567EF: OscProbCalcerBase::Reweight(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
+           n1: 2428808 0x487DF59: OscillatorBase::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscillator.so)
+            n0: 2428808 0x40A847: main (in /opt/NuOscillator/build/Linux/bin/DragRace)
+   n2: 4857616 0x6928736: nusquids::NeutrinoDISCrossSectionsFromTables::readFlavorHDF5(long, nusquids::marray<double, 1u, std::allocator<double> > const&, nusquids::marray<double, 1u, std::allocator<double> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
+    n1: 2428808 0x6931625: nusquids::NeutrinoDISCrossSectionsFromTables::ReadHDF(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
+     n1: 2428808 0x6931BFF: nusquids::NeutrinoDISCrossSectionsFromTables::NeutrinoDISCrossSectionsFromTables(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
+      n1: 2428808 0x6931E5A: nusquids::loadDefaultCrossSections() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
+       n1: 2428808 0x690F705: nusquids::nuSQUIDS::InitializeInteractions() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
+        n1: 2428808 0x690FC5C: nusquids::nuSQUIDS::EvolveState() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
+         n1: 2428808 0x4B844E2: OscProbCalcerNuSQUIDSLinear::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
+          n1: 2428808 0x4B567EF: OscProbCalcerBase::Reweight(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
+           n1: 2428808 0x487DF59: OscillatorBase::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscillator.so)
+            n0: 2428808 0x40A847: main (in /opt/NuOscillator/build/Linux/bin/DragRace)
+    n1: 2428808 0x6931927: nusquids::NeutrinoDISCrossSectionsFromTables::ReadHDF(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
+     n1: 2428808 0x6931BFF: nusquids::NeutrinoDISCrossSectionsFromTables::NeutrinoDISCrossSectionsFromTables(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
+      n1: 2428808 0x6931E5A: nusquids::loadDefaultCrossSections() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
+       n1: 2428808 0x690F705: nusquids::nuSQUIDS::InitializeInteractions() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
+        n1: 2428808 0x690FC5C: nusquids::nuSQUIDS::EvolveState() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
+         n1: 2428808 0x4B844E2: OscProbCalcerNuSQUIDSLinear::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
+          n1: 2428808 0x4B567EF: OscProbCalcerBase::Reweight(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
+           n1: 2428808 0x487DF59: OscillatorBase::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscillator.so)
+            n0: 2428808 0x40A847: main (in /opt/NuOscillator/build/Linux/bin/DragRace)
+   n1: 2428808 0x692879F: nusquids::NeutrinoDISCrossSectionsFromTables::readFlavorHDF5(long, nusquids::marray<double, 1u, std::allocator<double> > const&, nusquids::marray<double, 1u, std::allocator<double> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
+    n1: 2428808 0x6931625: nusquids::NeutrinoDISCrossSectionsFromTables::ReadHDF(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
+     n1: 2428808 0x6931BFF: nusquids::NeutrinoDISCrossSectionsFromTables::NeutrinoDISCrossSectionsFromTables(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
+      n1: 2428808 0x6931E5A: nusquids::loadDefaultCrossSections() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
+       n1: 2428808 0x690F705: nusquids::nuSQUIDS::InitializeInteractions() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
+        n1: 2428808 0x690FC5C: nusquids::nuSQUIDS::EvolveState() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
+         n1: 2428808 0x4B844E2: OscProbCalcerNuSQUIDSLinear::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
+          n1: 2428808 0x4B567EF: OscProbCalcerBase::Reweight(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
+           n1: 2428808 0x487DF59: OscillatorBase::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscillator.so)
+            n0: 2428808 0x40A847: main (in /opt/NuOscillator/build/Linux/bin/DragRace)
  n1: 15090080 0x95B8C4B: clang::ASTReader::ReadASTBlock(clang::serialization::ModuleFile&, unsigned int) (in /opt/root/v6-26-10/lib/libCling.so)
   n1: 15090080 0x95C3F68: clang::ASTReader::ReadAST(llvm::StringRef, clang::serialization::ModuleKind, clang::SourceLocation, unsigned int, llvm::SmallVectorImpl<clang::ASTReader::ImportedSubmodule>*) (in /opt/root/v6-26-10/lib/libCling.so)
    n2: 15090080 0x929856A: clang::CompilerInstance::loadModule(clang::SourceLocation, llvm::ArrayRef<std::pair<clang::IdentifierInfo*, clang::SourceLocation> >, clang::Module::NameVisibilityKind, bool) (in /opt/root/v6-26-10/lib/libCling.so)
@@ -2667,66 +2748,6 @@ n12: 129366462 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
           n1: 2428808 0x4B567EF: OscProbCalcerBase::Reweight(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
            n1: 2428808 0x487DF59: OscillatorBase::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscillator.so)
             n0: 2428808 0x40A847: main (in /opt/NuOscillator/build/Linux/bin/DragRace)
- n1: 14572848 0x6933766: void nusquids::readArrayH5<double, 2u, std::allocator<double> >(long, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, nusquids::marray<double, 2u, std::allocator<double> >&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
-  n4: 14572848 0x6925DA9: nusquids::NeutrinoDISCrossSectionsFromTables::readFlavorHDF5(long, nusquids::marray<double, 1u, std::allocator<double> > const&, nusquids::marray<double, 1u, std::allocator<double> > const&)::{lambda(nusquids::BiCubicInterpolator&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)#2}::operator()(nusquids::BiCubicInterpolator&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) const (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
-   n2: 4857616 0x692866A: nusquids::NeutrinoDISCrossSectionsFromTables::readFlavorHDF5(long, nusquids::marray<double, 1u, std::allocator<double> > const&, nusquids::marray<double, 1u, std::allocator<double> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
-    n1: 2428808 0x6931625: nusquids::NeutrinoDISCrossSectionsFromTables::ReadHDF(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
-     n1: 2428808 0x6931BFF: nusquids::NeutrinoDISCrossSectionsFromTables::NeutrinoDISCrossSectionsFromTables(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
-      n1: 2428808 0x6931E5A: nusquids::loadDefaultCrossSections() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
-       n1: 2428808 0x690F705: nusquids::nuSQUIDS::InitializeInteractions() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
-        n1: 2428808 0x690FC5C: nusquids::nuSQUIDS::EvolveState() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
-         n1: 2428808 0x4B844E2: OscProbCalcerNuSQUIDSLinear::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
-          n1: 2428808 0x4B567EF: OscProbCalcerBase::Reweight(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
-           n1: 2428808 0x487DF59: OscillatorBase::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscillator.so)
-            n0: 2428808 0x40A847: main (in /opt/NuOscillator/build/Linux/bin/DragRace)
-    n1: 2428808 0x6931927: nusquids::NeutrinoDISCrossSectionsFromTables::ReadHDF(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
-     n1: 2428808 0x6931BFF: nusquids::NeutrinoDISCrossSectionsFromTables::NeutrinoDISCrossSectionsFromTables(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
-      n1: 2428808 0x6931E5A: nusquids::loadDefaultCrossSections() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
-       n1: 2428808 0x690F705: nusquids::nuSQUIDS::InitializeInteractions() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
-        n1: 2428808 0x690FC5C: nusquids::nuSQUIDS::EvolveState() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
-         n1: 2428808 0x4B844E2: OscProbCalcerNuSQUIDSLinear::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
-          n1: 2428808 0x4B567EF: OscProbCalcerBase::Reweight(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
-           n1: 2428808 0x487DF59: OscillatorBase::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscillator.so)
-            n0: 2428808 0x40A847: main (in /opt/NuOscillator/build/Linux/bin/DragRace)
-   n2: 4857616 0x69286CD: nusquids::NeutrinoDISCrossSectionsFromTables::readFlavorHDF5(long, nusquids::marray<double, 1u, std::allocator<double> > const&, nusquids::marray<double, 1u, std::allocator<double> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
-    n1: 2428808 0x6931625: nusquids::NeutrinoDISCrossSectionsFromTables::ReadHDF(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
-     n1: 2428808 0x6931BFF: nusquids::NeutrinoDISCrossSectionsFromTables::NeutrinoDISCrossSectionsFromTables(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
-      n1: 2428808 0x6931E5A: nusquids::loadDefaultCrossSections() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
-       n1: 2428808 0x690F705: nusquids::nuSQUIDS::InitializeInteractions() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
-        n1: 2428808 0x690FC5C: nusquids::nuSQUIDS::EvolveState() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
-         n1: 2428808 0x4B844E2: OscProbCalcerNuSQUIDSLinear::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
-          n1: 2428808 0x4B567EF: OscProbCalcerBase::Reweight(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
-           n1: 2428808 0x487DF59: OscillatorBase::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscillator.so)
-            n0: 2428808 0x40A847: main (in /opt/NuOscillator/build/Linux/bin/DragRace)
-    n1: 2428808 0x6931927: nusquids::NeutrinoDISCrossSectionsFromTables::ReadHDF(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
-     n1: 2428808 0x6931BFF: nusquids::NeutrinoDISCrossSectionsFromTables::NeutrinoDISCrossSectionsFromTables(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
-      n1: 2428808 0x6931E5A: nusquids::loadDefaultCrossSections() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
-       n1: 2428808 0x690F705: nusquids::nuSQUIDS::InitializeInteractions() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
-        n1: 2428808 0x690FC5C: nusquids::nuSQUIDS::EvolveState() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
-         n1: 2428808 0x4B844E2: OscProbCalcerNuSQUIDSLinear::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
-          n1: 2428808 0x4B567EF: OscProbCalcerBase::Reweight(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
-           n1: 2428808 0x487DF59: OscillatorBase::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscillator.so)
-            n0: 2428808 0x40A847: main (in /opt/NuOscillator/build/Linux/bin/DragRace)
-   n1: 2428808 0x6928736: nusquids::NeutrinoDISCrossSectionsFromTables::readFlavorHDF5(long, nusquids::marray<double, 1u, std::allocator<double> > const&, nusquids::marray<double, 1u, std::allocator<double> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
-    n1: 2428808 0x6931625: nusquids::NeutrinoDISCrossSectionsFromTables::ReadHDF(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
-     n1: 2428808 0x6931BFF: nusquids::NeutrinoDISCrossSectionsFromTables::NeutrinoDISCrossSectionsFromTables(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
-      n1: 2428808 0x6931E5A: nusquids::loadDefaultCrossSections() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
-       n1: 2428808 0x690F705: nusquids::nuSQUIDS::InitializeInteractions() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
-        n1: 2428808 0x690FC5C: nusquids::nuSQUIDS::EvolveState() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
-         n1: 2428808 0x4B844E2: OscProbCalcerNuSQUIDSLinear::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
-          n1: 2428808 0x4B567EF: OscProbCalcerBase::Reweight(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
-           n1: 2428808 0x487DF59: OscillatorBase::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscillator.so)
-            n0: 2428808 0x40A847: main (in /opt/NuOscillator/build/Linux/bin/DragRace)
-   n1: 2428808 0x692879F: nusquids::NeutrinoDISCrossSectionsFromTables::readFlavorHDF5(long, nusquids::marray<double, 1u, std::allocator<double> > const&, nusquids::marray<double, 1u, std::allocator<double> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
-    n1: 2428808 0x6931625: nusquids::NeutrinoDISCrossSectionsFromTables::ReadHDF(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
-     n1: 2428808 0x6931BFF: nusquids::NeutrinoDISCrossSectionsFromTables::NeutrinoDISCrossSectionsFromTables(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
-      n1: 2428808 0x6931E5A: nusquids::loadDefaultCrossSections() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
-       n1: 2428808 0x690F705: nusquids::nuSQUIDS::InitializeInteractions() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
-        n1: 2428808 0x690FC5C: nusquids::nuSQUIDS::EvolveState() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so)
-         n1: 2428808 0x4B844E2: OscProbCalcerNuSQUIDSLinear::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
-          n1: 2428808 0x4B567EF: OscProbCalcerBase::Reweight(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
-           n1: 2428808 0x487DF59: OscillatorBase::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscillator.so)
-            n0: 2428808 0x40A847: main (in /opt/NuOscillator/build/Linux/bin/DragRace)
  n1: 13700608 0x95B8DCA: clang::ASTReader::ReadASTBlock(clang::serialization::ModuleFile&, unsigned int) (in /opt/root/v6-26-10/lib/libCling.so)
   n1: 13700608 0x95C3F68: clang::ASTReader::ReadAST(llvm::StringRef, clang::serialization::ModuleKind, clang::SourceLocation, unsigned int, llvm::SmallVectorImpl<clang::ASTReader::ImportedSubmodule>*) (in /opt/root/v6-26-10/lib/libCling.so)
    n2: 13700608 0x929856A: clang::CompilerInstance::loadModule(clang::SourceLocation, llvm::ArrayRef<std::pair<clang::IdentifierInfo*, clang::SourceLocation> >, clang::Module::NameVisibilityKind, bool) (in /opt/root/v6-26-10/lib/libCling.so)
@@ -2844,14 +2865,14 @@ n12: 129366462 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
                                n0: 4546608 0x1FFF0004F5: ???
     n0: 32232 in 1 place, below massif's threshold (1.00%)
    n0: 189600 in 1 place, below massif's threshold (1.00%)
- n1: 1977322 0x659F33C: ??? (in /usr/lib64/libhdf5.so.200.1.0)
-  n0: 1977322 in 4 places, all below massif's threshold (1.00%)
+ n1: 1981600 0x659F33C: ??? (in /usr/lib64/libhdf5.so.200.1.0)
+  n0: 1981600 in 4 places, all below massif's threshold (1.00%)
  n1: 1733184 0xB0BD92F: llvm::BitstreamCursor::ReadAbbrevRecord() (in /opt/root/v6-26-10/lib/libCling.so)
   n0: 1733184 in 6 places, all below massif's threshold (1.00%)
 #-----------
 snapshot=15
 #-----------
-time=1773123481
+time=1776044433
 mem_heap_B=139095060
 mem_heap_extra_B=970276
 mem_stacks_B=0
@@ -3285,7 +3306,7 @@ n12: 139095060 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
 #-----------
 snapshot=16
 #-----------
-time=1878134328
+time=1881055280
 mem_heap_B=148823556
 mem_heap_extra_B=970844
 mem_stacks_B=0
@@ -3755,7 +3776,7 @@ n12: 148823556 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
 #-----------
 snapshot=17
 #-----------
-time=1991558848
+time=1994479800
 mem_heap_B=158632671
 mem_heap_extra_B=967353
 mem_stacks_B=0
@@ -4248,7 +4269,7 @@ n12: 158632671 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
 #-----------
 snapshot=18
 #-----------
-time=2096565635
+time=2099486587
 mem_heap_B=168356991
 mem_heap_extra_B=967697
 mem_stacks_B=0
@@ -4766,7 +4787,7 @@ n12: 168356991 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
 #-----------
 snapshot=19
 #-----------
-time=2201576812
+time=2204497764
 mem_heap_B=178081311
 mem_heap_extra_B=968041
 mem_stacks_B=0
@@ -5310,7 +5331,7 @@ n11: 178081311 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
 #-----------
 snapshot=20
 #-----------
-time=2306587068
+time=2309508020
 mem_heap_B=187805631
 mem_heap_extra_B=968385
 mem_stacks_B=0
@@ -5882,7 +5903,7 @@ n11: 187805631 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
 #-----------
 snapshot=21
 #-----------
-time=2416425604
+time=2419346556
 mem_heap_B=197621223
 mem_heap_extra_B=970825
 mem_stacks_B=0
@@ -6478,7 +6499,7 @@ n10: 197621223 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
 #-----------
 snapshot=22
 #-----------
-time=2521432510
+time=2524353462
 mem_heap_B=207345543
 mem_heap_extra_B=971169
 mem_stacks_B=0
@@ -7102,7 +7123,7 @@ n10: 207345543 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
 #-----------
 snapshot=23
 #-----------
-time=2626448789
+time=2629369741
 mem_heap_B=217069863
 mem_heap_extra_B=971513
 mem_stacks_B=0
@@ -7754,7 +7775,7 @@ n10: 217069863 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
 #-----------
 snapshot=24
 #-----------
-time=2731459164
+time=2734380116
 mem_heap_B=226794183
 mem_heap_extra_B=971857
 mem_stacks_B=0
@@ -8434,7 +8455,7 @@ n10: 226794183 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
 #-----------
 snapshot=25
 #-----------
-time=2827308589
+time=2830229541
 mem_heap_B=226569843
 mem_heap_extra_B=964573
 mem_stacks_B=0
@@ -8442,7 +8463,7 @@ heap_tree=empty
 #-----------
 snapshot=26
 #-----------
-time=2915197876
+time=2918118828
 mem_heap_B=226569811
 mem_heap_extra_B=964557
 mem_stacks_B=0
@@ -8450,7 +8471,7 @@ heap_tree=empty
 #-----------
 snapshot=27
 #-----------
-time=3046505631
+time=3049432856
 mem_heap_B=226570067
 mem_heap_extra_B=964613
 mem_stacks_B=0
@@ -9130,7 +9151,7 @@ n10: 226570067 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
 #-----------
 snapshot=28
 #-----------
-time=3142325414
+time=3145252639
 mem_heap_B=226570019
 mem_heap_extra_B=964605
 mem_stacks_B=0
@@ -9138,7 +9159,7 @@ heap_tree=empty
 #-----------
 snapshot=29
 #-----------
-time=3270875122
+time=3273802347
 mem_heap_B=226570019
 mem_heap_extra_B=964605
 mem_stacks_B=0
@@ -9146,7 +9167,7 @@ heap_tree=empty
 #-----------
 snapshot=30
 #-----------
-time=3333052213
+time=3335985711
 mem_heap_B=226570067
 mem_heap_extra_B=964613
 mem_stacks_B=0
@@ -9154,7 +9175,7 @@ heap_tree=empty
 #-----------
 snapshot=31
 #-----------
-time=3448959300
+time=3451892798
 mem_heap_B=226570035
 mem_heap_extra_B=964613
 mem_stacks_B=0
@@ -9162,7 +9183,7 @@ heap_tree=empty
 #-----------
 snapshot=32
 #-----------
-time=3532112075
+time=3535051846
 mem_heap_B=229763452
 mem_heap_extra_B=968748
 mem_stacks_B=0
@@ -9170,7 +9191,7 @@ heap_tree=empty
 #-----------
 snapshot=33
 #-----------
-time=3633055607
+time=3635995378
 mem_heap_B=239490028
 mem_heap_extra_B=969076
 mem_stacks_B=0
@@ -9870,7 +9891,7 @@ n10: 239490028 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
 #-----------
 snapshot=34
 #-----------
-time=3735559883
+time=3738499654
 mem_heap_B=246813028
 mem_heap_extra_B=969060
 mem_stacks_B=0
@@ -10166,7 +10187,7 @@ n10: 246813028 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
 #-----------
 snapshot=35
 #-----------
-time=3840570960
+time=3843510731
 mem_heap_B=256537348
 mem_heap_extra_B=969404
 mem_stacks_B=0
@@ -10478,7 +10499,7 @@ n10: 256537348 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
 #-----------
 snapshot=36
 #-----------
-time=3945580834
+time=3948520605
 mem_heap_B=266261668
 mem_heap_extra_B=969748
 mem_stacks_B=0
@@ -10804,7 +10825,7 @@ n10: 266261668 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
 #-----------
 snapshot=37
 #-----------
-time=4055419485
+time=4058359256
 mem_heap_B=276077260
 mem_heap_extra_B=972188
 mem_stacks_B=0
@@ -11146,7 +11167,7 @@ n10: 276077260 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
 #-----------
 snapshot=38
 #-----------
-time=4160426395
+time=4163366166
 mem_heap_B=285801580
 mem_heap_extra_B=972532
 mem_stacks_B=0
@@ -11504,7 +11525,7 @@ n10: 285801580 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
 #-----------
 snapshot=39
 #-----------
-time=4265442576
+time=4268382347
 mem_heap_B=295525900
 mem_heap_extra_B=972876
 mem_stacks_B=0
@@ -11878,7 +11899,7 @@ n10: 295525900 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
 #-----------
 snapshot=40
 #-----------
-time=4370452577
+time=4373392348
 mem_heap_B=305250220
 mem_heap_extra_B=973220
 mem_stacks_B=0
@@ -12268,7 +12289,7 @@ n10: 305250220 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
 #-----------
 snapshot=41
 #-----------
-time=4483859500
+time=4486799271
 mem_heap_B=315059335
 mem_heap_extra_B=969665
 mem_stacks_B=0
@@ -12670,7 +12691,7 @@ n10: 315059335 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
 #-----------
 snapshot=42
 #-----------
-time=4588866293
+time=4591806064
 mem_heap_B=324783655
 mem_heap_extra_B=970009
 mem_stacks_B=0
@@ -13084,7 +13105,7 @@ n10: 324783655 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
 #-----------
 snapshot=43
 #-----------
-time=4693877464
+time=4696817235
 mem_heap_B=334507975
 mem_heap_extra_B=970353
 mem_stacks_B=0
@@ -13510,7 +13531,7 @@ n10: 334507975 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
 #-----------
 snapshot=44
 #-----------
-time=4798887720
+time=4801827491
 mem_heap_B=344232295
 mem_heap_extra_B=970697
 mem_stacks_B=0
@@ -13948,7 +13969,7 @@ n10: 344232295 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
 #-----------
 snapshot=45
 #-----------
-time=4908726280
+time=4911666051
 mem_heap_B=354047887
 mem_heap_extra_B=973121
 mem_stacks_B=0
@@ -14398,7 +14419,7 @@ n10: 354047887 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
 #-----------
 snapshot=46
 #-----------
-time=5013733196
+time=5016672967
 mem_heap_B=363772207
 mem_heap_extra_B=973465
 mem_stacks_B=0
@@ -14860,7 +14881,7 @@ n10: 363772207 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
 #-----------
 snapshot=47
 #-----------
-time=5118749477
+time=5121689248
 mem_heap_B=373496527
 mem_heap_extra_B=973809
 mem_stacks_B=0
@@ -15334,7 +15355,7 @@ n10: 373496527 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
 #-----------
 snapshot=48
 #-----------
-time=5223759860
+time=5226699631
 mem_heap_B=383220847
 mem_heap_extra_B=974153
 mem_stacks_B=0
@@ -15820,7 +15841,7 @@ n10: 383220847 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
 #-----------
 snapshot=49
 #-----------
-time=5284199834
+time=5287139605
 mem_heap_B=383078307
 mem_heap_extra_B=966653
 mem_stacks_B=0
@@ -15828,7 +15849,7 @@ heap_tree=empty
 #-----------
 snapshot=50
 #-----------
-time=5346396518
+time=5349336289
 mem_heap_B=382996475
 mem_heap_extra_B=966821
 mem_stacks_B=0
@@ -15836,7 +15857,7 @@ heap_tree=empty
 #-----------
 snapshot=51
 #-----------
-time=5408687909
+time=5411627680
 mem_heap_B=382996507
 mem_heap_extra_B=966837
 mem_stacks_B=0
@@ -15844,7 +15865,7 @@ heap_tree=empty
 #-----------
 snapshot=52
 #-----------
-time=5470889718
+time=5473829489
 mem_heap_B=382996475
 mem_heap_extra_B=966821
 mem_stacks_B=0
@@ -15852,7 +15873,7 @@ heap_tree=empty
 #-----------
 snapshot=53
 #-----------
-time=5533117712
+time=5536057483
 mem_heap_B=382996507
 mem_heap_extra_B=966837
 mem_stacks_B=0
@@ -15860,7 +15881,7 @@ heap_tree=empty
 #-----------
 snapshot=54
 #-----------
-time=5595335019
+time=5598281063
 mem_heap_B=382996475
 mem_heap_extra_B=966885
 mem_stacks_B=0
@@ -15868,7 +15889,7 @@ heap_tree=empty
 #-----------
 snapshot=55
 #-----------
-time=5657536569
+time=5660482613
 mem_heap_B=382996475
 mem_heap_extra_B=966885
 mem_stacks_B=0
@@ -15876,7 +15897,7 @@ heap_tree=empty
 #-----------
 snapshot=56
 #-----------
-time=5719861944
+time=5722807988
 mem_heap_B=382996507
 mem_heap_extra_B=966885
 mem_stacks_B=0
@@ -15884,7 +15905,7 @@ heap_tree=empty
 #-----------
 snapshot=57
 #-----------
-time=5782169202
+time=5785121519
 mem_heap_B=382996507
 mem_heap_extra_B=966885
 mem_stacks_B=0
@@ -16370,7 +16391,7 @@ n10: 382996507 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
 #-----------
 snapshot=58
 #-----------
-time=5844411873
+time=5847364190
 mem_heap_B=382996507
 mem_heap_extra_B=966885
 mem_stacks_B=0
@@ -16378,7 +16399,7 @@ heap_tree=empty
 #-----------
 snapshot=59
 #-----------
-time=5906710618
+time=5909662935
 mem_heap_B=382996507
 mem_heap_extra_B=966885
 mem_stacks_B=0
@@ -16386,7 +16407,7 @@ heap_tree=empty
 #-----------
 snapshot=60
 #-----------
-time=5968930494
+time=5971882811
 mem_heap_B=382996507
 mem_heap_extra_B=966885
 mem_stacks_B=0
@@ -16394,32 +16415,32 @@ heap_tree=empty
 #-----------
 snapshot=61
 #-----------
-time=6031107891
-mem_heap_B=383277094
-mem_heap_extra_B=977378
+time=6034066329
+mem_heap_B=383277630
+mem_heap_extra_B=977458
 mem_stacks_B=0
 heap_tree=empty
 #-----------
 snapshot=62
 #-----------
-time=6093285307
-mem_heap_B=384135619
-mem_heap_extra_B=1002589
+time=6096249693
+mem_heap_B=384135914
+mem_heap_extra_B=1002758
 mem_stacks_B=0
 heap_tree=empty
 #-----------
 snapshot=63
 #-----------
-time=6155463958
-mem_heap_B=384617193
-mem_heap_extra_B=1010847
+time=6158439757
+mem_heap_B=384617340
+mem_heap_extra_B=1010860
 mem_stacks_B=0
 heap_tree=empty
 #-----------
 snapshot=64
 #-----------
-time=6217651617
-mem_heap_B=384635835
-mem_heap_extra_B=1010949
+time=6220629478
+mem_heap_B=384636963
+mem_heap_extra_B=1010997
 mem_stacks_B=0
 heap_tree=empty
