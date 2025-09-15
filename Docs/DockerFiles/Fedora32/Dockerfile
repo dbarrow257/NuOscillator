@@ -22,7 +22,7 @@ RUN mkdir -p ${NuOscillator_WORK_DIR}
 WORKDIR /opt/
 
 # Install prerequisites and CMake 3.20.5
-RUN dnf install -y wget gcc gcc-c++ make \
+RUN dnf install -y wget gcc gcc-c++ make boost-devel gsl-devel \
     && wget https://github.com/Kitware/CMake/releases/download/v3.20.5/cmake-3.20.5-linux-x86_64.sh \
     && sh cmake-3.20.5-linux-x86_64.sh --skip-license --prefix=/usr/local \
     && rm cmake-3.20.5-linux-x86_64.sh
