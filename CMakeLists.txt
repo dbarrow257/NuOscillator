@@ -106,7 +106,7 @@ if(NOT DEFINED NuFASTLinear_BRANCH)
 endif()
 
 if(NOT DEFINED NuSQUIDSLinear_BRANCH)
-  set(NuSQUIDSLinear_BRANCH "ac55f210ffd2c04a060c0d00b790725f32e20f67")
+  set(NuSQUIDSLinear_BRANCH "v1.12.0")
 endif()
 
 if(NOT DEFINED OscProb_BRANCH)
@@ -343,13 +343,11 @@ if(${UseOscProb} EQUAL 1)
   endif()
 
   execute_process(COMMAND make WORKING_DIRECTORY ${OscProb_SOURCE_DIR})
+  set(OSCPROB_LIB_DIR ${OscProb_SOURCE_DIR}/lib)
 
   add_library(OSCPROB INTERFACE IMPORTED)
-  target_include_directories(OSCPROB INTERFACE  ${OscProb_SOURCE_DIR})
-
+  target_include_directories(OSCPROB INTERFACE ${OscProb_SOURCE_DIR})
   target_compile_definitions(NuOscillatorCompilerOptions INTERFACE UseOscProb=1)
-
-  set(OSCPROB_LIB_DIR ${OscProb_SOURCE_DIR}/lib)
 endif()
 
 if(${UseNuSQUIDSLinear} EQUAL 1)
@@ -433,7 +431,6 @@ if(${UseNuSQUIDSLinear} EQUAL 1)
   add_dependencies(NUSQUIDS SQUIDS)
   add_library(NUSQUIDS::NUSQUIDS SHARED IMPORTED)
   set_target_properties(NUSQUIDS::NUSQUIDS PROPERTIES IMPORTED_LOCATION ${NUSQUIDS_LIB_DIR}/libnuSQuIDS.so)
-
   target_compile_definitions(NuOscillatorCompilerOptions INTERFACE UseNuSQUIDSLinear=1)
 endif()
 
