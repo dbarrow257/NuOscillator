@@ -388,6 +388,10 @@ if(${UseOscLib} EQUAL 1)
     cmessage(FATAL_ERROR "OscLib requires at least C++17, but you are using C++${CMAKE_CXX_STANDARD}.")
   endif()
 
+  if(${UseDoubles} EQUAL 0)
+    cmessage(FATAL_ERROR "OscLib currently don't support float, please switch to double or change engine. Gomenasai")
+  endif()
+
   find_package(Boost REQUIRED)
   find_package(GSL REQUIRED)
 

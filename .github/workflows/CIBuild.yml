@@ -25,7 +25,7 @@ jobs:
           - os: Alma9 float
             file: Docs/DockerFiles/Alma9/Dockerfile
             tag: alma9latest
-            cmakeoptions: -DUseDoubles=0 -DUseMultithreading=1 -DUseCUDAProb3=1 -DUseCUDAProb3Linear=1 -DUseProb3ppLinear=1 -DUseNuFASTLinear=1 -DUseProbGPULinear=0 -DUseOscProb=1 -DUseOscLib=1 -DUseNuSQUIDSLinear=1
+            cmakeoptions: -DUseDoubles=0 -DUseMultithreading=1 -DUseCUDAProb3=1 -DUseCUDAProb3Linear=1 -DUseProb3ppLinear=1 -DUseNuFASTLinear=1 -DUseProbGPULinear=0 -DUseOscProb=1 -DUseNuSQUIDSLinear=1
           - os: Alma9 w/o multithread
             file: Docs/DockerFiles/Alma9/Dockerfile
             tag: alma9latest
