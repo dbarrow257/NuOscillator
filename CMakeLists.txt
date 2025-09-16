@@ -252,6 +252,12 @@ if(${UseCUDAProb3Linear} EQUAL 1)
       "GPU_ON ON"
       "CMAKE_CUDA_ARCHITECTURES ${CMAKE_CUDA_ARCHITECTURES_STRING}"
     )
+    # KS: Terrible hack because CUDAProb3Beam is mess :(
+    install(TARGETS CUDAProb3Beam
+      EXPORT NuOscillator-targets
+      LIBRARY DESTINATION lib/
+      )
+
    # KS: This is bit hacky but CUDAProb3Linear is a mess. Whole functions are written in header file
    # and someone wrote them to be hidden under GPU_ON and wrote shitty cmake which do not propagate this definition.
    # Therefore NuOscillator is fixing other people mess
@@ -291,6 +297,9 @@ if(${UseGPU} EQUAL 1)
     endif()
 
     target_compile_definitions(NuOscillatorCompilerOptions INTERFACE UseProbGPULinear=1)
+    install(TARGETS ProbGPU
+      EXPORT NuOscillator-targets
+      LIBRARY DESTINATION lib/)
   endif()
 endif()
 
