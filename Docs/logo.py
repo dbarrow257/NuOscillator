@@ -32,7 +32,7 @@ def draw_oscillation_system(ax):
     x_offset_base = 0.15
     amplitude_scale = mantle_radius - layers[3]["radius"]/2
 
-    global_amp = 1.8  # increase overall amplitude
+    global_amp = 2.5  # slightly larger amplitude
 
     # --- Raw amplitude curves ---
     blue_raw  = (1 - x)**4
@@ -52,9 +52,9 @@ def draw_oscillation_system(ax):
     green_prob = green_norm / total_norm
 
     waves = [
-        {"freq": 3, "base_amp": 0.4, "color": "blue",  "lw": 4, "offset": 0.03, "prob": blue_prob,  "phase_shift": 0.25},
-        {"freq": 6, "base_amp": 0.35,"color": "red",   "lw": 3, "offset": 0.02, "prob": red_prob,   "phase_shift": 0},
-        {"freq": 14,"base_amp": 0.35,"color": "green", "lw": 2, "offset": 0.01, "prob": green_prob, "phase_shift": 0}
+        {"freq": 3,  "base_amp": 0.4,  "color": "#1B9CFC", "lw": 6, "offset": 0.03, "prob": blue_prob,  "phase_shift": 0.25},
+        {"freq": 6,  "base_amp": 0.35, "color": "#D72638", "lw": 5, "offset": 0.02, "prob": red_prob,   "phase_shift": 0},
+        {"freq": 14, "base_amp": 0.35, "color": "#3CCF4E", "lw": 4, "offset": 0.01, "prob": green_prob, "phase_shift": 0}
     ]
 
     h = (x * 0.055) * np.sin(50*x)
@@ -66,14 +66,15 @@ def draw_oscillation_system(ax):
         x_shifted = x + x_offset_base * (1.2 - 0.1*i)
         mask = ((x_shifted - 0.5)**2 + (y + y_center - y_center)**2 <= mantle_radius**2)
 
-        lw_scaled = wave["lw"] * (1.3 + 0.7 * np.mean(wave["prob"][mask]))
+        # thicker lines for more visibility
+        lw_scaled = wave["lw"] * (1.5 + 0.7 * np.mean(wave["prob"][mask]))
 
         ax.plot(x_shifted[mask], y[mask] + y_center + h[mask] * wave["offset"] * i,
                 color=wave["color"], lw=lw_scaled, zorder=3+i)
 
         indices = np.arange(0, len(x_shifted[mask]), 50)
         ax.scatter(x_shifted[mask][indices], y[mask][indices] + y_center,
-                   color='magenta', s=10, alpha=0.6, zorder=6)
+                   color='magenta', s=18, alpha=0.6, zorder=6)  # bigger scatter points
 
 draw_oscillation_system(ax)
 
@@ -84,7 +85,7 @@ arrow = FancyArrowPatch(
     posB=(0.5 - layers[2]["radius"]/2, y_arrow),
     arrowstyle='->,head_width=0.12,head_length=0.18',  # bigger arrowhead
     color='black',  # keep black
-    lw=8,  # thicker line
+    lw=10,  # thicker line
     mutation_scale=30,  # bigger head
     zorder=4
 )
@@ -93,13 +94,15 @@ ax.add_patch(arrow)
 # --- Add "ν" label above arrow ---
 ax.text(
     0.5 - layers[0]["radius"]/2 + 0.08, y_arrow + 0.03, r"$\nu$",
-    fontsize=40, ha="center", va="bottom", weight="bold", color="black", zorder=6,
-    path_effects=[path_effects.withStroke(linewidth=4, foreground="white")]  # makes it stand out
+    fontsize=60,  # increased from 40 to 60
+    ha="center", va="bottom", weight="bold",
+    color="black", zorder=6,
+    path_effects=[path_effects.withStroke(linewidth=5, foreground="white")]  # slightly thicker stroke
 )
 
 # --- Gradient-Colored Text ---
 text_str = "NuOscillator"
-colors = ["red", "green", "blue"]
+colors = ["#D72638", "#33CC66", "#1B9CFC"]  # deep red, distinct green, vibrant blue
 cmap = LinearSegmentedColormap.from_list("osc_colors", colors)
 
 renderer = fig.canvas.get_renderer()
