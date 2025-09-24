@@ -122,4 +122,4 @@ for i, letter in enumerate(text_str):
     txt.set_path_effects([path_effects.withStroke(linewidth=4, foreground="white")])
     x_pos += letter_extents[i]
 
-plt.savefig("NuOscillatorLogo.pdf", bbox_inches="tight", facecolor="white")
+plt.savefig("NuOscillatorLogo.png", bbox_inches="tight", facecolor="white")
