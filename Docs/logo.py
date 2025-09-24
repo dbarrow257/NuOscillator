@@ -32,12 +32,13 @@ def draw_oscillation_system(ax):
     x_offset_base = 0.15
     amplitude_scale = mantle_radius - layers[3]["radius"]/2
 
-    # --- Raw amplitude curves ---
-    blue_raw  = (1 - x)**4       # blue drops faster
-    red_raw   = x**1.5           # red rises faster initially
-    green_raw = 0.3 * x          # green slower increase
+    global_amp = 1.8  # increase overall amplitude
 
-    # --- Normalize each curve 0->1 ---
+    # --- Raw amplitude curves ---
+    blue_raw  = (1 - x)**4
+    red_raw   = x**1.5
+    green_raw = 0.3 * x
+
     def normalize_0_to_1(arr):
         return (arr - arr.min()) / (arr.max() - arr.min())
 
@@ -45,29 +46,27 @@ def draw_oscillation_system(ax):
     red_norm   = normalize_0_to_1(red_raw)
     green_norm = normalize_0_to_1(green_raw)
 
-    # --- Normalize so sum = 1 ---
     total_norm = blue_norm + red_norm + green_norm
     blue_prob  = blue_norm / total_norm
     red_prob   = red_norm / total_norm
     green_prob = green_norm / total_norm
 
-    # --- Waves configuration ---
     waves = [
         {"freq": 3, "base_amp": 0.4, "color": "blue",  "lw": 4, "offset": 0.03, "prob": blue_prob,  "phase_shift": 0.25},
         {"freq": 6, "base_amp": 0.35,"color": "red",   "lw": 3, "offset": 0.02, "prob": red_prob,   "phase_shift": 0},
         {"freq": 14,"base_amp": 0.35,"color": "green", "lw": 2, "offset": 0.01, "prob": green_prob, "phase_shift": 0}
     ]
 
-    h = (x * 0.055) * np.sin(50*x)  # small extra oscillation
+    h = (x * 0.055) * np.sin(50*x)
 
     for i, wave in enumerate(waves):
         y = np.sin(wave["freq"] * x * 2 * np.pi + wave["phase_shift"]) \
-            * wave["base_amp"] * wave["prob"] * amplitude_scale
+            * wave["base_amp"] * wave["prob"] * amplitude_scale * global_amp
 
         x_shifted = x + x_offset_base * (1.2 - 0.1*i)
         mask = ((x_shifted - 0.5)**2 + (y + y_center - y_center)**2 <= mantle_radius**2)
 
-        lw_scaled = wave["lw"] * (1.3 + 0.7 * np.mean(wave["prob"][mask]))  # scales lw by 1→1.5
+        lw_scaled = wave["lw"] * (1.3 + 0.7 * np.mean(wave["prob"][mask]))
 
         ax.plot(x_shifted[mask], y[mask] + y_center + h[mask] * wave["offset"] * i,
                 color=wave["color"], lw=lw_scaled, zorder=3+i)
