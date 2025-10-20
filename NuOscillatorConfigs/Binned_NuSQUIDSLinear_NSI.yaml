@@ -1,0 +1,30 @@
+General:
+  Verbosity: "NONE"
+  CosineZIgnored: true
+  CalculationType: "Binned"
+
+Binned:
+  FileName: "./Inputs/ExampleAtmosphericBinning.root"
+  EnergyAxisHistName: "EnergyAxisBinning"
+  CosineZAxisHistName: "CosineZAxisBinning"
+
+OscProbCalcerSetup:
+  ImplementationName: "NuSQUIDSLinear"
+  PrecisionLimit: 1e-3
+  NumNeutrinoFlavours: 3
+  OscModel: "NSI" # SM, Decoherence, LIV, NSI
+  NSIMuTauCoupling: 1.0e-2
+  #DecoherenceModel: "RandomizeState" # RandomizePhase, RandomizeState, NeutrinoLoss
+  IntegrationStep: "5.0"
+  RelativeError: "1.0e-5"
+  AbsoluteError: "1.0e-5"
+  OscChannelMapping:
+    - Entry: "Electron:Electron"
+    - Entry: "Electron:Muon"
+    - Entry: "Electron:Tau"
+    - Entry: "Muon:Electron"
+    - Entry: "Muon:Muon"
+    - Entry: "Muon:Tau"
+    - Entry: "Tau:Electron"
+    - Entry: "Tau:Muon"
+    - Entry: "Tau:Tau"
