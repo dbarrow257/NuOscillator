@@ -53,7 +53,7 @@ jobs:
             old_output: NuSQUIDSLinear_Stored.txt
           - name: SingleOscProbCalcer NuSQUIDSLinear NSI Comparison
             cmake_options: -DUseNuSQUIDSLinear=1
-            exec: SingleOscProbCalcer
+            exec: SingleOscillator
             argument: NuOscillatorConfigs/Binned_NuSQUIDSLinear_NSI.yaml
             new_output: NuSQUIDSLinear_UnbinnedOscillator_NSI_New.txt
             old_output: NuSQUIDSLinear_UnbinnedOscillator_NSI_Stored.txt
