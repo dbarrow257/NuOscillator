@@ -13,11 +13,7 @@ var searchData=
   ['nsi_5fmutau_5fcoupling_10',['nsi_mutau_coupling',['../classOscProbCalcerNuSQUIDSLinear.html#a698da43315112802f1f1d849931c9599',1,'OscProbCalcerNuSQUIDSLinear']]],
   ['nthreads_11',['nthreads',['../classOscProbCalcerCUDAProb3.html#ac66ebf86f6b7f3dbf6ce9fbb8f913a50',1,'OscProbCalcerCUDAProb3::nThreads'],['../classOscProbCalcerCUDAProb3Linear.html#abfe04012e7e77b25f0e842e1366659bf',1,'OscProbCalcerCUDAProb3Linear::nThreads']]],
   ['nubars_5fbase_12',['nubars_base',['../classOscProbCalcerNuSQUIDSLinear.html#af80f340a05e690267881ddbbbe72bc4e',1,'OscProbCalcerNuSQUIDSLinear']]],
-  ['nubars_5fliv_13',['nubars_LIV',['../classOscProbCalcerNuSQUIDSLinear.html#ac51566dc8fd626ff74e5d1e8a37b6cdf',1,'OscProbCalcerNuSQUIDSLinear']]],
-  ['nubars_5fnsi_14',['nubars_NSI',['../classOscProbCalcerNuSQUIDSLinear.html#afbc0b26800430cc36b786e0acab235b2',1,'OscProbCalcerNuSQUIDSLinear']]],
-  ['nus_5fbase_15',['nus_base',['../classOscProbCalcerNuSQUIDSLinear.html#a7cdf404e679a9bac9755b2d0662309d9',1,'OscProbCalcerNuSQUIDSLinear']]],
-  ['nus_5fliv_16',['nus_LIV',['../classOscProbCalcerNuSQUIDSLinear.html#a1c9e2c52734fbdc915fbe16e0eefc1a6',1,'OscProbCalcerNuSQUIDSLinear']]],
-  ['nus_5fnsi_17',['nus_NSI',['../classOscProbCalcerNuSQUIDSLinear.html#ab193c30bed6aa1e70700de9694bcec7e',1,'OscProbCalcerNuSQUIDSLinear']]],
-  ['nusquids_5fdecoherence_5fmodel_18',['nusquids_decoherence_model',['../classOscProbCalcerNuSQUIDSLinear.html#a8580249cba41794c5b3f11d0e6b2c211',1,'OscProbCalcerNuSQUIDSLinear']]],
-  ['nutype_19',['NuType',['../structNuOscillator_1_1OscillationProbability.html#a66191c46e818ee7d69cd181bcc9286ac',1,'NuOscillator::OscillationProbability']]]
+  ['nus_5fbase_13',['nus_base',['../classOscProbCalcerNuSQUIDSLinear.html#a7cdf404e679a9bac9755b2d0662309d9',1,'OscProbCalcerNuSQUIDSLinear']]],
+  ['nusquids_5fdecoherence_5fmodel_14',['nusquids_decoherence_model',['../classOscProbCalcerNuSQUIDSLinear.html#a8580249cba41794c5b3f11d0e6b2c211',1,'OscProbCalcerNuSQUIDSLinear']]],
+  ['nutype_15',['NuType',['../structNuOscillator_1_1OscillationProbability.html#a66191c46e818ee7d69cd181bcc9286ac',1,'NuOscillator::OscillationProbability']]]
 ];
