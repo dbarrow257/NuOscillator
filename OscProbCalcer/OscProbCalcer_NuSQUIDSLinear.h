@@ -104,7 +104,7 @@ class OscProbCalcerNuSQUIDSLinear : public OscProbCalcerBase {
    *
    * @return Enum value describing the PMNS Matrix to use
    */
-  int PMNS_StrToInt(std::string OscModel);
+  int PMNS_StrToInt(const std::string& OscModel);
   
   /**
    * @brief Return number of parameters needed for a particular type of PMNS matrix
@@ -158,25 +158,6 @@ class OscProbCalcerNuSQUIDSLinear : public OscProbCalcerBase {
    * @brief Declaration of the NuSQUIDS BSM (Decoherence) model object
    */
   nusquids::nuSQUIDSDecoh::DecoherenceModel nusquids_decoherence_model;
-
-  /**
-   * @brief Declaration of the NuSQUIDS BSM (Lorentz-Violation Invariance) derived class object for neutrinos
-   */
-  nusquids::nuSQUIDSLV* nus_LIV;
-  /**
-   * @brief Declaration of the NuSQUIDS BSM (Lorentz-Violation Invariance) derived class object for anti-neutrinos
-   */
-  nusquids::nuSQUIDSLV* nubars_LIV;
-
-  /**
-   * @brief Declaration of the NuSQUIDS BSM (Non-Standard Interactions) derived class object for neutrinos
-   */
-  nuSQUIDSNSI* nus_NSI;
-
-  /**
-   * @brief Declaration of the NuSQUIDS BSM (Non-Standard Interactions) derived class object for anti-neutrinos
-   */
-  nuSQUIDSNSI* nubars_NSI;
 
   /**
    * @brief Declaration of the muon-neutrino to tau-neutrino coupling for the NSI computation

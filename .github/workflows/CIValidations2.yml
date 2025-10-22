@@ -51,6 +51,12 @@ jobs:
             argument: NuOscillatorConfigs/OscProbCalcerConfigs/NuSQUIDSLinear.yaml
             new_output: NuSQUIDSLinear_New.txt
             old_output: NuSQUIDSLinear_Stored.txt
+          - name: SingleOscProbCalcer NuSQUIDSLinear NSI Comparison
+            cmake_options: -DUseNuSQUIDSLinear=1
+            exec: SingleOscillator
+            argument: NuOscillatorConfigs/Binned_NuSQUIDSLinear_NSI.yaml
+            new_output: NuSQUIDSLinear_UnbinnedOscillator_NSI_New.txt
+            old_output: NuSQUIDSLinear_UnbinnedOscillator_NSI_Stored.txt
           - name: OscProbCalcer CUDAProb3 Comparison
             cmake_options: -DUseCUDAProb3=1
             exec: SingleOscProbCalcer
@@ -75,6 +81,12 @@ jobs:
             argument: NuOscillatorConfigs/Unbinned_OscProb.yaml
             new_output: OscProb_UnbinnedOscillator_New.txt
             old_output: OscProb_UnbinnedOscillator_Stored.txt
+          - name: BinnedOscillator OscProb NSI Comparison
+            cmake_options: -DUseOscProb=1
+            exec: SingleOscillator
+            argument: NuOscillatorConfigs/Binned_OscProbLinear_NSI.yaml
+            new_output: OscProb_BinnedOscillator_NSI_New.txt
+            old_output: OscProb_UnbinnedOscillator_NSI_Stored.txt
           - name: BinnedOscillator GLoBESLinear Comparison
             cmake_options: -DUseGLoBESLinear=1
             exec: SingleOscProbCalcer

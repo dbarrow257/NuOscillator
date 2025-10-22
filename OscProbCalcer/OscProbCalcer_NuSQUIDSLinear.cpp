@@ -292,7 +292,7 @@ void OscProbCalcerNuSQUIDSLinear::CalculateProbabilities(const std::vector<FLOAT
   }
 }
 
-int OscProbCalcerNuSQUIDSLinear::PMNS_StrToInt(std::string OscModel) {
+int OscProbCalcerNuSQUIDSLinear::PMNS_StrToInt(const std::string& OscModel) {
   if (OscModel=="SM") {
     return kSM;
   }
