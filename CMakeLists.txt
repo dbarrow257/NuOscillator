@@ -110,7 +110,7 @@ if(NOT DEFINED NuSQUIDSLinear_BRANCH)
 endif()
 
 if(NOT DEFINED OscProb_BRANCH)
-  set(OscProb_BRANCH "v2.1.2")
+  set(OscProb_BRANCH "v2.2.1")
 endif()
 
 if(NOT DEFINED GLoBES_BRANCH)
