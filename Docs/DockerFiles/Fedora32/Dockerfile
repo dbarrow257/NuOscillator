@@ -21,11 +21,11 @@ RUN mkdir -p ${NuOscillator_WORK_DIR}
 
 WORKDIR /opt/
 
-# Install prerequisites and CMake 3.31.0
+# Install prerequisites and CMake 3.20.5
 RUN dnf install -y wget gcc gcc-c++ make \
-    && wget https://github.com/Kitware/CMake/releases/download/v3.31.0/cmake-3.31.0-linux-x86_64.sh \
-    && sh cmake-3.31.0-linux-x86_64.sh --skip-license --prefix=/usr/local \
-    && rm cmake-3.31.0-linux-x86_64.sh
+    && wget https://github.com/Kitware/CMake/releases/download/v3.20.5/cmake-3.20.5-linux-x86_64.sh \
+    && sh cmake-3.20.5-linux-x86_64.sh --skip-license --prefix=/usr/local \
+    && rm cmake-3.20.5-linux-x86_64.sh
 
 # KS: Let's clone NuOscillator
 RUN --mount=type=ssh git clone https://github.com/dbarrow257/NuOscillator ${NuOscillator_WORK_DIR}

@@ -8,12 +8,6 @@ LABEL compiler="GNU 11.3.1"
 LABEL root_version="v6.26.10"
 LABEL org.opencontainers.image.description="Official NuOscillator container"
 
-# Install prerequisites and CMake 3.31.0
-RUN dnf install -y wget gcc gcc-c++ make \
-    && wget https://github.com/Kitware/CMake/releases/download/v3.31.0/cmake-3.31.0-linux-x86_64.sh \
-    && sh cmake-3.31.0-linux-x86_64.sh --skip-license --prefix=/usr/local \
-    && rm cmake-3.31.0-linux-x86_64.sh
-
 ARG CMAKE_OPTIONS="-DUseDoubles=1 -DUseMultithreading=1 -DUseCUDAProb3=0 -DUseCUDAProb3Linear=1 -DUseProb3ppLinear=1 -DUseNuFASTLinear=1 -DUseProbGPULinear=0 -DUseOscProb=1 -DUseNuSQUIDSLinear=1"
 ENV CMAKE_OPTIONS="$CMAKE_OPTIONS"
 

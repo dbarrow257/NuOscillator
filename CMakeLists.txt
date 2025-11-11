@@ -7,7 +7,7 @@ find_program(CMAKE_C_COMPILER NAMES $ENV{CC} gcc PATHS ENV PATH NO_DEFAULT_PATH)
 find_program(CMAKE_CXX_COMPILER NAMES $ENV{CXX} g++ PATHS ENV PATH NO_DEFAULT_PATH)
 
 if(NOT DEFINED CMAKE_CXX_STANDARD)
-  set(CMAKE_CXX_STANDARD 17)
+  set(CMAKE_CXX_STANDARD 11)
 endif()
 
 #KS: Store some handy cmake functions
@@ -338,6 +338,7 @@ if(${UseOscProb} EQUAL 1)
     NAME OscProb
     GITHUB_REPOSITORY joaoabcoelho/OscProb
     GIT_TAG ${OscProb_BRANCH}
+    DOWNLOAD_ONLY YES
   )
 
   CPMAddPackage(
