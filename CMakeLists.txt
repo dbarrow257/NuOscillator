@@ -110,7 +110,7 @@ if(NOT DEFINED NuSQUIDSLinear_BRANCH)
 endif()
 
 if(NOT DEFINED OscProb_BRANCH)
-  set(OscProb_BRANCH "v2.1.2")
+  set(OscProb_BRANCH "v2.2.1")
 endif()
 
 if(NOT DEFINED GLoBES_BRANCH)
@@ -338,6 +338,7 @@ if(${UseOscProb} EQUAL 1)
     NAME OscProb
     GITHUB_REPOSITORY joaoabcoelho/OscProb
     GIT_TAG ${OscProb_BRANCH}
+    DOWNLOAD_ONLY YES
   )
 
   CPMAddPackage(
@@ -346,6 +347,12 @@ if(${UseOscProb} EQUAL 1)
     URL https://gitlab.com/libeigen/eigen/-/archive/3.4.0/eigen-3.4.0.tar.gz
     DOWNLOAD_ONLY YES
   )
+
+  if(CMAKE_CXX_STANDARD LESS 17)
+    cmessage(WARNING "OscProb requires at least C++17 — changing from ${CMAKE_CXX_STANDARD} to 17")
+    set(CMAKE_CXX_STANDARD 17)
+  endif()
+
   if(Eigen_ADDED)
     add_library(Eigen INTERFACE IMPORTED)
     target_include_directories(Eigen INTERFACE ${Eigen_SOURCE_DIR})
