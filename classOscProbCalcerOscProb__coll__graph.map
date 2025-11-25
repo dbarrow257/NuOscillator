@@ -1,5 +1,5 @@
 <map id="OscProbCalcerOscProb" name="OscProbCalcerOscProb">
-<area shape="rect" id="Node000001" title="Oscillation calculation engine for linear propagation in NuFAST." alt="" coords="710,227,870,252"/>
+<area shape="rect" id="Node000001" title="Oscillation calculation engine for propagation in OscProb." alt="" coords="710,227,870,252"/>
 <area shape="rect" id="Node000002" href="$classOscProbCalcerBase.html" title="Oscillation calculation engine (CUDAProb3, ProbGPU, Prob3++, etc.) implementation agnostic base class..." alt="" coords="521,153,661,179"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="643,182,754,224,752,229,641,187"/>
 <area shape="rect" id="Node000003" title=" " alt="" coords="202,5,319,31"/>

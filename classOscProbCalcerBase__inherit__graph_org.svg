@@ -110,7 +110,7 @@
 <!-- Node7 -->
 <g id="Node000007" class="node">
 <title>Node7</title>
-<g id="a_Node000007"><a xlink:href="classOscProbCalcerOscProb.html" target="_top" xlink:title="Oscillation calculation engine for linear propagation in NuFAST.">
+<g id="a_Node000007"><a xlink:href="classOscProbCalcerOscProb.html" target="_top" xlink:title="Oscillation calculation engine for propagation in OscProb.">
 <polygon fill="white" stroke="#666666" points="281.75,-93.25 161.5,-93.25 161.5,-74 281.75,-74 281.75,-93.25"/>
 <text text-anchor="middle" x="221.62" y="-79.75" font-family="Helvetica,sans-Serif" font-size="10.00">OscProbCalcerOscProb</text>
 </a>

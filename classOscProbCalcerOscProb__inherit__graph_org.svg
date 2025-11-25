@@ -11,7 +11,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title="Oscillation calculation engine for linear propagation in NuFAST.">
+<g id="a_Node000001"><a xlink:title="Oscillation calculation engine for propagation in OscProb.">
 <polygon fill="#999999" stroke="#666666" points="120.25,-19.25 0,-19.25 0,0 120.25,0 120.25,-19.25"/>
 <text text-anchor="middle" x="60.12" y="-5.75" font-family="Helvetica,sans-Serif" font-size="10.00">OscProbCalcerOscProb</text>
 </a>
