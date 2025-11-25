@@ -11,7 +11,7 @@
  *
  * @class OscProbCalcerOscProb
  *
- * @brief Oscillation calculation engine for linear propagation in NuFAST.
+ * @brief Oscillation calculation engine for propagation in OscProb.
  *
  * @note You can read more [here](https://joaoabcoelho.github.io/OscProb/index.html)
  */

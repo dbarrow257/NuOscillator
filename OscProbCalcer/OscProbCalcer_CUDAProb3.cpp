@@ -48,6 +48,7 @@ OscProbCalcerCUDAProb3::OscProbCalcerCUDAProb3(YAML::Node Config_) : OscProbCalc
   }
   //=======
 
+  CopyArr = nullptr;
   fNNeutrinoTypes = 2;
   InitialiseNeutrinoTypesArray(fNNeutrinoTypes);
   fNeutrinoTypes[0] = Nu;
@@ -75,7 +76,7 @@ OscProbCalcerCUDAProb3::OscProbCalcerCUDAProb3(YAML::Node Config_) : OscProbCalc
 }
 
 OscProbCalcerCUDAProb3::~OscProbCalcerCUDAProb3() {
-  delete[] CopyArr;
+  if(CopyArr != nullptr) delete[] CopyArr;
 }
 
 void OscProbCalcerCUDAProb3::SetupPropagator() {
