@@ -20,7 +20,371 @@ heap_tree=empty
 #-----------
 snapshot=2
 #-----------
-time=269883480
+time=192856280
+mem_heap_B=6462263
+mem_heap_extra_B=268825
+mem_stacks_B=0
+heap_tree=detailed
+n16: 6462263 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 3668760 0xB4FCCFF: clang::ModuleMap::findOrCreateModule(llvm::StringRef, clang::Module*, bool, bool) (in /opt/root/v6-26-10/lib/libCling.so)
+  n2: 3668760 0xB506193: clang::ModuleMapParser::parseModuleDecl() (in /opt/root/v6-26-10/lib/libCling.so)
+   n2: 3498120 0xB505C17: clang::ModuleMapParser::parseModuleDecl() (in /opt/root/v6-26-10/lib/libCling.so)
+    n1: 3465888 0xB50640C: clang::ModuleMapParser::parseModuleMapFile() (in /opt/root/v6-26-10/lib/libCling.so)
+     n1: 3465888 0xB5036C2: clang::ModuleMap::parseModuleMapFile(clang::FileEntry const*, bool, clang::DirectoryEntry const*, clang::FileID, unsigned int*, clang::SourceLocation) (in /opt/root/v6-26-10/lib/libCling.so)
+      n1: 3465888 0xB4D2EA3: clang::HeaderSearch::loadModuleMapFileImpl(clang::FileEntry const*, bool, clang::DirectoryEntry const*, clang::FileID, unsigned int*) (in /opt/root/v6-26-10/lib/libCling.so)
+       n1: 3465888 0xB4D3D17: clang::HeaderSearch::loadModuleMapFile(clang::FileEntry const*, bool, clang::FileID, unsigned int*, llvm::StringRef) (in /opt/root/v6-26-10/lib/libCling.so)
+        n1: 3465888 0x8DAA33A: (anonymous namespace)::createCIImpl(std::unique_ptr<llvm::MemoryBuffer, std::default_delete<llvm::MemoryBuffer> >, cling::CompilerOptions const&, char const*, std::unique_ptr<clang::ASTConsumer, std::default_delete<clang::ASTConsumer> >, std::vector<std::shared_ptr<clang::ModuleFileExtension>, std::allocator<std::shared_ptr<clang::ModuleFileExtension> > > const&, bool, bool) (in /opt/root/v6-26-10/lib/libCling.so)
+         n1: 3465888 0x8DABB66: cling::CIFactory::createCI(llvm::StringRef, cling::InvocationOptions const&, char const*, std::unique_ptr<clang::ASTConsumer, std::default_delete<clang::ASTConsumer> >, std::vector<std::shared_ptr<clang::ModuleFileExtension>, std::allocator<std::shared_ptr<clang::ModuleFileExtension> > > const&) (in /opt/root/v6-26-10/lib/libCling.so)
+          n1: 3465888 0x8E684D4: cling::IncrementalParser::IncrementalParser(cling::Interpreter*, char const*, std::vector<std::shared_ptr<clang::ModuleFileExtension>, std::allocator<std::shared_ptr<clang::ModuleFileExtension> > > const&) (in /opt/root/v6-26-10/lib/libCling.so)
+           n1: 3465888 0x8DE81EA: cling::Interpreter::Interpreter(int, char const* const*, char const*, std::vector<std::shared_ptr<clang::ModuleFileExtension>, std::allocator<std::shared_ptr<clang::ModuleFileExtension> > > const&, bool, cling::Interpreter const*) (in /opt/root/v6-26-10/lib/libCling.so)
+            n1: 3465888 0x8D3CD59: TCling::TCling(char const*, char const*, char const* const*) (in /opt/root/v6-26-10/lib/libCling.so)
+             n1: 3465888 0x8D3ED70: CreateInterpreter (in /opt/root/v6-26-10/lib/libCling.so)
+              n1: 3465888 0x5D42E49: TROOT::InitInterpreter() (in /opt/root/v6-26-10/lib/libCore.so)
+               n1: 3465888 0x5D432FE: ROOT::Internal::GetROOT2() (in /opt/root/v6-26-10/lib/libCore.so)
+                n1: 3465888 0x5E95718: TUnixSystem::SetDisplay() (in /opt/root/v6-26-10/lib/libCore.so)
+                 n1: 3465888 0x78C4664: TGClient::TGClient(char const*) (in /opt/root/v6-26-10/lib/libGui.so)
+                  n1: 3465888 0x789C7D0: _GLOBAL__sub_I_TGClient.cxx (in /opt/root/v6-26-10/lib/libGui.so)
+                   n1: 3465888 0x400A1AD: call_init (dl-init.c:70)
+                    n1: 3465888 0x400A1AD: call_init (dl-init.c:26)
+                     n1: 3465888 0x400A29B: _dl_init (dl-init.c:117)
+                      n1: 3465888 0x4020BD9: ??? (in /usr/lib64/ld-linux-x86-64.so.2)
+                       n1: 3465888 0x7: ???
+                        n1: 3465888 0x1FFF0003FE: ???
+                         n1: 3465888 0x1FFF000418: ???
+                          n1: 3465888 0x1FFF00041A: ???
+                           n1: 3465888 0x1FFF000444: ???
+                            n1: 3465888 0x1FFF00046C: ???
+                             n1: 3465888 0x1FFF000499: ???
+                              n1: 3465888 0x1FFF0004C7: ???
+                               n0: 3465888 0x1FFF0004F5: ???
+    n0: 32232 in 1 place, below massif's threshold (1.00%)
+   n1: 170640 0xB50640C: clang::ModuleMapParser::parseModuleMapFile() (in /opt/root/v6-26-10/lib/libCling.so)
+    n1: 170640 0xB5036C2: clang::ModuleMap::parseModuleMapFile(clang::FileEntry const*, bool, clang::DirectoryEntry const*, clang::FileID, unsigned int*, clang::SourceLocation) (in /opt/root/v6-26-10/lib/libCling.so)
+     n1: 170640 0xB4D2EA3: clang::HeaderSearch::loadModuleMapFileImpl(clang::FileEntry const*, bool, clang::DirectoryEntry const*, clang::FileID, unsigned int*) (in /opt/root/v6-26-10/lib/libCling.so)
+      n1: 170640 0xB4D3D17: clang::HeaderSearch::loadModuleMapFile(clang::FileEntry const*, bool, clang::FileID, unsigned int*, llvm::StringRef) (in /opt/root/v6-26-10/lib/libCling.so)
+       n1: 170640 0x8DAA33A: (anonymous namespace)::createCIImpl(std::unique_ptr<llvm::MemoryBuffer, std::default_delete<llvm::MemoryBuffer> >, cling::CompilerOptions const&, char const*, std::unique_ptr<clang::ASTConsumer, std::default_delete<clang::ASTConsumer> >, std::vector<std::shared_ptr<clang::ModuleFileExtension>, std::allocator<std::shared_ptr<clang::ModuleFileExtension> > > const&, bool, bool) (in /opt/root/v6-26-10/lib/libCling.so)
+        n1: 170640 0x8DABB66: cling::CIFactory::createCI(llvm::StringRef, cling::InvocationOptions const&, char const*, std::unique_ptr<clang::ASTConsumer, std::default_delete<clang::ASTConsumer> >, std::vector<std::shared_ptr<clang::ModuleFileExtension>, std::allocator<std::shared_ptr<clang::ModuleFileExtension> > > const&) (in /opt/root/v6-26-10/lib/libCling.so)
+         n1: 170640 0x8E684D4: cling::IncrementalParser::IncrementalParser(cling::Interpreter*, char const*, std::vector<std::shared_ptr<clang::ModuleFileExtension>, std::allocator<std::shared_ptr<clang::ModuleFileExtension> > > const&) (in /opt/root/v6-26-10/lib/libCling.so)
+          n1: 170640 0x8DE81EA: cling::Interpreter::Interpreter(int, char const* const*, char const*, std::vector<std::shared_ptr<clang::ModuleFileExtension>, std::allocator<std::shared_ptr<clang::ModuleFileExtension> > > const&, bool, cling::Interpreter const*) (in /opt/root/v6-26-10/lib/libCling.so)
+           n1: 170640 0x8D3CD59: TCling::TCling(char const*, char const*, char const* const*) (in /opt/root/v6-26-10/lib/libCling.so)
+            n1: 170640 0x8D3ED70: CreateInterpreter (in /opt/root/v6-26-10/lib/libCling.so)
+             n1: 170640 0x5D42E49: TROOT::InitInterpreter() (in /opt/root/v6-26-10/lib/libCore.so)
+              n1: 170640 0x5D432FE: ROOT::Internal::GetROOT2() (in /opt/root/v6-26-10/lib/libCore.so)
+               n1: 170640 0x5E95718: TUnixSystem::SetDisplay() (in /opt/root/v6-26-10/lib/libCore.so)
+                n1: 170640 0x78C4664: TGClient::TGClient(char const*) (in /opt/root/v6-26-10/lib/libGui.so)
+                 n1: 170640 0x789C7D0: _GLOBAL__sub_I_TGClient.cxx (in /opt/root/v6-26-10/lib/libGui.so)
+                  n1: 170640 0x400A1AD: call_init (dl-init.c:70)
+                   n1: 170640 0x400A1AD: call_init (dl-init.c:26)
+                    n1: 170640 0x400A29B: _dl_init (dl-init.c:117)
+                     n1: 170640 0x4020BD9: ??? (in /usr/lib64/ld-linux-x86-64.so.2)
+                      n1: 170640 0x7: ???
+                       n1: 170640 0x1FFF0003FE: ???
+                        n1: 170640 0x1FFF000418: ???
+                         n1: 170640 0x1FFF00041A: ???
+                          n1: 170640 0x1FFF000444: ???
+                           n1: 170640 0x1FFF00046C: ???
+                            n1: 170640 0x1FFF000499: ???
+                             n1: 170640 0x1FFF0004C7: ???
+                              n0: 170640 0x1FFF0004F5: ???
+ n0: 973410 in 1712 places, all below massif's threshold (1.00%)
+ n1: 300480 0xB570BF4: std::_Rb_tree_iterator<std::pair<llvm::sys::fs::UniqueID const, clang::FileEntry> > std::_Rb_tree<llvm::sys::fs::UniqueID, std::pair<llvm::sys::fs::UniqueID const, clang::FileEntry>, std::_Select1st<std::pair<llvm::sys::fs::UniqueID const, clang::FileEntry> >, std::less<llvm::sys::fs::UniqueID>, std::allocator<std::pair<llvm::sys::fs::UniqueID const, clang::FileEntry> > >::_M_emplace_hint_unique<std::piecewise_construct_t const&, std::tuple<llvm::sys::fs::UniqueID&&>, std::tuple<> >(std::_Rb_tree_const_iterator<std::pair<llvm::sys::fs::UniqueID const, clang::FileEntry> >, std::piecewise_construct_t const&, std::tuple<llvm::sys::fs::UniqueID&&>&&, std::tuple<>&&) [clone .isra.0] (in /opt/root/v6-26-10/lib/libCling.so)
+  n2: 300480 0xB571CE2: clang::FileManager::getFile(llvm::StringRef, bool, bool) (in /opt/root/v6-26-10/lib/libCling.so)
+   n1: 299520 0xB4F41DB: clang::ModuleMap::findHeader(clang::Module*, clang::Module::UnresolvedHeaderDirective const&, llvm::SmallVectorImpl<char>&, bool&) (in /opt/root/v6-26-10/lib/libCling.so)
+    n1: 299520 0xB4FF3E8: clang::ModuleMap::resolveHeader(clang::Module*, clang::Module::UnresolvedHeaderDirective const&, bool&) (in /opt/root/v6-26-10/lib/libCling.so)
+     n2: 299520 0xB502C60: clang::ModuleMapParser::parseHeaderDecl(clang::MMToken::TokenKind, clang::SourceLocation) (in /opt/root/v6-26-10/lib/libCling.so)
+      n2: 294720 0xB505E45: clang::ModuleMapParser::parseModuleDecl() (in /opt/root/v6-26-10/lib/libCling.so)
+       n2: 294080 0xB505C17: clang::ModuleMapParser::parseModuleDecl() (in /opt/root/v6-26-10/lib/libCling.so)
+        n1: 291040 0xB50640C: clang::ModuleMapParser::parseModuleMapFile() (in /opt/root/v6-26-10/lib/libCling.so)
+         n1: 291040 0xB5036C2: clang::ModuleMap::parseModuleMapFile(clang::FileEntry const*, bool, clang::DirectoryEntry const*, clang::FileID, unsigned int*, clang::SourceLocation) (in /opt/root/v6-26-10/lib/libCling.so)
+          n1: 291040 0xB4D2EA3: clang::HeaderSearch::loadModuleMapFileImpl(clang::FileEntry const*, bool, clang::DirectoryEntry const*, clang::FileID, unsigned int*) (in /opt/root/v6-26-10/lib/libCling.so)
+           n1: 291040 0xB4D3D17: clang::HeaderSearch::loadModuleMapFile(clang::FileEntry const*, bool, clang::FileID, unsigned int*, llvm::StringRef) (in /opt/root/v6-26-10/lib/libCling.so)
+            n1: 291040 0x8DAA33A: (anonymous namespace)::createCIImpl(std::unique_ptr<llvm::MemoryBuffer, std::default_delete<llvm::MemoryBuffer> >, cling::CompilerOptions const&, char const*, std::unique_ptr<clang::ASTConsumer, std::default_delete<clang::ASTConsumer> >, std::vector<std::shared_ptr<clang::ModuleFileExtension>, std::allocator<std::shared_ptr<clang::ModuleFileExtension> > > const&, bool, bool) (in /opt/root/v6-26-10/lib/libCling.so)
+             n1: 291040 0x8DABB66: cling::CIFactory::createCI(llvm::StringRef, cling::InvocationOptions const&, char const*, std::unique_ptr<clang::ASTConsumer, std::default_delete<clang::ASTConsumer> >, std::vector<std::shared_ptr<clang::ModuleFileExtension>, std::allocator<std::shared_ptr<clang::ModuleFileExtension> > > const&) (in /opt/root/v6-26-10/lib/libCling.so)
+              n1: 291040 0x8E684D4: cling::IncrementalParser::IncrementalParser(cling::Interpreter*, char const*, std::vector<std::shared_ptr<clang::ModuleFileExtension>, std::allocator<std::shared_ptr<clang::ModuleFileExtension> > > const&) (in /opt/root/v6-26-10/lib/libCling.so)
+               n1: 291040 0x8DE81EA: cling::Interpreter::Interpreter(int, char const* const*, char const*, std::vector<std::shared_ptr<clang::ModuleFileExtension>, std::allocator<std::shared_ptr<clang::ModuleFileExtension> > > const&, bool, cling::Interpreter const*) (in /opt/root/v6-26-10/lib/libCling.so)
+                n1: 291040 0x8D3CD59: TCling::TCling(char const*, char const*, char const* const*) (in /opt/root/v6-26-10/lib/libCling.so)
+                 n1: 291040 0x8D3ED70: CreateInterpreter (in /opt/root/v6-26-10/lib/libCling.so)
+                  n1: 291040 0x5D42E49: TROOT::InitInterpreter() (in /opt/root/v6-26-10/lib/libCore.so)
+                   n1: 291040 0x5D432FE: ROOT::Internal::GetROOT2() (in /opt/root/v6-26-10/lib/libCore.so)
+                    n1: 291040 0x5E95718: TUnixSystem::SetDisplay() (in /opt/root/v6-26-10/lib/libCore.so)
+                     n1: 291040 0x78C4664: TGClient::TGClient(char const*) (in /opt/root/v6-26-10/lib/libGui.so)
+                      n1: 291040 0x789C7D0: _GLOBAL__sub_I_TGClient.cxx (in /opt/root/v6-26-10/lib/libGui.so)
+                       n1: 291040 0x400A1AD: call_init (dl-init.c:70)
+                        n1: 291040 0x400A1AD: call_init (dl-init.c:26)
+                         n1: 291040 0x400A29B: _dl_init (dl-init.c:117)
+                          n1: 291040 0x4020BD9: ??? (in /usr/lib64/ld-linux-x86-64.so.2)
+                           n1: 291040 0x7: ???
+                            n1: 291040 0x1FFF0003FE: ???
+                             n1: 291040 0x1FFF000418: ???
+                              n1: 291040 0x1FFF00041A: ???
+                               n0: 291040 0x1FFF000444: ???
+        n0: 3040 in 1 place, below massif's threshold (1.00%)
+       n0: 640 in 1 place, below massif's threshold (1.00%)
+      n0: 4800 in 1 place, below massif's threshold (1.00%)
+   n0: 960 in 2 places, all below massif's threshold (1.00%)
+ n2: 199716 0xB8D0EFD: llvm::StringMapImpl::StringMapImpl(unsigned int, unsigned int) (in /opt/root/v6-26-10/lib/libCling.so)
+  n1: 196620 0xB57753A: clang::IdentifierTable::IdentifierTable(clang::IdentifierInfoLookup*) (in /opt/root/v6-26-10/lib/libCling.so)
+   n1: 196620 0xB54155D: clang::Preprocessor::Preprocessor(std::shared_ptr<clang::PreprocessorOptions>, clang::DiagnosticsEngine&, clang::LangOptions&, clang::SourceManager&, clang::HeaderSearch&, clang::ModuleLoader&, clang::IdentifierInfoLookup*, bool, clang::TranslationUnitKind) (in /opt/root/v6-26-10/lib/libCling.so)
+    n1: 196620 0x92D8D59: clang::CompilerInstance::createPreprocessor(clang::TranslationUnitKind) (in /opt/root/v6-26-10/lib/libCling.so)
+     n1: 196620 0x8DAA0FF: (anonymous namespace)::createCIImpl(std::unique_ptr<llvm::MemoryBuffer, std::default_delete<llvm::MemoryBuffer> >, cling::CompilerOptions const&, char const*, std::unique_ptr<clang::ASTConsumer, std::default_delete<clang::ASTConsumer> >, std::vector<std::shared_ptr<clang::ModuleFileExtension>, std::allocator<std::shared_ptr<clang::ModuleFileExtension> > > const&, bool, bool) (in /opt/root/v6-26-10/lib/libCling.so)
+      n1: 196620 0x8DABB66: cling::CIFactory::createCI(llvm::StringRef, cling::InvocationOptions const&, char const*, std::unique_ptr<clang::ASTConsumer, std::default_delete<clang::ASTConsumer> >, std::vector<std::shared_ptr<clang::ModuleFileExtension>, std::allocator<std::shared_ptr<clang::ModuleFileExtension> > > const&) (in /opt/root/v6-26-10/lib/libCling.so)
+       n1: 196620 0x8E684D4: cling::IncrementalParser::IncrementalParser(cling::Interpreter*, char const*, std::vector<std::shared_ptr<clang::ModuleFileExtension>, std::allocator<std::shared_ptr<clang::ModuleFileExtension> > > const&) (in /opt/root/v6-26-10/lib/libCling.so)
+        n1: 196620 0x8DE81EA: cling::Interpreter::Interpreter(int, char const* const*, char const*, std::vector<std::shared_ptr<clang::ModuleFileExtension>, std::allocator<std::shared_ptr<clang::ModuleFileExtension> > > const&, bool, cling::Interpreter const*) (in /opt/root/v6-26-10/lib/libCling.so)
+         n1: 196620 0x8D3CD59: TCling::TCling(char const*, char const*, char const* const*) (in /opt/root/v6-26-10/lib/libCling.so)
+          n1: 196620 0x8D3ED70: CreateInterpreter (in /opt/root/v6-26-10/lib/libCling.so)
+           n1: 196620 0x5D42E49: TROOT::InitInterpreter() (in /opt/root/v6-26-10/lib/libCore.so)
+            n1: 196620 0x5D432FE: ROOT::Internal::GetROOT2() (in /opt/root/v6-26-10/lib/libCore.so)
+             n1: 196620 0x5E95718: TUnixSystem::SetDisplay() (in /opt/root/v6-26-10/lib/libCore.so)
+              n1: 196620 0x78C4664: TGClient::TGClient(char const*) (in /opt/root/v6-26-10/lib/libGui.so)
+               n1: 196620 0x789C7D0: _GLOBAL__sub_I_TGClient.cxx (in /opt/root/v6-26-10/lib/libGui.so)
+                n1: 196620 0x400A1AD: call_init (dl-init.c:70)
+                 n1: 196620 0x400A1AD: call_init (dl-init.c:26)
+                  n1: 196620 0x400A29B: _dl_init (dl-init.c:117)
+                   n1: 196620 0x4020BD9: ??? (in /usr/lib64/ld-linux-x86-64.so.2)
+                    n1: 196620 0x7: ???
+                     n1: 196620 0x1FFF0003FE: ???
+                      n1: 196620 0x1FFF000418: ???
+                       n1: 196620 0x1FFF00041A: ???
+                        n1: 196620 0x1FFF000444: ???
+                         n1: 196620 0x1FFF00046C: ???
+                          n1: 196620 0x1FFF000499: ???
+                           n1: 196620 0x1FFF0004C7: ???
+                            n0: 196620 0x1FFF0004F5: ???
+  n0: 3096 in 3 places, all below massif's threshold (1.00%)
+ n1: 180381 0xB8B9E91: llvm::WritableMemoryBuffer::getNewUninitMemBuffer(unsigned long, llvm::Twine const&) (in /opt/root/v6-26-10/lib/libCling.so)
+  n1: 180381 0xB8BBA2D: llvm::MemoryBuffer::getOpenFile(int, llvm::Twine const&, unsigned long, bool, bool) (in /opt/root/v6-26-10/lib/libCling.so)
+   n1: 180381 0xB8F0064: (anonymous namespace)::RealFile::getBuffer(llvm::Twine const&, long, bool, bool) (in /opt/root/v6-26-10/lib/libCling.so)
+    n2: 180381 0xB8F5DD2: llvm::vfs::FileSystem::getBufferForFile(llvm::Twine const&, long, bool, bool) (in /opt/root/v6-26-10/lib/libCling.so)
+     n1: 180381 0xB56EA2A: clang::FileManager::getBufferForFile(clang::FileEntry const*, bool, bool) (in /opt/root/v6-26-10/lib/libCling.so)
+      n1: 180381 0xB58E976: clang::SrcMgr::ContentCache::getBuffer(clang::DiagnosticsEngine&, clang::SourceManager const&, clang::SourceLocation, bool*) const (in /opt/root/v6-26-10/lib/libCling.so)
+       n1: 180381 0xB5039AB: clang::ModuleMap::parseModuleMapFile(clang::FileEntry const*, bool, clang::DirectoryEntry const*, clang::FileID, unsigned int*, clang::SourceLocation) (in /opt/root/v6-26-10/lib/libCling.so)
+        n1: 180381 0xB4D2EA3: clang::HeaderSearch::loadModuleMapFileImpl(clang::FileEntry const*, bool, clang::DirectoryEntry const*, clang::FileID, unsigned int*) (in /opt/root/v6-26-10/lib/libCling.so)
+         n1: 180381 0xB4D3D17: clang::HeaderSearch::loadModuleMapFile(clang::FileEntry const*, bool, clang::FileID, unsigned int*, llvm::StringRef) (in /opt/root/v6-26-10/lib/libCling.so)
+          n1: 180381 0x8DAA33A: (anonymous namespace)::createCIImpl(std::unique_ptr<llvm::MemoryBuffer, std::default_delete<llvm::MemoryBuffer> >, cling::CompilerOptions const&, char const*, std::unique_ptr<clang::ASTConsumer, std::default_delete<clang::ASTConsumer> >, std::vector<std::shared_ptr<clang::ModuleFileExtension>, std::allocator<std::shared_ptr<clang::ModuleFileExtension> > > const&, bool, bool) (in /opt/root/v6-26-10/lib/libCling.so)
+           n1: 180381 0x8DABB66: cling::CIFactory::createCI(llvm::StringRef, cling::InvocationOptions const&, char const*, std::unique_ptr<clang::ASTConsumer, std::default_delete<clang::ASTConsumer> >, std::vector<std::shared_ptr<clang::ModuleFileExtension>, std::allocator<std::shared_ptr<clang::ModuleFileExtension> > > const&) (in /opt/root/v6-26-10/lib/libCling.so)
+            n1: 180381 0x8E684D4: cling::IncrementalParser::IncrementalParser(cling::Interpreter*, char const*, std::vector<std::shared_ptr<clang::ModuleFileExtension>, std::allocator<std::shared_ptr<clang::ModuleFileExtension> > > const&) (in /opt/root/v6-26-10/lib/libCling.so)
+             n1: 180381 0x8DE81EA: cling::Interpreter::Interpreter(int, char const* const*, char const*, std::vector<std::shared_ptr<clang::ModuleFileExtension>, std::allocator<std::shared_ptr<clang::ModuleFileExtension> > > const&, bool, cling::Interpreter const*) (in /opt/root/v6-26-10/lib/libCling.so)
+              n1: 180381 0x8D3CD59: TCling::TCling(char const*, char const*, char const* const*) (in /opt/root/v6-26-10/lib/libCling.so)
+               n1: 180381 0x8D3ED70: CreateInterpreter (in /opt/root/v6-26-10/lib/libCling.so)
+                n1: 180381 0x5D42E49: TROOT::InitInterpreter() (in /opt/root/v6-26-10/lib/libCore.so)
+                 n1: 180381 0x5D432FE: ROOT::Internal::GetROOT2() (in /opt/root/v6-26-10/lib/libCore.so)
+                  n1: 180381 0x5E95718: TUnixSystem::SetDisplay() (in /opt/root/v6-26-10/lib/libCore.so)
+                   n1: 180381 0x78C4664: TGClient::TGClient(char const*) (in /opt/root/v6-26-10/lib/libGui.so)
+                    n1: 180381 0x789C7D0: _GLOBAL__sub_I_TGClient.cxx (in /opt/root/v6-26-10/lib/libGui.so)
+                     n1: 180381 0x400A1AD: call_init (dl-init.c:70)
+                      n1: 180381 0x400A1AD: call_init (dl-init.c:26)
+                       n1: 180381 0x400A29B: _dl_init (dl-init.c:117)
+                        n1: 180381 0x4020BD9: ??? (in /usr/lib64/ld-linux-x86-64.so.2)
+                         n1: 180381 0x7: ???
+                          n1: 180381 0x1FFF0003FE: ???
+                           n1: 180381 0x1FFF000418: ???
+                            n1: 180381 0x1FFF00041A: ???
+                             n1: 180381 0x1FFF000444: ???
+                              n1: 180381 0x1FFF00046C: ???
+                               n0: 180381 0x1FFF000499: ???
+     n0: 0 in 1 place, below massif's threshold (1.00%)
+ n2: 161216 0x9E32FD7: llvm::opt::OptTable::OptTable(llvm::ArrayRef<llvm::opt::OptTable::Info>, bool) (in /opt/root/v6-26-10/lib/libCling.so)
+  n2: 161216 0x93D19C1: clang::driver::createDriverOptTable() (in /opt/root/v6-26-10/lib/libCling.so)
+   n1: 161216 0x93B432E: clang::driver::Driver::Driver(llvm::StringRef, llvm::StringRef, clang::DiagnosticsEngine&, llvm::IntrusiveRefCntPtr<llvm::vfs::FileSystem>) (in /opt/root/v6-26-10/lib/libCling.so)
+    n1: 161216 0x8DA92EB: (anonymous namespace)::createCIImpl(std::unique_ptr<llvm::MemoryBuffer, std::default_delete<llvm::MemoryBuffer> >, cling::CompilerOptions const&, char const*, std::unique_ptr<clang::ASTConsumer, std::default_delete<clang::ASTConsumer> >, std::vector<std::shared_ptr<clang::ModuleFileExtension>, std::allocator<std::shared_ptr<clang::ModuleFileExtension> > > const&, bool, bool) (in /opt/root/v6-26-10/lib/libCling.so)
+     n1: 161216 0x8DABB66: cling::CIFactory::createCI(llvm::StringRef, cling::InvocationOptions const&, char const*, std::unique_ptr<clang::ASTConsumer, std::default_delete<clang::ASTConsumer> >, std::vector<std::shared_ptr<clang::ModuleFileExtension>, std::allocator<std::shared_ptr<clang::ModuleFileExtension> > > const&) (in /opt/root/v6-26-10/lib/libCling.so)
+      n1: 161216 0x8E684D4: cling::IncrementalParser::IncrementalParser(cling::Interpreter*, char const*, std::vector<std::shared_ptr<clang::ModuleFileExtension>, std::allocator<std::shared_ptr<clang::ModuleFileExtension> > > const&) (in /opt/root/v6-26-10/lib/libCling.so)
+       n1: 161216 0x8DE81EA: cling::Interpreter::Interpreter(int, char const* const*, char const*, std::vector<std::shared_ptr<clang::ModuleFileExtension>, std::allocator<std::shared_ptr<clang::ModuleFileExtension> > > const&, bool, cling::Interpreter const*) (in /opt/root/v6-26-10/lib/libCling.so)
+        n1: 161216 0x8D3CD59: TCling::TCling(char const*, char const*, char const* const*) (in /opt/root/v6-26-10/lib/libCling.so)
+         n1: 161216 0x8D3ED70: CreateInterpreter (in /opt/root/v6-26-10/lib/libCling.so)
+          n1: 161216 0x5D42E49: TROOT::InitInterpreter() (in /opt/root/v6-26-10/lib/libCore.so)
+           n1: 161216 0x5D432FE: ROOT::Internal::GetROOT2() (in /opt/root/v6-26-10/lib/libCore.so)
+            n1: 161216 0x5E95718: TUnixSystem::SetDisplay() (in /opt/root/v6-26-10/lib/libCore.so)
+             n1: 161216 0x78C4664: TGClient::TGClient(char const*) (in /opt/root/v6-26-10/lib/libGui.so)
+              n1: 161216 0x789C7D0: _GLOBAL__sub_I_TGClient.cxx (in /opt/root/v6-26-10/lib/libGui.so)
+               n1: 161216 0x400A1AD: call_init (dl-init.c:70)
+                n1: 161216 0x400A1AD: call_init (dl-init.c:26)
+                 n1: 161216 0x400A29B: _dl_init (dl-init.c:117)
+                  n1: 161216 0x4020BD9: ??? (in /usr/lib64/ld-linux-x86-64.so.2)
+                   n1: 161216 0x7: ???
+                    n1: 161216 0x1FFF0003FE: ???
+                     n1: 161216 0x1FFF000418: ???
+                      n1: 161216 0x1FFF00041A: ???
+                       n1: 161216 0x1FFF000444: ???
+                        n1: 161216 0x1FFF00046C: ???
+                         n1: 161216 0x1FFF000499: ???
+                          n1: 161216 0x1FFF0004C7: ???
+                           n0: 161216 0x1FFF0004F5: ???
+   n0: 0 in 2 places, all below massif's threshold (1.00%)
+  n0: 0 in 1 place, below massif's threshold (1.00%)
+ n1: 131072 0xB4FD596: llvm::DenseMap<clang::FileEntry const*, llvm::SmallVector<clang::ModuleMap::KnownHeader, 1u>, llvm::DenseMapInfo<clang::FileEntry const*>, llvm::detail::DenseMapPair<clang::FileEntry const*, llvm::SmallVector<clang::ModuleMap::KnownHeader, 1u> > >::grow(unsigned int) (in /opt/root/v6-26-10/lib/libCling.so)
+  n1: 131072 0xB4FDEDA: clang::ModuleMap::addHeader(clang::Module*, clang::Module::Header, clang::ModuleMap::ModuleHeaderRole, bool) (in /opt/root/v6-26-10/lib/libCling.so)
+   n1: 131072 0xB4FF48E: clang::ModuleMap::resolveHeader(clang::Module*, clang::Module::UnresolvedHeaderDirective const&, bool&) (in /opt/root/v6-26-10/lib/libCling.so)
+    n1: 131072 0xB502C60: clang::ModuleMapParser::parseHeaderDecl(clang::MMToken::TokenKind, clang::SourceLocation) (in /opt/root/v6-26-10/lib/libCling.so)
+     n2: 131072 0xB505E45: clang::ModuleMapParser::parseModuleDecl() (in /opt/root/v6-26-10/lib/libCling.so)
+      n1: 131072 0xB505C17: clang::ModuleMapParser::parseModuleDecl() (in /opt/root/v6-26-10/lib/libCling.so)
+       n1: 131072 0xB50640C: clang::ModuleMapParser::parseModuleMapFile() (in /opt/root/v6-26-10/lib/libCling.so)
+        n1: 131072 0xB5036C2: clang::ModuleMap::parseModuleMapFile(clang::FileEntry const*, bool, clang::DirectoryEntry const*, clang::FileID, unsigned int*, clang::SourceLocation) (in /opt/root/v6-26-10/lib/libCling.so)
+         n1: 131072 0xB4D2EA3: clang::HeaderSearch::loadModuleMapFileImpl(clang::FileEntry const*, bool, clang::DirectoryEntry const*, clang::FileID, unsigned int*) (in /opt/root/v6-26-10/lib/libCling.so)
+          n1: 131072 0xB4D3D17: clang::HeaderSearch::loadModuleMapFile(clang::FileEntry const*, bool, clang::FileID, unsigned int*, llvm::StringRef) (in /opt/root/v6-26-10/lib/libCling.so)
+           n1: 131072 0x8DAA33A: (anonymous namespace)::createCIImpl(std::unique_ptr<llvm::MemoryBuffer, std::default_delete<llvm::MemoryBuffer> >, cling::CompilerOptions const&, char const*, std::unique_ptr<clang::ASTConsumer, std::default_delete<clang::ASTConsumer> >, std::vector<std::shared_ptr<clang::ModuleFileExtension>, std::allocator<std::shared_ptr<clang::ModuleFileExtension> > > const&, bool, bool) (in /opt/root/v6-26-10/lib/libCling.so)
+            n1: 131072 0x8DABB66: cling::CIFactory::createCI(llvm::StringRef, cling::InvocationOptions const&, char const*, std::unique_ptr<clang::ASTConsumer, std::default_delete<clang::ASTConsumer> >, std::vector<std::shared_ptr<clang::ModuleFileExtension>, std::allocator<std::shared_ptr<clang::ModuleFileExtension> > > const&) (in /opt/root/v6-26-10/lib/libCling.so)
+             n1: 131072 0x8E684D4: cling::IncrementalParser::IncrementalParser(cling::Interpreter*, char const*, std::vector<std::shared_ptr<clang::ModuleFileExtension>, std::allocator<std::shared_ptr<clang::ModuleFileExtension> > > const&) (in /opt/root/v6-26-10/lib/libCling.so)
+              n1: 131072 0x8DE81EA: cling::Interpreter::Interpreter(int, char const* const*, char const*, std::vector<std::shared_ptr<clang::ModuleFileExtension>, std::allocator<std::shared_ptr<clang::ModuleFileExtension> > > const&, bool, cling::Interpreter const*) (in /opt/root/v6-26-10/lib/libCling.so)
+               n1: 131072 0x8D3CD59: TCling::TCling(char const*, char const*, char const* const*) (in /opt/root/v6-26-10/lib/libCling.so)
+                n1: 131072 0x8D3ED70: CreateInterpreter (in /opt/root/v6-26-10/lib/libCling.so)
+                 n1: 131072 0x5D42E49: TROOT::InitInterpreter() (in /opt/root/v6-26-10/lib/libCore.so)
+                  n1: 131072 0x5D432FE: ROOT::Internal::GetROOT2() (in /opt/root/v6-26-10/lib/libCore.so)
+                   n1: 131072 0x5E95718: TUnixSystem::SetDisplay() (in /opt/root/v6-26-10/lib/libCore.so)
+                    n1: 131072 0x78C4664: TGClient::TGClient(char const*) (in /opt/root/v6-26-10/lib/libGui.so)
+                     n1: 131072 0x789C7D0: _GLOBAL__sub_I_TGClient.cxx (in /opt/root/v6-26-10/lib/libGui.so)
+                      n1: 131072 0x400A1AD: call_init (dl-init.c:70)
+                       n1: 131072 0x400A1AD: call_init (dl-init.c:26)
+                        n1: 131072 0x400A29B: _dl_init (dl-init.c:117)
+                         n1: 131072 0x4020BD9: ??? (in /usr/lib64/ld-linux-x86-64.so.2)
+                          n1: 131072 0x7: ???
+                           n1: 131072 0x1FFF0003FE: ???
+                            n1: 131072 0x1FFF000418: ???
+                             n1: 131072 0x1FFF00041A: ???
+                              n1: 131072 0x1FFF000444: ???
+                               n0: 131072 0x1FFF00046C: ???
+      n0: 0 in 1 place, below massif's threshold (1.00%)
+ n1: 122880 0xB57195C: clang::FileManager::getFile(llvm::StringRef, bool, bool) (in /opt/root/v6-26-10/lib/libCling.so)
+  n1: 122880 0xB4F41DB: clang::ModuleMap::findHeader(clang::Module*, clang::Module::UnresolvedHeaderDirective const&, llvm::SmallVectorImpl<char>&, bool&) (in /opt/root/v6-26-10/lib/libCling.so)
+   n1: 122880 0xB4FF3E8: clang::ModuleMap::resolveHeader(clang::Module*, clang::Module::UnresolvedHeaderDirective const&, bool&) (in /opt/root/v6-26-10/lib/libCling.so)
+    n1: 122880 0xB502C60: clang::ModuleMapParser::parseHeaderDecl(clang::MMToken::TokenKind, clang::SourceLocation) (in /opt/root/v6-26-10/lib/libCling.so)
+     n2: 122880 0xB505E45: clang::ModuleMapParser::parseModuleDecl() (in /opt/root/v6-26-10/lib/libCling.so)
+      n2: 118784 0xB505C17: clang::ModuleMapParser::parseModuleDecl() (in /opt/root/v6-26-10/lib/libCling.so)
+       n1: 114688 0xB50640C: clang::ModuleMapParser::parseModuleMapFile() (in /opt/root/v6-26-10/lib/libCling.so)
+        n1: 114688 0xB5036C2: clang::ModuleMap::parseModuleMapFile(clang::FileEntry const*, bool, clang::DirectoryEntry const*, clang::FileID, unsigned int*, clang::SourceLocation) (in /opt/root/v6-26-10/lib/libCling.so)
+         n1: 114688 0xB4D2EA3: clang::HeaderSearch::loadModuleMapFileImpl(clang::FileEntry const*, bool, clang::DirectoryEntry const*, clang::FileID, unsigned int*) (in /opt/root/v6-26-10/lib/libCling.so)
+          n1: 114688 0xB4D3D17: clang::HeaderSearch::loadModuleMapFile(clang::FileEntry const*, bool, clang::FileID, unsigned int*, llvm::StringRef) (in /opt/root/v6-26-10/lib/libCling.so)
+           n1: 114688 0x8DAA33A: (anonymous namespace)::createCIImpl(std::unique_ptr<llvm::MemoryBuffer, std::default_delete<llvm::MemoryBuffer> >, cling::CompilerOptions const&, char const*, std::unique_ptr<clang::ASTConsumer, std::default_delete<clang::ASTConsumer> >, std::vector<std::shared_ptr<clang::ModuleFileExtension>, std::allocator<std::shared_ptr<clang::ModuleFileExtension> > > const&, bool, bool) (in /opt/root/v6-26-10/lib/libCling.so)
+            n1: 114688 0x8DABB66: cling::CIFactory::createCI(llvm::StringRef, cling::InvocationOptions const&, char const*, std::unique_ptr<clang::ASTConsumer, std::default_delete<clang::ASTConsumer> >, std::vector<std::shared_ptr<clang::ModuleFileExtension>, std::allocator<std::shared_ptr<clang::ModuleFileExtension> > > const&) (in /opt/root/v6-26-10/lib/libCling.so)
+             n1: 114688 0x8E684D4: cling::IncrementalParser::IncrementalParser(cling::Interpreter*, char const*, std::vector<std::shared_ptr<clang::ModuleFileExtension>, std::allocator<std::shared_ptr<clang::ModuleFileExtension> > > const&) (in /opt/root/v6-26-10/lib/libCling.so)
+              n1: 114688 0x8DE81EA: cling::Interpreter::Interpreter(int, char const* const*, char const*, std::vector<std::shared_ptr<clang::ModuleFileExtension>, std::allocator<std::shared_ptr<clang::ModuleFileExtension> > > const&, bool, cling::Interpreter const*) (in /opt/root/v6-26-10/lib/libCling.so)
+               n1: 114688 0x8D3CD59: TCling::TCling(char const*, char const*, char const* const*) (in /opt/root/v6-26-10/lib/libCling.so)
+                n1: 114688 0x8D3ED70: CreateInterpreter (in /opt/root/v6-26-10/lib/libCling.so)
+                 n1: 114688 0x5D42E49: TROOT::InitInterpreter() (in /opt/root/v6-26-10/lib/libCore.so)
+                  n1: 114688 0x5D432FE: ROOT::Internal::GetROOT2() (in /opt/root/v6-26-10/lib/libCore.so)
+                   n1: 114688 0x5E95718: TUnixSystem::SetDisplay() (in /opt/root/v6-26-10/lib/libCore.so)
+                    n1: 114688 0x78C4664: TGClient::TGClient(char const*) (in /opt/root/v6-26-10/lib/libGui.so)
+                     n1: 114688 0x789C7D0: _GLOBAL__sub_I_TGClient.cxx (in /opt/root/v6-26-10/lib/libGui.so)
+                      n1: 114688 0x400A1AD: call_init (dl-init.c:70)
+                       n1: 114688 0x400A1AD: call_init (dl-init.c:26)
+                        n1: 114688 0x400A29B: _dl_init (dl-init.c:117)
+                         n1: 114688 0x4020BD9: ??? (in /usr/lib64/ld-linux-x86-64.so.2)
+                          n1: 114688 0x7: ???
+                           n1: 114688 0x1FFF0003FE: ???
+                            n1: 114688 0x1FFF000418: ???
+                             n1: 114688 0x1FFF00041A: ???
+                              n1: 114688 0x1FFF000444: ???
+                               n0: 114688 0x1FFF00046C: ???
+       n0: 4096 in 1 place, below massif's threshold (1.00%)
+      n0: 4096 in 1 place, below massif's threshold (1.00%)
+ n1: 117192 0xB8D15DD: llvm::StringMapImpl::RehashTable(unsigned int) (in /opt/root/v6-26-10/lib/libCling.so)
+  n0: 117192 in 9 places, all below massif's threshold (1.00%)
+ n1: 116144 0x5D99DB9: TStorage::ObjectAlloc(unsigned long) (in /opt/root/v6-26-10/lib/libCore.so)
+  n0: 116144 in 157 places, all below massif's threshold (1.00%)
+ n2: 98304 0x8D5C259: clang::IdentifierTable::get(llvm::StringRef) (in /opt/root/v6-26-10/lib/libCling.so)
+  n1: 90112 0xB55EEB9: clang::Builtin::Context::initializeBuiltins(clang::IdentifierTable&, clang::LangOptions const&) (in /opt/root/v6-26-10/lib/libCling.so)
+   n1: 90112 0x8DAA13D: (anonymous namespace)::createCIImpl(std::unique_ptr<llvm::MemoryBuffer, std::default_delete<llvm::MemoryBuffer> >, cling::CompilerOptions const&, char const*, std::unique_ptr<clang::ASTConsumer, std::default_delete<clang::ASTConsumer> >, std::vector<std::shared_ptr<clang::ModuleFileExtension>, std::allocator<std::shared_ptr<clang::ModuleFileExtension> > > const&, bool, bool) (in /opt/root/v6-26-10/lib/libCling.so)
+    n1: 90112 0x8DABB66: cling::CIFactory::createCI(llvm::StringRef, cling::InvocationOptions const&, char const*, std::unique_ptr<clang::ASTConsumer, std::default_delete<clang::ASTConsumer> >, std::vector<std::shared_ptr<clang::ModuleFileExtension>, std::allocator<std::shared_ptr<clang::ModuleFileExtension> > > const&) (in /opt/root/v6-26-10/lib/libCling.so)
+     n1: 90112 0x8E684D4: cling::IncrementalParser::IncrementalParser(cling::Interpreter*, char const*, std::vector<std::shared_ptr<clang::ModuleFileExtension>, std::allocator<std::shared_ptr<clang::ModuleFileExtension> > > const&) (in /opt/root/v6-26-10/lib/libCling.so)
+      n1: 90112 0x8DE81EA: cling::Interpreter::Interpreter(int, char const* const*, char const*, std::vector<std::shared_ptr<clang::ModuleFileExtension>, std::allocator<std::shared_ptr<clang::ModuleFileExtension> > > const&, bool, cling::Interpreter const*) (in /opt/root/v6-26-10/lib/libCling.so)
+       n1: 90112 0x8D3CD59: TCling::TCling(char const*, char const*, char const* const*) (in /opt/root/v6-26-10/lib/libCling.so)
+        n1: 90112 0x8D3ED70: CreateInterpreter (in /opt/root/v6-26-10/lib/libCling.so)
+         n1: 90112 0x5D42E49: TROOT::InitInterpreter() (in /opt/root/v6-26-10/lib/libCore.so)
+          n1: 90112 0x5D432FE: ROOT::Internal::GetROOT2() (in /opt/root/v6-26-10/lib/libCore.so)
+           n1: 90112 0x5E95718: TUnixSystem::SetDisplay() (in /opt/root/v6-26-10/lib/libCore.so)
+            n1: 90112 0x78C4664: TGClient::TGClient(char const*) (in /opt/root/v6-26-10/lib/libGui.so)
+             n1: 90112 0x789C7D0: _GLOBAL__sub_I_TGClient.cxx (in /opt/root/v6-26-10/lib/libGui.so)
+              n1: 90112 0x400A1AD: call_init (dl-init.c:70)
+               n1: 90112 0x400A1AD: call_init (dl-init.c:26)
+                n1: 90112 0x400A29B: _dl_init (dl-init.c:117)
+                 n1: 90112 0x4020BD9: ??? (in /usr/lib64/ld-linux-x86-64.so.2)
+                  n1: 90112 0x7: ???
+                   n1: 90112 0x1FFF0003FE: ???
+                    n1: 90112 0x1FFF000418: ???
+                     n1: 90112 0x1FFF00041A: ???
+                      n1: 90112 0x1FFF000444: ???
+                       n1: 90112 0x1FFF00046C: ???
+                        n1: 90112 0x1FFF000499: ???
+                         n1: 90112 0x1FFF0004C7: ???
+                          n0: 90112 0x1FFF0004F5: ???
+  n0: 8192 in 2 places, all below massif's threshold (1.00%)
+ n1: 82612 0xB56E7B9: clang::FileManager::fillRealPathName(clang::FileEntry*, llvm::StringRef) (in /opt/root/v6-26-10/lib/libCling.so)
+  n2: 82612 0xB57230C: clang::FileManager::getFile(llvm::StringRef, bool, bool) (in /opt/root/v6-26-10/lib/libCling.so)
+   n1: 82303 0xB4F41DB: clang::ModuleMap::findHeader(clang::Module*, clang::Module::UnresolvedHeaderDirective const&, llvm::SmallVectorImpl<char>&, bool&) (in /opt/root/v6-26-10/lib/libCling.so)
+    n1: 82303 0xB4FF3E8: clang::ModuleMap::resolveHeader(clang::Module*, clang::Module::UnresolvedHeaderDirective const&, bool&) (in /opt/root/v6-26-10/lib/libCling.so)
+     n2: 82303 0xB502C60: clang::ModuleMapParser::parseHeaderDecl(clang::MMToken::TokenKind, clang::SourceLocation) (in /opt/root/v6-26-10/lib/libCling.so)
+      n2: 80480 0xB505E45: clang::ModuleMapParser::parseModuleDecl() (in /opt/root/v6-26-10/lib/libCling.so)
+       n2: 80232 0xB505C17: clang::ModuleMapParser::parseModuleDecl() (in /opt/root/v6-26-10/lib/libCling.so)
+        n1: 79002 0xB50640C: clang::ModuleMapParser::parseModuleMapFile() (in /opt/root/v6-26-10/lib/libCling.so)
+         n1: 79002 0xB5036C2: clang::ModuleMap::parseModuleMapFile(clang::FileEntry const*, bool, clang::DirectoryEntry const*, clang::FileID, unsigned int*, clang::SourceLocation) (in /opt/root/v6-26-10/lib/libCling.so)
+          n1: 79002 0xB4D2EA3: clang::HeaderSearch::loadModuleMapFileImpl(clang::FileEntry const*, bool, clang::DirectoryEntry const*, clang::FileID, unsigned int*) (in /opt/root/v6-26-10/lib/libCling.so)
+           n1: 79002 0xB4D3D17: clang::HeaderSearch::loadModuleMapFile(clang::FileEntry const*, bool, clang::FileID, unsigned int*, llvm::StringRef) (in /opt/root/v6-26-10/lib/libCling.so)
+            n1: 79002 0x8DAA33A: (anonymous namespace)::createCIImpl(std::unique_ptr<llvm::MemoryBuffer, std::default_delete<llvm::MemoryBuffer> >, cling::CompilerOptions const&, char const*, std::unique_ptr<clang::ASTConsumer, std::default_delete<clang::ASTConsumer> >, std::vector<std::shared_ptr<clang::ModuleFileExtension>, std::allocator<std::shared_ptr<clang::ModuleFileExtension> > > const&, bool, bool) (in /opt/root/v6-26-10/lib/libCling.so)
+             n1: 79002 0x8DABB66: cling::CIFactory::createCI(llvm::StringRef, cling::InvocationOptions const&, char const*, std::unique_ptr<clang::ASTConsumer, std::default_delete<clang::ASTConsumer> >, std::vector<std::shared_ptr<clang::ModuleFileExtension>, std::allocator<std::shared_ptr<clang::ModuleFileExtension> > > const&) (in /opt/root/v6-26-10/lib/libCling.so)
+              n1: 79002 0x8E684D4: cling::IncrementalParser::IncrementalParser(cling::Interpreter*, char const*, std::vector<std::shared_ptr<clang::ModuleFileExtension>, std::allocator<std::shared_ptr<clang::ModuleFileExtension> > > const&) (in /opt/root/v6-26-10/lib/libCling.so)
+               n1: 79002 0x8DE81EA: cling::Interpreter::Interpreter(int, char const* const*, char const*, std::vector<std::shared_ptr<clang::ModuleFileExtension>, std::allocator<std::shared_ptr<clang::ModuleFileExtension> > > const&, bool, cling::Interpreter const*) (in /opt/root/v6-26-10/lib/libCling.so)
+                n1: 79002 0x8D3CD59: TCling::TCling(char const*, char const*, char const* const*) (in /opt/root/v6-26-10/lib/libCling.so)
+                 n1: 79002 0x8D3ED70: CreateInterpreter (in /opt/root/v6-26-10/lib/libCling.so)
+                  n1: 79002 0x5D42E49: TROOT::InitInterpreter() (in /opt/root/v6-26-10/lib/libCore.so)
+                   n1: 79002 0x5D432FE: ROOT::Internal::GetROOT2() (in /opt/root/v6-26-10/lib/libCore.so)
+                    n1: 79002 0x5E95718: TUnixSystem::SetDisplay() (in /opt/root/v6-26-10/lib/libCore.so)
+                     n1: 79002 0x78C4664: TGClient::TGClient(char const*) (in /opt/root/v6-26-10/lib/libGui.so)
+                      n1: 79002 0x789C7D0: _GLOBAL__sub_I_TGClient.cxx (in /opt/root/v6-26-10/lib/libGui.so)
+                       n1: 79002 0x400A1AD: call_init (dl-init.c:70)
+                        n1: 79002 0x400A1AD: call_init (dl-init.c:26)
+                         n1: 79002 0x400A29B: _dl_init (dl-init.c:117)
+                          n1: 79002 0x4020BD9: ??? (in /usr/lib64/ld-linux-x86-64.so.2)
+                           n1: 79002 0x7: ???
+                            n1: 79002 0x1FFF0003FE: ???
+                             n1: 79002 0x1FFF000418: ???
+                              n1: 79002 0x1FFF00041A: ???
+                               n0: 79002 0x1FFF000444: ???
+        n0: 1230 in 1 place, below massif's threshold (1.00%)
+       n0: 248 in 1 place, below massif's threshold (1.00%)
+      n0: 1823 in 1 place, below massif's threshold (1.00%)
+   n0: 309 in 2 places, all below massif's threshold (1.00%)
+ n1: 80080 0x6E147B1: __new_exitfn (in /usr/lib64/libc.so.6)
+  n1: 80080 0x6E1483E: __internal_atexit (in /usr/lib64/libc.so.6)
+   n0: 80080 in 65 places, all below massif's threshold (1.00%)
+ n1: 80056 0x5E023A0: TObjectTable::TObjectTable(int) (in /opt/root/v6-26-10/lib/libCore.so)
+  n1: 80056 0x5E02938: TObjectTable::AddObj(TObject*) (in /opt/root/v6-26-10/lib/libCore.so)
+   n1: 80056 0x5D69E77: TDirectory::TDirectory() (in /opt/root/v6-26-10/lib/libCore.so)
+    n1: 80056 0x5D46D83: TROOT::TROOT(char const*, char const*, void (**)()) (in /opt/root/v6-26-10/lib/libCore.so)
+     n1: 80056 0x5D48F09: ROOT::Internal::GetROOT1() (in /opt/root/v6-26-10/lib/libCore.so)
+      n1: 80056 0x5D3C21B: _GLOBAL__sub_I_TROOT.cxx (in /opt/root/v6-26-10/lib/libCore.so)
+       n1: 80056 0x400A1AD: call_init (dl-init.c:70)
+        n1: 80056 0x400A1AD: call_init (dl-init.c:26)
+         n1: 80056 0x400A29B: _dl_init (dl-init.c:117)
+          n1: 80056 0x4020BD9: ??? (in /usr/lib64/ld-linux-x86-64.so.2)
+           n1: 80056 0x7: ???
+            n1: 80056 0x1FFF0003FE: ???
+             n1: 80056 0x1FFF000418: ???
+              n1: 80056 0x1FFF00041A: ???
+               n1: 80056 0x1FFF000444: ???
+                n1: 80056 0x1FFF00046C: ???
+                 n1: 80056 0x1FFF000499: ???
+                  n1: 80056 0x1FFF0004C7: ???
+                   n0: 80056 0x1FFF0004F5: ???
+ n1: 77256 0x5DE76D4: TClassTable::Add(char const*, short, std::type_info const&, TClass* (*)(), int) (in /opt/root/v6-26-10/lib/libCore.so)
+  n0: 77256 in 4 places, all below massif's threshold (1.00%)
+ n1: 72704 0x6B499A9: ??? (in /usr/lib64/libstdc++.so.6.0.29)
+  n1: 72704 0x400A1AD: call_init (dl-init.c:70)
+   n1: 72704 0x400A1AD: call_init (dl-init.c:26)
+    n1: 72704 0x400A29B: _dl_init (dl-init.c:117)
+     n1: 72704 0x4020BD9: ??? (in /usr/lib64/ld-linux-x86-64.so.2)
+      n1: 72704 0x7: ???
+       n1: 72704 0x1FFF0003FE: ???
+        n1: 72704 0x1FFF000418: ???
+         n1: 72704 0x1FFF00041A: ???
+          n1: 72704 0x1FFF000444: ???
+           n1: 72704 0x1FFF00046C: ???
+            n1: 72704 0x1FFF000499: ???
+             n1: 72704 0x1FFF0004C7: ???
+              n0: 72704 0x1FFF0004F5: ???
+#-----------
+snapshot=3
+#-----------
+time=269862512
 mem_heap_B=18966106
 mem_heap_extra_B=386078
 mem_stacks_B=0
@@ -377,22 +741,386 @@ n11: 18966106 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
                             n0: 196620 0x1FFF0004F5: ???
   n0: 3096 in 3 places, all below massif's threshold (1.00%)
 #-----------
-snapshot=3
+snapshot=4
 #-----------
-time=358829500
-mem_heap_B=36590798
-mem_heap_extra_B=457602
+time=355359175
+mem_heap_B=36442125
+mem_heap_extra_B=454539
+mem_stacks_B=0
+heap_tree=detailed
+n13: 36442125 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 7975088 0x9602C4B: clang::ASTReader::ReadASTBlock(clang::serialization::ModuleFile&, unsigned int) (in /opt/root/v6-26-10/lib/libCling.so)
+  n1: 7975088 0x960DF68: clang::ASTReader::ReadAST(llvm::StringRef, clang::serialization::ModuleKind, clang::SourceLocation, unsigned int, llvm::SmallVectorImpl<clang::ASTReader::ImportedSubmodule>*) (in /opt/root/v6-26-10/lib/libCling.so)
+   n2: 7975088 0x92E256A: clang::CompilerInstance::loadModule(clang::SourceLocation, llvm::ArrayRef<std::pair<clang::IdentifierInfo*, clang::SourceLocation> >, clang::Module::NameVisibilityKind, bool) (in /opt/root/v6-26-10/lib/libCling.so)
+    n1: 7975088 0x9AD3615: clang::Sema::ActOnModuleImport(clang::SourceLocation, clang::SourceLocation, clang::SourceLocation, llvm::ArrayRef<std::pair<clang::IdentifierInfo*, clang::SourceLocation> >) (in /opt/root/v6-26-10/lib/libCling.so)
+     n1: 7975088 0x8DE28D1: cling::Interpreter::loadModule(clang::Module*, bool) (in /opt/root/v6-26-10/lib/libCling.so)
+      n2: 7975088 0x8D0FED6: LoadModule(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, cling::Interpreter&) (in /opt/root/v6-26-10/lib/libCling.so)
+       n1: 7975088 0x8D3AE97: RegisterCxxModules(cling::Interpreter&) (in /opt/root/v6-26-10/lib/libCling.so)
+        n1: 7975088 0x8D3CE48: TCling::TCling(char const*, char const*, char const* const*) (in /opt/root/v6-26-10/lib/libCling.so)
+         n1: 7975088 0x8D3ED70: CreateInterpreter (in /opt/root/v6-26-10/lib/libCling.so)
+          n1: 7975088 0x5D42E49: TROOT::InitInterpreter() (in /opt/root/v6-26-10/lib/libCore.so)
+           n1: 7975088 0x5D432FE: ROOT::Internal::GetROOT2() (in /opt/root/v6-26-10/lib/libCore.so)
+            n1: 7975088 0x5E95718: TUnixSystem::SetDisplay() (in /opt/root/v6-26-10/lib/libCore.so)
+             n1: 7975088 0x78C4664: TGClient::TGClient(char const*) (in /opt/root/v6-26-10/lib/libGui.so)
+              n1: 7975088 0x789C7D0: _GLOBAL__sub_I_TGClient.cxx (in /opt/root/v6-26-10/lib/libGui.so)
+               n1: 7975088 0x400A1AD: call_init (dl-init.c:70)
+                n1: 7975088 0x400A1AD: call_init (dl-init.c:26)
+                 n1: 7975088 0x400A29B: _dl_init (dl-init.c:117)
+                  n1: 7975088 0x4020BD9: ??? (in /usr/lib64/ld-linux-x86-64.so.2)
+                   n1: 7975088 0x7: ???
+                    n1: 7975088 0x1FFF0003FE: ???
+                     n1: 7975088 0x1FFF000418: ???
+                      n1: 7975088 0x1FFF00041A: ???
+                       n1: 7975088 0x1FFF000444: ???
+                        n1: 7975088 0x1FFF00046C: ???
+                         n1: 7975088 0x1FFF000499: ???
+                          n1: 7975088 0x1FFF0004C7: ???
+                           n0: 7975088 0x1FFF0004F5: ???
+       n0: 0 in 1 place, below massif's threshold (1.00%)
+    n0: 0 in 1 place, below massif's threshold (1.00%)
+ n1: 7263408 0x9602DCA: clang::ASTReader::ReadASTBlock(clang::serialization::ModuleFile&, unsigned int) (in /opt/root/v6-26-10/lib/libCling.so)
+  n1: 7263408 0x960DF68: clang::ASTReader::ReadAST(llvm::StringRef, clang::serialization::ModuleKind, clang::SourceLocation, unsigned int, llvm::SmallVectorImpl<clang::ASTReader::ImportedSubmodule>*) (in /opt/root/v6-26-10/lib/libCling.so)
+   n2: 7263408 0x92E256A: clang::CompilerInstance::loadModule(clang::SourceLocation, llvm::ArrayRef<std::pair<clang::IdentifierInfo*, clang::SourceLocation> >, clang::Module::NameVisibilityKind, bool) (in /opt/root/v6-26-10/lib/libCling.so)
+    n1: 7263408 0x9AD3615: clang::Sema::ActOnModuleImport(clang::SourceLocation, clang::SourceLocation, clang::SourceLocation, llvm::ArrayRef<std::pair<clang::IdentifierInfo*, clang::SourceLocation> >) (in /opt/root/v6-26-10/lib/libCling.so)
+     n1: 7263408 0x8DE28D1: cling::Interpreter::loadModule(clang::Module*, bool) (in /opt/root/v6-26-10/lib/libCling.so)
+      n2: 7263408 0x8D0FED6: LoadModule(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, cling::Interpreter&) (in /opt/root/v6-26-10/lib/libCling.so)
+       n1: 7263408 0x8D3AE97: RegisterCxxModules(cling::Interpreter&) (in /opt/root/v6-26-10/lib/libCling.so)
+        n1: 7263408 0x8D3CE48: TCling::TCling(char const*, char const*, char const* const*) (in /opt/root/v6-26-10/lib/libCling.so)
+         n1: 7263408 0x8D3ED70: CreateInterpreter (in /opt/root/v6-26-10/lib/libCling.so)
+          n1: 7263408 0x5D42E49: TROOT::InitInterpreter() (in /opt/root/v6-26-10/lib/libCore.so)
+           n1: 7263408 0x5D432FE: ROOT::Internal::GetROOT2() (in /opt/root/v6-26-10/lib/libCore.so)
+            n1: 7263408 0x5E95718: TUnixSystem::SetDisplay() (in /opt/root/v6-26-10/lib/libCore.so)
+             n1: 7263408 0x78C4664: TGClient::TGClient(char const*) (in /opt/root/v6-26-10/lib/libGui.so)
+              n1: 7263408 0x789C7D0: _GLOBAL__sub_I_TGClient.cxx (in /opt/root/v6-26-10/lib/libGui.so)
+               n1: 7263408 0x400A1AD: call_init (dl-init.c:70)
+                n1: 7263408 0x400A1AD: call_init (dl-init.c:26)
+                 n1: 7263408 0x400A29B: _dl_init (dl-init.c:117)
+                  n1: 7263408 0x4020BD9: ??? (in /usr/lib64/ld-linux-x86-64.so.2)
+                   n1: 7263408 0x7: ???
+                    n1: 7263408 0x1FFF0003FE: ???
+                     n1: 7263408 0x1FFF000418: ???
+                      n1: 7263408 0x1FFF00041A: ???
+                       n1: 7263408 0x1FFF000444: ???
+                        n1: 7263408 0x1FFF00046C: ???
+                         n1: 7263408 0x1FFF000499: ???
+                          n1: 7263408 0x1FFF0004C7: ???
+                           n0: 7263408 0x1FFF0004F5: ???
+       n0: 0 in 1 place, below massif's threshold (1.00%)
+    n0: 0 in 1 place, below massif's threshold (1.00%)
+ n0: 4868723 in 3111 places, all below massif's threshold (1.00%)
+ n1: 4768440 0xB4FCCFF: clang::ModuleMap::findOrCreateModule(llvm::StringRef, clang::Module*, bool, bool) (in /opt/root/v6-26-10/lib/libCling.so)
+  n2: 4768440 0xB506193: clang::ModuleMapParser::parseModuleDecl() (in /opt/root/v6-26-10/lib/libCling.so)
+   n2: 4578840 0xB505C17: clang::ModuleMapParser::parseModuleDecl() (in /opt/root/v6-26-10/lib/libCling.so)
+    n1: 4546608 0xB50640C: clang::ModuleMapParser::parseModuleMapFile() (in /opt/root/v6-26-10/lib/libCling.so)
+     n1: 4546608 0xB5036C2: clang::ModuleMap::parseModuleMapFile(clang::FileEntry const*, bool, clang::DirectoryEntry const*, clang::FileID, unsigned int*, clang::SourceLocation) (in /opt/root/v6-26-10/lib/libCling.so)
+      n1: 4546608 0xB4D2EA3: clang::HeaderSearch::loadModuleMapFileImpl(clang::FileEntry const*, bool, clang::DirectoryEntry const*, clang::FileID, unsigned int*) (in /opt/root/v6-26-10/lib/libCling.so)
+       n1: 4546608 0xB4D3D17: clang::HeaderSearch::loadModuleMapFile(clang::FileEntry const*, bool, clang::FileID, unsigned int*, llvm::StringRef) (in /opt/root/v6-26-10/lib/libCling.so)
+        n1: 4546608 0x8DAA33A: (anonymous namespace)::createCIImpl(std::unique_ptr<llvm::MemoryBuffer, std::default_delete<llvm::MemoryBuffer> >, cling::CompilerOptions const&, char const*, std::unique_ptr<clang::ASTConsumer, std::default_delete<clang::ASTConsumer> >, std::vector<std::shared_ptr<clang::ModuleFileExtension>, std::allocator<std::shared_ptr<clang::ModuleFileExtension> > > const&, bool, bool) (in /opt/root/v6-26-10/lib/libCling.so)
+         n1: 4546608 0x8DABB66: cling::CIFactory::createCI(llvm::StringRef, cling::InvocationOptions const&, char const*, std::unique_ptr<clang::ASTConsumer, std::default_delete<clang::ASTConsumer> >, std::vector<std::shared_ptr<clang::ModuleFileExtension>, std::allocator<std::shared_ptr<clang::ModuleFileExtension> > > const&) (in /opt/root/v6-26-10/lib/libCling.so)
+          n1: 4546608 0x8E684D4: cling::IncrementalParser::IncrementalParser(cling::Interpreter*, char const*, std::vector<std::shared_ptr<clang::ModuleFileExtension>, std::allocator<std::shared_ptr<clang::ModuleFileExtension> > > const&) (in /opt/root/v6-26-10/lib/libCling.so)
+           n1: 4546608 0x8DE81EA: cling::Interpreter::Interpreter(int, char const* const*, char const*, std::vector<std::shared_ptr<clang::ModuleFileExtension>, std::allocator<std::shared_ptr<clang::ModuleFileExtension> > > const&, bool, cling::Interpreter const*) (in /opt/root/v6-26-10/lib/libCling.so)
+            n1: 4546608 0x8D3CD59: TCling::TCling(char const*, char const*, char const* const*) (in /opt/root/v6-26-10/lib/libCling.so)
+             n1: 4546608 0x8D3ED70: CreateInterpreter (in /opt/root/v6-26-10/lib/libCling.so)
+              n1: 4546608 0x5D42E49: TROOT::InitInterpreter() (in /opt/root/v6-26-10/lib/libCore.so)
+               n1: 4546608 0x5D432FE: ROOT::Internal::GetROOT2() (in /opt/root/v6-26-10/lib/libCore.so)
+                n1: 4546608 0x5E95718: TUnixSystem::SetDisplay() (in /opt/root/v6-26-10/lib/libCore.so)
+                 n1: 4546608 0x78C4664: TGClient::TGClient(char const*) (in /opt/root/v6-26-10/lib/libGui.so)
+                  n1: 4546608 0x789C7D0: _GLOBAL__sub_I_TGClient.cxx (in /opt/root/v6-26-10/lib/libGui.so)
+                   n1: 4546608 0x400A1AD: call_init (dl-init.c:70)
+                    n1: 4546608 0x400A1AD: call_init (dl-init.c:26)
+                     n1: 4546608 0x400A29B: _dl_init (dl-init.c:117)
+                      n1: 4546608 0x4020BD9: ??? (in /usr/lib64/ld-linux-x86-64.so.2)
+                       n1: 4546608 0x7: ???
+                        n1: 4546608 0x1FFF0003FE: ???
+                         n1: 4546608 0x1FFF000418: ???
+                          n1: 4546608 0x1FFF00041A: ???
+                           n1: 4546608 0x1FFF000444: ???
+                            n1: 4546608 0x1FFF00046C: ???
+                             n1: 4546608 0x1FFF000499: ???
+                              n1: 4546608 0x1FFF0004C7: ???
+                               n0: 4546608 0x1FFF0004F5: ???
+    n0: 32232 in 1 place, below massif's threshold (1.00%)
+   n0: 189600 in 1 place, below massif's threshold (1.00%)
+ n2: 4380448 0xB8C3E8A: llvm::SmallVectorBase::grow_pod(void*, unsigned long, unsigned long) (in /opt/root/v6-26-10/lib/libCling.so)
+  n1: 4159752 0xB58FE9A: clang::SourceManager::AllocateLoadedSLocEntries(unsigned int, unsigned int) (in /opt/root/v6-26-10/lib/libCling.so)
+   n1: 4159752 0x9600A76: clang::ASTReader::ReadASTBlock(clang::serialization::ModuleFile&, unsigned int) (in /opt/root/v6-26-10/lib/libCling.so)
+    n1: 4159752 0x960DF68: clang::ASTReader::ReadAST(llvm::StringRef, clang::serialization::ModuleKind, clang::SourceLocation, unsigned int, llvm::SmallVectorImpl<clang::ASTReader::ImportedSubmodule>*) (in /opt/root/v6-26-10/lib/libCling.so)
+     n2: 4159752 0x92E256A: clang::CompilerInstance::loadModule(clang::SourceLocation, llvm::ArrayRef<std::pair<clang::IdentifierInfo*, clang::SourceLocation> >, clang::Module::NameVisibilityKind, bool) (in /opt/root/v6-26-10/lib/libCling.so)
+      n1: 4159752 0x9AD3615: clang::Sema::ActOnModuleImport(clang::SourceLocation, clang::SourceLocation, clang::SourceLocation, llvm::ArrayRef<std::pair<clang::IdentifierInfo*, clang::SourceLocation> >) (in /opt/root/v6-26-10/lib/libCling.so)
+       n1: 4159752 0x8DE28D1: cling::Interpreter::loadModule(clang::Module*, bool) (in /opt/root/v6-26-10/lib/libCling.so)
+        n1: 4159752 0x8D0FED6: LoadModule(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, cling::Interpreter&) (in /opt/root/v6-26-10/lib/libCling.so)
+         n1: 4159752 0x8D39B30: RegisterCxxModules(cling::Interpreter&) (in /opt/root/v6-26-10/lib/libCling.so)
+          n1: 4159752 0x8D3CE48: TCling::TCling(char const*, char const*, char const* const*) (in /opt/root/v6-26-10/lib/libCling.so)
+           n1: 4159752 0x8D3ED70: CreateInterpreter (in /opt/root/v6-26-10/lib/libCling.so)
+            n1: 4159752 0x5D42E49: TROOT::InitInterpreter() (in /opt/root/v6-26-10/lib/libCore.so)
+             n1: 4159752 0x5D432FE: ROOT::Internal::GetROOT2() (in /opt/root/v6-26-10/lib/libCore.so)
+              n1: 4159752 0x5E95718: TUnixSystem::SetDisplay() (in /opt/root/v6-26-10/lib/libCore.so)
+               n1: 4159752 0x78C4664: TGClient::TGClient(char const*) (in /opt/root/v6-26-10/lib/libGui.so)
+                n1: 4159752 0x789C7D0: _GLOBAL__sub_I_TGClient.cxx (in /opt/root/v6-26-10/lib/libGui.so)
+                 n1: 4159752 0x400A1AD: call_init (dl-init.c:70)
+                  n1: 4159752 0x400A1AD: call_init (dl-init.c:26)
+                   n1: 4159752 0x400A29B: _dl_init (dl-init.c:117)
+                    n1: 4159752 0x4020BD9: ??? (in /usr/lib64/ld-linux-x86-64.so.2)
+                     n1: 4159752 0x7: ???
+                      n1: 4159752 0x1FFF0003FE: ???
+                       n1: 4159752 0x1FFF000418: ???
+                        n1: 4159752 0x1FFF00041A: ???
+                         n1: 4159752 0x1FFF000444: ???
+                          n1: 4159752 0x1FFF00046C: ???
+                           n1: 4159752 0x1FFF000499: ???
+                            n1: 4159752 0x1FFF0004C7: ???
+                             n0: 4159752 0x1FFF0004F5: ???
+      n0: 0 in 1 place, below massif's threshold (1.00%)
+  n0: 220696 in 70 places, all below massif's threshold (1.00%)
+ n2: 2930370 0xB8B9E91: llvm::WritableMemoryBuffer::getNewUninitMemBuffer(unsigned long, llvm::Twine const&) (in /opt/root/v6-26-10/lib/libCling.so)
+  n2: 2749337 0xB8BA111: llvm::MemoryBuffer::getMemBufferCopy(llvm::StringRef, llvm::Twine const&) (in /opt/root/v6-26-10/lib/libCling.so)
+   n2: 2735725 0x95BCA90: clang::ASTReader::ReadSLocEntry(int)::{lambda(llvm::BitstreamCursor&, llvm::StringRef)#1}::operator()(llvm::BitstreamCursor&, llvm::StringRef) const (in /opt/root/v6-26-10/lib/libCling.so)
+    n1: 2132559 0x95CE2E4: clang::ASTReader::ReadSLocEntry(int) [clone .part.0] (in /opt/root/v6-26-10/lib/libCling.so)
+     n3: 2132559 0xB5900C5: clang::SourceManager::loadSLocEntry(unsigned int, bool*) const (in /opt/root/v6-26-10/lib/libCling.so)
+      n1: 1213413 0xB590DFC: clang::SourceManager::getFileIDLoaded(unsigned int) const [clone .part.0] (in /opt/root/v6-26-10/lib/libCling.so)
+       n2: 1213413 0xB591C30: clang::SourceManager::getFileIDSlow(unsigned int) const (in /opt/root/v6-26-10/lib/libCling.so)
+        n1: 1198976 0x95D74C9: clang::ASTReader::ReadPragmaDiagnosticMappings(clang::DiagnosticsEngine&) (in /opt/root/v6-26-10/lib/libCling.so)
+         n1: 1198976 0x95FE258: clang::ASTReader::InitializeContext() (in /opt/root/v6-26-10/lib/libCling.so)
+          n1: 1198976 0x960E9C6: clang::ASTReader::ReadAST(llvm::StringRef, clang::serialization::ModuleKind, clang::SourceLocation, unsigned int, llvm::SmallVectorImpl<clang::ASTReader::ImportedSubmodule>*) (in /opt/root/v6-26-10/lib/libCling.so)
+           n2: 1198976 0x92E256A: clang::CompilerInstance::loadModule(clang::SourceLocation, llvm::ArrayRef<std::pair<clang::IdentifierInfo*, clang::SourceLocation> >, clang::Module::NameVisibilityKind, bool) (in /opt/root/v6-26-10/lib/libCling.so)
+            n1: 918680 0xB513B15: clang::Preprocessor::HandleHeaderIncludeOrImport(clang::SourceLocation, clang::Token&, clang::Token&, clang::SourceLocation, clang::DirectoryLookup const*, clang::FileEntry const*) (in /opt/root/v6-26-10/lib/libCling.so)
+             n1: 918680 0xB514EBF: clang::Preprocessor::HandleIncludeDirective(clang::SourceLocation, clang::Token&, clang::DirectoryLookup const*, clang::FileEntry const*) (in /opt/root/v6-26-10/lib/libCling.so)
+              n1: 918680 0xB517E64: clang::Preprocessor::HandleDirective(clang::Token&) (in /opt/root/v6-26-10/lib/libCling.so)
+               n1: 918680 0xB4E3397: clang::Lexer::LexTokenInternal(clang::Token&, bool) (in /opt/root/v6-26-10/lib/libCling.so)
+                n1: 918680 0xB54B63E: clang::Preprocessor::Lex(clang::Token&) (in /opt/root/v6-26-10/lib/libCling.so)
+                 n1: 918680 0x95929EE: clang::Parser::ParseTopLevelDecl(clang::OpaquePtr<clang::DeclGroupRef>&, bool) (in /opt/root/v6-26-10/lib/libCling.so)
+                  n1: 918680 0x8E67577: cling::IncrementalParser::ParseInternal(llvm::StringRef) (in /opt/root/v6-26-10/lib/libCling.so)
+                   n1: 918680 0x8E67C89: cling::IncrementalParser::Initialize(llvm::SmallVectorImpl<llvm::PointerIntPair<cling::Transaction*, 2u, cling::IncrementalParser::EParseResult, llvm::PointerLikeTypeTraits<cling::Transaction*>, llvm::PointerIntPairInfo<cling::Transaction*, 2u, llvm::PointerLikeTypeTraits<cling::Transaction*> > > >&, bool) (in /opt/root/v6-26-10/lib/libCling.so)
+                    n1: 918680 0x8DE839A: cling::Interpreter::Interpreter(int, char const* const*, char const*, std::vector<std::shared_ptr<clang::ModuleFileExtension>, std::allocator<std::shared_ptr<clang::ModuleFileExtension> > > const&, bool, cling::Interpreter const*) (in /opt/root/v6-26-10/lib/libCling.so)
+                     n1: 918680 0x8D3CD59: TCling::TCling(char const*, char const*, char const* const*) (in /opt/root/v6-26-10/lib/libCling.so)
+                      n1: 918680 0x8D3ED70: CreateInterpreter (in /opt/root/v6-26-10/lib/libCling.so)
+                       n1: 918680 0x5D42E49: TROOT::InitInterpreter() (in /opt/root/v6-26-10/lib/libCore.so)
+                        n1: 918680 0x5D432FE: ROOT::Internal::GetROOT2() (in /opt/root/v6-26-10/lib/libCore.so)
+                         n1: 918680 0x5E95718: TUnixSystem::SetDisplay() (in /opt/root/v6-26-10/lib/libCore.so)
+                          n1: 918680 0x78C4664: TGClient::TGClient(char const*) (in /opt/root/v6-26-10/lib/libGui.so)
+                           n1: 918680 0x789C7D0: _GLOBAL__sub_I_TGClient.cxx (in /opt/root/v6-26-10/lib/libGui.so)
+                            n1: 918680 0x400A1AD: call_init (dl-init.c:70)
+                             n1: 918680 0x400A1AD: call_init (dl-init.c:26)
+                              n1: 918680 0x400A29B: _dl_init (dl-init.c:117)
+                               n0: 918680 0x4020BD9: ??? (in /usr/lib64/ld-linux-x86-64.so.2)
+            n0: 280296 in 1 place, below massif's threshold (1.00%)
+        n0: 14437 in 1 place, below massif's threshold (1.00%)
+      n1: 918181 0xB590AD8: clang::SourceManager::isOffsetInFileID(clang::FileID, unsigned int) const (in /opt/root/v6-26-10/lib/libCling.so)
+       n1: 918181 0xB590E28: clang::SourceManager::getFileIDLoaded(unsigned int) const [clone .part.0] (in /opt/root/v6-26-10/lib/libCling.so)
+        n1: 918181 0xB591C30: clang::SourceManager::getFileIDSlow(unsigned int) const (in /opt/root/v6-26-10/lib/libCling.so)
+         n1: 918181 0x95D74C9: clang::ASTReader::ReadPragmaDiagnosticMappings(clang::DiagnosticsEngine&) (in /opt/root/v6-26-10/lib/libCling.so)
+          n1: 918181 0x95FE258: clang::ASTReader::InitializeContext() (in /opt/root/v6-26-10/lib/libCling.so)
+           n1: 918181 0x960E9C6: clang::ASTReader::ReadAST(llvm::StringRef, clang::serialization::ModuleKind, clang::SourceLocation, unsigned int, llvm::SmallVectorImpl<clang::ASTReader::ImportedSubmodule>*) (in /opt/root/v6-26-10/lib/libCling.so)
+            n2: 918181 0x92E256A: clang::CompilerInstance::loadModule(clang::SourceLocation, llvm::ArrayRef<std::pair<clang::IdentifierInfo*, clang::SourceLocation> >, clang::Module::NameVisibilityKind, bool) (in /opt/root/v6-26-10/lib/libCling.so)
+             n1: 759390 0xB513B15: clang::Preprocessor::HandleHeaderIncludeOrImport(clang::SourceLocation, clang::Token&, clang::Token&, clang::SourceLocation, clang::DirectoryLookup const*, clang::FileEntry const*) (in /opt/root/v6-26-10/lib/libCling.so)
+              n1: 759390 0xB514EBF: clang::Preprocessor::HandleIncludeDirective(clang::SourceLocation, clang::Token&, clang::DirectoryLookup const*, clang::FileEntry const*) (in /opt/root/v6-26-10/lib/libCling.so)
+               n1: 759390 0xB517E64: clang::Preprocessor::HandleDirective(clang::Token&) (in /opt/root/v6-26-10/lib/libCling.so)
+                n1: 759390 0xB4E3397: clang::Lexer::LexTokenInternal(clang::Token&, bool) (in /opt/root/v6-26-10/lib/libCling.so)
+                 n1: 759390 0xB54B63E: clang::Preprocessor::Lex(clang::Token&) (in /opt/root/v6-26-10/lib/libCling.so)
+                  n1: 759390 0x95929EE: clang::Parser::ParseTopLevelDecl(clang::OpaquePtr<clang::DeclGroupRef>&, bool) (in /opt/root/v6-26-10/lib/libCling.so)
+                   n1: 759390 0x8E67577: cling::IncrementalParser::ParseInternal(llvm::StringRef) (in /opt/root/v6-26-10/lib/libCling.so)
+                    n1: 759390 0x8E67C89: cling::IncrementalParser::Initialize(llvm::SmallVectorImpl<llvm::PointerIntPair<cling::Transaction*, 2u, cling::IncrementalParser::EParseResult, llvm::PointerLikeTypeTraits<cling::Transaction*>, llvm::PointerIntPairInfo<cling::Transaction*, 2u, llvm::PointerLikeTypeTraits<cling::Transaction*> > > >&, bool) (in /opt/root/v6-26-10/lib/libCling.so)
+                     n1: 759390 0x8DE839A: cling::Interpreter::Interpreter(int, char const* const*, char const*, std::vector<std::shared_ptr<clang::ModuleFileExtension>, std::allocator<std::shared_ptr<clang::ModuleFileExtension> > > const&, bool, cling::Interpreter const*) (in /opt/root/v6-26-10/lib/libCling.so)
+                      n1: 759390 0x8D3CD59: TCling::TCling(char const*, char const*, char const* const*) (in /opt/root/v6-26-10/lib/libCling.so)
+                       n1: 759390 0x8D3ED70: CreateInterpreter (in /opt/root/v6-26-10/lib/libCling.so)
+                        n1: 759390 0x5D42E49: TROOT::InitInterpreter() (in /opt/root/v6-26-10/lib/libCore.so)
+                         n1: 759390 0x5D432FE: ROOT::Internal::GetROOT2() (in /opt/root/v6-26-10/lib/libCore.so)
+                          n1: 759390 0x5E95718: TUnixSystem::SetDisplay() (in /opt/root/v6-26-10/lib/libCore.so)
+                           n1: 759390 0x78C4664: TGClient::TGClient(char const*) (in /opt/root/v6-26-10/lib/libGui.so)
+                            n1: 759390 0x789C7D0: _GLOBAL__sub_I_TGClient.cxx (in /opt/root/v6-26-10/lib/libGui.so)
+                             n1: 759390 0x400A1AD: call_init (dl-init.c:70)
+                              n1: 759390 0x400A1AD: call_init (dl-init.c:26)
+                               n0: 759390 0x400A29B: _dl_init (dl-init.c:117)
+             n0: 158791 in 1 place, below massif's threshold (1.00%)
+      n0: 965 in 2 places, all below massif's threshold (1.00%)
+    n1: 603166 0x95CDF9C: clang::ASTReader::ReadSLocEntry(int) [clone .part.0] (in /opt/root/v6-26-10/lib/libCling.so)
+     n2: 603166 0xB5900C5: clang::SourceManager::loadSLocEntry(unsigned int, bool*) const (in /opt/root/v6-26-10/lib/libCling.so)
+      n1: 589735 0x960E083: clang::ASTReader::ReadAST(llvm::StringRef, clang::serialization::ModuleKind, clang::SourceLocation, unsigned int, llvm::SmallVectorImpl<clang::ASTReader::ImportedSubmodule>*) (in /opt/root/v6-26-10/lib/libCling.so)
+       n2: 589735 0x92E256A: clang::CompilerInstance::loadModule(clang::SourceLocation, llvm::ArrayRef<std::pair<clang::IdentifierInfo*, clang::SourceLocation> >, clang::Module::NameVisibilityKind, bool) (in /opt/root/v6-26-10/lib/libCling.so)
+        n1: 520930 0x9AD3615: clang::Sema::ActOnModuleImport(clang::SourceLocation, clang::SourceLocation, clang::SourceLocation, llvm::ArrayRef<std::pair<clang::IdentifierInfo*, clang::SourceLocation> >) (in /opt/root/v6-26-10/lib/libCling.so)
+         n1: 520930 0x8DE28D1: cling::Interpreter::loadModule(clang::Module*, bool) (in /opt/root/v6-26-10/lib/libCling.so)
+          n1: 520930 0x8D0FED6: LoadModule(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, cling::Interpreter&) (in /opt/root/v6-26-10/lib/libCling.so)
+           n0: 520930 in 5 places, all below massif's threshold (1.00%)
+        n0: 68805 in 1 place, below massif's threshold (1.00%)
+      n0: 13431 in 3 places, all below massif's threshold (1.00%)
+   n0: 13612 in 1 place, below massif's threshold (1.00%)
+  n0: 181033 in 2 places, all below massif's threshold (1.00%)
+ n1: 917504 0x95CBF81: llvm::DenseMap<unsigned int, llvm::SmallVector<std::pair<clang::serialization::ModuleFile*, unsigned long>, 2u>, llvm::DenseMapInfo<unsigned int>, llvm::detail::DenseMapPair<unsigned int, llvm::SmallVector<std::pair<clang::serialization::ModuleFile*, unsigned long>, 2u> > >::grow(unsigned int) (in /opt/root/v6-26-10/lib/libCling.so)
+  n1: 917504 0x9602065: clang::ASTReader::ReadASTBlock(clang::serialization::ModuleFile&, unsigned int) (in /opt/root/v6-26-10/lib/libCling.so)
+   n1: 917504 0x960DF68: clang::ASTReader::ReadAST(llvm::StringRef, clang::serialization::ModuleKind, clang::SourceLocation, unsigned int, llvm::SmallVectorImpl<clang::ASTReader::ImportedSubmodule>*) (in /opt/root/v6-26-10/lib/libCling.so)
+    n2: 917504 0x92E256A: clang::CompilerInstance::loadModule(clang::SourceLocation, llvm::ArrayRef<std::pair<clang::IdentifierInfo*, clang::SourceLocation> >, clang::Module::NameVisibilityKind, bool) (in /opt/root/v6-26-10/lib/libCling.so)
+     n1: 917504 0x9AD3615: clang::Sema::ActOnModuleImport(clang::SourceLocation, clang::SourceLocation, clang::SourceLocation, llvm::ArrayRef<std::pair<clang::IdentifierInfo*, clang::SourceLocation> >) (in /opt/root/v6-26-10/lib/libCling.so)
+      n1: 917504 0x8DE28D1: cling::Interpreter::loadModule(clang::Module*, bool) (in /opt/root/v6-26-10/lib/libCling.so)
+       n1: 917504 0x8D0FED6: LoadModule(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, cling::Interpreter&) (in /opt/root/v6-26-10/lib/libCling.so)
+        n1: 917504 0x8D3AE97: RegisterCxxModules(cling::Interpreter&) (in /opt/root/v6-26-10/lib/libCling.so)
+         n1: 917504 0x8D3CE48: TCling::TCling(char const*, char const*, char const* const*) (in /opt/root/v6-26-10/lib/libCling.so)
+          n1: 917504 0x8D3ED70: CreateInterpreter (in /opt/root/v6-26-10/lib/libCling.so)
+           n1: 917504 0x5D42E49: TROOT::InitInterpreter() (in /opt/root/v6-26-10/lib/libCore.so)
+            n1: 917504 0x5D432FE: ROOT::Internal::GetROOT2() (in /opt/root/v6-26-10/lib/libCore.so)
+             n1: 917504 0x5E95718: TUnixSystem::SetDisplay() (in /opt/root/v6-26-10/lib/libCore.so)
+              n1: 917504 0x78C4664: TGClient::TGClient(char const*) (in /opt/root/v6-26-10/lib/libGui.so)
+               n1: 917504 0x789C7D0: _GLOBAL__sub_I_TGClient.cxx (in /opt/root/v6-26-10/lib/libGui.so)
+                n1: 917504 0x400A1AD: call_init (dl-init.c:70)
+                 n1: 917504 0x400A1AD: call_init (dl-init.c:26)
+                  n1: 917504 0x400A29B: _dl_init (dl-init.c:117)
+                   n1: 917504 0x4020BD9: ??? (in /usr/lib64/ld-linux-x86-64.so.2)
+                    n1: 917504 0x7: ???
+                     n1: 917504 0x1FFF0003FE: ???
+                      n1: 917504 0x1FFF000418: ???
+                       n1: 917504 0x1FFF00041A: ???
+                        n1: 917504 0x1FFF000444: ???
+                         n1: 917504 0x1FFF00046C: ???
+                          n1: 917504 0x1FFF000499: ???
+                           n1: 917504 0x1FFF0004C7: ???
+                            n0: 917504 0x1FFF0004F5: ???
+     n0: 0 in 1 place, below massif's threshold (1.00%)
+ n2: 808384 0xB10792F: llvm::BitstreamCursor::ReadAbbrevRecord() (in /opt/root/v6-26-10/lib/libCling.so)
+  n2: 406912 0x95B8831: clang::ASTReader::ReadBlockAbbrevs(llvm::BitstreamCursor&, unsigned int) (in /opt/root/v6-26-10/lib/libCling.so)
+   n1: 382976 0x95FEBC9: clang::ASTReader::ReadASTBlock(clang::serialization::ModuleFile&, unsigned int) (in /opt/root/v6-26-10/lib/libCling.so)
+    n1: 382976 0x960DF68: clang::ASTReader::ReadAST(llvm::StringRef, clang::serialization::ModuleKind, clang::SourceLocation, unsigned int, llvm::SmallVectorImpl<clang::ASTReader::ImportedSubmodule>*) (in /opt/root/v6-26-10/lib/libCling.so)
+     n1: 382976 0x92E256A: clang::CompilerInstance::loadModule(clang::SourceLocation, llvm::ArrayRef<std::pair<clang::IdentifierInfo*, clang::SourceLocation> >, clang::Module::NameVisibilityKind, bool) (in /opt/root/v6-26-10/lib/libCling.so)
+      n0: 382976 in 2 places, all below massif's threshold (1.00%)
+   n0: 23936 in 1 place, below massif's threshold (1.00%)
+  n0: 401472 in 5 places, all below massif's threshold (1.00%)
+ n1: 719600 0x9602C8A: clang::ASTReader::ReadASTBlock(clang::serialization::ModuleFile&, unsigned int) (in /opt/root/v6-26-10/lib/libCling.so)
+  n1: 719600 0x960DF68: clang::ASTReader::ReadAST(llvm::StringRef, clang::serialization::ModuleKind, clang::SourceLocation, unsigned int, llvm::SmallVectorImpl<clang::ASTReader::ImportedSubmodule>*) (in /opt/root/v6-26-10/lib/libCling.so)
+   n2: 719600 0x92E256A: clang::CompilerInstance::loadModule(clang::SourceLocation, llvm::ArrayRef<std::pair<clang::IdentifierInfo*, clang::SourceLocation> >, clang::Module::NameVisibilityKind, bool) (in /opt/root/v6-26-10/lib/libCling.so)
+    n1: 719600 0x9AD3615: clang::Sema::ActOnModuleImport(clang::SourceLocation, clang::SourceLocation, clang::SourceLocation, llvm::ArrayRef<std::pair<clang::IdentifierInfo*, clang::SourceLocation> >) (in /opt/root/v6-26-10/lib/libCling.so)
+     n1: 719600 0x8DE28D1: cling::Interpreter::loadModule(clang::Module*, bool) (in /opt/root/v6-26-10/lib/libCling.so)
+      n2: 719600 0x8D0FED6: LoadModule(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, cling::Interpreter&) (in /opt/root/v6-26-10/lib/libCling.so)
+       n1: 719600 0x8D3AE97: RegisterCxxModules(cling::Interpreter&) (in /opt/root/v6-26-10/lib/libCling.so)
+        n1: 719600 0x8D3CE48: TCling::TCling(char const*, char const*, char const* const*) (in /opt/root/v6-26-10/lib/libCling.so)
+         n1: 719600 0x8D3ED70: CreateInterpreter (in /opt/root/v6-26-10/lib/libCling.so)
+          n1: 719600 0x5D42E49: TROOT::InitInterpreter() (in /opt/root/v6-26-10/lib/libCore.so)
+           n1: 719600 0x5D432FE: ROOT::Internal::GetROOT2() (in /opt/root/v6-26-10/lib/libCore.so)
+            n1: 719600 0x5E95718: TUnixSystem::SetDisplay() (in /opt/root/v6-26-10/lib/libCore.so)
+             n1: 719600 0x78C4664: TGClient::TGClient(char const*) (in /opt/root/v6-26-10/lib/libGui.so)
+              n1: 719600 0x789C7D0: _GLOBAL__sub_I_TGClient.cxx (in /opt/root/v6-26-10/lib/libGui.so)
+               n1: 719600 0x400A1AD: call_init (dl-init.c:70)
+                n1: 719600 0x400A1AD: call_init (dl-init.c:26)
+                 n1: 719600 0x400A29B: _dl_init (dl-init.c:117)
+                  n1: 719600 0x4020BD9: ??? (in /usr/lib64/ld-linux-x86-64.so.2)
+                   n1: 719600 0x7: ???
+                    n1: 719600 0x1FFF0003FE: ???
+                     n1: 719600 0x1FFF000418: ???
+                      n1: 719600 0x1FFF00041A: ???
+                       n1: 719600 0x1FFF000444: ???
+                        n1: 719600 0x1FFF00046C: ???
+                         n1: 719600 0x1FFF000499: ???
+                          n1: 719600 0x1FFF0004C7: ???
+                           n0: 719600 0x1FFF0004F5: ???
+       n0: 0 in 1 place, below massif's threshold (1.00%)
+    n0: 0 in 1 place, below massif's threshold (1.00%)
+ n1: 516560 0x9602CC9: clang::ASTReader::ReadASTBlock(clang::serialization::ModuleFile&, unsigned int) (in /opt/root/v6-26-10/lib/libCling.so)
+  n1: 516560 0x960DF68: clang::ASTReader::ReadAST(llvm::StringRef, clang::serialization::ModuleKind, clang::SourceLocation, unsigned int, llvm::SmallVectorImpl<clang::ASTReader::ImportedSubmodule>*) (in /opt/root/v6-26-10/lib/libCling.so)
+   n1: 516560 0x92E256A: clang::CompilerInstance::loadModule(clang::SourceLocation, llvm::ArrayRef<std::pair<clang::IdentifierInfo*, clang::SourceLocation> >, clang::Module::NameVisibilityKind, bool) (in /opt/root/v6-26-10/lib/libCling.so)
+    n1: 516560 0xB513B15: clang::Preprocessor::HandleHeaderIncludeOrImport(clang::SourceLocation, clang::Token&, clang::Token&, clang::SourceLocation, clang::DirectoryLookup const*, clang::FileEntry const*) (in /opt/root/v6-26-10/lib/libCling.so)
+     n1: 516560 0xB514EBF: clang::Preprocessor::HandleIncludeDirective(clang::SourceLocation, clang::Token&, clang::DirectoryLookup const*, clang::FileEntry const*) (in /opt/root/v6-26-10/lib/libCling.so)
+      n1: 516560 0xB517E64: clang::Preprocessor::HandleDirective(clang::Token&) (in /opt/root/v6-26-10/lib/libCling.so)
+       n1: 516560 0xB4E3397: clang::Lexer::LexTokenInternal(clang::Token&, bool) (in /opt/root/v6-26-10/lib/libCling.so)
+        n1: 516560 0xB54B63E: clang::Preprocessor::Lex(clang::Token&) (in /opt/root/v6-26-10/lib/libCling.so)
+         n1: 516560 0x95929EE: clang::Parser::ParseTopLevelDecl(clang::OpaquePtr<clang::DeclGroupRef>&, bool) (in /opt/root/v6-26-10/lib/libCling.so)
+          n2: 516560 0x8E67577: cling::IncrementalParser::ParseInternal(llvm::StringRef) (in /opt/root/v6-26-10/lib/libCling.so)
+           n1: 516560 0x8E6826C: cling::IncrementalParser::Compile(llvm::StringRef, cling::CompilationOptions const&) (in /opt/root/v6-26-10/lib/libCling.so)
+            n1: 516560 0x8DE3241: cling::Interpreter::declare(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, cling::Transaction**) (in /opt/root/v6-26-10/lib/libCling.so)
+             n1: 516560 0x8DE369A: cling::Interpreter::Initialize(bool, bool, llvm::SmallVectorImpl<llvm::StringRef>&) (in /opt/root/v6-26-10/lib/libCling.so)
+              n1: 516560 0x8DE8414: cling::Interpreter::Interpreter(int, char const* const*, char const*, std::vector<std::shared_ptr<clang::ModuleFileExtension>, std::allocator<std::shared_ptr<clang::ModuleFileExtension> > > const&, bool, cling::Interpreter const*) (in /opt/root/v6-26-10/lib/libCling.so)
+               n1: 516560 0x8D3CD59: TCling::TCling(char const*, char const*, char const* const*) (in /opt/root/v6-26-10/lib/libCling.so)
+                n1: 516560 0x8D3ED70: CreateInterpreter (in /opt/root/v6-26-10/lib/libCling.so)
+                 n1: 516560 0x5D42E49: TROOT::InitInterpreter() (in /opt/root/v6-26-10/lib/libCore.so)
+                  n1: 516560 0x5D432FE: ROOT::Internal::GetROOT2() (in /opt/root/v6-26-10/lib/libCore.so)
+                   n1: 516560 0x5E95718: TUnixSystem::SetDisplay() (in /opt/root/v6-26-10/lib/libCore.so)
+                    n1: 516560 0x78C4664: TGClient::TGClient(char const*) (in /opt/root/v6-26-10/lib/libGui.so)
+                     n1: 516560 0x789C7D0: _GLOBAL__sub_I_TGClient.cxx (in /opt/root/v6-26-10/lib/libGui.so)
+                      n1: 516560 0x400A1AD: call_init (dl-init.c:70)
+                       n1: 516560 0x400A1AD: call_init (dl-init.c:26)
+                        n1: 516560 0x400A29B: _dl_init (dl-init.c:117)
+                         n1: 516560 0x4020BD9: ??? (in /usr/lib64/ld-linux-x86-64.so.2)
+                          n1: 516560 0x7: ???
+                           n1: 516560 0x1FFF0003FE: ???
+                            n1: 516560 0x1FFF000418: ???
+                             n1: 516560 0x1FFF00041A: ???
+                              n1: 516560 0x1FFF000444: ???
+                               n0: 516560 0x1FFF00046C: ???
+           n0: 0 in 1 place, below massif's threshold (1.00%)
+ n1: 464160 0xB570BF4: std::_Rb_tree_iterator<std::pair<llvm::sys::fs::UniqueID const, clang::FileEntry> > std::_Rb_tree<llvm::sys::fs::UniqueID, std::pair<llvm::sys::fs::UniqueID const, clang::FileEntry>, std::_Select1st<std::pair<llvm::sys::fs::UniqueID const, clang::FileEntry> >, std::less<llvm::sys::fs::UniqueID>, std::allocator<std::pair<llvm::sys::fs::UniqueID const, clang::FileEntry> > >::_M_emplace_hint_unique<std::piecewise_construct_t const&, std::tuple<llvm::sys::fs::UniqueID&&>, std::tuple<> >(std::_Rb_tree_const_iterator<std::pair<llvm::sys::fs::UniqueID const, clang::FileEntry> >, std::piecewise_construct_t const&, std::tuple<llvm::sys::fs::UniqueID&&>&&, std::tuple<>&&) [clone .isra.0] (in /opt/root/v6-26-10/lib/libCling.so)
+  n2: 464160 0xB571CE2: clang::FileManager::getFile(llvm::StringRef, bool, bool) (in /opt/root/v6-26-10/lib/libCling.so)
+   n1: 390720 0xB4F41DB: clang::ModuleMap::findHeader(clang::Module*, clang::Module::UnresolvedHeaderDirective const&, llvm::SmallVectorImpl<char>&, bool&) (in /opt/root/v6-26-10/lib/libCling.so)
+    n1: 390720 0xB4FF3E8: clang::ModuleMap::resolveHeader(clang::Module*, clang::Module::UnresolvedHeaderDirective const&, bool&) (in /opt/root/v6-26-10/lib/libCling.so)
+     n2: 390720 0xB502C60: clang::ModuleMapParser::parseHeaderDecl(clang::MMToken::TokenKind, clang::SourceLocation) (in /opt/root/v6-26-10/lib/libCling.so)
+      n2: 385920 0xB505E45: clang::ModuleMapParser::parseModuleDecl() (in /opt/root/v6-26-10/lib/libCling.so)
+       n2: 385280 0xB505C17: clang::ModuleMapParser::parseModuleDecl() (in /opt/root/v6-26-10/lib/libCling.so)
+        n1: 382240 0xB50640C: clang::ModuleMapParser::parseModuleMapFile() (in /opt/root/v6-26-10/lib/libCling.so)
+         n1: 382240 0xB5036C2: clang::ModuleMap::parseModuleMapFile(clang::FileEntry const*, bool, clang::DirectoryEntry const*, clang::FileID, unsigned int*, clang::SourceLocation) (in /opt/root/v6-26-10/lib/libCling.so)
+          n1: 382240 0xB4D2EA3: clang::HeaderSearch::loadModuleMapFileImpl(clang::FileEntry const*, bool, clang::DirectoryEntry const*, clang::FileID, unsigned int*) (in /opt/root/v6-26-10/lib/libCling.so)
+           n1: 382240 0xB4D3D17: clang::HeaderSearch::loadModuleMapFile(clang::FileEntry const*, bool, clang::FileID, unsigned int*, llvm::StringRef) (in /opt/root/v6-26-10/lib/libCling.so)
+            n1: 382240 0x8DAA33A: (anonymous namespace)::createCIImpl(std::unique_ptr<llvm::MemoryBuffer, std::default_delete<llvm::MemoryBuffer> >, cling::CompilerOptions const&, char const*, std::unique_ptr<clang::ASTConsumer, std::default_delete<clang::ASTConsumer> >, std::vector<std::shared_ptr<clang::ModuleFileExtension>, std::allocator<std::shared_ptr<clang::ModuleFileExtension> > > const&, bool, bool) (in /opt/root/v6-26-10/lib/libCling.so)
+             n1: 382240 0x8DABB66: cling::CIFactory::createCI(llvm::StringRef, cling::InvocationOptions const&, char const*, std::unique_ptr<clang::ASTConsumer, std::default_delete<clang::ASTConsumer> >, std::vector<std::shared_ptr<clang::ModuleFileExtension>, std::allocator<std::shared_ptr<clang::ModuleFileExtension> > > const&) (in /opt/root/v6-26-10/lib/libCling.so)
+              n1: 382240 0x8E684D4: cling::IncrementalParser::IncrementalParser(cling::Interpreter*, char const*, std::vector<std::shared_ptr<clang::ModuleFileExtension>, std::allocator<std::shared_ptr<clang::ModuleFileExtension> > > const&) (in /opt/root/v6-26-10/lib/libCling.so)
+               n1: 382240 0x8DE81EA: cling::Interpreter::Interpreter(int, char const* const*, char const*, std::vector<std::shared_ptr<clang::ModuleFileExtension>, std::allocator<std::shared_ptr<clang::ModuleFileExtension> > > const&, bool, cling::Interpreter const*) (in /opt/root/v6-26-10/lib/libCling.so)
+                n1: 382240 0x8D3CD59: TCling::TCling(char const*, char const*, char const* const*) (in /opt/root/v6-26-10/lib/libCling.so)
+                 n1: 382240 0x8D3ED70: CreateInterpreter (in /opt/root/v6-26-10/lib/libCling.so)
+                  n1: 382240 0x5D42E49: TROOT::InitInterpreter() (in /opt/root/v6-26-10/lib/libCore.so)
+                   n1: 382240 0x5D432FE: ROOT::Internal::GetROOT2() (in /opt/root/v6-26-10/lib/libCore.so)
+                    n1: 382240 0x5E95718: TUnixSystem::SetDisplay() (in /opt/root/v6-26-10/lib/libCore.so)
+                     n1: 382240 0x78C4664: TGClient::TGClient(char const*) (in /opt/root/v6-26-10/lib/libGui.so)
+                      n1: 382240 0x789C7D0: _GLOBAL__sub_I_TGClient.cxx (in /opt/root/v6-26-10/lib/libGui.so)
+                       n1: 382240 0x400A1AD: call_init (dl-init.c:70)
+                        n1: 382240 0x400A1AD: call_init (dl-init.c:26)
+                         n1: 382240 0x400A29B: _dl_init (dl-init.c:117)
+                          n1: 382240 0x4020BD9: ??? (in /usr/lib64/ld-linux-x86-64.so.2)
+                           n1: 382240 0x7: ???
+                            n1: 382240 0x1FFF0003FE: ???
+                             n1: 382240 0x1FFF000418: ???
+                              n1: 382240 0x1FFF00041A: ???
+                               n0: 382240 0x1FFF000444: ???
+        n0: 3040 in 1 place, below massif's threshold (1.00%)
+       n0: 640 in 1 place, below massif's threshold (1.00%)
+      n0: 4800 in 1 place, below massif's threshold (1.00%)
+   n0: 73440 in 5 places, all below massif's threshold (1.00%)
+ n1: 415744 0x960C139: llvm::SmallDenseMap<clang::Module*, llvm::detail::DenseSetEmpty, 2u, llvm::DenseMapInfo<clang::Module*>, llvm::detail::DenseSetPair<clang::Module*> >::grow(unsigned int) (in /opt/root/v6-26-10/lib/libCling.so)
+  n1: 415744 0x960EE50: clang::ASTReader::ReadAST(llvm::StringRef, clang::serialization::ModuleKind, clang::SourceLocation, unsigned int, llvm::SmallVectorImpl<clang::ASTReader::ImportedSubmodule>*) (in /opt/root/v6-26-10/lib/libCling.so)
+   n2: 415744 0x92E256A: clang::CompilerInstance::loadModule(clang::SourceLocation, llvm::ArrayRef<std::pair<clang::IdentifierInfo*, clang::SourceLocation> >, clang::Module::NameVisibilityKind, bool) (in /opt/root/v6-26-10/lib/libCling.so)
+    n1: 385536 0x9AD3615: clang::Sema::ActOnModuleImport(clang::SourceLocation, clang::SourceLocation, clang::SourceLocation, llvm::ArrayRef<std::pair<clang::IdentifierInfo*, clang::SourceLocation> >) (in /opt/root/v6-26-10/lib/libCling.so)
+     n1: 385536 0x8DE28D1: cling::Interpreter::loadModule(clang::Module*, bool) (in /opt/root/v6-26-10/lib/libCling.so)
+      n1: 385536 0x8D0FED6: LoadModule(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, cling::Interpreter&) (in /opt/root/v6-26-10/lib/libCling.so)
+       n0: 385536 in 5 places, all below massif's threshold (1.00%)
+    n0: 30208 in 1 place, below massif's threshold (1.00%)
+ n1: 413696 0x95C02DA: llvm::BumpPtrAllocatorImpl<llvm::MallocAllocator, 4096ul, 4096ul>::Allocate(unsigned long, unsigned long) [clone .constprop.0] (in /opt/root/v6-26-10/lib/libCling.so)
+  n0: 413696 in 2 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=5
+#-----------
+time=464004535
+mem_heap_B=58767724
+mem_heap_extra_B=539668
 mem_stacks_B=0
 heap_tree=empty
 #-----------
-snapshot=4
+snapshot=6
 #-----------
-time=485136753
-mem_heap_B=59524347
-mem_heap_extra_B=542997
+time=525134384
+mem_heap_B=60953725
+mem_heap_extra_B=562043
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=7
+#-----------
+time=605324995
+mem_heap_B=63984433
+mem_heap_extra_B=635575
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=8
+#-----------
+time=677517505
+mem_heap_B=66722493
+mem_heap_extra_B=800955
 mem_stacks_B=0
 heap_tree=detailed
-n11: 59524347 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+n11: 66722493 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
  n1: 15090080 0x9602C4B: clang::ASTReader::ReadASTBlock(clang::serialization::ModuleFile&, unsigned int) (in /opt/root/v6-26-10/lib/libCling.so)
   n1: 15090080 0x960DF68: clang::ASTReader::ReadAST(llvm::StringRef, clang::serialization::ModuleKind, clang::SourceLocation, unsigned int, llvm::SmallVectorImpl<clang::ASTReader::ImportedSubmodule>*) (in /opt/root/v6-26-10/lib/libCling.so)
    n2: 15090080 0x92E256A: clang::CompilerInstance::loadModule(clang::SourceLocation, llvm::ArrayRef<std::pair<clang::IdentifierInfo*, clang::SourceLocation> >, clang::Module::NameVisibilityKind, bool) (in /opt/root/v6-26-10/lib/libCling.so)
@@ -451,7 +1179,8 @@ n11: 59524347 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
                            n0: 13700608 0x1FFF0004F5: ???
        n0: 0 in 1 place, below massif's threshold (1.00%)
     n0: 0 in 1 place, below massif's threshold (1.00%)
- n2: 8596720 0xB8C3E8A: llvm::SmallVectorBase::grow_pod(void*, unsigned long, unsigned long) (in /opt/root/v6-26-10/lib/libCling.so)
+ n0: 12969134 in 4044 places, all below massif's threshold (1.00%)
+ n2: 8760040 0xB8C3E8A: llvm::SmallVectorBase::grow_pod(void*, unsigned long, unsigned long) (in /opt/root/v6-26-10/lib/libCling.so)
   n1: 8319528 0xB58FE9A: clang::SourceManager::AllocateLoadedSLocEntries(unsigned int, unsigned int) (in /opt/root/v6-26-10/lib/libCling.so)
    n1: 8319528 0x9600A76: clang::ASTReader::ReadASTBlock(clang::serialization::ModuleFile&, unsigned int) (in /opt/root/v6-26-10/lib/libCling.so)
     n1: 8319528 0x960DF68: clang::ASTReader::ReadAST(llvm::StringRef, clang::serialization::ModuleKind, clang::SourceLocation, unsigned int, llvm::SmallVectorImpl<clang::ASTReader::ImportedSubmodule>*) (in /opt/root/v6-26-10/lib/libCling.so)
@@ -482,15 +1211,14 @@ n11: 59524347 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
                              n0: 8319528 0x1FFF0004F5: ???
          n0: 0 in 1 place, below massif's threshold (1.00%)
       n0: 0 in 1 place, below massif's threshold (1.00%)
-  n0: 277192 in 78 places, all below massif's threshold (1.00%)
- n0: 7275938 in 3123 places, all below massif's threshold (1.00%)
- n2: 5259188 0xB8B9E91: llvm::WritableMemoryBuffer::getNewUninitMemBuffer(unsigned long, llvm::Twine const&) (in /opt/root/v6-26-10/lib/libCling.so)
-  n2: 5076078 0xB8BA111: llvm::MemoryBuffer::getMemBufferCopy(llvm::StringRef, llvm::Twine const&) (in /opt/root/v6-26-10/lib/libCling.so)
-   n2: 5062466 0x95BCA90: clang::ASTReader::ReadSLocEntry(int)::{lambda(llvm::BitstreamCursor&, llvm::StringRef)#1}::operator()(llvm::BitstreamCursor&, llvm::StringRef) const (in /opt/root/v6-26-10/lib/libCling.so)
-    n1: 3722333 0x95CE2E4: clang::ASTReader::ReadSLocEntry(int) [clone .part.0] (in /opt/root/v6-26-10/lib/libCling.so)
-     n3: 3722333 0xB5900C5: clang::SourceManager::loadSLocEntry(unsigned int, bool*) const (in /opt/root/v6-26-10/lib/libCling.so)
-      n2: 2069261 0xB590DFC: clang::SourceManager::getFileIDLoaded(unsigned int) const [clone .part.0] (in /opt/root/v6-26-10/lib/libCling.so)
-       n2: 1575481 0xB591C30: clang::SourceManager::getFileIDSlow(unsigned int) const (in /opt/root/v6-26-10/lib/libCling.so)
+  n0: 440512 in 108 places, all below massif's threshold (1.00%)
+ n2: 6314399 0xB8B9E91: llvm::WritableMemoryBuffer::getNewUninitMemBuffer(unsigned long, llvm::Twine const&) (in /opt/root/v6-26-10/lib/libCling.so)
+  n2: 6123636 0xB8BA111: llvm::MemoryBuffer::getMemBufferCopy(llvm::StringRef, llvm::Twine const&) (in /opt/root/v6-26-10/lib/libCling.so)
+   n2: 6108546 0x95BCA90: clang::ASTReader::ReadSLocEntry(int)::{lambda(llvm::BitstreamCursor&, llvm::StringRef)#1}::operator()(llvm::BitstreamCursor&, llvm::StringRef) const (in /opt/root/v6-26-10/lib/libCling.so)
+    n1: 4735274 0x95CE2E4: clang::ASTReader::ReadSLocEntry(int) [clone .part.0] (in /opt/root/v6-26-10/lib/libCling.so)
+     n3: 4735274 0xB5900C5: clang::SourceManager::loadSLocEntry(unsigned int, bool*) const (in /opt/root/v6-26-10/lib/libCling.so)
+      n2: 2576517 0xB590DFC: clang::SourceManager::getFileIDLoaded(unsigned int) const [clone .part.0] (in /opt/root/v6-26-10/lib/libCling.so)
+       n2: 1859817 0xB591C30: clang::SourceManager::getFileIDSlow(unsigned int) const (in /opt/root/v6-26-10/lib/libCling.so)
         n1: 1561044 0x95D74C9: clang::ASTReader::ReadPragmaDiagnosticMappings(clang::DiagnosticsEngine&) (in /opt/root/v6-26-10/lib/libCling.so)
          n1: 1561044 0x95FE258: clang::ASTReader::InitializeContext() (in /opt/root/v6-26-10/lib/libCling.so)
           n1: 1561044 0x960E9C6: clang::ASTReader::ReadAST(llvm::StringRef, clang::serialization::ModuleKind, clang::SourceLocation, unsigned int, llvm::SmallVectorImpl<clang::ASTReader::ImportedSubmodule>*) (in /opt/root/v6-26-10/lib/libCling.so)
@@ -515,15 +1243,12 @@ n11: 59524347 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
                              n1: 918680 0x400A1AD: call_init (dl-init.c:26)
                               n1: 918680 0x400A29B: _dl_init (dl-init.c:117)
                                n0: 918680 0x4020BD9: ??? (in /usr/lib64/ld-linux-x86-64.so.2)
-            n1: 642364 0x9AD3615: clang::Sema::ActOnModuleImport(clang::SourceLocation, clang::SourceLocation, clang::SourceLocation, llvm::ArrayRef<std::pair<clang::IdentifierInfo*, clang::SourceLocation> >) (in /opt/root/v6-26-10/lib/libCling.so)
-             n1: 642364 0x8DE28D1: cling::Interpreter::loadModule(clang::Module*, bool) (in /opt/root/v6-26-10/lib/libCling.so)
-              n1: 642364 0x8D0FED6: LoadModule(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, cling::Interpreter&) (in /opt/root/v6-26-10/lib/libCling.so)
-               n0: 642364 in 4 places, all below massif's threshold (1.00%)
-        n0: 14437 in 1 place, below massif's threshold (1.00%)
-       n0: 493780 in 2 places, all below massif's threshold (1.00%)
-      n1: 1347317 0xB590AD8: clang::SourceManager::isOffsetInFileID(clang::FileID, unsigned int) const (in /opt/root/v6-26-10/lib/libCling.so)
-       n2: 1347317 0xB590E28: clang::SourceManager::getFileIDLoaded(unsigned int) const [clone .part.0] (in /opt/root/v6-26-10/lib/libCling.so)
-        n1: 927282 0xB591C30: clang::SourceManager::getFileIDSlow(unsigned int) const (in /opt/root/v6-26-10/lib/libCling.so)
+            n0: 642364 in 1 place, below massif's threshold (1.00%)
+        n0: 298773 in 3 places, all below massif's threshold (1.00%)
+       n0: 716700 in 2 places, all below massif's threshold (1.00%)
+      n1: 1610894 0xB590AD8: clang::SourceManager::isOffsetInFileID(clang::FileID, unsigned int) const (in /opt/root/v6-26-10/lib/libCling.so)
+       n2: 1610894 0xB590E28: clang::SourceManager::getFileIDLoaded(unsigned int) const [clone .part.0] (in /opt/root/v6-26-10/lib/libCling.so)
+        n2: 1064807 0xB591C30: clang::SourceManager::getFileIDSlow(unsigned int) const (in /opt/root/v6-26-10/lib/libCling.so)
          n1: 927282 0x95D74C9: clang::ASTReader::ReadPragmaDiagnosticMappings(clang::DiagnosticsEngine&) (in /opt/root/v6-26-10/lib/libCling.so)
           n1: 927282 0x95FE258: clang::ASTReader::InitializeContext() (in /opt/root/v6-26-10/lib/libCling.so)
            n1: 927282 0x960E9C6: clang::ASTReader::ReadAST(llvm::StringRef, clang::serialization::ModuleKind, clang::SourceLocation, unsigned int, llvm::SmallVectorImpl<clang::ASTReader::ImportedSubmodule>*) (in /opt/root/v6-26-10/lib/libCling.so)
@@ -548,10 +1273,11 @@ n11: 59524347 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
                               n1: 759390 0x400A1AD: call_init (dl-init.c:26)
                                n0: 759390 0x400A29B: _dl_init (dl-init.c:117)
              n0: 167892 in 1 place, below massif's threshold (1.00%)
-        n0: 420035 in 2 places, all below massif's threshold (1.00%)
-      n0: 305755 in 8 places, all below massif's threshold (1.00%)
-    n1: 1340133 0x95CDF9C: clang::ASTReader::ReadSLocEntry(int) [clone .part.0] (in /opt/root/v6-26-10/lib/libCling.so)
-     n2: 1340133 0xB5900C5: clang::SourceManager::loadSLocEntry(unsigned int, bool*) const (in /opt/root/v6-26-10/lib/libCling.so)
+         n0: 137525 in 2 places, all below massif's threshold (1.00%)
+        n0: 546087 in 2 places, all below massif's threshold (1.00%)
+      n0: 547863 in 8 places, all below massif's threshold (1.00%)
+    n1: 1373272 0x95CDF9C: clang::ASTReader::ReadSLocEntry(int) [clone .part.0] (in /opt/root/v6-26-10/lib/libCling.so)
+     n2: 1373272 0xB5900C5: clang::SourceManager::loadSLocEntry(unsigned int, bool*) const (in /opt/root/v6-26-10/lib/libCling.so)
       n1: 1288644 0x960E083: clang::ASTReader::ReadAST(llvm::StringRef, clang::serialization::ModuleKind, clang::SourceLocation, unsigned int, llvm::SmallVectorImpl<clang::ASTReader::ImportedSubmodule>*) (in /opt/root/v6-26-10/lib/libCling.so)
        n2: 1288644 0x92E256A: clang::CompilerInstance::loadModule(clang::SourceLocation, llvm::ArrayRef<std::pair<clang::IdentifierInfo*, clang::SourceLocation> >, clang::Module::NameVisibilityKind, bool) (in /opt/root/v6-26-10/lib/libCling.so)
         n1: 1219839 0x9AD3615: clang::Sema::ActOnModuleImport(clang::SourceLocation, clang::SourceLocation, clang::SourceLocation, llvm::ArrayRef<std::pair<clang::IdentifierInfo*, clang::SourceLocation> >) (in /opt/root/v6-26-10/lib/libCling.so)
@@ -580,9 +1306,9 @@ n11: 59524347 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
                                n0: 1014159 0x1FFF0004F5: ???
            n0: 205680 in 4 places, all below massif's threshold (1.00%)
         n0: 68805 in 1 place, below massif's threshold (1.00%)
-      n0: 51489 in 4 places, all below massif's threshold (1.00%)
-   n0: 13612 in 1 place, below massif's threshold (1.00%)
-  n0: 183110 in 2 places, all below massif's threshold (1.00%)
+      n0: 84628 in 9 places, all below massif's threshold (1.00%)
+   n0: 15090 in 2 places, all below massif's threshold (1.00%)
+  n0: 190763 in 2 places, all below massif's threshold (1.00%)
  n1: 4768440 0xB4FCCFF: clang::ModuleMap::findOrCreateModule(llvm::StringRef, clang::Module*, bool, bool) (in /opt/root/v6-26-10/lib/libCling.so)
   n2: 4768440 0xB506193: clang::ModuleMapParser::parseModuleDecl() (in /opt/root/v6-26-10/lib/libCling.so)
    n2: 4578840 0xB505C17: clang::ModuleMapParser::parseModuleDecl() (in /opt/root/v6-26-10/lib/libCling.so)
@@ -616,41 +1342,20 @@ n11: 59524347 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
                                n0: 4546608 0x1FFF0004F5: ???
     n0: 32232 in 1 place, below massif's threshold (1.00%)
    n0: 189600 in 1 place, below massif's threshold (1.00%)
- n3: 1733184 0xB10792F: llvm::BitstreamCursor::ReadAbbrevRecord() (in /opt/root/v6-26-10/lib/libCling.so)
+ n2: 1733184 0xB10792F: llvm::BitstreamCursor::ReadAbbrevRecord() (in /opt/root/v6-26-10/lib/libCling.so)
   n2: 869312 0x95B8831: clang::ASTReader::ReadBlockAbbrevs(llvm::BitstreamCursor&, unsigned int) (in /opt/root/v6-26-10/lib/libCling.so)
    n1: 818176 0x95FEBC9: clang::ASTReader::ReadASTBlock(clang::serialization::ModuleFile&, unsigned int) (in /opt/root/v6-26-10/lib/libCling.so)
     n1: 818176 0x960DF68: clang::ASTReader::ReadAST(llvm::StringRef, clang::serialization::ModuleKind, clang::SourceLocation, unsigned int, llvm::SmallVectorImpl<clang::ASTReader::ImportedSubmodule>*) (in /opt/root/v6-26-10/lib/libCling.so)
      n2: 818176 0x92E256A: clang::CompilerInstance::loadModule(clang::SourceLocation, llvm::ArrayRef<std::pair<clang::IdentifierInfo*, clang::SourceLocation> >, clang::Module::NameVisibilityKind, bool) (in /opt/root/v6-26-10/lib/libCling.so)
       n1: 774656 0x9AD3615: clang::Sema::ActOnModuleImport(clang::SourceLocation, clang::SourceLocation, clang::SourceLocation, llvm::ArrayRef<std::pair<clang::IdentifierInfo*, clang::SourceLocation> >) (in /opt/root/v6-26-10/lib/libCling.so)
        n1: 774656 0x8DE28D1: cling::Interpreter::loadModule(clang::Module*, bool) (in /opt/root/v6-26-10/lib/libCling.so)
-        n2: 774656 0x8D0FED6: LoadModule(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, cling::Interpreter&) (in /opt/root/v6-26-10/lib/libCling.so)
-         n1: 644096 0x8D3AE97: RegisterCxxModules(cling::Interpreter&) (in /opt/root/v6-26-10/lib/libCling.so)
-          n1: 644096 0x8D3CE48: TCling::TCling(char const*, char const*, char const* const*) (in /opt/root/v6-26-10/lib/libCling.so)
-           n1: 644096 0x8D3ED70: CreateInterpreter (in /opt/root/v6-26-10/lib/libCling.so)
-            n1: 644096 0x5D42E49: TROOT::InitInterpreter() (in /opt/root/v6-26-10/lib/libCore.so)
-             n1: 644096 0x5D432FE: ROOT::Internal::GetROOT2() (in /opt/root/v6-26-10/lib/libCore.so)
-              n1: 644096 0x5E95718: TUnixSystem::SetDisplay() (in /opt/root/v6-26-10/lib/libCore.so)
-               n1: 644096 0x78C4664: TGClient::TGClient(char const*) (in /opt/root/v6-26-10/lib/libGui.so)
-                n1: 644096 0x789C7D0: _GLOBAL__sub_I_TGClient.cxx (in /opt/root/v6-26-10/lib/libGui.so)
-                 n1: 644096 0x400A1AD: call_init (dl-init.c:70)
-                  n1: 644096 0x400A1AD: call_init (dl-init.c:26)
-                   n1: 644096 0x400A29B: _dl_init (dl-init.c:117)
-                    n1: 644096 0x4020BD9: ??? (in /usr/lib64/ld-linux-x86-64.so.2)
-                     n1: 644096 0x7: ???
-                      n1: 644096 0x1FFF0003FE: ???
-                       n1: 644096 0x1FFF000418: ???
-                        n1: 644096 0x1FFF00041A: ???
-                         n1: 644096 0x1FFF000444: ???
-                          n1: 644096 0x1FFF00046C: ???
-                           n1: 644096 0x1FFF000499: ???
-                            n1: 644096 0x1FFF0004C7: ???
-                             n0: 644096 0x1FFF0004F5: ???
-         n0: 130560 in 4 places, all below massif's threshold (1.00%)
+        n1: 774656 0x8D0FED6: LoadModule(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, cling::Interpreter&) (in /opt/root/v6-26-10/lib/libCling.so)
+         n0: 774656 in 5 places, all below massif's threshold (1.00%)
       n0: 43520 in 1 place, below massif's threshold (1.00%)
    n0: 51136 in 1 place, below massif's threshold (1.00%)
-  n1: 608192 0x95B3CA8: llvm::BitstreamCursor::advance(unsigned int) [clone .constprop.0] (in /opt/root/v6-26-10/lib/libCling.so)
-   n0: 608192 in 3 places, all below massif's threshold (1.00%)
-  n0: 255680 in 4 places, all below massif's threshold (1.00%)
+  n0: 863872 in 5 places, all below massif's threshold (1.00%)
+ n1: 937984 0xB2BAD29: clang::Decl::operator new(unsigned long, clang::ASTContext const&, unsigned int, unsigned long) (in /opt/root/v6-26-10/lib/libCling.so)
+  n0: 937984 in 17 places, all below massif's threshold (1.00%)
  n1: 917504 0x95CBF81: llvm::DenseMap<unsigned int, llvm::SmallVector<std::pair<clang::serialization::ModuleFile*, unsigned long>, 2u>, llvm::DenseMapInfo<unsigned int>, llvm::detail::DenseMapPair<unsigned int, llvm::SmallVector<std::pair<clang::serialization::ModuleFile*, unsigned long>, 2u> > >::grow(unsigned int) (in /opt/root/v6-26-10/lib/libCling.so)
   n1: 917504 0x9602065: clang::ASTReader::ReadASTBlock(clang::serialization::ModuleFile&, unsigned int) (in /opt/root/v6-26-10/lib/libCling.so)
    n1: 917504 0x960DF68: clang::ASTReader::ReadAST(llvm::StringRef, clang::serialization::ModuleKind, clang::SourceLocation, unsigned int, llvm::SmallVectorImpl<clang::ASTReader::ImportedSubmodule>*) (in /opt/root/v6-26-10/lib/libCling.so)
@@ -685,29 +1390,8 @@ n11: 59524347 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
    n2: 811520 0x92E256A: clang::CompilerInstance::loadModule(clang::SourceLocation, llvm::ArrayRef<std::pair<clang::IdentifierInfo*, clang::SourceLocation> >, clang::Module::NameVisibilityKind, bool) (in /opt/root/v6-26-10/lib/libCling.so)
     n1: 781312 0x9AD3615: clang::Sema::ActOnModuleImport(clang::SourceLocation, clang::SourceLocation, clang::SourceLocation, llvm::ArrayRef<std::pair<clang::IdentifierInfo*, clang::SourceLocation> >) (in /opt/root/v6-26-10/lib/libCling.so)
      n1: 781312 0x8DE28D1: cling::Interpreter::loadModule(clang::Module*, bool) (in /opt/root/v6-26-10/lib/libCling.so)
-      n2: 781312 0x8D0FED6: LoadModule(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, cling::Interpreter&) (in /opt/root/v6-26-10/lib/libCling.so)
-       n1: 616960 0x8D3AE97: RegisterCxxModules(cling::Interpreter&) (in /opt/root/v6-26-10/lib/libCling.so)
-        n1: 616960 0x8D3CE48: TCling::TCling(char const*, char const*, char const* const*) (in /opt/root/v6-26-10/lib/libCling.so)
-         n1: 616960 0x8D3ED70: CreateInterpreter (in /opt/root/v6-26-10/lib/libCling.so)
-          n1: 616960 0x5D42E49: TROOT::InitInterpreter() (in /opt/root/v6-26-10/lib/libCore.so)
-           n1: 616960 0x5D432FE: ROOT::Internal::GetROOT2() (in /opt/root/v6-26-10/lib/libCore.so)
-            n1: 616960 0x5E95718: TUnixSystem::SetDisplay() (in /opt/root/v6-26-10/lib/libCore.so)
-             n1: 616960 0x78C4664: TGClient::TGClient(char const*) (in /opt/root/v6-26-10/lib/libGui.so)
-              n1: 616960 0x789C7D0: _GLOBAL__sub_I_TGClient.cxx (in /opt/root/v6-26-10/lib/libGui.so)
-               n1: 616960 0x400A1AD: call_init (dl-init.c:70)
-                n1: 616960 0x400A1AD: call_init (dl-init.c:26)
-                 n1: 616960 0x400A29B: _dl_init (dl-init.c:117)
-                  n1: 616960 0x4020BD9: ??? (in /usr/lib64/ld-linux-x86-64.so.2)
-                   n1: 616960 0x7: ???
-                    n1: 616960 0x1FFF0003FE: ???
-                     n1: 616960 0x1FFF000418: ???
-                      n1: 616960 0x1FFF00041A: ???
-                       n1: 616960 0x1FFF000444: ???
-                        n1: 616960 0x1FFF00046C: ???
-                         n1: 616960 0x1FFF000499: ???
-                          n1: 616960 0x1FFF0004C7: ???
-                           n0: 616960 0x1FFF0004F5: ???
-       n0: 164352 in 4 places, all below massif's threshold (1.00%)
+      n1: 781312 0x8D0FED6: LoadModule(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, cling::Interpreter&) (in /opt/root/v6-26-10/lib/libCling.so)
+       n0: 781312 in 5 places, all below massif's threshold (1.00%)
     n0: 30208 in 1 place, below massif's threshold (1.00%)
  n1: 719600 0x9602C8A: clang::ASTReader::ReadASTBlock(clang::serialization::ModuleFile&, unsigned int) (in /opt/root/v6-26-10/lib/libCling.so)
   n1: 719600 0x960DF68: clang::ASTReader::ReadAST(llvm::StringRef, clang::serialization::ModuleKind, clang::SourceLocation, unsigned int, llvm::SmallVectorImpl<clang::ASTReader::ImportedSubmodule>*) (in /opt/root/v6-26-10/lib/libCling.so)
@@ -738,25 +1422,31 @@ n11: 59524347 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
                            n0: 719600 0x1FFF0004F5: ???
        n0: 0 in 1 place, below massif's threshold (1.00%)
     n0: 0 in 1 place, below massif's threshold (1.00%)
- n1: 651565 0xB8C3ED4: llvm::SmallVectorBase::grow_pod(void*, unsigned long, unsigned long) (in /opt/root/v6-26-10/lib/libCling.so)
-  n0: 651565 in 109 places, all below massif's threshold (1.00%)
 #-----------
-snapshot=5
+snapshot=9
 #-----------
-time=637248411
-mem_heap_B=65076344
-mem_heap_extra_B=695784
+time=764449858
+mem_heap_B=68785644
+mem_heap_extra_B=917380
 mem_stacks_B=0
 heap_tree=empty
 #-----------
-snapshot=6
+snapshot=10
 #-----------
-time=759273580
-mem_heap_B=68673792
-mem_heap_extra_B=906440
+time=966874300
+mem_heap_B=68803027
+mem_heap_extra_B=918677
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=11
+#-----------
+time=1031282029
+mem_heap_B=73346613
+mem_heap_extra_B=966507
 mem_stacks_B=0
 heap_tree=detailed
-n12: 68673792 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+n13: 73346613 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
  n1: 15090080 0x9602C4B: clang::ASTReader::ReadASTBlock(clang::serialization::ModuleFile&, unsigned int) (in /opt/root/v6-26-10/lib/libCling.so)
   n1: 15090080 0x960DF68: clang::ASTReader::ReadAST(llvm::StringRef, clang::serialization::ModuleKind, clang::SourceLocation, unsigned int, llvm::SmallVectorImpl<clang::ASTReader::ImportedSubmodule>*) (in /opt/root/v6-26-10/lib/libCling.so)
    n2: 15090080 0x92E256A: clang::CompilerInstance::loadModule(clang::SourceLocation, llvm::ArrayRef<std::pair<clang::IdentifierInfo*, clang::SourceLocation> >, clang::Module::NameVisibilityKind, bool) (in /opt/root/v6-26-10/lib/libCling.so)
@@ -786,7 +1476,7 @@ n12: 68673792 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
                            n0: 15090080 0x1FFF0004F5: ???
        n0: 0 in 1 place, below massif's threshold (1.00%)
     n0: 0 in 1 place, below massif's threshold (1.00%)
- n0: 13765277 in 4147 places, all below massif's threshold (1.00%)
+ n0: 14792754 in 4215 places, all below massif's threshold (1.00%)
  n1: 13700608 0x9602DCA: clang::ASTReader::ReadASTBlock(clang::serialization::ModuleFile&, unsigned int) (in /opt/root/v6-26-10/lib/libCling.so)
   n1: 13700608 0x960DF68: clang::ASTReader::ReadAST(llvm::StringRef, clang::serialization::ModuleKind, clang::SourceLocation, unsigned int, llvm::SmallVectorImpl<clang::ASTReader::ImportedSubmodule>*) (in /opt/root/v6-26-10/lib/libCling.so)
    n2: 13700608 0x92E256A: clang::CompilerInstance::loadModule(clang::SourceLocation, llvm::ArrayRef<std::pair<clang::IdentifierInfo*, clang::SourceLocation> >, clang::Module::NameVisibilityKind, bool) (in /opt/root/v6-26-10/lib/libCling.so)
@@ -978,6 +1668,42 @@ n12: 68673792 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
                                n0: 4546608 0x1FFF0004F5: ???
     n0: 32232 in 1 place, below massif's threshold (1.00%)
    n0: 189600 in 1 place, below massif's threshold (1.00%)
+ n1: 2428808 0x69338E6: void nusquids::readArrayH5<double, 2u, std::allocator<double> >(long, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, nusquids::marray<double, 2u, std::allocator<double> >&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.12.0)
+  n1: 2428808 0x6925F29: nusquids::NeutrinoDISCrossSectionsFromTables::readFlavorHDF5(long, nusquids::marray<double, 1u, std::allocator<double> > const&, nusquids::marray<double, 1u, std::allocator<double> > const&)::{lambda(nusquids::BiCubicInterpolator&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)#2}::operator()(nusquids::BiCubicInterpolator&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) const (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.12.0)
+   n1: 2428808 0x69287EA: nusquids::NeutrinoDISCrossSectionsFromTables::readFlavorHDF5(long, nusquids::marray<double, 1u, std::allocator<double> > const&, nusquids::marray<double, 1u, std::allocator<double> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.12.0)
+    n1: 2428808 0x69317A5: nusquids::NeutrinoDISCrossSectionsFromTables::ReadHDF(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.12.0)
+     n1: 2428808 0x6931D7F: nusquids::NeutrinoDISCrossSectionsFromTables::NeutrinoDISCrossSectionsFromTables(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.12.0)
+      n1: 2428808 0x6931FDA: nusquids::loadDefaultCrossSections() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.12.0)
+       n1: 2428808 0x690F885: nusquids::nuSQUIDS::InitializeInteractions() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.12.0)
+        n1: 2428808 0x690FDDC: nusquids::nuSQUIDS::EvolveState() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.12.0)
+         n1: 2428808 0x4B844C6: OscProbCalcerNuSQUIDSLinear::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
+          n1: 2428808 0x4B567EF: OscProbCalcerBase::Reweight(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
+           n1: 2428808 0x487DF59: OscillatorBase::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscillator.so)
+            n0: 2428808 0x40A847: main (in /opt/NuOscillator/build/Linux/bin/DragRace)
+ n3: 1936136 0x659F33C: ??? (in /usr/lib64/libhdf5.so.200.1.0)
+  n2: 1076336 0x659FA50: H5FL_blk_malloc (in /usr/lib64/libhdf5.so.200.1.0)
+   n2: 1051452 0x659FBA4: H5FL_blk_calloc (in /usr/lib64/libhdf5.so.200.1.0)
+    n1: 1048584 0x6544A4B: ??? (in /usr/lib64/libhdf5.so.200.1.0)
+     n1: 1048584 0x654547C: H5D__read (in /usr/lib64/libhdf5.so.200.1.0)
+      n1: 1048584 0x67563C0: H5VL__native_dataset_read (in /usr/lib64/libhdf5.so.200.1.0)
+       n1: 1048584 0x673B3C5: ??? (in /usr/lib64/libhdf5.so.200.1.0)
+        n1: 1048584 0x6743205: H5VL_dataset_read (in /usr/lib64/libhdf5.so.200.1.0)
+         n1: 1048584 0x6543552: H5Dread (in /usr/lib64/libhdf5.so.200.1.0)
+          n1: 1048584 0x6933273: void nusquids::readArrayH5<double, 1u, std::allocator<double> >(long, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, nusquids::marray<double, 1u, std::allocator<double> >&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.12.0)
+           n1: 1048584 0x6931541: nusquids::NeutrinoDISCrossSectionsFromTables::ReadHDF(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.12.0)
+            n1: 1048584 0x6931D7F: nusquids::NeutrinoDISCrossSectionsFromTables::NeutrinoDISCrossSectionsFromTables(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.12.0)
+             n1: 1048584 0x6931FDA: nusquids::loadDefaultCrossSections() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.12.0)
+              n1: 1048584 0x690F885: nusquids::nuSQUIDS::InitializeInteractions() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.12.0)
+               n1: 1048584 0x690FDDC: nusquids::nuSQUIDS::EvolveState() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.12.0)
+                n1: 1048584 0x4B844C6: OscProbCalcerNuSQUIDSLinear::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
+                 n1: 1048584 0x4B567EF: OscProbCalcerBase::Reweight(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
+                  n1: 1048584 0x487DF59: OscillatorBase::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscillator.so)
+                   n0: 1048584 0x40A847: main (in /opt/NuOscillator/build/Linux/bin/DragRace)
+    n0: 2868 in 2 places, all below massif's threshold (1.00%)
+   n0: 24884 in 14 places, all below massif's threshold (1.00%)
+  n1: 856528 0x659F494: H5FL_reg_malloc (in /usr/lib64/libhdf5.so.200.1.0)
+   n0: 856528 in 23 places, all below massif's threshold (1.00%)
+  n0: 3272 in 2 places, all below massif's threshold (1.00%)
  n2: 1733184 0xB10792F: llvm::BitstreamCursor::ReadAbbrevRecord() (in /opt/root/v6-26-10/lib/libCling.so)
   n2: 869312 0x95B8831: clang::ASTReader::ReadBlockAbbrevs(llvm::BitstreamCursor&, unsigned int) (in /opt/root/v6-26-10/lib/libCling.so)
    n1: 818176 0x95FEBC9: clang::ASTReader::ReadASTBlock(clang::serialization::ModuleFile&, unsigned int) (in /opt/root/v6-26-10/lib/libCling.so)
@@ -1031,53 +1757,16 @@ n12: 68673792 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
       n1: 781312 0x8D0FED6: LoadModule(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, cling::Interpreter&) (in /opt/root/v6-26-10/lib/libCling.so)
        n0: 781312 in 5 places, all below massif's threshold (1.00%)
     n0: 30208 in 1 place, below massif's threshold (1.00%)
- n1: 719600 0x9602C8A: clang::ASTReader::ReadASTBlock(clang::serialization::ModuleFile&, unsigned int) (in /opt/root/v6-26-10/lib/libCling.so)
-  n1: 719600 0x960DF68: clang::ASTReader::ReadAST(llvm::StringRef, clang::serialization::ModuleKind, clang::SourceLocation, unsigned int, llvm::SmallVectorImpl<clang::ASTReader::ImportedSubmodule>*) (in /opt/root/v6-26-10/lib/libCling.so)
-   n2: 719600 0x92E256A: clang::CompilerInstance::loadModule(clang::SourceLocation, llvm::ArrayRef<std::pair<clang::IdentifierInfo*, clang::SourceLocation> >, clang::Module::NameVisibilityKind, bool) (in /opt/root/v6-26-10/lib/libCling.so)
-    n1: 719600 0x9AD3615: clang::Sema::ActOnModuleImport(clang::SourceLocation, clang::SourceLocation, clang::SourceLocation, llvm::ArrayRef<std::pair<clang::IdentifierInfo*, clang::SourceLocation> >) (in /opt/root/v6-26-10/lib/libCling.so)
-     n1: 719600 0x8DE28D1: cling::Interpreter::loadModule(clang::Module*, bool) (in /opt/root/v6-26-10/lib/libCling.so)
-      n2: 719600 0x8D0FED6: LoadModule(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, cling::Interpreter&) (in /opt/root/v6-26-10/lib/libCling.so)
-       n1: 719600 0x8D3AE97: RegisterCxxModules(cling::Interpreter&) (in /opt/root/v6-26-10/lib/libCling.so)
-        n1: 719600 0x8D3CE48: TCling::TCling(char const*, char const*, char const* const*) (in /opt/root/v6-26-10/lib/libCling.so)
-         n1: 719600 0x8D3ED70: CreateInterpreter (in /opt/root/v6-26-10/lib/libCling.so)
-          n1: 719600 0x5D42E49: TROOT::InitInterpreter() (in /opt/root/v6-26-10/lib/libCore.so)
-           n1: 719600 0x5D432FE: ROOT::Internal::GetROOT2() (in /opt/root/v6-26-10/lib/libCore.so)
-            n1: 719600 0x5E95718: TUnixSystem::SetDisplay() (in /opt/root/v6-26-10/lib/libCore.so)
-             n1: 719600 0x78C4664: TGClient::TGClient(char const*) (in /opt/root/v6-26-10/lib/libGui.so)
-              n1: 719600 0x789C7D0: _GLOBAL__sub_I_TGClient.cxx (in /opt/root/v6-26-10/lib/libGui.so)
-               n1: 719600 0x400A1AD: call_init (dl-init.c:70)
-                n1: 719600 0x400A1AD: call_init (dl-init.c:26)
-                 n1: 719600 0x400A29B: _dl_init (dl-init.c:117)
-                  n1: 719600 0x4020BD9: ??? (in /usr/lib64/ld-linux-x86-64.so.2)
-                   n1: 719600 0x7: ???
-                    n1: 719600 0x1FFF0003FE: ???
-                     n1: 719600 0x1FFF000418: ???
-                      n1: 719600 0x1FFF00041A: ???
-                       n1: 719600 0x1FFF000444: ???
-                        n1: 719600 0x1FFF00046C: ???
-                         n1: 719600 0x1FFF000499: ???
-                          n1: 719600 0x1FFF0004C7: ???
-                           n0: 719600 0x1FFF0004F5: ???
-       n0: 0 in 1 place, below massif's threshold (1.00%)
-    n0: 0 in 1 place, below massif's threshold (1.00%)
 #-----------
-snapshot=7
+snapshot=12
 #-----------
-time=970546691
-mem_heap_B=68803027
-mem_heap_extra_B=918677
-mem_stacks_B=0
-heap_tree=empty
-#-----------
-snapshot=8
-#-----------
-time=1143143455
-mem_heap_B=83075109
-mem_heap_extra_B=966995
+time=1134217934
+mem_heap_B=80669613
+mem_heap_extra_B=966443
 mem_stacks_B=0
 heap_tree=detailed
-n14: 83075109 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
- n0: 16452602 in 4221 places, all below massif's threshold (1.00%)
+n15: 80669613 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n0: 15640850 in 4220 places, all below massif's threshold (1.00%)
  n1: 15090080 0x9602C4B: clang::ASTReader::ReadASTBlock(clang::serialization::ModuleFile&, unsigned int) (in /opt/root/v6-26-10/lib/libCling.so)
   n1: 15090080 0x960DF68: clang::ASTReader::ReadAST(llvm::StringRef, clang::serialization::ModuleKind, clang::SourceLocation, unsigned int, llvm::SmallVectorImpl<clang::ASTReader::ImportedSubmodule>*) (in /opt/root/v6-26-10/lib/libCling.so)
    n2: 15090080 0x92E256A: clang::CompilerInstance::loadModule(clang::SourceLocation, llvm::ArrayRef<std::pair<clang::IdentifierInfo*, clang::SourceLocation> >, clang::Module::NameVisibilityKind, bool) (in /opt/root/v6-26-10/lib/libCling.so)
@@ -1246,28 +1935,6 @@ n14: 83075109 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
       n0: 91642 in 9 places, all below massif's threshold (1.00%)
    n0: 15090 in 2 places, all below massif's threshold (1.00%)
   n0: 190763 in 2 places, all below massif's threshold (1.00%)
- n1: 4857616 0x69338E6: void nusquids::readArrayH5<double, 2u, std::allocator<double> >(long, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, nusquids::marray<double, 2u, std::allocator<double> >&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.12.0)
-  n2: 4857616 0x6925F29: nusquids::NeutrinoDISCrossSectionsFromTables::readFlavorHDF5(long, nusquids::marray<double, 1u, std::allocator<double> > const&, nusquids::marray<double, 1u, std::allocator<double> > const&)::{lambda(nusquids::BiCubicInterpolator&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)#2}::operator()(nusquids::BiCubicInterpolator&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) const (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.12.0)
-   n1: 2428808 0x69287EA: nusquids::NeutrinoDISCrossSectionsFromTables::readFlavorHDF5(long, nusquids::marray<double, 1u, std::allocator<double> > const&, nusquids::marray<double, 1u, std::allocator<double> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.12.0)
-    n1: 2428808 0x69317A5: nusquids::NeutrinoDISCrossSectionsFromTables::ReadHDF(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.12.0)
-     n1: 2428808 0x6931D7F: nusquids::NeutrinoDISCrossSectionsFromTables::NeutrinoDISCrossSectionsFromTables(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.12.0)
-      n1: 2428808 0x6931FDA: nusquids::loadDefaultCrossSections() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.12.0)
-       n1: 2428808 0x690F885: nusquids::nuSQUIDS::InitializeInteractions() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.12.0)
-        n1: 2428808 0x690FDDC: nusquids::nuSQUIDS::EvolveState() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.12.0)
-         n1: 2428808 0x4B844C6: OscProbCalcerNuSQUIDSLinear::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
-          n1: 2428808 0x4B567EF: OscProbCalcerBase::Reweight(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
-           n1: 2428808 0x487DF59: OscillatorBase::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscillator.so)
-            n0: 2428808 0x40A847: main (in /opt/NuOscillator/build/Linux/bin/DragRace)
-   n1: 2428808 0x692884D: nusquids::NeutrinoDISCrossSectionsFromTables::readFlavorHDF5(long, nusquids::marray<double, 1u, std::allocator<double> > const&, nusquids::marray<double, 1u, std::allocator<double> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.12.0)
-    n1: 2428808 0x69317A5: nusquids::NeutrinoDISCrossSectionsFromTables::ReadHDF(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.12.0)
-     n1: 2428808 0x6931D7F: nusquids::NeutrinoDISCrossSectionsFromTables::NeutrinoDISCrossSectionsFromTables(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.12.0)
-      n1: 2428808 0x6931FDA: nusquids::loadDefaultCrossSections() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.12.0)
-       n1: 2428808 0x690F885: nusquids::nuSQUIDS::InitializeInteractions() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.12.0)
-        n1: 2428808 0x690FDDC: nusquids::nuSQUIDS::EvolveState() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.12.0)
-         n1: 2428808 0x4B844C6: OscProbCalcerNuSQUIDSLinear::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
-          n1: 2428808 0x4B567EF: OscProbCalcerBase::Reweight(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
-           n1: 2428808 0x487DF59: OscillatorBase::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscillator.so)
-            n0: 2428808 0x40A847: main (in /opt/NuOscillator/build/Linux/bin/DragRace)
  n1: 4768440 0xB4FCCFF: clang::ModuleMap::findOrCreateModule(llvm::StringRef, clang::Module*, bool, bool) (in /opt/root/v6-26-10/lib/libCling.so)
   n2: 4768440 0xB506193: clang::ModuleMapParser::parseModuleDecl() (in /opt/root/v6-26-10/lib/libCling.so)
    n2: 4578840 0xB505C17: clang::ModuleMapParser::parseModuleDecl() (in /opt/root/v6-26-10/lib/libCling.so)
@@ -1337,8 +2004,20 @@ n14: 83075109 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
           n1: 2428808 0x4B567EF: OscProbCalcerBase::Reweight(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
            n1: 2428808 0x487DF59: OscillatorBase::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscillator.so)
             n0: 2428808 0x40A847: main (in /opt/NuOscillator/build/Linux/bin/DragRace)
- n3: 1940312 0x659F33C: ??? (in /usr/lib64/libhdf5.so.200.1.0)
-  n2: 1077096 0x659FA50: H5FL_blk_malloc (in /usr/lib64/libhdf5.so.200.1.0)
+ n1: 2428808 0x69338E6: void nusquids::readArrayH5<double, 2u, std::allocator<double> >(long, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, nusquids::marray<double, 2u, std::allocator<double> >&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.12.0)
+  n1: 2428808 0x6925F29: nusquids::NeutrinoDISCrossSectionsFromTables::readFlavorHDF5(long, nusquids::marray<double, 1u, std::allocator<double> > const&, nusquids::marray<double, 1u, std::allocator<double> > const&)::{lambda(nusquids::BiCubicInterpolator&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)#2}::operator()(nusquids::BiCubicInterpolator&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) const (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.12.0)
+   n1: 2428808 0x69287EA: nusquids::NeutrinoDISCrossSectionsFromTables::readFlavorHDF5(long, nusquids::marray<double, 1u, std::allocator<double> > const&, nusquids::marray<double, 1u, std::allocator<double> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.12.0)
+    n1: 2428808 0x69317A5: nusquids::NeutrinoDISCrossSectionsFromTables::ReadHDF(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.12.0)
+     n1: 2428808 0x6931D7F: nusquids::NeutrinoDISCrossSectionsFromTables::NeutrinoDISCrossSectionsFromTables(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.12.0)
+      n1: 2428808 0x6931FDA: nusquids::loadDefaultCrossSections() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.12.0)
+       n1: 2428808 0x690F885: nusquids::nuSQUIDS::InitializeInteractions() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.12.0)
+        n1: 2428808 0x690FDDC: nusquids::nuSQUIDS::EvolveState() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.12.0)
+         n1: 2428808 0x4B844C6: OscProbCalcerNuSQUIDSLinear::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
+          n1: 2428808 0x4B567EF: OscProbCalcerBase::Reweight(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
+           n1: 2428808 0x487DF59: OscillatorBase::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscillator.so)
+            n0: 2428808 0x40A847: main (in /opt/NuOscillator/build/Linux/bin/DragRace)
+ n3: 1936136 0x659F33C: ??? (in /usr/lib64/libhdf5.so.200.1.0)
+  n2: 1076336 0x659FA50: H5FL_blk_malloc (in /usr/lib64/libhdf5.so.200.1.0)
    n2: 1051452 0x659FBA4: H5FL_blk_calloc (in /usr/lib64/libhdf5.so.200.1.0)
     n1: 1048584 0x6544A4B: ??? (in /usr/lib64/libhdf5.so.200.1.0)
      n1: 1048584 0x654547C: H5D__read (in /usr/lib64/libhdf5.so.200.1.0)
@@ -1357,13 +2036,17 @@ n14: 83075109 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
                   n1: 1048584 0x487DF59: OscillatorBase::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscillator.so)
                    n0: 1048584 0x40A847: main (in /opt/NuOscillator/build/Linux/bin/DragRace)
     n0: 2868 in 2 places, all below massif's threshold (1.00%)
-   n0: 25644 in 14 places, all below massif's threshold (1.00%)
-  n1: 859888 0x659F494: H5FL_reg_malloc (in /usr/lib64/libhdf5.so.200.1.0)
-   n0: 859888 in 23 places, all below massif's threshold (1.00%)
-  n0: 3328 in 2 places, all below massif's threshold (1.00%)
+   n0: 24884 in 14 places, all below massif's threshold (1.00%)
+  n1: 856528 0x659F494: H5FL_reg_malloc (in /usr/lib64/libhdf5.so.200.1.0)
+   n0: 856528 in 23 places, all below massif's threshold (1.00%)
+  n0: 3272 in 2 places, all below massif's threshold (1.00%)
  n2: 1733184 0xB10792F: llvm::BitstreamCursor::ReadAbbrevRecord() (in /opt/root/v6-26-10/lib/libCling.so)
-  n1: 869312 0x95B8831: clang::ASTReader::ReadBlockAbbrevs(llvm::BitstreamCursor&, unsigned int) (in /opt/root/v6-26-10/lib/libCling.so)
-   n0: 869312 in 2 places, all below massif's threshold (1.00%)
+  n2: 869312 0x95B8831: clang::ASTReader::ReadBlockAbbrevs(llvm::BitstreamCursor&, unsigned int) (in /opt/root/v6-26-10/lib/libCling.so)
+   n1: 818176 0x95FEBC9: clang::ASTReader::ReadASTBlock(clang::serialization::ModuleFile&, unsigned int) (in /opt/root/v6-26-10/lib/libCling.so)
+    n1: 818176 0x960DF68: clang::ASTReader::ReadAST(llvm::StringRef, clang::serialization::ModuleKind, clang::SourceLocation, unsigned int, llvm::SmallVectorImpl<clang::ASTReader::ImportedSubmodule>*) (in /opt/root/v6-26-10/lib/libCling.so)
+     n1: 818176 0x92E256A: clang::CompilerInstance::loadModule(clang::SourceLocation, llvm::ArrayRef<std::pair<clang::IdentifierInfo*, clang::SourceLocation> >, clang::Module::NameVisibilityKind, bool) (in /opt/root/v6-26-10/lib/libCling.so)
+      n0: 818176 in 2 places, all below massif's threshold (1.00%)
+   n0: 51136 in 1 place, below massif's threshold (1.00%)
   n0: 863872 in 5 places, all below massif's threshold (1.00%)
  n1: 1150976 0xB2BAD29: clang::Decl::operator new(unsigned long, clang::ASTContext const&, unsigned int, unsigned long) (in /opt/root/v6-26-10/lib/libCling.so)
   n0: 1150976 in 17 places, all below massif's threshold (1.00%)
@@ -1396,10 +2079,12 @@ n14: 83075109 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
                            n1: 917504 0x1FFF0004C7: ???
                             n0: 917504 0x1FFF0004F5: ???
      n0: 0 in 1 place, below massif's threshold (1.00%)
+ n1: 839240 0x5D99DB9: TStorage::ObjectAlloc(unsigned long) (in /opt/root/v6-26-10/lib/libCore.so)
+  n0: 839240 in 298 places, all below massif's threshold (1.00%)
 #-----------
-snapshot=9
+snapshot=13
 #-----------
-time=1248074098
+time=1241248603
 mem_heap_B=90398109
 mem_heap_extra_B=966979
 mem_stacks_B=0
@@ -1751,15 +2436,15 @@ n14: 90398109 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
                             n0: 917504 0x1FFF0004F5: ???
      n0: 0 in 1 place, below massif's threshold (1.00%)
 #-----------
-snapshot=10
+snapshot=14
 #-----------
-time=1353286710
-mem_heap_B=100126701
-mem_heap_extra_B=967547
+time=1351077619
+mem_heap_B=102532197
+mem_heap_extra_B=968131
 mem_stacks_B=0
 heap_tree=detailed
-n13: 100126701 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
- n0: 17415770 in 4222 places, all below massif's threshold (1.00%)
+n13: 102532197 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n0: 17388282 in 4222 places, all below massif's threshold (1.00%)
  n1: 15090080 0x9602C4B: clang::ASTReader::ReadASTBlock(clang::serialization::ModuleFile&, unsigned int) (in /opt/root/v6-26-10/lib/libCling.so)
   n1: 15090080 0x960DF68: clang::ASTReader::ReadAST(llvm::StringRef, clang::serialization::ModuleKind, clang::SourceLocation, unsigned int, llvm::SmallVectorImpl<clang::ASTReader::ImportedSubmodule>*) (in /opt/root/v6-26-10/lib/libCling.so)
    n2: 15090080 0x92E256A: clang::CompilerInstance::loadModule(clang::SourceLocation, llvm::ArrayRef<std::pair<clang::IdentifierInfo*, clang::SourceLocation> >, clang::Module::NameVisibilityKind, bool) (in /opt/root/v6-26-10/lib/libCling.so)
@@ -1818,6 +2503,48 @@ n13: 100126701 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
                            n0: 13700608 0x1FFF0004F5: ???
        n0: 0 in 1 place, below massif's threshold (1.00%)
     n0: 0 in 1 place, below massif's threshold (1.00%)
+ n1: 9715232 0x69338E6: void nusquids::readArrayH5<double, 2u, std::allocator<double> >(long, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, nusquids::marray<double, 2u, std::allocator<double> >&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.12.0)
+  n4: 9715232 0x6925F29: nusquids::NeutrinoDISCrossSectionsFromTables::readFlavorHDF5(long, nusquids::marray<double, 1u, std::allocator<double> > const&, nusquids::marray<double, 1u, std::allocator<double> > const&)::{lambda(nusquids::BiCubicInterpolator&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)#2}::operator()(nusquids::BiCubicInterpolator&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) const (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.12.0)
+   n1: 2428808 0x69287EA: nusquids::NeutrinoDISCrossSectionsFromTables::readFlavorHDF5(long, nusquids::marray<double, 1u, std::allocator<double> > const&, nusquids::marray<double, 1u, std::allocator<double> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.12.0)
+    n1: 2428808 0x69317A5: nusquids::NeutrinoDISCrossSectionsFromTables::ReadHDF(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.12.0)
+     n1: 2428808 0x6931D7F: nusquids::NeutrinoDISCrossSectionsFromTables::NeutrinoDISCrossSectionsFromTables(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.12.0)
+      n1: 2428808 0x6931FDA: nusquids::loadDefaultCrossSections() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.12.0)
+       n1: 2428808 0x690F885: nusquids::nuSQUIDS::InitializeInteractions() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.12.0)
+        n1: 2428808 0x690FDDC: nusquids::nuSQUIDS::EvolveState() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.12.0)
+         n1: 2428808 0x4B844C6: OscProbCalcerNuSQUIDSLinear::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
+          n1: 2428808 0x4B567EF: OscProbCalcerBase::Reweight(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
+           n1: 2428808 0x487DF59: OscillatorBase::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscillator.so)
+            n0: 2428808 0x40A847: main (in /opt/NuOscillator/build/Linux/bin/DragRace)
+   n1: 2428808 0x692884D: nusquids::NeutrinoDISCrossSectionsFromTables::readFlavorHDF5(long, nusquids::marray<double, 1u, std::allocator<double> > const&, nusquids::marray<double, 1u, std::allocator<double> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.12.0)
+    n1: 2428808 0x69317A5: nusquids::NeutrinoDISCrossSectionsFromTables::ReadHDF(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.12.0)
+     n1: 2428808 0x6931D7F: nusquids::NeutrinoDISCrossSectionsFromTables::NeutrinoDISCrossSectionsFromTables(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.12.0)
+      n1: 2428808 0x6931FDA: nusquids::loadDefaultCrossSections() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.12.0)
+       n1: 2428808 0x690F885: nusquids::nuSQUIDS::InitializeInteractions() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.12.0)
+        n1: 2428808 0x690FDDC: nusquids::nuSQUIDS::EvolveState() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.12.0)
+         n1: 2428808 0x4B844C6: OscProbCalcerNuSQUIDSLinear::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
+          n1: 2428808 0x4B567EF: OscProbCalcerBase::Reweight(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
+           n1: 2428808 0x487DF59: OscillatorBase::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscillator.so)
+            n0: 2428808 0x40A847: main (in /opt/NuOscillator/build/Linux/bin/DragRace)
+   n1: 2428808 0x69288B6: nusquids::NeutrinoDISCrossSectionsFromTables::readFlavorHDF5(long, nusquids::marray<double, 1u, std::allocator<double> > const&, nusquids::marray<double, 1u, std::allocator<double> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.12.0)
+    n1: 2428808 0x69317A5: nusquids::NeutrinoDISCrossSectionsFromTables::ReadHDF(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.12.0)
+     n1: 2428808 0x6931D7F: nusquids::NeutrinoDISCrossSectionsFromTables::NeutrinoDISCrossSectionsFromTables(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.12.0)
+      n1: 2428808 0x6931FDA: nusquids::loadDefaultCrossSections() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.12.0)
+       n1: 2428808 0x690F885: nusquids::nuSQUIDS::InitializeInteractions() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.12.0)
+        n1: 2428808 0x690FDDC: nusquids::nuSQUIDS::EvolveState() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.12.0)
+         n1: 2428808 0x4B844C6: OscProbCalcerNuSQUIDSLinear::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
+          n1: 2428808 0x4B567EF: OscProbCalcerBase::Reweight(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
+           n1: 2428808 0x487DF59: OscillatorBase::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscillator.so)
+            n0: 2428808 0x40A847: main (in /opt/NuOscillator/build/Linux/bin/DragRace)
+   n1: 2428808 0x692891F: nusquids::NeutrinoDISCrossSectionsFromTables::readFlavorHDF5(long, nusquids::marray<double, 1u, std::allocator<double> > const&, nusquids::marray<double, 1u, std::allocator<double> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.12.0)
+    n1: 2428808 0x69317A5: nusquids::NeutrinoDISCrossSectionsFromTables::ReadHDF(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.12.0)
+     n1: 2428808 0x6931D7F: nusquids::NeutrinoDISCrossSectionsFromTables::NeutrinoDISCrossSectionsFromTables(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.12.0)
+      n1: 2428808 0x6931FDA: nusquids::loadDefaultCrossSections() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.12.0)
+       n1: 2428808 0x690F885: nusquids::nuSQUIDS::InitializeInteractions() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.12.0)
+        n1: 2428808 0x690FDDC: nusquids::nuSQUIDS::EvolveState() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.12.0)
+         n1: 2428808 0x4B844C6: OscProbCalcerNuSQUIDSLinear::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
+          n1: 2428808 0x4B567EF: OscProbCalcerBase::Reweight(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
+           n1: 2428808 0x487DF59: OscillatorBase::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscillator.so)
+            n0: 2428808 0x40A847: main (in /opt/NuOscillator/build/Linux/bin/DragRace)
  n2: 8760472 0xB8C3E8A: llvm::SmallVectorBase::grow_pod(void*, unsigned long, unsigned long) (in /opt/root/v6-26-10/lib/libCling.so)
   n1: 8319528 0xB58FE9A: clang::SourceManager::AllocateLoadedSLocEntries(unsigned int, unsigned int) (in /opt/root/v6-26-10/lib/libCling.so)
    n1: 8319528 0x9600A76: clang::ASTReader::ReadASTBlock(clang::serialization::ModuleFile&, unsigned int) (in /opt/root/v6-26-10/lib/libCling.so)
@@ -1946,38 +2673,6 @@ n13: 100126701 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
           n1: 2428808 0x4B567EF: OscProbCalcerBase::Reweight(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
            n1: 2428808 0x487DF59: OscillatorBase::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscillator.so)
             n0: 2428808 0x40A847: main (in /opt/NuOscillator/build/Linux/bin/DragRace)
- n1: 7286424 0x69338E6: void nusquids::readArrayH5<double, 2u, std::allocator<double> >(long, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, nusquids::marray<double, 2u, std::allocator<double> >&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.12.0)
-  n3: 7286424 0x6925F29: nusquids::NeutrinoDISCrossSectionsFromTables::readFlavorHDF5(long, nusquids::marray<double, 1u, std::allocator<double> > const&, nusquids::marray<double, 1u, std::allocator<double> > const&)::{lambda(nusquids::BiCubicInterpolator&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)#2}::operator()(nusquids::BiCubicInterpolator&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) const (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.12.0)
-   n1: 2428808 0x69287EA: nusquids::NeutrinoDISCrossSectionsFromTables::readFlavorHDF5(long, nusquids::marray<double, 1u, std::allocator<double> > const&, nusquids::marray<double, 1u, std::allocator<double> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.12.0)
-    n1: 2428808 0x69317A5: nusquids::NeutrinoDISCrossSectionsFromTables::ReadHDF(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.12.0)
-     n1: 2428808 0x6931D7F: nusquids::NeutrinoDISCrossSectionsFromTables::NeutrinoDISCrossSectionsFromTables(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.12.0)
-      n1: 2428808 0x6931FDA: nusquids::loadDefaultCrossSections() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.12.0)
-       n1: 2428808 0x690F885: nusquids::nuSQUIDS::InitializeInteractions() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.12.0)
-        n1: 2428808 0x690FDDC: nusquids::nuSQUIDS::EvolveState() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.12.0)
-         n1: 2428808 0x4B844C6: OscProbCalcerNuSQUIDSLinear::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
-          n1: 2428808 0x4B567EF: OscProbCalcerBase::Reweight(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
-           n1: 2428808 0x487DF59: OscillatorBase::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscillator.so)
-            n0: 2428808 0x40A847: main (in /opt/NuOscillator/build/Linux/bin/DragRace)
-   n1: 2428808 0x692884D: nusquids::NeutrinoDISCrossSectionsFromTables::readFlavorHDF5(long, nusquids::marray<double, 1u, std::allocator<double> > const&, nusquids::marray<double, 1u, std::allocator<double> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.12.0)
-    n1: 2428808 0x69317A5: nusquids::NeutrinoDISCrossSectionsFromTables::ReadHDF(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.12.0)
-     n1: 2428808 0x6931D7F: nusquids::NeutrinoDISCrossSectionsFromTables::NeutrinoDISCrossSectionsFromTables(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.12.0)
-      n1: 2428808 0x6931FDA: nusquids::loadDefaultCrossSections() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.12.0)
-       n1: 2428808 0x690F885: nusquids::nuSQUIDS::InitializeInteractions() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.12.0)
-        n1: 2428808 0x690FDDC: nusquids::nuSQUIDS::EvolveState() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.12.0)
-         n1: 2428808 0x4B844C6: OscProbCalcerNuSQUIDSLinear::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
-          n1: 2428808 0x4B567EF: OscProbCalcerBase::Reweight(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
-           n1: 2428808 0x487DF59: OscillatorBase::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscillator.so)
-            n0: 2428808 0x40A847: main (in /opt/NuOscillator/build/Linux/bin/DragRace)
-   n1: 2428808 0x69288B6: nusquids::NeutrinoDISCrossSectionsFromTables::readFlavorHDF5(long, nusquids::marray<double, 1u, std::allocator<double> > const&, nusquids::marray<double, 1u, std::allocator<double> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.12.0)
-    n1: 2428808 0x69317A5: nusquids::NeutrinoDISCrossSectionsFromTables::ReadHDF(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.12.0)
-     n1: 2428808 0x6931D7F: nusquids::NeutrinoDISCrossSectionsFromTables::NeutrinoDISCrossSectionsFromTables(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.12.0)
-      n1: 2428808 0x6931FDA: nusquids::loadDefaultCrossSections() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.12.0)
-       n1: 2428808 0x690F885: nusquids::nuSQUIDS::InitializeInteractions() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.12.0)
-        n1: 2428808 0x690FDDC: nusquids::nuSQUIDS::EvolveState() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.12.0)
-         n1: 2428808 0x4B844C6: OscProbCalcerNuSQUIDSLinear::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
-          n1: 2428808 0x4B567EF: OscProbCalcerBase::Reweight(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
-           n1: 2428808 0x487DF59: OscillatorBase::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscillator.so)
-            n0: 2428808 0x40A847: main (in /opt/NuOscillator/build/Linux/bin/DragRace)
  n2: 6416891 0xB8B9E91: llvm::WritableMemoryBuffer::getNewUninitMemBuffer(unsigned long, llvm::Twine const&) (in /opt/root/v6-26-10/lib/libCling.so)
   n2: 6226128 0xB8BA111: llvm::MemoryBuffer::getMemBufferCopy(llvm::StringRef, llvm::Twine const&) (in /opt/root/v6-26-10/lib/libCling.so)
    n2: 6211038 0x95BCA90: clang::ASTReader::ReadSLocEntry(int)::{lambda(llvm::BitstreamCursor&, llvm::StringRef)#1}::operator()(llvm::BitstreamCursor&, llvm::StringRef) const (in /opt/root/v6-26-10/lib/libCling.so)
@@ -2004,29 +2699,8 @@ n13: 100126701 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
        n2: 1288644 0x92E256A: clang::CompilerInstance::loadModule(clang::SourceLocation, llvm::ArrayRef<std::pair<clang::IdentifierInfo*, clang::SourceLocation> >, clang::Module::NameVisibilityKind, bool) (in /opt/root/v6-26-10/lib/libCling.so)
         n1: 1219839 0x9AD3615: clang::Sema::ActOnModuleImport(clang::SourceLocation, clang::SourceLocation, clang::SourceLocation, llvm::ArrayRef<std::pair<clang::IdentifierInfo*, clang::SourceLocation> >) (in /opt/root/v6-26-10/lib/libCling.so)
          n1: 1219839 0x8DE28D1: cling::Interpreter::loadModule(clang::Module*, bool) (in /opt/root/v6-26-10/lib/libCling.so)
-          n2: 1219839 0x8D0FED6: LoadModule(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, cling::Interpreter&) (in /opt/root/v6-26-10/lib/libCling.so)
-           n1: 1014159 0x8D3AE97: RegisterCxxModules(cling::Interpreter&) (in /opt/root/v6-26-10/lib/libCling.so)
-            n1: 1014159 0x8D3CE48: TCling::TCling(char const*, char const*, char const* const*) (in /opt/root/v6-26-10/lib/libCling.so)
-             n1: 1014159 0x8D3ED70: CreateInterpreter (in /opt/root/v6-26-10/lib/libCling.so)
-              n1: 1014159 0x5D42E49: TROOT::InitInterpreter() (in /opt/root/v6-26-10/lib/libCore.so)
-               n1: 1014159 0x5D432FE: ROOT::Internal::GetROOT2() (in /opt/root/v6-26-10/lib/libCore.so)
-                n1: 1014159 0x5E95718: TUnixSystem::SetDisplay() (in /opt/root/v6-26-10/lib/libCore.so)
-                 n1: 1014159 0x78C4664: TGClient::TGClient(char const*) (in /opt/root/v6-26-10/lib/libGui.so)
-                  n1: 1014159 0x789C7D0: _GLOBAL__sub_I_TGClient.cxx (in /opt/root/v6-26-10/lib/libGui.so)
-                   n1: 1014159 0x400A1AD: call_init (dl-init.c:70)
-                    n1: 1014159 0x400A1AD: call_init (dl-init.c:26)
-                     n1: 1014159 0x400A29B: _dl_init (dl-init.c:117)
-                      n1: 1014159 0x4020BD9: ??? (in /usr/lib64/ld-linux-x86-64.so.2)
-                       n1: 1014159 0x7: ???
-                        n1: 1014159 0x1FFF0003FE: ???
-                         n1: 1014159 0x1FFF000418: ???
-                          n1: 1014159 0x1FFF00041A: ???
-                           n1: 1014159 0x1FFF000444: ???
-                            n1: 1014159 0x1FFF00046C: ???
-                             n1: 1014159 0x1FFF000499: ???
-                              n1: 1014159 0x1FFF0004C7: ???
-                               n0: 1014159 0x1FFF0004F5: ???
-           n0: 205680 in 4 places, all below massif's threshold (1.00%)
+          n1: 1219839 0x8D0FED6: LoadModule(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, cling::Interpreter&) (in /opt/root/v6-26-10/lib/libCling.so)
+           n0: 1219839 in 5 places, all below massif's threshold (1.00%)
         n0: 68805 in 1 place, below massif's threshold (1.00%)
       n0: 91642 in 9 places, all below massif's threshold (1.00%)
    n0: 15090 in 2 places, all below massif's threshold (1.00%)
@@ -2064,8 +2738,8 @@ n13: 100126701 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
                                n0: 4546608 0x1FFF0004F5: ???
     n0: 32232 in 1 place, below massif's threshold (1.00%)
    n0: 189600 in 1 place, below massif's threshold (1.00%)
- n2: 1944584 0x659F33C: ??? (in /usr/lib64/libhdf5.so.200.1.0)
-  n2: 1077920 0x659FA50: H5FL_blk_malloc (in /usr/lib64/libhdf5.so.200.1.0)
+ n2: 1948760 0x659F33C: ??? (in /usr/lib64/libhdf5.so.200.1.0)
+  n2: 1078680 0x659FA50: H5FL_blk_malloc (in /usr/lib64/libhdf5.so.200.1.0)
    n2: 1051452 0x659FBA4: H5FL_blk_calloc (in /usr/lib64/libhdf5.so.200.1.0)
     n1: 1048584 0x6544A4B: ??? (in /usr/lib64/libhdf5.so.200.1.0)
      n1: 1048584 0x654547C: H5D__read (in /usr/lib64/libhdf5.so.200.1.0)
@@ -2084,16 +2758,16 @@ n13: 100126701 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
                   n1: 1048584 0x487DF59: OscillatorBase::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscillator.so)
                    n0: 1048584 0x40A847: main (in /opt/NuOscillator/build/Linux/bin/DragRace)
     n0: 2868 in 2 places, all below massif's threshold (1.00%)
-   n0: 26468 in 14 places, all below massif's threshold (1.00%)
-  n0: 866664 in 3 places, all below massif's threshold (1.00%)
+   n0: 27228 in 14 places, all below massif's threshold (1.00%)
+  n0: 870080 in 3 places, all below massif's threshold (1.00%)
  n1: 1733184 0xB10792F: llvm::BitstreamCursor::ReadAbbrevRecord() (in /opt/root/v6-26-10/lib/libCling.so)
   n0: 1733184 in 6 places, all below massif's threshold (1.00%)
  n1: 1150976 0xB2BAD29: clang::Decl::operator new(unsigned long, clang::ASTContext const&, unsigned int, unsigned long) (in /opt/root/v6-26-10/lib/libCling.so)
   n0: 1150976 in 17 places, all below massif's threshold (1.00%)
 #-----------
-snapshot=11
+snapshot=15
 #-----------
-time=1458297358
+time=1453774562
 mem_heap_B=109855197
 mem_heap_extra_B=968083
 mem_stacks_B=0
@@ -2428,9 +3102,9 @@ n13: 109855197 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
  n1: 1150976 0xB2BAD29: clang::Decl::operator new(unsigned long, clang::ASTContext const&, unsigned int, unsigned long) (in /opt/root/v6-26-10/lib/libCling.so)
   n0: 1150976 in 17 places, all below massif's threshold (1.00%)
 #-----------
-snapshot=12
+snapshot=16
 #-----------
-time=1568154883
+time=1563632087
 mem_heap_B=119695175
 mem_heap_extra_B=971913
 mem_stacks_B=0
@@ -2799,9 +3473,9 @@ n12: 119695175 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
  n1: 1733184 0xB10792F: llvm::BitstreamCursor::ReadAbbrevRecord() (in /opt/root/v6-26-10/lib/libCling.so)
   n0: 1733184 in 6 places, all below massif's threshold (1.00%)
 #-----------
-snapshot=13
+snapshot=17
 #-----------
-time=1673162583
+time=1668639787
 mem_heap_B=129423671
 mem_heap_extra_B=972449
 mem_stacks_B=0
@@ -3199,9 +3873,9 @@ n12: 129423671 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
  n1: 1733184 0xB10792F: llvm::BitstreamCursor::ReadAbbrevRecord() (in /opt/root/v6-26-10/lib/libCling.so)
   n0: 1733184 in 6 places, all below massif's threshold (1.00%)
 #-----------
-snapshot=14
+snapshot=18
 #-----------
-time=1778179815
+time=1773657019
 mem_heap_B=139152269
 mem_heap_extra_B=973019
 mem_stacks_B=0
@@ -3633,9 +4307,9 @@ n12: 139152269 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
  n1: 1733184 0xB10792F: llvm::BitstreamCursor::ReadAbbrevRecord() (in /opt/root/v6-26-10/lib/libCling.so)
   n0: 1733184 in 6 places, all below massif's threshold (1.00%)
 #-----------
-snapshot=15
+snapshot=19
 #-----------
-time=1883190633
+time=1878667837
 mem_heap_B=148880765
 mem_heap_extra_B=973587
 mem_stacks_B=0
@@ -4103,9 +4777,9 @@ n12: 148880765 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
  n1: 1733184 0xB10792F: llvm::BitstreamCursor::ReadAbbrevRecord() (in /opt/root/v6-26-10/lib/libCling.so)
   n0: 1733184 in 6 places, all below massif's threshold (1.00%)
 #-----------
-snapshot=16
+snapshot=20
 #-----------
-time=1996614846
+time=1992092050
 mem_heap_B=158689880
 mem_heap_extra_B=970112
 mem_stacks_B=0
@@ -4596,9 +5270,9 @@ n12: 158689880 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
  n1: 1733184 0xB10792F: llvm::BitstreamCursor::ReadAbbrevRecord() (in /opt/root/v6-26-10/lib/libCling.so)
   n0: 1733184 in 6 places, all below massif's threshold (1.00%)
 #-----------
-snapshot=17
+snapshot=21
 #-----------
-time=2101621589
+time=2097098793
 mem_heap_B=168414200
 mem_heap_extra_B=970456
 mem_stacks_B=0
@@ -5114,9 +5788,9 @@ n12: 168414200 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
  n1: 1733184 0xB10792F: llvm::BitstreamCursor::ReadAbbrevRecord() (in /opt/root/v6-26-10/lib/libCling.so)
   n0: 1733184 in 6 places, all below massif's threshold (1.00%)
 #-----------
-snapshot=18
+snapshot=22
 #-----------
-time=2206632699
+time=2202109903
 mem_heap_B=178138520
 mem_heap_extra_B=970800
 mem_stacks_B=0
@@ -5658,9 +6332,9 @@ n11: 178138520 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
  n1: 1985776 0x659F33C: ??? (in /usr/lib64/libhdf5.so.200.1.0)
   n0: 1985776 in 4 places, all below massif's threshold (1.00%)
 #-----------
-snapshot=19
+snapshot=23
 #-----------
-time=2311642917
+time=2307120121
 mem_heap_B=187862840
 mem_heap_extra_B=971144
 mem_stacks_B=0
@@ -6230,9 +6904,9 @@ n11: 187862840 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
  n1: 1985776 0x659F33C: ??? (in /usr/lib64/libhdf5.so.200.1.0)
   n0: 1985776 in 4 places, all below massif's threshold (1.00%)
 #-----------
-snapshot=20
+snapshot=24
 #-----------
-time=2421481415
+time=2416958619
 mem_heap_B=197678432
 mem_heap_extra_B=973568
 mem_stacks_B=0
@@ -6826,9 +7500,9 @@ n10: 197678432 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
     n0: 32232 in 1 place, below massif's threshold (1.00%)
    n0: 189600 in 1 place, below massif's threshold (1.00%)
 #-----------
-snapshot=21
+snapshot=25
 #-----------
-time=2526488299
+time=2521965503
 mem_heap_B=207402752
 mem_heap_extra_B=973912
 mem_stacks_B=0
@@ -7450,9 +8124,9 @@ n10: 207402752 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
     n0: 32232 in 1 place, below massif's threshold (1.00%)
    n0: 189600 in 1 place, below massif's threshold (1.00%)
 #-----------
-snapshot=22
+snapshot=26
 #-----------
-time=2631504550
+time=2626981754
 mem_heap_B=217127072
 mem_heap_extra_B=974256
 mem_stacks_B=0
@@ -8102,9 +8776,9 @@ n10: 217127072 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
     n0: 32232 in 1 place, below massif's threshold (1.00%)
    n0: 189600 in 1 place, below massif's threshold (1.00%)
 #-----------
-snapshot=23
+snapshot=27
 #-----------
-time=2736514923
+time=2731992127
 mem_heap_B=226851392
 mem_heap_extra_B=974600
 mem_stacks_B=0
@@ -8782,65 +9456,89 @@ n10: 226851392 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
     n0: 32232 in 1 place, below massif's threshold (1.00%)
    n0: 189600 in 1 place, below massif's threshold (1.00%)
 #-----------
-snapshot=24
-#-----------
-time=2892010430
-mem_heap_B=226627052
-mem_heap_extra_B=967284
-mem_stacks_B=0
-heap_tree=empty
-#-----------
-snapshot=25
-#-----------
-time=3017965114
-mem_heap_B=226627020
-mem_heap_extra_B=967268
-mem_stacks_B=0
-heap_tree=empty
-#-----------
-snapshot=26
-#-----------
-time=3108555824
-mem_heap_B=226627276
-mem_heap_extra_B=967324
-mem_stacks_B=0
-heap_tree=empty
-#-----------
-snapshot=27
-#-----------
-time=3196189830
-mem_heap_B=226627276
-mem_heap_extra_B=967324
-mem_stacks_B=0
-heap_tree=empty
-#-----------
 snapshot=28
 #-----------
-time=3288863978
-mem_heap_B=226627276
-mem_heap_extra_B=967324
+time=2788243116
+mem_heap_B=226709652
+mem_heap_extra_B=967108
 mem_stacks_B=0
 heap_tree=empty
 #-----------
 snapshot=29
 #-----------
-time=3453996381
-mem_heap_B=226627244
-mem_heap_extra_B=967324
+time=2864114390
+mem_heap_B=226627052
+mem_heap_extra_B=967284
 mem_stacks_B=0
 heap_tree=empty
 #-----------
 snapshot=30
 #-----------
-time=3537147415
-mem_heap_B=229820661
-mem_heap_extra_B=971459
+time=2990259968
+mem_heap_B=226627020
+mem_heap_extra_B=967268
 mem_stacks_B=0
 heap_tree=empty
 #-----------
 snapshot=31
 #-----------
-time=3635588460
+time=3080716962
+mem_heap_B=226627276
+mem_heap_extra_B=967324
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=32
+#-----------
+time=3153057807
+mem_heap_B=226627244
+mem_heap_extra_B=967324
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=33
+#-----------
+time=3250772730
+mem_heap_B=226627244
+mem_heap_extra_B=967324
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=34
+#-----------
+time=3338757270
+mem_heap_B=226627276
+mem_heap_extra_B=967324
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=35
+#-----------
+time=3390370275
+mem_heap_B=226627244
+mem_heap_extra_B=967324
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=36
+#-----------
+time=3467548047
+mem_heap_B=226627276
+mem_heap_extra_B=967324
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=37
+#-----------
+time=3532632881
+mem_heap_B=229820661
+mem_heap_extra_B=971459
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=38
+#-----------
+time=3631073926
 mem_heap_B=237145917
 mem_heap_extra_B=971427
 mem_stacks_B=0
@@ -9534,9 +10232,9 @@ n10: 237145917 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
     n0: 32232 in 1 place, below massif's threshold (1.00%)
    n0: 189600 in 1 place, below massif's threshold (1.00%)
 #-----------
-snapshot=32
+snapshot=39
 #-----------
-time=3740595212
+time=3736080678
 mem_heap_B=246870237
 mem_heap_extra_B=971771
 mem_stacks_B=0
@@ -9830,9 +10528,9 @@ n10: 246870237 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
     n0: 32232 in 1 place, below massif's threshold (1.00%)
    n0: 189600 in 1 place, below massif's threshold (1.00%)
 #-----------
-snapshot=33
+snapshot=40
 #-----------
-time=3845606260
+time=3841091726
 mem_heap_B=256594557
 mem_heap_extra_B=972115
 mem_stacks_B=0
@@ -10142,9 +10840,9 @@ n10: 256594557 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
     n0: 32232 in 1 place, below massif's threshold (1.00%)
    n0: 189600 in 1 place, below massif's threshold (1.00%)
 #-----------
-snapshot=34
+snapshot=41
 #-----------
-time=3950616093
+time=3946101559
 mem_heap_B=266318877
 mem_heap_extra_B=972459
 mem_stacks_B=0
@@ -10468,9 +11166,9 @@ n10: 266318877 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
     n0: 32232 in 1 place, below massif's threshold (1.00%)
    n0: 189600 in 1 place, below massif's threshold (1.00%)
 #-----------
-snapshot=35
+snapshot=42
 #-----------
-time=4060454484
+time=4055939950
 mem_heap_B=276134469
 mem_heap_extra_B=974899
 mem_stacks_B=0
@@ -10810,9 +11508,9 @@ n10: 276134469 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
     n0: 32232 in 1 place, below massif's threshold (1.00%)
    n0: 189600 in 1 place, below massif's threshold (1.00%)
 #-----------
-snapshot=36
+snapshot=43
 #-----------
-time=4165461363
+time=4160946829
 mem_heap_B=285858789
 mem_heap_extra_B=975243
 mem_stacks_B=0
@@ -11168,9 +11866,9 @@ n10: 285858789 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
     n0: 32232 in 1 place, below massif's threshold (1.00%)
    n0: 189600 in 1 place, below massif's threshold (1.00%)
 #-----------
-snapshot=37
+snapshot=44
 #-----------
-time=4270477522
+time=4265962988
 mem_heap_B=295583109
 mem_heap_extra_B=975587
 mem_stacks_B=0
@@ -11542,9 +12240,9 @@ n10: 295583109 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
     n0: 32232 in 1 place, below massif's threshold (1.00%)
    n0: 189600 in 1 place, below massif's threshold (1.00%)
 #-----------
-snapshot=38
+snapshot=45
 #-----------
-time=4375487510
+time=4370972976
 mem_heap_B=305307429
 mem_heap_extra_B=975931
 mem_stacks_B=0
@@ -11932,9 +12630,9 @@ n10: 305307429 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
     n0: 32232 in 1 place, below massif's threshold (1.00%)
    n0: 189600 in 1 place, below massif's threshold (1.00%)
 #-----------
-snapshot=39
+snapshot=46
 #-----------
-time=4488894240
+time=4484379706
 mem_heap_B=315116544
 mem_heap_extra_B=972376
 mem_stacks_B=0
@@ -12334,9 +13032,9 @@ n10: 315116544 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
     n0: 32232 in 1 place, below massif's threshold (1.00%)
    n0: 189600 in 1 place, below massif's threshold (1.00%)
 #-----------
-snapshot=40
+snapshot=47
 #-----------
-time=4593900987
+time=4589386453
 mem_heap_B=324840864
 mem_heap_extra_B=972720
 mem_stacks_B=0
@@ -12748,9 +13446,9 @@ n10: 324840864 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
     n0: 32232 in 1 place, below massif's threshold (1.00%)
    n0: 189600 in 1 place, below massif's threshold (1.00%)
 #-----------
-snapshot=41
+snapshot=48
 #-----------
-time=4698912103
+time=4694397569
 mem_heap_B=334565184
 mem_heap_extra_B=973064
 mem_stacks_B=0
@@ -13174,9 +13872,9 @@ n10: 334565184 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
     n0: 32232 in 1 place, below massif's threshold (1.00%)
    n0: 189600 in 1 place, below massif's threshold (1.00%)
 #-----------
-snapshot=42
+snapshot=49
 #-----------
-time=4803922325
+time=4799407791
 mem_heap_B=344289504
 mem_heap_extra_B=973408
 mem_stacks_B=0
@@ -13612,9 +14310,9 @@ n10: 344289504 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
     n0: 32232 in 1 place, below massif's threshold (1.00%)
    n0: 189600 in 1 place, below massif's threshold (1.00%)
 #-----------
-snapshot=43
+snapshot=50
 #-----------
-time=4913760849
+time=4909246315
 mem_heap_B=354105096
 mem_heap_extra_B=975832
 mem_stacks_B=0
@@ -14062,9 +14760,9 @@ n10: 354105096 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
     n0: 32232 in 1 place, below massif's threshold (1.00%)
    n0: 189600 in 1 place, below massif's threshold (1.00%)
 #-----------
-snapshot=44
+snapshot=51
 #-----------
-time=5018767743
+time=5014253209
 mem_heap_B=363829416
 mem_heap_extra_B=976176
 mem_stacks_B=0
@@ -14524,9 +15222,9 @@ n10: 363829416 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
     n0: 32232 in 1 place, below massif's threshold (1.00%)
    n0: 189600 in 1 place, below massif's threshold (1.00%)
 #-----------
-snapshot=45
+snapshot=52
 #-----------
-time=5123783996
+time=5119269462
 mem_heap_B=373553736
 mem_heap_extra_B=976520
 mem_stacks_B=0
@@ -14998,9 +15696,9 @@ n10: 373553736 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
     n0: 32232 in 1 place, below massif's threshold (1.00%)
    n0: 189600 in 1 place, below massif's threshold (1.00%)
 #-----------
-snapshot=46
+snapshot=53
 #-----------
-time=5228794375
+time=5224279841
 mem_heap_B=383278056
 mem_heap_extra_B=976864
 mem_stacks_B=0
@@ -15484,30 +16182,86 @@ n10: 383278056 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
     n0: 32232 in 1 place, below massif's threshold (1.00%)
    n0: 189600 in 1 place, below massif's threshold (1.00%)
 #-----------
-snapshot=47
+snapshot=54
 #-----------
-time=5361337163
+time=5282200207
+mem_heap_B=383136316
+mem_heap_extra_B=969372
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=55
+#-----------
+time=5333871019
+mem_heap_B=383053716
+mem_heap_extra_B=969532
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=56
+#-----------
+time=5385493210
+mem_heap_B=383053716
+mem_heap_extra_B=969532
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=57
+#-----------
+time=5437233519
+mem_heap_B=383053716
+mem_heap_extra_B=969532
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=58
+#-----------
+time=5488847737
 mem_heap_B=383053684
 mem_heap_extra_B=969532
 mem_stacks_B=0
 heap_tree=empty
 #-----------
-snapshot=48
+snapshot=59
 #-----------
-time=5465378500
-mem_heap_B=383053716
-mem_heap_extra_B=969532
-mem_stacks_B=0
-heap_tree=empty
-#-----------
-snapshot=49
-#-----------
-time=5547476207
+time=5540623988
 mem_heap_B=383053716
 mem_heap_extra_B=969612
 mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=60
+#-----------
+time=5592258676
+mem_heap_B=383053668
+mem_heap_extra_B=969604
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=61
+#-----------
+time=5643896843
+mem_heap_B=383053668
+mem_heap_extra_B=969604
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=62
+#-----------
+time=5695531282
+mem_heap_B=383053668
+mem_heap_extra_B=969604
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=63
+#-----------
+time=5747170168
+mem_heap_B=383053684
+mem_heap_extra_B=969612
+mem_stacks_B=0
 heap_tree=detailed
-n10: 383053716 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+n10: 383053684 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
  n1: 77721856 0x6922628: nusquids::BiCubicInterpolator::BiCubicInterpolator(nusquids::marray<double, 2u, std::allocator<double> >, nusquids::marray<double, 1u, std::allocator<double> >, nusquids::marray<double, 1u, std::allocator<double> >) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.12.0)
   n4: 77721856 0x6925FE4: nusquids::NeutrinoDISCrossSectionsFromTables::readFlavorHDF5(long, nusquids::marray<double, 1u, std::allocator<double> > const&, nusquids::marray<double, 1u, std::allocator<double> > const&)::{lambda(nusquids::BiCubicInterpolator&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)#2}::operator()(nusquids::BiCubicInterpolator&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) const (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.12.0)
    n2: 19430464 0x69287EA: nusquids::NeutrinoDISCrossSectionsFromTables::readFlavorHDF5(long, nusquids::marray<double, 1u, std::allocator<double> > const&, nusquids::marray<double, 1u, std::allocator<double> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.12.0)
@@ -15852,7 +16606,7 @@ n10: 383053716 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
        n1: 4857616 0x690F885: nusquids::nuSQUIDS::InitializeInteractions() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.12.0)
         n1: 4857616 0x690FDDC: nusquids::nuSQUIDS::EvolveState() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.12.0)
          n0: 4857616 in 2 places, all below massif's threshold (1.00%)
- n0: 23429801 in 4278 places, all below massif's threshold (1.00%)
+ n0: 23429769 in 4278 places, all below massif's threshold (1.00%)
  n1: 15090080 0x9602C4B: clang::ASTReader::ReadASTBlock(clang::serialization::ModuleFile&, unsigned int) (in /opt/root/v6-26-10/lib/libCling.so)
   n1: 15090080 0x960DF68: clang::ASTReader::ReadAST(llvm::StringRef, clang::serialization::ModuleKind, clang::SourceLocation, unsigned int, llvm::SmallVectorImpl<clang::ASTReader::ImportedSubmodule>*) (in /opt/root/v6-26-10/lib/libCling.so)
    n2: 15090080 0x92E256A: clang::CompilerInstance::loadModule(clang::SourceLocation, llvm::ArrayRef<std::pair<clang::IdentifierInfo*, clang::SourceLocation> >, clang::Module::NameVisibilityKind, bool) (in /opt/root/v6-26-10/lib/libCling.so)
@@ -15986,66 +16740,74 @@ n10: 383053716 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
     n0: 32232 in 1 place, below massif's threshold (1.00%)
    n0: 189600 in 1 place, below massif's threshold (1.00%)
 #-----------
-snapshot=50
+snapshot=64
 #-----------
-time=5629602492
-mem_heap_B=383053716
-mem_heap_extra_B=969612
-mem_stacks_B=0
-heap_tree=empty
-#-----------
-snapshot=51
-#-----------
-time=5711702369
-mem_heap_B=383053716
-mem_heap_extra_B=969612
-mem_stacks_B=0
-heap_tree=empty
-#-----------
-snapshot=52
-#-----------
-time=5793828570
-mem_heap_B=383053716
-mem_heap_extra_B=969596
-mem_stacks_B=0
-heap_tree=empty
-#-----------
-snapshot=53
-#-----------
-time=5875940584
+time=5798817126
 mem_heap_B=383053684
 mem_heap_extra_B=969596
 mem_stacks_B=0
 heap_tree=empty
 #-----------
-snapshot=54
+snapshot=65
 #-----------
-time=5958069641
+time=5850445601
+mem_heap_B=383053716
+mem_heap_extra_B=969596
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=66
+#-----------
+time=5902072966
 mem_heap_B=383053668
 mem_heap_extra_B=969588
 mem_stacks_B=0
 heap_tree=empty
 #-----------
-snapshot=55
+snapshot=67
 #-----------
-time=6040167904
-mem_heap_B=383429716
-mem_heap_extra_B=987828
+time=5953771343
+mem_heap_B=383053716
+mem_heap_extra_B=969596
 mem_stacks_B=0
 heap_tree=empty
 #-----------
-snapshot=56
+snapshot=68
 #-----------
-time=6122281737
-mem_heap_B=384602995
-mem_heap_extra_B=1010149
+time=6005392689
+mem_heap_B=383053716
+mem_heap_extra_B=969596
 mem_stacks_B=0
 heap_tree=empty
 #-----------
-snapshot=57
+snapshot=69
 #-----------
-time=6204395353
-mem_heap_B=384673618
-mem_heap_extra_B=1013390
+time=6057006162
+mem_heap_B=383467975
+mem_heap_extra_B=990385
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=70
+#-----------
+time=6108620975
+mem_heap_B=384421887
+mem_heap_extra_B=1014921
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=71
+#-----------
+time=6160247935
+mem_heap_B=384656608
+mem_heap_extra_B=1013312
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=72
+#-----------
+time=6211867937
+mem_heap_B=384673516
+mem_heap_extra_B=1013428
 mem_stacks_B=0
 heap_tree=empty
