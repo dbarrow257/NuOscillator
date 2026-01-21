@@ -57,6 +57,7 @@ DefineEnabledRequiredSwitch(UseProbGPULinear 0)
 DefineEnabledRequiredSwitch(UseNuFASTLinear 0)
 DefineEnabledRequiredSwitch(UseNuSQUIDSLinear 0)
 DefineEnabledRequiredSwitch(UseOscProb 0)
+DefineEnabledRequiredSwitch(UseOscLib 0)
 DefineEnabledRequiredSwitch(UseGLoBESLinear  0)
 
 # KS: NuFastLinear by default
@@ -67,6 +68,7 @@ if(UseCUDAProb3        EQUAL 0 AND
     UseNuFASTLinear    EQUAL 0 AND
     UseNuSQUIDSLinear  EQUAL 0 AND
     UseOscProb         EQUAL 0 AND
+    UseOscLib          EQUAL 0 AND
     UseGLoBESLinear    EQUAL 0 )
   set(UseNuFASTLinear 1)
 endif()
@@ -79,6 +81,7 @@ LIST(APPEND ALL_Engines
   NuFASTLinear
   NuSQUIDSLinear
   OscProb
+  OscLib
   GLoBESLinear
 )
 
@@ -111,6 +114,10 @@ endif()
 
 if(NOT DEFINED OscProb_BRANCH)
   set(OscProb_BRANCH "v2.3.0")
+endif()
+
+if(NOT DEFINED OscLib_BRANCH)
+  set(OscLib_BRANCH "v1.0.1")
 endif()
 
 if(NOT DEFINED GLoBES_BRANCH)
@@ -227,6 +234,31 @@ if(NOT TARGET yaml-cpp::yaml-cpp)
 endif()
 
 find_package(ROOT 6.18 REQUIRED)
+STRING(STRIP "${ROOT_CXX_FLAGS}" ROOT_CXX_FLAGS_LIST)
+STRING(REPLACE " " ";" ROOT_CXX_FLAGS_LIST ${ROOT_CXX_FLAGS_LIST})
+
+list (FIND ROOT_CXX_FLAGS_LIST "-std=c++14" CPP14_INDEX)
+list (FIND ROOT_CXX_FLAGS_LIST "-std=c++1y" CPP1Y_INDEX)
+list (FIND ROOT_CXX_FLAGS_LIST "-std=c++17" CPP17_INDEX)
+list (FIND ROOT_CXX_FLAGS_LIST "-std=c++1z" CPP1Z_INDEX)
+list (FIND ROOT_CXX_FLAGS_LIST "-std=c++20" CPP20_INDEX)
+
+if (CPP14_INDEX GREATER -1)
+  SET(ROOT_CXX_STANDARD 14)
+elseif (CPP1Y_INDEX GREATER -1)
+  SET(ROOT_CXX_STANDARD 14)
+elseif (CPP17_INDEX GREATER -1)
+  SET(ROOT_CXX_STANDARD 17)
+elseif (CPP1Z_INDEX GREATER -1)
+  SET(ROOT_CXX_STANDARD 17)
+elseif (CPP20_INDEX GREATER -1)
+  SET(ROOT_CXX_STANDARD 20)
+endif()
+
+if(DEFINED ROOT_CXX_STANDARD AND NOT ROOT_CXX_STANDARD EQUAL CMAKE_CXX_STANDARD)
+  set(CMAKE_CXX_STANDARD ${ROOT_CXX_STANDARD})
+  cmessage(STATUS "Set CXX standard due to ROOT: \"${ROOT_CXX_STANDARD}\"")
+endif()
 
 if(${UseCUDAProb3} EQUAL 1)
   CPMFindPackage(
@@ -364,6 +396,66 @@ if(${UseOscProb} EQUAL 1)
   add_library(OSCPROB INTERFACE IMPORTED)
   target_include_directories(OSCPROB INTERFACE ${OscProb_SOURCE_DIR})
   target_compile_definitions(NuOscillatorCompilerOptions INTERFACE UseOscProb=1)
+endif()
+
+if(${UseOscLib} EQUAL 1)
+  # Check if C++ standard is less than 17
+  if(CMAKE_CXX_STANDARD LESS 17)
+    cmessage(FATAL_ERROR "OscLib requires at least C++17, but you are using C++${CMAKE_CXX_STANDARD}.")
+  endif()
+
+  if(${UseDoubles} EQUAL 0)
+    cmessage(FATAL_ERROR "OscLib currently don't support float, please switch to double or change engine. Gomenasai")
+  endif()
+
+  find_package(Boost REQUIRED)
+  find_package(GSL REQUIRED)
+
+  CPMAddPackage(
+    NAME Eigen
+    VERSION 3.4.0
+    URL https://gitlab.com/libeigen/eigen/-/archive/3.4.0/eigen-3.4.0.tar.gz
+    DOWNLOAD_ONLY YES
+  )
+  if(Eigen_ADDED)
+    add_library(Eigen INTERFACE IMPORTED)
+    target_include_directories(Eigen INTERFACE ${Eigen_SOURCE_DIR})
+  endif()
+
+  CPMAddPackage(
+    NAME OscLib
+    GITHUB_REPOSITORY cafana/OscLib
+    GIT_TAG ${OscLib_BRANCH}
+    DOWNLOAD_ONLY YES
+  )
+  # KS: Collect OscLib sources and header files
+  file(GLOB OSCLIB_SOURCES
+    ${OscLib_SOURCE_DIR}/OscLib/*.cxx
+  )
+  file(GLOB OSCLIB_HEADERS
+    ${OscLib_SOURCE_DIR}/OscLib/*.h
+  )
+  add_library(OscLib SHARED
+    ${OSCLIB_SOURCES}
+  )
+
+  set_target_properties(OscLib PROPERTIES
+    PUBLIC_HEADER "${OSCLIB_HEADERS}"
+    EXPORT_NAME OscLib
+  )
+
+  target_link_libraries(OscLib ROOT::Core Eigen GSL::gsl)
+  # Properly scoped include dirs
+  target_include_directories(OscLib PUBLIC
+      $<BUILD_INTERFACE:${OscLib_SOURCE_DIR}>
+      $<INSTALL_INTERFACE:include>
+  )
+  install(TARGETS OscLib
+    EXPORT NuOscillator-targets
+    LIBRARY DESTINATION lib/
+    PUBLIC_HEADER DESTINATION include/
+  )
+  target_compile_definitions(NuOscillatorCompilerOptions INTERFACE UseOscLib=1)
 endif()
 
 if(${UseNuSQUIDSLinear} EQUAL 1)
@@ -565,6 +657,12 @@ if(OSCPROB_LIB_DIR)
   file(RELATIVE_PATH OSCPROB_REL_LIB_PATH
        "${CMAKE_INSTALL_PREFIX}"
        "${OSCPROB_LIB_DIR}")
+endif()
+
+if(OSCLIB_LIB_DIR)
+    file(RELATIVE_PATH OSCLIB_REL_LIB_PATH
+       "${CMAKE_INSTALL_PREFIX}"
+       "${OSCLIB_LIB_DIR}")
 endif()
 
 if(GLOBES_LIB_DIR)
