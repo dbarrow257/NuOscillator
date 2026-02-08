@@ -86,7 +86,7 @@ LIST(APPEND ALL_Engines
 #Default Branches
 
 if(NOT DEFINED CUDAProb3_BRANCH)
-  set(CUDAProb3_BRANCH "v1.2.0")
+  set(CUDAProb3_BRANCH "kskwarczynski/feat/crackpotspeedup")
 endif()
 
 if(NOT DEFINED CUDAProb3Linear_BRANCH)
