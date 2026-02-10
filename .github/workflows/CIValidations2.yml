@@ -87,12 +87,18 @@ jobs:
             argument: NuOscillatorConfigs/Binned_OscProbLinear_NSI.yaml
             new_output: OscProb_BinnedOscillator_NSI_New.txt
             old_output: OscProb_UnbinnedOscillator_NSI_Stored.txt
-          - name: BinnedOscillator GLoBESLinear Comparison
+          - name: OscProbCalcer GLoBESLinear Comparison
             cmake_options: -DUseGLoBESLinear=1
             exec: SingleOscProbCalcer
             argument: NuOscillatorConfigs/OscProbCalcerConfigs/GLoBESLinear.yaml
             new_output: GLoBESLinear_BinnedOscillator_New.txt
             old_output: GLoBESLinear_BinnedOscillator_Stored.txt
+          - name: OscProbCalcer CHICLinear Comparison
+            cmake_options: -DUseCHICLinear=1
+            exec: SingleOscProbCalcer
+            argument: NuOscillatorConfigs/OscProbCalcerConfigs/CHICLinear.yaml
+            new_output: CHICLinear_New.txt
+            old_output: CHICLinear_Stored.txt
 
     container:
       image: ghcr.io/mach3-software/mach3:alma9v1.4.1

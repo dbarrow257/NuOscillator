@@ -83,7 +83,7 @@ int main() {
 
   std::cout << "Finished setup in executable" << std::endl;
   std::cout << "========================================================" << std::endl;
-  std::cout << "Starting drag race in executable" << std::endl;
+  std::cout << "Starting OscProbCalcerComparison" << std::endl;
 
   std::vector< std::vector< std::vector<FLOAT_T> > > ProbabilityArray(Oscillators.size());
   for (size_t iOsc=0;iOsc<Oscillators.size();iOsc++) {

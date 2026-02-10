@@ -59,6 +59,7 @@ LIST(APPEND ALL_Engines
   NuSQUIDSLinear
   OscProb
   GLoBESLinear
+  CHICLinear
 )
 # KS: Tells whether all oscillators were disabled
 set(ALL_OSCILLATORS_DISABLED TRUE)
@@ -109,6 +110,10 @@ endif()
 
 if(NOT DEFINED GLoBES_BRANCH)
   set(GLoBES_BRANCH "3.2.18")
+endif()
+
+if(NOT DEFINED CHICLinear_BRANCH)
+  set(CHICLinear_BRANCH "416a28c435219348dd61d5044469e9124def0f07")
 endif()
 
 ########################################################
@@ -498,6 +503,63 @@ if(${UseGLoBESLinear} EQUAL 1)
   )
   add_dependencies(SNU::SNU GLOBES::GLOBES)
   target_compile_definitions(NuOscillatorCompilerOptions INTERFACE UseGLoBESLinear=1)
+endif()
+
+if(${UseCHICLinear} EQUAL 1)
+  set(CHIC_PREFIX "${CMAKE_BINARY_DIR}/CHIC-prefix")
+  set(CHIC_LIB_DIR "${GLOBES_PREFIX}/lib/")
+  set(CHIC_INC_DIR "${GLOBES_PREFIX}/include/")
+
+  if(CMAKE_CXX_STANDARD LESS 17)
+    cmessage(WARNING "OscProb requires at least C++17 — changing from ${CMAKE_CXX_STANDARD} to 17")
+    set(CMAKE_CXX_STANDARD 17)
+  endif()
+
+  CPMAddPackage(
+    NAME Eigen
+    VERSION 3.4.0
+    URL https://gitlab.com/libeigen/eigen/-/archive/3.4.0/eigen-3.4.0.tar.gz
+    DOWNLOAD_ONLY YES
+  )
+
+  if(Eigen_ADDED)
+    add_library(Eigen INTERFACE IMPORTED)
+    target_include_directories(Eigen INTERFACE ${Eigen_SOURCE_DIR})
+  endif()
+
+
+  CPMAddPackage(
+    NAME CHIC
+    GIT_REPOSITORY https://github.com/pabloferm/CHIC.git
+    GIT_TAG ${CHICLinear_BRANCH}
+    DOWNLOAD_ONLY YES
+  )
+
+  set(CHIC_HEADERS
+    ${CHIC_SOURCE_DIR}/src/CHIC.h
+    ${CHIC_SOURCE_DIR}/src/opt_constants.h
+  )
+
+  add_library(CHIC STATIC
+    ${CHIC_SOURCE_DIR}/src/CHIC.cpp
+    ${CHIC_HEADERS}
+  )
+
+  target_include_directories(CHIC
+  PUBLIC
+    $<BUILD_INTERFACE:${CHIC_SOURCE_DIR}/src>
+    $<INSTALL_INTERFACE:include/CHIC>
+  )
+  target_link_libraries(CHIC PUBLIC Eigen)
+  target_compile_options(CHIC PRIVATE -O3 -fPIC)
+
+  add_library(CHIC::CHIC ALIAS CHIC)
+  install(TARGETS CHIC
+    EXPORT NuOscillator-targets
+    ARCHIVE DESTINATION lib
+  )
+
+  target_compile_definitions(NuOscillatorCompilerOptions INTERFACE UseCHICLinear=1)
 endif()
 
 if(${UseGPU} EQUAL 1)
