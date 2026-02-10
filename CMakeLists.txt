@@ -50,27 +50,6 @@ include(${CMAKE_CURRENT_BINARY_DIR}/cmake/CPM.cmake)
 DefineEnabledRequiredSwitch(UseMultithreading 1)
 DefineEnabledRequiredSwitch(UseDoubles 1)
 
-DefineEnabledRequiredSwitch(UseCUDAProb3 0)
-DefineEnabledRequiredSwitch(UseCUDAProb3Linear 0)
-DefineEnabledRequiredSwitch(UseProb3ppLinear 0)
-DefineEnabledRequiredSwitch(UseProbGPULinear 0)
-DefineEnabledRequiredSwitch(UseNuFASTLinear 0)
-DefineEnabledRequiredSwitch(UseNuSQUIDSLinear 0)
-DefineEnabledRequiredSwitch(UseOscProb 0)
-DefineEnabledRequiredSwitch(UseGLoBESLinear  0)
-
-# KS: NuFastLinear by default
-if(UseCUDAProb3        EQUAL 0 AND
-    UseCUDAProb3Linear EQUAL 0 AND
-    UseProb3ppLinear   EQUAL 0 AND
-    UseProbGPULinear   EQUAL 0 AND
-    UseNuFASTLinear    EQUAL 0 AND
-    UseNuSQUIDSLinear  EQUAL 0 AND
-    UseOscProb         EQUAL 0 AND
-    UseGLoBESLinear    EQUAL 0 )
-  set(UseNuFASTLinear 1)
-endif()
-
 LIST(APPEND ALL_Engines
   CUDAProb3
   CUDAProb3Linear
@@ -81,6 +60,21 @@ LIST(APPEND ALL_Engines
   OscProb
   GLoBESLinear
 )
+# KS: Tells whether all oscillators were disabled
+set(ALL_OSCILLATORS_DISABLED TRUE)
+
+foreach(option IN LISTS ALL_Engines)
+  DefineEnabledRequiredSwitch(Use${option} 0)
+  # If at least one oscillator is enabled then set ALL_OSCILLATORS_DISABLED to false
+  if(Use${option} EQUAL 1)
+    set(ALL_OSCILLATORS_DISABLED FALSE)
+  endif()
+endforeach()
+
+# KS: NuFastLinear by default
+if(ALL_OSCILLATORS_DISABLED)
+  set(UseNuFASTLinear 1)
+endif()
 
 ########################################################
 #Default Branches
