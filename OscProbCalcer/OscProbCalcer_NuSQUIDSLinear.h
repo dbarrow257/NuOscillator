@@ -3,7 +3,10 @@
 
 #include "OscProbCalcerBase.h"
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
 #include "nuSQuIDS/nuSQuIDS.h"
+#pragma GCC diagnostic pop
 #include "examples/Decoherence/nuSQUIDSDecoh.h"
 #include "examples/NSI/NSI.h"
 #include "examples/LV/LV.h"
