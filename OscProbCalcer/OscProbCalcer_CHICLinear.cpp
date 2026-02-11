@@ -59,7 +59,7 @@ void OscProbCalcerCHICLinear::CalculateProbabilities(const std::vector<FLOAT_T>&
         const int from = fOscillationChannels[iOscChannel].GeneratedFlavour - 1;
         const int to   = fOscillationChannels[iOscChannel].DetectedFlavour - 1;
 
-        const double Weight = prob(from, to);
+        const double Weight = prob(to, from);
 
         const int IndexToFill = iNuType * fNOscillationChannels * fNEnergyPoints +
                                  iOscChannel * fNEnergyPoints + iOscProb;
