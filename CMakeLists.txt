@@ -16,7 +16,7 @@ include(${CMAKE_CURRENT_LIST_DIR}/cmake/Modules/NuOscillatorUtils.cmake)
 # By default GPU is off
 DefineEnabledRequiredSwitch(UseGPU 0)
 
-set(NUOSCILLATOR_VERSION 1.4.4)
+set(NUOSCILLATOR_VERSION 1.4.5)
 
 if(${UseGPU} EQUAL 0)
   project(NUOSCILLATOR VERSION ${NUOSCILLATOR_VERSION} LANGUAGES CXX)
