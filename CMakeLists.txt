@@ -106,7 +106,7 @@ if(NOT DEFINED NuFASTLinear_BRANCH)
 endif()
 
 if(NOT DEFINED NuSQUIDSLinear_BRANCH)
-  set(NuSQUIDSLinear_BRANCH "v1.12.0")
+  set(NuSQUIDSLinear_BRANCH "v1.13.3")
 endif()
 
 if(NOT DEFINED OscProb_BRANCH)
