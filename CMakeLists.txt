@@ -42,7 +42,7 @@ add_library(NuOscillatorCompilerOptions INTERFACE)
 # download CPM.cmake
 file(
   DOWNLOAD
-  https://github.com/cpm-cmake/CPM.cmake/releases/download/v0.42.0/CPM.cmake
+  https://github.com/cpm-cmake/CPM.cmake/releases/download/v0.42.1/CPM.cmake
   ${CMAKE_CURRENT_BINARY_DIR}/cmake/CPM.cmake
 )
 include(${CMAKE_CURRENT_BINARY_DIR}/cmake/CPM.cmake)
@@ -209,12 +209,12 @@ endif()
 
 #================================================================================================
 #Setup Deps
-set(YAML_CPP_VERSION 0.8.0)
+set(YAML_CPP_VERSION 0.9.0)
 CPMAddPackage(
     NAME yaml-cpp
     VERSION ${YAML_CPP_VERSION}
     GITHUB_REPOSITORY "jbeder/yaml-cpp"
-    GIT_TAG "${YAML_CPP_VERSION}"
+    GIT_TAG "yaml-cpp-${YAML_CPP_VERSION}"
     OPTIONS
       "YAML_CPP_INSTALL ON"
       "YAML_CPP_BUILD_TESTS OFF"
