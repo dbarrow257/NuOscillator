@@ -172,6 +172,10 @@ inline std::vector<std::string> ReturnKnownConfigs() {
   ConfigNames.push_back("./NuOscillatorConfigs/Binned_GLoBESLinear.yaml");
 #endif
 
+#if UseCHICLinear == 1
+  ConfigNames.push_back("./NuOscillatorConfigs/Binned_CHICLinear.yaml");
+#endif
+
   if(ConfigNames.empty()){
     std::cerr << "I haven't added single config, this could mean you added new engine but forgot about me" << std::endl;
     throw std::runtime_error("No known configs");
