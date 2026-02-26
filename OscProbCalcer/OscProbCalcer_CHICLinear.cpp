@@ -30,6 +30,14 @@ void OscProbCalcerCHICLinear::SetupPropagator() {
 }
 
 void OscProbCalcerCHICLinear::CalculateProbabilities(const std::vector<FLOAT_T>& OscParams) {
+  // Oscpars, as given from MaCh3, expresses the mixing angles in sin^2(theta). This propagator expects them in theta
+  for (int iOscPar = 0;iOscPar <= kTH13; iOscPar++) {
+    if (OscParams[iOscPar] < 0) {
+      std::cerr << "Invalid oscillation parameter (Can not sqrt this value)!:" << OscParams[iOscPar] << std::endl;
+      throw std::runtime_error("Invalid setup");
+    }
+  }
+
   for (int iNuType = 0; iNuType < fNNeutrinoTypes; ++iNuType) {
     // KS: CHIC sets Nu and NuBar based on constructor those we switch between both
     CHIC* chic_propagator = (fNeutrinoTypes[iNuType] == Nu) ? chic_nu.get() : chic_nubar.get();

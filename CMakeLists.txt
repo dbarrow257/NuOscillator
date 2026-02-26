@@ -16,7 +16,7 @@ include(${CMAKE_CURRENT_LIST_DIR}/cmake/Modules/NuOscillatorUtils.cmake)
 # By default GPU is off
 DefineEnabledRequiredSwitch(UseGPU 0)
 
-set(NUOSCILLATOR_VERSION 1.4.5)
+set(NUOSCILLATOR_VERSION 1.5.0)
 
 if(${UseGPU} EQUAL 0)
   project(NUOSCILLATOR VERSION ${NUOSCILLATOR_VERSION} LANGUAGES CXX)
@@ -511,7 +511,7 @@ if(${UseCHICLinear} EQUAL 1)
   set(CHIC_INC_DIR "${GLOBES_PREFIX}/include/")
 
   if(CMAKE_CXX_STANDARD LESS 17)
-    cmessage(WARNING "OscProb requires at least C++17 — changing from ${CMAKE_CXX_STANDARD} to 17")
+    cmessage(WARNING "CHIC requires at least C++17 — changing from ${CMAKE_CXX_STANDARD} to 17")
     set(CMAKE_CXX_STANDARD 17)
   endif()
 
@@ -551,7 +551,8 @@ if(${UseCHICLinear} EQUAL 1)
     $<INSTALL_INTERFACE:include/CHIC>
   )
   target_link_libraries(CHIC PUBLIC Eigen)
-  target_compile_options(CHIC PRIVATE -O3 -fPIC)
+  target_compile_options(CHIC PRIVATE -fPIC)
+  target_link_libraries(CHIC PRIVATE NuOscillatorCompilerOptions)
 
   add_library(CHIC::CHIC ALIAS CHIC)
   install(TARGETS CHIC
