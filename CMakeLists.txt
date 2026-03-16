@@ -113,7 +113,7 @@ if(NOT DEFINED GLoBES_BRANCH)
 endif()
 
 if(NOT DEFINED CHICLinear_BRANCH)
-  set(CHICLinear_BRANCH "416a28c435219348dd61d5044469e9124def0f07")
+  set(CHICLinear_BRANCH "v1.0.0")
 endif()
 
 ########################################################
