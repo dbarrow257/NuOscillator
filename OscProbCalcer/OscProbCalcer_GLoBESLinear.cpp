@@ -13,7 +13,8 @@ extern "C" {
 OscProbCalcerGLoBESLinear::OscProbCalcerGLoBESLinear(YAML::Node Config_) : OscProbCalcerBase(Config_)
 {
   //=======
-  fNOscParams = kNOscParams;
+  std::vector<std::string> OscParNames = {"sin2_th12","sin2_th23","sin2_th13","dm2_12","dm2_23","delta_cp","path_length","matter_density"};
+  SetExpectedParameterNames(OscParNames);
 
   fNNeutrinoTypes = 2;
   InitialiseNeutrinoTypesArray(fNNeutrinoTypes);
@@ -34,17 +35,25 @@ void OscProbCalcerGLoBESLinear::SetupPropagator() {
   glbInit(name);
 }
 
-void OscProbCalcerGLoBESLinear::CalculateProbabilities(const std::vector<FLOAT_T>& OscParams) {
+void OscProbCalcerGLoBESLinear::CalculateProbabilities() {
+  // Oscpars, as given from MaCh3, expresses the mixing angles in sin^2(theta). This propagator expects them in theta
+  for (int iOscPar=0;iOscPar<=kTH13;iOscPar++) {
+    if (GetOscillationParameter(iOscPar) < 0) {
+      std::cerr << "Invalid oscillation parameter (Can not sqrt this value)!:" << GetOscillationParameter(iOscPar) << std::endl;
+      throw std::runtime_error("Invalid setup");
+    }
+  }
+  
   // Set the experimental parameters
-  const double L = OscParams[kPATHL]; // km
-  const double rho = OscParams[kDENS];
+  const double L = GetOscillationParameter(kPATHL); // km
+  const double rho = GetOscillationParameter(kDENS);
   // Set the vacuum oscillation parameters
-  const double theta12 = std::asin(std::sqrt(OscParams[kTH12]));
-  const double theta13 = std::asin(std::sqrt(OscParams[kTH13]));
-  const double theta23 = std::asin(std::sqrt(OscParams[kTH23]));
-  const double delta = OscParams[kDCP];
-  const double Dmsq21 = OscParams[kDM12];
-  const double Dmsq31 = OscParams[kDM23] + OscParams[kDM12]; // eV^2
+  const double theta12 = std::asin(std::sqrt(GetOscillationParameter(kTH12)));
+  const double theta13 = std::asin(std::sqrt(GetOscillationParameter(kTH13)));
+  const double theta23 = std::asin(std::sqrt(GetOscillationParameter(kTH23)));
+  const double delta = GetOscillationParameter(kDCP);
+  const double Dmsq21 = GetOscillationParameter(kDM12);
+  const double Dmsq31 = GetOscillationParameter(kDM23) + GetOscillationParameter(kDM12); // eV^2
 
   // Set GLoBES oscillation parameters
   glb_params true_values = glbAllocParams();

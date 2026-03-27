@@ -34,6 +34,7 @@ int main(int argc, char **argv) {
   OscProbCalcerFactory* OscProbCalcFactory = new OscProbCalcerFactory();
   OscProbCalcerBase* Calcer = OscProbCalcFactory->CreateOscProbCalcer(OscProbCalcerConfigname);
   delete OscProbCalcFactory;
+  
   std::cout << "========================================================" << std::endl;
   std::cout << "Setting up Oscillators" << std::endl;
 
