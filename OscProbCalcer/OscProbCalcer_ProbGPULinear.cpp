@@ -35,7 +35,7 @@ void OscProbCalcerProbGPULinear::SetupPropagator() {
 }
 
 void OscProbCalcerProbGPULinear::CalculateProbabilities() {
-  setMNS(GetOscillationParameter(kTH12], GetOscillationParameter(kTH13), GetOscillationParameter(kTH23), GetOscillationParameter(kDM12), GetOscillationParameter(kDM23), GetOscillationParameter(kDCP), doubled_angle);
+  setMNS(GetOscillationParameter(kTH12), GetOscillationParameter(kTH13), GetOscillationParameter(kTH23), GetOscillationParameter(kDM12), GetOscillationParameter(kDM23), GetOscillationParameter(kDCP), doubled_angle);
 
   // ProbGPULinear calculates oscillation probabilities for each NeutrinoType, so need to copy them from the calculator into fWeightArray
   int CopyArrSize = fNEnergyPoints;
