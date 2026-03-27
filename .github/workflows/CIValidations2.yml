@@ -69,7 +69,7 @@ jobs:
             argument: NuOscillatorConfigs/OscProbCalcerConfigs/OscProb.yaml
             new_output: OscProbAtm_New.txt
             old_output: OscProbAtm_Stored.txt
-	  - name: OscProbCalcer OscLibLinear Comparison
+          - name: OscProbCalcer OscLibLinear Comparison
             cmake_options: -DUseOscLibLinear=1
             exec: SingleOscProbCalcer
             argument: NuOscillatorConfigs/OscProbCalcerConfigs/OscLibLinear.yaml
