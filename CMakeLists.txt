@@ -97,7 +97,7 @@ if(NOT DEFINED ProbGPULinear_BRANCH)
 endif()
 
 if(NOT DEFINED NuFASTLinear_BRANCH)
-  set(NuFASTLinear_BRANCH "v1.0")
+  set(NuFASTLinear_BRANCH "v1.1")
 endif()
 
 if(NOT DEFINED NuSQUIDSLinear_BRANCH)
