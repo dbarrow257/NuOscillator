@@ -205,6 +205,14 @@ class OscProbCalcerBase {
    * @return Index in #fNeutrinoTypes
    */
   int ReturnNuTypeFromFlavour(int NuFlav);
+  
+  /**
+   * @brief Print current oscillation parameters
+   *
+   * Prints the current oscillation parameters which have been used in the calculation
+   */
+  void PrintOscParamsCurr();
+  
 
   // ========================================================================================================================================================================
   // Public virtual functions which need calculater specific implementations
@@ -497,12 +505,18 @@ class OscProbCalcerBase {
    */
   std::vector<FLOAT_T> fOscParamsCurr;
 
+  
   std::vector<FLOAT_T*> fOscParams;
   std::vector<std::string> fExpectedOscillationParameterNames;
   std::vector<bool> fOscillationParametersSetCheck;
 
   bool fUseLegacyMode;
   bool fUseLegacyMode_OscParsSet;
+
+  /**
+   * @brief Boolean declaring whether the SanitiseProbabilities function should be called in the Reweight function. This should only be used for performance sensitive applications as when this is false, oscillation probabilities could be returned which are <0, >1, or nan 
+   */
+  bool fNoSanity;
 };
 
 #endif

@@ -78,6 +78,21 @@ OscProbCalcerBase::OscProbCalcerBase(YAML::Node InputConfig_) {
     }
   }
   
+  fNoSanity = false;
+  if (Config["OscProbCalcerSetup"]["NoSanity"]) {
+    fNoSanity = Config["OscProbCalcerSetup"]["NoSanity"].as<bool>();
+    if (fNoSanity) {
+      std::cout << "=================================== WARNING ===================================" << std::endl;
+      std::cout << "User specified that NoSanity should be applied -" << std::endl;
+      std::cout << "This means that oscillation probabilities returned from the engine are not" << std::endl;
+      std::cout << "checked to be within the strict [0,1] bound." << std::endl;
+      std::cout << "This should only be used in performance sensitive applications and only where" << std::endl;
+      std::cout << "the engine has been throughly checked for your application." << std::endl;
+      std::cout << "Standard recommendation is to not run in this mode!" << std::endl;
+      std::cout << "===============================================================================" << std::endl;
+    }
+  }
+
 }
 
 OscProbCalcerBase::~OscProbCalcerBase() {
@@ -335,7 +350,7 @@ void OscProbCalcerBase::Reweight() {
   SetCurrOscParams();
 
   CalculateProbabilities();
-  SanitiseProbabilities();
+  if (!fNoSanity) {SanitiseProbabilities();}
   if (fVerbose >= NuOscillator::INFO) {std::cout << "Implementation:" << fImplementationName << " completed reweight and was found to have sensible oscillation weights" << std::endl;}
 }
 
@@ -406,6 +421,14 @@ FLOAT_T OscProbCalcerBase::GetOscillationParameter(int Index) {
   throw std::runtime_error("Requested oscillation parameter pointer is nullptr");
 }
 
+void OscProbCalcerBase::PrintOscParamsCurr() {
+  std::cout << "fOscParamsCurr: [";
+  for (size_t iOscParam=0;iOscParam<fNOscParams;++iOscParam) {
+    std::cout << fOscParamsCurr[iOscParam] << ", ";
+  }
+  std::cout << "]" << std::endl;
+}
+
 void OscProbCalcerBase::SanitiseProbabilities() {
 
   // Precompute these here
@@ -416,6 +439,7 @@ void OscProbCalcerBase::SanitiseProbabilities() {
     if (std::isnan(fWeightArray[iWeight])) {
       std::cerr << "Found nan probability in fWeightArray" << std::endl;
       std::cerr << "iWeight:" << iWeight << std::endl;
+      PrintOscParamsCurr();
       throw std::runtime_error("Invalid probability");
     }
 
@@ -428,6 +452,7 @@ void OscProbCalcerBase::SanitiseProbabilities() {
       std::cerr << "Found probability which is below the allowable precision of: 0.0-" << PrecisionLimit << std::endl;
       std::cerr << "iWeight:" << iWeight << std::endl;
       std::cerr << "fWeightArray[iWeight]:" << fWeightArray[iWeight] << std::endl;
+      PrintOscParamsCurr();
       throw std::runtime_error("Probability below zero");
     }
     if ((fWeightArray[iWeight] > lower_limit) && (fWeightArray[iWeight] < 0)) {
@@ -445,7 +470,8 @@ void OscProbCalcerBase::SanitiseProbabilities() {
       std::cerr << "Found probability which is above the allowable precision of: 1.0+" << PrecisionLimit << std::endl;
       std::cerr << "iWeight:" << iWeight << std::endl;
       std::cerr << "fWeightArray[iWeight]:" << fWeightArray[iWeight] << std::endl;
-      throw std::runtime_error("Probability below zero");
+      PrintOscParamsCurr();
+      throw std::runtime_error("Probability above one");
     }
   }
   

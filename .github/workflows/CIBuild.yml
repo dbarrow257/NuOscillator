@@ -21,23 +21,24 @@ jobs:
           - os: Alma9
             file: Docs/DockerFiles/Alma9/Dockerfile
             tag: alma9latest
-            cmakeoptions: -DUseDoubles=1 -DUseMultithreading=1 -DUseCUDAProb3=0 -DUseCUDAProb3Linear=1 -DUseProb3ppLinear=1 -DUseNuFASTLinear=1 -DUseProbGPULinear=0 -DUseOscProb=1
+            cmakeoptions: -DUseDoubles=1 -DUseMultithreading=1 -DUseCUDAProb3=1 -DUseCUDAProb3Linear=1 -DUseProb3ppLinear=1 -DUseNuFASTLinear=1 -DUseProbGPULinear=0 -DUseOscProb=1 -DUseNuSQUIDSLinear=1 -DUseGLoBESLinear=1 -DUseCHICLinear=1
           - os: Alma9 float
             file: Docs/DockerFiles/Alma9/Dockerfile
             tag: alma9latest
-            cmakeoptions: -DUseDoubles=0 -DUseMultithreading=1 -DUseCUDAProb3=0 -DUseCUDAProb3Linear=1 -DUseProb3ppLinear=1 -DUseNuFASTLinear=1 -DUseProbGPULinear=0 -DUseOscProb=1
+            cmakeoptions: -DUseDoubles=0 -DUseMultithreading=1 -DUseCUDAProb3=1 -DUseCUDAProb3Linear=1 -DUseProb3ppLinear=1 -DUseNuFASTLinear=1 -DUseProbGPULinear=0 -DUseOscProb=1 -DUseNuSQUIDSLinear=1 -DUseCHICLinear=1
           - os: Alma9 w/o multithread
             file: Docs/DockerFiles/Alma9/Dockerfile
             tag: alma9latest
-            cmakeoptions: -DUseDoubles=0 -DUseMultithreading=0 -DUseCUDAProb3=0 -DUseCUDAProb3Linear=0 -DUseProb3ppLinear=1 -DUseNuFASTLinear=1 -DUseProbGPULinear=0 -DUseOscProb=1
+            cmakeoptions: -DUseDoubles=0 -DUseMultithreading=0 -DUseCUDAProb3=0 -DUseCUDAProb3Linear=0 -DUseProb3ppLinear=1 -DUseNuFASTLinear=1 -DUseProbGPULinear=0 -DUseOscProb=1 -DUseNuSQUIDSLinear=1 -DUseGLoBESLinear=1 -DUseCHICLinear=1
           - os: Rocky9
             file: Docs/DockerFiles/Rocky9/Dockerfile
             tag: rocky9latest
-            cmakeoptions: -DUseGPU=1 -DUseMultithreading=1 -DUseDoubles=1 -DUseCUDAProb3=1 -DUseCUDAProb3Linear=0 -DUseProb3ppLinear=1 -DUseNuFASTLinear=1 -DUseProbGPULinear=1 -DUseOscProb=1
-          - os: Rocky9 CUDAProb3Linear
-            file: Docs/DockerFiles/Rocky9/Dockerfile
-            tag: rocky9latest
-            cmakeoptions: -DUseGPU=1 -DUseMultithreading=1 -DUseDoubles=1 -DUseCUDAProb3=0 -DUseCUDAProb3Linear=1 -DUseProb3ppLinear=1 -DUseNuFASTLinear=1 -DUseProbGPULinear=1 -DUseOscProb=1
+            cmakeoptions: -DUseGPU=1 -DUseMultithreading=1 -DUseDoubles=1 -DUseCUDAProb3=1 -DUseCUDAProb3Linear=1 -DUseProb3ppLinear=1 -DUseNuFASTLinear=1 -DUseProbGPULinear=1 -DUseOscProb=1 -DUseNuSQUIDSLinear=1 -DUseGLoBESLinear=1 -DUseCHICLinear=1
+          - os: Fedora32
+            file: Docs/DockerFiles/Fedora32/Dockerfile
+            tag: fedora32latest
+            cmakeoptions: -DUseDoubles=1 -DUseMultithreading=1 -DUseCUDAProb3=1 -DUseCUDAProb3Linear=1 -DUseProb3ppLinear=1 -DUseNuFASTLinear=1 -DUseProbGPULinear=0 -DUseOscProb=0 -DUseNuSQUIDSLinear=1 -DUseGLoBESLinear=1
+
 
     name: Build CI ${{ matrix.os }}
 
@@ -47,5 +48,13 @@ jobs:
     - name: Log in to GitHub Container Registry
       run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
 
+    - name: Free disk space for ICPX
+      run: |
+        sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc || true
+        docker system prune -af || true
+        sudo apt-get clean
+        sudo rm -rf /var/lib/apt/lists/*
+        df -h
+            
     - name: Build the Docker image
       run: docker build . --file ${{ matrix.file }} --tag ghcr.io/${{ github.repository_owner }}/nuoscillator:${{ matrix.tag }} --build-arg NUOSCILLATOR_VERSION=${{ github.head_ref }} --build-arg CMAKE_OPTIONS="${{ matrix.cmakeoptions }}"

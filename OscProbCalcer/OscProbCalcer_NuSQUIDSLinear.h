@@ -3,7 +3,10 @@
 
 #include "OscProbCalcerBase.h"
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
 #include "nuSQuIDS/nuSQuIDS.h"
+#pragma GCC diagnostic pop
 #include "examples/Decoherence/nuSQUIDSDecoh.h"
 #include "examples/NSI/NSI.h"
 #include "examples/LV/LV.h"
@@ -43,7 +46,7 @@ class OscProbCalcerNuSQUIDSLinear : public OscProbCalcerBase {
   /**
    * @brief Setup NuSQUIDS specific variables
    */  
-  void SetupPropagator() override;
+  void SetupPropagator() final;
   
   /**
    * @brief Calculate some oscillation probabilities for a particular oscillation parameter set
@@ -53,7 +56,7 @@ class OscProbCalcerNuSQUIDSLinear : public OscProbCalcerBase {
    *
    * @param OscParams The parameter set to calculate oscillation probabilities at
    */
-  void CalculateProbabilities(const std::vector<FLOAT_T>& OscParams) override;
+  void CalculateProbabilities(const std::vector<FLOAT_T>& OscParams) final;
 
   /**
    * @brief Return implementation specific index in the weight array for a specific combination of neutrino oscillation channel, energy and cosine zenith
@@ -65,7 +68,7 @@ class OscProbCalcerNuSQUIDSLinear : public OscProbCalcerBase {
    *
    * @return Index in #fWeightArray which corresponds to the given inputs
    */
-  int ReturnWeightArrayIndex(int NuTypeIndex, int OscNuIndex, int EnergyIndex, int CosineZIndex=-1) override;
+  int ReturnWeightArrayIndex(int NuTypeIndex, int OscNuIndex, int EnergyIndex, int CosineZIndex=-1) final;
   
   /**
    * @brief Define the size of fWeightArray
@@ -74,7 +77,7 @@ class OscProbCalcerNuSQUIDSLinear : public OscProbCalcerBase {
    *
    * @return Length that #fWeightArray should be initialised to
    */
-  long DefineWeightArraySize() override;
+  long DefineWeightArraySize() final;
 
   // ========================================================================================================================================================================
   // Functions which help setup implementation specific code
@@ -104,7 +107,7 @@ class OscProbCalcerNuSQUIDSLinear : public OscProbCalcerBase {
    *
    * @return Enum value describing the PMNS Matrix to use
    */
-  int PMNS_StrToInt(std::string OscModel);
+  int PMNS_StrToInt(const std::string& OscModel);
   
   /**
    * @brief Return number of parameters needed for a particular type of PMNS matrix
@@ -158,25 +161,6 @@ class OscProbCalcerNuSQUIDSLinear : public OscProbCalcerBase {
    * @brief Declaration of the NuSQUIDS BSM (Decoherence) model object
    */
   nusquids::nuSQUIDSDecoh::DecoherenceModel nusquids_decoherence_model;
-
-  /**
-   * @brief Declaration of the NuSQUIDS BSM (Lorentz-Violation Invariance) derived class object for neutrinos
-   */
-  nusquids::nuSQUIDSLV* nus_LIV;
-  /**
-   * @brief Declaration of the NuSQUIDS BSM (Lorentz-Violation Invariance) derived class object for anti-neutrinos
-   */
-  nusquids::nuSQUIDSLV* nubars_LIV;
-
-  /**
-   * @brief Declaration of the NuSQUIDS BSM (Non-Standard Interactions) derived class object for neutrinos
-   */
-  nuSQUIDSNSI* nus_NSI;
-
-  /**
-   * @brief Declaration of the NuSQUIDS BSM (Non-Standard Interactions) derived class object for anti-neutrinos
-   */
-  nuSQUIDSNSI* nubars_NSI;
 
   /**
    * @brief Declaration of the muon-neutrino to tau-neutrino coupling for the NSI computation

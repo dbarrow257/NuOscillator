@@ -21,7 +21,7 @@ OscProbCalcerNuFASTLinear::OscProbCalcerNuFASTLinear(YAML::Node Config_) : OscPr
   // --------------------------------------------------------------------- //
   N_Newton = 3;
   if (Config_["OscProbCalcerSetup"]["nNewtonIter"]) {
-    N_Newton = Config_["OscProbCalcerSetup"]["nNewtonIters"].as<int>();
+    N_Newton = Config_["OscProbCalcerSetup"]["nNewtonIter"].as<int>();
   }
   
   //=======

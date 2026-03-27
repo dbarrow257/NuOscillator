@@ -16,7 +16,7 @@ include(${CMAKE_CURRENT_LIST_DIR}/cmake/Modules/NuOscillatorUtils.cmake)
 # By default GPU is off
 DefineEnabledRequiredSwitch(UseGPU 0)
 
-set(NUOSCILLATOR_VERSION 1.3.1)
+set(NUOSCILLATOR_VERSION 1.5.0)
 
 if(${UseGPU} EQUAL 0)
   project(NUOSCILLATOR VERSION ${NUOSCILLATOR_VERSION} LANGUAGES CXX)
@@ -42,32 +42,13 @@ add_library(NuOscillatorCompilerOptions INTERFACE)
 # download CPM.cmake
 file(
   DOWNLOAD
-  https://github.com/cpm-cmake/CPM.cmake/releases/download/v0.40.2/CPM.cmake
+  https://github.com/cpm-cmake/CPM.cmake/releases/download/v0.42.1/CPM.cmake
   ${CMAKE_CURRENT_BINARY_DIR}/cmake/CPM.cmake
 )
 include(${CMAKE_CURRENT_BINARY_DIR}/cmake/CPM.cmake)
 
 DefineEnabledRequiredSwitch(UseMultithreading 1)
 DefineEnabledRequiredSwitch(UseDoubles 1)
-
-DefineEnabledRequiredSwitch(UseCUDAProb3 0)
-DefineEnabledRequiredSwitch(UseCUDAProb3Linear 0)
-DefineEnabledRequiredSwitch(UseProb3ppLinear 0)
-DefineEnabledRequiredSwitch(UseProbGPULinear 0)
-DefineEnabledRequiredSwitch(UseNuFASTLinear 0)
-DefineEnabledRequiredSwitch(UseNuSQUIDSLinear 0)
-DefineEnabledRequiredSwitch(UseOscProb 0)
-
-# KS: NuFastLinear by default
-if(UseCUDAProb3        EQUAL 0 AND
-    UseCUDAProb3Linear EQUAL 0 AND
-    UseProb3ppLinear   EQUAL 0 AND
-    UseProbGPULinear   EQUAL 0 AND
-    UseNuFASTLinear    EQUAL 0 AND
-    UseNuSQUIDSLinear  EQUAL 0 AND
-    UseOscProb         EQUAL 0)
-  set(UseNuFASTLinear 1)
-endif()
 
 LIST(APPEND ALL_Engines
   CUDAProb3
@@ -77,17 +58,34 @@ LIST(APPEND ALL_Engines
   NuFASTLinear
   NuSQUIDSLinear
   OscProb
+  GLoBESLinear
+  CHICLinear
 )
+# KS: Tells whether all oscillators were disabled
+set(ALL_OSCILLATORS_DISABLED TRUE)
+
+foreach(option IN LISTS ALL_Engines)
+  DefineEnabledRequiredSwitch(Use${option} 0)
+  # If at least one oscillator is enabled then set ALL_OSCILLATORS_DISABLED to false
+  if(Use${option} EQUAL 1)
+    set(ALL_OSCILLATORS_DISABLED FALSE)
+  endif()
+endforeach()
+
+# KS: NuFastLinear by default
+if(ALL_OSCILLATORS_DISABLED)
+  set(UseNuFASTLinear 1)
+endif()
 
 ########################################################
 #Default Branches
 
 if(NOT DEFINED CUDAProb3_BRANCH)
-  set(CUDAProb3_BRANCH "v1.2.0")
+  set(CUDAProb3_BRANCH "v1.2.1")
 endif()
 
 if(NOT DEFINED CUDAProb3Linear_BRANCH)
-  set(CUDAProb3Linear_BRANCH "v1.0.1")
+  set(CUDAProb3Linear_BRANCH "v1.1.0")
 endif()
 
 if(NOT DEFINED Prob3ppLinear_BRANCH)
@@ -103,11 +101,19 @@ if(NOT DEFINED NuFASTLinear_BRANCH)
 endif()
 
 if(NOT DEFINED NuSQUIDSLinear_BRANCH)
-  set(NuSQUIDSLinear_BRANCH "ac55f210ffd2c04a060c0d00b790725f32e20f67")
+  set(NuSQUIDSLinear_BRANCH "v1.13.3")
 endif()
 
 if(NOT DEFINED OscProb_BRANCH)
-  set(OscProb_BRANCH "v2.1.2")
+  set(OscProb_BRANCH "v2.3.0")
+endif()
+
+if(NOT DEFINED GLoBES_BRANCH)
+  set(GLoBES_BRANCH "3.2.18")
+endif()
+
+if(NOT DEFINED CHICLinear_BRANCH)
+  set(CHICLinear_BRANCH "v1.0.1")
 endif()
 
 ########################################################
@@ -150,10 +156,6 @@ else()
   if(${UseCUDAProb3} EQUAL 1 OR ${UseCUDAProb3Linear} EQUAL 1)
     cmessage(FATAL_ERROR "CUDAProb3 do not support Multithreading turn off. Please enable it or use different engine")
   endif()
-endif()
-
-if(${UseCUDAProb3} EQUAL 1 AND ${UseCUDAProb3Linear} EQUAL 1)
-  cmessage(FATAL_ERROR "CUDAProb3 and CUDAProb3Linear and not able to be built at the same time")
 endif()
 
 if(${UseMultithreading} EQUAL 1)
@@ -206,12 +208,12 @@ endif()
 
 #================================================================================================
 #Setup Deps
-set(YAML_CPP_VERSION 0.8.0)
+set(YAML_CPP_VERSION 0.9.0)
 CPMAddPackage(
     NAME yaml-cpp
     VERSION ${YAML_CPP_VERSION}
     GITHUB_REPOSITORY "jbeder/yaml-cpp"
-    GIT_TAG "${YAML_CPP_VERSION}"
+    GIT_TAG "yaml-cpp-${YAML_CPP_VERSION}"
     OPTIONS
       "YAML_CPP_INSTALL ON"
       "YAML_CPP_BUILD_TESTS OFF"
@@ -249,6 +251,12 @@ if(${UseCUDAProb3Linear} EQUAL 1)
       "GPU_ON ON"
       "CMAKE_CUDA_ARCHITECTURES ${CMAKE_CUDA_ARCHITECTURES_STRING}"
     )
+    # KS: Terrible hack because CUDAProb3Beam is mess :(
+    install(TARGETS CUDAProb3Beam
+      EXPORT NuOscillator-targets
+      LIBRARY DESTINATION lib/
+      )
+
    # KS: This is bit hacky but CUDAProb3Linear is a mess. Whole functions are written in header file
    # and someone wrote them to be hidden under GPU_ON and wrote shitty cmake which do not propagate this definition.
    # Therefore NuOscillator is fixing other people mess
@@ -288,6 +296,9 @@ if(${UseGPU} EQUAL 1)
     endif()
 
     target_compile_definitions(NuOscillatorCompilerOptions INTERFACE UseProbGPULinear=1)
+    install(TARGETS ProbGPU
+      EXPORT NuOscillator-targets
+      LIBRARY DESTINATION lib/)
   endif()
 endif()
 
@@ -326,6 +337,7 @@ if(${UseOscProb} EQUAL 1)
     NAME OscProb
     GITHUB_REPOSITORY joaoabcoelho/OscProb
     GIT_TAG ${OscProb_BRANCH}
+    DOWNLOAD_ONLY YES
   )
 
   CPMAddPackage(
@@ -334,34 +346,63 @@ if(${UseOscProb} EQUAL 1)
     URL https://gitlab.com/libeigen/eigen/-/archive/3.4.0/eigen-3.4.0.tar.gz
     DOWNLOAD_ONLY YES
   )
+
+  if(CMAKE_CXX_STANDARD LESS 17)
+    cmessage(WARNING "OscProb requires at least C++17 — changing from ${CMAKE_CXX_STANDARD} to 17")
+    set(CMAKE_CXX_STANDARD 17)
+  endif()
+
   if(Eigen_ADDED)
     add_library(Eigen INTERFACE IMPORTED)
     target_include_directories(Eigen INTERFACE ${Eigen_SOURCE_DIR})
   endif()
 
   execute_process(COMMAND make WORKING_DIRECTORY ${OscProb_SOURCE_DIR})
+  set(OSCPROB_LIB_DIR ${OscProb_SOURCE_DIR}/lib)
 
   add_library(OSCPROB INTERFACE IMPORTED)
-  target_include_directories(OSCPROB INTERFACE  ${OscProb_SOURCE_DIR})
-
+  target_include_directories(OSCPROB INTERFACE ${OscProb_SOURCE_DIR})
   target_compile_definitions(NuOscillatorCompilerOptions INTERFACE UseOscProb=1)
-
-  set(OSCPROB_LIB_DIR ${OscProb_SOURCE_DIR}/lib)
 endif()
 
 if(${UseNuSQUIDSLinear} EQUAL 1)
   find_package(GSL REQUIRED)
 
+  set(BUILTIN_HDF5 FALSE)
   find_package(HDF5 QUIET COMPONENTS CXX)
-  if(NOT ${HDF5_FOUND})
-    find_package(HDF5 QUIET REQUIRED)
-  endif()
-
   include(ExternalProject)
+
+  if(NOT TARGET HDF5::HDF5)
+    SET(HDF5_DIR ${CMAKE_CURRENT_BINARY_DIR}/HDF5_project-prefix/)
+    SET(HDF5_LIB_DIR ${CMAKE_CURRENT_BINARY_DIR}/HDF5_project-prefix/lib)
+    ExternalProject_Add(HDF5_project
+        GIT_REPOSITORY https://github.com/HDFGroup/hdf5.git
+        GIT_TAG hdf5-1.14.6
+        UPDATE_DISCONNECTED TRUE
+        DOWNLOAD_NO_PROGRESS TRUE
+        CMAKE_ARGS
+            -DCMAKE_INSTALL_PREFIX=${HDF5_DIR}
+            -DBUILD_SHARED_LIBS=ON
+            -DHDF5_BUILD_EXAMPLES=OFF
+            -DHDF5_ENABLE_PARALLEL=OFF
+        BUILD_COMMAND make -j${NPROC}
+        INSTALL_COMMAND make install
+    )
+
+    file(MAKE_DIRECTORY "${HDF5_DIR}/include")
+
+    # Imported target pointing to the installed library
+    add_library(HDF5::HDF5 SHARED IMPORTED)
+    set_target_properties(HDF5::HDF5 PROPERTIES
+        IMPORTED_LOCATION "${HDF5_LIB_DIR}/libhdf5.so"
+        INTERFACE_INCLUDE_DIRECTORIES "${HDF5_DIR}/include"
+    )
+    set(BUILTIN_HDF5 TRUE)
+  endif()
 
   ExternalProject_Add(SQUIDS
     GIT_REPOSITORY https://github.com/jsalvado/SQuIDS.git
-    GIT_TAG master
+    GIT_TAG v1.3.1
     BUILD_IN_SOURCE = 1
     CONFIGURE_HANDLED_BY_BUILD false
     CONFIGURE_COMMAND <SOURCE_DIR>/configure --with-gsl=${GSL_ROOT_DIR} --prefix=<INSTALL_DIR>
@@ -375,15 +416,28 @@ if(${UseNuSQUIDSLinear} EQUAL 1)
   add_library(SQUIDS::SQUIDS SHARED IMPORTED)
   set_target_properties(SQUIDS::SQUIDS PROPERTIES IMPORTED_LOCATION ${SQUIDS_LIB_DIR}/libSQuIDS.so)
 
+  if(BUILTIN_HDF5)
+      set(NUSQUIDS_HDF5_DIR "${HDF5_DIR}/")
+      set(NUSQUIDS_DEPENDS HDF5_project SQUIDS)
+  else()
+      set(NUSQUIDS_HDF5_DIR "${HDF5_INCLUDE_DIRS}/..")
+      set(NUSQUIDS_DEPENDS SQUIDS)
+  endif()
+
   ExternalProject_Add(NUSQUIDS
     GIT_REPOSITORY https://github.com/arguelles/nuSQuIDS.git
     GIT_TAG ${NuSQUIDSLinear_BRANCH}
     BUILD_IN_SOURCE = 1
     CONFIGURE_HANDLED_BY_BUILD false
-    CONFIGURE_COMMAND <SOURCE_DIR>/configure --with-gsl=${GSL_ROOT_DIR} --with-hdf5=${HDF5_INCLUDE_DIRS}/../ --with-squids=${CMAKE_CURRENT_BINARY_DIR}/SQUIDS-prefix --prefix=<INSTALL_DIR>
+    CONFIGURE_COMMAND <SOURCE_DIR>/configure
+        --with-gsl=${GSL_ROOT_DIR}
+        --with-hdf5=${NUSQUIDS_HDF5_DIR}
+        --with-squids=${CMAKE_CURRENT_BINARY_DIR}/SQUIDS-prefix
+        --prefix=<INSTALL_DIR>
     BUILD_COMMAND make examples
     INSTALL_COMMAND make install
-  )
+    DEPENDS ${NUSQUIDS_DEPENDS}    #ensure both are finished first
+   )
 
   SET(NUSQUIDS_SRC_DIR ${CMAKE_CURRENT_BINARY_DIR}/NUSQUIDS-prefix/src/NUSQUIDS/)
   SET(NUSQUIDS_INC_DIR ${CMAKE_CURRENT_BINARY_DIR}/NUSQUIDS-prefix/include/)
@@ -392,8 +446,118 @@ if(${UseNuSQUIDSLinear} EQUAL 1)
   add_dependencies(NUSQUIDS SQUIDS)
   add_library(NUSQUIDS::NUSQUIDS SHARED IMPORTED)
   set_target_properties(NUSQUIDS::NUSQUIDS PROPERTIES IMPORTED_LOCATION ${NUSQUIDS_LIB_DIR}/libnuSQuIDS.so)
-
   target_compile_definitions(NuOscillatorCompilerOptions INTERFACE UseNuSQUIDSLinear=1)
+endif()
+
+if(${UseGLoBESLinear} EQUAL 1)
+  include(ExternalProject)
+  set(GLoBES_URL "https://www.mpi-hd.mpg.de/personalhomes/globes/download/globes-${GLoBES_BRANCH}.tar.gz")
+  set(GLOBES_PREFIX "${CMAKE_BINARY_DIR}/globes-prefix")
+  set(GLOBES_LIB_DIR "${GLOBES_PREFIX}/lib/")
+  set(GLOBES_INC_DIR "${GLOBES_PREFIX}/include/")
+
+  ExternalProject_Add(
+    globes_project
+    URL ${GLoBES_URL}
+    URL_HASH SHA256=7edd0fea67800fc1f2d5309a47aba93d4afb5710a10cb40ceddec07079041db3
+
+    PREFIX ${GLOBES_PREFIX}
+    CONFIGURE_COMMAND <SOURCE_DIR>/configure --prefix=${GLOBES_PREFIX} CXXFLAGS="-O3 -g"
+    BUILD_COMMAND make -C <BINARY_DIR>
+    INSTALL_COMMAND make -C <BINARY_DIR> install
+  )
+  file(MAKE_DIRECTORY "${GLOBES_INC_DIR}/globes")
+
+  add_library(GLOBES::GLOBES SHARED IMPORTED)
+  set_target_properties(GLOBES::GLOBES PROPERTIES
+      IMPORTED_LOCATION "${GLOBES_LIB_DIR}/libglobes.so.8.3.2"
+      INTERFACE_INCLUDE_DIRECTORIES "${GLOBES_INC_DIR}"
+  )
+
+  # --- SNU Integration ---
+  set(SNU_URL "https://www.mpi-hd.mpg.de/personalhomes/globes/tools/snu-1.1.tar.gz")
+  set(SNU_PREFIX "${CMAKE_BINARY_DIR}/snu-prefix")
+  set(SNU_INC_DIR "${SNU_PREFIX}/include/")
+  set(SNU_LIB_DIR "${SNU_PREFIX}/lib/")
+
+  ExternalProject_Add(
+    snu_project
+    URL ${SNU_URL}
+    PREFIX ${SNU_PREFIX}
+    CONFIGURE_COMMAND ""
+    BUILD_COMMAND ${CMAKE_COMMAND} -E echo "Building SNU..."
+      COMMAND ${CMAKE_C_COMPILER} -O3 -g -fPIC -shared -I${GLOBES_INC_DIR} -o <BINARY_DIR>/libsnu.so <SOURCE_DIR>/snu.c
+    INSTALL_COMMAND
+      ${CMAKE_COMMAND} -E make_directory ${SNU_LIB_DIR}
+      COMMAND ${CMAKE_COMMAND} -E copy <BINARY_DIR>/libsnu.so ${SNU_LIB_DIR}/
+      COMMAND ${CMAKE_COMMAND} -E make_directory ${SNU_INC_DIR}
+      COMMAND ${CMAKE_COMMAND} -E copy <SOURCE_DIR>/snu.h ${SNU_INC_DIR}/
+    BUILD_IN_SOURCE 1
+    DEPENDS globes_project
+  )
+  file(MAKE_DIRECTORY "${SNU_INC_DIR}/")
+  add_library(SNU::SNU SHARED IMPORTED)
+  set_target_properties(SNU::SNU PROPERTIES
+    IMPORTED_LOCATION "${SNU_LIB_DIR}/libsnu.so"
+    INTERFACE_INCLUDE_DIRECTORIES "${SNU_INC_DIR}"
+  )
+  add_dependencies(SNU::SNU GLOBES::GLOBES)
+  target_compile_definitions(NuOscillatorCompilerOptions INTERFACE UseGLoBESLinear=1)
+endif()
+
+if(${UseCHICLinear} EQUAL 1)
+
+  if(CMAKE_CXX_STANDARD LESS 17)
+    cmessage(WARNING "CHIC requires at least C++17 — changing from ${CMAKE_CXX_STANDARD} to 17")
+    set(CMAKE_CXX_STANDARD 17)
+  endif()
+
+  CPMAddPackage(
+    NAME Eigen
+    VERSION 3.4.0
+    URL https://gitlab.com/libeigen/eigen/-/archive/3.4.0/eigen-3.4.0.tar.gz
+    DOWNLOAD_ONLY YES
+  )
+
+  if(Eigen_ADDED)
+    add_library(Eigen INTERFACE IMPORTED)
+    target_include_directories(Eigen INTERFACE ${Eigen_SOURCE_DIR})
+  endif()
+
+
+  CPMAddPackage(
+    NAME CHIC
+    GIT_REPOSITORY https://github.com/pabloferm/CHIC.git
+    GIT_TAG ${CHICLinear_BRANCH}
+    DOWNLOAD_ONLY YES
+  )
+
+  set(CHIC_HEADERS
+    ${CHIC_SOURCE_DIR}/src/CHIC.h
+    ${CHIC_SOURCE_DIR}/src/opt_constants.h
+  )
+
+  add_library(CHIC STATIC
+    ${CHIC_SOURCE_DIR}/src/CHIC.cpp
+    ${CHIC_HEADERS}
+  )
+
+  target_include_directories(CHIC
+  PUBLIC
+    $<BUILD_INTERFACE:${CHIC_SOURCE_DIR}/src>
+    $<INSTALL_INTERFACE:include/CHIC>
+  )
+  target_link_libraries(CHIC PUBLIC Eigen)
+  target_compile_options(CHIC PRIVATE -fPIC)
+  target_link_libraries(CHIC PRIVATE NuOscillatorCompilerOptions)
+
+  add_library(CHIC::CHIC ALIAS CHIC)
+  install(TARGETS CHIC
+    EXPORT NuOscillator-targets
+    ARCHIVE DESTINATION lib
+  )
+
+  target_compile_definitions(NuOscillatorCompilerOptions INTERFACE UseCHICLinear=1)
 endif()
 
 if(${UseGPU} EQUAL 1)
@@ -433,6 +597,12 @@ if(CUDAProb3_SOURCE_DIR)
        "${CUDAProb3_SOURCE_DIR}")
 endif()
 
+if(HDF5_LIB_DIR)
+  file(RELATIVE_PATH HDF5_REL_LIB_PATH
+       "${CMAKE_INSTALL_PREFIX}"
+       "${HDF5_LIB_DIR}")
+endif()
+
 if(SQUIDS_LIB_DIR)
   file(RELATIVE_PATH SQUIDS_REL_LIB_PATH
        "${CMAKE_INSTALL_PREFIX}"
@@ -449,6 +619,18 @@ if(OSCPROB_LIB_DIR)
   file(RELATIVE_PATH OSCPROB_REL_LIB_PATH
        "${CMAKE_INSTALL_PREFIX}"
        "${OSCPROB_LIB_DIR}")
+endif()
+
+if(GLOBES_LIB_DIR)
+  file(RELATIVE_PATH GLOBES_REL_LIB_PATH
+       "${CMAKE_INSTALL_PREFIX}"
+       "${GLOBES_LIB_DIR}")
+endif()
+
+if(SNU_LIB_DIR)
+  file(RELATIVE_PATH SNU_REL_LIB_PATH
+       "${CMAKE_INSTALL_PREFIX}"
+       "${SNU_LIB_DIR}")
 endif()
 
 configure_file(cmake/Templates/setup.NuOscillator.sh.in "${PROJECT_BINARY_DIR}/setup.NuOscillator.sh" @ONLY)

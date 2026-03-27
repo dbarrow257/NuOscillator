@@ -8,7 +8,7 @@
 
 #include <iostream>
 
-using namespace cudaprob3;
+using namespace cudaprob3linear;
 
 OscProbCalcerCUDAProb3Linear::OscProbCalcerCUDAProb3Linear(YAML::Node Config_) : OscProbCalcerBase(Config_)
 {
@@ -104,20 +104,20 @@ void OscProbCalcerCUDAProb3Linear::CalculateProbabilities(const std::vector<FLOA
   for (int iNuType=0;iNuType<fNNeutrinoTypes;iNuType++) {
 
     int NuType_int;
-    cudaprob3::NeutrinoType NuType;
+    cudaprob3linear::NeutrinoType NuType;
     if (fNeutrinoTypes[iNuType]==Nubar) {
       NuType_int = -1;
-      NuType = cudaprob3::Antineutrino;
+      NuType = cudaprob3linear::Antineutrino;
     } else {
       NuType_int = 1;
-      NuType = cudaprob3::Neutrino;
+      NuType = cudaprob3linear::Neutrino;
     }
     propagator->setMNSMatrix(theta12, theta13, theta23, dcp, NuType_int);
 
     propagator->calculateProbabilities(NuType);
 
     for (int iOscChannel=0;iOscChannel<fNOscillationChannels;iOscChannel++) {
-      propagator->getProbabilityArr(CopyArr,static_cast<cudaprob3::ProbType>(OscChannels[iOscChannel]));
+      propagator->getProbabilityArr(CopyArr,static_cast<cudaprob3linear::ProbType>(OscChannels[iOscChannel]));
 	
       // Mapping which links the oscillation channel, neutrino type and energy/cosineZ index to the fWeightArray index
       int IndexToFill = iNuType*fNOscillationChannels*CopyArrSize + iOscChannel*CopyArrSize;
