@@ -59,10 +59,8 @@ class OscProbCalcerCUDAProb3 : public OscProbCalcerBase {
    *
    * Calculator oscillation probabilities in CUDAProb3. This links to Propagator->getProbability in CUDAProb3. This function both calculates and stores
    * the oscillation probabilities in #fWeightArray.
-   *
-   * @param OscParams The parameter set to calculate oscillation probabilities at
    */
-  void CalculateProbabilities(const std::vector<FLOAT_T>& OscParams) final;
+  void CalculateProbabilities() final;
 
   /**
    * @brief Return implementation specific index in the weight array for a specific combination of neutrino oscillation channel, energy and cosine zenith
@@ -95,10 +93,8 @@ class OscProbCalcerCUDAProb3 : public OscProbCalcerBase {
   
   /**
    * @brief Apply a new set of parameters to set the density model of the Earth in CUDAProb3
-   *
-   * @param OscParams The full parameter set to calculate oscillation probabilities at 
    */
-  void ApplyEarthModelSystematics(const std::vector<FLOAT_T>& OscParams);
+  void ApplyEarthModelSystematics();
   // ========================================================================================================================================================================
   // Variables which are needed for implementation specific code
 
