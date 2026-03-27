@@ -128,18 +128,18 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ab1fe8115aa199bea60afb14b8c17e134" id="r_ab1fe8115aa199bea60afb14b8c17e134"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerProbGPULinear.html#ab1fe8115aa199bea60afb14b8c17e134">~OscProbCalcerProbGPULinear</a> ()</td></tr>
 <tr class="memdesc:ab1fe8115aa199bea60afb14b8c17e134"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor.  <br /></td></tr>
 <tr class="separator:ab1fe8115aa199bea60afb14b8c17e134"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa2ef4335e2b53e587132b25cd3e86d17" id="r_aa2ef4335e2b53e587132b25cd3e86d17"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerProbGPULinear.html#aa2ef4335e2b53e587132b25cd3e86d17">SetupPropagator</a> () override</td></tr>
-<tr class="memdesc:aa2ef4335e2b53e587132b25cd3e86d17"><td class="mdescLeft">&#160;</td><td class="mdescRight">Setup ProbGPU specific variables but due to it's immplementation, don't actually need to do anythin.  <br /></td></tr>
-<tr class="separator:aa2ef4335e2b53e587132b25cd3e86d17"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac7eee5038457154cebd11d79590e0191" id="r_ac7eee5038457154cebd11d79590e0191"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerProbGPULinear.html#ac7eee5038457154cebd11d79590e0191">CalculateProbabilities</a> (const std::vector&lt; <a class="el" href="OscillatorConstants_8h.html#acb53b45d3e1b677a15c2ef27b266b1ca">FLOAT_T</a> &gt; &amp;<a class="el" href="classOscProbCalcerProbGPULinear.html#af5ef42ef47216f94bb69ceff130288aa">OscParams</a>) override</td></tr>
-<tr class="memdesc:ac7eee5038457154cebd11d79590e0191"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate some oscillation probabilities for a particular oscillation parameter set.  <br /></td></tr>
-<tr class="separator:ac7eee5038457154cebd11d79590e0191"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9be993a122b13f14355df50709b59cca" id="r_a9be993a122b13f14355df50709b59cca"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerProbGPULinear.html#a9be993a122b13f14355df50709b59cca">ReturnWeightArrayIndex</a> (int NuTypeIndex, int OscChanIndex, int EnergyIndex, int CosineZIndex=-1) override</td></tr>
-<tr class="memdesc:a9be993a122b13f14355df50709b59cca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return implementation specific index in the weight array for a specific combination of neutrino oscillation channel, energy and cosine zenith.  <br /></td></tr>
-<tr class="separator:a9be993a122b13f14355df50709b59cca"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a90596567b6e6bfd8b180e229863eb2df" id="r_a90596567b6e6bfd8b180e229863eb2df"><td class="memItemLeft" align="right" valign="top">long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerProbGPULinear.html#a90596567b6e6bfd8b180e229863eb2df">DefineWeightArraySize</a> () override</td></tr>
-<tr class="memdesc:a90596567b6e6bfd8b180e229863eb2df"><td class="mdescLeft">&#160;</td><td class="mdescRight">Define the size of fWeightArray.  <br /></td></tr>
-<tr class="separator:a90596567b6e6bfd8b180e229863eb2df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a15191dda808ed30877396d4102e312d2" id="r_a15191dda808ed30877396d4102e312d2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerProbGPULinear.html#a15191dda808ed30877396d4102e312d2">SetupPropagator</a> () final</td></tr>
+<tr class="memdesc:a15191dda808ed30877396d4102e312d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Setup ProbGPU specific variables but due to it's immplementation, don't actually need to do anythin.  <br /></td></tr>
+<tr class="separator:a15191dda808ed30877396d4102e312d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7dc536020184e1ac36ea1ab6794fe5d3" id="r_a7dc536020184e1ac36ea1ab6794fe5d3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerProbGPULinear.html#a7dc536020184e1ac36ea1ab6794fe5d3">CalculateProbabilities</a> (const std::vector&lt; <a class="el" href="OscillatorConstants_8h.html#acb53b45d3e1b677a15c2ef27b266b1ca">FLOAT_T</a> &gt; &amp;<a class="el" href="classOscProbCalcerProbGPULinear.html#af5ef42ef47216f94bb69ceff130288aa">OscParams</a>) final</td></tr>
+<tr class="memdesc:a7dc536020184e1ac36ea1ab6794fe5d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate some oscillation probabilities for a particular oscillation parameter set.  <br /></td></tr>
+<tr class="separator:a7dc536020184e1ac36ea1ab6794fe5d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5a8074dac1a6f94ba37ed326d80c05d2" id="r_a5a8074dac1a6f94ba37ed326d80c05d2"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerProbGPULinear.html#a5a8074dac1a6f94ba37ed326d80c05d2">ReturnWeightArrayIndex</a> (int NuTypeIndex, int OscChanIndex, int EnergyIndex, int CosineZIndex=-1) final</td></tr>
+<tr class="memdesc:a5a8074dac1a6f94ba37ed326d80c05d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return implementation specific index in the weight array for a specific combination of neutrino oscillation channel, energy and cosine zenith.  <br /></td></tr>
+<tr class="separator:a5a8074dac1a6f94ba37ed326d80c05d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a56499add318b8ebe2574de447036d3d6" id="r_a56499add318b8ebe2574de447036d3d6"><td class="memItemLeft" align="right" valign="top">long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerProbGPULinear.html#a56499add318b8ebe2574de447036d3d6">DefineWeightArraySize</a> () final</td></tr>
+<tr class="memdesc:a56499add318b8ebe2574de447036d3d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Define the size of fWeightArray.  <br /></td></tr>
+<tr class="separator:a56499add318b8ebe2574de447036d3d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classOscProbCalcerBase"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classOscProbCalcerBase')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classOscProbCalcerBase.html">OscProbCalcerBase</a></td></tr>
 <tr class="memitem:ae5485ac57513ab579873f3495522fa31 inherit pub_methods_classOscProbCalcerBase" id="r_ae5485ac57513ab579873f3495522fa31"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerBase.html#ae5485ac57513ab579873f3495522fa31">~OscProbCalcerBase</a> ()</td></tr>
 <tr class="memdesc:ae5485ac57513ab579873f3495522fa31 inherit pub_methods_classOscProbCalcerBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor.  <br /></td></tr>
@@ -463,8 +463,8 @@ Additional Inherited Members</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="ac7eee5038457154cebd11d79590e0191" name="ac7eee5038457154cebd11d79590e0191"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac7eee5038457154cebd11d79590e0191">&#9670;&#160;</a></span>CalculateProbabilities()</h2>
+<a id="a7dc536020184e1ac36ea1ab6794fe5d3" name="a7dc536020184e1ac36ea1ab6794fe5d3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7dc536020184e1ac36ea1ab6794fe5d3">&#9670;&#160;</a></span>CalculateProbabilities()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -482,7 +482,7 @@ Additional Inherited Members</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">final</span><span class="mlabel">virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -500,8 +500,8 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="a90596567b6e6bfd8b180e229863eb2df" name="a90596567b6e6bfd8b180e229863eb2df"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a90596567b6e6bfd8b180e229863eb2df">&#9670;&#160;</a></span>DefineWeightArraySize()</h2>
+<a id="a56499add318b8ebe2574de447036d3d6" name="a56499add318b8ebe2574de447036d3d6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a56499add318b8ebe2574de447036d3d6">&#9670;&#160;</a></span>DefineWeightArraySize()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -518,7 +518,7 @@ Additional Inherited Members</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">final</span><span class="mlabel">virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -531,8 +531,8 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="a9be993a122b13f14355df50709b59cca" name="a9be993a122b13f14355df50709b59cca"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9be993a122b13f14355df50709b59cca">&#9670;&#160;</a></span>ReturnWeightArrayIndex()</h2>
+<a id="a5a8074dac1a6f94ba37ed326d80c05d2" name="a5a8074dac1a6f94ba37ed326d80c05d2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5a8074dac1a6f94ba37ed326d80c05d2">&#9670;&#160;</a></span>ReturnWeightArrayIndex()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -572,7 +572,7 @@ Additional Inherited Members</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">final</span><span class="mlabel">virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -593,8 +593,8 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="aa2ef4335e2b53e587132b25cd3e86d17" name="aa2ef4335e2b53e587132b25cd3e86d17"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa2ef4335e2b53e587132b25cd3e86d17">&#9670;&#160;</a></span>SetupPropagator()</h2>
+<a id="a15191dda808ed30877396d4102e312d2" name="a15191dda808ed30877396d4102e312d2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a15191dda808ed30877396d4102e312d2">&#9670;&#160;</a></span>SetupPropagator()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -611,7 +611,7 @@ Additional Inherited Members</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">final</span><span class="mlabel">virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
