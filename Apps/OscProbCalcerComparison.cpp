@@ -18,7 +18,14 @@ using std::chrono::duration_cast;
 using std::chrono::duration;
 using std::chrono::milliseconds;
 
-int main() {
+int main(int argc, char **argv) {
+  if (argc != 2) {
+    std::cerr << argv[0] << " InputConfig.yaml" << std::endl;
+    throw std::runtime_error("Invalid setup");
+  }
+  std::string ConfigName = argv[1];
+  std::unordered_map<std::string, FLOAT_T> OscillationParameters = ReturnOscParamsFromConfig(YAML::LoadFile(ConfigName));
+  
   std::string FileExt = ".png";
   
   //============================================================================================================
@@ -32,14 +39,6 @@ int main() {
   std::vector<FLOAT_T> EnergyArray = logspace(0.1,10.,1e3);
   std::vector<FLOAT_T> CosineZArray = linspace(-1.0,1.0,1);
 
-  std::vector<FLOAT_T> OscParams_Basic = ReturnOscParams_Basic();
-  std::vector<FLOAT_T> OscParams_Atm = ReturnOscParams_Atm();
-  std::vector<FLOAT_T> OscParams_Beam_woYe = ReturnOscParams_Beam_woYe();
-  std::vector<FLOAT_T> OscParams_Beam_wYe = ReturnOscParams_Beam_wYe();
-  std::vector<FLOAT_T> OscParams_Beam_wYe_wDeco = ReturnOscParams_Beam_wYe_wDeco();
-  std::vector<FLOAT_T> OscParams_Beam_wYe_wLIV = ReturnOscParams_Beam_wYe_wLIV();
-  std::vector<FLOAT_T> OscParams_Beam_wYe_wNSI = ReturnOscParams_Beam_wYe_wNSI();
-  
   std::cout << "========================================================" << std::endl;
   std::cout << "Starting setup in executable" << std::endl;
 
@@ -47,8 +46,13 @@ int main() {
   OscillatorFactory* OscFactory = new OscillatorFactory();
   OscillatorBase* Oscillator;
 
+  std::vector< std::unordered_map<std::string, FLOAT_T> > OscillationParameters_Oscillators(ConfigNames.size());
+
   //Get the standard set of config names
   std::vector<std::string> ConfigNames = ReturnKnownConfigs();
+
+  std::cout << "========================================================" << std::endl;
+  std::cout << "Setting up Oscillators" << std::endl;  
  
   for (size_t iConfig=0;iConfig<ConfigNames.size();iConfig++) {
     std::cout << "========================================================" << std::endl;
@@ -68,16 +72,24 @@ int main() {
       }
     }
 
+    //Overwrite the oscillation parameters in the Oscillator config from the config passed through the arguments
+    OscillationParameters_Oscillators[iConfig] = ReturnOscParamsFromConfig(YAML::LoadFile(ConfigNames[iConfig]));
+    for (auto Parameter : OscillationParameters_Global) {
+      if (OscillationParameters_Oscillators[iConfig].count(Parameter.first)) {
+        OscillationParameters_Oscillators[iConfig][Parameter.first] = Parameter.second;
+      }
+    }
+
+    //Set the oscillation parameters in the Oscillator
+    for (auto Parameter : OscillationParameters_Oscillators[iConfig]) {
+      Oscillator->DefineParameter(Parameter.first, &OscillationParameters_Oscillators[iConfig][Parameter.first]);
+    }
+
+    // Setup propagators
+    Oscillators[iOsc]->Setup();
+    
     //Append OscillatorBase* object to the vector
     Oscillators.push_back(Oscillator);
-  }
-
-  std::cout << "========================================================" << std::endl;
-  std::cout << "Setting up Oscillators" << std::endl;
-
-  // Setup propagators
-  for (size_t iOsc=0;iOsc<Oscillators.size();iOsc++) {
-    Oscillators[iOsc]->Setup();
   }
 
   std::cout << "Finished setup in executable" << std::endl;
@@ -95,25 +107,7 @@ int main() {
   for (size_t iOsc=0;iOsc<Oscillators.size();iOsc++) {
     std::cout << "Creating probability from:" << Oscillators[iOsc]->ReturnImplementationName() << std::endl;
     
-    if (Oscillators[iOsc]->ReturnNOscParams() == (int)OscParams_Basic.size()) {
-      Oscillators[iOsc]->CalculateProbabilities(OscParams_Basic);
-    } else if (Oscillators[iOsc]->ReturnNOscParams() == (int)OscParams_Atm.size()) {
-      Oscillators[iOsc]->CalculateProbabilities(OscParams_Atm);
-    } else if (Oscillators[iOsc]->ReturnNOscParams() == (int)OscParams_Beam_woYe.size()) {
-      Oscillators[iOsc]->CalculateProbabilities(OscParams_Beam_woYe);
-    } else if (Oscillators[iOsc]->ReturnNOscParams() == (int)OscParams_Beam_wYe.size()) {
-      Oscillators[iOsc]->CalculateProbabilities(OscParams_Beam_wYe);
-    } else if (Oscillators[iOsc]->ReturnNOscParams() == (int)OscParams_Beam_wYe_wDeco.size()) {
-      Oscillators[iOsc]->CalculateProbabilities(OscParams_Beam_wYe_wDeco);
-    } else if (Oscillators[iOsc]->ReturnNOscParams() == (int)OscParams_Beam_wYe_wLIV.size()) {
-      Oscillators[iOsc]->CalculateProbabilities(OscParams_Beam_wYe_wLIV);
-    } else if (Oscillators[iOsc]->ReturnNOscParams() == (int)OscParams_Beam_wYe_wNSI.size()) {
-      Oscillators[iOsc]->CalculateProbabilities(OscParams_Beam_wYe_wNSI);
-    } else {
-      std::cerr << "Did not find viable oscillation parameters to hand to the oscillation probability calculater" << std::endl;
-      std::cerr << "Oscillator->ReturnNOscParams():" << Oscillators[iOsc]->ReturnNOscParams() << std::endl;
-      throw std::runtime_error("Invalid setup");
-    }
+    Oscillators[iOsc]->CalculateProbabilities();
 
     for (int iInitFlav=1;iInitFlav<=nInitFlav;iInitFlav++) {
       for (int iFinalFlav=1;iFinalFlav<=nFinalFlav;iFinalFlav++) {
