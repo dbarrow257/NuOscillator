@@ -25,7 +25,7 @@ OscProbCalcerNuFASTLinear::OscProbCalcerNuFASTLinear(YAML::Node Config_) : OscPr
   }
   
   //=======
-  std::vector<std::string> OscParNames = {"sin2_th12","sin2_th13","sin2_th23","dm2_12","dm2_23","delta_cp","path_length","matter_density","electron_density"};
+  std::vector<std::string> OscParNames = {"sin2_th12","sin2_th23","sin2_th13","dm2_12","dm2_23","delta_cp","path_length","matter_density","electron_density"};
   SetExpectedParameterNames(OscParNames);
   
   fNNeutrinoTypes = 2;
