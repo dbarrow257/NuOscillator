@@ -25,7 +25,7 @@ jobs:
           - os: Alma9 float
             file: Docs/DockerFiles/Alma9/Dockerfile
             tag: alma9latest
-            cmakeoptions: -DUseDoubles=0 -DUseMultithreading=1 -DUseCUDAProb3=1 -DUseCUDAProb3Linear=1 -DUseProb3ppLinear=1 -DUseNuFASTLinear=1 -DUseProbGPULinear=0 -DUseOscProb=1 -DUseNuSQUIDSLinear=1 -DUseGLoBESLinear=1 -DUseCHICLinear=1 -DUseOscLibLinear=1
+            cmakeoptions: -DUseDoubles=0 -DUseMultithreading=1 -DUseCUDAProb3=1 -DUseCUDAProb3Linear=1 -DUseProb3ppLinear=1 -DUseNuFASTLinear=1 -DUseProbGPULinear=0 -DUseOscProb=1 -DUseNuSQUIDSLinear=1 -DUseGLoBESLinear=1 -DUseCHICLinear=1
           - os: Alma9 w/o multithread
             file: Docs/DockerFiles/Alma9/Dockerfile
             tag: alma9latest
@@ -37,7 +37,7 @@ jobs:
           - os: Fedora32
             file: Docs/DockerFiles/Fedora32/Dockerfile
             tag: fedora32latest
-            cmakeoptions: -DUseDoubles=1 -DUseMultithreading=1 -DUseCUDAProb3=1 -DUseCUDAProb3Linear=1 -DUseProb3ppLinear=1 -DUseNuFASTLinear=1 -DUseProbGPULinear=0 -DUseOscProb=0 -DUseNuSQUIDSLinear=1 -DUseGLoBESLinear=1 -DUseOscLibLinear=1
+            cmakeoptions: -DUseDoubles=1 -DUseMultithreading=1 -DUseCUDAProb3=1 -DUseCUDAProb3Linear=1 -DUseProb3ppLinear=1 -DUseNuFASTLinear=1 -DUseProbGPULinear=0 -DUseOscProb=0 -DUseNuSQUIDSLinear=1 -DUseGLoBESLinear=1
 
 
     name: Build CI ${{ matrix.os }}
