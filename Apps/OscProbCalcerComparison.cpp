@@ -20,11 +20,11 @@ using std::chrono::milliseconds;
 
 int main(int argc, char **argv) {
   if (argc != 2) {
-    std::cerr << argv[0] << " InputConfig.yaml" << std::endl;
+    std::cerr << argv[0] << " OscillationParameterConfig.yaml" << std::endl;
     throw std::runtime_error("Invalid setup");
   }
-  std::string ConfigName = argv[1];
-  std::unordered_map<std::string, FLOAT_T> OscillationParameters = ReturnOscParamsFromConfig(YAML::LoadFile(ConfigName));
+  std::string OscillationParameterConfigName = argv[1];
+  std::unordered_map<std::string, FLOAT_T> OscillationParameters_Global = ReturnOscParamsFromConfig(YAML::LoadFile(OscillationParameterConfigName));
   
   std::string FileExt = ".png";
   
@@ -46,10 +46,10 @@ int main(int argc, char **argv) {
   OscillatorFactory* OscFactory = new OscillatorFactory();
   OscillatorBase* Oscillator;
 
-  std::vector< std::unordered_map<std::string, FLOAT_T> > OscillationParameters_Oscillators(ConfigNames.size());
-
   //Get the standard set of config names
   std::vector<std::string> ConfigNames = ReturnKnownConfigs();
+
+  std::vector< std::unordered_map<std::string, FLOAT_T> > OscillationParameters_Oscillators(ConfigNames.size());  
 
   std::cout << "========================================================" << std::endl;
   std::cout << "Setting up Oscillators" << std::endl;  
@@ -86,7 +86,7 @@ int main(int argc, char **argv) {
     }
 
     // Setup propagators
-    Oscillators[iOsc]->Setup();
+    Oscillator->Setup();
     
     //Append OscillatorBase* object to the vector
     Oscillators.push_back(Oscillator);
