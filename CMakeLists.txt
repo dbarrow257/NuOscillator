@@ -345,15 +345,9 @@ if(${UseNuFASTEarth} EQUAL 1)
     DOWNLOAD_ONLY YES
   )
 
-  file(GLOB NUFAST_EARTH_SOURCES
-    "${NUFAST_EARTH_SOURCE_DIR}/src/*.cpp"
-  )
-
+  file(GLOB NUFAST_EARTH_SOURCES "${NUFAST_EARTH_SOURCE_DIR}/src/*.cpp")
   add_library(nufast_earth ${NUFAST_EARTH_SOURCES})
-
-  set_target_properties(nufast_earth PROPERTIES
-    POSITION_INDEPENDENT_CODE ON
-  )
+  set_target_properties(nufast_earth PROPERTIES POSITION_INDEPENDENT_CODE ON)
   
   target_include_directories(nufast_earth PUBLIC
     $<BUILD_INTERFACE:${NUFAST_EARTH_SOURCE_DIR}/include>
@@ -364,6 +358,8 @@ if(${UseNuFASTEarth} EQUAL 1)
     EXPORT NuOscillator-targets
     LIBRARY DESTINATION lib/
   )
+
+  target_compile_definitions(NuOscillatorCompilerOptions INTERFACE UseNuFASTEarth=1)
 endif()
 
 if(${UseOscProb} EQUAL 1)

@@ -59,7 +59,6 @@ if(${UseNuFASTLinear} EQUAL 1)
 endif()
 
 if(${UseNuFASTEarth} EQUAL 1)
-  target_include_directories(OscProbCalcer PRIVATE ${NUFAST_EARTH_INC_DIR})
   target_sources(OscProbCalcer PRIVATE OscProbCalcer_NuFASTEarth.cpp)
   target_link_libraries(OscProbCalcer nufast_earth)
   list(APPEND HEADERS OscProbCalcer_NuFASTEarth.h)
