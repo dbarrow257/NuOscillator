@@ -1,6 +1,6 @@
 General:
   Verbosity: "NONE"
-  CosineZIgnored: false
+  CosineZIgnored: true
   CalculationType: "Unbinned"
 
 OscProbCalcerSetup:
