@@ -82,12 +82,17 @@ if(${UseOscProb} EQUAL 1)
   list(APPEND HEADERS OscProbCalcer_OscProb.h)
 endif()
 
-
 if(${UseGLoBESLinear} EQUAL 1)
   target_sources(OscProbCalcer PRIVATE OscProbCalcer_GLoBESLinear.cpp)
   target_link_libraries(OscProbCalcer GLOBES::GLOBES)
   list(APPEND HEADERS OscProbCalcer_GLoBESLinear.h)
   add_dependencies(OscProbCalcer snu_project globes_project)
+endif()
+
+if(${UseCHICLinear} EQUAL 1)
+  target_sources(OscProbCalcer PRIVATE OscProbCalcer_CHICLinear.cpp)
+  target_link_libraries(OscProbCalcer CHIC::CHIC)
+  list(APPEND HEADERS OscProbCalcer_CHICLinear.h)
 endif()
 
 if (${UseGPU} EQUAL 1)

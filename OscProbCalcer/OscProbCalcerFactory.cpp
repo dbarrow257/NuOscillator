@@ -32,6 +32,10 @@
 #include "OscProbCalcer/OscProbCalcer_GLoBESLinear.h"
 #endif
 
+#if UseCHICLinear==1
+#include "OscProbCalcer/OscProbCalcer_CHICLinear.h"
+#endif
+
 #include <iostream>
 
 OscProbCalcerFactory::OscProbCalcerFactory() {
@@ -135,6 +139,17 @@ OscProbCalcerBase* OscProbCalcerFactory::CreateOscProbCalcer(YAML::Node OscProbC
     #if UseGLoBESLinear==1
     OscProbCalcerGLoBESLinear* GLoBES = new OscProbCalcerGLoBESLinear(OscProbCalcerConfig);
     Calcer = (OscProbCalcerBase*)GLoBES;
+    if (Verbose >= NuOscillator::INFO) {std::cout << "Initalised OscProbCalcer Implementation:" << Calcer->ReturnImplementationName() << " in OscProbCalcerFactory object" << std::endl;}
+    #else
+    std::cerr << "OscProbCalcerFactory was requested to create " << OscProbCalcerImplementationToCreate << " OscProbCalcer but Use" << OscProbCalcerImplementationToCreate << " is undefined. Indicates problem in setup" << std::endl;
+    throw std::runtime_error("Invalid setup");
+    #endif
+  }
+
+  else if (OscProbCalcerImplementationToCreate == "CHICLinear") {
+    #if UseCHICLinear==1
+    OscProbCalcerCHICLinear* CHIC = new OscProbCalcerCHICLinear(OscProbCalcerConfig);
+    Calcer = (OscProbCalcerBase*)CHIC;
     if (Verbose >= NuOscillator::INFO) {std::cout << "Initalised OscProbCalcer Implementation:" << Calcer->ReturnImplementationName() << " in OscProbCalcerFactory object" << std::endl;}
     #else
     std::cerr << "OscProbCalcerFactory was requested to create " << OscProbCalcerImplementationToCreate << " OscProbCalcer but Use" << OscProbCalcerImplementationToCreate << " is undefined. Indicates problem in setup" << std::endl;
