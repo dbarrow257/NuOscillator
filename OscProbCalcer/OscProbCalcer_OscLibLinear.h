@@ -3,34 +3,36 @@
 
 #include "OscProbCalcerBase.h"
 
+#include "OscLib/OscCalcPMNS.h"
+
 /**
- * @file OscProbCalcer_OscLib.h
+ * @file OscProbCalcer_OscLibLinear.h
  *
- * @class OscProbCalcerOscLib
+ * @class OscProbCalcerOscLibLinear
  *
  * @brief Oscillation calculation engine for linear propagation in NuFAST.
  */
-class OscProbCalcerOscLib : public OscProbCalcerBase {
+class OscProbCalcerOscLibLinear : public OscProbCalcerBase {
  public:
 
   /**
    * @brief Default constructor
    *
-   * @param Config_ YAML::Node to setup the OscProbCalcerOscLib() instance
+   * @param Config_ YAML::Node to setup the OscProbCalcerOscLibLinear() instance
    */
-  OscProbCalcerOscLib(YAML::Node Config_);
+  OscProbCalcerOscLibLinear(YAML::Node Config_);
 
   /**
    * @brief Constructor which takes a file path, creates a YAML::Node and calls the default constructor
    *
    * @param ConfigName_ File path to config
    */
-  OscProbCalcerOscLib(std::string ConfigName_) : OscProbCalcerOscLib(YAML::LoadFile(ConfigName_)) {}
+  OscProbCalcerOscLibLinear(std::string ConfigName_) : OscProbCalcerOscLibLinear(YAML::LoadFile(ConfigName_)) {}
 
   /**
    * @brief Destructor
    */
-  virtual ~OscProbCalcerOscLib();
+  virtual ~OscProbCalcerOscLibLinear();
 
   // ==========================================================================
   // Functions which need implementation specific code
@@ -84,6 +86,8 @@ class OscProbCalcerOscLib : public OscProbCalcerBase {
    * @brief Define the neutrino and antineutrino values expected by this implementation
    */
   enum NuType{Nubar=-1, Nu=1};
+
+  osc::_OscCalcPMNS<FLOAT_T>* OscLib;
 
 };
 

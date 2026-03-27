@@ -28,8 +28,8 @@
 #include "OscProbCalcer/OscProbCalcer_OscProb.h"
 #endif
 
-#if UseOscLib==1
-#include "OscProbCalcer/OscProbCalcer_OscLib.h"
+#if UseOscLibLinear==1
+#include "OscProbCalcer/OscProbCalcer_OscLibLinear.h"
 #endif
 
 #if UseGLoBESLinear==1
@@ -134,9 +134,9 @@ OscProbCalcerBase* OscProbCalcerFactory::CreateOscProbCalcer(YAML::Node OscProbC
 #endif
   }
 
-  else if (OscProbCalcerImplementationToCreate == "OscLib") {
-#if UseOscLib==1
-    OscProbCalcerOscLib* OscLib = new OscProbCalcerOscLib(OscProbCalcerConfig);
+  else if (OscProbCalcerImplementationToCreate == "OscLibLinear") {
+#if UseOscLibLinear==1
+    OscProbCalcerOscLibLinear* OscLib = new OscProbCalcerOscLibLinear(OscProbCalcerConfig);
     Calcer = (OscProbCalcerBase*)OscLib;
     if (Verbose >= NuOscillator::INFO) {std::cout << "Initalised OscProbCalcer Implementation:" << Calcer->ReturnImplementationName() << " in OscProbCalcerFactory object" << std::endl;}
 #else

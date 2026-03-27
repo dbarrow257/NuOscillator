@@ -57,7 +57,7 @@ DefineEnabledRequiredSwitch(UseProbGPULinear 0)
 DefineEnabledRequiredSwitch(UseNuFASTLinear 0)
 DefineEnabledRequiredSwitch(UseNuSQUIDSLinear 0)
 DefineEnabledRequiredSwitch(UseOscProb 0)
-DefineEnabledRequiredSwitch(UseOscLib 0)
+DefineEnabledRequiredSwitch(UseOscLibLinear 0)
 DefineEnabledRequiredSwitch(UseGLoBESLinear  0)
 
 # KS: NuFastLinear by default
@@ -68,7 +68,7 @@ if(UseCUDAProb3        EQUAL 0 AND
     UseNuFASTLinear    EQUAL 0 AND
     UseNuSQUIDSLinear  EQUAL 0 AND
     UseOscProb         EQUAL 0 AND
-    UseOscLib          EQUAL 0 AND
+    UseOscLibLinear    EQUAL 0 AND
     UseGLoBESLinear    EQUAL 0 )
   set(UseNuFASTLinear 1)
 endif()
@@ -81,7 +81,7 @@ LIST(APPEND ALL_Engines
   NuFASTLinear
   NuSQUIDSLinear
   OscProb
-  OscLib
+  OscLibLinear
   GLoBESLinear
 )
 
@@ -382,7 +382,7 @@ if(${UseOscProb} EQUAL 1)
   target_compile_definitions(NuOscillatorCompilerOptions INTERFACE UseOscProb=1)
 endif()
 
-if(${UseOscLib} EQUAL 1)
+if(${UseOscLibLinear} EQUAL 1)
   # Check if C++ standard is less than 17
   if(CMAKE_CXX_STANDARD LESS 17)
     cmessage(FATAL_ERROR "OscLib requires at least C++17, but you are using C++${CMAKE_CXX_STANDARD}.")
@@ -419,27 +419,27 @@ if(${UseOscLib} EQUAL 1)
   file(GLOB OSCLIB_HEADERS
     ${OscLib_SOURCE_DIR}/OscLib/*.h
   )
-  add_library(OscLib SHARED
+  add_library(OscLibLinear SHARED
     ${OSCLIB_SOURCES}
   )
 
-  set_target_properties(OscLib PROPERTIES
+  set_target_properties(OscLibLinear PROPERTIES
     PUBLIC_HEADER "${OSCLIB_HEADERS}"
     EXPORT_NAME OscLib
   )
 
-  target_link_libraries(OscLib ROOT::Core Eigen GSL::gsl)
+  target_link_libraries(OscLibLinear ROOT::Core Eigen GSL::gsl)
   # Properly scoped include dirs
-  target_include_directories(OscLib PUBLIC
+  target_include_directories(OscLibLinear PUBLIC
       $<BUILD_INTERFACE:${OscLib_SOURCE_DIR}>
       $<INSTALL_INTERFACE:include>
   )
-  install(TARGETS OscLib
+  install(TARGETS OscLibLinear
     EXPORT NuOscillator-targets
     LIBRARY DESTINATION lib/
     PUBLIC_HEADER DESTINATION include/
   )
-  target_compile_definitions(NuOscillatorCompilerOptions INTERFACE UseOscLib=1)
+  target_compile_definitions(NuOscillatorCompilerOptions INTERFACE UseOscLibLinear=1)
 endif()
 
 if(${UseNuSQUIDSLinear} EQUAL 1)
