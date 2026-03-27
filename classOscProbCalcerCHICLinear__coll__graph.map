@@ -1,0 +1,17 @@
+<map id="OscProbCalcerCHICLinear" name="OscProbCalcerCHICLinear">
+<area shape="rect" id="Node000001" title="Oscillation calculation engine for linear propagation in CHIC." alt="" coords="792,133,969,159"/>
+<area shape="rect" id="Node000002" href="$classOscProbCalcerBase.html" title="Oscillation calculation engine (CUDAProb3, ProbGPU, Prob3++, etc.) implementation agnostic base class..." alt="" coords="531,108,671,134"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="686,126,791,135,791,141,686,131"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="202,5,319,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="335,26,414,42,498,66,542,85,579,105,576,110,540,90,496,71,413,47,334,31"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="178,55,342,96"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="358,84,498,102,531,107,531,112,497,107,357,89"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="180,153,341,179"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="335,179,373,183,415,184,456,179,496,168,508,157,520,144,545,132,547,137,523,148,512,161,499,172,458,185,415,189,373,189,334,185"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="222,203,299,228"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="314,226,357,232,405,233,453,225,475,216,496,204,506,192,508,177,509,161,519,144,538,132,541,136,523,148,515,162,513,178,511,194,499,209,477,221,454,230,405,238,356,237,313,231"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="5,195,129,236"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="144,213,221,213,221,218,144,218"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="521,159,681,184"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="696,169,705,170,736,171,767,170,832,157,833,162,768,175,736,176,705,175,696,175"/>
+</map>

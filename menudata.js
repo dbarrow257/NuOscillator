@@ -83,7 +83,10 @@ var menudata={children:[
 {text:"r",url:"functions_vars.html#index_r"},
 {text:"t",url:"functions_vars.html#index_t"},
 {text:"u",url:"functions_vars.html#index_u"}]},
-{text:"Enumerations",url:"functions_enum.html"},
+{text:"Enumerations",url:"functions_enum.html",children:[
+{text:"n",url:"functions_enum.html#index_n"},
+{text:"o",url:"functions_enum.html#index_o"},
+{text:"p",url:"functions_enum.html#index_p"}]},
 {text:"Enumerator",url:"functions_eval.html",children:[
 {text:"k",url:"functions_eval.html#index_k"},
 {text:"n",url:"functions_eval_n.html#index_n"}]}]}]},

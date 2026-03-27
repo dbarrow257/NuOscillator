@@ -8,13 +8,14 @@ var searchData=
   ['oscillatorsubsampling_5',['OscillatorSubSampling',['../classOscillatorSubSampling.html',1,'']]],
   ['oscillatorunbinned_6',['OscillatorUnbinned',['../classOscillatorUnbinned.html',1,'']]],
   ['oscprobcalcerbase_7',['OscProbCalcerBase',['../classOscProbCalcerBase.html',1,'']]],
-  ['oscprobcalcercudaprob3_8',['OscProbCalcerCUDAProb3',['../classOscProbCalcerCUDAProb3.html',1,'']]],
-  ['oscprobcalcercudaprob3linear_9',['OscProbCalcerCUDAProb3Linear',['../classOscProbCalcerCUDAProb3Linear.html',1,'']]],
-  ['oscprobcalcerfactory_10',['OscProbCalcerFactory',['../classOscProbCalcerFactory.html',1,'']]],
-  ['oscprobcalcerglobeslinear_11',['OscProbCalcerGLoBESLinear',['../classOscProbCalcerGLoBESLinear.html',1,'']]],
-  ['oscprobcalcernufastlinear_12',['OscProbCalcerNuFASTLinear',['../classOscProbCalcerNuFASTLinear.html',1,'']]],
-  ['oscprobcalcernusquidslinear_13',['OscProbCalcerNuSQUIDSLinear',['../classOscProbCalcerNuSQUIDSLinear.html',1,'']]],
-  ['oscprobcalceroscprob_14',['OscProbCalcerOscProb',['../classOscProbCalcerOscProb.html',1,'']]],
-  ['oscprobcalcerprob3pplinear_15',['OscProbCalcerProb3ppLinear',['../classOscProbCalcerProb3ppLinear.html',1,'']]],
-  ['oscprobcalcerprobgpulinear_16',['OscProbCalcerProbGPULinear',['../classOscProbCalcerProbGPULinear.html',1,'']]]
+  ['oscprobcalcerchiclinear_8',['OscProbCalcerCHICLinear',['../classOscProbCalcerCHICLinear.html',1,'']]],
+  ['oscprobcalcercudaprob3_9',['OscProbCalcerCUDAProb3',['../classOscProbCalcerCUDAProb3.html',1,'']]],
+  ['oscprobcalcercudaprob3linear_10',['OscProbCalcerCUDAProb3Linear',['../classOscProbCalcerCUDAProb3Linear.html',1,'']]],
+  ['oscprobcalcerfactory_11',['OscProbCalcerFactory',['../classOscProbCalcerFactory.html',1,'']]],
+  ['oscprobcalcerglobeslinear_12',['OscProbCalcerGLoBESLinear',['../classOscProbCalcerGLoBESLinear.html',1,'']]],
+  ['oscprobcalcernufastlinear_13',['OscProbCalcerNuFASTLinear',['../classOscProbCalcerNuFASTLinear.html',1,'']]],
+  ['oscprobcalcernusquidslinear_14',['OscProbCalcerNuSQUIDSLinear',['../classOscProbCalcerNuSQUIDSLinear.html',1,'']]],
+  ['oscprobcalceroscprob_15',['OscProbCalcerOscProb',['../classOscProbCalcerOscProb.html',1,'']]],
+  ['oscprobcalcerprob3pplinear_16',['OscProbCalcerProb3ppLinear',['../classOscProbCalcerProb3ppLinear.html',1,'']]],
+  ['oscprobcalcerprobgpulinear_17',['OscProbCalcerProbGPULinear',['../classOscProbCalcerProbGPULinear.html',1,'']]]
 ];
