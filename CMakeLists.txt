@@ -506,9 +506,6 @@ if(${UseGLoBESLinear} EQUAL 1)
 endif()
 
 if(${UseCHICLinear} EQUAL 1)
-  set(CHIC_PREFIX "${CMAKE_BINARY_DIR}/CHIC-prefix")
-  set(CHIC_LIB_DIR "${GLOBES_PREFIX}/lib/")
-  set(CHIC_INC_DIR "${GLOBES_PREFIX}/include/")
 
   if(CMAKE_CXX_STANDARD LESS 17)
     cmessage(WARNING "CHIC requires at least C++17 — changing from ${CMAKE_CXX_STANDARD} to 17")
