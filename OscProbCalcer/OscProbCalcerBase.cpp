@@ -385,6 +385,11 @@ void OscProbCalcerBase::CheckOscillationParametersDefined() {
 }
 
 void OscProbCalcerBase::DefineParameter(std::string ParName_, FLOAT_T* ParValue_) {
+  if (fUseLegacyMode) {
+    std::cerr << "Defining a parameter while running in LegacyMode - Configuration error!" << std::endl;
+    throw std::runtime_error("Legacy Mode Configuration Error");
+  }
+  
   for (size_t iOscPar=0;iOscPar<fNOscParams;iOscPar++) {
     if (fExpectedOscillationParameterNames[iOscPar] == ParName_) {
 

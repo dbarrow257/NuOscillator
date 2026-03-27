@@ -25,8 +25,6 @@ class OscProbCalcerBase {
    */
   virtual ~OscProbCalcerBase();
   
-  void DefineParameter(std::string ParName, FLOAT_T* ParValue);
-  
   /**
    * @brief Define the Energy which will be used when calculating the oscillation probabilities
    * 
@@ -64,7 +62,19 @@ class OscProbCalcerBase {
    */
   void Reweight();
 
-  //Legacy implementation
+  /**
+   * @brief Function to register an oscillation parameter name and pointer to a value that will be used when calculating the oscillation probabilities
+   *
+   * @param ParName Parameter name that will be checked against expected parameters
+   * @param ParValue Pointer to value of parameter
+   */
+  void DefineParameter(std::string ParName, FLOAT_T* ParValue);
+  
+  /**
+   * @brief Legacy implementation function of Reweight()
+   *
+   * @param OscParams_ Input oscillation parameters
+   */
   void Reweight(const std::vector<FLOAT_T>& OscParams_);
 
   /**
@@ -302,7 +312,7 @@ class OscProbCalcerBase {
    */
   void SanitiseProbabilities();
 
-      /**
+  /**
    * @brief Return the index in #fCosineZArray for a particular value of CosineZ. If it's not found, throws an error
    *
    * Determine the index in #fCosineZArray for a particular value of CosineZ
@@ -332,6 +342,11 @@ class OscProbCalcerBase {
    */
   int ReturnOscChannelIndexFromFlavours(int InitNuFlav, int FinalNuFlav);
 
+  /**
+   * @brief Define the list of parameter names that a particular instance of OscProbCalcer expects
+   *
+   * @param ExpectedOscParNames_ List of parameter names
+   */
   void SetExpectedParameterNames(std::vector<std::string> ExpectedOscParNames_) {
     fExpectedOscillationParameterNames = ExpectedOscParNames_;
     fNOscParams = fExpectedOscillationParameterNames.size();
@@ -339,7 +354,16 @@ class OscProbCalcerBase {
     fOscillationParametersSetCheck = std::vector<bool>(fNOscParams,false);
   }
 
+  /**
+   * @brief Return the value of the oscillation parameter associated with the index
+   *
+   * @param Index Index of parameter to return value for
+   */
   FLOAT_T GetOscillationParameter(int Index);
+
+  /**
+   * @brief Check that all the expected oscillation parameters have been assigned a value
+   */
   void CheckOscillationParametersDefined();
 
   // ========================================================================================================================================================================
@@ -505,12 +529,29 @@ class OscProbCalcerBase {
    */
   std::vector<FLOAT_T> fOscParamsCurr;
 
-  
+  /**
+   * @brief Vector of pointers to oscillation parameter values
+   */
   std::vector<FLOAT_T*> fOscParams;
+
+  /**
+   * @brief Vector of expected oscillation parameter names
+   */
   std::vector<std::string> fExpectedOscillationParameterNames;
+
+  /**
+   * @brief Check to determine which of the expected oscillation parameters have been registered
+   */
   std::vector<bool> fOscillationParametersSetCheck;
 
+  /**
+   * @brief Check to determine if LegacyMode has been requested
+   */
   bool fUseLegacyMode;
+
+  /**
+   * @brief Check to determine in Reweight(std::vector<FLOAT_T> OscParams) has been called
+   */
   bool fUseLegacyMode_OscParsSet;
 
   /**
