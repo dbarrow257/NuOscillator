@@ -1,0 +1,52 @@
+General:
+  Verbosity: "NONE"
+  CosineZIgnored: false
+  CalculationType: "Unbinned"
+
+  OscillationParameters:
+    sin2_th12: 3.07e-1
+    sin2_th23: 5.28e-1
+    sin2_th13: 2.18e-2
+    dm2_12: 7.53e-5
+    dm2_23: 2.509e-3
+    delta_cp: -1.601
+    production_height: 25.0
+    r_0: 1221.5
+    r_1: 3480.0
+    r_2: 5701.0
+    r_3: 6371.0
+    w_0: 1.0
+    w_1: 1.0
+    w_2: 1.0
+    w_3: 1.0
+    y_0: 0.468
+    y_1: 0.468
+    y_2: 0.497
+    y_3: 0.497
+
+OscProbCalcerSetup:
+  ImplementationName: "CUDAProb3"
+  EarthModelFileName: "./build/_deps/cudaprob3-src/models/PREM_4layer.dat"
+  UseEarthModelSystematics: true
+  Layers: 4
+  
+  UseProductionHeightsAveraging: false
+  ProductionHeightsFileName: "./inputs/ProdHeightDist_E561_cZ520_N1_hbin2.5.root"
+  ProductionHeightsHistFlavourSuffixes:
+    Nue: "nue"
+    Numu: "numu"
+    Nutau: "numu"
+    Nuebar: "nuebar"
+    Numubar: "numubar"
+    Nutaubar: "numubar"
+    
+  OscChannelMapping:
+    - Entry: "Electron:Electron"
+    - Entry: "Electron:Muon"
+    - Entry: "Electron:Tau"
+    - Entry: "Muon:Electron"
+    - Entry: "Muon:Muon"
+    - Entry: "Muon:Tau"
+    - Entry: "Tau:Electron"
+    - Entry: "Tau:Muon"
+    - Entry: "Tau:Tau"
