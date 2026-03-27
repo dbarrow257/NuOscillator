@@ -96,6 +96,12 @@ if(${UseGLoBESLinear} EQUAL 1)
   add_dependencies(OscProbCalcer snu_project globes_project)
 endif()
 
+if(${UseCHICLinear} EQUAL 1)
+  target_sources(OscProbCalcer PRIVATE OscProbCalcer_CHICLinear.cpp)
+  target_link_libraries(OscProbCalcer CHIC::CHIC)
+  list(APPEND HEADERS OscProbCalcer_CHICLinear.h)
+endif()
+
 if (${UseGPU} EQUAL 1)
   set_target_properties(OscProbCalcer PROPERTIES
     CUDA_SEPARABLE_COMPILATION ON

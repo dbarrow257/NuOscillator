@@ -1,49 +1,51 @@
-#ifndef __OSCILLATOR_GLOBESLINEAR_H__
-#define __OSCILLATOR_GLOBESLINEAR_H__
+#ifndef __OSCILLATOR_CHICLINEAR_H__
+#define __OSCILLATOR_CHICLINEAR_H__
 
 #include "OscProbCalcerBase.h"
 
+
+class CHIC;
 /**
- * @file OscProbCalcer_GLoBESLinear.h
+ * @file OscProbCalcer_CHICLinear.h
  *
- * @class OscProbCalcerGLoBESLinear
+ * @class OscProbCalcerCHICLinear
  *
- * @brief Oscillation calculation engine for linear propagation in GLoBES.
+ * @brief Oscillation calculation engine for linear propagation in CHIC.
  */
-class OscProbCalcerGLoBESLinear : public OscProbCalcerBase {
+class OscProbCalcerCHICLinear : public OscProbCalcerBase {
  public:
 
   /**
    * @brief Default constructor
    *
-   * @param Config_ YAML::Node to setup the OscProbCalcerGLoBESLinear() instance
+   * @param Config_ YAML::Node to setup the OscProbCalcerCHICLinear() instance
    */
-  OscProbCalcerGLoBESLinear(YAML::Node Config_);
+  OscProbCalcerCHICLinear(YAML::Node Config_);
 
   /**
    * @brief Constructor which takes a file path, creates a YAML::Node and calls the default constructor
    *
    * @param ConfigName_ File path to config
    */
-  OscProbCalcerGLoBESLinear(std::string ConfigName_) : OscProbCalcerGLoBESLinear(YAML::LoadFile(ConfigName_)) {}
+  OscProbCalcerCHICLinear(std::string ConfigName_) : OscProbCalcerCHICLinear(YAML::LoadFile(ConfigName_)) {}
   
   /**
    * @brief Destructor
    */
-  virtual ~OscProbCalcerGLoBESLinear();
+  virtual ~OscProbCalcerCHICLinear();
 
   // ========================================================================================================================================================================
   // Functions which need implementation specific code
 
   /**
-   * @brief Setup GLoBES specific variables
+   * @brief Setup CHIC specific variables
    */  
   void SetupPropagator() final;
   
   /**
    * @brief Calculate some oscillation probabilities for a particular oscillation parameter set
    *
-   * Calculator oscillation probabilities in GLoBES. This function both calculates and stores
+   * Calculator oscillation probabilities in CHIC. This function both calculates and stores
    * the oscillation probabilities in #fWeightArray.
    *
    * @param OscParams The parameter set to calculate oscillation probabilities at
@@ -65,7 +67,7 @@ class OscProbCalcerGLoBESLinear : public OscProbCalcerBase {
   /**
    * @brief Define the size of fWeightArray
    *
-   * This is implementation specific because because GLoBES is setup to calculate all oscillation channels together, whilst others calculate only a single oscillation channel.
+   * This is implementation specific because because CHIC is setup to calculate all oscillation channels together, whilst others calculate only a single oscillation channel.
    *
    * @return Length that #fWeightArray should be initialised to
    */
@@ -86,6 +88,10 @@ class OscProbCalcerGLoBESLinear : public OscProbCalcerBase {
    * @brief Define the neutrino and antineutrino values expected by this implementation
    */
   enum NuType{Nu=1,Nubar=-1};
+
+  // CHIC
+  std::unique_ptr<CHIC> chic_nu;
+  std::unique_ptr<CHIC> chic_nubar;
 };
 
 #endif

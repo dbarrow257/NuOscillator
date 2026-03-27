@@ -200,13 +200,17 @@ void OscillatorSubSampling::PostCalculateProbabilities() {
   #if UseMultithreading == 1
   #pragma omp parallel for
   #endif
-  for (size_t iBin=0;iBin<AveragedOscillationProbabilities.size();++iBin) {
-    FLOAT_T Avg = 0;
+  for (size_t iBin = 0; iBin < AveragedOscillationProbabilities.size(); ++iBin) {
+    FLOAT_T Avg = 0.;
     const auto& Probabilities = OscillationProbabilitiesToAverage[iBin];
-    for (size_t iPtr=0;iPtr<Probabilities.size();++iPtr) {
+    const size_t nProb = Probabilities.size();
+    #if UseMultithreading == 1
+    #pragma omp simd reduction(+:Avg)
+    #endif
+    for (size_t iPtr = 0; iPtr < nProb; ++iPtr) {
       Avg += *(Probabilities[iPtr]);
     }
-    Avg /= Probabilities.size();
+    Avg /= nProb;
 
     AveragedOscillationProbabilities[iBin] = Avg;
   }

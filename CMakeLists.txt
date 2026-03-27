@@ -16,7 +16,7 @@ include(${CMAKE_CURRENT_LIST_DIR}/cmake/Modules/NuOscillatorUtils.cmake)
 # By default GPU is off
 DefineEnabledRequiredSwitch(UseGPU 0)
 
-set(NUOSCILLATOR_VERSION 1.4.3)
+set(NUOSCILLATOR_VERSION 1.5.0)
 
 if(${UseGPU} EQUAL 0)
   project(NUOSCILLATOR VERSION ${NUOSCILLATOR_VERSION} LANGUAGES CXX)
@@ -42,36 +42,13 @@ add_library(NuOscillatorCompilerOptions INTERFACE)
 # download CPM.cmake
 file(
   DOWNLOAD
-  https://github.com/cpm-cmake/CPM.cmake/releases/download/v0.42.0/CPM.cmake
+  https://github.com/cpm-cmake/CPM.cmake/releases/download/v0.42.1/CPM.cmake
   ${CMAKE_CURRENT_BINARY_DIR}/cmake/CPM.cmake
 )
 include(${CMAKE_CURRENT_BINARY_DIR}/cmake/CPM.cmake)
 
 DefineEnabledRequiredSwitch(UseMultithreading 1)
 DefineEnabledRequiredSwitch(UseDoubles 1)
-
-DefineEnabledRequiredSwitch(UseCUDAProb3 0)
-DefineEnabledRequiredSwitch(UseCUDAProb3Linear 0)
-DefineEnabledRequiredSwitch(UseProb3ppLinear 0)
-DefineEnabledRequiredSwitch(UseProbGPULinear 0)
-DefineEnabledRequiredSwitch(UseNuFASTLinear 0)
-DefineEnabledRequiredSwitch(UseNuSQUIDSLinear 0)
-DefineEnabledRequiredSwitch(UseOscProb 0)
-DefineEnabledRequiredSwitch(UseOscLibLinear 0)
-DefineEnabledRequiredSwitch(UseGLoBESLinear  0)
-
-# KS: NuFastLinear by default
-if(UseCUDAProb3        EQUAL 0 AND
-    UseCUDAProb3Linear EQUAL 0 AND
-    UseProb3ppLinear   EQUAL 0 AND
-    UseProbGPULinear   EQUAL 0 AND
-    UseNuFASTLinear    EQUAL 0 AND
-    UseNuSQUIDSLinear  EQUAL 0 AND
-    UseOscProb         EQUAL 0 AND
-    UseOscLibLinear    EQUAL 0 AND
-    UseGLoBESLinear    EQUAL 0 )
-  set(UseNuFASTLinear 1)
-endif()
 
 LIST(APPEND ALL_Engines
   CUDAProb3
@@ -83,13 +60,29 @@ LIST(APPEND ALL_Engines
   OscProb
   OscLibLinear
   GLoBESLinear
+  CHICLinear
 )
+# KS: Tells whether all oscillators were disabled
+set(ALL_OSCILLATORS_DISABLED TRUE)
+
+foreach(option IN LISTS ALL_Engines)
+  DefineEnabledRequiredSwitch(Use${option} 0)
+  # If at least one oscillator is enabled then set ALL_OSCILLATORS_DISABLED to false
+  if(Use${option} EQUAL 1)
+    set(ALL_OSCILLATORS_DISABLED FALSE)
+  endif()
+endforeach()
+
+# KS: NuFastLinear by default
+if(ALL_OSCILLATORS_DISABLED)
+  set(UseNuFASTLinear 1)
+endif()
 
 ########################################################
 #Default Branches
 
 if(NOT DEFINED CUDAProb3_BRANCH)
-  set(CUDAProb3_BRANCH "v1.2.0")
+  set(CUDAProb3_BRANCH "v1.2.1")
 endif()
 
 if(NOT DEFINED CUDAProb3Linear_BRANCH)
@@ -109,11 +102,11 @@ if(NOT DEFINED NuFASTLinear_BRANCH)
 endif()
 
 if(NOT DEFINED NuSQUIDSLinear_BRANCH)
-  set(NuSQUIDSLinear_BRANCH "v1.12.0")
+  set(NuSQUIDSLinear_BRANCH "v1.13.3")
 endif()
 
 if(NOT DEFINED OscProb_BRANCH)
-  set(OscProb_BRANCH "v2.1.2")
+  set(OscProb_BRANCH "v2.3.0")
 endif()
 
 if(NOT DEFINED OscLib_BRANCH)
@@ -122,6 +115,10 @@ endif()
 
 if(NOT DEFINED GLoBES_BRANCH)
   set(GLoBES_BRANCH "3.2.18")
+endif()
+
+if(NOT DEFINED CHICLinear_BRANCH)
+  set(CHICLinear_BRANCH "v1.0.1")
 endif()
 
 ########################################################
@@ -216,12 +213,12 @@ endif()
 
 #================================================================================================
 #Setup Deps
-set(YAML_CPP_VERSION 0.8.0)
+set(YAML_CPP_VERSION 0.9.0)
 CPMAddPackage(
     NAME yaml-cpp
     VERSION ${YAML_CPP_VERSION}
     GITHUB_REPOSITORY "jbeder/yaml-cpp"
-    GIT_TAG "${YAML_CPP_VERSION}"
+    GIT_TAG "yaml-cpp-${YAML_CPP_VERSION}"
     OPTIONS
       "YAML_CPP_INSTALL ON"
       "YAML_CPP_BUILD_TESTS OFF"
@@ -284,6 +281,12 @@ if(${UseCUDAProb3Linear} EQUAL 1)
       "GPU_ON ON"
       "CMAKE_CUDA_ARCHITECTURES ${CMAKE_CUDA_ARCHITECTURES_STRING}"
     )
+    # KS: Terrible hack because CUDAProb3Beam is mess :(
+    install(TARGETS CUDAProb3Beam
+      EXPORT NuOscillator-targets
+      LIBRARY DESTINATION lib/
+      )
+
    # KS: This is bit hacky but CUDAProb3Linear is a mess. Whole functions are written in header file
    # and someone wrote them to be hidden under GPU_ON and wrote shitty cmake which do not propagate this definition.
    # Therefore NuOscillator is fixing other people mess
@@ -323,6 +326,9 @@ if(${UseGPU} EQUAL 1)
     endif()
 
     target_compile_definitions(NuOscillatorCompilerOptions INTERFACE UseProbGPULinear=1)
+    install(TARGETS ProbGPU
+      EXPORT NuOscillator-targets
+      LIBRARY DESTINATION lib/)
   endif()
 endif()
 
@@ -361,6 +367,7 @@ if(${UseOscProb} EQUAL 1)
     NAME OscProb
     GITHUB_REPOSITORY joaoabcoelho/OscProb
     GIT_TAG ${OscProb_BRANCH}
+    DOWNLOAD_ONLY YES
   )
 
   CPMAddPackage(
@@ -369,6 +376,12 @@ if(${UseOscProb} EQUAL 1)
     URL https://gitlab.com/libeigen/eigen/-/archive/3.4.0/eigen-3.4.0.tar.gz
     DOWNLOAD_ONLY YES
   )
+
+  if(CMAKE_CXX_STANDARD LESS 17)
+    cmessage(WARNING "OscProb requires at least C++17 — changing from ${CMAKE_CXX_STANDARD} to 17")
+    set(CMAKE_CXX_STANDARD 17)
+  endif()
+
   if(Eigen_ADDED)
     add_library(Eigen INTERFACE IMPORTED)
     target_include_directories(Eigen INTERFACE ${Eigen_SOURCE_DIR})
@@ -580,6 +593,61 @@ if(${UseGLoBESLinear} EQUAL 1)
   )
   add_dependencies(SNU::SNU GLOBES::GLOBES)
   target_compile_definitions(NuOscillatorCompilerOptions INTERFACE UseGLoBESLinear=1)
+endif()
+
+if(${UseCHICLinear} EQUAL 1)
+
+  if(CMAKE_CXX_STANDARD LESS 17)
+    cmessage(WARNING "CHIC requires at least C++17 — changing from ${CMAKE_CXX_STANDARD} to 17")
+    set(CMAKE_CXX_STANDARD 17)
+  endif()
+
+  CPMAddPackage(
+    NAME Eigen
+    VERSION 3.4.0
+    URL https://gitlab.com/libeigen/eigen/-/archive/3.4.0/eigen-3.4.0.tar.gz
+    DOWNLOAD_ONLY YES
+  )
+
+  if(Eigen_ADDED)
+    add_library(Eigen INTERFACE IMPORTED)
+    target_include_directories(Eigen INTERFACE ${Eigen_SOURCE_DIR})
+  endif()
+
+
+  CPMAddPackage(
+    NAME CHIC
+    GIT_REPOSITORY https://github.com/pabloferm/CHIC.git
+    GIT_TAG ${CHICLinear_BRANCH}
+    DOWNLOAD_ONLY YES
+  )
+
+  set(CHIC_HEADERS
+    ${CHIC_SOURCE_DIR}/src/CHIC.h
+    ${CHIC_SOURCE_DIR}/src/opt_constants.h
+  )
+
+  add_library(CHIC STATIC
+    ${CHIC_SOURCE_DIR}/src/CHIC.cpp
+    ${CHIC_HEADERS}
+  )
+
+  target_include_directories(CHIC
+  PUBLIC
+    $<BUILD_INTERFACE:${CHIC_SOURCE_DIR}/src>
+    $<INSTALL_INTERFACE:include/CHIC>
+  )
+  target_link_libraries(CHIC PUBLIC Eigen)
+  target_compile_options(CHIC PRIVATE -fPIC)
+  target_link_libraries(CHIC PRIVATE NuOscillatorCompilerOptions)
+
+  add_library(CHIC::CHIC ALIAS CHIC)
+  install(TARGETS CHIC
+    EXPORT NuOscillator-targets
+    ARCHIVE DESTINATION lib
+  )
+
+  target_compile_definitions(NuOscillatorCompilerOptions INTERFACE UseCHICLinear=1)
 endif()
 
 if(${UseGPU} EQUAL 1)

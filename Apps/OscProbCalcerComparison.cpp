@@ -34,7 +34,6 @@ int main(int argc, char **argv) {
   int nFinalFlav = 3;
   
   //============================================================================================================
-  
   std::vector<FLOAT_T> EnergyArray = logspace(0.1,10.,1e3);
   std::vector<FLOAT_T> CosineZArray = linspace(-1.0,1.0,1);
 
@@ -95,7 +94,7 @@ int main(int argc, char **argv) {
 
   std::cout << "Finished setup in executable" << std::endl;
   std::cout << "========================================================" << std::endl;
-  std::cout << "Starting drag race in executable" << std::endl;
+  std::cout << "Starting OscProbCalcerComparison" << std::endl;
 
   std::vector< std::vector< std::vector<FLOAT_T> > > ProbabilityArray(Oscillators.size());
   for (size_t iOsc=0;iOsc<Oscillators.size();iOsc++) {
@@ -130,10 +129,10 @@ int main(int argc, char **argv) {
 
     for (int iInitFlav=1;iInitFlav<=nInitFlav;iInitFlav++) {
       for (int iFinalFlav=1;iFinalFlav<=nFinalFlav;iFinalFlav++) {
-	for (int iEnergy=0;iEnergy<Oscillators[iOsc]->ReturnNEnergyPoints();iEnergy++) {
-	  const FLOAT_T Probability = Oscillators[iOsc]->ReturnOscillationProbability(iInitFlav,iFinalFlav,EnergyArray[iEnergy]);
-	  ProbabilityArray[iOsc][(iInitFlav-1)*nInitFlav+(iFinalFlav-1)][iEnergy] = Probability;
-	}
+        for (int iEnergy=0;iEnergy<Oscillators[iOsc]->ReturnNEnergyPoints();iEnergy++) {
+          const FLOAT_T Probability = Oscillators[iOsc]->ReturnOscillationProbability(iInitFlav,iFinalFlav,EnergyArray[iEnergy]);
+          ProbabilityArray[iOsc][(iInitFlav-1)*nInitFlav+(iFinalFlav-1)][iEnergy] = Probability;
+        }
       }
     }
   }
@@ -155,7 +154,7 @@ int main(int argc, char **argv) {
     for	(int iChan=0;iChan<nChannels;iChan++) {
       ProbabilityArray_Ratio[iOsc][iChan].resize(Oscillators[iOsc]->ReturnNEnergyPoints());
       for (int iEnergy=0;iEnergy<Oscillators[iOsc]->ReturnNEnergyPoints();iEnergy++) {
-	ProbabilityArray_Ratio[iOsc][iChan][iEnergy] = 2.*(ProbabilityArray[iOsc][iChan][iEnergy]-ProbabilityArray[0][iChan][iEnergy])/(ProbabilityArray[iOsc][iChan][iEnergy]+ProbabilityArray[0][iChan][iEnergy]);
+        ProbabilityArray_Ratio[iOsc][iChan][iEnergy] = 2.*(ProbabilityArray[iOsc][iChan][iEnergy]-ProbabilityArray[0][iChan][iEnergy])/(ProbabilityArray[iOsc][iChan][iEnergy]+ProbabilityArray[0][iChan][iEnergy]);
       }
     }
   }
@@ -175,8 +174,8 @@ int main(int argc, char **argv) {
     
     for (size_t iOsc=0;iOsc<Oscillators.size();iOsc++) {
       for (int iEnergy=0;iEnergy<Oscillators[iOsc]->ReturnNEnergyPoints();iEnergy++) {
-	if (ProbabilityArray_Ratio[iOsc][iChan][iEnergy] > Max) Max = ProbabilityArray_Ratio[iOsc][iChan][iEnergy];
-	if (ProbabilityArray_Ratio[iOsc][iChan][iEnergy] < Min) Min = ProbabilityArray_Ratio[iOsc][iChan][iEnergy];
+        if (ProbabilityArray_Ratio[iOsc][iChan][iEnergy] > Max) Max = ProbabilityArray_Ratio[iOsc][iChan][iEnergy];
+        if (ProbabilityArray_Ratio[iOsc][iChan][iEnergy] < Min) Min = ProbabilityArray_Ratio[iOsc][iChan][iEnergy];
       }
     }
 
@@ -221,11 +220,11 @@ int main(int argc, char **argv) {
       Canv1->SetLogx(true);
       
       for (size_t iOsc=0;iOsc<Oscillators.size();iOsc++) {
-	if (iOsc==0) {
-	  Probabilities[iOsc][iChan]->Draw("AL");
-	} else {
-	  Probabilities[iOsc][iChan]->Draw("L SAME");
-	}
+        if (iOsc==0) {
+          Probabilities[iOsc][iChan]->Draw("AL");
+        } else {
+          Probabilities[iOsc][iChan]->Draw("L SAME");
+        }
       }
       Leg->Draw("SAME");
       Text.Draw("SAME");
@@ -237,11 +236,11 @@ int main(int argc, char **argv) {
       Canv2->SetLogx(true);
       
       for (size_t iOsc=0;iOsc<Oscillators.size();iOsc++) {
-	if (iOsc==0) {
-	  Probabilities_Ratio[iOsc][iChan]->Draw("AL");
-	} else {
-	  Probabilities_Ratio[iOsc][iChan]->Draw("L SAME");
-	}
+        if (iOsc==0) {
+          Probabilities_Ratio[iOsc][iChan]->Draw("AL");
+      } else {
+        Probabilities_Ratio[iOsc][iChan]->Draw("L SAME");
+        }
       }
       Leg->Draw("SAME");
       Text.Draw("SAME");
