@@ -8,9 +8,9 @@ OscProbCalcerProb3ppLinear::OscProbCalcerProb3ppLinear(YAML::Node Config_) : Osc
   //Grab information from the config
 
   //=======
-
-  fNOscParams = kNOscParams;
-
+  std::vector<std::string> OscParNames = {"sin2_th12","sin2_th23","sin2_th13","dm2_12","dm2_23","delta_cp","path_length","matter_density"};
+  SetExpectedParameterNames(OscParNames);
+  
   fNNeutrinoTypes = 2;
   InitialiseNeutrinoTypesArray(fNNeutrinoTypes);
   fNeutrinoTypes[0] = Nu;
@@ -37,7 +37,7 @@ void OscProbCalcerProb3ppLinear::SetupPropagator() {
    bNu->SetWarningSuppression(true);
 }
 
-void OscProbCalcerProb3ppLinear::CalculateProbabilities(const std::vector<FLOAT_T>& OscParams) {
+void OscProbCalcerProb3ppLinear::CalculateProbabilities() {
   // Prob3++ calculates oscillation probabilities for each NeutrinoType and each energy, so need to copy them from the calculator into fWeightArray
   for (int iNuType=0;iNuType<fNNeutrinoTypes;iNuType++) {
     for (int iOscChannel=0;iOscChannel<fNOscillationChannels;iOscChannel++) {
@@ -46,8 +46,8 @@ void OscProbCalcerProb3ppLinear::CalculateProbabilities(const std::vector<FLOAT_
       int IndexToFill = iNuType*fNOscillationChannels*fNEnergyPoints + iOscChannel*fNEnergyPoints;
       
       for (int iOscProb=0;iOscProb<fNEnergyPoints;iOscProb++) {
-        bNu->SetMNS(OscParams[kTH12], OscParams[kTH13], OscParams[kTH23], OscParams[kDM12], OscParams[kDM23], OscParams[kDCP], fEnergyArray[iOscProb], doubled_angle, fNeutrinoTypes[iNuType]);
-        bNu->propagateLinear(fNeutrinoTypes[iNuType]*fOscillationChannels[iOscChannel].GeneratedFlavour, OscParams[kPATHL], OscParams[kDENS]);
+        bNu->SetMNS(GetOscillationParameter(kTH12), GetOscillationParameter(kTH13), GetOscillationParameter(kTH23), GetOscillationParameter(kDM12), GetOscillationParameter(kDM23), GetOscillationParameter(kDCP), fEnergyArray[iOscProb], doubled_angle, fNeutrinoTypes[iNuType]);
+        bNu->propagateLinear(fNeutrinoTypes[iNuType]*fOscillationChannels[iOscChannel].GeneratedFlavour, GetOscillationParameter(kPATHL), GetOscillationParameter(kDENS));
         fWeightArray[IndexToFill+iOscProb] = bNu->GetProb(fNeutrinoTypes[iNuType]*fOscillationChannels[iOscChannel].GeneratedFlavour, fNeutrinoTypes[iNuType]*fOscillationChannels[iOscChannel].DetectedFlavour);
       }
     }

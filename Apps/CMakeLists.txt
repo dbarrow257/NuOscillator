@@ -7,6 +7,7 @@ foreach(app
         SingleOscProbCalcer
 	OscProbCalcerComparison
 	MakeExampleBinning
+	LegacyModeExample
       )
 
         add_executable(${app} ${app}.cpp)

@@ -26,6 +26,8 @@ OscProbCalcerBase::OscProbCalcerBase(YAML::Node InputConfig_) {
 
   fNOscParams = DUMMYVAL;
   fOscParamsCurr = std::vector<FLOAT_T>();
+  fExpectedOscillationParameterNames = std::vector<std::string>();
+  fOscParams = std::vector<FLOAT_T*>();
 
   fCosineZIgnored = false;
 
@@ -67,6 +69,15 @@ OscProbCalcerBase::OscProbCalcerBase(YAML::Node InputConfig_) {
   }
   InitialiseOscillationChannelMapping();
 
+  fUseLegacyMode = false;
+  fUseLegacyMode_OscParsSet = false;
+  if (Config["OscProbCalcerSetup"]["UseLegacyMode"]) {
+    fUseLegacyMode = Config["OscProbCalcerSetup"]["UseLegacyMode"].as<bool>();
+    if (fUseLegacyMode) {
+      std::cerr << "WARNING - Using NuOscillator in Legacy mode! Expecting user to use OscProbCalcerBase::Reweight(const std::vector<FLOAT>& OscParams)" << std::endl;
+    }
+  }
+  
   fNoSanity = false;
   if (Config["OscProbCalcerSetup"]["NoSanity"]) {
     fNoSanity = Config["OscProbCalcerSetup"]["NoSanity"].as<bool>();
@@ -81,6 +92,7 @@ OscProbCalcerBase::OscProbCalcerBase(YAML::Node InputConfig_) {
       std::cout << "===============================================================================" << std::endl;
     }
   }
+
 }
 
 OscProbCalcerBase::~OscProbCalcerBase() {
@@ -195,6 +207,7 @@ void OscProbCalcerBase::Setup() {
   SetupPropagator();
   fPropagatorSet = true;
 
+  CheckOscillationParametersDefined();
   CheckNuFlavourMapping();
 
   SanityCheck();
@@ -300,24 +313,117 @@ std::vector<NuOscillator::OscillationProbability> OscProbCalcerBase::ReturnProba
   return ReturnVec;
 }
 
-void OscProbCalcerBase::Reweight(const std::vector<FLOAT_T>& OscParams) {
+/* 
+ * fUseLegacyMode_OscParsSet is only true if OscProbCalcerBase::Reweight() called from OscProbCalcerBase::Reweight(const std::vector<FLOAT_T>& OscParams_)
+ *
+ * fUseLegacyMode = true,  fUseLegacyMode_OscParsSet = true   --- Valid; Use Reweight(const std::vector<FLOAT_T>& OscParams_), not Reweight()
+ * fUseLegacyMode = true,  fUseLegacyMode_OscParsSet = false  --- Invalid; Calling Reweight() without calling DefineParameter(std::string ParName, FLOAT_T* ParVal)
+ * fUseLegacyMode = false, fUseLegacyMode_OscParsSet = true   --- Invalid; Calling Reweight(const std::vector<FLOAT_T>& OscParams_) after calling DefineParameter(std::string ParName, FLOAT_T* ParVal)
+ * fUseLegacyMode = false, fUseLegacyMode_OscParsSet = false  --- Valid; Use Reweight(), not Reweight(const std::vector<FLOAT_T>& OscParams_)
+ *
+ * Consequently, fUseLegacyMode == fUseLegacyMode_OscParsSet to be Valid
+ */ 
+
+void OscProbCalcerBase::Reweight() {
   if (fVerbose >= NuOscillator::INFO) {std::cout << "Implementation:" << fImplementationName << " starting reweight" << std::endl;}
 
-  if ((int)OscParams.size() != fNOscParams) {
+  if (!(fUseLegacyMode == fUseLegacyMode_OscParsSet)) {
+    std::cerr << "Invalid running mode -" << std::endl;
+    std::cerr << "fUseLegacyMode:" << fUseLegacyMode << std::endl;
+    std::cerr << "fUseLegacyMode_OscParsSet:" << fUseLegacyMode_OscParsSet << std::endl;
+
+    //fUseLegacyMode = true, fUseLegacyMode_OscParsSet = false
+    if (fUseLegacyMode) {
+      std::cerr << "Running in Legacy Mode but trying to call Reweight() - This will not work. Call OscProbCalcerBase::Reweight(const std::vector<FLOAT_T>& OscParams) instead!" << std::endl;
+      throw std::runtime_error("Invalid used of Legacy Mode and OscProbCalcerBase::Reweight() call");
+    }
+
+    if (fUseLegacyMode_OscParsSet) {
+      std::cerr << "Not running in Legacy Mode but trying to call Reweight(const std::vector<FLOAT_T>& OscParams_) - This will not work. Call OscProbCalcerBase::Reweight() instead!" << std::endl;
+      throw std::runtime_error("Invalid used of Legacy Mode and OscProbCalcerBase::Reweight() call");
+    }
+  }
+  
+  if (!AreOscParamsChanged()) {
+    return;
+  }
+  SetCurrOscParams();
+
+  CalculateProbabilities();
+  if (!fNoSanity) {SanitiseProbabilities();}
+  if (fVerbose >= NuOscillator::INFO) {std::cout << "Implementation:" << fImplementationName << " completed reweight and was found to have sensible oscillation weights" << std::endl;}
+}
+
+void OscProbCalcerBase::Reweight(const std::vector<FLOAT_T>& OscParams_) {
+  if ((int)OscParams_.size() != fNOscParams) {
     std::cerr << "Number of oscillation parameters passed to calculater does not match that expected by the implementation" << std::endl;
-    std::cerr << "OscParams.size():" << OscParams.size() << std::endl;
+    std::cerr << "OscParams.size():" << OscParams_.size() << std::endl;
     std::cerr << "fNOscParams:" << fNOscParams << std::endl;
     throw std::runtime_error("Invalid setup");
   }
-
-  if (!AreOscParamsChanged(OscParams)) {
-    return;
+  
+  for (int iOscPar=0;iOscPar<fNOscParams;iOscPar++) {
+    *(fOscParams[iOscPar]) = OscParams_[iOscPar];
   }
-  SetCurrOscParams(OscParams);
 
-  CalculateProbabilities(OscParams);
-  if (!fNoSanity) {SanitiseProbabilities();}
-  if (fVerbose >= NuOscillator::INFO) {std::cout << "Implementation:" << fImplementationName << " completed reweight and was found to have sensible oscillation weights" << std::endl;}
+  fUseLegacyMode_OscParsSet = true;
+  Reweight();
+  fUseLegacyMode_OscParsSet = false;
+}
+
+void OscProbCalcerBase::CheckOscillationParametersDefined() {
+  // Using Legacy mode where oscillation parameters passed through function argument
+  if (fUseLegacyMode) return;
+
+  for (size_t iOscPar=0;iOscPar<fNOscParams;iOscPar++) {
+    if (!fOscillationParametersSetCheck[iOscPar]) {
+      std::cerr << "Oscillation parameter missing from definition!" << std::endl;
+      std::cerr << "Missing definition of fExpectedOscillationParameterNames[iOscPar]:" << fExpectedOscillationParameterNames[iOscPar] << std::endl;
+      throw std::runtime_error("Missing oscillation parameter definition");
+    }
+  }
+}
+
+void OscProbCalcerBase::DefineParameter(std::string ParName_, FLOAT_T* ParValue_) {
+  if (fUseLegacyMode) {
+    std::cerr << "Defining a parameter while running in LegacyMode - Configuration error!" << std::endl;
+    throw std::runtime_error("Legacy Mode Configuration Error");
+  }
+  
+  for (size_t iOscPar=0;iOscPar<fNOscParams;iOscPar++) {
+    if (fExpectedOscillationParameterNames[iOscPar] == ParName_) {
+
+      if (!fOscillationParametersSetCheck[iOscPar]) {
+	fOscParams[iOscPar] = ParValue_;
+	fOscillationParametersSetCheck[iOscPar] = true;
+	return;
+      } else {
+	// If we hit here, that means the parameter was set twice which we will treat as an error
+	std::cerr << "Parameter: " << ParName_ << " was found to be set twice which is treated as an error!" << std::endl;
+	throw std::runtime_error("Parameter was set twice:"+ParName_);
+      }
+      
+    }
+  }
+
+  // If you hit this point - then the provided oscillation parameter name is not defined in the engine/model configuration and thus is not valid
+  throw std::runtime_error("Invalid oscillation parameter: "+ParName_);
+}
+
+FLOAT_T OscProbCalcerBase::GetOscillationParameter(int Index) {
+  // Check if the requested index is appropriate value
+  if (!(Index >= 0 && Index < fNOscParams)) {
+    std::cerr << "Oscillation parameter requested - Invalid index:" << Index << std::endl;
+    std::cerr	<< "fNOscParams:" << fNOscParams << std::endl;
+  }
+
+  // Because NuOscillator doesn't own the memory, check it's atleast not a nullptr
+  if (fOscParams[Index] != nullptr) {
+    return *fOscParams[Index];
+  }
+  
+  // If we hit here, the pointer of the requested oscillation parameter is null
+  throw std::runtime_error("Requested oscillation parameter pointer is nullptr");
 }
 
 void OscProbCalcerBase::PrintOscParamsCurr() {
@@ -376,9 +482,9 @@ void OscProbCalcerBase::SanitiseProbabilities() {
   
 }
 
-bool OscProbCalcerBase::AreOscParamsChanged(const std::vector<FLOAT_T>& OscParamsToCheck) {
+bool OscProbCalcerBase::AreOscParamsChanged() {
   for (int iParam=0;iParam<fNOscParams;++iParam) {
-    if (OscParamsToCheck[iParam] != fOscParamsCurr[iParam]) {
+    if (*fOscParams[iParam] != fOscParamsCurr[iParam]) {
       if (fVerbose >= NuOscillator::INFO) {std::cout << "Implementation:" << fImplementationName << " was found to have different oscillation parameters than the previous calculation" << std::endl;}
       return true;
     }
@@ -391,9 +497,9 @@ void OscProbCalcerBase::ResetCurrOscParams() {
   fOscParamsCurr = std::vector<FLOAT_T>(fNOscParams,DUMMYVAL);
 }
 
-void OscProbCalcerBase::SetCurrOscParams(const std::vector<FLOAT_T>& OscParamsToSave) {
+void OscProbCalcerBase::SetCurrOscParams() {
   for (int iParam=0;iParam<fNOscParams;iParam++) {
-    fOscParamsCurr[iParam] = OscParamsToSave[iParam];
+    fOscParamsCurr[iParam] = *fOscParams[iParam];
   }
   if (fVerbose >= NuOscillator::INFO) {std::cout << "Saved oscillation parameters in Implementation:" << fImplementationName << std::endl;}
 }

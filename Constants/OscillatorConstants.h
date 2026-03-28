@@ -5,6 +5,8 @@
 
 #include <math.h>
 
+#include "yaml-cpp/yaml.h"
+
 #include "TFile.h"
 #include "TH1.h"
 
@@ -60,76 +62,6 @@ namespace NuOscillator
     FLOAT_T Probability;
   };
   
-}
-
-/**
- * @brief Returns the basic oscillation parameters.
- * @return Vector of oscillation parameters.
- */
-inline std::vector<FLOAT_T> ReturnOscParams_Basic() {
-  std::vector<FLOAT_T> OscParams_Basic = {3.07e-1,5.28e-1,2.18e-2,7.53e-5,2.509e-3,-1.601};
-  return OscParams_Basic;
-}
-
-/**
- * @brief Returns the oscillation parameters for atmospheric neutrinos, with production height.
- *
- * @return Vector of oscillation parameters.
- */
-inline std::vector<FLOAT_T> ReturnOscParams_Atm() {
-  std::vector<FLOAT_T> OscParams_Atm = {3.07e-1,5.28e-1,2.18e-2,7.53e-5,2.509e-3,-1.601,25.0};
-  return OscParams_Atm;
-}
-
-/**
- * @brief Returns the oscillation parameters for beam neutrinos, with baseline and density. Without electron density
- *
- * @return Vector of oscillation parameters.
- */
-inline std::vector<FLOAT_T> ReturnOscParams_Beam_woYe() {
-  std::vector<FLOAT_T> OscParams_Beam_woYe = {3.07e-1,5.28e-1,2.18e-2,7.53e-5,2.509e-3,-1.601,250.0,2.6};
-  return OscParams_Beam_woYe;
-}
-
-/**
- * @brief Returns the oscillation parameters for beam neutrinos, with baseline and density. With electron density
- *
- * @return Vector of oscillation parameters.
- */
-inline std::vector<FLOAT_T> ReturnOscParams_Beam_wYe() {
-  std::vector<FLOAT_T> OscParams_Beam_wYe = {3.07e-1,5.28e-1,2.18e-2,7.53e-5,2.509e-3,-1.601,250.0,2.6,0.5};
-  return OscParams_Beam_wYe;
-}
-
-/**
- * @brief Returns the oscillation parameters for beam neutrinos, with baseline and density. With electron density and decoherence parameters.
- *
- * @return Vector of oscillation parameters.
- */
-inline std::vector<FLOAT_T> ReturnOscParams_Beam_wYe_wDeco() {
-  std::vector<FLOAT_T> OscParams_Beam_wYe_wDeco = {3.07e-1,5.28e-1,2.18e-2,7.53e-5,2.509e-3,-1.601,250.0,2.6,0.5,9.48e-18,2.0,1.0}; //9.48e-18
-  return OscParams_Beam_wYe_wDeco;
-}
-
-/**
- * @brief Returns the oscillation parameters for beam neutrinos, with baseline and density. With electron density and Lorentz invariant parameters.
- *
- * @return Vector of oscillation parameters.
- */
-inline std::vector<FLOAT_T> ReturnOscParams_Beam_wYe_wLIV() {
-  std::vector<FLOAT_T> OscParams_Beam_wYe_wLIV = {3.07e-1,5.28e-1,2.18e-2,7.53e-5,2.509e-3,-1.601,250.0,2.6,0.5,1.0e-23,0.0,1.0e-23,0.0,0.0};
-  return OscParams_Beam_wYe_wLIV;
-}
-
-/**
- * @brief Returns the oscillation parameters for beam neutrinos, with baseline and density. With electron density and NSI parameters.
- *
- * @return Vector of oscillation parameters.
- */
-inline std::vector<FLOAT_T> ReturnOscParams_Beam_wYe_wNSI() {
-  //6 PMNS params, 6 Epsilons, 3 Deltas, 3 Coupling strengths, baseline, density, A/Z
-  std::vector<FLOAT_T> OscParams_Beam_wYe_wNSI = {3.07e-1,5.28e-1,2.18e-2,7.53e-5,2.509e-3,-1.601,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,250,2.6,0.5};
-  return OscParams_Beam_wYe_wNSI;
 }
 
 /**
@@ -412,6 +344,19 @@ inline std::vector<FLOAT_T> ReturnBinCentersFromBinEdges(const std::vector<FLOAT
   }
 
   return BinCenters;
+}
+
+inline std::unordered_map<std::string, FLOAT_T> ReturnOscParamsFromConfig(YAML::Node Config) {
+  if (!Config["General"]["OscillationParameters"]) {
+    std::cerr << "General::OscillationParameters node is not defined in the Config!" << std::endl;
+    throw;
+  }
+
+  std::unordered_map<std::string, FLOAT_T> OscillationParameters;
+  for (auto Pair : Config["General"]["OscillationParameters"]) {
+    OscillationParameters[Pair.first.as<std::string>()] = Pair.second.as<FLOAT_T>();
+  }
+  return OscillationParameters;
 }
 
 #endif

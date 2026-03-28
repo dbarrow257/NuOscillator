@@ -25,17 +25,20 @@ OscProbCalcerNuFASTLinear::OscProbCalcerNuFASTLinear(YAML::Node Config_) : OscPr
   }
   
   //=======
-  fNOscParams = kNOscParams;
-
+  std::vector<std::string> OscParNames = {"sin2_th12","sin2_th23","sin2_th13","dm2_12","dm2_23","delta_cp","path_length","matter_density","electron_density"};
+  SetExpectedParameterNames(OscParNames);
+  
   fNNeutrinoTypes = 2;
   InitialiseNeutrinoTypesArray(fNNeutrinoTypes);
   fNeutrinoTypes[0] = Nu;
   fNeutrinoTypes[1] = Nubar;
-  #if UseMultithreading == 1
+
+#if UseMultithreading == 1
   fImplementationName += "-CPU-"+std::to_string(omp_get_max_threads());
-  #else
+#else
   fImplementationName += "-CPU-"+std::to_string(1);
-  #endif
+#endif
+
   // This implementation only considers linear propagation, thus no requirement to set cosineZ array
   IgnoreCosineZBinning(true);
 }
@@ -47,25 +50,25 @@ OscProbCalcerNuFASTLinear::~OscProbCalcerNuFASTLinear() {
 void OscProbCalcerNuFASTLinear::SetupPropagator() {
 }
 
-void OscProbCalcerNuFASTLinear::CalculateProbabilities(const std::vector<FLOAT_T>& OscParams) {
+void OscProbCalcerNuFASTLinear::CalculateProbabilities() {
   // ------------------------------- //
   // Set the experimental parameters //
   // ------------------------------- //
-  const double L = OscParams[kPATHL]; // km
-  const double rho = OscParams[kDENS]; // g/cc
-  const double Ye = OscParams[kELECDENS];
+  const double L = GetOscillationParameter(kPATHL); // km
+  const double rho = GetOscillationParameter(kDENS); // g/cc
+  const double Ye = GetOscillationParameter(kELECDENS);
   
   // ------------------------------------- //
   // Set the vacuum oscillation parameters //
   // ------------------------------------- //
-  const double s12sq = OscParams[kTH12];
-  const double s13sq = OscParams[kTH13];
-  const double s23sq = OscParams[kTH23];
-  const double delta = OscParams[kDCP];
-  const double Dmsq21 = OscParams[kDM12];
+  const double s12sq = GetOscillationParameter(kTH12);
+  const double s13sq = GetOscillationParameter(kTH13);
+  const double s23sq = GetOscillationParameter(kTH23);
+  const double delta = GetOscillationParameter(kDCP);
+  const double Dmsq21 = GetOscillationParameter(kDM12);
 
-  //Need to convert OscParams[kDM23] to kDM31
-  const double Dmsq31 = OscParams[kDM23]+OscParams[kDM12]; // eV^2
+  //Need to convert fOscParams[kDM23] to kDM31
+  const double Dmsq31 = GetOscillationParameter(kDM23)+GetOscillationParameter(kDM12); // eV^2
   
   double probs_returned[3][3];
   // ------------------------------------------ //

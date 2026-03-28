@@ -19,12 +19,12 @@ class OscProbCalcerBase {
  public:
   // ========================================================================================================================================================================
   // Public functions which are calculation implementation agnostic
-
-   /**
-    * @brief Destructor
-    */
-   virtual ~OscProbCalcerBase();
-
+  
+  /**
+   * @brief Destructor
+   */
+  virtual ~OscProbCalcerBase();
+  
   /**
    * @brief Define the Energy which will be used when calculating the oscillation probabilities
    * 
@@ -59,10 +59,23 @@ class OscProbCalcerBase {
    *
    * This function performs both the implementation specific CalculateProbabilities() function, along with checking whether the oscillation parameters have been
    * updated since the last call. It also calls SanitiseProbabilities().
-   *
-   * @param OscParams The oscillation parameters to calculate the oscillation probability at
    */
-  void Reweight(const std::vector<FLOAT_T>& OscParams);
+  void Reweight();
+
+  /**
+   * @brief Function to register an oscillation parameter name and pointer to a value that will be used when calculating the oscillation probabilities
+   *
+   * @param ParName Parameter name that will be checked against expected parameters
+   * @param ParValue Pointer to value of parameter
+   */
+  void DefineParameter(std::string ParName, FLOAT_T* ParValue);
+  
+  /**
+   * @brief Legacy implementation function of Reweight()
+   *
+   * @param OscParams_ Input oscillation parameters
+   */
+  void Reweight(const std::vector<FLOAT_T>& OscParams_);
 
   /**
    * @brief General function used to setup all variables used within the reweighting
@@ -254,19 +267,16 @@ class OscProbCalcerBase {
    * price of a couple of if statements. Whilst in normal MCMC running, this will almost always return true, for sigma variations of systematics, this will almost always
    * return false
    *
-   * @param OscParamsToCheck The oscillation parameters which have been requested for the next calculation
    * @return Boolean whether the OscParamsToCheck match those saved from the last calculation
    */
-  bool AreOscParamsChanged(const std::vector<FLOAT_T>& OscParamsToCheck);
+  bool AreOscParamsChanged();
 
   /**
    * @brief Save the oscillation parameters which have been requested
    * 
    * Save the oscillation parameters which have been used in the probability calculation to #fOscParamsCurr
-   *
-   * @param OscParamsToCheck Parameter set to save
    */
-  void SetCurrOscParams(const std::vector<FLOAT_T>& OscParamsToCheck);
+  void SetCurrOscParams();
 
   /**
    * @brief (Re-)Initialise the saved oscillation parameters in #fOscParamsCurr
@@ -302,7 +312,7 @@ class OscProbCalcerBase {
    */
   void SanitiseProbabilities();
 
-      /**
+  /**
    * @brief Return the index in #fCosineZArray for a particular value of CosineZ. If it's not found, throws an error
    *
    * Determine the index in #fCosineZArray for a particular value of CosineZ
@@ -332,6 +342,29 @@ class OscProbCalcerBase {
    */
   int ReturnOscChannelIndexFromFlavours(int InitNuFlav, int FinalNuFlav);
 
+  /**
+   * @brief Define the list of parameter names that a particular instance of OscProbCalcer expects
+   *
+   * @param ExpectedOscParNames_ List of parameter names
+   */
+  void SetExpectedParameterNames(std::vector<std::string> ExpectedOscParNames_) {
+    fExpectedOscillationParameterNames = ExpectedOscParNames_;
+    fNOscParams = fExpectedOscillationParameterNames.size();
+    fOscParams = std::vector<FLOAT_T*>(fNOscParams,new FLOAT_T(0));
+    fOscillationParametersSetCheck = std::vector<bool>(fNOscParams,false);
+  }
+
+  /**
+   * @brief Return the value of the oscillation parameter associated with the index
+   *
+   * @param Index Index of parameter to return value for
+   */
+  FLOAT_T GetOscillationParameter(int Index);
+
+  /**
+   * @brief Check that all the expected oscillation parameters have been assigned a value
+   */
+  void CheckOscillationParametersDefined();
 
   // ========================================================================================================================================================================
   // Protected virtual functions which are calculation implementation agnostic
@@ -344,7 +377,7 @@ class OscProbCalcerBase {
    *
    * @param OscParams The parameter set to calculate oscillation probabilities at
    */
-  virtual void CalculateProbabilities(const std::vector<FLOAT_T>& OscParams) = 0;
+  virtual void CalculateProbabilities() = 0;
 
   /**
    * @brief Setup any implementation specific variables/functions
@@ -434,16 +467,6 @@ class OscProbCalcerBase {
   std::vector<FLOAT_T> fWeightArray;
 
   /**
-   * @brief Store the oscillation parameter set used to calculate the previous and current probabilities
-   */
-  int fNOscParams;
-
-  /**
-   * @brief Vector which stores the saved oscillation probabilities
-   */
-  std::vector<FLOAT_T> fOscParamsCurr;
-
-  /**
    * @brief Define the verbosity of the console output
    */
   int fVerbose;
@@ -462,7 +485,7 @@ class OscProbCalcerBase {
    * @brief YAML Config object used to get runtime specific variables
    */
   YAML::Node Config;
-
+  
  private:
   // ========================================================================================================================================================================
   // Sanity check variables
@@ -495,6 +518,41 @@ class OscProbCalcerBase {
    * @brief Precision limit which allows a slight unphysical probability to pass the SanitiseProbabilities check
    */
   FLOAT_T PrecisionLimit;
+
+  /**
+   * @brief Store the oscillation parameter set used to calculate the previous and current probabilities
+   */
+  int fNOscParams;
+
+  /**
+   * @brief Vector which stores the saved oscillation probabilities
+   */
+  std::vector<FLOAT_T> fOscParamsCurr;
+
+  /**
+   * @brief Vector of pointers to oscillation parameter values
+   */
+  std::vector<FLOAT_T*> fOscParams;
+
+  /**
+   * @brief Vector of expected oscillation parameter names
+   */
+  std::vector<std::string> fExpectedOscillationParameterNames;
+
+  /**
+   * @brief Check to determine which of the expected oscillation parameters have been registered
+   */
+  std::vector<bool> fOscillationParametersSetCheck;
+
+  /**
+   * @brief Check to determine if LegacyMode has been requested
+   */
+  bool fUseLegacyMode;
+
+  /**
+   * @brief Check to determine in Reweight(std::vector<FLOAT_T> OscParams) has been called
+   */
+  bool fUseLegacyMode_OscParsSet;
 
   /**
    * @brief Boolean declaring whether the SanitiseProbabilities function should be called in the Reweight function. This should only be used for performance sensitive applications as when this is false, oscillation probabilities could be returned which are <0, >1, or nan 

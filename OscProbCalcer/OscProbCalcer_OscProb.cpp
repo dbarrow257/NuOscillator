@@ -10,10 +10,7 @@
 #include "inc/PMNS_SNSI.h"
 #include "inc/PMNS_LIV.h"
 
-OscProbCalcerOscProb::OscProbCalcerOscProb(YAML::Node Config_) :
-  OscProbCalcerBase(Config_),
-  fPMNSObj(nullptr)
-{
+OscProbCalcerOscProb::OscProbCalcerOscProb(YAML::Node Config_) : OscProbCalcerBase(Config_), fPMNSObj(nullptr) {
   //=======
   //Grab information from the config
   if (!Config_["OscProbCalcerSetup"]["PMNSType"]) {
@@ -53,12 +50,7 @@ OscProbCalcerOscProb::OscProbCalcerOscProb(YAML::Node Config_) :
   fNeutrinoTypes[1] = Nubar;
 
   fOscType = PMNS_StrToInt(PMNSType);
-  fNOscParams = GetNOscParams();
-
-  // This is needed to treat neutrino path parameters due to how these have
-  // been used so far with classes with less flexibility
-  if(fCosineZIgnored) fNOscParams += 3; // L, rho, Z/A
-  else fNOscParams += 1; // production height
+  SetOscParams();
 
   fMaxGenFlavour = 1;
   fMaxDetFlavour = 1;
@@ -73,7 +65,7 @@ OscProbCalcerOscProb::OscProbCalcerOscProb(YAML::Node Config_) :
   fImplementationName += "-" + PMNSType;
 
   std::cout << "PMNS Type : " << PMNSType << std::endl;
-  std::cout << "Number of parameters : " << fNOscParams << std::endl;
+  std::cout << "Number of parameters : " << ReturnNOscParams() << std::endl;
   std::cout << "Propagation Method : ";
   if (fCosineZIgnored) std::cout << "Linear" << std::endl;
   else {
@@ -92,7 +84,6 @@ int OscProbCalcerOscProb::GetNCosineZ() {
 }
 
 void OscProbCalcerOscProb::SetupPropagator() {
-
   if(!fCosineZIgnored) {
     std::ifstream file(fPremFile);
     if(!file) throw std::runtime_error("could not open PREM file " + fPremFile);
@@ -105,11 +96,9 @@ void OscProbCalcerOscProb::SetupPropagator() {
 
   if(fPMNSObj) delete fPMNSObj;
   fPMNSObj = GetPMNSObj();
-
 }
 
 OscProb::PMNS_Base* OscProbCalcerOscProb::GetPMNSObj() {
-
  if(fOscType==kPMNSSterile1) return new OscProb::PMNS_Sterile(4);
  if(fOscType==kPMNSSterile2) return new OscProb::PMNS_Sterile(5);
  if(fOscType==kPMNSSterile3) return new OscProb::PMNS_Sterile(6);
@@ -122,48 +111,35 @@ OscProb::PMNS_Base* OscProbCalcerOscProb::GetPMNSObj() {
  if(fOscType==kLIV)          return new OscProb::PMNS_LIV();
 
  return new OscProb::PMNS_Fast();
-
 }
 
-void OscProbCalcerOscProb::CalculateProbabilities(const std::vector<FLOAT_T>& OscParams) {
-
-  SetPMNSParams(OscParams);
-
-  CalcProbPMNS(OscParams);
-
+void OscProbCalcerOscProb::CalculateProbabilities() {
+  SetPMNSParams();
+  CalcProbPMNS();
 }
 
-void OscProbCalcerOscProb::SetPath(const std::vector<FLOAT_T>& OscParams,
-                                   int iCosineZ) {
-
+void OscProbCalcerOscProb::SetPath(int iCosineZ) {
   if(fCosineZIgnored) {
-    fPMNSObj->SetLength ( OscParams[fNOscParams - 3] );
-    fPMNSObj->SetDensity( OscParams[fNOscParams - 2] );
-    fPMNSObj->SetZoA    ( OscParams[fNOscParams - 1] );
+    fPMNSObj->SetLength (GetOscillationParameter(ReturnNOscParams() - 3));
+    fPMNSObj->SetDensity(GetOscillationParameter(ReturnNOscParams() - 2));
+    fPMNSObj->SetZoA    (GetOscillationParameter(ReturnNOscParams() - 1));
   }
   else {
-    fPremModel.SetTopLayerSize(OscParams[fNOscParams - 1]);
+    fPremModel.SetTopLayerSize(GetOscillationParameter(ReturnNOscParams() - 1));
     fPremModel.FillPath(fCosineZArray[iCosineZ]);
     fPMNSObj->SetPath(fPremModel.GetNuPath());
   }
-
 }
 
-void OscProbCalcerOscProb::CalcProbPMNS(const std::vector<FLOAT_T>& OscParams) {
-
+void OscProbCalcerOscProb::CalcProbPMNS() {
   for (int iNuType = 0; iNuType < fNNeutrinoTypes; iNuType++) {
-
     fPMNSObj->SetIsNuBar(fNeutrinoTypes[iNuType]==Nubar);
 
     for (int iCosineZ = 0; iCosineZ < GetNCosineZ(); iCosineZ++) {
-
-      SetPath(OscParams, iCosineZ);
+      SetPath(iCosineZ);
 
       for (int iEnergy = 0; iEnergy < fNEnergyPoints; iEnergy++) {
-
-        OscProb::matrixD probMatrix = fPMNSObj->ProbMatrix(fMaxGenFlavour,
-                                                           fMaxDetFlavour,
-                                                           fEnergyArray[iEnergy]);
+        OscProb::matrixD probMatrix = fPMNSObj->ProbMatrix(fMaxGenFlavour, fMaxDetFlavour, fEnergyArray[iEnergy]);
 
         #if UseMultithreading == 1
         #pragma omp simd
@@ -176,176 +152,163 @@ void OscProbCalcerOscProb::CalcProbPMNS(const std::vector<FLOAT_T>& OscParams) {
           const int index = ReturnWeightArrayIndex(iNuType, iOscChannel, iEnergy, iCosineZ);
 
           fWeightArray[index] = weight;
-
         }
 
       }
     }
   }
-
 }
 
-int OscProbCalcerOscProb::ReturnWeightArrayIndex(int NuTypeIndex,
-                                                 int OscChanIndex,
-                                                 int EnergyIndex,
-                                                 int CosineZIndex) {
-  int IndexToReturn = ((NuTypeIndex *  fNOscillationChannels +
-                        OscChanIndex) * GetNCosineZ() +
-                        std::max(CosineZIndex,0)) * fNEnergyPoints +
-                        EnergyIndex;
+int OscProbCalcerOscProb::ReturnWeightArrayIndex(int NuTypeIndex, int OscChanIndex, int EnergyIndex, int CosineZIndex) {
+  int IndexToReturn = ((NuTypeIndex *  fNOscillationChannels + OscChanIndex) * GetNCosineZ() + std::max(CosineZIndex,0)) * fNEnergyPoints + EnergyIndex;
   return IndexToReturn;
 }
 
 long OscProbCalcerOscProb::DefineWeightArraySize() {
-  long nCalculationPoints = static_cast<long>(fNEnergyPoints) *
-                            GetNCosineZ() *
-                            fNOscillationChannels *
-                            fNNeutrinoTypes;
+  long nCalculationPoints = static_cast<long>(fNEnergyPoints) * GetNCosineZ() * fNOscillationChannels * fNNeutrinoTypes;
   return nCalculationPoints;
 }
 
-void OscProbCalcerOscProb::SetPMNSParams(const std::vector<FLOAT_T>& OscParams) {
-
+void OscProbCalcerOscProb::SetPMNSParams() {
   // Set PMNS parameters
-  fPMNSObj->SetDm(2, OscParams[kDM12]);
-  fPMNSObj->SetDm(3, OscParams[kDM23] + OscParams[kDM12]);
-  fPMNSObj->SetAngle(1,2, asin(sqrt(OscParams[kTH12])));
-  fPMNSObj->SetAngle(1,3, asin(sqrt(OscParams[kTH13])));
-  fPMNSObj->SetAngle(2,3, asin(sqrt(OscParams[kTH23])));
-  fPMNSObj->SetDelta(1,3, OscParams[kDCP]);
+  fPMNSObj->SetDm(2, GetOscillationParameter(kDM12));
+  fPMNSObj->SetDm(3, GetOscillationParameter(kDM23) + GetOscillationParameter(kDM12));
+  fPMNSObj->SetAngle(1,2, asin(sqrt(GetOscillationParameter(kTH12))));
+  fPMNSObj->SetAngle(1,3, asin(sqrt(GetOscillationParameter(kTH13))));
+  fPMNSObj->SetAngle(2,3, asin(sqrt(GetOscillationParameter(kTH23))));
+  fPMNSObj->SetDelta(1,3, GetOscillationParameter(kDCP));
 
   //Set PMNS parameters for first sterile state
   if(OscProb::PMNS_Sterile* Sterile = dynamic_cast<OscProb::PMNS_Sterile*>(fPMNSObj)) {
-    Sterile->SetDm(4, OscParams[kDM14]);
-    Sterile->SetAngle(1,4, asin(sqrt(OscParams[kTH14])));
-    Sterile->SetAngle(2,4, asin(sqrt(OscParams[kTH24])));
-    Sterile->SetAngle(3,4, asin(sqrt(OscParams[kTH34])));
-    Sterile->SetDelta(1,4, OscParams[kDelta14]);
-    Sterile->SetDelta(2,4, OscParams[kDelta24]);
+    Sterile->SetDm(4, GetOscillationParameter(kDM14));
+    Sterile->SetAngle(1,4, asin(sqrt(GetOscillationParameter(kTH14))));
+    Sterile->SetAngle(2,4, asin(sqrt(GetOscillationParameter(kTH24))));
+    Sterile->SetAngle(3,4, asin(sqrt(GetOscillationParameter(kTH34))));
+    Sterile->SetDelta(1,4, GetOscillationParameter(kDelta14));
+    Sterile->SetDelta(2,4, GetOscillationParameter(kDelta24));
 
     //Set PMNS parameters for second sterile state
     if(fOscType == kPMNSSterile2 || fOscType == kPMNSSterile3) {
-      Sterile->SetDm(5, OscParams[kDM15]);
-      Sterile->SetAngle(1,5, asin(sqrt(OscParams[kTH15])));
-      Sterile->SetAngle(2,5, asin(sqrt(OscParams[kTH25])));
-      Sterile->SetAngle(3,5, asin(sqrt(OscParams[kTH35])));
-      Sterile->SetAngle(4,5, asin(sqrt(OscParams[kTH45])));
-      Sterile->SetDelta(1,5, OscParams[kDelta15]);
-      Sterile->SetDelta(2,5, OscParams[kDelta25]);
-      Sterile->SetDelta(3,5, OscParams[kDelta35]);
+      Sterile->SetDm(5, GetOscillationParameter(kDM15));
+      Sterile->SetAngle(1,5, asin(sqrt(GetOscillationParameter(kTH15))));
+      Sterile->SetAngle(2,5, asin(sqrt(GetOscillationParameter(kTH25))));
+      Sterile->SetAngle(3,5, asin(sqrt(GetOscillationParameter(kTH35))));
+      Sterile->SetAngle(4,5, asin(sqrt(GetOscillationParameter(kTH45))));
+      Sterile->SetDelta(1,5, GetOscillationParameter(kDelta15));
+      Sterile->SetDelta(2,5, GetOscillationParameter(kDelta25));
+      Sterile->SetDelta(3,5, GetOscillationParameter(kDelta35));
     }
 
     //Set PMNS parameters for third sterile state
     if(fOscType == kPMNSSterile3) {
-      Sterile->SetDm(6, OscParams[kDM16]);
-      Sterile->SetAngle(1,6, asin(sqrt(OscParams[kTH16])));
-      Sterile->SetAngle(2,6, asin(sqrt(OscParams[kTH26])));
-      Sterile->SetAngle(3,6, asin(sqrt(OscParams[kTH36])));
-      Sterile->SetAngle(4,6, asin(sqrt(OscParams[kTH46])));
-      Sterile->SetAngle(5,6, asin(sqrt(OscParams[kTH56])));
-      Sterile->SetDelta(1,6, OscParams[kDelta16]);
-      Sterile->SetDelta(2,6, OscParams[kDelta26]);
-      Sterile->SetDelta(3,6, OscParams[kDelta36]);
-      Sterile->SetDelta(4,6, OscParams[kDelta46]);
+      Sterile->SetDm(6, GetOscillationParameter(kDM16));
+      Sterile->SetAngle(1,6, asin(sqrt(GetOscillationParameter(kTH16))));
+      Sterile->SetAngle(2,6, asin(sqrt(GetOscillationParameter(kTH26))));
+      Sterile->SetAngle(3,6, asin(sqrt(GetOscillationParameter(kTH36))));
+      Sterile->SetAngle(4,6, asin(sqrt(GetOscillationParameter(kTH46))));
+      Sterile->SetAngle(5,6, asin(sqrt(GetOscillationParameter(kTH56))));
+      Sterile->SetDelta(1,6, GetOscillationParameter(kDelta16));
+      Sterile->SetDelta(2,6, GetOscillationParameter(kDelta26));
+      Sterile->SetDelta(3,6, GetOscillationParameter(kDelta36));
+      Sterile->SetDelta(4,6, GetOscillationParameter(kDelta46));
     }
   }
 
   // Set Decay parameters
   if(OscProb::PMNS_Decay* Decay = dynamic_cast<OscProb::PMNS_Decay*>(fPMNSObj)) {
-    Decay->SetAlpha2(OscParams[kAlpha2]);
-    Decay->SetAlpha3(OscParams[kAlpha3]);
+    Decay->SetAlpha2(GetOscillationParameter(kAlpha2));
+    Decay->SetAlpha3(GetOscillationParameter(kAlpha3));
   }
 
   // Set Deco parameters
   if(OscProb::PMNS_Deco* Deco = dynamic_cast<OscProb::PMNS_Deco*>(fPMNSObj)) {
-    Deco->SetGamma(2, OscParams[kGamma21]);
-    Deco->SetGamma(3, OscParams[kGamma31]);
-    Deco->SetDecoAngle(OscParams[kDecoAngle]);
-    Deco->SetPower(OscParams[kPower]);
+    Deco->SetGamma(2, GetOscillationParameter(kGamma21));
+    Deco->SetGamma(3, GetOscillationParameter(kGamma31));
+    Deco->SetDecoAngle(GetOscillationParameter(kDecoAngle));
+    Deco->SetPower(GetOscillationParameter(kPower));
   }
 
   // Set NSI parameters
   if(OscProb::PMNS_NSI* NSI = dynamic_cast<OscProb::PMNS_NSI*>(fPMNSObj)) {
-    NSI->SetNSI(OscParams[kEps_ee],
-                OscParams[kEps_emu],
-                OscParams[kEps_etau],
-                OscParams[kEps_mumu],
-                OscParams[kEps_mutau],
-                OscParams[kEps_tautau],
-                OscParams[kDelta_emu],
-                OscParams[kDelta_etau],
-                OscParams[kDelta_mutau]);
+    NSI->SetNSI(GetOscillationParameter(kEps_ee),
+                GetOscillationParameter(kEps_emu),
+                GetOscillationParameter(kEps_etau),
+                GetOscillationParameter(kEps_mumu),
+                GetOscillationParameter(kEps_mutau),
+                GetOscillationParameter(kEps_tautau),
+                GetOscillationParameter(kDelta_emu),
+                GetOscillationParameter(kDelta_etau),
+                GetOscillationParameter(kDelta_mutau));
 
-    NSI->SetFermCoup(OscParams[kElecCoup],
-                     OscParams[kUpCoup],
-                     OscParams[kDownCoup]);
+    NSI->SetFermCoup(GetOscillationParameter(kElecCoup),
+                     GetOscillationParameter(kUpCoup),
+                     GetOscillationParameter(kDownCoup));
   }
 
   // Set SNSI parameters
   if(OscProb::PMNS_SNSI* SNSI = dynamic_cast<OscProb::PMNS_SNSI*>(fPMNSObj)) {
-    SNSI->SetLowestMass(OscParams[kLightMass]);
+    SNSI->SetLowestMass(GetOscillationParameter(kLightMass));
   }
 
   // Set Iter parameters
   if(OscProb::PMNS_Iter* Iter = dynamic_cast<OscProb::PMNS_Iter*>(fPMNSObj)) {
-    Iter->SetPrec(OscParams[kPrec]);
+    Iter->SetPrec(GetOscillationParameter(kPrec));
   }
 
   // Set NUNM parameters
   if(OscProb::PMNS_NUNM* NUNM = dynamic_cast<OscProb::PMNS_NUNM*>(fPMNSObj)) {
-    NUNM->SetAlpha_11(OscParams[kAlpha11]);
-    NUNM->SetAlpha_22(OscParams[kAlpha22]);
-    NUNM->SetAlpha_33(OscParams[kAlpha33]);
-    NUNM->SetAlpha_21(OscParams[kAlpha21], OscParams[kPhi21]);
-    NUNM->SetAlpha_31(OscParams[kAlpha31], OscParams[kPhi31]);
-    NUNM->SetAlpha_32(OscParams[kAlpha32], OscParams[kPhi32]);
-    NUNM->SetFracVnc(OscParams[kFracVnc]);
+    NUNM->SetAlpha_11(GetOscillationParameter(kAlpha11));
+    NUNM->SetAlpha_22(GetOscillationParameter(kAlpha22));
+    NUNM->SetAlpha_33(GetOscillationParameter(kAlpha33));
+    NUNM->SetAlpha_21(GetOscillationParameter(kAlpha21), GetOscillationParameter(kPhi21));
+    NUNM->SetAlpha_31(GetOscillationParameter(kAlpha31), GetOscillationParameter(kPhi31));
+    NUNM->SetAlpha_32(GetOscillationParameter(kAlpha32), GetOscillationParameter(kPhi32));
+    NUNM->SetFracVnc(GetOscillationParameter(kFracVnc));
   }
 
   // Set LIV parameters
   if(OscProb::PMNS_LIV* LIV = dynamic_cast<OscProb::PMNS_LIV*>(fPMNSObj)) {
-    LIV->SetaT(0, 0, 3, OscParams[kaT_ee_3], 0.);
-    LIV->SetaT(0, 1, 3, OscParams[kaT_emu_3], OscParams[kDelta_emu_3]);
-    LIV->SetaT(0, 2, 3, OscParams[kaT_etau_3], OscParams[kDelta_etau_3]);
-    LIV->SetaT(1, 1, 3, OscParams[kaT_mumu_3], 0.);
-    LIV->SetaT(1, 2, 3, OscParams[kaT_mutau_3], OscParams[kDelta_mutau_3]);
-    LIV->SetaT(2, 2, 3, OscParams[kaT_tautau_3], 0.);
-    LIV->SetcT(0, 0, 4, OscParams[kcT_ee_4], 0.);
-    LIV->SetcT(0, 1, 4, OscParams[kcT_emu_4], OscParams[kDelta_emu_4]);
-    LIV->SetcT(0, 2, 4, OscParams[kcT_etau_4], OscParams[kDelta_etau_4]);
-    LIV->SetcT(1, 1, 4, OscParams[kcT_mumu_4], 0.);
-    LIV->SetcT(1, 2, 4, OscParams[kcT_mutau_4], OscParams[kDelta_mutau_4]);
-    LIV->SetcT(2, 2, 4, OscParams[kcT_tautau_4], 0.);
-    LIV->SetaT(0, 0, 5, OscParams[kaT_ee_5], 0.);
-    LIV->SetaT(0, 1, 5, OscParams[kaT_emu_5], OscParams[kDelta_emu_5]);
-    LIV->SetaT(0, 2, 5, OscParams[kaT_etau_5], OscParams[kDelta_etau_5]);
-    LIV->SetaT(1, 1, 5, OscParams[kaT_mumu_5], 0.);
-    LIV->SetaT(1, 2, 5, OscParams[kaT_mutau_5], OscParams[kDelta_mutau_5]);
-    LIV->SetaT(2, 2, 5, OscParams[kaT_tautau_5], 0.);
-    LIV->SetcT(0, 0, 6, OscParams[kcT_ee_6], 0.);
-    LIV->SetcT(0, 1, 6, OscParams[kcT_emu_6], OscParams[kDelta_emu_6]);
-    LIV->SetcT(0, 2, 6, OscParams[kcT_etau_6], OscParams[kDelta_etau_6]);
-    LIV->SetcT(1, 1, 6, OscParams[kcT_mumu_6], 0.);
-    LIV->SetcT(1, 2, 6, OscParams[kcT_mutau_6], OscParams[kDelta_mutau_6]);
-    LIV->SetcT(2, 2, 6, OscParams[kcT_tautau_6], 0.);
-    LIV->SetaT(0, 0, 7, OscParams[kaT_ee_7], 0.);
-    LIV->SetaT(0, 1, 7, OscParams[kaT_emu_7], OscParams[kDelta_emu_7]);
-    LIV->SetaT(0, 2, 7, OscParams[kaT_etau_7], OscParams[kDelta_etau_7]);
-    LIV->SetaT(1, 1, 7, OscParams[kaT_mumu_7], 0.);
-    LIV->SetaT(1, 2, 7, OscParams[kaT_mutau_7], OscParams[kDelta_mutau_7]);
-    LIV->SetaT(2, 2, 7, OscParams[kaT_tautau_7], 0.);
-    LIV->SetcT(0, 0, 8, OscParams[kcT_ee_8], 0.);
-    LIV->SetcT(0, 1, 8, OscParams[kcT_emu_8], OscParams[kDelta_emu_8]);
-    LIV->SetcT(0, 2, 8, OscParams[kcT_etau_8], OscParams[kDelta_etau_8]);
-    LIV->SetcT(1, 1, 8, OscParams[kcT_mumu_8], 0.);
-    LIV->SetcT(1, 2, 8, OscParams[kcT_mutau_8], OscParams[kDelta_mutau_8]);
-    LIV->SetcT(2, 2, 8, OscParams[kcT_tautau_8], 0.);
+    LIV->SetaT(0, 0, 3, GetOscillationParameter(kaT_ee_3), 0.);
+    LIV->SetaT(0, 1, 3, GetOscillationParameter(kaT_emu_3), GetOscillationParameter(kDelta_emu_3));
+    LIV->SetaT(0, 2, 3, GetOscillationParameter(kaT_etau_3), GetOscillationParameter(kDelta_etau_3));
+    LIV->SetaT(1, 1, 3, GetOscillationParameter(kaT_mumu_3), 0.);
+    LIV->SetaT(1, 2, 3, GetOscillationParameter(kaT_mutau_3), GetOscillationParameter(kDelta_mutau_3));
+    LIV->SetaT(2, 2, 3, GetOscillationParameter(kaT_tautau_3), 0.);
+    LIV->SetcT(0, 0, 4, GetOscillationParameter(kcT_ee_4), 0.);
+    LIV->SetcT(0, 1, 4, GetOscillationParameter(kcT_emu_4), GetOscillationParameter(kDelta_emu_4));
+    LIV->SetcT(0, 2, 4, GetOscillationParameter(kcT_etau_4), GetOscillationParameter(kDelta_etau_4));
+    LIV->SetcT(1, 1, 4, GetOscillationParameter(kcT_mumu_4), 0.);
+    LIV->SetcT(1, 2, 4, GetOscillationParameter(kcT_mutau_4), GetOscillationParameter(kDelta_mutau_4));
+    LIV->SetcT(2, 2, 4, GetOscillationParameter(kcT_tautau_4), 0.);
+    LIV->SetaT(0, 0, 5, GetOscillationParameter(kaT_ee_5), 0.);
+    LIV->SetaT(0, 1, 5, GetOscillationParameter(kaT_emu_5), GetOscillationParameter(kDelta_emu_5));
+    LIV->SetaT(0, 2, 5, GetOscillationParameter(kaT_etau_5), GetOscillationParameter(kDelta_etau_5));
+    LIV->SetaT(1, 1, 5, GetOscillationParameter(kaT_mumu_5), 0.);
+    LIV->SetaT(1, 2, 5, GetOscillationParameter(kaT_mutau_5), GetOscillationParameter(kDelta_mutau_5));
+    LIV->SetaT(2, 2, 5, GetOscillationParameter(kaT_tautau_5), 0.);
+    LIV->SetcT(0, 0, 6, GetOscillationParameter(kcT_ee_6), 0.);
+    LIV->SetcT(0, 1, 6, GetOscillationParameter(kcT_emu_6), GetOscillationParameter(kDelta_emu_6));
+    LIV->SetcT(0, 2, 6, GetOscillationParameter(kcT_etau_6), GetOscillationParameter(kDelta_etau_6));
+    LIV->SetcT(1, 1, 6, GetOscillationParameter(kcT_mumu_6), 0.);
+    LIV->SetcT(1, 2, 6, GetOscillationParameter(kcT_mutau_6), GetOscillationParameter(kDelta_mutau_6));
+    LIV->SetcT(2, 2, 6, GetOscillationParameter(kcT_tautau_6), 0.);
+    LIV->SetaT(0, 0, 7, GetOscillationParameter(kaT_ee_7), 0.);
+    LIV->SetaT(0, 1, 7, GetOscillationParameter(kaT_emu_7), GetOscillationParameter(kDelta_emu_7));
+    LIV->SetaT(0, 2, 7, GetOscillationParameter(kaT_etau_7), GetOscillationParameter(kDelta_etau_7));
+    LIV->SetaT(1, 1, 7, GetOscillationParameter(kaT_mumu_7), 0.);
+    LIV->SetaT(1, 2, 7, GetOscillationParameter(kaT_mutau_7), GetOscillationParameter(kDelta_mutau_7));
+    LIV->SetaT(2, 2, 7, GetOscillationParameter(kaT_tautau_7), 0.);
+    LIV->SetcT(0, 0, 8, GetOscillationParameter(kcT_ee_8), 0.);
+    LIV->SetcT(0, 1, 8, GetOscillationParameter(kcT_emu_8), GetOscillationParameter(kDelta_emu_8));
+    LIV->SetcT(0, 2, 8, GetOscillationParameter(kcT_etau_8), GetOscillationParameter(kDelta_etau_8));
+    LIV->SetcT(1, 1, 8, GetOscillationParameter(kcT_mumu_8), 0.);
+    LIV->SetcT(1, 2, 8, GetOscillationParameter(kcT_mutau_8), GetOscillationParameter(kDelta_mutau_8));
+    LIV->SetcT(2, 2, 8, GetOscillationParameter(kcT_tautau_8), 0.);
   }
 
 }
 
 int OscProbCalcerOscProb::PMNS_StrToInt(const std::string& PMNSType) {
-
   if (PMNSType == "Fast" || PMNSType == "fast")          return kFast;
   if (PMNSType == "Sterile+1" || PMNSType == "Sterile1") return kPMNSSterile1;
   if (PMNSType == "Sterile+2" || PMNSType == "Sterile2") return kPMNSSterile2;
@@ -362,23 +325,60 @@ int OscProbCalcerOscProb::PMNS_StrToInt(const std::string& PMNSType) {
   throw std::runtime_error("Invalid setup");
 
   return -1;
-
 }
 
 
-int OscProbCalcerOscProb::GetNOscParams() {
+void OscProbCalcerOscProb::SetOscParams() {
+  std::vector<std::string> OscParNames;  
 
-  if (fOscType == kPMNSSterile1) return kNOscParams_Sterile1;
-  if (fOscType == kPMNSSterile2) return kNOscParams_Sterile2;
-  if (fOscType == kPMNSSterile3) return kNOscParams_Sterile3;
-  if (fOscType == kDecay)        return kNOscParams_Decay;
-  if (fOscType == kDeco)         return kNOscParams_Deco;
-  if (fOscType == kNSI)          return kNOscParams_NSI;
-  if (fOscType == kIter)         return kNOscParams_Iter;
-  if (fOscType == kNUNM)         return kNOscParams_NUNM;
-  if (fOscType == kLIV)          return kNOscParams_LIV;
-  if (fOscType == kSNSI)         return kNOscParams_SNSI;
+  switch (fOscType) {
+  case kFast:
+    OscParNames = {"sin2_th12","sin2_th23","sin2_th13","dm2_12","dm2_23","delta_cp"};
+    break;
+  case kPMNSSterile1:
+    OscParNames = {"sin2_th12","sin2_th23","sin2_th13","dm2_12","dm2_23","delta_cp","sin2th_14","sin2th_24","sin2th_34","dm2_14","delta_14","delta_24"};
+    break;
+  case kPMNSSterile2:
+    OscParNames = {"sin2_th12","sin2_th23","sin2_th13","dm2_12","dm2_23","delta_cp","sin2th_14","sin2th_24","sin2th_34","dm2_14","delta_14","delta_24","sin2th_15","sin2th_25","sin2th_35","sin2th_45","dm2_14","delta_15","delta_25","delta_35"};
+    break;
+  case kPMNSSterile3:
+    OscParNames = {"sin2_th12","sin2_th23","sin2_th13","dm2_12","dm2_23","delta_cp","sin2th_14","sin2th_24","sin2th_34","dm2_14","delta_14","delta_24","sin2th_15","sin2th_25","sin2th_35","sin2th_45","dm2_14","delta_15","delta_25","delta_35","sin2th_16","sin2th_26","sin2th_36","sin2th_46","sin2th_56","dm2_16","delta_16","delta_26","delta_36","delta_46"};
+    break;
+  case kDecay:
+    OscParNames = {"sin2_th12","sin2_th23","sin2_th13","dm2_12","dm2_23","delta_cp","alpha_2","alpha_3"};    
+    break;
+  case kDeco:
+    OscParNames = {"sin2_th12","sin2_th23","sin2_th13","dm2_12","dm2_23","delta_cp","gamma_21","gamma_31","decoherence_angle","decoherence_index"};    
+    break;
+  case kNSI:
+    OscParNames = {"sin2_th12","sin2_th23","sin2_th13","dm2_12","dm2_23","delta_cp","eps_ee", "eps_emu", "eps_etau", "eps_mumu", "eps_mutau", "eps_tautau", "delta_emu", "delta_etau", "delta_mutau", "elec_coup", "up_coup", "down_coup"};    
+    break;
+  case kIter:
+    OscParNames = {"sin2_th12","sin2_th23","sin2_th13","dm2_12","dm2_23","delta_cp","precision"};    
+    break;
+  case kNUNM:
+    OscParNames = {"sin2_th12","sin2_th23","sin2_th13","dm2_12","dm2_23","delta_cp","alpha11","alpha21","alpha31","alpha22","alpha32","alpha33","phi21","phi31","phi32","frac_vnc"};
+    break;
+  case kLIV:
+    OscParNames = {"sin2_th12","sin2_th23","sin2_th13","dm2_12","dm2_23","delta_cp","aT_ee_3", "aT_emu_3", "aT_etau_3", "aT_mumu_3", "aT_mutau_3", "aT_tautau_3", "Delta_emu_3", "Delta_etau_3", "Delta_mutau_3","cT_ee_4", "cT_emu_4", "cT_etau_4", "cT_mumu_4", "cT_mutau_4","cT_tautau_4", "Delta_emu_4", "Delta_etau_4", "Delta_mutau_4","aT_ee_5", "aT_emu_5", "aT_etau_5", "aT_mumu_5", "aT_mutau_5","aT_tautau_5", "Delta_emu_5", "Delta_etau_5", "Delta_mutau_5","cT_ee_6", "cT_emu_6", "cT_etau_6", "cT_mumu_6", "cT_mutau_6","cT_tautau_6", "Delta_emu_6", "Delta_etau_6", "Delta_mutau_6","aT_ee_7", "aT_emu_7", "aT_etau_7", "aT_mumu_7", "aT_mutau_7","aT_tautau_7", "Delta_emu_7", "Delta_etau_7", "Delta_mutau_7","cT_ee_8", "cT_emu_8", "cT_etau_8", "cT_mumu_8", "cT_mutau_8","cT_tautau_8", "Delta_emu_8", "Delta_etau_8", "Delta_mutau_8"};    
+    break;
+  case kSNSI:
+    OscParNames = {"sin2_th12","sin2_th23","sin2_th13","dm2_12","dm2_23","delta_cp","delta_cp","eps_ee", "eps_emu", "eps_etau", "eps_mumu", "eps_mutau", "eps_tautau", "delta_emu", "delta_etau", "delta_mutau", "elec_coup", "up_coup", "down_coup","light_mass"};    
+    break;
+  default:
+    std::cerr << "Invalid Oscillation Model type provided:" << fOscType << std::endl;
+    throw std::runtime_error("Invalid Oscillation Model");
+  }
+  
+  // This is needed to treat neutrino path parameters due to how these have
+  // been used so far with classes with less flexibility
+  if (fCosineZIgnored){
+    OscParNames.push_back("path_length");
+    OscParNames.push_back("matter_density");
+    OscParNames.push_back("electron_density");
+  } else {
+    OscParNames.push_back("production_height");
+  }
 
-  return kNOscParams;
-
+  SetExpectedParameterNames(OscParNames);
 }
