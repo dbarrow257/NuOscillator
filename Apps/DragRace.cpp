@@ -22,8 +22,8 @@ int main(int argc, char **argv) {
   }
   int nThrows = atoi(argv[1]);
   
-  std::vector<FLOAT_T> EnergyArray = logspace(0.1,100.,1e3);
-  std::vector<FLOAT_T> CosineZArray = linspace(-1.0,1.0,1e3);
+  std::vector<FLOAT_T> EnergyArray = logspace(0.1,100.,1e2);
+  std::vector<FLOAT_T> CosineZArray = linspace(-1.0,1.0,1e2);
 
   std::vector<FLOAT_T> OscParams_Basic = ReturnOscParams_Basic();
   std::vector<FLOAT_T> OscParams_Atm = ReturnOscParams_Atm();
@@ -63,7 +63,7 @@ int main(int argc, char **argv) {
       Oscillator->SetEnergyArrayInCalcer(EnergyArray);
       
       //Check if we also need to set the CosineZ binning
-      if (!Oscillator->CosineZIgnored()) {
+      if (!Oscillator->ReturnCosineZIgnored()) {
         Oscillator->SetCosineZArrayInCalcer(CosineZArray);
       }
     }
@@ -124,7 +124,7 @@ int main(int argc, char **argv) {
     auto t2 = high_resolution_clock::now();
     duration<double, std::milli> ms_double = t2 - t1;
 
-    if (Oscillators[iOsc]->CosineZIgnored()) {
+    if (Oscillators[iOsc]->ReturnCosineZIgnored()) {
       std::cout << Oscillators[iOsc]->ReturnImplementationName() << " ended drag race - took " << ms_double.count()/nThrows << " milliseconds per reweight (Using nEnergyPoints = " << Oscillators[iOsc]->ReturnNEnergyPoints() << ")" << std::endl;
     } else {
       std::cout << Oscillators[iOsc]->ReturnImplementationName() << " ended drag race - took " << ms_double.count()/nThrows << " milliseconds per reweight (Using nEnergyPoints = " << Oscillators[iOsc]->ReturnNEnergyPoints() << ", nCosineZPoints = " << Oscillators[iOsc]->ReturnNCosineZPoints() << ")" << std::endl;

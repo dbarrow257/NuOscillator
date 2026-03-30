@@ -8,9 +8,21 @@ OscProbCalcerNuFASTEarth::OscProbCalcerNuFASTEarth(YAML::Node Config_) : OscProb
   //=======
   //Grab information from the config
 
-  DetectorDepth = 2.0; // detector depth in km
+  // detector depth in km
+  DetectorDepth = Config_["OscProbCalcerSetup"]["DetectorDepth"].as<FLOAT_T>();
+
+  //Number of Newton-Raphson iteration, set to negative for exact eigenvalues
+  EigenValuePrecision = Config_["OscProbCalcerSetup"]["EigenValuePrecision"].as<int>(); 
   
+  //Earth model type picked from "Prob3", "PREM4", "Full", "NUniformLayers" (see https://github.com/PeterDenton/NuFast-Earth/blob/main/src/Earth.cpp)
+  EarthModel = Config_["OscProbCalcerSetup"]["EarthModel"].as<std::string>();
+
+  if (EarthModel == "NUniformLayers") {
+    //Number of layers of Earth used in the NuFAST-Earth::PREM_NUniformLayer object - Not used unless EarthModel=="NUniformLayers"
+    NUniformLayers = Config_["OscProbCalcerSetup"]["NUniformLayers"].as<int>();
+  }
   //=======
+  
   fNOscParams = kNOscParams;
 
   fNNeutrinoTypes = 2;
@@ -28,11 +40,24 @@ OscProbCalcerNuFASTEarth::~OscProbCalcerNuFASTEarth() {
 
 void OscProbCalcerNuFASTEarth::SetupPropagator() {
   //=============================
-  PREM_Four* PREMFour = new PREM_Four();
-  EarthDensity = dynamic_cast<Earth_Density*>(PREMFour);
+  //Set the Earth Model
+  if (EarthModel == "Prob3") {
+    PREM_Prob3* PREMProb3 = new PREM_Prob3();
+    EarthDensity = dynamic_cast<Earth_Density*>(PREMProb3);
+  } else if (EarthModel == "PREM4") {
+    PREM_Four* PREMFour = new PREM_Four();
+    EarthDensity = dynamic_cast<Earth_Density*>(PREMFour);
+  } else if (EarthModel == "Full") {
+    PREM_Full* PREMFull = new PREM_Full();
+    EarthDensity = dynamic_cast<Earth_Density*>(PREMFull);
+  } else if (EarthModel == "NUniformLayers") {
+    PREM_NUniformLayer* PREMNUniformLayer = new PREM_NUniformLayer(NUniformLayers);
+    EarthDensity = dynamic_cast<Earth_Density*>(PREMNUniformLayer);    
+  }
   //=============================
 
   ProbEngine.Set_Earth(DetectorDepth, EarthDensity);
+  ProbEngine.Set_Eigenvalue_Precision(EigenValuePrecision);
 }
 
 void OscProbCalcerNuFASTEarth::CalculateProbabilities(const std::vector<FLOAT_T>& OscParams) {
@@ -46,10 +71,13 @@ void OscProbCalcerNuFASTEarth::CalculateProbabilities(const std::vector<FLOAT_T>
   //Need to convert OscParams[kDM23] to kDM31
   const double Dmsq31 = OscParams[kDM23]+OscParams[kDM12]; // eV^2
 
+  const double ProductionHeight = OscParams[kPROD]; //km
+
   for (int iNuType=0;iNuType<fNNeutrinoTypes;iNuType++) {
 
     bool NeutrinoType = (fNeutrinoTypes[iNuType] == Nu) ? true : false;
     ProbEngine.Set_Oscillation_Parameters(s12sq, s13sq, s23sq, delta, Dmsq21, Dmsq31, NeutrinoType);
+    ProbEngine.Set_Production_Height(ProductionHeight);
     ProbEngine.Set_Spectra(fEnergyArray, fCosineZArray);
     std::vector<std::vector<Matrix3r>> probabilities = ProbEngine.Get_Probabilities();
     

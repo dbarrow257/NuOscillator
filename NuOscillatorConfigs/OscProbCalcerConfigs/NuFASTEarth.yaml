@@ -3,6 +3,10 @@ General:
 
 OscProbCalcerSetup:
   ImplementationName: "NuFASTEarth"
+  DetectorDepth: 0.
+  EigenValuePrecision: 1
+  EarthModel: "Prob3"
+  #NUniformLayers: 10
   OscChannelMapping:
     - Entry: "Electron:Electron"
     - Entry: "Electron:Muon"
