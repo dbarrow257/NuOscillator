@@ -31,11 +31,13 @@ OscProbCalcerNuFASTLinear::OscProbCalcerNuFASTLinear(YAML::Node Config_) : OscPr
   InitialiseNeutrinoTypesArray(fNNeutrinoTypes);
   fNeutrinoTypes[0] = Nu;
   fNeutrinoTypes[1] = Nubar;
+  
   #if UseMultithreading == 1
   fImplementationName += "-CPU-"+std::to_string(omp_get_max_threads());
   #else
   fImplementationName += "-CPU-"+std::to_string(1);
   #endif
+  
   // This implementation only considers linear propagation, thus no requirement to set cosineZ array
   IgnoreCosineZBinning(true);
 }
