@@ -63,7 +63,7 @@ int main(int argc, char **argv) {
       Oscillator->SetEnergyArrayInCalcer(EnergyArray);
       
       //Check if we also need to set the CosineZ binning
-      if (!Oscillator->CosineZIgnored()) {
+      if (!Oscillator->ReturnCosineZIgnored()) {
         Oscillator->SetCosineZArrayInCalcer(CosineZArray);
       }
     }
@@ -124,7 +124,7 @@ int main(int argc, char **argv) {
     auto t2 = high_resolution_clock::now();
     duration<double, std::milli> ms_double = t2 - t1;
 
-    if (Oscillators[iOsc]->CosineZIgnored()) {
+    if (Oscillators[iOsc]->ReturnCosineZIgnored()) {
       std::cout << Oscillators[iOsc]->ReturnImplementationName() << " ended drag race - took " << ms_double.count()/nThrows << " milliseconds per reweight (Using nEnergyPoints = " << Oscillators[iOsc]->ReturnNEnergyPoints() << ")" << std::endl;
     } else {
       std::cout << Oscillators[iOsc]->ReturnImplementationName() << " ended drag race - took " << ms_double.count()/nThrows << " milliseconds per reweight (Using nEnergyPoints = " << Oscillators[iOsc]->ReturnNEnergyPoints() << ", nCosineZPoints = " << Oscillators[iOsc]->ReturnNCosineZPoints() << ")" << std::endl;

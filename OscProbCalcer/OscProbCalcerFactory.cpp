@@ -20,6 +20,10 @@
 #include "OscProbCalcer/OscProbCalcer_NuFASTLinear.h"
 #endif
 
+#if UseNuFASTEarth==1
+#include "OscProbCalcer/OscProbCalcer_NuFASTEarth.h"
+#endif
+
 #if UseNuSQUIDSLinear==1
 #include "OscProbCalcer/OscProbCalcer_NuSQUIDSLinear.h"
 #endif
@@ -108,6 +112,17 @@ OscProbCalcerBase* OscProbCalcerFactory::CreateOscProbCalcer(YAML::Node OscProbC
 #if UseNuFASTLinear==1
     OscProbCalcerNuFASTLinear* NuFASTLinear = new OscProbCalcerNuFASTLinear(OscProbCalcerConfig);
     Calcer = (OscProbCalcerBase*)NuFASTLinear;
+    if (Verbose >= NuOscillator::INFO) {std::cout << "Initalised OscProbCalcer Implementation:" << Calcer->ReturnImplementationName() << " in OscProbCalcerFactory object" << std::endl;}
+#else
+    std::cerr << "OscProbCalcerFactory was requsted to create " << OscProbCalcerImplementationToCreate << " OscProbCalcer but Use" << OscProbCalcerImplementationToCreate << " is undefined. Indicates problem in setup" << std::endl;
+    throw std::runtime_error("Invalid setup");
+#endif
+  }
+
+  else if (OscProbCalcerImplementationToCreate == "NuFASTEarth") {
+#if UseNuFASTEarth==1
+    OscProbCalcerNuFASTEarth* NuFASTEarth = new OscProbCalcerNuFASTEarth(OscProbCalcerConfig);
+    Calcer = (OscProbCalcerBase*)NuFASTEarth;
     if (Verbose >= NuOscillator::INFO) {std::cout << "Initalised OscProbCalcer Implementation:" << Calcer->ReturnImplementationName() << " in OscProbCalcerFactory object" << std::endl;}
 #else
     std::cerr << "OscProbCalcerFactory was requsted to create " << OscProbCalcerImplementationToCreate << " OscProbCalcer but Use" << OscProbCalcerImplementationToCreate << " is undefined. Indicates problem in setup" << std::endl;

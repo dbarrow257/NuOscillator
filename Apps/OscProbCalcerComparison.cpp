@@ -75,7 +75,7 @@ int main(int argc, char **argv) {
       Oscillator->SetEnergyArrayInCalcer(EnergyArray);
       
       //Check if we also need to set the CosineZ binning
-      if (!Oscillator->CosineZIgnored()) {
+      if (!Oscillator->ReturnCosineZIgnored()) {
         Oscillator->SetCosineZArrayInCalcer(CosineZArray);
       }
     }
