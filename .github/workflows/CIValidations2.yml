@@ -32,7 +32,7 @@ jobs:
             exec: SingleOscProbCalcer
             argument: NuOscillatorConfigs/OscProbCalcerConfigs/NuFASTEarth.yaml
             new_output: NuFASTEarth_New.txt
-            old_output: NuFASTEarth_Stored.txt	    
+            old_output: NuFASTEarth_Stored.txt
           - name: OscProbCalcer OscProbLinear Comparison
             cmake_options: -DUseOscProb=1
             exec: SingleOscProbCalcer
