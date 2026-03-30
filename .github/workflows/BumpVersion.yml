@@ -43,15 +43,18 @@ jobs:
           echo "Extracted NuOscillator tag version: ${NuOscillator_tag_version}"
           echo "NUOSCILLATOR_TAG_VERSION=${NuOscillator_tag_version}" >> $GITHUB_ENV
 
-      # Compare versions and set NOTIFY=true if they match
+      # Compare versions and set NOTIFY=true if tag has larger version than cmake
       - name: Compare versions
         run: |
-          if [ "${{ env.NUOSCILLATOR_VERSION }}" = "${{ env.NUOSCILLATOR_TAG_VERSION }}" ]; then
-            echo "Versions match!"
-            echo "NOTIFY=false" >> $GITHUB_ENV
-          else
-            echo "Versions do not match."
+          TAG="$NUOSCILLATOR_TAG_VERSION"
+          VER="$NUOSCILLATOR_VERSION"
+          if [ "$TAG" != "$VER" ] && \
+             [ "$(printf '%s\n' "$VER" "$TAG" | sort -V | tail -n1)" = "$TAG" ]; then
+            echo "TAG > VERSION"
             echo "NOTIFY=true" >> $GITHUB_ENV
+          else
+            echo "TAG <= VERSION"
+            echo "NOTIFY=false" >> $GITHUB_ENV
           fi
 
       # Notify users by creating a comment with version info
