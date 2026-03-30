@@ -71,6 +71,7 @@ Following neutrino oscillation calculators are available:
 | NuSQUIDSLinear   | CPU        | Beam       | [Ref](https://doi.org/10.1016/j.cpc.2022.108346)        |
 | GLoBESLinear     | CPU        | Beam       | [Ref](https://doi.org/10.1016/j.cpc.2005.01.003)        |
 | CHICLinear       | CPU        | Beam       | [Ref](https://arxiv.org/pdf/2512.16427)                 |
+| OscLib           | CPU        | Beam       | [Ref](https://github.com/cafana/OscLib)                 |
 
 ## GPU
 Some engines requires gpu like `ProbGPULinear` other can use both CPU and GPU. To use GPU functionality remember about
