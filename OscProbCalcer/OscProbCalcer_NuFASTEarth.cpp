@@ -49,6 +49,9 @@ void OscProbCalcerNuFASTEarth::SetupPropagator() {
     EarthDensity = new PREM_Full();
   } else if (EarthModel == "NUniformLayers") {
     EarthDensity = new PREM_NUniformLayer(NUniformLayers);
+  } else {
+    std::cerr << EarthModel << " is not supported" << std::endl;
+    throw std::runtime_error("Fatal error in OscProbCalcerNuFASTEarth::SetupPropagator()");
   }
   //=============================
 
@@ -77,21 +80,18 @@ void OscProbCalcerNuFASTEarth::CalculateProbabilities(const std::vector<FLOAT_T>
     ProbEngine.Set_Spectra(fEnergyArray, fCosineZArray);
     std::vector<std::vector<Matrix3r>> probabilities = ProbEngine.Get_Probabilities();
     
-    for (int iCosineZPoint=0;iCosineZPoint<fNCosineZPoints;iCosineZPoint++) {
+    for (int iOscChannel = 0; iOscChannel < fNOscillationChannels; iOscChannel++) {
       for (int iEnergyPoint=0;iEnergyPoint<fNEnergyPoints;iEnergyPoint++) {
-	for (int iOscChannel = 0; iOscChannel < fNOscillationChannels; iOscChannel++) {
-
-	  int Index = ReturnWeightArrayIndex(iNuType,iOscChannel,iEnergyPoint,iCosineZPoint);
+        for (int iCosineZPoint=0;iCosineZPoint<fNCosineZPoints;iCosineZPoint++) {
+          int Index = ReturnWeightArrayIndex(iNuType,iOscChannel,iEnergyPoint,iCosineZPoint);
           const int gflv = fOscillationChannels[iOscChannel].GeneratedFlavour-1;
           const int dflv = fOscillationChannels[iOscChannel].DetectedFlavour-1;
 
-	  fWeightArray[Index] = probabilities[iEnergyPoint][iCosineZPoint].arr[gflv][dflv];
-	}
+          fWeightArray[Index] = probabilities[iEnergyPoint][iCosineZPoint].arr[gflv][dflv];
+        }
       } 
     }
-    
   }
-
 }
 
 int OscProbCalcerNuFASTEarth::ReturnWeightArrayIndex(int NuTypeIndex, int OscChanIndex, int EnergyIndex, int CosineZIndex) {
