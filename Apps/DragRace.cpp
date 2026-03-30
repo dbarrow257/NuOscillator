@@ -22,8 +22,8 @@ int main(int argc, char **argv) {
   }
   int nThrows = atoi(argv[1]);
   
-  std::vector<FLOAT_T> EnergyArray = logspace(0.1,100.,1e2);
-  std::vector<FLOAT_T> CosineZArray = linspace(-1.0,1.0,1e2);
+  std::vector<FLOAT_T> EnergyArray = logspace(0.1,100.,1e3);
+  std::vector<FLOAT_T> CosineZArray = linspace(-1.0,1.0,1e3);
 
   std::vector<FLOAT_T> OscParams_Basic = ReturnOscParams_Basic();
   std::vector<FLOAT_T> OscParams_Atm = ReturnOscParams_Atm();
