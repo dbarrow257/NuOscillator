@@ -400,7 +400,7 @@ if(${UseOscProb} EQUAL 1)
     DOWNLOAD_ONLY YES
   )
 
-  CPMAddPackage(
+  CPMFindPackage(
     NAME Eigen
     VERSION 3.4.0
     URL https://gitlab.com/libeigen/eigen/-/archive/3.4.0/eigen-3.4.0.tar.gz
@@ -438,7 +438,7 @@ if(${UseOscLibLinear} EQUAL 1)
   find_package(Boost REQUIRED)
   find_package(GSL REQUIRED)
 
-  CPMAddPackage(
+  CPMFindPackage(
     NAME Eigen
     VERSION 3.4.0
     URL https://gitlab.com/libeigen/eigen/-/archive/3.4.0/eigen-3.4.0.tar.gz
@@ -471,7 +471,7 @@ if(${UseOscLibLinear} EQUAL 1)
     EXPORT_NAME OscLib
   )
 
-  target_link_libraries(OscLibLinear ROOT::Core Eigen GSL::gsl)
+  target_link_libraries(OscLibLinear PRIVATE ROOT::Core Eigen GSL::gsl)
   # Properly scoped include dirs
   target_include_directories(OscLibLinear PUBLIC
       $<BUILD_INTERFACE:${OscLib_SOURCE_DIR}>
@@ -632,7 +632,7 @@ if(${UseCHICLinear} EQUAL 1)
     set(CMAKE_CXX_STANDARD 17)
   endif()
 
-  CPMAddPackage(
+  CPMFindPackage(
     NAME Eigen
     VERSION 3.4.0
     URL https://gitlab.com/libeigen/eigen/-/archive/3.4.0/eigen-3.4.0.tar.gz
