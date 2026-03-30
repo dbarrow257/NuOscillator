@@ -110,7 +110,7 @@ if(NOT DEFINED OscProb_BRANCH)
 endif()
 
 if(NOT DEFINED OscLib_BRANCH)
-  set(OscLib_BRANCH "v1.0.1")
+  set(OscLib_BRANCH "v1.2.0")
 endif()
 
 if(NOT DEFINED GLoBES_BRANCH)
