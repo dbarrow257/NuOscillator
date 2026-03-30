@@ -11,9 +11,10 @@ var searchData=
   ['_7eoscprobcalcercudaprob3linear_8',['~OscProbCalcerCUDAProb3Linear',['../classOscProbCalcerCUDAProb3Linear.html#a15d25d9eec6af5159a9eb1ca5128a6bc',1,'OscProbCalcerCUDAProb3Linear']]],
   ['_7eoscprobcalcerfactory_9',['~OscProbCalcerFactory',['../classOscProbCalcerFactory.html#a335ea83ccd010753af34f452cdf35579',1,'OscProbCalcerFactory']]],
   ['_7eoscprobcalcerglobeslinear_10',['~OscProbCalcerGLoBESLinear',['../classOscProbCalcerGLoBESLinear.html#a4b34a9df1a3f883e93e34ddcfe2c1961',1,'OscProbCalcerGLoBESLinear']]],
-  ['_7eoscprobcalcernufastlinear_11',['~OscProbCalcerNuFASTLinear',['../classOscProbCalcerNuFASTLinear.html#ad9b07d15601ef9f93cc168923abcc14f',1,'OscProbCalcerNuFASTLinear']]],
-  ['_7eoscprobcalcernusquidslinear_12',['~OscProbCalcerNuSQUIDSLinear',['../classOscProbCalcerNuSQUIDSLinear.html#abbb535c6b479cd0b4fe2a82f047b7745',1,'OscProbCalcerNuSQUIDSLinear']]],
-  ['_7eoscprobcalceroscprob_13',['~OscProbCalcerOscProb',['../classOscProbCalcerOscProb.html#a50bc77e7f90728565fe10076a8ac01db',1,'OscProbCalcerOscProb']]],
-  ['_7eoscprobcalcerprob3pplinear_14',['~OscProbCalcerProb3ppLinear',['../classOscProbCalcerProb3ppLinear.html#a90700492baae03a677d4c3ce28c8f8f0',1,'OscProbCalcerProb3ppLinear']]],
-  ['_7eoscprobcalcerprobgpulinear_15',['~OscProbCalcerProbGPULinear',['../classOscProbCalcerProbGPULinear.html#ab1fe8115aa199bea60afb14b8c17e134',1,'OscProbCalcerProbGPULinear']]]
+  ['_7eoscprobcalcernufastearth_11',['~OscProbCalcerNuFASTEarth',['../classOscProbCalcerNuFASTEarth.html#a79424d21e614beb5feda41f678130c6a',1,'OscProbCalcerNuFASTEarth']]],
+  ['_7eoscprobcalcernufastlinear_12',['~OscProbCalcerNuFASTLinear',['../classOscProbCalcerNuFASTLinear.html#ad9b07d15601ef9f93cc168923abcc14f',1,'OscProbCalcerNuFASTLinear']]],
+  ['_7eoscprobcalcernusquidslinear_13',['~OscProbCalcerNuSQUIDSLinear',['../classOscProbCalcerNuSQUIDSLinear.html#abbb535c6b479cd0b4fe2a82f047b7745',1,'OscProbCalcerNuSQUIDSLinear']]],
+  ['_7eoscprobcalceroscprob_14',['~OscProbCalcerOscProb',['../classOscProbCalcerOscProb.html#a50bc77e7f90728565fe10076a8ac01db',1,'OscProbCalcerOscProb']]],
+  ['_7eoscprobcalcerprob3pplinear_15',['~OscProbCalcerProb3ppLinear',['../classOscProbCalcerProb3ppLinear.html#a90700492baae03a677d4c3ce28c8f8f0',1,'OscProbCalcerProb3ppLinear']]],
+  ['_7eoscprobcalcerprobgpulinear_16',['~OscProbCalcerProbGPULinear',['../classOscProbCalcerProbGPULinear.html#ab1fe8115aa199bea60afb14b8c17e134',1,'OscProbCalcerProbGPULinear']]]
 ];

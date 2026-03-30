@@ -46,7 +46,7 @@
   </g>
 </defs>
 <script type="application/ecmascript">
-var viewWidth = 1219;
+var viewWidth = 1435;
 var viewHeight = 160;
 var sectionId = 'dynsection-1';
 </script>
@@ -58,8 +58,8 @@ var sectionId = 'dynsection-1';
 <g id="Node000001" class="node">
 <title>Node1</title>
 <g id="a_Node000001"><a xlink:title=" ">
-<polygon fill="#999999" stroke="#666666" points="727.5,-152.25 596,-152.25 596,-133 727.5,-133 727.5,-152.25"/>
-<text text-anchor="middle" x="661.75" y="-138.75" font-family="Helvetica,sans-Serif" font-size="10.00">Oscillator/OscillatorBase.h</text>
+<polygon fill="#999999" stroke="#666666" points="771.5,-152.25 640,-152.25 640,-133 771.5,-133 771.5,-152.25"/>
+<text text-anchor="middle" x="705.75" y="-138.75" font-family="Helvetica,sans-Serif" font-size="10.00">Oscillator/OscillatorBase.h</text>
 </a>
 </g>
 </g>
@@ -67,8 +67,8 @@ var sectionId = 'dynsection-1';
 <g id="Node000002" class="node">
 <title>Node2</title>
 <g id="a_Node000002"><a xlink:href="OscillatorBase_8cpp.html" target="_top" xlink:title=" ">
-<polygon fill="white" stroke="#666666" points="415.75,-91.38 273.75,-91.38 273.75,-72.12 415.75,-72.12 415.75,-91.38"/>
-<text text-anchor="middle" x="344.75" y="-77.88" font-family="Helvetica,sans-Serif" font-size="10.00">Oscillator/OscillatorBase.cpp</text>
+<polygon fill="white" stroke="#666666" points="459.75,-91.38 317.75,-91.38 317.75,-72.12 459.75,-72.12 459.75,-91.38"/>
+<text text-anchor="middle" x="388.75" y="-77.88" font-family="Helvetica,sans-Serif" font-size="10.00">Oscillator/OscillatorBase.cpp</text>
 </a>
 </g>
 </g>
@@ -76,8 +76,8 @@ var sectionId = 'dynsection-1';
 <g id="edge1_Node000001_Node000002" class="edge">
 <title>Node1&#45;&gt;Node2</title>
 <g id="a_edge1_Node000001_Node000002"><a xlink:title=" ">
-<path fill="none" stroke="#63b8ff" d="M601.67,-130.47C541.37,-119.27 449.63,-102.23 393.64,-91.83"/>
-<polygon fill="#63b8ff" stroke="#63b8ff" points="600.95,-133.89 611.43,-132.28 602.23,-127.01 600.95,-133.89"/>
+<path fill="none" stroke="#63b8ff" d="M645.67,-130.47C585.37,-119.27 493.63,-102.23 437.64,-91.83"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="644.95,-133.89 655.43,-132.28 646.23,-127.01 644.95,-133.89"/>
 </a>
 </g>
 </g>
@@ -85,8 +85,8 @@ var sectionId = 'dynsection-1';
 <g id="Node000003" class="node">
 <title>Node3</title>
 <g id="a_Node000003"><a xlink:href="OscillatorBinned_8h.html" target="_top" xlink:title=" ">
-<polygon fill="white" stroke="#666666" points="573.25,-91.38 434.25,-91.38 434.25,-72.12 573.25,-72.12 573.25,-91.38"/>
-<text text-anchor="middle" x="503.75" y="-77.88" font-family="Helvetica,sans-Serif" font-size="10.00">Oscillator/OscillatorBinned.h</text>
+<polygon fill="white" stroke="#666666" points="617.25,-91.38 478.25,-91.38 478.25,-72.12 617.25,-72.12 617.25,-91.38"/>
+<text text-anchor="middle" x="547.75" y="-77.88" font-family="Helvetica,sans-Serif" font-size="10.00">Oscillator/OscillatorBinned.h</text>
 </a>
 </g>
 </g>
@@ -94,8 +94,8 @@ var sectionId = 'dynsection-1';
 <g id="edge2_Node000001_Node000003" class="edge">
 <title>Node1&#45;&gt;Node3</title>
 <g id="a_edge2_Node000001_Node000003"><a xlink:title=" ">
-<path fill="none" stroke="#63b8ff" d="M626.99,-128.67C597.04,-117.51 554.57,-101.69 528.12,-91.83"/>
-<polygon fill="#63b8ff" stroke="#63b8ff" points="625.4,-131.81 635.99,-132.03 627.84,-125.25 625.4,-131.81"/>
+<path fill="none" stroke="#63b8ff" d="M670.99,-128.67C641.04,-117.51 598.57,-101.69 572.12,-91.83"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="669.4,-131.81 679.99,-132.03 671.84,-125.25 669.4,-131.81"/>
 </a>
 </g>
 </g>
@@ -103,8 +103,8 @@ var sectionId = 'dynsection-1';
 <g id="Node000006" class="node">
 <title>Node6</title>
 <g id="a_Node000006"><a xlink:href="OscillatorFactory_8h.html" target="_top" xlink:title=" ">
-<polygon fill="white" stroke="#666666" points="732.38,-91.38 591.12,-91.38 591.12,-72.12 732.38,-72.12 732.38,-91.38"/>
-<text text-anchor="middle" x="661.75" y="-77.88" font-family="Helvetica,sans-Serif" font-size="10.00">Oscillator/OscillatorFactory.h</text>
+<polygon fill="white" stroke="#666666" points="776.38,-91.38 635.12,-91.38 635.12,-72.12 776.38,-72.12 776.38,-91.38"/>
+<text text-anchor="middle" x="705.75" y="-77.88" font-family="Helvetica,sans-Serif" font-size="10.00">Oscillator/OscillatorFactory.h</text>
 </a>
 </g>
 </g>
@@ -112,45 +112,45 @@ var sectionId = 'dynsection-1';
 <g id="edge5_Node000001_Node000006" class="edge">
 <title>Node1&#45;&gt;Node6</title>
 <g id="a_edge5_Node000001_Node000006"><a xlink:title=" ">
-<path fill="none" stroke="#63b8ff" d="M661.75,-121.2C661.75,-111.17 661.75,-99.58 661.75,-91.78"/>
-<polygon fill="#63b8ff" stroke="#63b8ff" points="658.25,-121.17 661.75,-131.17 665.25,-121.17 658.25,-121.17"/>
+<path fill="none" stroke="#63b8ff" d="M705.75,-121.2C705.75,-111.17 705.75,-99.58 705.75,-91.78"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="702.25,-121.17 705.75,-131.17 709.25,-121.17 702.25,-121.17"/>
 </a>
 </g>
 </g>
-<!-- Node11 -->
-<g id="Node000011" class="node">
-<title>Node11</title>
-<g id="a_Node000011"><a xlink:href="OscillatorSubSampling_8h.html" target="_top" xlink:title=" ">
-<polygon fill="white" stroke="#666666" points="874.12,-97 755.38,-97 755.38,-66.5 874.12,-66.5 874.12,-97"/>
-<text text-anchor="start" x="763.38" y="-83.5" font-family="Helvetica,sans-Serif" font-size="10.00">Oscillator/OscillatorSub</text>
-<text text-anchor="middle" x="814.75" y="-72.25" font-family="Helvetica,sans-Serif" font-size="10.00">Sampling.h</text>
+<!-- Node12 -->
+<g id="Node000012" class="node">
+<title>Node12</title>
+<g id="a_Node000012"><a xlink:href="OscillatorSubSampling_8h.html" target="_top" xlink:title=" ">
+<polygon fill="white" stroke="#666666" points="1018.12,-97 899.38,-97 899.38,-66.5 1018.12,-66.5 1018.12,-97"/>
+<text text-anchor="start" x="907.38" y="-83.5" font-family="Helvetica,sans-Serif" font-size="10.00">Oscillator/OscillatorSub</text>
+<text text-anchor="middle" x="958.75" y="-72.25" font-family="Helvetica,sans-Serif" font-size="10.00">Sampling.h</text>
 </a>
 </g>
 </g>
-<!-- Node1&#45;&gt;Node11 -->
-<g id="edge11_Node000001_Node000011" class="edge">
-<title>Node1&#45;&gt;Node11</title>
-<g id="a_edge11_Node000001_Node000011"><a xlink:title=" ">
-<path fill="none" stroke="#63b8ff" d="M696.02,-128.44C719.92,-119.24 751.84,-106.96 776.56,-97.44"/>
-<polygon fill="#63b8ff" stroke="#63b8ff" points="694.81,-125.15 686.73,-132.01 697.32,-131.69 694.81,-125.15"/>
+<!-- Node1&#45;&gt;Node12 -->
+<g id="edge12_Node000001_Node000012" class="edge">
+<title>Node1&#45;&gt;Node12</title>
+<g id="a_edge12_Node000001_Node000012"><a xlink:title=" ">
+<path fill="none" stroke="#63b8ff" d="M755.85,-129.97C797.01,-120.39 855.42,-106.8 899,-96.65"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="755.15,-126.54 746.2,-132.21 756.73,-133.35 755.15,-126.54"/>
 </a>
 </g>
 </g>
-<!-- Node13 -->
-<g id="Node000013" class="node">
-<title>Node13</title>
-<g id="a_Node000013"><a xlink:href="OscillatorUnbinned_8h.html" target="_top" xlink:title=" ">
-<polygon fill="white" stroke="#666666" points="1042.88,-91.38 892.62,-91.38 892.62,-72.12 1042.88,-72.12 1042.88,-91.38"/>
-<text text-anchor="middle" x="967.75" y="-77.88" font-family="Helvetica,sans-Serif" font-size="10.00">Oscillator/OscillatorUnbinned.h</text>
+<!-- Node14 -->
+<g id="Node000014" class="node">
+<title>Node14</title>
+<g id="a_Node000014"><a xlink:href="OscillatorUnbinned_8h.html" target="_top" xlink:title=" ">
+<polygon fill="white" stroke="#666666" points="1186.88,-91.38 1036.62,-91.38 1036.62,-72.12 1186.88,-72.12 1186.88,-91.38"/>
+<text text-anchor="middle" x="1111.75" y="-77.88" font-family="Helvetica,sans-Serif" font-size="10.00">Oscillator/OscillatorUnbinned.h</text>
 </a>
 </g>
 </g>
-<!-- Node1&#45;&gt;Node13 -->
-<g id="edge14_Node000001_Node000013" class="edge">
-<title>Node1&#45;&gt;Node13</title>
-<g id="a_edge14_Node000001_Node000013"><a xlink:title=" ">
-<path fill="none" stroke="#63b8ff" d="M720.11,-130.4C778.32,-119.2 866.62,-102.21 920.55,-91.83"/>
-<polygon fill="#63b8ff" stroke="#63b8ff" points="719.54,-126.94 710.38,-132.27 720.86,-133.82 719.54,-126.94"/>
+<!-- Node1&#45;&gt;Node14 -->
+<g id="edge15_Node000001_Node000014" class="edge">
+<title>Node1&#45;&gt;Node14</title>
+<g id="a_edge15_Node000001_Node000014"><a xlink:title=" ">
+<path fill="none" stroke="#63b8ff" d="M783.3,-131.46C848.37,-122.79 943.72,-109.73 1026.75,-97 1037.1,-95.41 1048.15,-93.63 1058.74,-91.87"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="782.87,-127.99 773.42,-132.78 783.79,-134.93 782.87,-127.99"/>
 </a>
 </g>
 </g>
@@ -167,8 +167,8 @@ var sectionId = 'dynsection-1';
 <g id="edge3_Node000003_Node000004" class="edge">
 <title>Node3&#45;&gt;Node4</title>
 <g id="a_edge3_Node000003_Node000004"><a xlink:title=" ">
-<path fill="none" stroke="#63b8ff" d="M444.32,-69.74C437.73,-68.61 431.1,-67.5 424.75,-66.5 306.91,-47.91 276.69,-48.48 158.75,-30.5 148.37,-28.92 137.28,-27.12 126.68,-25.34"/>
-<polygon fill="#63b8ff" stroke="#63b8ff" points="443.4,-73.13 453.85,-71.41 444.61,-66.24 443.4,-73.13"/>
+<path fill="none" stroke="#63b8ff" d="M488.89,-69.71C482.11,-68.57 475.29,-67.47 468.75,-66.5 331.54,-46.18 296.06,-50.11 158.75,-30.5 148.06,-28.97 136.64,-27.16 125.77,-25.34"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="488.26,-73.16 498.71,-71.42 489.46,-66.26 488.26,-73.16"/>
 </a>
 </g>
 </g>
@@ -176,8 +176,8 @@ var sectionId = 'dynsection-1';
 <g id="Node000005" class="node">
 <title>Node5</title>
 <g id="a_Node000005"><a xlink:href="OscillatorFactory_8cpp.html" target="_top" xlink:title=" ">
-<polygon fill="white" stroke="#666666" points="895.62,-24.88 743.88,-24.88 743.88,-5.63 895.62,-5.63 895.62,-24.88"/>
-<text text-anchor="middle" x="819.75" y="-11.38" font-family="Helvetica,sans-Serif" font-size="10.00">Oscillator/OscillatorFactory.cpp</text>
+<polygon fill="white" stroke="#666666" points="1111.62,-24.88 959.88,-24.88 959.88,-5.63 1111.62,-5.63 1111.62,-24.88"/>
+<text text-anchor="middle" x="1035.75" y="-11.38" font-family="Helvetica,sans-Serif" font-size="10.00">Oscillator/OscillatorFactory.cpp</text>
 </a>
 </g>
 </g>
@@ -185,17 +185,17 @@ var sectionId = 'dynsection-1';
 <g id="edge4_Node000003_Node000005" class="edge">
 <title>Node3&#45;&gt;Node5</title>
 <g id="a_edge4_Node000003_Node000005"><a xlink:title=" ">
-<path fill="none" stroke="#63b8ff" d="M559.38,-69.39C620.81,-56.86 718.49,-36.92 775.12,-25.36"/>
-<polygon fill="#63b8ff" stroke="#63b8ff" points="558.94,-65.91 549.84,-71.34 560.34,-72.77 558.94,-65.91"/>
+<path fill="none" stroke="#63b8ff" d="M605.58,-69.72C612.37,-68.56 619.21,-67.46 625.75,-66.5 769.54,-45.43 806.81,-50.52 950.75,-30.5 961.72,-28.97 973.45,-27.14 984.58,-25.3"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="605.01,-66.26 595.76,-71.44 606.21,-73.16 605.01,-66.26"/>
 </a>
 </g>
 </g>
 <!-- Node6&#45;&gt;Node5 -->
-<g id="edge10_Node000006_Node000005" class="edge">
+<g id="edge11_Node000006_Node000005" class="edge">
 <title>Node6&#45;&gt;Node5</title>
-<g id="a_edge10_Node000006_Node000005"><a xlink:title=" ">
-<path fill="none" stroke="#63b8ff" d="M694.71,-67.3C725.56,-54.7 770.79,-36.24 797.56,-25.31"/>
-<polygon fill="#63b8ff" stroke="#63b8ff" points="693.39,-64.05 685.45,-71.07 696.03,-70.53 693.39,-64.05"/>
+<g id="a_edge11_Node000006_Node000005"><a xlink:title=" ">
+<path fill="none" stroke="#63b8ff" d="M763.45,-69.47C827.58,-56.94 929.88,-36.94 989.14,-25.36"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="762.96,-66 753.82,-71.36 764.3,-72.87 762.96,-66"/>
 </a>
 </g>
 </g>
@@ -203,8 +203,8 @@ var sectionId = 'dynsection-1';
 <g id="Node000007" class="node">
 <title>Node7</title>
 <g id="a_Node000007"><a xlink:href="Analysis_8cpp.html" target="_top" xlink:title=" ">
-<polygon fill="white" stroke="#666666" points="263.88,-24.88 167.62,-24.88 167.62,-5.63 263.88,-5.63 263.88,-24.88"/>
-<text text-anchor="middle" x="215.75" y="-11.38" font-family="Helvetica,sans-Serif" font-size="10.00">Apps/Analysis.cpp</text>
+<polygon fill="white" stroke="#666666" points="725.88,-24.88 629.62,-24.88 629.62,-5.63 725.88,-5.63 725.88,-24.88"/>
+<text text-anchor="middle" x="677.75" y="-11.38" font-family="Helvetica,sans-Serif" font-size="10.00">Apps/Analysis.cpp</text>
 </a>
 </g>
 </g>
@@ -212,17 +212,17 @@ var sectionId = 'dynsection-1';
 <g id="edge6_Node000006_Node000007" class="edge">
 <title>Node6&#45;&gt;Node7</title>
 <g id="a_edge6_Node000006_Node000007"><a xlink:title=" ">
-<path fill="none" stroke="#63b8ff" d="M602.39,-69.77C595.44,-68.6 588.45,-67.49 581.75,-66.5 444.96,-46.37 408.77,-55.32 272.75,-30.5 265.02,-29.09 256.79,-27.24 249.05,-25.34"/>
-<polygon fill="#63b8ff" stroke="#63b8ff" points="601.66,-73.19 612.11,-71.43 602.84,-66.29 601.66,-73.19"/>
+<path fill="none" stroke="#63b8ff" d="M697.35,-61.4C692.12,-49.36 685.65,-34.45 681.61,-25.14"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="694.06,-62.61 701.25,-70.39 700.48,-59.83 694.06,-62.61"/>
 </a>
 </g>
 </g>
 <!-- Node8 -->
 <g id="Node000008" class="node">
 <title>Node8</title>
-<g id="a_Node000008"><a xlink:href="DragRace_8cpp.html" target="_top" xlink:title=" ">
-<polygon fill="white" stroke="#666666" points="383.88,-24.88 281.62,-24.88 281.62,-5.63 383.88,-5.63 383.88,-24.88"/>
-<text text-anchor="middle" x="332.75" y="-11.38" font-family="Helvetica,sans-Serif" font-size="10.00">Apps/DragRace.cpp</text>
+<g id="a_Node000008"><a xlink:href="CompareOscillationProbabilities_8cpp.html" target="_top" xlink:title=" ">
+<polygon fill="white" stroke="#666666" points="941.5,-24.88 744,-24.88 744,-5.63 941.5,-5.63 941.5,-24.88"/>
+<text text-anchor="middle" x="842.75" y="-11.38" font-family="Helvetica,sans-Serif" font-size="10.00">Apps/CompareOscillationProbabilities.cpp</text>
 </a>
 </g>
 </g>
@@ -230,17 +230,17 @@ var sectionId = 'dynsection-1';
 <g id="edge7_Node000006_Node000008" class="edge">
 <title>Node6&#45;&gt;Node8</title>
 <g id="a_edge7_Node000006_Node000008"><a xlink:title=" ">
-<path fill="none" stroke="#63b8ff" d="M600.14,-69.6C533.44,-57.46 431.41,-38.7 392.75,-30.5 385.31,-28.92 377.39,-27.13 369.81,-25.35"/>
-<polygon fill="#63b8ff" stroke="#63b8ff" points="599.39,-73.02 609.85,-71.37 600.64,-66.13 599.39,-73.02"/>
+<path fill="none" stroke="#63b8ff" d="M735.39,-66.8C762.1,-54.22 800.61,-36.09 823.51,-25.31"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="734.01,-63.57 726.46,-71 737,-69.91 734.01,-63.57"/>
 </a>
 </g>
 </g>
 <!-- Node9 -->
 <g id="Node000009" class="node">
 <title>Node9</title>
-<g id="a_Node000009"><a xlink:href="OscProbCalcerComparison_8cpp.html" target="_top" xlink:title=" ">
-<polygon fill="white" stroke="#666666" points="579.38,-24.88 402.12,-24.88 402.12,-5.63 579.38,-5.63 579.38,-24.88"/>
-<text text-anchor="middle" x="490.75" y="-11.38" font-family="Helvetica,sans-Serif" font-size="10.00">Apps/OscProbCalcerComparison.cpp</text>
+<g id="a_Node000009"><a xlink:href="DragRace_8cpp.html" target="_top" xlink:title=" ">
+<polygon fill="white" stroke="#666666" points="269.88,-24.88 167.62,-24.88 167.62,-5.63 269.88,-5.63 269.88,-24.88"/>
+<text text-anchor="middle" x="218.75" y="-11.38" font-family="Helvetica,sans-Serif" font-size="10.00">Apps/DragRace.cpp</text>
 </a>
 </g>
 </g>
@@ -248,17 +248,17 @@ var sectionId = 'dynsection-1';
 <g id="edge8_Node000006_Node000009" class="edge">
 <title>Node6&#45;&gt;Node9</title>
 <g id="a_edge8_Node000006_Node000009"><a xlink:title=" ">
-<path fill="none" stroke="#63b8ff" d="M626.96,-67.63C593.56,-55.03 543.99,-36.33 514.76,-25.31"/>
-<polygon fill="#63b8ff" stroke="#63b8ff" points="625.6,-70.86 636.2,-71.11 628.08,-64.31 625.6,-70.86"/>
+<path fill="none" stroke="#63b8ff" d="M646.94,-69.77C639.81,-68.59 632.63,-67.47 625.75,-66.5 472.21,-44.89 431.61,-56.47 278.75,-30.5 270.52,-29.1 261.73,-27.23 253.49,-25.31"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="646.1,-73.18 656.55,-71.41 647.28,-66.28 646.1,-73.18"/>
 </a>
 </g>
 </g>
 <!-- Node10 -->
 <g id="Node000010" class="node">
 <title>Node10</title>
-<g id="a_Node000010"><a xlink:href="SingleOscillator_8cpp.html" target="_top" xlink:title=" ">
-<polygon fill="white" stroke="#666666" points="725.62,-24.88 597.88,-24.88 597.88,-5.63 725.62,-5.63 725.62,-24.88"/>
-<text text-anchor="middle" x="661.75" y="-11.38" font-family="Helvetica,sans-Serif" font-size="10.00">Apps/SingleOscillator.cpp</text>
+<g id="a_Node000010"><a xlink:href="OscProbCalcerComparison_8cpp.html" target="_top" xlink:title=" ">
+<polygon fill="white" stroke="#666666" points="465.38,-24.88 288.12,-24.88 288.12,-5.63 465.38,-5.63 465.38,-24.88"/>
+<text text-anchor="middle" x="376.75" y="-11.38" font-family="Helvetica,sans-Serif" font-size="10.00">Apps/OscProbCalcerComparison.cpp</text>
 </a>
 </g>
 </g>
@@ -266,63 +266,81 @@ var sectionId = 'dynsection-1';
 <g id="edge9_Node000006_Node000010" class="edge">
 <title>Node6&#45;&gt;Node10</title>
 <g id="a_edge9_Node000006_Node000010"><a xlink:title=" ">
-<path fill="none" stroke="#63b8ff" d="M661.75,-60.27C661.75,-48.44 661.75,-34.16 661.75,-25.14"/>
-<polygon fill="#63b8ff" stroke="#63b8ff" points="658.25,-60.27 661.75,-70.27 665.25,-60.27 658.25,-60.27"/>
+<path fill="none" stroke="#63b8ff" d="M648.22,-69.47C584.29,-56.94 482.3,-36.94 423.22,-25.36"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="647.34,-72.87 657.82,-71.35 648.69,-66 647.34,-72.87"/>
 </a>
 </g>
 </g>
-<!-- Node11&#45;&gt;Node5 -->
-<g id="edge12_Node000011_Node000005" class="edge">
-<title>Node11&#45;&gt;Node5</title>
-<g id="a_edge12_Node000011_Node000005"><a xlink:title=" ">
-<path fill="none" stroke="#63b8ff" d="M816.76,-54.84C817.58,-44.26 818.47,-32.75 819.07,-25.07"/>
-<polygon fill="#63b8ff" stroke="#63b8ff" points="813.28,-54.36 816,-64.6 820.26,-54.91 813.28,-54.36"/>
+<!-- Node11 -->
+<g id="Node000011" class="node">
+<title>Node11</title>
+<g id="a_Node000011"><a xlink:href="SingleOscillator_8cpp.html" target="_top" xlink:title=" ">
+<polygon fill="white" stroke="#666666" points="611.62,-24.88 483.88,-24.88 483.88,-5.63 611.62,-5.63 611.62,-24.88"/>
+<text text-anchor="middle" x="547.75" y="-11.38" font-family="Helvetica,sans-Serif" font-size="10.00">Apps/SingleOscillator.cpp</text>
 </a>
 </g>
 </g>
-<!-- Node12 -->
-<g id="Node000012" class="node">
-<title>Node12</title>
-<g id="a_Node000012"><a xlink:href="OscillatorSubSampling_8cpp.html" target="_top" xlink:title=" ">
-<polygon fill="white" stroke="#666666" points="1032.12,-30.5 913.38,-30.5 913.38,0 1032.12,0 1032.12,-30.5"/>
-<text text-anchor="start" x="921.38" y="-17" font-family="Helvetica,sans-Serif" font-size="10.00">Oscillator/OscillatorSub</text>
-<text text-anchor="middle" x="972.75" y="-5.75" font-family="Helvetica,sans-Serif" font-size="10.00">Sampling.cpp</text>
+<!-- Node6&#45;&gt;Node11 -->
+<g id="edge10_Node000006_Node000011" class="edge">
+<title>Node6&#45;&gt;Node11</title>
+<g id="a_edge10_Node000006_Node000011"><a xlink:title=" ">
+<path fill="none" stroke="#63b8ff" d="M672.79,-67.3C641.94,-54.7 596.71,-36.24 569.94,-25.31"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="671.47,-70.53 682.05,-71.07 674.11,-64.05 671.47,-70.53"/>
 </a>
 </g>
 </g>
-<!-- Node11&#45;&gt;Node12 -->
-<g id="edge13_Node000011_Node000012" class="edge">
-<title>Node11&#45;&gt;Node12</title>
-<g id="a_edge13_Node000011_Node000012"><a xlink:title=" ">
-<path fill="none" stroke="#63b8ff" d="M860.97,-61.88C885.14,-52.01 914.29,-40.11 936.77,-30.94"/>
-<polygon fill="#63b8ff" stroke="#63b8ff" points="859.94,-58.52 852,-65.54 862.59,-65 859.94,-58.52"/>
+<!-- Node12&#45;&gt;Node5 -->
+<g id="edge13_Node000012_Node000005" class="edge">
+<title>Node12&#45;&gt;Node5</title>
+<g id="a_edge13_Node000012_Node000005"><a xlink:title=" ">
+<path fill="none" stroke="#63b8ff" d="M984.87,-58.87C998.68,-47.3 1014.87,-33.74 1025.22,-25.07"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="982.8,-56.04 977.38,-65.14 987.3,-61.4 982.8,-56.04"/>
 </a>
 </g>
 </g>
-<!-- Node13&#45;&gt;Node5 -->
-<g id="edge15_Node000013_Node000005" class="edge">
-<title>Node13&#45;&gt;Node5</title>
-<g id="a_edge15_Node000013_Node000005"><a xlink:title=" ">
-<path fill="none" stroke="#63b8ff" d="M936.5,-67.13C907.61,-54.54 865.5,-36.19 840.53,-25.31"/>
-<polygon fill="#63b8ff" stroke="#63b8ff" points="934.91,-70.25 945.47,-71.04 937.7,-63.84 934.91,-70.25"/>
+<!-- Node13 -->
+<g id="Node000013" class="node">
+<title>Node13</title>
+<g id="a_Node000013"><a xlink:href="OscillatorSubSampling_8cpp.html" target="_top" xlink:title=" ">
+<polygon fill="white" stroke="#666666" points="1248.12,-30.5 1129.38,-30.5 1129.38,0 1248.12,0 1248.12,-30.5"/>
+<text text-anchor="start" x="1137.38" y="-17" font-family="Helvetica,sans-Serif" font-size="10.00">Oscillator/OscillatorSub</text>
+<text text-anchor="middle" x="1188.75" y="-5.75" font-family="Helvetica,sans-Serif" font-size="10.00">Sampling.cpp</text>
 </a>
 </g>
 </g>
-<!-- Node14 -->
-<g id="Node000014" class="node">
-<title>Node14</title>
-<g id="a_Node000014"><a xlink:href="OscillatorUnbinned_8cpp.html" target="_top" xlink:title=" ">
-<polygon fill="white" stroke="#666666" points="1211.12,-24.88 1050.38,-24.88 1050.38,-5.63 1211.12,-5.63 1211.12,-24.88"/>
-<text text-anchor="middle" x="1130.75" y="-11.38" font-family="Helvetica,sans-Serif" font-size="10.00">Oscillator/OscillatorUnbinned.cpp</text>
+<!-- Node12&#45;&gt;Node13 -->
+<g id="edge14_Node000012_Node000013" class="edge">
+<title>Node12&#45;&gt;Node13</title>
+<g id="a_edge14_Node000012_Node000013"><a xlink:title=" ">
+<path fill="none" stroke="#63b8ff" d="M1022.1,-62.99C1058.06,-52.9 1102.54,-40.43 1136.5,-30.9"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="1021.37,-59.55 1012.69,-65.62 1023.26,-66.29 1021.37,-59.55"/>
 </a>
 </g>
 </g>
-<!-- Node13&#45;&gt;Node14 -->
-<g id="edge16_Node000013_Node000014" class="edge">
-<title>Node13&#45;&gt;Node14</title>
-<g id="a_edge16_Node000013_Node000014"><a xlink:title=" ">
-<path fill="none" stroke="#63b8ff" d="M1001.33,-67.46C1033.16,-54.87 1080.12,-36.28 1107.86,-25.31"/>
-<polygon fill="#63b8ff" stroke="#63b8ff" points="1000.18,-64.15 992.17,-71.09 1002.75,-70.66 1000.18,-64.15"/>
+<!-- Node14&#45;&gt;Node5 -->
+<g id="edge16_Node000014_Node000005" class="edge">
+<title>Node14&#45;&gt;Node5</title>
+<g id="a_edge16_Node000014_Node000005"><a xlink:title=" ">
+<path fill="none" stroke="#63b8ff" d="M1092.8,-64.67C1078.08,-52.17 1058.21,-35.31 1046.23,-25.14"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="1090.14,-67 1100.03,-70.8 1094.67,-61.66 1090.14,-67"/>
+</a>
+</g>
+</g>
+<!-- Node15 -->
+<g id="Node000015" class="node">
+<title>Node15</title>
+<g id="a_Node000015"><a xlink:href="OscillatorUnbinned_8cpp.html" target="_top" xlink:title=" ">
+<polygon fill="white" stroke="#666666" points="1427.12,-24.88 1266.38,-24.88 1266.38,-5.63 1427.12,-5.63 1427.12,-24.88"/>
+<text text-anchor="middle" x="1346.75" y="-11.38" font-family="Helvetica,sans-Serif" font-size="10.00">Oscillator/OscillatorUnbinned.cpp</text>
+</a>
+</g>
+</g>
+<!-- Node14&#45;&gt;Node15 -->
+<g id="edge17_Node000014_Node000015" class="edge">
+<title>Node14&#45;&gt;Node15</title>
+<g id="a_edge17_Node000014_Node000015"><a xlink:title=" ">
+<path fill="none" stroke="#63b8ff" d="M1156.02,-68.6C1201.89,-56.01 1272.54,-36.62 1313.75,-25.31"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="1155.1,-65.22 1146.38,-71.24 1156.95,-71.97 1155.1,-65.22"/>
 </a>
 </g>
 </g>

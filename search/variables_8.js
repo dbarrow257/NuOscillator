@@ -13,7 +13,8 @@ var searchData=
   ['nsi_5fmutau_5fcoupling_10',['nsi_mutau_coupling',['../classOscProbCalcerNuSQUIDSLinear.html#a698da43315112802f1f1d849931c9599',1,'OscProbCalcerNuSQUIDSLinear']]],
   ['nthreads_11',['nthreads',['../classOscProbCalcerCUDAProb3.html#ac66ebf86f6b7f3dbf6ce9fbb8f913a50',1,'OscProbCalcerCUDAProb3::nThreads'],['../classOscProbCalcerCUDAProb3Linear.html#abfe04012e7e77b25f0e842e1366659bf',1,'OscProbCalcerCUDAProb3Linear::nThreads']]],
   ['nubars_5fbase_12',['nubars_base',['../classOscProbCalcerNuSQUIDSLinear.html#af80f340a05e690267881ddbbbe72bc4e',1,'OscProbCalcerNuSQUIDSLinear']]],
-  ['nus_5fbase_13',['nus_base',['../classOscProbCalcerNuSQUIDSLinear.html#a7cdf404e679a9bac9755b2d0662309d9',1,'OscProbCalcerNuSQUIDSLinear']]],
-  ['nusquids_5fdecoherence_5fmodel_14',['nusquids_decoherence_model',['../classOscProbCalcerNuSQUIDSLinear.html#a8580249cba41794c5b3f11d0e6b2c211',1,'OscProbCalcerNuSQUIDSLinear']]],
-  ['nutype_15',['NuType',['../structNuOscillator_1_1OscillationProbability.html#a66191c46e818ee7d69cd181bcc9286ac',1,'NuOscillator::OscillationProbability']]]
+  ['nuniformlayers_13',['NUniformLayers',['../classOscProbCalcerNuFASTEarth.html#a5dba90209fd6765f4c09201e204299d1',1,'OscProbCalcerNuFASTEarth']]],
+  ['nus_5fbase_14',['nus_base',['../classOscProbCalcerNuSQUIDSLinear.html#a7cdf404e679a9bac9755b2d0662309d9',1,'OscProbCalcerNuSQUIDSLinear']]],
+  ['nusquids_5fdecoherence_5fmodel_15',['nusquids_decoherence_model',['../classOscProbCalcerNuSQUIDSLinear.html#a8580249cba41794c5b3f11d0e6b2c211',1,'OscProbCalcerNuSQUIDSLinear']]],
+  ['nutype_16',['NuType',['../structNuOscillator_1_1OscillationProbability.html#a66191c46e818ee7d69cd181bcc9286ac',1,'NuOscillator::OscillationProbability']]]
 ];

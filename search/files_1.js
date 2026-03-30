@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['dragrace_2ecpp_0',['DragRace.cpp',['../DragRace_8cpp.html',1,'']]]
+  ['compareoscillationprobabilities_2ecpp_0',['CompareOscillationProbabilities.cpp',['../CompareOscillationProbabilities_8cpp.html',1,'']]]
 ];
