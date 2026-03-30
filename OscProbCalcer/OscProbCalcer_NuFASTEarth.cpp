@@ -42,17 +42,13 @@ void OscProbCalcerNuFASTEarth::SetupPropagator() {
   //=============================
   //Set the Earth Model
   if (EarthModel == "Prob3") {
-    PREM_Prob3* PREMProb3 = new PREM_Prob3();
-    EarthDensity = dynamic_cast<Earth_Density*>(PREMProb3);
+    EarthDensity = new PREM_Prob3();
   } else if (EarthModel == "PREM4") {
-    PREM_Four* PREMFour = new PREM_Four();
-    EarthDensity = dynamic_cast<Earth_Density*>(PREMFour);
+    EarthDensity = new PREM_Four();
   } else if (EarthModel == "Full") {
-    PREM_Full* PREMFull = new PREM_Full();
-    EarthDensity = dynamic_cast<Earth_Density*>(PREMFull);
+    EarthDensity = new PREM_Full();
   } else if (EarthModel == "NUniformLayers") {
-    PREM_NUniformLayer* PREMNUniformLayer = new PREM_NUniformLayer(NUniformLayers);
-    EarthDensity = dynamic_cast<Earth_Density*>(PREMNUniformLayer);    
+    EarthDensity = new PREM_NUniformLayer(NUniformLayers);
   }
   //=============================
 
@@ -88,7 +84,7 @@ void OscProbCalcerNuFASTEarth::CalculateProbabilities(const std::vector<FLOAT_T>
 	  int Index = ReturnWeightArrayIndex(iNuType,iOscChannel,iEnergyPoint,iCosineZPoint);
           const int gflv = fOscillationChannels[iOscChannel].GeneratedFlavour-1;
           const int dflv = fOscillationChannels[iOscChannel].DetectedFlavour-1;
-	  
+
 	  fWeightArray[Index] = probabilities[iEnergyPoint][iCosineZPoint].arr[gflv][dflv];
 	}
       } 

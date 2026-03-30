@@ -24,7 +24,7 @@ int main(int argc, char **argv) {
   //============================================================================================================
   std::vector<FLOAT_T> EnergyArray = logspace(0.1,10.,1e3);
   std::vector<FLOAT_T> CosineZArray = linspace(-1.0,1.0,1);
-
+  
   std::vector<FLOAT_T> OscParams_Basic = ReturnOscParams_Basic();
   std::vector<FLOAT_T> OscParams_Atm = ReturnOscParams_Atm();
   std::vector<FLOAT_T> OscParams_Beam_woYe = ReturnOscParams_Beam_woYe();
@@ -187,9 +187,9 @@ int main(int argc, char **argv) {
     for (size_t iNT=0;iNT<(Oscillators[iOsc]->ReturnNeutrinoTypes()).size();iNT++) {
       int NeutrinoType = (Oscillators[iOsc]->ReturnNeutrinoTypes())[iNT];
       
-      for (size_t iOscChan=1;iOscChan<(Oscillators[iOsc]->ReturnOscChannels()).size();iOscChan++) {
-	int InitFlav = (Oscillators[iOsc]->ReturnOscChannels())[iOscChan].GeneratedFlavour;
-	int FinalFlav = (Oscillators[iOsc]->ReturnOscChannels())[iOscChan].GeneratedFlavour;
+      for (size_t iOscChan=0;iOscChan<(Oscillators[iOsc]->ReturnOscChannels()).size();iOscChan++) {
+	int InitFlav = (Oscillators[iOsc]->ReturnOscChannels())[iOscChan].GeneratedFlavour * NeutrinoType;
+	int FinalFlav = (Oscillators[iOsc]->ReturnOscChannels())[iOscChan].DetectedFlavour * NeutrinoType;
 	
 	for (size_t iEnergy=0;iEnergy<(Oscillators[0]->ReturnEnergyArray()).size();iEnergy++) {
 	  FLOAT_T Energy = (Oscillators[0]->ReturnEnergyArray())[iEnergy];
@@ -201,6 +201,7 @@ int main(int argc, char **argv) {
 	    for (size_t iCosineZ=0;iCosineZ<(Oscillators[iOsc]->ReturnCosineZArray()).size();iCosineZ++) {
 	      FLOAT_T CosineZ = (Oscillators[iOsc]->ReturnCosineZArray())[iCosineZ];
 	      const FLOAT_T Probability = Oscillators[iOsc]->ReturnOscillationProbability(InitFlav,FinalFlav,Energy,CosineZ);
+
 	      ProbabilityArray[iOsc][iNT][iOscChan][iEnergy][iCosineZ] = Probability;
 	    }
 	  }
@@ -229,18 +230,27 @@ int main(int argc, char **argv) {
     std::cout << std::endl;
   }
   
-  for (size_t iNT=0;iNT<ProbabilityArray[0].size();iNT++) {
-    for (size_t iOscChan=0;iOscChan<ProbabilityArray[0][iNT].size();iOscChan++) {
-      for (size_t iEnergy=0;iEnergy<ProbabilityArray[0][iNT][iOscChan].size();iEnergy++) {
-	
-	if (Oscillators[0]->ReturnCosineZIgnored()) {
+  if (Oscillators[0]->ReturnCosineZIgnored()) {
+
+    for (size_t iEnergy=0;iEnergy<ProbabilityArray[0][0][0].size();iEnergy++) {
+      for (size_t iNT=0;iNT<ProbabilityArray[0].size();iNT++) {
+	for (size_t iOscChan=0;iOscChan<ProbabilityArray[0][0].size();iOscChan++) {
+	  
 	  std::cout << std::setw(10) << (Oscillators[0]->ReturnNeutrinoTypes())[iNT] << " : " << std::setw(12) << (Oscillators[0]->ReturnOscChannels())[iOscChan].GeneratedFlavour << "->" << std::setw(12) << (Oscillators[0]->ReturnOscChannels())[iOscChan].DetectedFlavour << " | " << std::setw(15) << (Oscillators[0]->ReturnEnergyArray())[iEnergy] << " || " << std::setw(25) << ProbabilityArray[0][iNT][iOscChan][iEnergy][0];
 	  for (size_t iOsc=1;iOsc<ProbabilityArray.size();iOsc++) {
 	    std::cout << " | " << std::setw(25) << ProbabilityArray[iOsc][iNT][iOscChan][iEnergy][0] << " (" << std::setw(15) << ProbabilityArray[iOsc][iNT][iOscChan][iEnergy][0]-ProbabilityArray[0][iNT][iOscChan][iEnergy][0] << ")";
 	  }
 	  std::cout << std::endl;
-	} else {
-	  for (size_t iCosineZ=0;iCosineZ<ProbabilityArray[0][iNT][iOscChan][iEnergy].size();iCosineZ++) {
+	}
+      }
+    }
+  } else {
+    
+    for (size_t iEnergy=0;iEnergy<ProbabilityArray[0][0][0].size();iEnergy++) {
+      for (size_t iCosineZ=0;iCosineZ<ProbabilityArray[0][0][0][0].size();iCosineZ++) {
+	for (size_t iNT=0;iNT<ProbabilityArray[0].size();iNT++) {
+	  for (size_t iOscChan=0;iOscChan<ProbabilityArray[0][0].size();iOscChan++) {
+	    
 	    std::cout << std::setw(10) << (Oscillators[0]->ReturnNeutrinoTypes())[iNT] << " : " << std::setw(12) << (Oscillators[0]->ReturnOscChannels())[iOscChan].GeneratedFlavour << "->" << std::setw(12) << (Oscillators[0]->ReturnOscChannels())[iOscChan].DetectedFlavour << " | " << std::setw(15) << (Oscillators[0]->ReturnEnergyArray())[iEnergy] << " | " << std::setw(15) << (Oscillators[0]->ReturnCosineZArray())[iCosineZ] << " || " << std::setw(25) << ProbabilityArray[0][iNT][iOscChan][iEnergy][iCosineZ];
 	    for (size_t iOsc=1;iOsc<ProbabilityArray.size();iOsc++) {
 	      FLOAT_T Diff = ProbabilityArray[iOsc][iNT][iOscChan][iEnergy][iCosineZ]-ProbabilityArray[0][iNT][iOscChan][iEnergy][iCosineZ];
