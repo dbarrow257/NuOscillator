@@ -49,6 +49,9 @@ void OscProbCalcerNuFASTEarth::SetupPropagator() {
     EarthDensity = new PREM_Full();
   } else if (EarthModel == "NUniformLayers") {
     EarthDensity = new PREM_NUniformLayer(NUniformLayers);
+  } else {
+    std::cerr << "Did not find a valid EarthModel to build - given:" << EarthModel << std::endl;
+    throw std::runtime_error("Invalid Earth Model in NuFASTEarth");
   }
   //=============================
 
@@ -76,9 +79,9 @@ void OscProbCalcerNuFASTEarth::CalculateProbabilities(const std::vector<FLOAT_T>
     ProbEngine.Set_Production_Height(ProductionHeight);
     ProbEngine.Set_Spectra(fEnergyArray, fCosineZArray);
     std::vector<std::vector<Matrix3r>> probabilities = ProbEngine.Get_Probabilities();
-    
-    for (int iCosineZPoint=0;iCosineZPoint<fNCosineZPoints;iCosineZPoint++) {
-      for (int iEnergyPoint=0;iEnergyPoint<fNEnergyPoints;iEnergyPoint++) {
+
+    for (int iEnergyPoint=0;iEnergyPoint<fNEnergyPoints;iEnergyPoint++) {
+      for (int iCosineZPoint=0;iCosineZPoint<fNCosineZPoints;iCosineZPoint++) {
 	for (int iOscChannel = 0; iOscChannel < fNOscillationChannels; iOscChannel++) {
 
 	  int Index = ReturnWeightArrayIndex(iNuType,iOscChannel,iEnergyPoint,iCosineZPoint);
