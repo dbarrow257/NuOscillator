@@ -53,9 +53,15 @@ if(${UseProb3ppLinear} EQUAL 1)
 endif()
 
 if(${UseNuFASTLinear} EQUAL 1)
-  include_directories(${NuFAST_SOURCE_DIR})
+  include_directories(${NuFAST_LBL_SOURCE_DIR})
   target_sources(OscProbCalcer PRIVATE OscProbCalcer_NuFASTLinear.cpp)
   list(APPEND HEADERS OscProbCalcer_NuFASTLinear.h)
+endif()
+
+if(${UseNuFASTEarth} EQUAL 1)
+  target_sources(OscProbCalcer PRIVATE OscProbCalcer_NuFASTEarth.cpp)
+  target_link_libraries(OscProbCalcer nufast_earth)
+  list(APPEND HEADERS OscProbCalcer_NuFASTEarth.h)
 endif()
 
 if(${UseNuSQUIDSLinear} EQUAL 1)

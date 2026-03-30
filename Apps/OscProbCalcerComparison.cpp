@@ -63,7 +63,7 @@ int main() {
       Oscillator->SetEnergyArrayInCalcer(EnergyArray);
       
       //Check if we also need to set the CosineZ binning
-      if (!Oscillator->CosineZIgnored()) {
+      if (!Oscillator->ReturnCosineZIgnored()) {
         Oscillator->SetCosineZArrayInCalcer(CosineZArray);
       }
     }
