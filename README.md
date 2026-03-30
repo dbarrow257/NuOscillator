@@ -67,6 +67,7 @@ Following neutrino oscillation calculators are available:
 | ProbGPULinear    | GPU        | Beam       | [Ref](http://dx.doi.org/10.3204/DESY-PROC-2014-05/23)   |
 | Prob3++Linear    | CPU        | Beam       |            |
 | NuFastLinear     | CPU        | Beam       | [Ref](https://doi.org/10.48550/arXiv.2405.02400)        |
+| NuFastEarth      | CPU        | ATM        | [Ref](https://arxiv.org/abs/2511.04735)                 |
 | OscProb          | CPU        | Beam/Atm   | [Ref](https://doi.org/10.5281/zenodo.6347002)           |
 | NuSQUIDSLinear   | CPU        | Beam       | [Ref](https://doi.org/10.1016/j.cpc.2022.108346)        |
 | GLoBESLinear     | CPU        | Beam       | [Ref](https://doi.org/10.1016/j.cpc.2005.01.003)        |
