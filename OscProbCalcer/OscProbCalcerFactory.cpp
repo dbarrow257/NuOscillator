@@ -126,7 +126,6 @@ OscProbCalcerBase* OscProbCalcerFactory::CreateOscProbCalcer(YAML::Node OscProbC
 #endif
   }
 
-    
   else if (OscProbCalcerImplementationToCreate == "OscProb") {
 #if UseOscProb==1
     OscProbCalcerOscProb* OscProb = new OscProbCalcerOscProb(OscProbCalcerConfig);

@@ -40,7 +40,7 @@ class OscProbCalcerOscLibLinear : public OscProbCalcerBase {
   /**
    * @brief Setup Earth model
    */
-  void SetupPropagator() override;
+  void SetupPropagator() final;
 
   /**
    * @brief Calculate some oscillation probabilities for a particular oscillation parameter set
@@ -49,7 +49,7 @@ class OscProbCalcerOscLibLinear : public OscProbCalcerBase {
    *
    * @param OscParams The parameter set to calculate oscillation probabilities at
    */
-  void CalculateProbabilities(const std::vector<FLOAT_T>& OscParams) override;
+  void CalculateProbabilities(const std::vector<FLOAT_T>& OscParams) final;
 
   /**
    * @brief Return implementation specific index in the weight array for a specific combination of neutrino oscillation channel, energy and cosine zenith
@@ -61,7 +61,7 @@ class OscProbCalcerOscLibLinear : public OscProbCalcerBase {
    *
    * @return Index in #fWeightArray which corresponds to the given inputs
    */
-  int ReturnWeightArrayIndex(int NuTypeIndex, int OscNuIndex, int EnergyIndex, int CosineZIndex=-1) override;
+  int ReturnWeightArrayIndex(int NuTypeIndex, int OscNuIndex, int EnergyIndex, int CosineZIndex=-1) final;
 
   /**
    * @brief Define the size of fWeightArray
@@ -72,7 +72,7 @@ class OscProbCalcerOscLibLinear : public OscProbCalcerBase {
    *
    * @return Length that #fWeightArray should be initialised to
    */
-  long DefineWeightArraySize() override;
+  long DefineWeightArraySize() final;
 
   // ========================================================================================================================================================================
   // Variables which are needed for implementation specific code

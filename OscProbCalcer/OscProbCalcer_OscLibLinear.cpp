@@ -13,6 +13,7 @@ OscProbCalcerOscLibLinear::OscProbCalcerOscLibLinear(YAML::Node Config_) : OscPr
 }
 
 OscProbCalcerOscLibLinear::~OscProbCalcerOscLibLinear() {
+  if (OscLib) {delete OscLib;}
 }
 
 void OscProbCalcerOscLibLinear::SetupPropagator() {
@@ -36,8 +37,6 @@ void OscProbCalcerOscLibLinear::CalculateProbabilities(const std::vector<FLOAT_T
   const FLOAT_T delta = OscParams[kDCP];
   const FLOAT_T L = OscParams[kPATHL];
   const FLOAT_T rho = OscParams[kDENS];
-
-  std::cout << "DB Setting L:" << L << std::endl;
   
   OscLib->SetL(L);
   OscLib->SetRho(rho);
