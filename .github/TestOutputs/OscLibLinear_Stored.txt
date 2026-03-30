@@ -7,7 +7,6 @@ Setting up Oscillators
 Finished setup in executable
 ========================================================
 Starting reweight in executable
-DB Setting L:250
 0 1 1 1 0.1 -999 0.872213
 1 1 1 1 0.100693 -999 0.871229
 2 1 1 1 0.101391 -999 0.870747
