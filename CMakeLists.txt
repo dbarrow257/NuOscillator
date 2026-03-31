@@ -126,6 +126,9 @@ if(NOT DEFINED CHICLinear_BRANCH)
   set(CHICLinear_BRANCH "v1.0.1")
 endif()
 
+if(NOT DEFINED Eigen_BRANCH)
+  set(Eigen_BRANCH "3.4.0")
+endif()
 ########################################################
 
 set(NuOscillator_Engines_Enabled "")
@@ -402,8 +405,8 @@ if(${UseOscProb} EQUAL 1)
 
   CPMFindPackage(
     NAME Eigen
-    VERSION 3.4.0
-    URL https://gitlab.com/libeigen/eigen/-/archive/3.4.0/eigen-3.4.0.tar.gz
+    VERSION ${Eigen_BRANCH}
+    URL https://gitlab.com/libeigen/eigen/-/archive/${Eigen_BRANCH}/eigen-${Eigen_BRANCH}.tar.gz
     DOWNLOAD_ONLY YES
   )
 
@@ -440,8 +443,8 @@ if(${UseOscLibLinear} EQUAL 1)
 
   CPMFindPackage(
     NAME Eigen
-    VERSION 3.4.0
-    URL https://gitlab.com/libeigen/eigen/-/archive/3.4.0/eigen-3.4.0.tar.gz
+    VERSION ${Eigen_BRANCH}
+    URL https://gitlab.com/libeigen/eigen/-/archive/${Eigen_BRANCH}/eigen-${Eigen_BRANCH}.tar.gz
     DOWNLOAD_ONLY YES
   )
   if(Eigen_ADDED)
@@ -634,8 +637,8 @@ if(${UseCHICLinear} EQUAL 1)
 
   CPMFindPackage(
     NAME Eigen
-    VERSION 3.4.0
-    URL https://gitlab.com/libeigen/eigen/-/archive/3.4.0/eigen-3.4.0.tar.gz
+    VERSION ${Eigen_BRANCH}
+    URL https://gitlab.com/libeigen/eigen/-/archive/${Eigen_BRANCH}/eigen-${Eigen_BRANCH}.tar.gz
     DOWNLOAD_ONLY YES
   )
 

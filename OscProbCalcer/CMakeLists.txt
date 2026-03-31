@@ -91,7 +91,7 @@ endif()
 if(${UseOscLibLinear} EQUAL 1)
   include_directories(${OSCLIB_INC_DIR})
   target_sources(OscProbCalcer PRIVATE OscProbCalcer_OscLibLinear.cpp)
-  target_link_libraries(OscProbCalcer OscLibLinear)
+  target_link_libraries(OscProbCalcer Eigen OscLibLinear)
   list(APPEND HEADERS OscProbCalcer_OscLibLinear.h)
 endif()
 
