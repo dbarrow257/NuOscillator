@@ -87,6 +87,9 @@ class OscProbCalcerOscLibLinear : public OscProbCalcerBase {
    */
   enum NuType{Nubar=-1, Nu=1};
 
+  /**
+   * @brief OscLib object used to calculate the oscillation probabiltiies
+   */
   osc::_OscCalcPMNS<FLOAT_T>* OscLib;
 
 };
