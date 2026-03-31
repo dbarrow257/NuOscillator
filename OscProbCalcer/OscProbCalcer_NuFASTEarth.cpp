@@ -1,6 +1,5 @@
 #include "OscProbCalcer_NuFASTEarth.h"
 
-#include "NuFastEarth.h"
 #include "Matrix.h"
 
 OscProbCalcerNuFASTEarth::OscProbCalcerNuFASTEarth(YAML::Node Config_) : OscProbCalcerBase(Config_)
@@ -36,25 +35,27 @@ OscProbCalcerNuFASTEarth::OscProbCalcerNuFASTEarth(YAML::Node Config_) : OscProb
 
 OscProbCalcerNuFASTEarth::~OscProbCalcerNuFASTEarth() {
   if (EarthDensity) {delete EarthDensity;}
+  if (ProbEngine) {delete ProbEngine;}
 }
 
 void OscProbCalcerNuFASTEarth::SetupPropagator() {
   //=============================
   //Set the Earth Model
   if (EarthModel == "Prob3") {
-    EarthDensity = new PREM_Prob3();
+    EarthDensity = new NuFast::PREM_Prob3();
   } else if (EarthModel == "PREM4") {
-    EarthDensity = new PREM_Four();
+    EarthDensity = new NuFast::PREM_Four();
   } else if (EarthModel == "Full") {
-    EarthDensity = new PREM_Full();
+    EarthDensity = new NuFast::PREM_Full();
   } else if (EarthModel == "NUniformLayers") {
-    EarthDensity = new PREM_NUniformLayer(NUniformLayers);
+    EarthDensity = new NuFast::PREM_NUniformLayer(NUniformLayers);
   } else {
     std::cerr << "Did not find a valid EarthModel to build - given:" << EarthModel << std::endl;
     throw std::runtime_error("Invalid Earth Model in NuFASTEarth");
   }
   //=============================
-  ProbEngine= new Probability_Engine();
+
+  ProbEngine = new NuFast::Probability_Engine();
   ProbEngine->Set_Earth(DetectorDepth, EarthDensity);
   ProbEngine->Set_Eigenvalue_Precision(EigenValuePrecision);
 }
@@ -78,7 +79,7 @@ void OscProbCalcerNuFASTEarth::CalculateProbabilities(const std::vector<FLOAT_T>
     ProbEngine->Set_Oscillation_Parameters(s12sq, s13sq, s23sq, delta, Dmsq21, Dmsq31, NeutrinoType);
     ProbEngine->Set_Production_Height(ProductionHeight);
     ProbEngine->Set_Spectra(fEnergyArray, fCosineZArray);
-    std::vector<std::vector<Matrix3r>> probabilities = ProbEngine->Get_Probabilities();
+    std::vector<std::vector<NuFast::Matrix3r>> probabilities = ProbEngine->Get_Probabilities();
     for (int iOscChannel = 0; iOscChannel < fNOscillationChannels; iOscChannel++) {
       for (int iEnergyPoint=0;iEnergyPoint<fNEnergyPoints;iEnergyPoint++) {
         for (int iCosineZPoint=0;iCosineZPoint<fNCosineZPoints;iCosineZPoint++) {

@@ -103,7 +103,7 @@ if(NOT DEFINED NuFASTLinear_BRANCH)
 endif()
 
 if(NOT DEFINED NuFASTEarth_BRANCH)
-  set(NuFASTEarth_BRANCH "v1.1.0")
+  set(NuFASTEarth_BRANCH "v1.2.0")
 endif()
 
 if(NOT DEFINED NuSQUIDSLinear_BRANCH)

@@ -3,11 +3,8 @@
 
 #include "OscProbCalcerBase.h"
 
-// KS: WARNING NuFast Earth has struct called eigen which will conflict with Eigen library.
-// Only way is not to have file with both includes. Thus we forward declare NuFastErth classes
-// And add include in source file.
-class Earth_Density;
-class Probability_Engine;
+#include "NuFastEarth.h"
+
 /**
  * @file OscProbCalcer_NuFASTEarth.h
  *
@@ -92,8 +89,8 @@ class OscProbCalcerNuFASTEarth : public OscProbCalcerBase {
    */
   enum NuType{Nu=1,Nubar=-1};
 
-  Earth_Density* EarthDensity;
-  Probability_Engine* ProbEngine;
+  NuFast::Earth_Density* EarthDensity;
+  NuFast::Probability_Engine* ProbEngine;
 
   FLOAT_T DetectorDepth;
   int EigenValuePrecision;
