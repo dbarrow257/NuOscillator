@@ -89,12 +89,34 @@ class OscProbCalcerNuFASTEarth : public OscProbCalcerBase {
    */
   enum NuType{Nu=1,Nubar=-1};
 
-  Earth_Density* EarthDensity;
-  Probability_Engine ProbEngine;
+  /**
+   * @brief NuFAST Object that defines the Earth Model
+   */
+  NuFast::Earth_Density* EarthDensity;
 
+  /**
+   * @brief NuFAST Object which does the calculation
+   */
+  NuFast::Probability_Engine* ProbEngine;
+
+  /**
+   * @brief Config option that defines depth of detector in km
+   */
   FLOAT_T DetectorDepth;
+
+  /**
+   * @brief Config option that defines precision of calculation in number of Newton-Rapherson iterations (-1 for exact calculation)
+   */
   int EigenValuePrecision;
+
+  /**
+   * @brief Config option used to determine what object to initialise OscProbCalcer_NuFASTEarth::EarthDensity to be
+   */
   std::string EarthModel;
+
+  /**
+   * @brief If Uniform Earth model option requested, this config option defines the number of discrete Earth layers
+   */
   int NUniformLayers;
 };
 

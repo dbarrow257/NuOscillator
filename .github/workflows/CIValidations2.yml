@@ -75,6 +75,12 @@ jobs:
             argument: NuOscillatorConfigs/OscProbCalcerConfigs/OscProb.yaml
             new_output: OscProbAtm_New.txt
             old_output: OscProbAtm_Stored.txt
+          - name: OscProbCalcer OscLibLinear Comparison
+            cmake_options: -DUseOscLibLinear=1
+            exec: SingleOscProbCalcer
+            argument: NuOscillatorConfigs/OscProbCalcerConfigs/OscLibLinear.yaml
+            new_output: OscLibLinear_New.txt
+            old_output: OscLibLinear_Stored.txt
           - name: BinnedOscillator OscProb Comparison
             cmake_options: -DUseOscProb=1
             exec: SingleOscillator

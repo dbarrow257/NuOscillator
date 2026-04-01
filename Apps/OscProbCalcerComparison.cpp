@@ -18,7 +18,12 @@ using std::chrono::duration_cast;
 using std::chrono::duration;
 using std::chrono::milliseconds;
 
-int main() {
+int main(int argc, char **argv) {
+  if (argc < 1) {
+    std::cerr << argv[0] << " [OscillatorConfig1 OscillatorConfig2 ...]" << std::endl;
+    throw std::runtime_error("Invalid setup");
+  }
+  
   std::string FileExt = ".png";
   
   //============================================================================================================
@@ -47,8 +52,15 @@ int main() {
   OscillatorFactory* OscFactory = new OscillatorFactory();
   OscillatorBase* Oscillator;
 
-  //Get the standard set of config names
-  std::vector<std::string> ConfigNames = ReturnKnownConfigs();
+  //Get the standard set of config names or use what is provided from the arguments
+  std::vector<std::string> ConfigNames;
+  if (argc == 1) {
+    ConfigNames = ReturnKnownConfigs();
+  } else {
+    for (int i=1;i<argc;i++) {
+      ConfigNames.push_back(argv[i]);
+    }
+  }
  
   for (size_t iConfig=0;iConfig<ConfigNames.size();iConfig++) {
     std::cout << "========================================================" << std::endl;

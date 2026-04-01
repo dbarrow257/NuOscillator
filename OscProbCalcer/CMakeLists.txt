@@ -88,6 +88,13 @@ if(${UseOscProb} EQUAL 1)
   list(APPEND HEADERS OscProbCalcer_OscProb.h)
 endif()
 
+if(${UseOscLibLinear} EQUAL 1)
+  include_directories(${OSCLIB_INC_DIR})
+  target_sources(OscProbCalcer PRIVATE OscProbCalcer_OscLibLinear.cpp)
+  target_link_libraries(OscProbCalcer Eigen OscLibLinear)
+  list(APPEND HEADERS OscProbCalcer_OscLibLinear.h)
+endif()
+
 if(${UseGLoBESLinear} EQUAL 1)
   target_sources(OscProbCalcer PRIVATE OscProbCalcer_GLoBESLinear.cpp)
   target_link_libraries(OscProbCalcer GLOBES::GLOBES)
