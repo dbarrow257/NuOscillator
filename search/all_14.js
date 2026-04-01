@@ -14,7 +14,8 @@ var searchData=
   ['_7eoscprobcalcernufastearth_11',['~OscProbCalcerNuFASTEarth',['../classOscProbCalcerNuFASTEarth.html#a79424d21e614beb5feda41f678130c6a',1,'OscProbCalcerNuFASTEarth']]],
   ['_7eoscprobcalcernufastlinear_12',['~OscProbCalcerNuFASTLinear',['../classOscProbCalcerNuFASTLinear.html#ad9b07d15601ef9f93cc168923abcc14f',1,'OscProbCalcerNuFASTLinear']]],
   ['_7eoscprobcalcernusquidslinear_13',['~OscProbCalcerNuSQUIDSLinear',['../classOscProbCalcerNuSQUIDSLinear.html#abbb535c6b479cd0b4fe2a82f047b7745',1,'OscProbCalcerNuSQUIDSLinear']]],
-  ['_7eoscprobcalceroscprob_14',['~OscProbCalcerOscProb',['../classOscProbCalcerOscProb.html#a50bc77e7f90728565fe10076a8ac01db',1,'OscProbCalcerOscProb']]],
-  ['_7eoscprobcalcerprob3pplinear_15',['~OscProbCalcerProb3ppLinear',['../classOscProbCalcerProb3ppLinear.html#a90700492baae03a677d4c3ce28c8f8f0',1,'OscProbCalcerProb3ppLinear']]],
-  ['_7eoscprobcalcerprobgpulinear_16',['~OscProbCalcerProbGPULinear',['../classOscProbCalcerProbGPULinear.html#ab1fe8115aa199bea60afb14b8c17e134',1,'OscProbCalcerProbGPULinear']]]
+  ['_7eoscprobcalceroscliblinear_14',['~OscProbCalcerOscLibLinear',['../classOscProbCalcerOscLibLinear.html#abdec4f6d192ebe3aeb4fb441352d98b6',1,'OscProbCalcerOscLibLinear']]],
+  ['_7eoscprobcalceroscprob_15',['~OscProbCalcerOscProb',['../classOscProbCalcerOscProb.html#a50bc77e7f90728565fe10076a8ac01db',1,'OscProbCalcerOscProb']]],
+  ['_7eoscprobcalcerprob3pplinear_16',['~OscProbCalcerProb3ppLinear',['../classOscProbCalcerProb3ppLinear.html#a90700492baae03a677d4c3ce28c8f8f0',1,'OscProbCalcerProb3ppLinear']]],
+  ['_7eoscprobcalcerprobgpulinear_17',['~OscProbCalcerProbGPULinear',['../classOscProbCalcerProbGPULinear.html#ab1fe8115aa199bea60afb14b8c17e134',1,'OscProbCalcerProbGPULinear']]]
 ];
