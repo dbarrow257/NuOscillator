@@ -128,7 +128,12 @@ inline std::vector<FLOAT_T> ReturnOscParams_Beam_wYe_wLIV() {
  */
 inline std::vector<FLOAT_T> ReturnOscParams_Beam_wYe_wNSI() {
   //6 PMNS params, 6 Epsilons, 3 Deltas, 3 Coupling strengths, baseline, density, A/Z
-  std::vector<FLOAT_T> OscParams_Beam_wYe_wNSI = {3.07e-1,5.28e-1,2.18e-2,7.53e-5,2.509e-3,-1.601,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,250,2.6,0.5};
+  // Original
+  // std::vector<FLOAT_T> OscParams_Beam_wYe_wNSI = {3.07e-1,5.28e-1,2.18e-2,7.53e-5,2.509e-3,-1.601,0.0,0.0,0.0,-0.2,0.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0,25.0};
+  // Comparison SK
+  // std::vector<FLOAT_T> OscParams_Beam_wYe_wNSI = {3.09e-1,5.875e-1,2.19e-2,7.65e-5,2.5e-3,4.19,0.0,0.0,0.0,0.0,0.2,0.0,0.0,0.0,0.0,0.0,0.0,0.3,25.0};
+  // Comparison Simplified Code
+  std::vector<FLOAT_T> OscParams_Beam_wYe_wNSI = {3.09e-1,5.875e-1,2.19e-2,7.65e-5,2.5e-3,4.19,0.0,0.0,0.0,0.05,0.0,0.25,0.0,0.0,0.0,1.0,0.0,0.0,0.001};
   return OscParams_Beam_wYe_wNSI;
 }
 

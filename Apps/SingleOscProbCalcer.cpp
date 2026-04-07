@@ -6,6 +6,7 @@
 #include <iostream>
 #include <math.h>
 #include <chrono>
+#include <fstream>
 
 using std::chrono::high_resolution_clock;
 using std::chrono::duration_cast;
@@ -21,8 +22,8 @@ int main(int argc, char **argv) {
 
   bool PrintWeights = true;
   
-  std::vector<FLOAT_T> EnergyArray = logspace(0.1,100.,1e3);
-  std::vector<FLOAT_T> CosineZArray = linspace(-1.0,1.0,15);
+  std::vector<FLOAT_T> EnergyArray = logspace(0.1,100.,5e2);
+  std::vector<FLOAT_T> CosineZArray = linspace(-1.0,1.0,5e2);
 
   std::vector<FLOAT_T> OscParams_Basic = ReturnOscParams_Basic();
   std::vector<FLOAT_T> OscParams_Atm = ReturnOscParams_Atm();
@@ -77,12 +78,15 @@ int main(int argc, char **argv) {
     std::cerr << "Oscillator->ReturnNOscParams():" << Calcer->ReturnNOscParams() << std::endl;
     throw std::runtime_error("Invalid setup");
   }
-
+  
   if (PrintWeights) {
+    std::ofstream file("output.csv");
+    file << "Index,NuType,InitialFlavour,FinalFlavour,Energy,CosineZ,Probability\n";
     std::vector<NuOscillator::OscillationProbability> OscProbs = Calcer->ReturnProbabilities();
     for (int iOscProb=0;iOscProb<(int)OscProbs.size();iOscProb++) {
-      std::cout << iOscProb << " " << OscProbs[iOscProb].NuType << " " << OscProbs[iOscProb].OscChan.GeneratedFlavour << " " << OscProbs[iOscProb].OscChan.DetectedFlavour << " " << OscProbs[iOscProb].Energy << " " << OscProbs[iOscProb].CosineZ << " " << OscProbs[iOscProb].Probability << std::endl;
+      file << iOscProb << "," << OscProbs[iOscProb].NuType << "," << OscProbs[iOscProb].OscChan.GeneratedFlavour << "," << OscProbs[iOscProb].OscChan.DetectedFlavour << "," << OscProbs[iOscProb].Energy << "," << OscProbs[iOscProb].CosineZ << "," << OscProbs[iOscProb].Probability << "\n";
     }
+    file.close();
   }
   
   std::cout << "Finished reweight in executable" << std::endl;
