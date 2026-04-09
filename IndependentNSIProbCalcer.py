@@ -208,16 +208,16 @@ eps = matter_nsi_matrix(
     eps_tautau=0.25
 )
 
-E_vals = np.logspace(-1, 2, 600)      # GeV
-cosz_vals = np.linspace(-1.0, 1.0, 601)
+E_vals = np.logspace(-1, 2, 500)      # GeV
+cosz_vals = np.linspace(-1.0, 1.0, 500)
 
-P = np.zeros((len(cosz_vals), len(E_vals)))
+P = np.zeros((len(E_vals), len(cosz_vals)))
 
 for i, cz in enumerate(cosz_vals):
     L_km = baseline_from_cosz(cz, depth_km=1.5)
     rho = 2.7
     for j, E in enumerate(E_vals):
-        P[i, j] = probability_mumu_layers(
+        P[j,i] = probability_mumu_layers(
             E_GeV=E,
             cosz=cz,
             layers=layers,
@@ -226,13 +226,41 @@ for i, cz in enumerate(cosz_vals):
             antineutrino=False
         )
 
-fig, ax = plt.subplots(figsize=(6, 5))
-pcm = ax.pcolormesh(E_vals, cosz_vals, P, shading="auto", cmap=cmap)
-ax.set_xscale("log")
-ax.set_xlabel("Energy [GeV]")
-ax.set_ylabel(r"$\cos\theta_z$")
-cbar = fig.colorbar(pcm, ax=ax)
-cbar.set_label("Probability")
-plt.tight_layout()
+
+# Flatten the grid
+E_flat = np.repeat(E_vals, len(cosz_vals))
+cosz_flat = np.tile(cosz_vals, len(E_vals))
+P_flat = P.flatten()
+
+plt.figure()
+scatter = plt.scatter(
+    E_flat,
+    cosz_flat,
+    c=P_flat,
+    cmap=cmap # "seismic"  # you can change this (e.g., plasma, inferno, coolwarm)
+)
+
+# Add colorbar
+plt.colorbar(scatter, label="Probability")
+plt.xscale('log')
+
+# Labels
+plt.xlabel("Energy (GeV)")
+plt.ylabel("Cosine Zenith Angle")
+# plt.title(f"{y_col} over {x_col} (colored by {z_col})")
+
+# Show plot
+# plt.savefig('NSI_plot_mu2mu.png')
 plt.show()
+
+
+# fig, ax = plt.subplots(figsize=(6, 5))
+# pcm = ax.pcolormesh(E_vals, cosz_vals, P, shading="auto", cmap=cmap)
+# ax.set_xscale("log")
+# ax.set_xlabel("Energy [GeV]")
+# ax.set_ylabel(r"$\cos\theta_z$")
+# cbar = fig.colorbar(pcm, ax=ax)
+# cbar.set_label("Probability")
+# plt.tight_layout()
+# plt.show()
 
