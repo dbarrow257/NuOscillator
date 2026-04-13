@@ -1,0 +1,912 @@
+========================================================
+Starting setup in executable
+========================================================
+Initialising NuOscillatorConfigs/Binned_NuSQUIDSLinear_NSI.yaml
+OscillatorFactory creating OscillatorBase object from config: NuOscillatorConfigs/Binned_NuSQUIDSLinear_NSI.yaml
+========================================================
+Setting up Oscillators
+Finished setup in executable
+========================================================
+Starting reweight in executable
+Index:         0 | NuType:  1 | OscChan:  1 ->   1 | Energy:  0.107408 | CosZ:      -999 | Prob:  0.885215
+Index:         1 | NuType:  1 | OscChan:  1 ->   1 | Energy:  0.123321 | CosZ:      -999 | Prob:  0.964536
+Index:         2 | NuType:  1 | OscChan:  1 ->   1 | Energy:  0.141591 | CosZ:      -999 | Prob:  0.948185
+Index:         3 | NuType:  1 | OscChan:  1 ->   1 | Energy:  0.162568 | CosZ:      -999 | Prob:  0.899732
+Index:         4 | NuType:  1 | OscChan:  1 ->   1 | Energy:  0.186653 | CosZ:      -999 | Prob:  0.914186
+Index:         5 | NuType:  1 | OscChan:  1 ->   1 | Energy:  0.214306 | CosZ:      -999 | Prob:   0.96301
+Index:         6 | NuType:  1 | OscChan:  1 ->   1 | Energy:  0.246057 | CosZ:      -999 | Prob:  0.991401
+Index:         7 | NuType:  1 | OscChan:  1 ->   1 | Energy:  0.282511 | CosZ:      -999 | Prob:  0.984873
+Index:         8 | NuType:  1 | OscChan:  1 ->   1 | Energy:  0.324366 | CosZ:      -999 | Prob:  0.958542
+Index:         9 | NuType:  1 | OscChan:  1 ->   1 | Energy:  0.372422 | CosZ:      -999 | Prob:  0.931096
+Index:        10 | NuType:  1 | OscChan:  1 ->   1 | Energy:  0.427598 | CosZ:      -999 | Prob:  0.912961
+Index:        11 | NuType:  1 | OscChan:  1 ->   1 | Energy:  0.490948 | CosZ:      -999 | Prob:  0.906345
+Index:        12 | NuType:  1 | OscChan:  1 ->   1 | Energy:  0.563684 | CosZ:      -999 | Prob:  0.909022
+Index:        13 | NuType:  1 | OscChan:  1 ->   1 | Energy:  0.647195 | CosZ:      -999 | Prob:  0.917503
+Index:        14 | NuType:  1 | OscChan:  1 ->   1 | Energy:   0.74308 | CosZ:      -999 | Prob:  0.928704
+Index:        15 | NuType:  1 | OscChan:  1 ->   1 | Energy:   0.85317 | CosZ:      -999 | Prob:  0.940462
+Index:        16 | NuType:  1 | OscChan:  1 ->   1 | Energy:   0.97957 | CosZ:      -999 | Prob:  0.951501
+Index:        17 | NuType:  1 | OscChan:  1 ->   1 | Energy:    1.1247 | CosZ:      -999 | Prob:  0.961205
+Index:        18 | NuType:  1 | OscChan:  1 ->   1 | Energy:   1.29132 | CosZ:      -999 | Prob:  0.969381
+Index:        19 | NuType:  1 | OscChan:  1 ->   1 | Energy:   1.48264 | CosZ:      -999 | Prob:  0.976071
+Index:        20 | NuType:  1 | OscChan:  1 ->   1 | Energy:    1.7023 | CosZ:      -999 | Prob:  0.981437
+Index:        21 | NuType:  1 | OscChan:  1 ->   1 | Energy:    1.9545 | CosZ:      -999 | Prob:  0.985677
+Index:        22 | NuType:  1 | OscChan:  1 ->   1 | Energy:   2.24406 | CosZ:      -999 | Prob:  0.988993
+Index:        23 | NuType:  1 | OscChan:  1 ->   1 | Energy:   2.57653 | CosZ:      -999 | Prob:  0.991566
+Index:        24 | NuType:  1 | OscChan:  1 ->   1 | Energy:   2.95825 | CosZ:      -999 | Prob:  0.993551
+Index:        25 | NuType:  1 | OscChan:  1 ->   1 | Energy:   3.39653 | CosZ:      -999 | Prob:  0.995076
+Index:        26 | NuType:  1 | OscChan:  1 ->   1 | Energy:   3.89974 | CosZ:      -999 | Prob:  0.996244
+Index:        27 | NuType:  1 | OscChan:  1 ->   1 | Energy:    4.4775 | CosZ:      -999 | Prob:  0.997138
+Index:        28 | NuType:  1 | OscChan:  1 ->   1 | Energy:   5.14085 | CosZ:      -999 | Prob:  0.997819
+Index:        29 | NuType:  1 | OscChan:  1 ->   1 | Energy:   5.90249 | CosZ:      -999 | Prob:  0.998339
+Index:        30 | NuType:  1 | OscChan:  1 ->   1 | Energy:   6.77697 | CosZ:      -999 | Prob:  0.998735
+Index:        31 | NuType:  1 | OscChan:  1 ->   1 | Energy:     7.781 | CosZ:      -999 | Prob:  0.999036
+Index:        32 | NuType:  1 | OscChan:  1 ->   1 | Energy:   8.93378 | CosZ:      -999 | Prob:  0.999265
+Index:        33 | NuType:  1 | OscChan:  1 ->   1 | Energy:   10.2574 | CosZ:      -999 | Prob:   0.99944
+Index:        34 | NuType:  1 | OscChan:  1 ->   1 | Energy:    11.777 | CosZ:      -999 | Prob:  0.999573
+Index:        35 | NuType:  1 | OscChan:  1 ->   1 | Energy:   13.5218 | CosZ:      -999 | Prob:  0.999674
+Index:        36 | NuType:  1 | OscChan:  1 ->   1 | Energy:   15.5251 | CosZ:      -999 | Prob:   0.99975
+Index:        37 | NuType:  1 | OscChan:  1 ->   1 | Energy:   17.8252 | CosZ:      -999 | Prob:  0.999808
+Index:        38 | NuType:  1 | OscChan:  1 ->   1 | Energy:   20.4661 | CosZ:      -999 | Prob:  0.999852
+Index:        39 | NuType:  1 | OscChan:  1 ->   1 | Energy:   23.4982 | CosZ:      -999 | Prob:  0.999885
+Index:        40 | NuType:  1 | OscChan:  1 ->   1 | Energy:   26.9796 | CosZ:      -999 | Prob:   0.99991
+Index:        41 | NuType:  1 | OscChan:  1 ->   1 | Energy:   30.9767 | CosZ:      -999 | Prob:  0.999928
+Index:        42 | NuType:  1 | OscChan:  1 ->   1 | Energy:    35.566 | CosZ:      -999 | Prob:  0.999942
+Index:        43 | NuType:  1 | OscChan:  1 ->   1 | Energy:   40.8353 | CosZ:      -999 | Prob:  0.999951
+Index:        44 | NuType:  1 | OscChan:  1 ->   1 | Energy:   46.8852 | CosZ:      -999 | Prob:  0.999958
+Index:        45 | NuType:  1 | OscChan:  1 ->   1 | Energy:   53.8314 | CosZ:      -999 | Prob:  0.999962
+Index:        46 | NuType:  1 | OscChan:  1 ->   1 | Energy:   61.8067 | CosZ:      -999 | Prob:  0.999964
+Index:        47 | NuType:  1 | OscChan:  1 ->   1 | Energy:   70.9636 | CosZ:      -999 | Prob:  0.999965
+Index:        48 | NuType:  1 | OscChan:  1 ->   1 | Energy:   81.4771 | CosZ:      -999 | Prob:  0.999964
+Index:        49 | NuType:  1 | OscChan:  1 ->   1 | Energy:   93.5482 | CosZ:      -999 | Prob:  0.999961
+Index:        50 | NuType:  1 | OscChan:  1 ->   2 | Energy:  0.107408 | CosZ:      -999 | Prob: 0.0070299
+Index:        51 | NuType:  1 | OscChan:  1 ->   2 | Energy:  0.123321 | CosZ:      -999 | Prob: 0.0143517
+Index:        52 | NuType:  1 | OscChan:  1 ->   2 | Energy:  0.141591 | CosZ:      -999 | Prob: 0.0120557
+Index:        53 | NuType:  1 | OscChan:  1 ->   2 | Energy:  0.162568 | CosZ:      -999 | Prob: 0.0149785
+Index:        54 | NuType:  1 | OscChan:  1 ->   2 | Energy:  0.186653 | CosZ:      -999 | Prob: 0.0156025
+Index:        55 | NuType:  1 | OscChan:  1 ->   2 | Energy:  0.214306 | CosZ:      -999 | Prob:0.00918573
+Index:        56 | NuType:  1 | OscChan:  1 ->   2 | Energy:  0.246057 | CosZ:      -999 | Prob:0.00377049
+Index:        57 | NuType:  1 | OscChan:  1 ->   2 | Energy:  0.282511 | CosZ:      -999 | Prob:0.00574838
+Index:        58 | NuType:  1 | OscChan:  1 ->   2 | Energy:  0.324366 | CosZ:      -999 | Prob: 0.0140576
+Index:        59 | NuType:  1 | OscChan:  1 ->   2 | Energy:  0.372422 | CosZ:      -999 | Prob: 0.0240724
+Index:        60 | NuType:  1 | OscChan:  1 ->   2 | Energy:  0.427598 | CosZ:      -999 | Prob: 0.0319445
+Index:        61 | NuType:  1 | OscChan:  1 ->   2 | Energy:  0.490948 | CosZ:      -999 | Prob: 0.0360541
+Index:        62 | NuType:  1 | OscChan:  1 ->   2 | Energy:  0.563684 | CosZ:      -999 | Prob: 0.0365412
+Index:        63 | NuType:  1 | OscChan:  1 ->   2 | Energy:  0.647195 | CosZ:      -999 | Prob: 0.0343743
+Index:        64 | NuType:  1 | OscChan:  1 ->   2 | Energy:   0.74308 | CosZ:      -999 | Prob: 0.0306603
+Index:        65 | NuType:  1 | OscChan:  1 ->   2 | Energy:   0.85317 | CosZ:      -999 | Prob: 0.0263074
+Index:        66 | NuType:  1 | OscChan:  1 ->   2 | Energy:   0.97957 | CosZ:      -999 | Prob: 0.0219341
+Index:        67 | NuType:  1 | OscChan:  1 ->   2 | Energy:    1.1247 | CosZ:      -999 | Prob: 0.0178995
+Index:        68 | NuType:  1 | OscChan:  1 ->   2 | Energy:   1.29132 | CosZ:      -999 | Prob: 0.0143725
+Index:        69 | NuType:  1 | OscChan:  1 ->   2 | Energy:   1.48264 | CosZ:      -999 | Prob: 0.0113996
+Index:        70 | NuType:  1 | OscChan:  1 ->   2 | Energy:    1.7023 | CosZ:      -999 | Prob:0.00895735
+Index:        71 | NuType:  1 | OscChan:  1 ->   2 | Energy:    1.9545 | CosZ:      -999 | Prob: 0.0069881
+Index:        72 | NuType:  1 | OscChan:  1 ->   2 | Energy:   2.24406 | CosZ:      -999 | Prob:0.00542196
+Index:        73 | NuType:  1 | OscChan:  1 ->   2 | Energy:   2.57653 | CosZ:      -999 | Prob:0.00418916
+Index:        74 | NuType:  1 | OscChan:  1 ->   2 | Energy:   2.95825 | CosZ:      -999 | Prob:0.00322629
+Index:        75 | NuType:  1 | OscChan:  1 ->   2 | Energy:   3.39653 | CosZ:      -999 | Prob:0.00247867
+Index:        76 | NuType:  1 | OscChan:  1 ->   2 | Energy:   3.89974 | CosZ:      -999 | Prob:0.00190081
+Index:        77 | NuType:  1 | OscChan:  1 ->   2 | Energy:    4.4775 | CosZ:      -999 | Prob:0.00145569
+Index:        78 | NuType:  1 | OscChan:  1 ->   2 | Energy:   5.14085 | CosZ:      -999 | Prob:0.00111374
+Index:        79 | NuType:  1 | OscChan:  1 ->   2 | Energy:   5.90249 | CosZ:      -999 | Prob:0.000851569
+Index:        80 | NuType:  1 | OscChan:  1 ->   2 | Energy:   6.77697 | CosZ:      -999 | Prob:0.000650872
+Index:        81 | NuType:  1 | OscChan:  1 ->   2 | Energy:     7.781 | CosZ:      -999 | Prob:0.00049741
+Index:        82 | NuType:  1 | OscChan:  1 ->   2 | Energy:   8.93378 | CosZ:      -999 | Prob:0.000380162
+Index:        83 | NuType:  1 | OscChan:  1 ->   2 | Energy:   10.2574 | CosZ:      -999 | Prob:0.000290633
+Index:        84 | NuType:  1 | OscChan:  1 ->   2 | Energy:    11.777 | CosZ:      -999 | Prob:0.000222293
+Index:        85 | NuType:  1 | OscChan:  1 ->   2 | Energy:   13.5218 | CosZ:      -999 | Prob:0.000170136
+Index:        86 | NuType:  1 | OscChan:  1 ->   2 | Energy:   15.5251 | CosZ:      -999 | Prob:0.00013033
+Index:        87 | NuType:  1 | OscChan:  1 ->   2 | Energy:   17.8252 | CosZ:      -999 | Prob:9.9945e-05
+Index:        88 | NuType:  1 | OscChan:  1 ->   2 | Energy:   20.4661 | CosZ:      -999 | Prob:7.67447e-05
+Index:        89 | NuType:  1 | OscChan:  1 ->   2 | Energy:   23.4982 | CosZ:      -999 | Prob:5.90225e-05
+Index:        90 | NuType:  1 | OscChan:  1 ->   2 | Energy:   26.9796 | CosZ:      -999 | Prob:4.54771e-05
+Index:        91 | NuType:  1 | OscChan:  1 ->   2 | Energy:   30.9767 | CosZ:      -999 | Prob:3.51167e-05
+Index:        92 | NuType:  1 | OscChan:  1 ->   2 | Energy:    35.566 | CosZ:      -999 | Prob:2.71857e-05
+Index:        93 | NuType:  1 | OscChan:  1 ->   2 | Energy:   40.8353 | CosZ:      -999 | Prob:2.11082e-05
+Index:        94 | NuType:  1 | OscChan:  1 ->   2 | Energy:   46.8852 | CosZ:      -999 | Prob:1.64455e-05
+Index:        95 | NuType:  1 | OscChan:  1 ->   2 | Energy:   53.8314 | CosZ:      -999 | Prob:1.28635e-05
+Index:        96 | NuType:  1 | OscChan:  1 ->   2 | Energy:   61.8067 | CosZ:      -999 | Prob:1.01073e-05
+Index:        97 | NuType:  1 | OscChan:  1 ->   2 | Energy:   70.9636 | CosZ:      -999 | Prob:7.98302e-06
+Index:        98 | NuType:  1 | OscChan:  1 ->   2 | Energy:   81.4771 | CosZ:      -999 | Prob:6.34247e-06
+Index:        99 | NuType:  1 | OscChan:  1 ->   2 | Energy:   93.5482 | CosZ:      -999 | Prob:5.07274e-06
+Index:       100 | NuType:  1 | OscChan:  1 ->   3 | Energy:  0.107408 | CosZ:      -999 | Prob:  0.107759
+Index:       101 | NuType:  1 | OscChan:  1 ->   3 | Energy:  0.123321 | CosZ:      -999 | Prob: 0.0211162
+Index:       102 | NuType:  1 | OscChan:  1 ->   3 | Energy:  0.141591 | CosZ:      -999 | Prob: 0.0397632
+Index:       103 | NuType:  1 | OscChan:  1 ->   3 | Energy:  0.162568 | CosZ:      -999 | Prob: 0.0852942
+Index:       104 | NuType:  1 | OscChan:  1 ->   3 | Energy:  0.186653 | CosZ:      -999 | Prob: 0.0702161
+Index:       105 | NuType:  1 | OscChan:  1 ->   3 | Energy:  0.214306 | CosZ:      -999 | Prob: 0.0278081
+Index:       106 | NuType:  1 | OscChan:  1 ->   3 | Energy:  0.246057 | CosZ:      -999 | Prob:0.00483224
+Index:       107 | NuType:  1 | OscChan:  1 ->   3 | Energy:  0.282511 | CosZ:      -999 | Prob:0.00938261
+Index:       108 | NuType:  1 | OscChan:  1 ->   3 | Energy:  0.324366 | CosZ:      -999 | Prob: 0.0274044
+Index:       109 | NuType:  1 | OscChan:  1 ->   3 | Energy:  0.372422 | CosZ:      -999 | Prob: 0.0448357
+Index:       110 | NuType:  1 | OscChan:  1 ->   3 | Energy:  0.427598 | CosZ:      -999 | Prob:  0.055099
+Index:       111 | NuType:  1 | OscChan:  1 ->   3 | Energy:  0.490948 | CosZ:      -999 | Prob: 0.0576045
+Index:       112 | NuType:  1 | OscChan:  1 ->   3 | Energy:  0.563684 | CosZ:      -999 | Prob: 0.0544414
+Index:       113 | NuType:  1 | OscChan:  1 ->   3 | Energy:  0.647195 | CosZ:      -999 | Prob: 0.0481263
+Index:       114 | NuType:  1 | OscChan:  1 ->   3 | Energy:   0.74308 | CosZ:      -999 | Prob: 0.0406394
+Index:       115 | NuType:  1 | OscChan:  1 ->   3 | Energy:   0.85317 | CosZ:      -999 | Prob: 0.0332347
+Index:       116 | NuType:  1 | OscChan:  1 ->   3 | Energy:   0.97957 | CosZ:      -999 | Prob: 0.0265691
+Index:       117 | NuType:  1 | OscChan:  1 ->   3 | Energy:    1.1247 | CosZ:      -999 | Prob: 0.0208993
+Index:       118 | NuType:  1 | OscChan:  1 ->   3 | Energy:   1.29132 | CosZ:      -999 | Prob: 0.0162508
+Index:       119 | NuType:  1 | OscChan:  1 ->   3 | Energy:   1.48264 | CosZ:      -999 | Prob: 0.0125329
+Index:       120 | NuType:  1 | OscChan:  1 ->   3 | Energy:    1.7023 | CosZ:      -999 | Prob:0.00960974
+Index:       121 | NuType:  1 | OscChan:  1 ->   3 | Energy:    1.9545 | CosZ:      -999 | Prob:0.00733876
+Index:       122 | NuType:  1 | OscChan:  1 ->   3 | Energy:   2.24406 | CosZ:      -999 | Prob:0.00558913
+Index:       123 | NuType:  1 | OscChan:  1 ->   3 | Energy:   2.57653 | CosZ:      -999 | Prob:0.00424901
+Index:       124 | NuType:  1 | OscChan:  1 ->   3 | Energy:   2.95825 | CosZ:      -999 | Prob:0.00322668
+Index:       125 | NuType:  1 | OscChan:  1 ->   3 | Energy:   3.39653 | CosZ:      -999 | Prob: 0.0024489
+Index:       126 | NuType:  1 | OscChan:  1 ->   3 | Energy:   3.89974 | CosZ:      -999 | Prob:0.00185823
+Index:       127 | NuType:  1 | OscChan:  1 ->   3 | Energy:    4.4775 | CosZ:      -999 | Prob:0.00141016
+Index:       128 | NuType:  1 | OscChan:  1 ->   3 | Energy:   5.14085 | CosZ:      -999 | Prob:0.00107045
+Index:       129 | NuType:  1 | OscChan:  1 ->   3 | Energy:   5.90249 | CosZ:      -999 | Prob:0.000812974
+Index:       130 | NuType:  1 | OscChan:  1 ->   3 | Energy:   6.77697 | CosZ:      -999 | Prob:0.000617813
+Index:       131 | NuType:  1 | OscChan:  1 ->   3 | Energy:     7.781 | CosZ:      -999 | Prob:0.000469855
+Index:       132 | NuType:  1 | OscChan:  1 ->   3 | Energy:   8.93378 | CosZ:      -999 | Prob:0.000357641
+Index:       133 | NuType:  1 | OscChan:  1 ->   3 | Energy:   10.2574 | CosZ:      -999 | Prob:0.000272495
+Index:       134 | NuType:  1 | OscChan:  1 ->   3 | Energy:    11.777 | CosZ:      -999 | Prob:0.000207849
+Index:       135 | NuType:  1 | OscChan:  1 ->   3 | Energy:   13.5218 | CosZ:      -999 | Prob:0.000158735
+Index:       136 | NuType:  1 | OscChan:  1 ->   3 | Energy:   15.5251 | CosZ:      -999 | Prob:0.000121393
+Index:       137 | NuType:  1 | OscChan:  1 ->   3 | Energy:   17.8252 | CosZ:      -999 | Prob:9.29796e-05
+Index:       138 | NuType:  1 | OscChan:  1 ->   3 | Energy:   20.4661 | CosZ:      -999 | Prob:7.13394e-05
+Index:       139 | NuType:  1 | OscChan:  1 ->   3 | Energy:   23.4982 | CosZ:      -999 | Prob:5.48417e-05
+Index:       140 | NuType:  1 | OscChan:  1 ->   3 | Energy:   26.9796 | CosZ:      -999 | Prob:4.2251e-05
+Index:       141 | NuType:  1 | OscChan:  1 ->   3 | Energy:   30.9767 | CosZ:      -999 | Prob:3.26305e-05
+Index:       142 | NuType:  1 | OscChan:  1 ->   3 | Energy:    35.566 | CosZ:      -999 | Prob:2.52699e-05
+Index:       143 | NuType:  1 | OscChan:  1 ->   3 | Energy:   40.8353 | CosZ:      -999 | Prob:1.96302e-05
+Index:       144 | NuType:  1 | OscChan:  1 ->   3 | Energy:   46.8852 | CosZ:      -999 | Prob:1.53022e-05
+Index:       145 | NuType:  1 | OscChan:  1 ->   3 | Energy:   53.8314 | CosZ:      -999 | Prob:1.1975e-05
+Index:       146 | NuType:  1 | OscChan:  1 ->   3 | Energy:   61.8067 | CosZ:      -999 | Prob:9.41213e-06
+Index:       147 | NuType:  1 | OscChan:  1 ->   3 | Energy:   70.9636 | CosZ:      -999 | Prob:7.43386e-06
+Index:       148 | NuType:  1 | OscChan:  1 ->   3 | Energy:   81.4771 | CosZ:      -999 | Prob:5.90322e-06
+Index:       149 | NuType:  1 | OscChan:  1 ->   3 | Energy:   93.5482 | CosZ:      -999 | Prob:4.71588e-06
+Index:       150 | NuType:  1 | OscChan:  2 ->   1 | Energy:  0.107408 | CosZ:      -999 | Prob:  0.108405
+Index:       151 | NuType:  1 | OscChan:  2 ->   1 | Energy:  0.123321 | CosZ:      -999 | Prob:  0.018938
+Index:       152 | NuType:  1 | OscChan:  2 ->   1 | Energy:  0.141591 | CosZ:      -999 | Prob: 0.0413382
+Index:       153 | NuType:  1 | OscChan:  2 ->   1 | Energy:  0.162568 | CosZ:      -999 | Prob: 0.0894453
+Index:       154 | NuType:  1 | OscChan:  2 ->   1 | Energy:  0.186653 | CosZ:      -999 | Prob: 0.0727444
+Index:       155 | NuType:  1 | OscChan:  2 ->   1 | Energy:  0.214306 | CosZ:      -999 | Prob: 0.0278954
+Index:       156 | NuType:  1 | OscChan:  2 ->   1 | Energy:  0.246057 | CosZ:      -999 | Prob:0.00428806
+Index:       157 | NuType:  1 | OscChan:  2 ->   1 | Energy:  0.282511 | CosZ:      -999 | Prob: 0.0100047
+Index:       158 | NuType:  1 | OscChan:  2 ->   1 | Energy:  0.324366 | CosZ:      -999 | Prob: 0.0298524
+Index:       159 | NuType:  1 | OscChan:  2 ->   1 | Energy:  0.372422 | CosZ:      -999 | Prob: 0.0488281
+Index:       160 | NuType:  1 | OscChan:  2 ->   1 | Energy:  0.427598 | CosZ:      -999 | Prob: 0.0599656
+Index:       161 | NuType:  1 | OscChan:  2 ->   1 | Energy:  0.490948 | CosZ:      -999 | Prob: 0.0626876
+Index:       162 | NuType:  1 | OscChan:  2 ->   1 | Energy:  0.563684 | CosZ:      -999 | Prob: 0.0592675
+Index:       163 | NuType:  1 | OscChan:  2 ->   1 | Energy:  0.647195 | CosZ:      -999 | Prob: 0.0524266
+Index:       164 | NuType:  1 | OscChan:  2 ->   1 | Energy:   0.74308 | CosZ:      -999 | Prob: 0.0443061
+Index:       165 | NuType:  1 | OscChan:  2 ->   1 | Energy:   0.85317 | CosZ:      -999 | Prob: 0.0362649
+Index:       166 | NuType:  1 | OscChan:  2 ->   1 | Energy:   0.97957 | CosZ:      -999 | Prob: 0.0290171
+Index:       167 | NuType:  1 | OscChan:  2 ->   1 | Energy:    1.1247 | CosZ:      -999 | Prob: 0.0228445
+Index:       168 | NuType:  1 | OscChan:  2 ->   1 | Energy:   1.29132 | CosZ:      -999 | Prob: 0.0177776
+Index:       169 | NuType:  1 | OscChan:  2 ->   1 | Energy:   1.48264 | CosZ:      -999 | Prob: 0.0137205
+Index:       170 | NuType:  1 | OscChan:  2 ->   1 | Energy:    1.7023 | CosZ:      -999 | Prob: 0.0105272
+Index:       171 | NuType:  1 | OscChan:  2 ->   1 | Energy:    1.9545 | CosZ:      -999 | Prob:0.00804399
+Index:       172 | NuType:  1 | OscChan:  2 ->   1 | Energy:   2.24406 | CosZ:      -999 | Prob:0.00612916
+Index:       173 | NuType:  1 | OscChan:  2 ->   1 | Energy:   2.57653 | CosZ:      -999 | Prob:0.00466135
+Index:       174 | NuType:  1 | OscChan:  2 ->   1 | Energy:   2.95825 | CosZ:      -999 | Prob:0.00354083
+Index:       175 | NuType:  1 | OscChan:  2 ->   1 | Energy:   3.39653 | CosZ:      -999 | Prob:0.00268785
+Index:       176 | NuType:  1 | OscChan:  2 ->   1 | Energy:   3.89974 | CosZ:      -999 | Prob:0.00203974
+Index:       177 | NuType:  1 | OscChan:  2 ->   1 | Energy:    4.4775 | CosZ:      -999 | Prob: 0.0015479
+Index:       178 | NuType:  1 | OscChan:  2 ->   1 | Energy:   5.14085 | CosZ:      -999 | Prob: 0.0011749
+Index:       179 | NuType:  1 | OscChan:  2 ->   1 | Energy:   5.90249 | CosZ:      -999 | Prob:0.000892119
+Index:       180 | NuType:  1 | OscChan:  2 ->   1 | Energy:   6.77697 | CosZ:      -999 | Prob:0.000677754
+Index:       181 | NuType:  1 | OscChan:  2 ->   1 | Energy:     7.781 | CosZ:      -999 | Prob:0.00051523
+Index:       182 | NuType:  1 | OscChan:  2 ->   1 | Energy:   8.93378 | CosZ:      -999 | Prob:0.000391976
+Index:       183 | NuType:  1 | OscChan:  2 ->   1 | Energy:   10.2574 | CosZ:      -999 | Prob:0.000298466
+Index:       184 | NuType:  1 | OscChan:  2 ->   1 | Energy:    11.777 | CosZ:      -999 | Prob:0.000227489
+Index:       185 | NuType:  1 | OscChan:  2 ->   1 | Energy:   13.5218 | CosZ:      -999 | Prob:0.000173583
+Index:       186 | NuType:  1 | OscChan:  2 ->   1 | Energy:   15.5251 | CosZ:      -999 | Prob:0.000132617
+Index:       187 | NuType:  1 | OscChan:  2 ->   1 | Energy:   17.8252 | CosZ:      -999 | Prob:0.000101464
+Index:       188 | NuType:  1 | OscChan:  2 ->   1 | Energy:   20.4661 | CosZ:      -999 | Prob:7.77533e-05
+Index:       189 | NuType:  1 | OscChan:  2 ->   1 | Energy:   23.4982 | CosZ:      -999 | Prob:5.96926e-05
+Index:       190 | NuType:  1 | OscChan:  2 ->   1 | Energy:   26.9796 | CosZ:      -999 | Prob:4.59225e-05
+Index:       191 | NuType:  1 | OscChan:  2 ->   1 | Energy:   30.9767 | CosZ:      -999 | Prob:3.54129e-05
+Index:       192 | NuType:  1 | OscChan:  2 ->   1 | Energy:    35.566 | CosZ:      -999 | Prob:2.73826e-05
+Index:       193 | NuType:  1 | OscChan:  2 ->   1 | Energy:   40.8353 | CosZ:      -999 | Prob:2.12391e-05
+Index:       194 | NuType:  1 | OscChan:  2 ->   1 | Energy:   46.8852 | CosZ:      -999 | Prob:1.65325e-05
+Index:       195 | NuType:  1 | OscChan:  2 ->   1 | Energy:   53.8314 | CosZ:      -999 | Prob:1.29212e-05
+Index:       196 | NuType:  1 | OscChan:  2 ->   1 | Energy:   61.8067 | CosZ:      -999 | Prob:1.01456e-05
+Index:       197 | NuType:  1 | OscChan:  2 ->   1 | Energy:   70.9636 | CosZ:      -999 | Prob:8.00826e-06
+Index:       198 | NuType:  1 | OscChan:  2 ->   1 | Energy:   81.4771 | CosZ:      -999 | Prob:6.35904e-06
+Index:       199 | NuType:  1 | OscChan:  2 ->   1 | Energy:   93.5482 | CosZ:      -999 | Prob:5.08354e-06
+Index:       200 | NuType:  1 | OscChan:  2 ->   2 | Energy:  0.107408 | CosZ:      -999 | Prob:  0.138102
+Index:       201 | NuType:  1 | OscChan:  2 ->   2 | Energy:  0.123321 | CosZ:      -999 | Prob:  0.935919
+Index:       202 | NuType:  1 | OscChan:  2 ->   2 | Energy:  0.141591 | CosZ:      -999 | Prob:    0.6603
+Index:       203 | NuType:  1 | OscChan:  2 ->   2 | Energy:  0.162568 | CosZ:      -999 | Prob: 0.0507513
+Index:       204 | NuType:  1 | OscChan:  2 ->   2 | Energy:  0.186653 | CosZ:      -999 | Prob:  0.159896
+Index:       205 | NuType:  1 | OscChan:  2 ->   2 | Energy:  0.214306 | CosZ:      -999 | Prob:  0.673537
+Index:       206 | NuType:  1 | OscChan:  2 ->   2 | Energy:  0.246057 | CosZ:      -999 | Prob:  0.981379
+Index:       207 | NuType:  1 | OscChan:  2 ->   2 | Energy:  0.282511 | CosZ:      -999 | Prob:  0.910752
+Index:       208 | NuType:  1 | OscChan:  2 ->   2 | Energy:  0.324366 | CosZ:      -999 | Prob:  0.618128
+Index:       209 | NuType:  1 | OscChan:  2 ->   2 | Energy:  0.372422 | CosZ:      -999 | Prob:  0.306577
+Index:       210 | NuType:  1 | OscChan:  2 ->   2 | Energy:  0.427598 | CosZ:      -999 | Prob: 0.0930919
+Index:       211 | NuType:  1 | OscChan:  2 ->   2 | Energy:  0.490948 | CosZ:      -999 | Prob:0.00542566
+Index:       212 | NuType:  1 | OscChan:  2 ->   2 | Energy:  0.563684 | CosZ:      -999 | Prob: 0.0216078
+Index:       213 | NuType:  1 | OscChan:  2 ->   2 | Energy:  0.647195 | CosZ:      -999 | Prob:  0.104493
+Index:       214 | NuType:  1 | OscChan:  2 ->   2 | Energy:   0.74308 | CosZ:      -999 | Prob:  0.220282
+Index:       215 | NuType:  1 | OscChan:  2 ->   2 | Energy:   0.85317 | CosZ:      -999 | Prob:  0.344785
+Index:       216 | NuType:  1 | OscChan:  2 ->   2 | Energy:   0.97957 | CosZ:      -999 | Prob:  0.463375
+Index:       217 | NuType:  1 | OscChan:  2 ->   2 | Energy:    1.1247 | CosZ:      -999 | Prob:  0.568687
+Index:       218 | NuType:  1 | OscChan:  2 ->   2 | Energy:   1.29132 | CosZ:      -999 | Prob:  0.658103
+Index:       219 | NuType:  1 | OscChan:  2 ->   2 | Energy:   1.48264 | CosZ:      -999 | Prob:  0.731745
+Index:       220 | NuType:  1 | OscChan:  2 ->   2 | Energy:    1.7023 | CosZ:      -999 | Prob:  0.791117
+Index:       221 | NuType:  1 | OscChan:  2 ->   2 | Energy:    1.9545 | CosZ:      -999 | Prob:  0.838256
+Index:       222 | NuType:  1 | OscChan:  2 ->   2 | Energy:   2.24406 | CosZ:      -999 | Prob:   0.87527
+Index:       223 | NuType:  1 | OscChan:  2 ->   2 | Energy:   2.57653 | CosZ:      -999 | Prob:  0.904099
+Index:       224 | NuType:  1 | OscChan:  2 ->   2 | Energy:   2.95825 | CosZ:      -999 | Prob:  0.926418
+Index:       225 | NuType:  1 | OscChan:  2 ->   2 | Energy:   3.39653 | CosZ:      -999 | Prob:  0.943623
+Index:       226 | NuType:  1 | OscChan:  2 ->   2 | Energy:   3.89974 | CosZ:      -999 | Prob:  0.956843
+Index:       227 | NuType:  1 | OscChan:  2 ->   2 | Energy:    4.4775 | CosZ:      -999 | Prob:  0.966978
+Index:       228 | NuType:  1 | OscChan:  2 ->   2 | Energy:   5.14085 | CosZ:      -999 | Prob:  0.974735
+Index:       229 | NuType:  1 | OscChan:  2 ->   2 | Energy:   5.90249 | CosZ:      -999 | Prob:  0.980666
+Index:       230 | NuType:  1 | OscChan:  2 ->   2 | Energy:   6.77697 | CosZ:      -999 | Prob:  0.985197
+Index:       231 | NuType:  1 | OscChan:  2 ->   2 | Energy:     7.781 | CosZ:      -999 | Prob:  0.988658
+Index:       232 | NuType:  1 | OscChan:  2 ->   2 | Energy:   8.93378 | CosZ:      -999 | Prob:  0.991301
+Index:       233 | NuType:  1 | OscChan:  2 ->   2 | Energy:   10.2574 | CosZ:      -999 | Prob:  0.993321
+Index:       234 | NuType:  1 | OscChan:  2 ->   2 | Energy:    11.777 | CosZ:      -999 | Prob:  0.994863
+Index:       235 | NuType:  1 | OscChan:  2 ->   2 | Energy:   13.5218 | CosZ:      -999 | Prob:  0.996043
+Index:       236 | NuType:  1 | OscChan:  2 ->   2 | Energy:   15.5251 | CosZ:      -999 | Prob:  0.996945
+Index:       237 | NuType:  1 | OscChan:  2 ->   2 | Energy:   17.8252 | CosZ:      -999 | Prob:  0.997636
+Index:       238 | NuType:  1 | OscChan:  2 ->   2 | Energy:   20.4661 | CosZ:      -999 | Prob:  0.998165
+Index:       239 | NuType:  1 | OscChan:  2 ->   2 | Energy:   23.4982 | CosZ:      -999 | Prob:  0.998571
+Index:       240 | NuType:  1 | OscChan:  2 ->   2 | Energy:   26.9796 | CosZ:      -999 | Prob:  0.998883
+Index:       241 | NuType:  1 | OscChan:  2 ->   2 | Energy:   30.9767 | CosZ:      -999 | Prob:  0.999122
+Index:       242 | NuType:  1 | OscChan:  2 ->   2 | Energy:    35.566 | CosZ:      -999 | Prob:  0.999307
+Index:       243 | NuType:  1 | OscChan:  2 ->   2 | Energy:   40.8353 | CosZ:      -999 | Prob:  0.999449
+Index:       244 | NuType:  1 | OscChan:  2 ->   2 | Energy:   46.8852 | CosZ:      -999 | Prob:  0.999558
+Index:       245 | NuType:  1 | OscChan:  2 ->   2 | Energy:   53.8314 | CosZ:      -999 | Prob:  0.999642
+Index:       246 | NuType:  1 | OscChan:  2 ->   2 | Energy:   61.8067 | CosZ:      -999 | Prob:  0.999706
+Index:       247 | NuType:  1 | OscChan:  2 ->   2 | Energy:   70.9636 | CosZ:      -999 | Prob:  0.999756
+Index:       248 | NuType:  1 | OscChan:  2 ->   2 | Energy:   81.4771 | CosZ:      -999 | Prob:  0.999793
+Index:       249 | NuType:  1 | OscChan:  2 ->   2 | Energy:   93.5482 | CosZ:      -999 | Prob:  0.999821
+Index:       250 | NuType:  1 | OscChan:  2 ->   3 | Energy:  0.107408 | CosZ:      -999 | Prob:  0.753497
+Index:       251 | NuType:  1 | OscChan:  2 ->   3 | Energy:  0.123321 | CosZ:      -999 | Prob: 0.0451472
+Index:       252 | NuType:  1 | OscChan:  2 ->   3 | Energy:  0.141591 | CosZ:      -999 | Prob:  0.298366
+Index:       253 | NuType:  1 | OscChan:  2 ->   3 | Energy:  0.162568 | CosZ:      -999 | Prob:  0.859808
+Index:       254 | NuType:  1 | OscChan:  2 ->   3 | Energy:  0.186653 | CosZ:      -999 | Prob:  0.767364
+Index:       255 | NuType:  1 | OscChan:  2 ->   3 | Energy:  0.214306 | CosZ:      -999 | Prob:  0.298572
+Index:       256 | NuType:  1 | OscChan:  2 ->   3 | Energy:  0.246057 | CosZ:      -999 | Prob: 0.0143372
+Index:       257 | NuType:  1 | OscChan:  2 ->   3 | Energy:  0.282511 | CosZ:      -999 | Prob: 0.0792472
+Index:       258 | NuType:  1 | OscChan:  2 ->   3 | Energy:  0.324366 | CosZ:      -999 | Prob:  0.352024
+Index:       259 | NuType:  1 | OscChan:  2 ->   3 | Energy:  0.372422 | CosZ:      -999 | Prob:  0.644599
+Index:       260 | NuType:  1 | OscChan:  2 ->   3 | Energy:  0.427598 | CosZ:      -999 | Prob:  0.846947
+Index:       261 | NuType:  1 | OscChan:  2 ->   3 | Energy:  0.490948 | CosZ:      -999 | Prob:  0.931891
+Index:       262 | NuType:  1 | OscChan:  2 ->   3 | Energy:  0.563684 | CosZ:      -999 | Prob:  0.919129
+Index:       263 | NuType:  1 | OscChan:  2 ->   3 | Energy:  0.647195 | CosZ:      -999 | Prob:  0.843084
+Index:       264 | NuType:  1 | OscChan:  2 ->   3 | Energy:   0.74308 | CosZ:      -999 | Prob:  0.735416
+Index:       265 | NuType:  1 | OscChan:  2 ->   3 | Energy:   0.85317 | CosZ:      -999 | Prob:  0.618954
+Index:       266 | NuType:  1 | OscChan:  2 ->   3 | Energy:   0.97957 | CosZ:      -999 | Prob:  0.507612
+Index:       267 | NuType:  1 | OscChan:  2 ->   3 | Energy:    1.1247 | CosZ:      -999 | Prob:  0.408472
+Index:       268 | NuType:  1 | OscChan:  2 ->   3 | Energy:   1.29132 | CosZ:      -999 | Prob:  0.324124
+Index:       269 | NuType:  1 | OscChan:  2 ->   3 | Energy:   1.48264 | CosZ:      -999 | Prob:  0.254538
+Index:       270 | NuType:  1 | OscChan:  2 ->   3 | Energy:    1.7023 | CosZ:      -999 | Prob:   0.19836
+Index:       271 | NuType:  1 | OscChan:  2 ->   3 | Energy:    1.9545 | CosZ:      -999 | Prob:  0.153704
+Index:       272 | NuType:  1 | OscChan:  2 ->   3 | Energy:   2.24406 | CosZ:      -999 | Prob:  0.118605
+Index:       273 | NuType:  1 | OscChan:  2 ->   3 | Energy:   2.57653 | CosZ:      -999 | Prob: 0.0912437
+Index:       274 | NuType:  1 | OscChan:  2 ->   3 | Energy:   2.95825 | CosZ:      -999 | Prob: 0.0700444
+Index:       275 | NuType:  1 | OscChan:  2 ->   3 | Energy:   3.39653 | CosZ:      -999 | Prob: 0.0536923
+Index:       276 | NuType:  1 | OscChan:  2 ->   3 | Energy:   3.89974 | CosZ:      -999 | Prob: 0.0411203
+Index:       277 | NuType:  1 | OscChan:  2 ->   3 | Energy:    4.4775 | CosZ:      -999 | Prob: 0.0314774
+Index:       278 | NuType:  1 | OscChan:  2 ->   3 | Energy:   5.14085 | CosZ:      -999 | Prob: 0.0240934
+Index:       279 | NuType:  1 | OscChan:  2 ->   3 | Energy:   5.90249 | CosZ:      -999 | Prob: 0.0184455
+Index:       280 | NuType:  1 | OscChan:  2 ->   3 | Energy:   6.77697 | CosZ:      -999 | Prob: 0.0141286
+Index:       281 | NuType:  1 | OscChan:  2 ->   3 | Energy:     7.781 | CosZ:      -999 | Prob: 0.0108301
+Index:       282 | NuType:  1 | OscChan:  2 ->   3 | Energy:   8.93378 | CosZ:      -999 | Prob:0.00831004
+Index:       283 | NuType:  1 | OscChan:  2 ->   3 | Energy:   10.2574 | CosZ:      -999 | Prob:0.00638433
+Index:       284 | NuType:  1 | OscChan:  2 ->   3 | Energy:    11.777 | CosZ:      -999 | Prob:0.00491223
+Index:       285 | NuType:  1 | OscChan:  2 ->   3 | Energy:   13.5218 | CosZ:      -999 | Prob:0.00378623
+Index:       286 | NuType:  1 | OscChan:  2 ->   3 | Energy:   15.5251 | CosZ:      -999 | Prob: 0.0029243
+Index:       287 | NuType:  1 | OscChan:  2 ->   3 | Energy:   17.8252 | CosZ:      -999 | Prob:0.00226388
+Index:       288 | NuType:  1 | OscChan:  2 ->   3 | Energy:   20.4661 | CosZ:      -999 | Prob:0.00175727
+Index:       289 | NuType:  1 | OscChan:  2 ->   3 | Energy:   23.4982 | CosZ:      -999 | Prob:0.00136814
+Index:       290 | NuType:  1 | OscChan:  2 ->   3 | Energy:   26.9796 | CosZ:      -999 | Prob:0.00106879
+Index:       291 | NuType:  1 | OscChan:  2 ->   3 | Energy:   30.9767 | CosZ:      -999 | Prob:0.000838097
+Index:       292 | NuType:  1 | OscChan:  2 ->   3 | Energy:    35.566 | CosZ:      -999 | Prob:0.000659973
+Index:       293 | NuType:  1 | OscChan:  2 ->   3 | Energy:   40.8353 | CosZ:      -999 | Prob:0.000522136
+Index:       294 | NuType:  1 | OscChan:  2 ->   3 | Energy:   46.8852 | CosZ:      -999 | Prob:0.000415215
+Index:       295 | NuType:  1 | OscChan:  2 ->   3 | Energy:   53.8314 | CosZ:      -999 | Prob:0.000332055
+Index:       296 | NuType:  1 | OscChan:  2 ->   3 | Energy:   61.8067 | CosZ:      -999 | Prob:0.000267186
+Index:       297 | NuType:  1 | OscChan:  2 ->   3 | Energy:   70.9636 | CosZ:      -999 | Prob:0.000216423
+Index:       298 | NuType:  1 | OscChan:  2 ->   3 | Energy:   81.4771 | CosZ:      -999 | Prob:0.000176563
+Index:       299 | NuType:  1 | OscChan:  2 ->   3 | Energy:   93.5482 | CosZ:      -999 | Prob:0.000145147
+Index:       300 | NuType:  1 | OscChan:  3 ->   1 | Energy:  0.107408 | CosZ:      -999 | Prob:0.00638399
+Index:       301 | NuType:  1 | OscChan:  3 ->   1 | Energy:  0.123321 | CosZ:      -999 | Prob: 0.0165299
+Index:       302 | NuType:  1 | OscChan:  3 ->   1 | Energy:  0.141591 | CosZ:      -999 | Prob: 0.0104806
+Index:       303 | NuType:  1 | OscChan:  3 ->   1 | Energy:  0.162568 | CosZ:      -999 | Prob: 0.0108273
+Index:       304 | NuType:  1 | OscChan:  3 ->   1 | Energy:  0.186653 | CosZ:      -999 | Prob: 0.0130741
+Index:       305 | NuType:  1 | OscChan:  3 ->   1 | Energy:  0.214306 | CosZ:      -999 | Prob: 0.0090985
+Index:       306 | NuType:  1 | OscChan:  3 ->   1 | Energy:  0.246057 | CosZ:      -999 | Prob:0.00431467
+Index:       307 | NuType:  1 | OscChan:  3 ->   1 | Energy:  0.282511 | CosZ:      -999 | Prob: 0.0051263
+Index:       308 | NuType:  1 | OscChan:  3 ->   1 | Energy:  0.324366 | CosZ:      -999 | Prob: 0.0116096
+Index:       309 | NuType:  1 | OscChan:  3 ->   1 | Energy:  0.372422 | CosZ:      -999 | Prob: 0.0200801
+Index:       310 | NuType:  1 | OscChan:  3 ->   1 | Energy:  0.427598 | CosZ:      -999 | Prob: 0.0270779
+Index:       311 | NuType:  1 | OscChan:  3 ->   1 | Energy:  0.490948 | CosZ:      -999 | Prob:  0.030971
+Index:       312 | NuType:  1 | OscChan:  3 ->   1 | Energy:  0.563684 | CosZ:      -999 | Prob: 0.0317151
+Index:       313 | NuType:  1 | OscChan:  3 ->   1 | Energy:  0.647195 | CosZ:      -999 | Prob:  0.030074
+Index:       314 | NuType:  1 | OscChan:  3 ->   1 | Energy:   0.74308 | CosZ:      -999 | Prob: 0.0269936
+Index:       315 | NuType:  1 | OscChan:  3 ->   1 | Energy:   0.85317 | CosZ:      -999 | Prob: 0.0232772
+Index:       316 | NuType:  1 | OscChan:  3 ->   1 | Energy:   0.97957 | CosZ:      -999 | Prob: 0.0194861
+Index:       317 | NuType:  1 | OscChan:  3 ->   1 | Energy:    1.1247 | CosZ:      -999 | Prob: 0.0159543
+Index:       318 | NuType:  1 | OscChan:  3 ->   1 | Energy:   1.29132 | CosZ:      -999 | Prob: 0.0128457
+Index:       319 | NuType:  1 | OscChan:  3 ->   1 | Energy:   1.48264 | CosZ:      -999 | Prob:  0.010212
+Index:       320 | NuType:  1 | OscChan:  3 ->   1 | Energy:    1.7023 | CosZ:      -999 | Prob:0.00803987
+Index:       321 | NuType:  1 | OscChan:  3 ->   1 | Energy:    1.9545 | CosZ:      -999 | Prob:0.00628287
+Index:       322 | NuType:  1 | OscChan:  3 ->   1 | Energy:   2.24406 | CosZ:      -999 | Prob:0.00488193
+Index:       323 | NuType:  1 | OscChan:  3 ->   1 | Energy:   2.57653 | CosZ:      -999 | Prob:0.00377683
+Index:       324 | NuType:  1 | OscChan:  3 ->   1 | Energy:   2.95825 | CosZ:      -999 | Prob:0.00291214
+Index:       325 | NuType:  1 | OscChan:  3 ->   1 | Energy:   3.39653 | CosZ:      -999 | Prob:0.00223973
+Index:       326 | NuType:  1 | OscChan:  3 ->   1 | Energy:   3.89974 | CosZ:      -999 | Prob: 0.0017193
+Index:       327 | NuType:  1 | OscChan:  3 ->   1 | Energy:    4.4775 | CosZ:      -999 | Prob:0.00131795
+Index:       328 | NuType:  1 | OscChan:  3 ->   1 | Energy:   5.14085 | CosZ:      -999 | Prob:0.00100929
+Index:       329 | NuType:  1 | OscChan:  3 ->   1 | Energy:   5.90249 | CosZ:      -999 | Prob:0.000772423
+Index:       330 | NuType:  1 | OscChan:  3 ->   1 | Energy:   6.77697 | CosZ:      -999 | Prob:0.000590931
+Index:       331 | NuType:  1 | OscChan:  3 ->   1 | Energy:     7.781 | CosZ:      -999 | Prob:0.000452035
+Index:       332 | NuType:  1 | OscChan:  3 ->   1 | Energy:   8.93378 | CosZ:      -999 | Prob:0.000345827
+Index:       333 | NuType:  1 | OscChan:  3 ->   1 | Energy:   10.2574 | CosZ:      -999 | Prob:0.000264661
+Index:       334 | NuType:  1 | OscChan:  3 ->   1 | Energy:    11.777 | CosZ:      -999 | Prob:0.000202653
+Index:       335 | NuType:  1 | OscChan:  3 ->   1 | Energy:   13.5218 | CosZ:      -999 | Prob:0.000155288
+Index:       336 | NuType:  1 | OscChan:  3 ->   1 | Energy:   15.5251 | CosZ:      -999 | Prob:0.000119106
+Index:       337 | NuType:  1 | OscChan:  3 ->   1 | Energy:   17.8252 | CosZ:      -999 | Prob:9.1461e-05
+Index:       338 | NuType:  1 | OscChan:  3 ->   1 | Energy:   20.4661 | CosZ:      -999 | Prob:7.03307e-05
+Index:       339 | NuType:  1 | OscChan:  3 ->   1 | Energy:   23.4982 | CosZ:      -999 | Prob:5.41716e-05
+Index:       340 | NuType:  1 | OscChan:  3 ->   1 | Energy:   26.9796 | CosZ:      -999 | Prob:4.18055e-05
+Index:       341 | NuType:  1 | OscChan:  3 ->   1 | Energy:   30.9767 | CosZ:      -999 | Prob:3.23343e-05
+Index:       342 | NuType:  1 | OscChan:  3 ->   1 | Energy:    35.566 | CosZ:      -999 | Prob:2.5073e-05
+Index:       343 | NuType:  1 | OscChan:  3 ->   1 | Energy:   40.8353 | CosZ:      -999 | Prob:1.94993e-05
+Index:       344 | NuType:  1 | OscChan:  3 ->   1 | Energy:   46.8852 | CosZ:      -999 | Prob:1.52152e-05
+Index:       345 | NuType:  1 | OscChan:  3 ->   1 | Energy:   53.8314 | CosZ:      -999 | Prob:1.19173e-05
+Index:       346 | NuType:  1 | OscChan:  3 ->   1 | Energy:   61.8067 | CosZ:      -999 | Prob:9.37391e-06
+Index:       347 | NuType:  1 | OscChan:  3 ->   1 | Energy:   70.9636 | CosZ:      -999 | Prob:7.40862e-06
+Index:       348 | NuType:  1 | OscChan:  3 ->   1 | Energy:   81.4771 | CosZ:      -999 | Prob:5.88664e-06
+Index:       349 | NuType:  1 | OscChan:  3 ->   1 | Energy:   93.5482 | CosZ:      -999 | Prob:4.70508e-06
+Index:       350 | NuType:  1 | OscChan:  3 ->   2 | Energy:  0.107408 | CosZ:      -999 | Prob:  0.854873
+Index:       351 | NuType:  1 | OscChan:  3 ->   2 | Energy:  0.123321 | CosZ:      -999 | Prob: 0.0497335
+Index:       352 | NuType:  1 | OscChan:  3 ->   2 | Energy:  0.141591 | CosZ:      -999 | Prob:  0.327649
+Index:       353 | NuType:  1 | OscChan:  3 ->   2 | Energy:  0.162568 | CosZ:      -999 | Prob:  0.934274
+Index:       354 | NuType:  1 | OscChan:  3 ->   2 | Energy:  0.186653 | CosZ:      -999 | Prob:  0.824505
+Index:       355 | NuType:  1 | OscChan:  3 ->   2 | Energy:  0.214306 | CosZ:      -999 | Prob:  0.317282
+Index:       356 | NuType:  1 | OscChan:  3 ->   2 | Energy:  0.246057 | CosZ:      -999 | Prob: 0.0148548
+Index:       357 | NuType:  1 | OscChan:  3 ->   2 | Energy:  0.282511 | CosZ:      -999 | Prob: 0.0835035
+Index:       358 | NuType:  1 | OscChan:  3 ->   2 | Energy:  0.324366 | CosZ:      -999 | Prob:  0.367819
+Index:       359 | NuType:  1 | OscChan:  3 ->   2 | Energy:  0.372422 | CosZ:      -999 | Prob:  0.669354
+Index:       360 | NuType:  1 | OscChan:  3 ->   2 | Energy:  0.427598 | CosZ:      -999 | Prob:  0.874968
+Index:       361 | NuType:  1 | OscChan:  3 ->   2 | Energy:  0.490948 | CosZ:      -999 | Prob:  0.958524
+Index:       362 | NuType:  1 | OscChan:  3 ->   2 | Energy:  0.563684 | CosZ:      -999 | Prob:  0.941855
+Index:       363 | NuType:  1 | OscChan:  3 ->   2 | Energy:  0.647195 | CosZ:      -999 | Prob:  0.861137
+Index:       364 | NuType:  1 | OscChan:  3 ->   2 | Energy:   0.74308 | CosZ:      -999 | Prob:  0.749062
+Index:       365 | NuType:  1 | OscChan:  3 ->   2 | Energy:   0.85317 | CosZ:      -999 | Prob:  0.628912
+Index:       366 | NuType:  1 | OscChan:  3 ->   2 | Energy:   0.97957 | CosZ:      -999 | Prob:  0.514695
+Index:       367 | NuType:  1 | OscChan:  3 ->   2 | Energy:    1.1247 | CosZ:      -999 | Prob:  0.413417
+Index:       368 | NuType:  1 | OscChan:  3 ->   2 | Energy:   1.29132 | CosZ:      -999 | Prob:  0.327529
+Index:       369 | NuType:  1 | OscChan:  3 ->   2 | Energy:   1.48264 | CosZ:      -999 | Prob:  0.256859
+Index:       370 | NuType:  1 | OscChan:  3 ->   2 | Energy:    1.7023 | CosZ:      -999 | Prob:   0.19993
+Index:       371 | NuType:  1 | OscChan:  3 ->   2 | Energy:    1.9545 | CosZ:      -999 | Prob:   0.15476
+Index:       372 | NuType:  1 | OscChan:  3 ->   2 | Energy:   2.24406 | CosZ:      -999 | Prob:  0.119312
+Index:       373 | NuType:  1 | OscChan:  3 ->   2 | Energy:   2.57653 | CosZ:      -999 | Prob: 0.0917159
+Index:       374 | NuType:  1 | OscChan:  3 ->   2 | Energy:   2.95825 | CosZ:      -999 | Prob: 0.0703589
+Index:       375 | NuType:  1 | OscChan:  3 ->   2 | Energy:   3.39653 | CosZ:      -999 | Prob: 0.0539015
+Index:       376 | NuType:  1 | OscChan:  3 ->   2 | Energy:   3.89974 | CosZ:      -999 | Prob: 0.0412593
+Index:       377 | NuType:  1 | OscChan:  3 ->   2 | Energy:    4.4775 | CosZ:      -999 | Prob: 0.0315696
+Index:       378 | NuType:  1 | OscChan:  3 ->   2 | Energy:   5.14085 | CosZ:      -999 | Prob: 0.0241545
+Index:       379 | NuType:  1 | OscChan:  3 ->   2 | Energy:   5.90249 | CosZ:      -999 | Prob:  0.018486
+Index:       380 | NuType:  1 | OscChan:  3 ->   2 | Energy:   6.77697 | CosZ:      -999 | Prob: 0.0141554
+Index:       381 | NuType:  1 | OscChan:  3 ->   2 | Energy:     7.781 | CosZ:      -999 | Prob: 0.0108479
+Index:       382 | NuType:  1 | OscChan:  3 ->   2 | Energy:   8.93378 | CosZ:      -999 | Prob:0.00832185
+Index:       383 | NuType:  1 | OscChan:  3 ->   2 | Energy:   10.2574 | CosZ:      -999 | Prob:0.00639216
+Index:       384 | NuType:  1 | OscChan:  3 ->   2 | Energy:    11.777 | CosZ:      -999 | Prob:0.00491742
+Index:       385 | NuType:  1 | OscChan:  3 ->   2 | Energy:   13.5218 | CosZ:      -999 | Prob:0.00378968
+Index:       386 | NuType:  1 | OscChan:  3 ->   2 | Energy:   15.5251 | CosZ:      -999 | Prob:0.00292659
+Index:       387 | NuType:  1 | OscChan:  3 ->   2 | Energy:   17.8252 | CosZ:      -999 | Prob: 0.0022654
+Index:       388 | NuType:  1 | OscChan:  3 ->   2 | Energy:   20.4661 | CosZ:      -999 | Prob:0.00175828
+Index:       389 | NuType:  1 | OscChan:  3 ->   2 | Energy:   23.4982 | CosZ:      -999 | Prob:0.00136881
+Index:       390 | NuType:  1 | OscChan:  3 ->   2 | Energy:   26.9796 | CosZ:      -999 | Prob:0.00106923
+Index:       391 | NuType:  1 | OscChan:  3 ->   2 | Energy:   30.9767 | CosZ:      -999 | Prob:0.000838393
+Index:       392 | NuType:  1 | OscChan:  3 ->   2 | Energy:    35.566 | CosZ:      -999 | Prob:0.000660169
+Index:       393 | NuType:  1 | OscChan:  3 ->   2 | Energy:   40.8353 | CosZ:      -999 | Prob:0.000522267
+Index:       394 | NuType:  1 | OscChan:  3 ->   2 | Energy:   46.8852 | CosZ:      -999 | Prob:0.000415302
+Index:       395 | NuType:  1 | OscChan:  3 ->   2 | Energy:   53.8314 | CosZ:      -999 | Prob:0.000332113
+Index:       396 | NuType:  1 | OscChan:  3 ->   2 | Energy:   61.8067 | CosZ:      -999 | Prob:0.000267224
+Index:       397 | NuType:  1 | OscChan:  3 ->   2 | Energy:   70.9636 | CosZ:      -999 | Prob:0.000216449
+Index:       398 | NuType:  1 | OscChan:  3 ->   2 | Energy:   81.4771 | CosZ:      -999 | Prob:0.000176579
+Index:       399 | NuType:  1 | OscChan:  3 ->   2 | Energy:   93.5482 | CosZ:      -999 | Prob:0.000145158
+Index:       400 | NuType:  1 | OscChan:  3 ->   3 | Energy:  0.107408 | CosZ:      -999 | Prob:  0.138747
+Index:       401 | NuType:  1 | OscChan:  3 ->   3 | Energy:  0.123321 | CosZ:      -999 | Prob:  0.933741
+Index:       402 | NuType:  1 | OscChan:  3 ->   3 | Energy:  0.141591 | CosZ:      -999 | Prob:  0.661875
+Index:       403 | NuType:  1 | OscChan:  3 ->   3 | Energy:  0.162568 | CosZ:      -999 | Prob: 0.0549024
+Index:       404 | NuType:  1 | OscChan:  3 ->   3 | Energy:  0.186653 | CosZ:      -999 | Prob:  0.162425
+Index:       405 | NuType:  1 | OscChan:  3 ->   3 | Energy:  0.214306 | CosZ:      -999 | Prob:  0.673624
+Index:       406 | NuType:  1 | OscChan:  3 ->   3 | Energy:  0.246057 | CosZ:      -999 | Prob:  0.980835
+Index:       407 | NuType:  1 | OscChan:  3 ->   3 | Energy:  0.282511 | CosZ:      -999 | Prob:  0.911374
+Index:       408 | NuType:  1 | OscChan:  3 ->   3 | Energy:  0.324366 | CosZ:      -999 | Prob:  0.620576
+Index:       409 | NuType:  1 | OscChan:  3 ->   3 | Energy:  0.372422 | CosZ:      -999 | Prob:   0.31057
+Index:       410 | NuType:  1 | OscChan:  3 ->   3 | Energy:  0.427598 | CosZ:      -999 | Prob: 0.0979585
+Index:       411 | NuType:  1 | OscChan:  3 ->   3 | Energy:  0.490948 | CosZ:      -999 | Prob: 0.0105088
+Index:       412 | NuType:  1 | OscChan:  3 ->   3 | Energy:  0.563684 | CosZ:      -999 | Prob: 0.0264338
+Index:       413 | NuType:  1 | OscChan:  3 ->   3 | Energy:  0.647195 | CosZ:      -999 | Prob:  0.108794
+Index:       414 | NuType:  1 | OscChan:  3 ->   3 | Energy:   0.74308 | CosZ:      -999 | Prob:  0.223949
+Index:       415 | NuType:  1 | OscChan:  3 ->   3 | Energy:   0.85317 | CosZ:      -999 | Prob:  0.347815
+Index:       416 | NuType:  1 | OscChan:  3 ->   3 | Energy:   0.97957 | CosZ:      -999 | Prob:  0.465823
+Index:       417 | NuType:  1 | OscChan:  3 ->   3 | Energy:    1.1247 | CosZ:      -999 | Prob:  0.570632
+Index:       418 | NuType:  1 | OscChan:  3 ->   3 | Energy:   1.29132 | CosZ:      -999 | Prob:   0.65963
+Index:       419 | NuType:  1 | OscChan:  3 ->   3 | Energy:   1.48264 | CosZ:      -999 | Prob:  0.732933
+Index:       420 | NuType:  1 | OscChan:  3 ->   3 | Energy:    1.7023 | CosZ:      -999 | Prob:  0.792034
+Index:       421 | NuType:  1 | OscChan:  3 ->   3 | Energy:    1.9545 | CosZ:      -999 | Prob:  0.838961
+Index:       422 | NuType:  1 | OscChan:  3 ->   3 | Energy:   2.24406 | CosZ:      -999 | Prob:   0.87581
+Index:       423 | NuType:  1 | OscChan:  3 ->   3 | Energy:   2.57653 | CosZ:      -999 | Prob:  0.904511
+Index:       424 | NuType:  1 | OscChan:  3 ->   3 | Energy:   2.95825 | CosZ:      -999 | Prob:  0.926733
+Index:       425 | NuType:  1 | OscChan:  3 ->   3 | Energy:   3.39653 | CosZ:      -999 | Prob:  0.943863
+Index:       426 | NuType:  1 | OscChan:  3 ->   3 | Energy:   3.89974 | CosZ:      -999 | Prob:  0.957025
+Index:       427 | NuType:  1 | OscChan:  3 ->   3 | Energy:    4.4775 | CosZ:      -999 | Prob:  0.967116
+Index:       428 | NuType:  1 | OscChan:  3 ->   3 | Energy:   5.14085 | CosZ:      -999 | Prob:   0.97484
+Index:       429 | NuType:  1 | OscChan:  3 ->   3 | Energy:   5.90249 | CosZ:      -999 | Prob:  0.980746
+Index:       430 | NuType:  1 | OscChan:  3 ->   3 | Energy:   6.77697 | CosZ:      -999 | Prob:  0.985258
+Index:       431 | NuType:  1 | OscChan:  3 ->   3 | Energy:     7.781 | CosZ:      -999 | Prob:  0.988704
+Index:       432 | NuType:  1 | OscChan:  3 ->   3 | Energy:   8.93378 | CosZ:      -999 | Prob:  0.991337
+Index:       433 | NuType:  1 | OscChan:  3 ->   3 | Energy:   10.2574 | CosZ:      -999 | Prob:  0.993348
+Index:       434 | NuType:  1 | OscChan:  3 ->   3 | Energy:    11.777 | CosZ:      -999 | Prob:  0.994884
+Index:       435 | NuType:  1 | OscChan:  3 ->   3 | Energy:   13.5218 | CosZ:      -999 | Prob:  0.996059
+Index:       436 | NuType:  1 | OscChan:  3 ->   3 | Energy:   15.5251 | CosZ:      -999 | Prob:  0.996958
+Index:       437 | NuType:  1 | OscChan:  3 ->   3 | Energy:   17.8252 | CosZ:      -999 | Prob:  0.997646
+Index:       438 | NuType:  1 | OscChan:  3 ->   3 | Energy:   20.4661 | CosZ:      -999 | Prob:  0.998173
+Index:       439 | NuType:  1 | OscChan:  3 ->   3 | Energy:   23.4982 | CosZ:      -999 | Prob:  0.998578
+Index:       440 | NuType:  1 | OscChan:  3 ->   3 | Energy:   26.9796 | CosZ:      -999 | Prob:  0.998889
+Index:       441 | NuType:  1 | OscChan:  3 ->   3 | Energy:   30.9767 | CosZ:      -999 | Prob:  0.999127
+Index:       442 | NuType:  1 | OscChan:  3 ->   3 | Energy:    35.566 | CosZ:      -999 | Prob:  0.999311
+Index:       443 | NuType:  1 | OscChan:  3 ->   3 | Energy:   40.8353 | CosZ:      -999 | Prob:  0.999453
+Index:       444 | NuType:  1 | OscChan:  3 ->   3 | Energy:   46.8852 | CosZ:      -999 | Prob:  0.999562
+Index:       445 | NuType:  1 | OscChan:  3 ->   3 | Energy:   53.8314 | CosZ:      -999 | Prob:  0.999646
+Index:       446 | NuType:  1 | OscChan:  3 ->   3 | Energy:   61.8067 | CosZ:      -999 | Prob:   0.99971
+Index:       447 | NuType:  1 | OscChan:  3 ->   3 | Energy:   70.9636 | CosZ:      -999 | Prob:  0.999759
+Index:       448 | NuType:  1 | OscChan:  3 ->   3 | Energy:   81.4771 | CosZ:      -999 | Prob:  0.999797
+Index:       449 | NuType:  1 | OscChan:  3 ->   3 | Energy:   93.5482 | CosZ:      -999 | Prob:  0.999824
+Index:       450 | NuType: -1 | OscChan:  1 ->   1 | Energy:  0.107408 | CosZ:      -999 | Prob:  0.882276
+Index:       451 | NuType: -1 | OscChan:  1 ->   1 | Energy:  0.123321 | CosZ:      -999 | Prob:  0.959436
+Index:       452 | NuType: -1 | OscChan:  1 ->   1 | Energy:  0.141591 | CosZ:      -999 | Prob:  0.958031
+Index:       453 | NuType: -1 | OscChan:  1 ->   1 | Energy:  0.162568 | CosZ:      -999 | Prob:  0.908712
+Index:       454 | NuType: -1 | OscChan:  1 ->   1 | Energy:  0.186653 | CosZ:      -999 | Prob:   0.91165
+Index:       455 | NuType: -1 | OscChan:  1 ->   1 | Energy:  0.214306 | CosZ:      -999 | Prob:  0.955439
+Index:       456 | NuType: -1 | OscChan:  1 ->   1 | Energy:  0.246057 | CosZ:      -999 | Prob:  0.988518
+Index:       457 | NuType: -1 | OscChan:  1 ->   1 | Energy:  0.282511 | CosZ:      -999 | Prob:  0.990477
+Index:       458 | NuType: -1 | OscChan:  1 ->   1 | Energy:  0.324366 | CosZ:      -999 | Prob:  0.970967
+Index:       459 | NuType: -1 | OscChan:  1 ->   1 | Energy:  0.372422 | CosZ:      -999 | Prob:  0.946726
+Index:       460 | NuType: -1 | OscChan:  1 ->   1 | Energy:  0.427598 | CosZ:      -999 | Prob:  0.928664
+Index:       461 | NuType: -1 | OscChan:  1 ->   1 | Energy:  0.490948 | CosZ:      -999 | Prob:  0.920261
+Index:       462 | NuType: -1 | OscChan:  1 ->   1 | Energy:  0.563684 | CosZ:      -999 | Prob:  0.920416
+Index:       463 | NuType: -1 | OscChan:  1 ->   1 | Energy:  0.647195 | CosZ:      -999 | Prob:  0.926359
+Index:       464 | NuType: -1 | OscChan:  1 ->   1 | Energy:   0.74308 | CosZ:      -999 | Prob:   0.93535
+Index:       465 | NuType: -1 | OscChan:  1 ->   1 | Energy:   0.85317 | CosZ:      -999 | Prob:  0.945336
+Index:       466 | NuType: -1 | OscChan:  1 ->   1 | Energy:   0.97957 | CosZ:      -999 | Prob:  0.955026
+Index:       467 | NuType: -1 | OscChan:  1 ->   1 | Energy:    1.1247 | CosZ:      -999 | Prob:  0.963736
+Index:       468 | NuType: -1 | OscChan:  1 ->   1 | Energy:   1.29132 | CosZ:      -999 | Prob:  0.971195
+Index:       469 | NuType: -1 | OscChan:  1 ->   1 | Energy:   1.48264 | CosZ:      -999 | Prob:  0.977377
+Index:       470 | NuType: -1 | OscChan:  1 ->   1 | Energy:    1.7023 | CosZ:      -999 | Prob:  0.982383
+Index:       471 | NuType: -1 | OscChan:  1 ->   1 | Energy:    1.9545 | CosZ:      -999 | Prob:   0.98637
+Index:       472 | NuType: -1 | OscChan:  1 ->   1 | Energy:   2.24406 | CosZ:      -999 | Prob:  0.989507
+Index:       473 | NuType: -1 | OscChan:  1 ->   1 | Energy:   2.57653 | CosZ:      -999 | Prob:  0.991953
+Index:       474 | NuType: -1 | OscChan:  1 ->   1 | Energy:   2.95825 | CosZ:      -999 | Prob:  0.993848
+Index:       475 | NuType: -1 | OscChan:  1 ->   1 | Energy:   3.39653 | CosZ:      -999 | Prob:  0.995308
+Index:       476 | NuType: -1 | OscChan:  1 ->   1 | Energy:   3.89974 | CosZ:      -999 | Prob:  0.996428
+Index:       477 | NuType: -1 | OscChan:  1 ->   1 | Energy:    4.4775 | CosZ:      -999 | Prob:  0.997285
+Index:       478 | NuType: -1 | OscChan:  1 ->   1 | Energy:   5.14085 | CosZ:      -999 | Prob:   0.99794
+Index:       479 | NuType: -1 | OscChan:  1 ->   1 | Energy:   5.90249 | CosZ:      -999 | Prob:  0.998438
+Index:       480 | NuType: -1 | OscChan:  1 ->   1 | Energy:   6.77697 | CosZ:      -999 | Prob:  0.998818
+Index:       481 | NuType: -1 | OscChan:  1 ->   1 | Energy:     7.781 | CosZ:      -999 | Prob:  0.999106
+Index:       482 | NuType: -1 | OscChan:  1 ->   1 | Energy:   8.93378 | CosZ:      -999 | Prob:  0.999324
+Index:       483 | NuType: -1 | OscChan:  1 ->   1 | Energy:   10.2574 | CosZ:      -999 | Prob:   0.99949
+Index:       484 | NuType: -1 | OscChan:  1 ->   1 | Energy:    11.777 | CosZ:      -999 | Prob:  0.999616
+Index:       485 | NuType: -1 | OscChan:  1 ->   1 | Energy:   13.5218 | CosZ:      -999 | Prob:  0.999711
+Index:       486 | NuType: -1 | OscChan:  1 ->   1 | Energy:   15.5251 | CosZ:      -999 | Prob:  0.999782
+Index:       487 | NuType: -1 | OscChan:  1 ->   1 | Energy:   17.8252 | CosZ:      -999 | Prob:  0.999836
+Index:       488 | NuType: -1 | OscChan:  1 ->   1 | Energy:   20.4661 | CosZ:      -999 | Prob:  0.999877
+Index:       489 | NuType: -1 | OscChan:  1 ->   1 | Energy:   23.4982 | CosZ:      -999 | Prob:  0.999907
+Index:       490 | NuType: -1 | OscChan:  1 ->   1 | Energy:   26.9796 | CosZ:      -999 | Prob:   0.99993
+Index:       491 | NuType: -1 | OscChan:  1 ->   1 | Energy:   30.9767 | CosZ:      -999 | Prob:  0.999947
+Index:       492 | NuType: -1 | OscChan:  1 ->   1 | Energy:    35.566 | CosZ:      -999 | Prob:  0.999959
+Index:       493 | NuType: -1 | OscChan:  1 ->   1 | Energy:   40.8353 | CosZ:      -999 | Prob:  0.999968
+Index:       494 | NuType: -1 | OscChan:  1 ->   1 | Energy:   46.8852 | CosZ:      -999 | Prob:  0.999974
+Index:       495 | NuType: -1 | OscChan:  1 ->   1 | Energy:   53.8314 | CosZ:      -999 | Prob:  0.999979
+Index:       496 | NuType: -1 | OscChan:  1 ->   1 | Energy:   61.8067 | CosZ:      -999 | Prob:  0.999981
+Index:       497 | NuType: -1 | OscChan:  1 ->   1 | Energy:   70.9636 | CosZ:      -999 | Prob:  0.999982
+Index:       498 | NuType: -1 | OscChan:  1 ->   1 | Energy:   81.4771 | CosZ:      -999 | Prob:  0.999982
+Index:       499 | NuType: -1 | OscChan:  1 ->   1 | Energy:   93.5482 | CosZ:      -999 | Prob:  0.999981
+Index:       500 | NuType: -1 | OscChan:  1 ->   2 | Energy:  0.107408 | CosZ:      -999 | Prob:  0.110676
+Index:       501 | NuType: -1 | OscChan:  1 ->   2 | Energy:  0.123321 | CosZ:      -999 | Prob: 0.0225251
+Index:       502 | NuType: -1 | OscChan:  1 ->   2 | Energy:  0.141591 | CosZ:      -999 | Prob: 0.0333402
+Index:       503 | NuType: -1 | OscChan:  1 ->   2 | Energy:  0.162568 | CosZ:      -999 | Prob: 0.0826517
+Index:       504 | NuType: -1 | OscChan:  1 ->   2 | Energy:  0.186653 | CosZ:      -999 | Prob: 0.0744472
+Index:       505 | NuType: -1 | OscChan:  1 ->   2 | Energy:  0.214306 | CosZ:      -999 | Prob: 0.0329463
+Index:       506 | NuType: -1 | OscChan:  1 ->   2 | Energy:  0.246057 | CosZ:      -999 | Prob:0.00602137
+Index:       507 | NuType: -1 | OscChan:  1 ->   2 | Energy:  0.282511 | CosZ:      -999 | Prob:0.00619272
+Index:       508 | NuType: -1 | OscChan:  1 ->   2 | Energy:  0.324366 | CosZ:      -999 | Prob: 0.0218498
+Index:       509 | NuType: -1 | OscChan:  1 ->   2 | Energy:  0.372422 | CosZ:      -999 | Prob: 0.0390531
+Index:       510 | NuType: -1 | OscChan:  1 ->   2 | Energy:  0.427598 | CosZ:      -999 | Prob: 0.0503673
+Index:       511 | NuType: -1 | OscChan:  1 ->   2 | Energy:  0.490948 | CosZ:      -999 | Prob: 0.0543452
+Index:       512 | NuType: -1 | OscChan:  1 ->   2 | Energy:  0.563684 | CosZ:      -999 | Prob: 0.0525502
+Index:       513 | NuType: -1 | OscChan:  1 ->   2 | Energy:  0.647195 | CosZ:      -999 | Prob:  0.047283
+Index:       514 | NuType: -1 | OscChan:  1 ->   2 | Energy:   0.74308 | CosZ:      -999 | Prob:  0.040497
+Index:       515 | NuType: -1 | OscChan:  1 ->   2 | Energy:   0.85317 | CosZ:      -999 | Prob: 0.0335047
+Index:       516 | NuType: -1 | OscChan:  1 ->   2 | Energy:   0.97957 | CosZ:      -999 | Prob: 0.0270429
+Index:       517 | NuType: -1 | OscChan:  1 ->   2 | Energy:    1.1247 | CosZ:      -999 | Prob: 0.0214416
+Index:       518 | NuType: -1 | OscChan:  1 ->   2 | Energy:   1.29132 | CosZ:      -999 | Prob: 0.0167816
+Index:       519 | NuType: -1 | OscChan:  1 ->   2 | Energy:   1.48264 | CosZ:      -999 | Prob: 0.0130107
+Index:       520 | NuType: -1 | OscChan:  1 ->   2 | Energy:    1.7023 | CosZ:      -999 | Prob: 0.0100175
+Index:       521 | NuType: -1 | OscChan:  1 ->   2 | Energy:    1.9545 | CosZ:      -999 | Prob:0.00767392
+Index:       522 | NuType: -1 | OscChan:  1 ->   2 | Energy:   2.24406 | CosZ:      -999 | Prob:0.00585669
+Index:       523 | NuType: -1 | OscChan:  1 ->   2 | Energy:   2.57653 | CosZ:      -999 | Prob:0.00445752
+Index:       524 | NuType: -1 | OscChan:  1 ->   2 | Energy:   2.95825 | CosZ:      -999 | Prob: 0.0033857
+Index:       525 | NuType: -1 | OscChan:  1 ->   2 | Energy:   3.39653 | CosZ:      -999 | Prob:0.00256767
+Index:       526 | NuType: -1 | OscChan:  1 ->   2 | Energy:   3.89974 | CosZ:      -999 | Prob:0.00194502
+Index:       527 | NuType: -1 | OscChan:  1 ->   2 | Energy:    4.4775 | CosZ:      -999 | Prob:0.00147201
+Index:       528 | NuType: -1 | OscChan:  1 ->   2 | Energy:   5.14085 | CosZ:      -999 | Prob: 0.0011132
+Index:       529 | NuType: -1 | OscChan:  1 ->   2 | Energy:   5.90249 | CosZ:      -999 | Prob:0.000841301
+Index:       530 | NuType: -1 | OscChan:  1 ->   2 | Energy:   6.77697 | CosZ:      -999 | Prob:0.000635433
+Index:       531 | NuType: -1 | OscChan:  1 ->   2 | Energy:     7.781 | CosZ:      -999 | Prob:0.000479659
+Index:       532 | NuType: -1 | OscChan:  1 ->   2 | Energy:   8.93378 | CosZ:      -999 | Prob:0.000361852
+Index:       533 | NuType: -1 | OscChan:  1 ->   2 | Energy:   10.2574 | CosZ:      -999 | Prob: 0.0002728
+Index:       534 | NuType: -1 | OscChan:  1 ->   2 | Energy:    11.777 | CosZ:      -999 | Prob:0.000205514
+Index:       535 | NuType: -1 | OscChan:  1 ->   2 | Energy:   13.5218 | CosZ:      -999 | Prob:0.000154697
+Index:       536 | NuType: -1 | OscChan:  1 ->   2 | Energy:   15.5251 | CosZ:      -999 | Prob:0.000116338
+Index:       537 | NuType: -1 | OscChan:  1 ->   2 | Energy:   17.8252 | CosZ:      -999 | Prob:8.73976e-05
+Index:       538 | NuType: -1 | OscChan:  1 ->   2 | Energy:   20.4661 | CosZ:      -999 | Prob:6.55781e-05
+Index:       539 | NuType: -1 | OscChan:  1 ->   2 | Energy:   23.4982 | CosZ:      -999 | Prob:4.91393e-05
+Index:       540 | NuType: -1 | OscChan:  1 ->   2 | Energy:   26.9796 | CosZ:      -999 | Prob:3.67651e-05
+Index:       541 | NuType: -1 | OscChan:  1 ->   2 | Energy:   30.9767 | CosZ:      -999 | Prob:2.74602e-05
+Index:       542 | NuType: -1 | OscChan:  1 ->   2 | Energy:    35.566 | CosZ:      -999 | Prob:2.04717e-05
+Index:       543 | NuType: -1 | OscChan:  1 ->   2 | Energy:   40.8353 | CosZ:      -999 | Prob:1.52305e-05
+Index:       544 | NuType: -1 | OscChan:  1 ->   2 | Energy:   46.8852 | CosZ:      -999 | Prob:1.13064e-05
+Index:       545 | NuType: -1 | OscChan:  1 ->   2 | Energy:   53.8314 | CosZ:      -999 | Prob:8.37441e-06
+Index:       546 | NuType: -1 | OscChan:  1 ->   2 | Energy:   61.8067 | CosZ:      -999 | Prob:6.18889e-06
+Index:       547 | NuType: -1 | OscChan:  1 ->   2 | Energy:   70.9636 | CosZ:      -999 | Prob:4.56448e-06
+Index:       548 | NuType: -1 | OscChan:  1 ->   2 | Energy:   81.4771 | CosZ:      -999 | Prob:3.36127e-06
+Index:       549 | NuType: -1 | OscChan:  1 ->   2 | Energy:   93.5482 | CosZ:      -999 | Prob:2.47374e-06
+Index:       550 | NuType: -1 | OscChan:  1 ->   3 | Energy:  0.107408 | CosZ:      -999 | Prob:0.00704876
+Index:       551 | NuType: -1 | OscChan:  1 ->   3 | Energy:  0.123321 | CosZ:      -999 | Prob: 0.0180396
+Index:       552 | NuType: -1 | OscChan:  1 ->   3 | Energy:  0.141591 | CosZ:      -999 | Prob:0.00862931
+Index:       553 | NuType: -1 | OscChan:  1 ->   3 | Energy:  0.162568 | CosZ:      -999 | Prob:0.00863676
+Index:       554 | NuType: -1 | OscChan:  1 ->   3 | Energy:  0.186653 | CosZ:      -999 | Prob:  0.013904
+Index:       555 | NuType: -1 | OscChan:  1 ->   3 | Energy:  0.214306 | CosZ:      -999 | Prob:  0.011616
+Index:       556 | NuType: -1 | OscChan:  1 ->   3 | Energy:  0.246057 | CosZ:      -999 | Prob:0.00546193
+Index:       557 | NuType: -1 | OscChan:  1 ->   3 | Energy:  0.282511 | CosZ:      -999 | Prob:0.00333092
+Index:       558 | NuType: -1 | OscChan:  1 ->   3 | Energy:  0.324366 | CosZ:      -999 | Prob:0.00718373
+Index:       559 | NuType: -1 | OscChan:  1 ->   3 | Energy:  0.372422 | CosZ:      -999 | Prob: 0.0142216
+Index:       560 | NuType: -1 | OscChan:  1 ->   3 | Energy:  0.427598 | CosZ:      -999 | Prob: 0.0209695
+Index:       561 | NuType: -1 | OscChan:  1 ->   3 | Energy:  0.490948 | CosZ:      -999 | Prob: 0.0253947
+Index:       562 | NuType: -1 | OscChan:  1 ->   3 | Energy:  0.563684 | CosZ:      -999 | Prob: 0.0270346
+Index:       563 | NuType: -1 | OscChan:  1 ->   3 | Energy:  0.647195 | CosZ:      -999 | Prob: 0.0263587
+Index:       564 | NuType: -1 | OscChan:  1 ->   3 | Energy:   0.74308 | CosZ:      -999 | Prob: 0.0241536
+Index:       565 | NuType: -1 | OscChan:  1 ->   3 | Energy:   0.85317 | CosZ:      -999 | Prob: 0.0211601
+Index:       566 | NuType: -1 | OscChan:  1 ->   3 | Energy:   0.97957 | CosZ:      -999 | Prob: 0.0179322
+Index:       567 | NuType: -1 | OscChan:  1 ->   3 | Energy:    1.1247 | CosZ:      -999 | Prob: 0.0148232
+Index:       568 | NuType: -1 | OscChan:  1 ->   3 | Energy:   1.29132 | CosZ:      -999 | Prob: 0.0120241
+Index:       569 | NuType: -1 | OscChan:  1 ->   3 | Energy:   1.48264 | CosZ:      -999 | Prob: 0.0096135
+Index:       570 | NuType: -1 | OscChan:  1 ->   3 | Energy:    1.7023 | CosZ:      -999 | Prob:0.00760071
+Index:       571 | NuType: -1 | OscChan:  1 ->   3 | Energy:    1.9545 | CosZ:      -999 | Prob:0.00595715
+Index:       572 | NuType: -1 | OscChan:  1 ->   3 | Energy:   2.24406 | CosZ:      -999 | Prob:0.00463706
+Index:       573 | NuType: -1 | OscChan:  1 ->   3 | Energy:   2.57653 | CosZ:      -999 | Prob:0.00358988
+Index:       574 | NuType: -1 | OscChan:  1 ->   3 | Energy:   2.95825 | CosZ:      -999 | Prob:0.00276704
+Index:       575 | NuType: -1 | OscChan:  1 ->   3 | Energy:   3.39653 | CosZ:      -999 | Prob:0.00212523
+Index:       576 | NuType: -1 | OscChan:  1 ->   3 | Energy:   3.89974 | CosZ:      -999 | Prob: 0.0016275
+Index:       577 | NuType: -1 | OscChan:  1 ->   3 | Energy:    4.4775 | CosZ:      -999 | Prob:0.00124327
+Index:       578 | NuType: -1 | OscChan:  1 ->   3 | Energy:   5.14085 | CosZ:      -999 | Prob:0.000947751
+Index:       579 | NuType: -1 | OscChan:  1 ->   3 | Energy:   5.90249 | CosZ:      -999 | Prob:0.000721137
+Index:       580 | NuType: -1 | OscChan:  1 ->   3 | Energy:   6.77697 | CosZ:      -999 | Prob:0.000547792
+Index:       581 | NuType: -1 | OscChan:  1 ->   3 | Energy:     7.781 | CosZ:      -999 | Prob:0.00041547
+Index:       582 | NuType: -1 | OscChan:  1 ->   3 | Energy:   8.93378 | CosZ:      -999 | Prob:0.000314643
+Index:       583 | NuType: -1 | OscChan:  1 ->   3 | Energy:   10.2574 | CosZ:      -999 | Prob:0.000237936
+Index:       584 | NuType: -1 | OscChan:  1 ->   3 | Energy:    11.777 | CosZ:      -999 | Prob:0.000179662
+Index:       585 | NuType: -1 | OscChan:  1 ->   3 | Energy:   13.5218 | CosZ:      -999 | Prob:0.00013545
+Index:       586 | NuType: -1 | OscChan:  1 ->   3 | Energy:   15.5251 | CosZ:      -999 | Prob:0.000101949
+Index:       587 | NuType: -1 | OscChan:  1 ->   3 | Energy:   17.8252 | CosZ:      -999 | Prob:7.65971e-05
+Index:       588 | NuType: -1 | OscChan:  1 ->   3 | Energy:   20.4661 | CosZ:      -999 | Prob:5.74361e-05
+Index:       589 | NuType: -1 | OscChan:  1 ->   3 | Energy:   23.4982 | CosZ:      -999 | Prob:4.29739e-05
+Index:       590 | NuType: -1 | OscChan:  1 ->   3 | Energy:   26.9796 | CosZ:      -999 | Prob:3.2074e-05
+Index:       591 | NuType: -1 | OscChan:  1 ->   3 | Energy:   30.9767 | CosZ:      -999 | Prob:2.38722e-05
+Index:       592 | NuType: -1 | OscChan:  1 ->   3 | Energy:    35.566 | CosZ:      -999 | Prob:1.77114e-05
+Index:       593 | NuType: -1 | OscChan:  1 ->   3 | Energy:   40.8353 | CosZ:      -999 | Prob:1.30931e-05
+Index:       594 | NuType: -1 | OscChan:  1 ->   3 | Energy:   46.8852 | CosZ:      -999 | Prob:9.63902e-06
+Index:       595 | NuType: -1 | OscChan:  1 ->   3 | Energy:   53.8314 | CosZ:      -999 | Prob:7.06265e-06
+Index:       596 | NuType: -1 | OscChan:  1 ->   3 | Energy:   61.8067 | CosZ:      -999 | Prob:5.14696e-06
+Index:       597 | NuType: -1 | OscChan:  1 ->   3 | Energy:   70.9636 | CosZ:      -999 | Prob:3.72783e-06
+Index:       598 | NuType: -1 | OscChan:  1 ->   3 | Energy:   81.4771 | CosZ:      -999 | Prob:2.68121e-06
+Index:       599 | NuType: -1 | OscChan:  1 ->   3 | Energy:   93.5482 | CosZ:      -999 | Prob:1.91346e-06
+Index:       600 | NuType: -1 | OscChan:  2 ->   1 | Energy:  0.107408 | CosZ:      -999 | Prob:0.00784919
+Index:       601 | NuType: -1 | OscChan:  2 ->   1 | Energy:  0.123321 | CosZ:      -999 | Prob: 0.0158564
+Index:       602 | NuType: -1 | OscChan:  2 ->   1 | Energy:  0.141591 | CosZ:      -999 | Prob:0.00938243
+Index:       603 | NuType: -1 | OscChan:  2 ->   1 | Energy:  0.162568 | CosZ:      -999 | Prob: 0.0122237
+Index:       604 | NuType: -1 | OscChan:  2 ->   1 | Energy:  0.186653 | CosZ:      -999 | Prob: 0.0165659
+Index:       605 | NuType: -1 | OscChan:  2 ->   1 | Energy:  0.214306 | CosZ:      -999 | Prob: 0.0120396
+Index:       606 | NuType: -1 | OscChan:  2 ->   1 | Energy:  0.246057 | CosZ:      -999 | Prob:0.00491649
+Index:       607 | NuType: -1 | OscChan:  2 ->   1 | Energy:  0.282511 | CosZ:      -999 | Prob:0.00346106
+Index:       608 | NuType: -1 | OscChan:  2 ->   1 | Energy:  0.324366 | CosZ:      -999 | Prob:0.00878879
+Index:       609 | NuType: -1 | OscChan:  2 ->   1 | Energy:  0.372422 | CosZ:      -999 | Prob:   0.01724
+Index:       610 | NuType: -1 | OscChan:  2 ->   1 | Energy:  0.427598 | CosZ:      -999 | Prob: 0.0249038
+Index:       611 | NuType: -1 | OscChan:  2 ->   1 | Energy:  0.490948 | CosZ:      -999 | Prob: 0.0296811
+Index:       612 | NuType: -1 | OscChan:  2 ->   1 | Energy:  0.563684 | CosZ:      -999 | Prob: 0.0312288
+Index:       613 | NuType: -1 | OscChan:  2 ->   1 | Energy:  0.647195 | CosZ:      -999 | Prob: 0.0301839
+Index:       614 | NuType: -1 | OscChan:  2 ->   1 | Energy:   0.74308 | CosZ:      -999 | Prob: 0.0274768
+Index:       615 | NuType: -1 | OscChan:  2 ->   1 | Energy:   0.85317 | CosZ:      -999 | Prob: 0.0239492
+Index:       616 | NuType: -1 | OscChan:  2 ->   1 | Energy:   0.97957 | CosZ:      -999 | Prob: 0.0202152
+Index:       617 | NuType: -1 | OscChan:  2 ->   1 | Energy:    1.1247 | CosZ:      -999 | Prob: 0.0166578
+Index:       618 | NuType: -1 | OscChan:  2 ->   1 | Energy:   1.29132 | CosZ:      -999 | Prob: 0.0134784
+Index:       619 | NuType: -1 | OscChan:  2 ->   1 | Energy:   1.48264 | CosZ:      -999 | Prob: 0.0107546
+Index:       620 | NuType: -1 | OscChan:  2 ->   1 | Energy:    1.7023 | CosZ:      -999 | Prob:0.00848928
+Index:       621 | NuType: -1 | OscChan:  2 ->   1 | Energy:    1.9545 | CosZ:      -999 | Prob:0.00664508
+Index:       622 | NuType: -1 | OscChan:  2 ->   1 | Energy:   2.24406 | CosZ:      -999 | Prob:0.00516735
+Index:       623 | NuType: -1 | OscChan:  2 ->   1 | Energy:   2.57653 | CosZ:      -999 | Prob:0.00399732
+Index:       624 | NuType: -1 | OscChan:  2 ->   1 | Energy:   2.95825 | CosZ:      -999 | Prob:0.00307933
+Index:       625 | NuType: -1 | OscChan:  2 ->   1 | Energy:   3.39653 | CosZ:      -999 | Prob:0.00236417
+Index:       626 | NuType: -1 | OscChan:  2 ->   1 | Energy:   3.89974 | CosZ:      -999 | Prob:0.00181007
+Index:       627 | NuType: -1 | OscChan:  2 ->   1 | Energy:    4.4775 | CosZ:      -999 | Prob:0.00138265
+Index:       628 | NuType: -1 | OscChan:  2 ->   1 | Energy:   5.14085 | CosZ:      -999 | Prob: 0.0010541
+Index:       629 | NuType: -1 | OscChan:  2 ->   1 | Energy:   5.90249 | CosZ:      -999 | Prob:0.00080225
+Index:       630 | NuType: -1 | OscChan:  2 ->   1 | Energy:   6.77697 | CosZ:      -999 | Prob:0.000609654
+Index:       631 | NuType: -1 | OscChan:  2 ->   1 | Energy:     7.781 | CosZ:      -999 | Prob:0.000462656
+Index:       632 | NuType: -1 | OscChan:  2 ->   1 | Energy:   8.93378 | CosZ:      -999 | Prob:0.000350646
+Index:       633 | NuType: -1 | OscChan:  2 ->   1 | Energy:   10.2574 | CosZ:      -999 | Prob:0.000265421
+Index:       634 | NuType: -1 | OscChan:  2 ->   1 | Energy:    11.777 | CosZ:      -999 | Prob:0.000200659
+Index:       635 | NuType: -1 | OscChan:  2 ->   1 | Energy:   13.5218 | CosZ:      -999 | Prob:0.000151506
+Index:       636 | NuType: -1 | OscChan:  2 ->   1 | Energy:   15.5251 | CosZ:      -999 | Prob:0.000114243
+Index:       637 | NuType: -1 | OscChan:  2 ->   1 | Energy:   17.8252 | CosZ:      -999 | Prob:8.60244e-05
+Index:       638 | NuType: -1 | OscChan:  2 ->   1 | Energy:   20.4661 | CosZ:      -999 | Prob:6.46791e-05
+Index:       639 | NuType: -1 | OscChan:  2 ->   1 | Energy:   23.4982 | CosZ:      -999 | Prob:4.85519e-05
+Index:       640 | NuType: -1 | OscChan:  2 ->   1 | Energy:   26.9796 | CosZ:      -999 | Prob:3.63822e-05
+Index:       641 | NuType: -1 | OscChan:  2 ->   1 | Energy:   30.9767 | CosZ:      -999 | Prob:2.72112e-05
+Index:       642 | NuType: -1 | OscChan:  2 ->   1 | Energy:    35.566 | CosZ:      -999 | Prob:2.03104e-05
+Index:       643 | NuType: -1 | OscChan:  2 ->   1 | Energy:   40.8353 | CosZ:      -999 | Prob:1.51264e-05
+Index:       644 | NuType: -1 | OscChan:  2 ->   1 | Energy:   46.8852 | CosZ:      -999 | Prob:1.12396e-05
+Index:       645 | NuType: -1 | OscChan:  2 ->   1 | Energy:   53.8314 | CosZ:      -999 | Prob:8.33181e-06
+Index:       646 | NuType: -1 | OscChan:  2 ->   1 | Energy:   61.8067 | CosZ:      -999 | Prob:6.16196e-06
+Index:       647 | NuType: -1 | OscChan:  2 ->   1 | Energy:   70.9636 | CosZ:      -999 | Prob:4.54765e-06
+Index:       648 | NuType: -1 | OscChan:  2 ->   1 | Energy:   81.4771 | CosZ:      -999 | Prob:3.3509e-06
+Index:       649 | NuType: -1 | OscChan:  2 ->   1 | Energy:   93.5482 | CosZ:      -999 | Prob:2.46748e-06
+Index:       650 | NuType: -1 | OscChan:  2 ->   2 | Energy:  0.107408 | CosZ:      -999 | Prob:  0.143623
+Index:       651 | NuType: -1 | OscChan:  2 ->   2 | Energy:  0.123321 | CosZ:      -999 | Prob:  0.938697
+Index:       652 | NuType: -1 | OscChan:  2 ->   2 | Energy:  0.141591 | CosZ:      -999 | Prob:  0.652796
+Index:       653 | NuType: -1 | OscChan:  2 ->   2 | Energy:  0.162568 | CosZ:      -999 | Prob: 0.0476028
+Index:       654 | NuType: -1 | OscChan:  2 ->   2 | Energy:  0.186653 | CosZ:      -999 | Prob:  0.165414
+Index:       655 | NuType: -1 | OscChan:  2 ->   2 | Energy:  0.214306 | CosZ:      -999 | Prob:  0.680221
+Index:       656 | NuType: -1 | OscChan:  2 ->   2 | Energy:  0.246057 | CosZ:      -999 | Prob:  0.982793
+Index:       657 | NuType: -1 | OscChan:  2 ->   2 | Energy:  0.282511 | CosZ:      -999 | Prob:  0.906364
+Index:       658 | NuType: -1 | OscChan:  2 ->   2 | Energy:  0.324366 | CosZ:      -999 | Prob:  0.610963
+Index:       659 | NuType: -1 | OscChan:  2 ->   2 | Energy:  0.372422 | CosZ:      -999 | Prob:   0.29997
+Index:       660 | NuType: -1 | OscChan:  2 ->   2 | Energy:  0.427598 | CosZ:      -999 | Prob: 0.0891132
+Index:       661 | NuType: -1 | OscChan:  2 ->   2 | Energy:  0.490948 | CosZ:      -999 | Prob: 0.0047493
+Index:       662 | NuType: -1 | OscChan:  2 ->   2 | Energy:  0.563684 | CosZ:      -999 | Prob: 0.0239696
+Index:       663 | NuType: -1 | OscChan:  2 ->   2 | Energy:  0.647195 | CosZ:      -999 | Prob:  0.109193
+Index:       664 | NuType: -1 | OscChan:  2 ->   2 | Energy:   0.74308 | CosZ:      -999 | Prob:  0.226528
+Index:       665 | NuType: -1 | OscChan:  2 ->   2 | Energy:   0.85317 | CosZ:      -999 | Prob:  0.351876
+Index:       666 | NuType: -1 | OscChan:  2 ->   2 | Energy:   0.97957 | CosZ:      -999 | Prob:  0.470767
+Index:       667 | NuType: -1 | OscChan:  2 ->   2 | Energy:    1.1247 | CosZ:      -999 | Prob:  0.575996
+Index:       668 | NuType: -1 | OscChan:  2 ->   2 | Energy:   1.29132 | CosZ:      -999 | Prob:  0.665079
+Index:       669 | NuType: -1 | OscChan:  2 ->   2 | Energy:   1.48264 | CosZ:      -999 | Prob:  0.738243
+Index:       670 | NuType: -1 | OscChan:  2 ->   2 | Energy:    1.7023 | CosZ:      -999 | Prob:  0.797063
+Index:       671 | NuType: -1 | OscChan:  2 ->   2 | Energy:    1.9545 | CosZ:      -999 | Prob:   0.84363
+Index:       672 | NuType: -1 | OscChan:  2 ->   2 | Energy:   2.24406 | CosZ:      -999 | Prob:  0.880082
+Index:       673 | NuType: -1 | OscChan:  2 ->   2 | Energy:   2.57653 | CosZ:      -999 | Prob:  0.908377
+Index:       674 | NuType: -1 | OscChan:  2 ->   2 | Energy:   2.95825 | CosZ:      -999 | Prob:  0.930203
+Index:       675 | NuType: -1 | OscChan:  2 ->   2 | Energy:   3.39653 | CosZ:      -999 | Prob:  0.946959
+Index:       676 | NuType: -1 | OscChan:  2 ->   2 | Energy:   3.89974 | CosZ:      -999 | Prob:  0.959774
+Index:       677 | NuType: -1 | OscChan:  2 ->   2 | Energy:    4.4775 | CosZ:      -999 | Prob:  0.969548
+Index:       678 | NuType: -1 | OscChan:  2 ->   2 | Energy:   5.14085 | CosZ:      -999 | Prob:  0.976984
+Index:       679 | NuType: -1 | OscChan:  2 ->   2 | Energy:   5.90249 | CosZ:      -999 | Prob:  0.982632
+Index:       680 | NuType: -1 | OscChan:  2 ->   2 | Energy:   6.77697 | CosZ:      -999 | Prob:  0.986914
+Index:       681 | NuType: -1 | OscChan:  2 ->   2 | Energy:     7.781 | CosZ:      -999 | Prob:  0.990157
+Index:       682 | NuType: -1 | OscChan:  2 ->   2 | Energy:   8.93378 | CosZ:      -999 | Prob:  0.992609
+Index:       683 | NuType: -1 | OscChan:  2 ->   2 | Energy:   10.2574 | CosZ:      -999 | Prob:   0.99446
+Index:       684 | NuType: -1 | OscChan:  2 ->   2 | Energy:    11.777 | CosZ:      -999 | Prob:  0.995857
+Index:       685 | NuType: -1 | OscChan:  2 ->   2 | Energy:   13.5218 | CosZ:      -999 | Prob:  0.996909
+Index:       686 | NuType: -1 | OscChan:  2 ->   2 | Energy:   15.5251 | CosZ:      -999 | Prob:    0.9977
+Index:       687 | NuType: -1 | OscChan:  2 ->   2 | Energy:   17.8252 | CosZ:      -999 | Prob:  0.998294
+Index:       688 | NuType: -1 | OscChan:  2 ->   2 | Energy:   20.4661 | CosZ:      -999 | Prob:  0.998739
+Index:       689 | NuType: -1 | OscChan:  2 ->   2 | Energy:   23.4982 | CosZ:      -999 | Prob:  0.999072
+Index:       690 | NuType: -1 | OscChan:  2 ->   2 | Energy:   26.9796 | CosZ:      -999 | Prob:   0.99932
+Index:       691 | NuType: -1 | OscChan:  2 ->   2 | Energy:   30.9767 | CosZ:      -999 | Prob:  0.999504
+Index:       692 | NuType: -1 | OscChan:  2 ->   2 | Energy:    35.566 | CosZ:      -999 | Prob:  0.999641
+Index:       693 | NuType: -1 | OscChan:  2 ->   2 | Energy:   40.8353 | CosZ:      -999 | Prob:  0.999741
+Index:       694 | NuType: -1 | OscChan:  2 ->   2 | Energy:   46.8852 | CosZ:      -999 | Prob:  0.999814
+Index:       695 | NuType: -1 | OscChan:  2 ->   2 | Energy:   53.8314 | CosZ:      -999 | Prob:  0.999868
+Index:       696 | NuType: -1 | OscChan:  2 ->   2 | Energy:   61.8067 | CosZ:      -999 | Prob:  0.999905
+Index:       697 | NuType: -1 | OscChan:  2 ->   2 | Energy:   70.9636 | CosZ:      -999 | Prob:  0.999932
+Index:       698 | NuType: -1 | OscChan:  2 ->   2 | Energy:   81.4771 | CosZ:      -999 | Prob:  0.999949
+Index:       699 | NuType: -1 | OscChan:  2 ->   2 | Energy:   93.5482 | CosZ:      -999 | Prob:   0.99996
+Index:       700 | NuType: -1 | OscChan:  2 ->   3 | Energy:  0.107408 | CosZ:      -999 | Prob:  0.848529
+Index:       701 | NuType: -1 | OscChan:  2 ->   3 | Energy:  0.123321 | CosZ:      -999 | Prob: 0.0454473
+Index:       702 | NuType: -1 | OscChan:  2 ->   3 | Energy:  0.141591 | CosZ:      -999 | Prob:  0.337822
+Index:       703 | NuType: -1 | OscChan:  2 ->   3 | Energy:  0.162568 | CosZ:      -999 | Prob:  0.940174
+Index:       704 | NuType: -1 | OscChan:  2 ->   3 | Energy:  0.186653 | CosZ:      -999 | Prob:  0.818021
+Index:       705 | NuType: -1 | OscChan:  2 ->   3 | Energy:  0.214306 | CosZ:      -999 | Prob:  0.307741
+Index:       706 | NuType: -1 | OscChan:  2 ->   3 | Energy:  0.246057 | CosZ:      -999 | Prob: 0.0122918
+Index:       707 | NuType: -1 | OscChan:  2 ->   3 | Energy:  0.282511 | CosZ:      -999 | Prob: 0.0901763
+Index:       708 | NuType: -1 | OscChan:  2 ->   3 | Energy:  0.324366 | CosZ:      -999 | Prob:   0.38025
+Index:       709 | NuType: -1 | OscChan:  2 ->   3 | Energy:  0.372422 | CosZ:      -999 | Prob:  0.682791
+Index:       710 | NuType: -1 | OscChan:  2 ->   3 | Energy:  0.427598 | CosZ:      -999 | Prob:  0.885984
+Index:       711 | NuType: -1 | OscChan:  2 ->   3 | Energy:  0.490948 | CosZ:      -999 | Prob:  0.965571
+Index:       712 | NuType: -1 | OscChan:  2 ->   3 | Energy:  0.563684 | CosZ:      -999 | Prob:  0.944802
+Index:       713 | NuType: -1 | OscChan:  2 ->   3 | Energy:  0.647195 | CosZ:      -999 | Prob:  0.860624
+Index:       714 | NuType: -1 | OscChan:  2 ->   3 | Energy:   0.74308 | CosZ:      -999 | Prob:  0.745997
+Index:       715 | NuType: -1 | OscChan:  2 ->   3 | Energy:   0.85317 | CosZ:      -999 | Prob:  0.624175
+Index:       716 | NuType: -1 | OscChan:  2 ->   3 | Energy:   0.97957 | CosZ:      -999 | Prob:  0.509018
+Index:       717 | NuType: -1 | OscChan:  2 ->   3 | Energy:    1.1247 | CosZ:      -999 | Prob:  0.407347
+Index:       718 | NuType: -1 | OscChan:  2 ->   3 | Energy:   1.29132 | CosZ:      -999 | Prob:  0.321443
+Index:       719 | NuType: -1 | OscChan:  2 ->   3 | Energy:   1.48264 | CosZ:      -999 | Prob:  0.251003
+Index:       720 | NuType: -1 | OscChan:  2 ->   3 | Energy:    1.7023 | CosZ:      -999 | Prob:  0.194448
+Index:       721 | NuType: -1 | OscChan:  2 ->   3 | Energy:    1.9545 | CosZ:      -999 | Prob:  0.149726
+Index:       722 | NuType: -1 | OscChan:  2 ->   3 | Energy:   2.24406 | CosZ:      -999 | Prob:  0.114752
+Index:       723 | NuType: -1 | OscChan:  2 ->   3 | Energy:   2.57653 | CosZ:      -999 | Prob: 0.0876261
+Index:       724 | NuType: -1 | OscChan:  2 ->   3 | Energy:   2.95825 | CosZ:      -999 | Prob: 0.0667179
+Index:       725 | NuType: -1 | OscChan:  2 ->   3 | Energy:   3.39653 | CosZ:      -999 | Prob: 0.0506777
+Index:       726 | NuType: -1 | OscChan:  2 ->   3 | Energy:   3.89974 | CosZ:      -999 | Prob: 0.0384164
+Index:       727 | NuType: -1 | OscChan:  2 ->   3 | Energy:    4.4775 | CosZ:      -999 | Prob: 0.0290703
+Index:       728 | NuType: -1 | OscChan:  2 ->   3 | Energy:   5.14085 | CosZ:      -999 | Prob: 0.0219623
+Index:       729 | NuType: -1 | OscChan:  2 ->   3 | Energy:   5.90249 | CosZ:      -999 | Prob: 0.0165665
+Index:       730 | NuType: -1 | OscChan:  2 ->   3 | Energy:   6.77697 | CosZ:      -999 | Prob: 0.0124768
+Index:       731 | NuType: -1 | OscChan:  2 ->   3 | Energy:     7.781 | CosZ:      -999 | Prob:0.00938143
+Index:       732 | NuType: -1 | OscChan:  2 ->   3 | Energy:   8.93378 | CosZ:      -999 | Prob:0.00704163
+Index:       733 | NuType: -1 | OscChan:  2 ->   3 | Energy:   10.2574 | CosZ:      -999 | Prob:0.00527519
+Index:       734 | NuType: -1 | OscChan:  2 ->   3 | Energy:    11.777 | CosZ:      -999 | Prob: 0.0039433
+Index:       735 | NuType: -1 | OscChan:  2 ->   3 | Energy:   13.5218 | CosZ:      -999 | Prob: 0.0029404
+Index:       736 | NuType: -1 | OscChan:  2 ->   3 | Energy:   15.5251 | CosZ:      -999 | Prob:0.00218634
+Index:       737 | NuType: -1 | OscChan:  2 ->   3 | Energy:   17.8252 | CosZ:      -999 | Prob: 0.0016203
+Index:       738 | NuType: -1 | OscChan:  2 ->   3 | Energy:   20.4661 | CosZ:      -999 | Prob:0.00119618
+Index:       739 | NuType: -1 | OscChan:  2 ->   3 | Energy:   23.4982 | CosZ:      -999 | Prob:0.000879087
+Index:       740 | NuType: -1 | OscChan:  2 ->   3 | Energy:   26.9796 | CosZ:      -999 | Prob:0.000642596
+Index:       741 | NuType: -1 | OscChan:  2 ->   3 | Energy:   30.9767 | CosZ:      -999 | Prob:0.00046674
+Index:       742 | NuType: -1 | OscChan:  2 ->   3 | Energy:    35.566 | CosZ:      -999 | Prob:0.000336429
+Index:       743 | NuType: -1 | OscChan:  2 ->   3 | Energy:   40.8353 | CosZ:      -999 | Prob:0.000240271
+Index:       744 | NuType: -1 | OscChan:  2 ->   3 | Energy:   46.8852 | CosZ:      -999 | Prob:0.000169676
+Index:       745 | NuType: -1 | OscChan:  2 ->   3 | Energy:   53.8314 | CosZ:      -999 | Prob:0.000118169
+Index:       746 | NuType: -1 | OscChan:  2 ->   3 | Energy:   61.8067 | CosZ:      -999 | Prob:8.08793e-05
+Index:       747 | NuType: -1 | OscChan:  2 ->   3 | Energy:   70.9636 | CosZ:      -999 | Prob:5.4144e-05
+Index:       748 | NuType: -1 | OscChan:  2 ->   3 | Energy:   81.4771 | CosZ:      -999 | Prob:3.52149e-05
+Index:       749 | NuType: -1 | OscChan:  2 ->   3 | Energy:   93.5482 | CosZ:      -999 | Prob:2.20331e-05
+Index:       750 | NuType: -1 | OscChan:  3 ->   1 | Energy:  0.107408 | CosZ:      -999 | Prob:  0.109876
+Index:       751 | NuType: -1 | OscChan:  3 ->   1 | Energy:  0.123321 | CosZ:      -999 | Prob: 0.0247084
+Index:       752 | NuType: -1 | OscChan:  3 ->   1 | Energy:  0.141591 | CosZ:      -999 | Prob: 0.0325871
+Index:       753 | NuType: -1 | OscChan:  3 ->   1 | Energy:  0.162568 | CosZ:      -999 | Prob: 0.0790648
+Index:       754 | NuType: -1 | OscChan:  3 ->   1 | Energy:  0.186653 | CosZ:      -999 | Prob: 0.0717853
+Index:       755 | NuType: -1 | OscChan:  3 ->   1 | Energy:  0.214306 | CosZ:      -999 | Prob: 0.0325227
+Index:       756 | NuType: -1 | OscChan:  3 ->   1 | Energy:  0.246057 | CosZ:      -999 | Prob:0.00656681
+Index:       757 | NuType: -1 | OscChan:  3 ->   1 | Energy:  0.282511 | CosZ:      -999 | Prob:0.00606258
+Index:       758 | NuType: -1 | OscChan:  3 ->   1 | Energy:  0.324366 | CosZ:      -999 | Prob: 0.0202448
+Index:       759 | NuType: -1 | OscChan:  3 ->   1 | Energy:  0.372422 | CosZ:      -999 | Prob: 0.0360347
+Index:       760 | NuType: -1 | OscChan:  3 ->   1 | Energy:  0.427598 | CosZ:      -999 | Prob:  0.046433
+Index:       761 | NuType: -1 | OscChan:  3 ->   1 | Energy:  0.490948 | CosZ:      -999 | Prob: 0.0500589
+Index:       762 | NuType: -1 | OscChan:  3 ->   1 | Energy:  0.563684 | CosZ:      -999 | Prob: 0.0483559
+Index:       763 | NuType: -1 | OscChan:  3 ->   1 | Energy:  0.647195 | CosZ:      -999 | Prob: 0.0434579
+Index:       764 | NuType: -1 | OscChan:  3 ->   1 | Energy:   0.74308 | CosZ:      -999 | Prob: 0.0371739
+Index:       765 | NuType: -1 | OscChan:  3 ->   1 | Energy:   0.85317 | CosZ:      -999 | Prob: 0.0307156
+Index:       766 | NuType: -1 | OscChan:  3 ->   1 | Energy:   0.97957 | CosZ:      -999 | Prob: 0.0247599
+Index:       767 | NuType: -1 | OscChan:  3 ->   1 | Energy:    1.1247 | CosZ:      -999 | Prob: 0.0196069
+Index:       768 | NuType: -1 | OscChan:  3 ->   1 | Energy:   1.29132 | CosZ:      -999 | Prob: 0.0153272
+Index:       769 | NuType: -1 | OscChan:  3 ->   1 | Energy:   1.48264 | CosZ:      -999 | Prob: 0.0118695
+Index:       770 | NuType: -1 | OscChan:  3 ->   1 | Energy:    1.7023 | CosZ:      -999 | Prob:0.00912896
+Index:       771 | NuType: -1 | OscChan:  3 ->   1 | Energy:    1.9545 | CosZ:      -999 | Prob:0.00698598
+Index:       772 | NuType: -1 | OscChan:  3 ->   1 | Energy:   2.24406 | CosZ:      -999 | Prob: 0.0053264
+Index:       773 | NuType: -1 | OscChan:  3 ->   1 | Energy:   2.57653 | CosZ:      -999 | Prob:0.00405008
+Index:       774 | NuType: -1 | OscChan:  3 ->   1 | Energy:   2.95825 | CosZ:      -999 | Prob: 0.0030734
+Index:       775 | NuType: -1 | OscChan:  3 ->   1 | Energy:   3.39653 | CosZ:      -999 | Prob:0.00232873
+Index:       776 | NuType: -1 | OscChan:  3 ->   1 | Energy:   3.89974 | CosZ:      -999 | Prob:0.00176244
+Index:       777 | NuType: -1 | OscChan:  3 ->   1 | Energy:    4.4775 | CosZ:      -999 | Prob:0.00133263
+Index:       778 | NuType: -1 | OscChan:  3 ->   1 | Energy:   5.14085 | CosZ:      -999 | Prob:0.00100685
+Index:       779 | NuType: -1 | OscChan:  3 ->   1 | Energy:   5.90249 | CosZ:      -999 | Prob:0.000760187
+Index:       780 | NuType: -1 | OscChan:  3 ->   1 | Energy:   6.77697 | CosZ:      -999 | Prob:0.000573571
+Index:       781 | NuType: -1 | OscChan:  3 ->   1 | Energy:     7.781 | CosZ:      -999 | Prob:0.000432473
+Index:       782 | NuType: -1 | OscChan:  3 ->   1 | Energy:   8.93378 | CosZ:      -999 | Prob:0.000325849
+Index:       783 | NuType: -1 | OscChan:  3 ->   1 | Energy:   10.2574 | CosZ:      -999 | Prob:0.000245315
+Index:       784 | NuType: -1 | OscChan:  3 ->   1 | Energy:    11.777 | CosZ:      -999 | Prob:0.000184517
+Index:       785 | NuType: -1 | OscChan:  3 ->   1 | Energy:   13.5218 | CosZ:      -999 | Prob:0.00013864
+Index:       786 | NuType: -1 | OscChan:  3 ->   1 | Energy:   15.5251 | CosZ:      -999 | Prob:0.000104044
+Index:       787 | NuType: -1 | OscChan:  3 ->   1 | Energy:   17.8252 | CosZ:      -999 | Prob:7.79703e-05
+Index:       788 | NuType: -1 | OscChan:  3 ->   1 | Energy:   20.4661 | CosZ:      -999 | Prob:5.8335e-05
+Index:       789 | NuType: -1 | OscChan:  3 ->   1 | Energy:   23.4982 | CosZ:      -999 | Prob:4.35612e-05
+Index:       790 | NuType: -1 | OscChan:  3 ->   1 | Energy:   26.9796 | CosZ:      -999 | Prob:3.2457e-05
+Index:       791 | NuType: -1 | OscChan:  3 ->   1 | Energy:   30.9767 | CosZ:      -999 | Prob:2.41211e-05
+Index:       792 | NuType: -1 | OscChan:  3 ->   1 | Energy:    35.566 | CosZ:      -999 | Prob:1.78727e-05
+Index:       793 | NuType: -1 | OscChan:  3 ->   1 | Energy:   40.8353 | CosZ:      -999 | Prob:1.31971e-05
+Index:       794 | NuType: -1 | OscChan:  3 ->   1 | Energy:   46.8852 | CosZ:      -999 | Prob:9.70583e-06
+Index:       795 | NuType: -1 | OscChan:  3 ->   1 | Energy:   53.8314 | CosZ:      -999 | Prob:7.10525e-06
+Index:       796 | NuType: -1 | OscChan:  3 ->   1 | Energy:   61.8067 | CosZ:      -999 | Prob:5.17389e-06
+Index:       797 | NuType: -1 | OscChan:  3 ->   1 | Energy:   70.9636 | CosZ:      -999 | Prob:3.74467e-06
+Index:       798 | NuType: -1 | OscChan:  3 ->   1 | Energy:   81.4771 | CosZ:      -999 | Prob:2.69158e-06
+Index:       799 | NuType: -1 | OscChan:  3 ->   1 | Energy:   93.5482 | CosZ:      -999 | Prob:1.91973e-06
+Index:       800 | NuType: -1 | OscChan:  3 ->   2 | Energy:  0.107408 | CosZ:      -999 | Prob:  0.745702
+Index:       801 | NuType: -1 | OscChan:  3 ->   2 | Energy:  0.123321 | CosZ:      -999 | Prob: 0.0387785
+Index:       802 | NuType: -1 | OscChan:  3 ->   2 | Energy:  0.141591 | CosZ:      -999 | Prob:  0.313865
+Index:       803 | NuType: -1 | OscChan:  3 ->   2 | Energy:  0.162568 | CosZ:      -999 | Prob:  0.869746
+Index:       804 | NuType: -1 | OscChan:  3 ->   2 | Energy:  0.186653 | CosZ:      -999 | Prob:   0.76014
+Index:       805 | NuType: -1 | OscChan:  3 ->   2 | Energy:  0.214306 | CosZ:      -999 | Prob:  0.286834
+Index:       806 | NuType: -1 | OscChan:  3 ->   2 | Energy:  0.246057 | CosZ:      -999 | Prob: 0.0111869
+Index:       807 | NuType: -1 | OscChan:  3 ->   2 | Energy:  0.282511 | CosZ:      -999 | Prob: 0.0874446
+Index:       808 | NuType: -1 | OscChan:  3 ->   2 | Energy:  0.324366 | CosZ:      -999 | Prob:  0.367189
+Index:       809 | NuType: -1 | OscChan:  3 ->   2 | Energy:  0.372422 | CosZ:      -999 | Prob:  0.660978
+Index:       810 | NuType: -1 | OscChan:  3 ->   2 | Energy:  0.427598 | CosZ:      -999 | Prob:   0.86052
+Index:       811 | NuType: -1 | OscChan:  3 ->   2 | Energy:  0.490948 | CosZ:      -999 | Prob:  0.940906
+Index:       812 | NuType: -1 | OscChan:  3 ->   2 | Energy:  0.563684 | CosZ:      -999 | Prob:  0.923481
+Index:       813 | NuType: -1 | OscChan:  3 ->   2 | Energy:  0.647195 | CosZ:      -999 | Prob:  0.843525
+Index:       814 | NuType: -1 | OscChan:  3 ->   2 | Energy:   0.74308 | CosZ:      -999 | Prob:  0.732976
+Index:       815 | NuType: -1 | OscChan:  3 ->   2 | Energy:   0.85317 | CosZ:      -999 | Prob:   0.61462
+Index:       816 | NuType: -1 | OscChan:  3 ->   2 | Energy:   0.97957 | CosZ:      -999 | Prob:   0.50219
+Index:       817 | NuType: -1 | OscChan:  3 ->   2 | Energy:    1.1247 | CosZ:      -999 | Prob:  0.402563
+Index:       818 | NuType: -1 | OscChan:  3 ->   2 | Energy:   1.29132 | CosZ:      -999 | Prob:   0.31814
+Index:       819 | NuType: -1 | OscChan:  3 ->   2 | Energy:   1.48264 | CosZ:      -999 | Prob:  0.248747
+Index:       820 | NuType: -1 | OscChan:  3 ->   2 | Energy:    1.7023 | CosZ:      -999 | Prob:   0.19292
+Index:       821 | NuType: -1 | OscChan:  3 ->   2 | Energy:    1.9545 | CosZ:      -999 | Prob:  0.148697
+Index:       822 | NuType: -1 | OscChan:  3 ->   2 | Energy:   2.24406 | CosZ:      -999 | Prob:  0.114062
+Index:       823 | NuType: -1 | OscChan:  3 ->   2 | Energy:   2.57653 | CosZ:      -999 | Prob: 0.0871659
+Index:       824 | NuType: -1 | OscChan:  3 ->   2 | Energy:   2.95825 | CosZ:      -999 | Prob: 0.0664116
+Index:       825 | NuType: -1 | OscChan:  3 ->   2 | Energy:   3.39653 | CosZ:      -999 | Prob: 0.0504742
+Index:       826 | NuType: -1 | OscChan:  3 ->   2 | Energy:   3.89974 | CosZ:      -999 | Prob: 0.0382815
+Index:       827 | NuType: -1 | OscChan:  3 ->   2 | Energy:    4.4775 | CosZ:      -999 | Prob:  0.028981
+Index:       828 | NuType: -1 | OscChan:  3 ->   2 | Energy:   5.14085 | CosZ:      -999 | Prob: 0.0219032
+Index:       829 | NuType: -1 | OscChan:  3 ->   2 | Energy:   5.90249 | CosZ:      -999 | Prob: 0.0165274
+Index:       830 | NuType: -1 | OscChan:  3 ->   2 | Energy:   6.77697 | CosZ:      -999 | Prob:  0.012451
+Index:       831 | NuType: -1 | OscChan:  3 ->   2 | Energy:     7.781 | CosZ:      -999 | Prob:0.00936443
+Index:       832 | NuType: -1 | OscChan:  3 ->   2 | Energy:   8.93378 | CosZ:      -999 | Prob:0.00703043
+Index:       833 | NuType: -1 | OscChan:  3 ->   2 | Energy:   10.2574 | CosZ:      -999 | Prob:0.00526781
+Index:       834 | NuType: -1 | OscChan:  3 ->   2 | Energy:    11.777 | CosZ:      -999 | Prob:0.00393844
+Index:       835 | NuType: -1 | OscChan:  3 ->   2 | Energy:   13.5218 | CosZ:      -999 | Prob:0.00293721
+Index:       836 | NuType: -1 | OscChan:  3 ->   2 | Energy:   15.5251 | CosZ:      -999 | Prob:0.00218425
+Index:       837 | NuType: -1 | OscChan:  3 ->   2 | Energy:   17.8252 | CosZ:      -999 | Prob:0.00161893
+Index:       838 | NuType: -1 | OscChan:  3 ->   2 | Energy:   20.4661 | CosZ:      -999 | Prob:0.00119528
+Index:       839 | NuType: -1 | OscChan:  3 ->   2 | Energy:   23.4982 | CosZ:      -999 | Prob:0.000878499
+Index:       840 | NuType: -1 | OscChan:  3 ->   2 | Energy:   26.9796 | CosZ:      -999 | Prob:0.000642213
+Index:       841 | NuType: -1 | OscChan:  3 ->   2 | Energy:   30.9767 | CosZ:      -999 | Prob:0.000466491
+Index:       842 | NuType: -1 | OscChan:  3 ->   2 | Energy:    35.566 | CosZ:      -999 | Prob:0.000336267
+Index:       843 | NuType: -1 | OscChan:  3 ->   2 | Energy:   40.8353 | CosZ:      -999 | Prob:0.000240167
+Index:       844 | NuType: -1 | OscChan:  3 ->   2 | Energy:   46.8852 | CosZ:      -999 | Prob:0.000169609
+Index:       845 | NuType: -1 | OscChan:  3 ->   2 | Energy:   53.8314 | CosZ:      -999 | Prob:0.000118127
+Index:       846 | NuType: -1 | OscChan:  3 ->   2 | Energy:   61.8067 | CosZ:      -999 | Prob:8.08524e-05
+Index:       847 | NuType: -1 | OscChan:  3 ->   2 | Energy:   70.9636 | CosZ:      -999 | Prob:5.41272e-05
+Index:       848 | NuType: -1 | OscChan:  3 ->   2 | Energy:   81.4771 | CosZ:      -999 | Prob:3.52046e-05
+Index:       849 | NuType: -1 | OscChan:  3 ->   2 | Energy:   93.5482 | CosZ:      -999 | Prob:2.20268e-05
+Index:       850 | NuType: -1 | OscChan:  3 ->   3 | Energy:  0.107408 | CosZ:      -999 | Prob:  0.144423
+Index:       851 | NuType: -1 | OscChan:  3 ->   3 | Energy:  0.123321 | CosZ:      -999 | Prob:  0.936514
+Index:       852 | NuType: -1 | OscChan:  3 ->   3 | Energy:  0.141591 | CosZ:      -999 | Prob:  0.653549
+Index:       853 | NuType: -1 | OscChan:  3 ->   3 | Energy:  0.162568 | CosZ:      -999 | Prob: 0.0511898
+Index:       854 | NuType: -1 | OscChan:  3 ->   3 | Energy:  0.186653 | CosZ:      -999 | Prob:  0.168076
+Index:       855 | NuType: -1 | OscChan:  3 ->   3 | Energy:  0.214306 | CosZ:      -999 | Prob:  0.680644
+Index:       856 | NuType: -1 | OscChan:  3 ->   3 | Energy:  0.246057 | CosZ:      -999 | Prob:  0.982247
+Index:       857 | NuType: -1 | OscChan:  3 ->   3 | Energy:  0.282511 | CosZ:      -999 | Prob:  0.906494
+Index:       858 | NuType: -1 | OscChan:  3 ->   3 | Energy:  0.324366 | CosZ:      -999 | Prob:  0.612568
+Index:       859 | NuType: -1 | OscChan:  3 ->   3 | Energy:  0.372422 | CosZ:      -999 | Prob:  0.302988
+Index:       860 | NuType: -1 | OscChan:  3 ->   3 | Energy:  0.427598 | CosZ:      -999 | Prob: 0.0930475
+Index:       861 | NuType: -1 | OscChan:  3 ->   3 | Energy:  0.490948 | CosZ:      -999 | Prob:0.00903562
+Index:       862 | NuType: -1 | OscChan:  3 ->   3 | Energy:  0.563684 | CosZ:      -999 | Prob: 0.0281639
+Index:       863 | NuType: -1 | OscChan:  3 ->   3 | Energy:  0.647195 | CosZ:      -999 | Prob:  0.113018
+Index:       864 | NuType: -1 | OscChan:  3 ->   3 | Energy:   0.74308 | CosZ:      -999 | Prob:  0.229851
+Index:       865 | NuType: -1 | OscChan:  3 ->   3 | Energy:   0.85317 | CosZ:      -999 | Prob:  0.354665
+Index:       866 | NuType: -1 | OscChan:  3 ->   3 | Energy:   0.97957 | CosZ:      -999 | Prob:   0.47305
+Index:       867 | NuType: -1 | OscChan:  3 ->   3 | Energy:    1.1247 | CosZ:      -999 | Prob:  0.577831
+Index:       868 | NuType: -1 | OscChan:  3 ->   3 | Energy:   1.29132 | CosZ:      -999 | Prob:  0.666534
+Index:       869 | NuType: -1 | OscChan:  3 ->   3 | Energy:   1.48264 | CosZ:      -999 | Prob:  0.739384
+Index:       870 | NuType: -1 | OscChan:  3 ->   3 | Energy:    1.7023 | CosZ:      -999 | Prob:  0.797952
+Index:       871 | NuType: -1 | OscChan:  3 ->   3 | Energy:    1.9545 | CosZ:      -999 | Prob:  0.844318
+Index:       872 | NuType: -1 | OscChan:  3 ->   3 | Energy:   2.24406 | CosZ:      -999 | Prob:  0.880612
+Index:       873 | NuType: -1 | OscChan:  3 ->   3 | Energy:   2.57653 | CosZ:      -999 | Prob:  0.908785
+Index:       874 | NuType: -1 | OscChan:  3 ->   3 | Energy:   2.95825 | CosZ:      -999 | Prob:  0.930516
+Index:       875 | NuType: -1 | OscChan:  3 ->   3 | Energy:   3.39653 | CosZ:      -999 | Prob:  0.947198
+Index:       876 | NuType: -1 | OscChan:  3 ->   3 | Energy:   3.89974 | CosZ:      -999 | Prob:  0.959957
+Index:       877 | NuType: -1 | OscChan:  3 ->   3 | Energy:    4.4775 | CosZ:      -999 | Prob:  0.969687
+Index:       878 | NuType: -1 | OscChan:  3 ->   3 | Energy:   5.14085 | CosZ:      -999 | Prob:  0.977091
+Index:       879 | NuType: -1 | OscChan:  3 ->   3 | Energy:   5.90249 | CosZ:      -999 | Prob:  0.982713
+Index:       880 | NuType: -1 | OscChan:  3 ->   3 | Energy:   6.77697 | CosZ:      -999 | Prob:  0.986976
+Index:       881 | NuType: -1 | OscChan:  3 ->   3 | Energy:     7.781 | CosZ:      -999 | Prob:  0.990204
+Index:       882 | NuType: -1 | OscChan:  3 ->   3 | Energy:   8.93378 | CosZ:      -999 | Prob:  0.992645
+Index:       883 | NuType: -1 | OscChan:  3 ->   3 | Energy:   10.2574 | CosZ:      -999 | Prob:  0.994488
+Index:       884 | NuType: -1 | OscChan:  3 ->   3 | Energy:    11.777 | CosZ:      -999 | Prob:  0.995879
+Index:       885 | NuType: -1 | OscChan:  3 ->   3 | Energy:   13.5218 | CosZ:      -999 | Prob:  0.996925
+Index:       886 | NuType: -1 | OscChan:  3 ->   3 | Energy:   15.5251 | CosZ:      -999 | Prob:  0.997713
+Index:       887 | NuType: -1 | OscChan:  3 ->   3 | Energy:   17.8252 | CosZ:      -999 | Prob:  0.998304
+Index:       888 | NuType: -1 | OscChan:  3 ->   3 | Energy:   20.4661 | CosZ:      -999 | Prob:  0.998747
+Index:       889 | NuType: -1 | OscChan:  3 ->   3 | Energy:   23.4982 | CosZ:      -999 | Prob:  0.999078
+Index:       890 | NuType: -1 | OscChan:  3 ->   3 | Energy:   26.9796 | CosZ:      -999 | Prob:  0.999325
+Index:       891 | NuType: -1 | OscChan:  3 ->   3 | Energy:   30.9767 | CosZ:      -999 | Prob:  0.999508
+Index:       892 | NuType: -1 | OscChan:  3 ->   3 | Energy:    35.566 | CosZ:      -999 | Prob:  0.999644
+Index:       893 | NuType: -1 | OscChan:  3 ->   3 | Energy:   40.8353 | CosZ:      -999 | Prob:  0.999744
+Index:       894 | NuType: -1 | OscChan:  3 ->   3 | Energy:   46.8852 | CosZ:      -999 | Prob:  0.999817
+Index:       895 | NuType: -1 | OscChan:  3 ->   3 | Energy:   53.8314 | CosZ:      -999 | Prob:   0.99987
+Index:       896 | NuType: -1 | OscChan:  3 ->   3 | Energy:   61.8067 | CosZ:      -999 | Prob:  0.999907
+Index:       897 | NuType: -1 | OscChan:  3 ->   3 | Energy:   70.9636 | CosZ:      -999 | Prob:  0.999934
+Index:       898 | NuType: -1 | OscChan:  3 ->   3 | Energy:   81.4771 | CosZ:      -999 | Prob:  0.999951
+Index:       899 | NuType: -1 | OscChan:  3 ->   3 | Energy:   93.5482 | CosZ:      -999 | Prob:  0.999962
+Finished reweight in executable
+========================================================

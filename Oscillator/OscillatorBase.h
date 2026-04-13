@@ -86,12 +86,36 @@ class OscillatorBase {
   int ReturnNEnergyPoints();
 
   /**
+   * @brief Return the vector of Energy points which are being used by the specific instance of OscProbCalcerBase::OscProbCalcerBase() contained in this instance of OscillatorBase::OscillatorBase()
+   * @return Return the vector of Energy points which are being used by the specific instance of OscProbCalcerBase::OscProbCalcerBase() contained in this instance of OscillatorBase::OscillatorBase()
+   */
+  std::vector<FLOAT_T> ReturnEnergyArray();
+
+  /**
    * @brief Return the number of CosineZ points which are being evaluated in the OscProbCalcerBase::OscProbCalcerBase() object
    *
    * @return Returns an integer describing the number of CosineZ points which are being evaluated in the OscProbCalcerBase::OscProbCalcerBase() object
    */
   int ReturnNCosineZPoints();
 
+  /**
+   * @brief Return the vector of CosineZ points which are being used by the specific instance of OscProbCalcerBase::OscProbCalcerBase() contained in this instance of OscillatorBase::OscillatorBase()
+   * @return Return the vector of CosineZ points which are being used by the specific instance of OscProbCalcerBase::OscProbCalcerBase() contained in this instance of OscillatorBase::OscillatorBase()
+   */
+  std::vector<FLOAT_T> ReturnCosineZArray();
+
+  /**
+   * @brief Return the oscillation channels the specific implementation expects
+   * @return Return the oscillation channels the specific implementation expects
+   */
+  std::vector<NuOscillator::OscillationChannel> ReturnOscChannels();
+
+  /**
+   * @brief Return the neutrino types the specific implementation expects
+   * @return Return the neutrino types the specific implementation expects
+   */
+  std::vector<int> ReturnNeutrinoTypes();
+  
   /**
    * @brief Check whether a particular OscProbCalcerBase::OscProbCalcerBase() instance has a particular oscillation channel
    *
@@ -135,7 +159,7 @@ class OscillatorBase {
    *
    * @return Boolean flag
    */
-  bool CosineZIgnored() {return fCosineZIgnored;}
+  bool ReturnCosineZIgnored() {return fCosineZIgnored;}
 
   /**
    * @brief Return oscillation probability for a given initial and final flavour, for a given energy and cosineZ

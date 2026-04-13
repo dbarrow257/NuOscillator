@@ -6,6 +6,7 @@ foreach(app
         SingleOscillator
         SingleOscProbCalcer
 	OscProbCalcerComparison
+	CompareOscillationProbabilities
 	MakeExampleBinning
       )
 

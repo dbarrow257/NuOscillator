@@ -91,8 +91,24 @@ int OscillatorBase::ReturnNEnergyPoints() {
   return fOscProbCalcer->ReturnNEnergyPoints();
 }
 
+std::vector<FLOAT_T> OscillatorBase::ReturnEnergyArray() {
+  return fOscProbCalcer->ReturnEnergyArray();
+}
+
 int OscillatorBase::ReturnNCosineZPoints() {
   return fOscProbCalcer->ReturnNCosineZPoints();
+}
+
+std::vector<FLOAT_T> OscillatorBase::ReturnCosineZArray() {
+  return fOscProbCalcer->ReturnCosineZArray();
+}
+
+std::vector<NuOscillator::OscillationChannel> OscillatorBase::ReturnOscChannels() {
+  return fOscProbCalcer->ReturnOscChannels();
+}
+
+std::vector<int> OscillatorBase::ReturnNeutrinoTypes() {
+  return fOscProbCalcer->ReturnNeutrinoTypes();
 }
 
 const FLOAT_T* OscillatorBase::ReturnPointerToWeightinCalcer(int InitNuFlav, int FinalNuFlav, FLOAT_T EnergyVal, FLOAT_T CosineZVal) {

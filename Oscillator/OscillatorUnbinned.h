@@ -49,7 +49,7 @@ class OscillatorUnbinned : public OscillatorBase {
    *
    * @return Pointer to the memory address where the calculated oscillation probability for events of the specific requested type will be stored
    */
-  const FLOAT_T* ReturnWeightPointer(int InitNuFlav, int FinalNuFlav, FLOAT_T EnergyVal, FLOAT_T CosineZVal=DUMMYVAL) override;
+  const FLOAT_T* ReturnWeightPointer(int InitNuFlav, int FinalNuFlav, FLOAT_T EnergyVal, FLOAT_T CosineZVal=DUMMYVAL) final;
   
   /**
    * @brief Return a vector of bin edges used for oscillation probability plotting
@@ -61,7 +61,7 @@ class OscillatorUnbinned : public OscillatorBase {
    * @return Vector of bin edges which are used for plotting purposes
    *
    */
-  std::vector<FLOAT_T> ReturnBinEdgesForPlotting(bool ReturnEnergy) override;
+  std::vector<FLOAT_T> ReturnBinEdgesForPlotting(bool ReturnEnergy) final;
   
   // ========================================================================================================================================================================
   // Public virtual functions which need calculater specific implementations

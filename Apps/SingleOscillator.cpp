@@ -59,7 +59,7 @@ int main(int argc, char **argv) {
     Oscillator->SetEnergyArrayInCalcer(EnergyArray);
     
     //Check if we also need to set the CosineZ binning
-    if (!Oscillator->CosineZIgnored()) {
+    if (!Oscillator->ReturnCosineZIgnored()) {
       Oscillator->SetCosineZArrayInCalcer(CosineZArray);
     }
   }
@@ -130,7 +130,7 @@ int main(int argc, char **argv) {
 
 	  if (!Oscillator->HasOscProbCalcerGotOscillationChannel(std::abs(GenFlav),std::abs(DetFlav))) continue;
 	  
-	  if (Oscillator->CosineZIgnored()) {
+	  if (Oscillator->ReturnCosineZIgnored()) {
 	    std::vector<FLOAT_T> EnergyBinning = Oscillator->ReturnBinEdgesForPlotting(true);
 	    
 	    TH1D* Hist = new TH1D(Form("Probability_%i_%i_%i",NuType,GenFlav,DetFlav),Title,EnergyBinning.size()-1,EnergyBinning.data());

@@ -16,7 +16,7 @@ include(${CMAKE_CURRENT_LIST_DIR}/cmake/Modules/NuOscillatorUtils.cmake)
 # By default GPU is off
 DefineEnabledRequiredSwitch(UseGPU 0)
 
-set(NUOSCILLATOR_VERSION 1.4.3)
+set(NUOSCILLATOR_VERSION 1.5.0)
 
 if(${UseGPU} EQUAL 0)
   project(NUOSCILLATOR VERSION ${NUOSCILLATOR_VERSION} LANGUAGES CXX)
@@ -42,7 +42,7 @@ add_library(NuOscillatorCompilerOptions INTERFACE)
 # download CPM.cmake
 file(
   DOWNLOAD
-  https://github.com/cpm-cmake/CPM.cmake/releases/download/v0.42.0/CPM.cmake
+  https://github.com/cpm-cmake/CPM.cmake/releases/download/v0.42.1/CPM.cmake
   ${CMAKE_CURRENT_BINARY_DIR}/cmake/CPM.cmake
 )
 include(${CMAKE_CURRENT_BINARY_DIR}/cmake/CPM.cmake)
@@ -50,43 +50,40 @@ include(${CMAKE_CURRENT_BINARY_DIR}/cmake/CPM.cmake)
 DefineEnabledRequiredSwitch(UseMultithreading 1)
 DefineEnabledRequiredSwitch(UseDoubles 1)
 
-DefineEnabledRequiredSwitch(UseCUDAProb3 0)
-DefineEnabledRequiredSwitch(UseCUDAProb3Linear 0)
-DefineEnabledRequiredSwitch(UseProb3ppLinear 0)
-DefineEnabledRequiredSwitch(UseProbGPULinear 0)
-DefineEnabledRequiredSwitch(UseNuFASTLinear 0)
-DefineEnabledRequiredSwitch(UseNuSQUIDSLinear 0)
-DefineEnabledRequiredSwitch(UseOscProb 0)
-DefineEnabledRequiredSwitch(UseGLoBESLinear  0)
-
-# KS: NuFastLinear by default
-if(UseCUDAProb3        EQUAL 0 AND
-    UseCUDAProb3Linear EQUAL 0 AND
-    UseProb3ppLinear   EQUAL 0 AND
-    UseProbGPULinear   EQUAL 0 AND
-    UseNuFASTLinear    EQUAL 0 AND
-    UseNuSQUIDSLinear  EQUAL 0 AND
-    UseOscProb         EQUAL 0 AND
-    UseGLoBESLinear    EQUAL 0 )
-  set(UseNuFASTLinear 1)
-endif()
-
 LIST(APPEND ALL_Engines
   CUDAProb3
   CUDAProb3Linear
   Prob3ppLinear
   ProbGPULinear
   NuFASTLinear
+  NuFASTEarth
   NuSQUIDSLinear
   OscProb
+  OscLibLinear
   GLoBESLinear
+  CHICLinear
 )
+# KS: Tells whether all oscillators were disabled
+set(ALL_OSCILLATORS_DISABLED TRUE)
+
+foreach(option IN LISTS ALL_Engines)
+  DefineEnabledRequiredSwitch(Use${option} 0)
+  # If at least one oscillator is enabled then set ALL_OSCILLATORS_DISABLED to false
+  if(Use${option} EQUAL 1)
+    set(ALL_OSCILLATORS_DISABLED FALSE)
+  endif()
+endforeach()
+
+# KS: NuFastLinear by default
+if(ALL_OSCILLATORS_DISABLED)
+  set(UseNuFASTLinear 1)
+endif()
 
 ########################################################
 #Default Branches
 
 if(NOT DEFINED CUDAProb3_BRANCH)
-  set(CUDAProb3_BRANCH "v1.2.0")
+  set(CUDAProb3_BRANCH "v1.2.1")
 endif()
 
 if(NOT DEFINED CUDAProb3Linear_BRANCH)
@@ -102,21 +99,36 @@ if(NOT DEFINED ProbGPULinear_BRANCH)
 endif()
 
 if(NOT DEFINED NuFASTLinear_BRANCH)
-  set(NuFASTLinear_BRANCH "v1.0")
+  set(NuFASTLinear_BRANCH "v1.1")
+endif()
+
+if(NOT DEFINED NuFASTEarth_BRANCH)
+  set(NuFASTEarth_BRANCH "v1.2.0")
 endif()
 
 if(NOT DEFINED NuSQUIDSLinear_BRANCH)
-  set(NuSQUIDSLinear_BRANCH "v1.12.0")
+  set(NuSQUIDSLinear_BRANCH "v1.13.3")
 endif()
 
 if(NOT DEFINED OscProb_BRANCH)
-  set(OscProb_BRANCH "v2.1.2")
+  set(OscProb_BRANCH "v2.3.0")
+endif()
+
+if(NOT DEFINED OscLib_BRANCH)
+  set(OscLib_BRANCH "v1.2.0")
 endif()
 
 if(NOT DEFINED GLoBES_BRANCH)
   set(GLoBES_BRANCH "3.2.18")
 endif()
 
+if(NOT DEFINED CHICLinear_BRANCH)
+  set(CHICLinear_BRANCH "v1.0.1")
+endif()
+
+if(NOT DEFINED Eigen_BRANCH)
+  set(Eigen_BRANCH "3.4.0")
+endif()
 ########################################################
 
 set(NuOscillator_Engines_Enabled "")
@@ -209,12 +221,12 @@ endif()
 
 #================================================================================================
 #Setup Deps
-set(YAML_CPP_VERSION 0.8.0)
+set(YAML_CPP_VERSION 0.9.0)
 CPMAddPackage(
     NAME yaml-cpp
     VERSION ${YAML_CPP_VERSION}
     GITHUB_REPOSITORY "jbeder/yaml-cpp"
-    GIT_TAG "${YAML_CPP_VERSION}"
+    GIT_TAG "yaml-cpp-${YAML_CPP_VERSION}"
     OPTIONS
       "YAML_CPP_INSTALL ON"
       "YAML_CPP_BUILD_TESTS OFF"
@@ -227,6 +239,31 @@ if(NOT TARGET yaml-cpp::yaml-cpp)
 endif()
 
 find_package(ROOT 6.18 REQUIRED)
+STRING(STRIP "${ROOT_CXX_FLAGS}" ROOT_CXX_FLAGS_LIST)
+STRING(REPLACE " " ";" ROOT_CXX_FLAGS_LIST ${ROOT_CXX_FLAGS_LIST})
+
+list (FIND ROOT_CXX_FLAGS_LIST "-std=c++14" CPP14_INDEX)
+list (FIND ROOT_CXX_FLAGS_LIST "-std=c++1y" CPP1Y_INDEX)
+list (FIND ROOT_CXX_FLAGS_LIST "-std=c++17" CPP17_INDEX)
+list (FIND ROOT_CXX_FLAGS_LIST "-std=c++1z" CPP1Z_INDEX)
+list (FIND ROOT_CXX_FLAGS_LIST "-std=c++20" CPP20_INDEX)
+
+if (CPP14_INDEX GREATER -1)
+  SET(ROOT_CXX_STANDARD 14)
+elseif (CPP1Y_INDEX GREATER -1)
+  SET(ROOT_CXX_STANDARD 14)
+elseif (CPP17_INDEX GREATER -1)
+  SET(ROOT_CXX_STANDARD 17)
+elseif (CPP1Z_INDEX GREATER -1)
+  SET(ROOT_CXX_STANDARD 17)
+elseif (CPP20_INDEX GREATER -1)
+  SET(ROOT_CXX_STANDARD 20)
+endif()
+
+if(DEFINED ROOT_CXX_STANDARD AND NOT ROOT_CXX_STANDARD EQUAL CMAKE_CXX_STANDARD)
+  set(CMAKE_CXX_STANDARD ${ROOT_CXX_STANDARD})
+  cmessage(STATUS "Set CXX standard due to ROOT: \"${ROOT_CXX_STANDARD}\"")
+endif()
 
 if(${UseCUDAProb3} EQUAL 1)
   CPMFindPackage(
@@ -325,7 +362,7 @@ endif()
 
 if(${UseNuFASTLinear} EQUAL 1)
   CPMAddPackage(
-    NAME NuFAST
+    NAME NuFAST_LBL
     GIT_TAG ${NuFASTLinear_BRANCH}
     GITHUB_REPOSITORY PeterDenton/NuFast-LBL
     DOWNLOAD_ONLY
@@ -333,19 +370,51 @@ if(${UseNuFASTLinear} EQUAL 1)
   target_compile_definitions(NuOscillatorCompilerOptions INTERFACE UseNuFASTLinear=1)
 endif()
 
+if(${UseNuFASTEarth} EQUAL 1)
+  CPMFindPackage(
+    NAME NUFAST_EARTH
+    GIT_TAG ${NuFASTEarth_BRANCH}
+    GITHUB_REPOSITORY PeterDenton/NuFast-Earth
+    DOWNLOAD_ONLY YES
+  )
+
+  file(GLOB NUFAST_EARTH_SOURCES "${NUFAST_EARTH_SOURCE_DIR}/src/*.cpp")
+  add_library(nufast_earth ${NUFAST_EARTH_SOURCES})
+  set_target_properties(nufast_earth PROPERTIES POSITION_INDEPENDENT_CODE ON)
+  
+  target_include_directories(nufast_earth PUBLIC
+    $<BUILD_INTERFACE:${NUFAST_EARTH_SOURCE_DIR}/include>
+    $<INSTALL_INTERFACE:include>
+  )
+  
+  install(TARGETS nufast_earth
+    EXPORT NuOscillator-targets
+    LIBRARY DESTINATION lib/
+  )
+
+  target_compile_definitions(NuOscillatorCompilerOptions INTERFACE UseNuFASTEarth=1)
+endif()
+
 if(${UseOscProb} EQUAL 1)
   CPMAddPackage(
     NAME OscProb
     GITHUB_REPOSITORY joaoabcoelho/OscProb
     GIT_TAG ${OscProb_BRANCH}
-  )
-
-  CPMAddPackage(
-    NAME Eigen
-    VERSION 3.4.0
-    URL https://gitlab.com/libeigen/eigen/-/archive/3.4.0/eigen-3.4.0.tar.gz
     DOWNLOAD_ONLY YES
   )
+
+  CPMFindPackage(
+    NAME Eigen
+    VERSION ${Eigen_BRANCH}
+    URL https://gitlab.com/libeigen/eigen/-/archive/${Eigen_BRANCH}/eigen-${Eigen_BRANCH}.tar.gz
+    DOWNLOAD_ONLY YES
+  )
+
+  if(CMAKE_CXX_STANDARD LESS 17)
+    cmessage(WARNING "OscProb requires at least C++17 — changing from ${CMAKE_CXX_STANDARD} to 17")
+    set(CMAKE_CXX_STANDARD 17)
+  endif()
+
   if(Eigen_ADDED)
     add_library(Eigen INTERFACE IMPORTED)
     target_include_directories(Eigen INTERFACE ${Eigen_SOURCE_DIR})
@@ -357,6 +426,66 @@ if(${UseOscProb} EQUAL 1)
   add_library(OSCPROB INTERFACE IMPORTED)
   target_include_directories(OSCPROB INTERFACE ${OscProb_SOURCE_DIR})
   target_compile_definitions(NuOscillatorCompilerOptions INTERFACE UseOscProb=1)
+endif()
+
+if(${UseOscLibLinear} EQUAL 1)
+  # Check if C++ standard is less than 17
+  if(CMAKE_CXX_STANDARD LESS 17)
+    cmessage(FATAL_ERROR "OscLib requires at least C++17, but you are using C++${CMAKE_CXX_STANDARD}.")
+  endif()
+
+  if(${UseDoubles} EQUAL 0)
+    cmessage(FATAL_ERROR "OscLib currently don't support float, please switch to double or change engine. Gomenasai")
+  endif()
+
+  find_package(Boost REQUIRED)
+  find_package(GSL REQUIRED)
+
+  CPMFindPackage(
+    NAME Eigen
+    VERSION ${Eigen_BRANCH}
+    URL https://gitlab.com/libeigen/eigen/-/archive/${Eigen_BRANCH}/eigen-${Eigen_BRANCH}.tar.gz
+    DOWNLOAD_ONLY YES
+  )
+  if(Eigen_ADDED)
+    add_library(Eigen INTERFACE IMPORTED)
+    target_include_directories(Eigen INTERFACE ${Eigen_SOURCE_DIR})
+  endif()
+
+  CPMAddPackage(
+    NAME OscLib
+    GITHUB_REPOSITORY cafana/OscLib
+    GIT_TAG ${OscLib_BRANCH}
+    DOWNLOAD_ONLY YES
+  )
+  # KS: Collect OscLib sources and header files
+  file(GLOB OSCLIB_SOURCES
+    ${OscLib_SOURCE_DIR}/OscLib/*.cxx
+  )
+  file(GLOB OSCLIB_HEADERS
+    ${OscLib_SOURCE_DIR}/OscLib/*.h
+  )
+  add_library(OscLibLinear SHARED
+    ${OSCLIB_SOURCES}
+  )
+
+  set_target_properties(OscLibLinear PROPERTIES
+    PUBLIC_HEADER "${OSCLIB_HEADERS}"
+    EXPORT_NAME OscLib
+  )
+
+  target_link_libraries(OscLibLinear PRIVATE ROOT::Core Eigen GSL::gsl)
+  # Properly scoped include dirs
+  target_include_directories(OscLibLinear PUBLIC
+      $<BUILD_INTERFACE:${OscLib_SOURCE_DIR}>
+      $<INSTALL_INTERFACE:include>
+  )
+  install(TARGETS OscLibLinear
+    EXPORT NuOscillator-targets
+    LIBRARY DESTINATION lib/
+    PUBLIC_HEADER DESTINATION include/
+  )
+  target_compile_definitions(NuOscillatorCompilerOptions INTERFACE UseOscLibLinear=1)
 endif()
 
 if(${UseNuSQUIDSLinear} EQUAL 1)
@@ -499,6 +628,61 @@ if(${UseGLoBESLinear} EQUAL 1)
   target_compile_definitions(NuOscillatorCompilerOptions INTERFACE UseGLoBESLinear=1)
 endif()
 
+if(${UseCHICLinear} EQUAL 1)
+
+  if(CMAKE_CXX_STANDARD LESS 17)
+    cmessage(WARNING "CHIC requires at least C++17 — changing from ${CMAKE_CXX_STANDARD} to 17")
+    set(CMAKE_CXX_STANDARD 17)
+  endif()
+
+  CPMFindPackage(
+    NAME Eigen
+    VERSION ${Eigen_BRANCH}
+    URL https://gitlab.com/libeigen/eigen/-/archive/${Eigen_BRANCH}/eigen-${Eigen_BRANCH}.tar.gz
+    DOWNLOAD_ONLY YES
+  )
+
+  if(Eigen_ADDED)
+    add_library(Eigen INTERFACE IMPORTED)
+    target_include_directories(Eigen INTERFACE ${Eigen_SOURCE_DIR})
+  endif()
+
+
+  CPMAddPackage(
+    NAME CHIC
+    GIT_REPOSITORY https://github.com/pabloferm/CHIC.git
+    GIT_TAG ${CHICLinear_BRANCH}
+    DOWNLOAD_ONLY YES
+  )
+
+  set(CHIC_HEADERS
+    ${CHIC_SOURCE_DIR}/src/CHIC.h
+    ${CHIC_SOURCE_DIR}/src/opt_constants.h
+  )
+
+  add_library(CHIC STATIC
+    ${CHIC_SOURCE_DIR}/src/CHIC.cpp
+    ${CHIC_HEADERS}
+  )
+
+  target_include_directories(CHIC
+  PUBLIC
+    $<BUILD_INTERFACE:${CHIC_SOURCE_DIR}/src>
+    $<INSTALL_INTERFACE:include/CHIC>
+  )
+  target_link_libraries(CHIC PUBLIC Eigen)
+  target_compile_options(CHIC PRIVATE -fPIC)
+  target_link_libraries(CHIC PRIVATE NuOscillatorCompilerOptions)
+
+  add_library(CHIC::CHIC ALIAS CHIC)
+  install(TARGETS CHIC
+    EXPORT NuOscillator-targets
+    ARCHIVE DESTINATION lib
+  )
+
+  target_compile_definitions(NuOscillatorCompilerOptions INTERFACE UseCHICLinear=1)
+endif()
+
 if(${UseGPU} EQUAL 1)
   target_compile_definitions(NuOscillatorCompilerOptions INTERFACE UseGPU=1)
 else()
@@ -558,6 +742,12 @@ if(OSCPROB_LIB_DIR)
   file(RELATIVE_PATH OSCPROB_REL_LIB_PATH
        "${CMAKE_INSTALL_PREFIX}"
        "${OSCPROB_LIB_DIR}")
+endif()
+
+if(OSCLIB_LIB_DIR)
+    file(RELATIVE_PATH OSCLIB_REL_LIB_PATH
+       "${CMAKE_INSTALL_PREFIX}"
+       "${OSCLIB_LIB_DIR}")
 endif()
 
 if(GLOBES_LIB_DIR)

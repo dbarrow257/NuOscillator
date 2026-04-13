@@ -41,7 +41,7 @@ class OscProbCalcerProbGPULinear : public OscProbCalcerBase {
    *
    * ProbGPU implementation is horrible, meaning that this function doesn't need to do anything
    */  
-  void SetupPropagator() override;
+  void SetupPropagator() final;
 
   /**
    * @brief Calculate some oscillation probabilities for a particular oscillation parameter set
@@ -51,7 +51,7 @@ class OscProbCalcerProbGPULinear : public OscProbCalcerBase {
    *
    * @param OscParams The parameter set to calculate oscillation probabilities at
    */
-  void CalculateProbabilities(const std::vector<FLOAT_T>& OscParams) override;
+  void CalculateProbabilities(const std::vector<FLOAT_T>& OscParams) final;
 
   /**
    * @brief Return implementation specific index in the weight array for a specific combination of neutrino oscillation channel, energy and cosine zenith
@@ -63,7 +63,7 @@ class OscProbCalcerProbGPULinear : public OscProbCalcerBase {
    *
    * @return Index in #fWeightArray which corresponds to the given inputs
    */
-  int ReturnWeightArrayIndex(int NuTypeIndex, int OscChanIndex, int EnergyIndex, int CosineZIndex=-1) override;
+  int ReturnWeightArrayIndex(int NuTypeIndex, int OscChanIndex, int EnergyIndex, int CosineZIndex=-1) final;
 
     /**
    * @brief Define the size of fWeightArray
@@ -72,7 +72,7 @@ class OscProbCalcerProbGPULinear : public OscProbCalcerBase {
    *
    * @return Length that #fWeightArray should be initialised to
    */
-  long DefineWeightArraySize() override;
+  long DefineWeightArraySize() final;
 
   // ========================================================================================================================================================================
   // Functions which help setup implementation specific code

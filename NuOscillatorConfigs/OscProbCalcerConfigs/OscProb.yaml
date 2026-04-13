@@ -4,7 +4,7 @@ General:
 
 OscProbCalcerSetup:
   ImplementationName: "OscProb"
-  PMNSType: "Fast"
+  PMNSType: "Fast" # Fast, NSI, Sterile+1,
   PREMFile: "./Inputs/OscProb_prem_4+1layers.txt"
   DetDepth: 1.5
   OscChannelMapping:

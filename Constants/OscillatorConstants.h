@@ -160,6 +160,10 @@ inline std::vector<std::string> ReturnKnownConfigs() {
   ConfigNames.push_back("./NuOscillatorConfigs/Binned_NuFASTLinear.yaml");
 #endif
 
+#if UseNuFASTEarth == 1
+  ConfigNames.push_back("./NuOscillatorConfigs/Binned_NuFASTEarth.yaml");
+#endif
+
 #if UseNuSQUIDSLinear == 1
   ConfigNames.push_back("./NuOscillatorConfigs/Binned_NuSQUIDSLinear.yaml");
 #endif
@@ -170,6 +174,10 @@ inline std::vector<std::string> ReturnKnownConfigs() {
 
 #if UseGLoBESLinear == 1
   ConfigNames.push_back("./NuOscillatorConfigs/Binned_GLoBESLinear.yaml");
+#endif
+
+#if UseCHICLinear == 1
+  ConfigNames.push_back("./NuOscillatorConfigs/Binned_CHICLinear.yaml");
 #endif
 
   if(ConfigNames.empty()){
