@@ -20,7 +20,7 @@ heap_tree=empty
 #-----------
 snapshot=2
 #-----------
-time=226961284
+time=226959794
 mem_heap_B=13824440
 mem_heap_extra_B=342944
 mem_stacks_B=0
@@ -28,7 +28,7 @@ heap_tree=empty
 #-----------
 snapshot=3
 #-----------
-time=302119622
+time=302118132
 mem_heap_B=26154977
 mem_heap_extra_B=402591
 mem_stacks_B=0
@@ -36,7 +36,7 @@ heap_tree=empty
 #-----------
 snapshot=4
 #-----------
-time=405225373
+time=405223883
 mem_heap_B=55998368
 mem_heap_extra_B=496320
 mem_stacks_B=0
@@ -44,7 +44,7 @@ heap_tree=empty
 #-----------
 snapshot=5
 #-----------
-time=554419076
+time=554417586
 mem_heap_B=61991805
 mem_heap_extra_B=582179
 mem_stacks_B=0
@@ -52,7 +52,7 @@ heap_tree=empty
 #-----------
 snapshot=6
 #-----------
-time=690156273
+time=690154733
 mem_heap_B=67159472
 mem_heap_extra_B=825312
 mem_stacks_B=0
@@ -60,7 +60,7 @@ heap_tree=empty
 #-----------
 snapshot=7
 #-----------
-time=759059055
+time=759057526
 mem_heap_B=68672562
 mem_heap_extra_B=905990
 mem_stacks_B=0
@@ -372,7 +372,7 @@ n12: 68672562 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
 #-----------
 snapshot=8
 #-----------
-time=916263687
+time=915763206
 mem_heap_B=68801965
 mem_heap_extra_B=918283
 mem_stacks_B=0
@@ -380,7 +380,7 @@ heap_tree=empty
 #-----------
 snapshot=9
 #-----------
-time=986205972
+time=983567996
 mem_heap_B=73345599
 mem_heap_extra_B=966097
 mem_stacks_B=0
@@ -699,13 +699,13 @@ n13: 73345599 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
 #-----------
 snapshot=10
 #-----------
-time=1090017830
-mem_heap_B=80668599
-mem_heap_extra_B=966033
+time=1088625609
+mem_heap_B=83074095
+mem_heap_extra_B=966585
 mem_stacks_B=0
 heap_tree=detailed
-n15: 80668599 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
- n0: 15656324 in 4220 places, all below massif's threshold (1.00%)
+n14: 83074095 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n0: 16467972 in 4221 places, all below massif's threshold (1.00%)
  n1: 15090080 0x9621C4B: clang::ASTReader::ReadASTBlock(clang::serialization::ModuleFile&, unsigned int) (in /opt/root/v6-26-10/lib/libCling.so)
   n1: 15090080 0x962CF68: clang::ASTReader::ReadAST(llvm::StringRef, clang::serialization::ModuleKind, clang::SourceLocation, unsigned int, llvm::SmallVectorImpl<clang::ASTReader::ImportedSubmodule>*) (in /opt/root/v6-26-10/lib/libCling.so)
    n2: 15090080 0x930156A: clang::CompilerInstance::loadModule(clang::SourceLocation, llvm::ArrayRef<std::pair<clang::IdentifierInfo*, clang::SourceLocation> >, clang::Module::NameVisibilityKind, bool) (in /opt/root/v6-26-10/lib/libCling.so)
@@ -874,6 +874,28 @@ n15: 80668599 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
       n0: 91642 in 9 places, all below massif's threshold (1.00%)
    n0: 15090 in 2 places, all below massif's threshold (1.00%)
   n0: 190763 in 2 places, all below massif's threshold (1.00%)
+ n1: 4857616 0x6950E26: void nusquids::readArrayH5<double, 2u, std::allocator<double> >(long, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, nusquids::marray<double, 2u, std::allocator<double> >&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
+  n2: 4857616 0x69430F9: nusquids::NeutrinoDISCrossSectionsFromTables::readFlavorHDF5(long, nusquids::marray<double, 1u, std::allocator<double> > const&, nusquids::marray<double, 1u, std::allocator<double> > const&)::{lambda(nusquids::BiCubicInterpolator&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)#2}::operator()(nusquids::BiCubicInterpolator&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) const (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
+   n1: 2428808 0x69459AA: nusquids::NeutrinoDISCrossSectionsFromTables::readFlavorHDF5(long, nusquids::marray<double, 1u, std::allocator<double> > const&, nusquids::marray<double, 1u, std::allocator<double> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
+    n1: 2428808 0x694E945: nusquids::NeutrinoDISCrossSectionsFromTables::ReadHDF(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
+     n1: 2428808 0x694EF1F: nusquids::NeutrinoDISCrossSectionsFromTables::NeutrinoDISCrossSectionsFromTables(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
+      n1: 2428808 0x694F161: nusquids::loadDefaultCrossSections() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
+       n1: 2428808 0x692C2DD: nusquids::nuSQUIDS::InitializeInteractions() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
+        n1: 2428808 0x692C86C: nusquids::nuSQUIDS::EvolveState() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
+         n1: 2428808 0x4B86570: OscProbCalcerNuSQUIDSLinear::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
+          n1: 2428808 0x4B589EF: OscProbCalcerBase::Reweight(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
+           n1: 2428808 0x487DF59: OscillatorBase::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscillator.so)
+            n0: 2428808 0x40A847: main (in /opt/NuOscillator/build/Linux/bin/DragRace)
+   n1: 2428808 0x6945A0D: nusquids::NeutrinoDISCrossSectionsFromTables::readFlavorHDF5(long, nusquids::marray<double, 1u, std::allocator<double> > const&, nusquids::marray<double, 1u, std::allocator<double> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
+    n1: 2428808 0x694E945: nusquids::NeutrinoDISCrossSectionsFromTables::ReadHDF(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
+     n1: 2428808 0x694EF1F: nusquids::NeutrinoDISCrossSectionsFromTables::NeutrinoDISCrossSectionsFromTables(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
+      n1: 2428808 0x694F161: nusquids::loadDefaultCrossSections() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
+       n1: 2428808 0x692C2DD: nusquids::nuSQUIDS::InitializeInteractions() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
+        n1: 2428808 0x692C86C: nusquids::nuSQUIDS::EvolveState() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
+         n1: 2428808 0x4B86570: OscProbCalcerNuSQUIDSLinear::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
+          n1: 2428808 0x4B589EF: OscProbCalcerBase::Reweight(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
+           n1: 2428808 0x487DF59: OscillatorBase::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscillator.so)
+            n0: 2428808 0x40A847: main (in /opt/NuOscillator/build/Linux/bin/DragRace)
  n1: 4768440 0xB51BCFF: clang::ModuleMap::findOrCreateModule(llvm::StringRef, clang::Module*, bool, bool) (in /opt/root/v6-26-10/lib/libCling.so)
   n2: 4768440 0xB525193: clang::ModuleMapParser::parseModuleDecl() (in /opt/root/v6-26-10/lib/libCling.so)
    n2: 4578840 0xB524C17: clang::ModuleMapParser::parseModuleDecl() (in /opt/root/v6-26-10/lib/libCling.so)
@@ -943,20 +965,8 @@ n15: 80668599 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
           n1: 2428808 0x4B589EF: OscProbCalcerBase::Reweight(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
            n1: 2428808 0x487DF59: OscillatorBase::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscillator.so)
             n0: 2428808 0x40A847: main (in /opt/NuOscillator/build/Linux/bin/DragRace)
- n1: 2428808 0x6950E26: void nusquids::readArrayH5<double, 2u, std::allocator<double> >(long, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, nusquids::marray<double, 2u, std::allocator<double> >&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
-  n1: 2428808 0x69430F9: nusquids::NeutrinoDISCrossSectionsFromTables::readFlavorHDF5(long, nusquids::marray<double, 1u, std::allocator<double> > const&, nusquids::marray<double, 1u, std::allocator<double> > const&)::{lambda(nusquids::BiCubicInterpolator&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)#2}::operator()(nusquids::BiCubicInterpolator&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) const (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
-   n1: 2428808 0x69459AA: nusquids::NeutrinoDISCrossSectionsFromTables::readFlavorHDF5(long, nusquids::marray<double, 1u, std::allocator<double> > const&, nusquids::marray<double, 1u, std::allocator<double> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
-    n1: 2428808 0x694E945: nusquids::NeutrinoDISCrossSectionsFromTables::ReadHDF(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
-     n1: 2428808 0x694EF1F: nusquids::NeutrinoDISCrossSectionsFromTables::NeutrinoDISCrossSectionsFromTables(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
-      n1: 2428808 0x694F161: nusquids::loadDefaultCrossSections() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
-       n1: 2428808 0x692C2DD: nusquids::nuSQUIDS::InitializeInteractions() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
-        n1: 2428808 0x692C86C: nusquids::nuSQUIDS::EvolveState() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
-         n1: 2428808 0x4B86570: OscProbCalcerNuSQUIDSLinear::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
-          n1: 2428808 0x4B589EF: OscProbCalcerBase::Reweight(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
-           n1: 2428808 0x487DF59: OscillatorBase::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscillator.so)
-            n0: 2428808 0x40A847: main (in /opt/NuOscillator/build/Linux/bin/DragRace)
- n3: 1936136 0x65B233C: ??? (in /usr/lib64/libhdf5.so.200.1.0)
-  n2: 1076336 0x65B2A50: H5FL_blk_malloc (in /usr/lib64/libhdf5.so.200.1.0)
+ n3: 1940312 0x65B233C: ??? (in /usr/lib64/libhdf5.so.200.1.0)
+  n2: 1077096 0x65B2A50: H5FL_blk_malloc (in /usr/lib64/libhdf5.so.200.1.0)
    n2: 1051452 0x65B2BA4: H5FL_blk_calloc (in /usr/lib64/libhdf5.so.200.1.0)
     n1: 1048584 0x6557A4B: ??? (in /usr/lib64/libhdf5.so.200.1.0)
      n1: 1048584 0x655847C: H5D__read (in /usr/lib64/libhdf5.so.200.1.0)
@@ -975,17 +985,13 @@ n15: 80668599 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
                   n1: 1048584 0x487DF59: OscillatorBase::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscillator.so)
                    n0: 1048584 0x40A847: main (in /opt/NuOscillator/build/Linux/bin/DragRace)
     n0: 2868 in 2 places, all below massif's threshold (1.00%)
-   n0: 24884 in 14 places, all below massif's threshold (1.00%)
-  n1: 856528 0x65B2494: H5FL_reg_malloc (in /usr/lib64/libhdf5.so.200.1.0)
-   n0: 856528 in 23 places, all below massif's threshold (1.00%)
-  n0: 3272 in 2 places, all below massif's threshold (1.00%)
+   n0: 25644 in 14 places, all below massif's threshold (1.00%)
+  n1: 859888 0x65B2494: H5FL_reg_malloc (in /usr/lib64/libhdf5.so.200.1.0)
+   n0: 859888 in 23 places, all below massif's threshold (1.00%)
+  n0: 3328 in 2 places, all below massif's threshold (1.00%)
  n2: 1733184 0xB12692F: llvm::BitstreamCursor::ReadAbbrevRecord() (in /opt/root/v6-26-10/lib/libCling.so)
-  n2: 869312 0x95D7831: clang::ASTReader::ReadBlockAbbrevs(llvm::BitstreamCursor&, unsigned int) (in /opt/root/v6-26-10/lib/libCling.so)
-   n1: 818176 0x961DBC9: clang::ASTReader::ReadASTBlock(clang::serialization::ModuleFile&, unsigned int) (in /opt/root/v6-26-10/lib/libCling.so)
-    n1: 818176 0x962CF68: clang::ASTReader::ReadAST(llvm::StringRef, clang::serialization::ModuleKind, clang::SourceLocation, unsigned int, llvm::SmallVectorImpl<clang::ASTReader::ImportedSubmodule>*) (in /opt/root/v6-26-10/lib/libCling.so)
-     n1: 818176 0x930156A: clang::CompilerInstance::loadModule(clang::SourceLocation, llvm::ArrayRef<std::pair<clang::IdentifierInfo*, clang::SourceLocation> >, clang::Module::NameVisibilityKind, bool) (in /opt/root/v6-26-10/lib/libCling.so)
-      n0: 818176 in 2 places, all below massif's threshold (1.00%)
-   n0: 51136 in 1 place, below massif's threshold (1.00%)
+  n1: 869312 0x95D7831: clang::ASTReader::ReadBlockAbbrevs(llvm::BitstreamCursor&, unsigned int) (in /opt/root/v6-26-10/lib/libCling.so)
+   n0: 869312 in 2 places, all below massif's threshold (1.00%)
   n0: 863872 in 5 places, all below massif's threshold (1.00%)
  n1: 1134592 0xB2D9D29: clang::Decl::operator new(unsigned long, clang::ASTContext const&, unsigned int, unsigned long) (in /opt/root/v6-26-10/lib/libCling.so)
   n0: 1134592 in 17 places, all below massif's threshold (1.00%)
@@ -1018,18 +1024,16 @@ n15: 80668599 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
                            n1: 917504 0x1FFF00046B: ???
                             n0: 917504 0x1FFF000499: ???
      n0: 0 in 1 place, below massif's threshold (1.00%)
- n1: 839136 0x5DACDB9: TStorage::ObjectAlloc(unsigned long) (in /opt/root/v6-26-10/lib/libCore.so)
-  n0: 839136 in 298 places, all below massif's threshold (1.00%)
 #-----------
 snapshot=11
 #-----------
-time=1195952175
-mem_heap_B=90397095
-mem_heap_extra_B=966569
+time=1194498287
+mem_heap_B=92802687
+mem_heap_extra_B=967153
 mem_stacks_B=0
 heap_tree=detailed
-n14: 90397095 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
- n0: 16504548 in 4221 places, all below massif's threshold (1.00%)
+n13: 92802687 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n0: 17394564 in 4222 places, all below massif's threshold (1.00%)
  n1: 15090080 0x9621C4B: clang::ASTReader::ReadASTBlock(clang::serialization::ModuleFile&, unsigned int) (in /opt/root/v6-26-10/lib/libCling.so)
   n1: 15090080 0x962CF68: clang::ASTReader::ReadAST(llvm::StringRef, clang::serialization::ModuleKind, clang::SourceLocation, unsigned int, llvm::SmallVectorImpl<clang::ASTReader::ImportedSubmodule>*) (in /opt/root/v6-26-10/lib/libCling.so)
    n2: 15090080 0x930156A: clang::CompilerInstance::loadModule(clang::SourceLocation, llvm::ArrayRef<std::pair<clang::IdentifierInfo*, clang::SourceLocation> >, clang::Module::NameVisibilityKind, bool) (in /opt/root/v6-26-10/lib/libCling.so)
@@ -1120,6 +1124,38 @@ n14: 90397095 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
          n0: 0 in 1 place, below massif's threshold (1.00%)
       n0: 0 in 1 place, below massif's threshold (1.00%)
   n0: 440944 in 109 places, all below massif's threshold (1.00%)
+ n1: 7286424 0x6950E26: void nusquids::readArrayH5<double, 2u, std::allocator<double> >(long, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, nusquids::marray<double, 2u, std::allocator<double> >&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
+  n3: 7286424 0x69430F9: nusquids::NeutrinoDISCrossSectionsFromTables::readFlavorHDF5(long, nusquids::marray<double, 1u, std::allocator<double> > const&, nusquids::marray<double, 1u, std::allocator<double> > const&)::{lambda(nusquids::BiCubicInterpolator&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)#2}::operator()(nusquids::BiCubicInterpolator&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) const (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
+   n1: 2428808 0x69459AA: nusquids::NeutrinoDISCrossSectionsFromTables::readFlavorHDF5(long, nusquids::marray<double, 1u, std::allocator<double> > const&, nusquids::marray<double, 1u, std::allocator<double> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
+    n1: 2428808 0x694E945: nusquids::NeutrinoDISCrossSectionsFromTables::ReadHDF(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
+     n1: 2428808 0x694EF1F: nusquids::NeutrinoDISCrossSectionsFromTables::NeutrinoDISCrossSectionsFromTables(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
+      n1: 2428808 0x694F161: nusquids::loadDefaultCrossSections() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
+       n1: 2428808 0x692C2DD: nusquids::nuSQUIDS::InitializeInteractions() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
+        n1: 2428808 0x692C86C: nusquids::nuSQUIDS::EvolveState() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
+         n1: 2428808 0x4B86570: OscProbCalcerNuSQUIDSLinear::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
+          n1: 2428808 0x4B589EF: OscProbCalcerBase::Reweight(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
+           n1: 2428808 0x487DF59: OscillatorBase::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscillator.so)
+            n0: 2428808 0x40A847: main (in /opt/NuOscillator/build/Linux/bin/DragRace)
+   n1: 2428808 0x6945A0D: nusquids::NeutrinoDISCrossSectionsFromTables::readFlavorHDF5(long, nusquids::marray<double, 1u, std::allocator<double> > const&, nusquids::marray<double, 1u, std::allocator<double> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
+    n1: 2428808 0x694E945: nusquids::NeutrinoDISCrossSectionsFromTables::ReadHDF(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
+     n1: 2428808 0x694EF1F: nusquids::NeutrinoDISCrossSectionsFromTables::NeutrinoDISCrossSectionsFromTables(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
+      n1: 2428808 0x694F161: nusquids::loadDefaultCrossSections() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
+       n1: 2428808 0x692C2DD: nusquids::nuSQUIDS::InitializeInteractions() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
+        n1: 2428808 0x692C86C: nusquids::nuSQUIDS::EvolveState() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
+         n1: 2428808 0x4B86570: OscProbCalcerNuSQUIDSLinear::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
+          n1: 2428808 0x4B589EF: OscProbCalcerBase::Reweight(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
+           n1: 2428808 0x487DF59: OscillatorBase::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscillator.so)
+            n0: 2428808 0x40A847: main (in /opt/NuOscillator/build/Linux/bin/DragRace)
+   n1: 2428808 0x6945A76: nusquids::NeutrinoDISCrossSectionsFromTables::readFlavorHDF5(long, nusquids::marray<double, 1u, std::allocator<double> > const&, nusquids::marray<double, 1u, std::allocator<double> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
+    n1: 2428808 0x694E945: nusquids::NeutrinoDISCrossSectionsFromTables::ReadHDF(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
+     n1: 2428808 0x694EF1F: nusquids::NeutrinoDISCrossSectionsFromTables::NeutrinoDISCrossSectionsFromTables(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
+      n1: 2428808 0x694F161: nusquids::loadDefaultCrossSections() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
+       n1: 2428808 0x692C2DD: nusquids::nuSQUIDS::InitializeInteractions() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
+        n1: 2428808 0x692C86C: nusquids::nuSQUIDS::EvolveState() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
+         n1: 2428808 0x4B86570: OscProbCalcerNuSQUIDSLinear::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
+          n1: 2428808 0x4B589EF: OscProbCalcerBase::Reweight(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
+           n1: 2428808 0x487DF59: OscillatorBase::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscillator.so)
+            n0: 2428808 0x40A847: main (in /opt/NuOscillator/build/Linux/bin/DragRace)
  n2: 6416891 0xB8D8E91: llvm::WritableMemoryBuffer::getNewUninitMemBuffer(unsigned long, llvm::Twine const&) (in /opt/root/v6-26-10/lib/libCling.so)
   n2: 6226128 0xB8D9111: llvm::MemoryBuffer::getMemBufferCopy(llvm::StringRef, llvm::Twine const&) (in /opt/root/v6-26-10/lib/libCling.so)
    n2: 6211038 0x95DBA90: clang::ASTReader::ReadSLocEntry(int)::{lambda(llvm::BitstreamCursor&, llvm::StringRef)#1}::operator()(llvm::BitstreamCursor&, llvm::StringRef) const (in /opt/root/v6-26-10/lib/libCling.so)
@@ -1130,39 +1166,14 @@ n14: 90397095 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
         n1: 1561044 0x95F64C9: clang::ASTReader::ReadPragmaDiagnosticMappings(clang::DiagnosticsEngine&) (in /opt/root/v6-26-10/lib/libCling.so)
          n1: 1561044 0x961D258: clang::ASTReader::InitializeContext() (in /opt/root/v6-26-10/lib/libCling.so)
           n1: 1561044 0x962D9C6: clang::ASTReader::ReadAST(llvm::StringRef, clang::serialization::ModuleKind, clang::SourceLocation, unsigned int, llvm::SmallVectorImpl<clang::ASTReader::ImportedSubmodule>*) (in /opt/root/v6-26-10/lib/libCling.so)
-           n2: 1561044 0x930156A: clang::CompilerInstance::loadModule(clang::SourceLocation, llvm::ArrayRef<std::pair<clang::IdentifierInfo*, clang::SourceLocation> >, clang::Module::NameVisibilityKind, bool) (in /opt/root/v6-26-10/lib/libCling.so)
-            n1: 918680 0xB532B15: clang::Preprocessor::HandleHeaderIncludeOrImport(clang::SourceLocation, clang::Token&, clang::Token&, clang::SourceLocation, clang::DirectoryLookup const*, clang::FileEntry const*) (in /opt/root/v6-26-10/lib/libCling.so)
-             n1: 918680 0xB533EBF: clang::Preprocessor::HandleIncludeDirective(clang::SourceLocation, clang::Token&, clang::DirectoryLookup const*, clang::FileEntry const*) (in /opt/root/v6-26-10/lib/libCling.so)
-              n1: 918680 0xB536E64: clang::Preprocessor::HandleDirective(clang::Token&) (in /opt/root/v6-26-10/lib/libCling.so)
-               n1: 918680 0xB502397: clang::Lexer::LexTokenInternal(clang::Token&, bool) (in /opt/root/v6-26-10/lib/libCling.so)
-                n1: 918680 0xB56A63E: clang::Preprocessor::Lex(clang::Token&) (in /opt/root/v6-26-10/lib/libCling.so)
-                 n1: 918680 0x95B19EE: clang::Parser::ParseTopLevelDecl(clang::OpaquePtr<clang::DeclGroupRef>&, bool) (in /opt/root/v6-26-10/lib/libCling.so)
-                  n1: 918680 0x8E86577: cling::IncrementalParser::ParseInternal(llvm::StringRef) (in /opt/root/v6-26-10/lib/libCling.so)
-                   n1: 918680 0x8E86C89: cling::IncrementalParser::Initialize(llvm::SmallVectorImpl<llvm::PointerIntPair<cling::Transaction*, 2u, cling::IncrementalParser::EParseResult, llvm::PointerLikeTypeTraits<cling::Transaction*>, llvm::PointerIntPairInfo<cling::Transaction*, 2u, llvm::PointerLikeTypeTraits<cling::Transaction*> > > >&, bool) (in /opt/root/v6-26-10/lib/libCling.so)
-                    n1: 918680 0x8E0739A: cling::Interpreter::Interpreter(int, char const* const*, char const*, std::vector<std::shared_ptr<clang::ModuleFileExtension>, std::allocator<std::shared_ptr<clang::ModuleFileExtension> > > const&, bool, cling::Interpreter const*) (in /opt/root/v6-26-10/lib/libCling.so)
-                     n1: 918680 0x8D5BD59: TCling::TCling(char const*, char const*, char const* const*) (in /opt/root/v6-26-10/lib/libCling.so)
-                      n1: 918680 0x8D5DD70: CreateInterpreter (in /opt/root/v6-26-10/lib/libCling.so)
-                       n1: 918680 0x5D55E49: TROOT::InitInterpreter() (in /opt/root/v6-26-10/lib/libCore.so)
-                        n1: 918680 0x5D562FE: ROOT::Internal::GetROOT2() (in /opt/root/v6-26-10/lib/libCore.so)
-                         n1: 918680 0x5EA8718: TUnixSystem::SetDisplay() (in /opt/root/v6-26-10/lib/libCore.so)
-                          n1: 918680 0x78E3664: TGClient::TGClient(char const*) (in /opt/root/v6-26-10/lib/libGui.so)
-                           n1: 918680 0x78BB7D0: _GLOBAL__sub_I_TGClient.cxx (in /opt/root/v6-26-10/lib/libGui.so)
-                            n1: 918680 0x400A1AD: call_init (dl-init.c:70)
-                             n1: 918680 0x400A1AD: call_init (dl-init.c:26)
-                              n1: 918680 0x400A29B: _dl_init (dl-init.c:117)
-                               n0: 918680 0x4020BD9: ??? (in /usr/lib64/ld-linux-x86-64.so.2)
-            n0: 642364 in 1 place, below massif's threshold (1.00%)
+           n1: 1561044 0x930156A: clang::CompilerInstance::loadModule(clang::SourceLocation, llvm::ArrayRef<std::pair<clang::IdentifierInfo*, clang::SourceLocation> >, clang::Module::NameVisibilityKind, bool) (in /opt/root/v6-26-10/lib/libCling.so)
+            n0: 1561044 in 2 places, all below massif's threshold (1.00%)
         n0: 352174 in 3 places, all below massif's threshold (1.00%)
        n0: 716700 in 2 places, all below massif's threshold (1.00%)
       n1: 1650402 0xB5AFAD8: clang::SourceManager::isOffsetInFileID(clang::FileID, unsigned int) const (in /opt/root/v6-26-10/lib/libCling.so)
        n2: 1650402 0xB5AFE28: clang::SourceManager::getFileIDLoaded(unsigned int) const [clone .part.0] (in /opt/root/v6-26-10/lib/libCling.so)
-        n2: 1104315 0xB5B0C30: clang::SourceManager::getFileIDSlow(unsigned int) const (in /opt/root/v6-26-10/lib/libCling.so)
-         n1: 927282 0x95F64C9: clang::ASTReader::ReadPragmaDiagnosticMappings(clang::DiagnosticsEngine&) (in /opt/root/v6-26-10/lib/libCling.so)
-          n1: 927282 0x961D258: clang::ASTReader::InitializeContext() (in /opt/root/v6-26-10/lib/libCling.so)
-           n1: 927282 0x962D9C6: clang::ASTReader::ReadAST(llvm::StringRef, clang::serialization::ModuleKind, clang::SourceLocation, unsigned int, llvm::SmallVectorImpl<clang::ASTReader::ImportedSubmodule>*) (in /opt/root/v6-26-10/lib/libCling.so)
-            n1: 927282 0x930156A: clang::CompilerInstance::loadModule(clang::SourceLocation, llvm::ArrayRef<std::pair<clang::IdentifierInfo*, clang::SourceLocation> >, clang::Module::NameVisibilityKind, bool) (in /opt/root/v6-26-10/lib/libCling.so)
-             n0: 927282 in 2 places, all below massif's threshold (1.00%)
-         n0: 177033 in 2 places, all below massif's threshold (1.00%)
+        n1: 1104315 0xB5B0C30: clang::SourceManager::getFileIDSlow(unsigned int) const (in /opt/root/v6-26-10/lib/libCling.so)
+         n0: 1104315 in 3 places, all below massif's threshold (1.00%)
         n0: 546087 in 2 places, all below massif's threshold (1.00%)
       n0: 550432 in 8 places, all below massif's threshold (1.00%)
     n1: 1380286 0x95ECF9C: clang::ASTReader::ReadSLocEntry(int) [clone .part.0] (in /opt/root/v6-26-10/lib/libCling.so)
@@ -1264,28 +1275,6 @@ n14: 90397095 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
           n1: 2428808 0x4B589EF: OscProbCalcerBase::Reweight(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
            n1: 2428808 0x487DF59: OscillatorBase::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscillator.so)
             n0: 2428808 0x40A847: main (in /opt/NuOscillator/build/Linux/bin/DragRace)
- n1: 4857616 0x6950E26: void nusquids::readArrayH5<double, 2u, std::allocator<double> >(long, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, nusquids::marray<double, 2u, std::allocator<double> >&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
-  n2: 4857616 0x69430F9: nusquids::NeutrinoDISCrossSectionsFromTables::readFlavorHDF5(long, nusquids::marray<double, 1u, std::allocator<double> > const&, nusquids::marray<double, 1u, std::allocator<double> > const&)::{lambda(nusquids::BiCubicInterpolator&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)#2}::operator()(nusquids::BiCubicInterpolator&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) const (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
-   n1: 2428808 0x69459AA: nusquids::NeutrinoDISCrossSectionsFromTables::readFlavorHDF5(long, nusquids::marray<double, 1u, std::allocator<double> > const&, nusquids::marray<double, 1u, std::allocator<double> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
-    n1: 2428808 0x694E945: nusquids::NeutrinoDISCrossSectionsFromTables::ReadHDF(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
-     n1: 2428808 0x694EF1F: nusquids::NeutrinoDISCrossSectionsFromTables::NeutrinoDISCrossSectionsFromTables(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
-      n1: 2428808 0x694F161: nusquids::loadDefaultCrossSections() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
-       n1: 2428808 0x692C2DD: nusquids::nuSQUIDS::InitializeInteractions() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
-        n1: 2428808 0x692C86C: nusquids::nuSQUIDS::EvolveState() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
-         n1: 2428808 0x4B86570: OscProbCalcerNuSQUIDSLinear::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
-          n1: 2428808 0x4B589EF: OscProbCalcerBase::Reweight(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
-           n1: 2428808 0x487DF59: OscillatorBase::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscillator.so)
-            n0: 2428808 0x40A847: main (in /opt/NuOscillator/build/Linux/bin/DragRace)
-   n1: 2428808 0x6945A0D: nusquids::NeutrinoDISCrossSectionsFromTables::readFlavorHDF5(long, nusquids::marray<double, 1u, std::allocator<double> > const&, nusquids::marray<double, 1u, std::allocator<double> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
-    n1: 2428808 0x694E945: nusquids::NeutrinoDISCrossSectionsFromTables::ReadHDF(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
-     n1: 2428808 0x694EF1F: nusquids::NeutrinoDISCrossSectionsFromTables::NeutrinoDISCrossSectionsFromTables(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
-      n1: 2428808 0x694F161: nusquids::loadDefaultCrossSections() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
-       n1: 2428808 0x692C2DD: nusquids::nuSQUIDS::InitializeInteractions() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
-        n1: 2428808 0x692C86C: nusquids::nuSQUIDS::EvolveState() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
-         n1: 2428808 0x4B86570: OscProbCalcerNuSQUIDSLinear::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
-          n1: 2428808 0x4B589EF: OscProbCalcerBase::Reweight(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
-           n1: 2428808 0x487DF59: OscillatorBase::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscillator.so)
-            n0: 2428808 0x40A847: main (in /opt/NuOscillator/build/Linux/bin/DragRace)
  n1: 4768440 0xB51BCFF: clang::ModuleMap::findOrCreateModule(llvm::StringRef, clang::Module*, bool, bool) (in /opt/root/v6-26-10/lib/libCling.so)
   n2: 4768440 0xB525193: clang::ModuleMapParser::parseModuleDecl() (in /opt/root/v6-26-10/lib/libCling.so)
    n2: 4578840 0xB524C17: clang::ModuleMapParser::parseModuleDecl() (in /opt/root/v6-26-10/lib/libCling.so)
@@ -1319,8 +1308,8 @@ n14: 90397095 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
                                n0: 4546608 0x1FFF000499: ???
     n0: 32232 in 1 place, below massif's threshold (1.00%)
    n0: 189600 in 1 place, below massif's threshold (1.00%)
- n2: 1940312 0x65B233C: ??? (in /usr/lib64/libhdf5.so.200.1.0)
-  n2: 1077096 0x65B2A50: H5FL_blk_malloc (in /usr/lib64/libhdf5.so.200.1.0)
+ n2: 1944584 0x65B233C: ??? (in /usr/lib64/libhdf5.so.200.1.0)
+  n2: 1077920 0x65B2A50: H5FL_blk_malloc (in /usr/lib64/libhdf5.so.200.1.0)
    n2: 1051452 0x65B2BA4: H5FL_blk_calloc (in /usr/lib64/libhdf5.so.200.1.0)
     n1: 1048584 0x6557A4B: ??? (in /usr/lib64/libhdf5.so.200.1.0)
      n1: 1048584 0x655847C: H5D__read (in /usr/lib64/libhdf5.so.200.1.0)
@@ -1339,51 +1328,22 @@ n14: 90397095 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
                   n1: 1048584 0x487DF59: OscillatorBase::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscillator.so)
                    n0: 1048584 0x40A847: main (in /opt/NuOscillator/build/Linux/bin/DragRace)
     n0: 2868 in 2 places, all below massif's threshold (1.00%)
-   n0: 25644 in 14 places, all below massif's threshold (1.00%)
-  n0: 863216 in 3 places, all below massif's threshold (1.00%)
+   n0: 26468 in 14 places, all below massif's threshold (1.00%)
+  n0: 866664 in 3 places, all below massif's threshold (1.00%)
  n1: 1733184 0xB12692F: llvm::BitstreamCursor::ReadAbbrevRecord() (in /opt/root/v6-26-10/lib/libCling.so)
   n0: 1733184 in 6 places, all below massif's threshold (1.00%)
  n1: 1134592 0xB2D9D29: clang::Decl::operator new(unsigned long, clang::ASTContext const&, unsigned int, unsigned long) (in /opt/root/v6-26-10/lib/libCling.so)
   n0: 1134592 in 17 places, all below massif's threshold (1.00%)
- n1: 917504 0x95EAF81: llvm::DenseMap<unsigned int, llvm::SmallVector<std::pair<clang::serialization::ModuleFile*, unsigned long>, 2u>, llvm::DenseMapInfo<unsigned int>, llvm::detail::DenseMapPair<unsigned int, llvm::SmallVector<std::pair<clang::serialization::ModuleFile*, unsigned long>, 2u> > >::grow(unsigned int) (in /opt/root/v6-26-10/lib/libCling.so)
-  n1: 917504 0x9621065: clang::ASTReader::ReadASTBlock(clang::serialization::ModuleFile&, unsigned int) (in /opt/root/v6-26-10/lib/libCling.so)
-   n1: 917504 0x962CF68: clang::ASTReader::ReadAST(llvm::StringRef, clang::serialization::ModuleKind, clang::SourceLocation, unsigned int, llvm::SmallVectorImpl<clang::ASTReader::ImportedSubmodule>*) (in /opt/root/v6-26-10/lib/libCling.so)
-    n2: 917504 0x930156A: clang::CompilerInstance::loadModule(clang::SourceLocation, llvm::ArrayRef<std::pair<clang::IdentifierInfo*, clang::SourceLocation> >, clang::Module::NameVisibilityKind, bool) (in /opt/root/v6-26-10/lib/libCling.so)
-     n1: 917504 0x9AF2615: clang::Sema::ActOnModuleImport(clang::SourceLocation, clang::SourceLocation, clang::SourceLocation, llvm::ArrayRef<std::pair<clang::IdentifierInfo*, clang::SourceLocation> >) (in /opt/root/v6-26-10/lib/libCling.so)
-      n1: 917504 0x8E018D1: cling::Interpreter::loadModule(clang::Module*, bool) (in /opt/root/v6-26-10/lib/libCling.so)
-       n1: 917504 0x8D2EED6: LoadModule(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, cling::Interpreter&) (in /opt/root/v6-26-10/lib/libCling.so)
-        n1: 917504 0x8D59E97: RegisterCxxModules(cling::Interpreter&) (in /opt/root/v6-26-10/lib/libCling.so)
-         n1: 917504 0x8D5BE48: TCling::TCling(char const*, char const*, char const* const*) (in /opt/root/v6-26-10/lib/libCling.so)
-          n1: 917504 0x8D5DD70: CreateInterpreter (in /opt/root/v6-26-10/lib/libCling.so)
-           n1: 917504 0x5D55E49: TROOT::InitInterpreter() (in /opt/root/v6-26-10/lib/libCore.so)
-            n1: 917504 0x5D562FE: ROOT::Internal::GetROOT2() (in /opt/root/v6-26-10/lib/libCore.so)
-             n1: 917504 0x5EA8718: TUnixSystem::SetDisplay() (in /opt/root/v6-26-10/lib/libCore.so)
-              n1: 917504 0x78E3664: TGClient::TGClient(char const*) (in /opt/root/v6-26-10/lib/libGui.so)
-               n1: 917504 0x78BB7D0: _GLOBAL__sub_I_TGClient.cxx (in /opt/root/v6-26-10/lib/libGui.so)
-                n1: 917504 0x400A1AD: call_init (dl-init.c:70)
-                 n1: 917504 0x400A1AD: call_init (dl-init.c:26)
-                  n1: 917504 0x400A29B: _dl_init (dl-init.c:117)
-                   n1: 917504 0x4020BD9: ??? (in /usr/lib64/ld-linux-x86-64.so.2)
-                    n1: 917504 0x7: ???
-                     n1: 917504 0x1FFF0003A2: ???
-                      n1: 917504 0x1FFF0003BC: ???
-                       n1: 917504 0x1FFF0003BE: ???
-                        n1: 917504 0x1FFF0003E8: ???
-                         n1: 917504 0x1FFF000410: ???
-                          n1: 917504 0x1FFF00043D: ???
-                           n1: 917504 0x1FFF00046B: ???
-                            n0: 917504 0x1FFF000499: ???
-     n0: 0 in 1 place, below massif's threshold (1.00%)
 #-----------
 snapshot=12
 #-----------
-time=1301118337
-mem_heap_B=100125687
-mem_heap_extra_B=967137
+time=1299831459
+mem_heap_B=102531183
+mem_heap_extra_B=967721
 mem_stacks_B=0
 heap_tree=detailed
-n13: 100125687 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
- n0: 17431140 in 4222 places, all below massif's threshold (1.00%)
+n13: 102531183 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n0: 17403652 in 4222 places, all below massif's threshold (1.00%)
  n1: 15090080 0x9621C4B: clang::ASTReader::ReadASTBlock(clang::serialization::ModuleFile&, unsigned int) (in /opt/root/v6-26-10/lib/libCling.so)
   n1: 15090080 0x962CF68: clang::ASTReader::ReadAST(llvm::StringRef, clang::serialization::ModuleKind, clang::SourceLocation, unsigned int, llvm::SmallVectorImpl<clang::ASTReader::ImportedSubmodule>*) (in /opt/root/v6-26-10/lib/libCling.so)
    n2: 15090080 0x930156A: clang::CompilerInstance::loadModule(clang::SourceLocation, llvm::ArrayRef<std::pair<clang::IdentifierInfo*, clang::SourceLocation> >, clang::Module::NameVisibilityKind, bool) (in /opt/root/v6-26-10/lib/libCling.so)
@@ -1442,6 +1402,48 @@ n13: 100125687 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
                            n0: 13700608 0x1FFF000499: ???
        n0: 0 in 1 place, below massif's threshold (1.00%)
     n0: 0 in 1 place, below massif's threshold (1.00%)
+ n1: 9715232 0x6950E26: void nusquids::readArrayH5<double, 2u, std::allocator<double> >(long, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, nusquids::marray<double, 2u, std::allocator<double> >&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
+  n4: 9715232 0x69430F9: nusquids::NeutrinoDISCrossSectionsFromTables::readFlavorHDF5(long, nusquids::marray<double, 1u, std::allocator<double> > const&, nusquids::marray<double, 1u, std::allocator<double> > const&)::{lambda(nusquids::BiCubicInterpolator&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)#2}::operator()(nusquids::BiCubicInterpolator&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) const (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
+   n1: 2428808 0x69459AA: nusquids::NeutrinoDISCrossSectionsFromTables::readFlavorHDF5(long, nusquids::marray<double, 1u, std::allocator<double> > const&, nusquids::marray<double, 1u, std::allocator<double> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
+    n1: 2428808 0x694E945: nusquids::NeutrinoDISCrossSectionsFromTables::ReadHDF(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
+     n1: 2428808 0x694EF1F: nusquids::NeutrinoDISCrossSectionsFromTables::NeutrinoDISCrossSectionsFromTables(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
+      n1: 2428808 0x694F161: nusquids::loadDefaultCrossSections() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
+       n1: 2428808 0x692C2DD: nusquids::nuSQUIDS::InitializeInteractions() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
+        n1: 2428808 0x692C86C: nusquids::nuSQUIDS::EvolveState() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
+         n1: 2428808 0x4B86570: OscProbCalcerNuSQUIDSLinear::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
+          n1: 2428808 0x4B589EF: OscProbCalcerBase::Reweight(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
+           n1: 2428808 0x487DF59: OscillatorBase::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscillator.so)
+            n0: 2428808 0x40A847: main (in /opt/NuOscillator/build/Linux/bin/DragRace)
+   n1: 2428808 0x6945A0D: nusquids::NeutrinoDISCrossSectionsFromTables::readFlavorHDF5(long, nusquids::marray<double, 1u, std::allocator<double> > const&, nusquids::marray<double, 1u, std::allocator<double> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
+    n1: 2428808 0x694E945: nusquids::NeutrinoDISCrossSectionsFromTables::ReadHDF(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
+     n1: 2428808 0x694EF1F: nusquids::NeutrinoDISCrossSectionsFromTables::NeutrinoDISCrossSectionsFromTables(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
+      n1: 2428808 0x694F161: nusquids::loadDefaultCrossSections() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
+       n1: 2428808 0x692C2DD: nusquids::nuSQUIDS::InitializeInteractions() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
+        n1: 2428808 0x692C86C: nusquids::nuSQUIDS::EvolveState() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
+         n1: 2428808 0x4B86570: OscProbCalcerNuSQUIDSLinear::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
+          n1: 2428808 0x4B589EF: OscProbCalcerBase::Reweight(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
+           n1: 2428808 0x487DF59: OscillatorBase::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscillator.so)
+            n0: 2428808 0x40A847: main (in /opt/NuOscillator/build/Linux/bin/DragRace)
+   n1: 2428808 0x6945A76: nusquids::NeutrinoDISCrossSectionsFromTables::readFlavorHDF5(long, nusquids::marray<double, 1u, std::allocator<double> > const&, nusquids::marray<double, 1u, std::allocator<double> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
+    n1: 2428808 0x694E945: nusquids::NeutrinoDISCrossSectionsFromTables::ReadHDF(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
+     n1: 2428808 0x694EF1F: nusquids::NeutrinoDISCrossSectionsFromTables::NeutrinoDISCrossSectionsFromTables(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
+      n1: 2428808 0x694F161: nusquids::loadDefaultCrossSections() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
+       n1: 2428808 0x692C2DD: nusquids::nuSQUIDS::InitializeInteractions() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
+        n1: 2428808 0x692C86C: nusquids::nuSQUIDS::EvolveState() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
+         n1: 2428808 0x4B86570: OscProbCalcerNuSQUIDSLinear::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
+          n1: 2428808 0x4B589EF: OscProbCalcerBase::Reweight(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
+           n1: 2428808 0x487DF59: OscillatorBase::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscillator.so)
+            n0: 2428808 0x40A847: main (in /opt/NuOscillator/build/Linux/bin/DragRace)
+   n1: 2428808 0x6945ADF: nusquids::NeutrinoDISCrossSectionsFromTables::readFlavorHDF5(long, nusquids::marray<double, 1u, std::allocator<double> > const&, nusquids::marray<double, 1u, std::allocator<double> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
+    n1: 2428808 0x694E945: nusquids::NeutrinoDISCrossSectionsFromTables::ReadHDF(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
+     n1: 2428808 0x694EF1F: nusquids::NeutrinoDISCrossSectionsFromTables::NeutrinoDISCrossSectionsFromTables(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
+      n1: 2428808 0x694F161: nusquids::loadDefaultCrossSections() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
+       n1: 2428808 0x692C2DD: nusquids::nuSQUIDS::InitializeInteractions() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
+        n1: 2428808 0x692C86C: nusquids::nuSQUIDS::EvolveState() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
+         n1: 2428808 0x4B86570: OscProbCalcerNuSQUIDSLinear::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
+          n1: 2428808 0x4B589EF: OscProbCalcerBase::Reweight(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
+           n1: 2428808 0x487DF59: OscillatorBase::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscillator.so)
+            n0: 2428808 0x40A847: main (in /opt/NuOscillator/build/Linux/bin/DragRace)
  n2: 8760472 0xB8E2E8A: llvm::SmallVectorBase::grow_pod(void*, unsigned long, unsigned long) (in /opt/root/v6-26-10/lib/libCling.so)
   n1: 8319528 0xB5AEE9A: clang::SourceManager::AllocateLoadedSLocEntries(unsigned int, unsigned int) (in /opt/root/v6-26-10/lib/libCling.so)
    n1: 8319528 0x961FA76: clang::ASTReader::ReadASTBlock(clang::serialization::ModuleFile&, unsigned int) (in /opt/root/v6-26-10/lib/libCling.so)
@@ -1570,38 +1572,6 @@ n13: 100125687 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
           n1: 2428808 0x4B589EF: OscProbCalcerBase::Reweight(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
            n1: 2428808 0x487DF59: OscillatorBase::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscillator.so)
             n0: 2428808 0x40A847: main (in /opt/NuOscillator/build/Linux/bin/DragRace)
- n1: 7286424 0x6950E26: void nusquids::readArrayH5<double, 2u, std::allocator<double> >(long, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, nusquids::marray<double, 2u, std::allocator<double> >&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
-  n3: 7286424 0x69430F9: nusquids::NeutrinoDISCrossSectionsFromTables::readFlavorHDF5(long, nusquids::marray<double, 1u, std::allocator<double> > const&, nusquids::marray<double, 1u, std::allocator<double> > const&)::{lambda(nusquids::BiCubicInterpolator&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)#2}::operator()(nusquids::BiCubicInterpolator&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) const (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
-   n1: 2428808 0x69459AA: nusquids::NeutrinoDISCrossSectionsFromTables::readFlavorHDF5(long, nusquids::marray<double, 1u, std::allocator<double> > const&, nusquids::marray<double, 1u, std::allocator<double> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
-    n1: 2428808 0x694E945: nusquids::NeutrinoDISCrossSectionsFromTables::ReadHDF(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
-     n1: 2428808 0x694EF1F: nusquids::NeutrinoDISCrossSectionsFromTables::NeutrinoDISCrossSectionsFromTables(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
-      n1: 2428808 0x694F161: nusquids::loadDefaultCrossSections() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
-       n1: 2428808 0x692C2DD: nusquids::nuSQUIDS::InitializeInteractions() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
-        n1: 2428808 0x692C86C: nusquids::nuSQUIDS::EvolveState() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
-         n1: 2428808 0x4B86570: OscProbCalcerNuSQUIDSLinear::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
-          n1: 2428808 0x4B589EF: OscProbCalcerBase::Reweight(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
-           n1: 2428808 0x487DF59: OscillatorBase::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscillator.so)
-            n0: 2428808 0x40A847: main (in /opt/NuOscillator/build/Linux/bin/DragRace)
-   n1: 2428808 0x6945A0D: nusquids::NeutrinoDISCrossSectionsFromTables::readFlavorHDF5(long, nusquids::marray<double, 1u, std::allocator<double> > const&, nusquids::marray<double, 1u, std::allocator<double> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
-    n1: 2428808 0x694E945: nusquids::NeutrinoDISCrossSectionsFromTables::ReadHDF(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
-     n1: 2428808 0x694EF1F: nusquids::NeutrinoDISCrossSectionsFromTables::NeutrinoDISCrossSectionsFromTables(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
-      n1: 2428808 0x694F161: nusquids::loadDefaultCrossSections() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
-       n1: 2428808 0x692C2DD: nusquids::nuSQUIDS::InitializeInteractions() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
-        n1: 2428808 0x692C86C: nusquids::nuSQUIDS::EvolveState() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
-         n1: 2428808 0x4B86570: OscProbCalcerNuSQUIDSLinear::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
-          n1: 2428808 0x4B589EF: OscProbCalcerBase::Reweight(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
-           n1: 2428808 0x487DF59: OscillatorBase::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscillator.so)
-            n0: 2428808 0x40A847: main (in /opt/NuOscillator/build/Linux/bin/DragRace)
-   n1: 2428808 0x6945A76: nusquids::NeutrinoDISCrossSectionsFromTables::readFlavorHDF5(long, nusquids::marray<double, 1u, std::allocator<double> > const&, nusquids::marray<double, 1u, std::allocator<double> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
-    n1: 2428808 0x694E945: nusquids::NeutrinoDISCrossSectionsFromTables::ReadHDF(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
-     n1: 2428808 0x694EF1F: nusquids::NeutrinoDISCrossSectionsFromTables::NeutrinoDISCrossSectionsFromTables(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
-      n1: 2428808 0x694F161: nusquids::loadDefaultCrossSections() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
-       n1: 2428808 0x692C2DD: nusquids::nuSQUIDS::InitializeInteractions() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
-        n1: 2428808 0x692C86C: nusquids::nuSQUIDS::EvolveState() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
-         n1: 2428808 0x4B86570: OscProbCalcerNuSQUIDSLinear::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
-          n1: 2428808 0x4B589EF: OscProbCalcerBase::Reweight(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
-           n1: 2428808 0x487DF59: OscillatorBase::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscillator.so)
-            n0: 2428808 0x40A847: main (in /opt/NuOscillator/build/Linux/bin/DragRace)
  n2: 6416891 0xB8D8E91: llvm::WritableMemoryBuffer::getNewUninitMemBuffer(unsigned long, llvm::Twine const&) (in /opt/root/v6-26-10/lib/libCling.so)
   n2: 6226128 0xB8D9111: llvm::MemoryBuffer::getMemBufferCopy(llvm::StringRef, llvm::Twine const&) (in /opt/root/v6-26-10/lib/libCling.so)
    n2: 6211038 0x95DBA90: clang::ASTReader::ReadSLocEntry(int)::{lambda(llvm::BitstreamCursor&, llvm::StringRef)#1}::operator()(llvm::BitstreamCursor&, llvm::StringRef) const (in /opt/root/v6-26-10/lib/libCling.so)
@@ -1628,29 +1598,8 @@ n13: 100125687 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
        n2: 1288644 0x930156A: clang::CompilerInstance::loadModule(clang::SourceLocation, llvm::ArrayRef<std::pair<clang::IdentifierInfo*, clang::SourceLocation> >, clang::Module::NameVisibilityKind, bool) (in /opt/root/v6-26-10/lib/libCling.so)
         n1: 1219839 0x9AF2615: clang::Sema::ActOnModuleImport(clang::SourceLocation, clang::SourceLocation, clang::SourceLocation, llvm::ArrayRef<std::pair<clang::IdentifierInfo*, clang::SourceLocation> >) (in /opt/root/v6-26-10/lib/libCling.so)
          n1: 1219839 0x8E018D1: cling::Interpreter::loadModule(clang::Module*, bool) (in /opt/root/v6-26-10/lib/libCling.so)
-          n2: 1219839 0x8D2EED6: LoadModule(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, cling::Interpreter&) (in /opt/root/v6-26-10/lib/libCling.so)
-           n1: 1014159 0x8D59E97: RegisterCxxModules(cling::Interpreter&) (in /opt/root/v6-26-10/lib/libCling.so)
-            n1: 1014159 0x8D5BE48: TCling::TCling(char const*, char const*, char const* const*) (in /opt/root/v6-26-10/lib/libCling.so)
-             n1: 1014159 0x8D5DD70: CreateInterpreter (in /opt/root/v6-26-10/lib/libCling.so)
-              n1: 1014159 0x5D55E49: TROOT::InitInterpreter() (in /opt/root/v6-26-10/lib/libCore.so)
-               n1: 1014159 0x5D562FE: ROOT::Internal::GetROOT2() (in /opt/root/v6-26-10/lib/libCore.so)
-                n1: 1014159 0x5EA8718: TUnixSystem::SetDisplay() (in /opt/root/v6-26-10/lib/libCore.so)
-                 n1: 1014159 0x78E3664: TGClient::TGClient(char const*) (in /opt/root/v6-26-10/lib/libGui.so)
-                  n1: 1014159 0x78BB7D0: _GLOBAL__sub_I_TGClient.cxx (in /opt/root/v6-26-10/lib/libGui.so)
-                   n1: 1014159 0x400A1AD: call_init (dl-init.c:70)
-                    n1: 1014159 0x400A1AD: call_init (dl-init.c:26)
-                     n1: 1014159 0x400A29B: _dl_init (dl-init.c:117)
-                      n1: 1014159 0x4020BD9: ??? (in /usr/lib64/ld-linux-x86-64.so.2)
-                       n1: 1014159 0x7: ???
-                        n1: 1014159 0x1FFF0003A2: ???
-                         n1: 1014159 0x1FFF0003BC: ???
-                          n1: 1014159 0x1FFF0003BE: ???
-                           n1: 1014159 0x1FFF0003E8: ???
-                            n1: 1014159 0x1FFF000410: ???
-                             n1: 1014159 0x1FFF00043D: ???
-                              n1: 1014159 0x1FFF00046B: ???
-                               n0: 1014159 0x1FFF000499: ???
-           n0: 205680 in 4 places, all below massif's threshold (1.00%)
+          n1: 1219839 0x8D2EED6: LoadModule(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, cling::Interpreter&) (in /opt/root/v6-26-10/lib/libCling.so)
+           n0: 1219839 in 5 places, all below massif's threshold (1.00%)
         n0: 68805 in 1 place, below massif's threshold (1.00%)
       n0: 91642 in 9 places, all below massif's threshold (1.00%)
    n0: 15090 in 2 places, all below massif's threshold (1.00%)
@@ -1688,8 +1637,8 @@ n13: 100125687 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
                                n0: 4546608 0x1FFF000499: ???
     n0: 32232 in 1 place, below massif's threshold (1.00%)
    n0: 189600 in 1 place, below massif's threshold (1.00%)
- n2: 1944584 0x65B233C: ??? (in /usr/lib64/libhdf5.so.200.1.0)
-  n2: 1077920 0x65B2A50: H5FL_blk_malloc (in /usr/lib64/libhdf5.so.200.1.0)
+ n2: 1948760 0x65B233C: ??? (in /usr/lib64/libhdf5.so.200.1.0)
+  n2: 1078680 0x65B2A50: H5FL_blk_malloc (in /usr/lib64/libhdf5.so.200.1.0)
    n2: 1051452 0x65B2BA4: H5FL_blk_calloc (in /usr/lib64/libhdf5.so.200.1.0)
     n1: 1048584 0x6557A4B: ??? (in /usr/lib64/libhdf5.so.200.1.0)
      n1: 1048584 0x655847C: H5D__read (in /usr/lib64/libhdf5.so.200.1.0)
@@ -1708,8 +1657,8 @@ n13: 100125687 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
                   n1: 1048584 0x487DF59: OscillatorBase::CalculateProbabilities(std::vector<double, std::allocator<double> > const&) (in /opt/NuOscillator/build/Linux/lib/libOscillator.so)
                    n0: 1048584 0x40A847: main (in /opt/NuOscillator/build/Linux/bin/DragRace)
     n0: 2868 in 2 places, all below massif's threshold (1.00%)
-   n0: 26468 in 14 places, all below massif's threshold (1.00%)
-  n0: 866664 in 3 places, all below massif's threshold (1.00%)
+   n0: 27228 in 14 places, all below massif's threshold (1.00%)
+  n0: 870080 in 3 places, all below massif's threshold (1.00%)
  n1: 1733184 0xB12692F: llvm::BitstreamCursor::ReadAbbrevRecord() (in /opt/root/v6-26-10/lib/libCling.so)
   n0: 1733184 in 6 places, all below massif's threshold (1.00%)
  n1: 1134592 0xB2D9D29: clang::Decl::operator new(unsigned long, clang::ASTContext const&, unsigned int, unsigned long) (in /opt/root/v6-26-10/lib/libCling.so)
@@ -1717,7 +1666,7 @@ n13: 100125687 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
 #-----------
 snapshot=13
 #-----------
-time=1406129053
+time=1402996653
 mem_heap_B=109854183
 mem_heap_extra_B=967673
 mem_stacks_B=0
@@ -2054,7 +2003,7 @@ n13: 109854183 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
 #-----------
 snapshot=14
 #-----------
-time=1515986765
+time=1512854365
 mem_heap_B=119694161
 mem_heap_extra_B=971503
 mem_stacks_B=0
@@ -2425,7 +2374,7 @@ n12: 119694161 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
 #-----------
 snapshot=15
 #-----------
-time=1620994534
+time=1617862134
 mem_heap_B=129422657
 mem_heap_extra_B=972039
 mem_stacks_B=0
@@ -2825,7 +2774,7 @@ n12: 129422657 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
 #-----------
 snapshot=16
 #-----------
-time=1726011837
+time=1722879437
 mem_heap_B=139151255
 mem_heap_extra_B=972609
 mem_stacks_B=0
@@ -3259,7 +3208,7 @@ n12: 139151255 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
 #-----------
 snapshot=17
 #-----------
-time=1831022734
+time=1827890334
 mem_heap_B=148879751
 mem_heap_extra_B=973177
 mem_stacks_B=0
@@ -3729,7 +3678,7 @@ n12: 148879751 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
 #-----------
 snapshot=18
 #-----------
-time=1944449676
+time=1941317276
 mem_heap_B=158688866
 mem_heap_extra_B=969702
 mem_stacks_B=0
@@ -4222,7 +4171,7 @@ n12: 158688866 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
 #-----------
 snapshot=19
 #-----------
-time=2049456492
+time=2046324092
 mem_heap_B=168413186
 mem_heap_extra_B=970046
 mem_stacks_B=0
@@ -4740,7 +4689,7 @@ n12: 168413186 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
 #-----------
 snapshot=20
 #-----------
-time=2154467695
+time=2151335295
 mem_heap_B=178137506
 mem_heap_extra_B=970390
 mem_stacks_B=0
@@ -5284,7 +5233,7 @@ n11: 178137506 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
 #-----------
 snapshot=21
 #-----------
-time=2259477994
+time=2256345594
 mem_heap_B=187861826
 mem_heap_extra_B=970734
 mem_stacks_B=0
@@ -5856,7 +5805,7 @@ n11: 187861826 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
 #-----------
 snapshot=22
 #-----------
-time=2369316604
+time=2366184204
 mem_heap_B=197677418
 mem_heap_extra_B=973158
 mem_stacks_B=0
@@ -6452,7 +6401,7 @@ n10: 197677418 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
 #-----------
 snapshot=23
 #-----------
-time=2474323537
+time=2471191137
 mem_heap_B=207401738
 mem_heap_extra_B=973502
 mem_stacks_B=0
@@ -7076,7 +7025,7 @@ n10: 207401738 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
 #-----------
 snapshot=24
 #-----------
-time=2579339852
+time=2576207452
 mem_heap_B=217126058
 mem_heap_extra_B=973846
 mem_stacks_B=0
@@ -7728,7 +7677,7 @@ n10: 217126058 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
 #-----------
 snapshot=25
 #-----------
-time=2684350263
+time=2681217863
 mem_heap_B=226850378
 mem_heap_extra_B=974190
 mem_stacks_B=0
@@ -8408,7 +8357,7 @@ n10: 226850378 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
 #-----------
 snapshot=26
 #-----------
-time=2759499142
+time=2756366742
 mem_heap_B=226626054
 mem_heap_extra_B=966882
 mem_stacks_B=0
@@ -8416,7 +8365,7 @@ heap_tree=empty
 #-----------
 snapshot=27
 #-----------
-time=2839899371
+time=2836766971
 mem_heap_B=226626054
 mem_heap_extra_B=966882
 mem_stacks_B=0
@@ -8424,7 +8373,7 @@ heap_tree=empty
 #-----------
 snapshot=28
 #-----------
-time=2965892149
+time=2962759749
 mem_heap_B=226626022
 mem_heap_extra_B=966866
 mem_stacks_B=0
@@ -8432,7 +8381,7 @@ heap_tree=empty
 #-----------
 snapshot=29
 #-----------
-time=3056513745
+time=3053381345
 mem_heap_B=226626278
 mem_heap_extra_B=966922
 mem_stacks_B=0
@@ -8440,7 +8389,7 @@ heap_tree=empty
 #-----------
 snapshot=30
 #-----------
-time=3133826662
+time=3130694262
 mem_heap_B=226626246
 mem_heap_extra_B=966922
 mem_stacks_B=0
@@ -8448,7 +8397,7 @@ heap_tree=empty
 #-----------
 snapshot=31
 #-----------
-time=3257613620
+time=3254481220
 mem_heap_B=226626278
 mem_heap_extra_B=966922
 mem_stacks_B=0
@@ -9128,7 +9077,7 @@ n10: 226626278 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
 #-----------
 snapshot=32
 #-----------
-time=3371211807
+time=3368079407
 mem_heap_B=226626246
 mem_heap_extra_B=966922
 mem_stacks_B=0
@@ -9136,7 +9085,7 @@ heap_tree=empty
 #-----------
 snapshot=33
 #-----------
-time=3485234450
+time=3482102050
 mem_heap_B=229819663
 mem_heap_extra_B=971057
 mem_stacks_B=0
@@ -9144,7 +9093,7 @@ heap_tree=empty
 #-----------
 snapshot=34
 #-----------
-time=3583675495
+time=3580543095
 mem_heap_B=237144919
 mem_heap_extra_B=971025
 mem_stacks_B=0
@@ -9840,7 +9789,7 @@ n10: 237144919 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
 #-----------
 snapshot=35
 #-----------
-time=3688682276
+time=3685549876
 mem_heap_B=246869239
 mem_heap_extra_B=971369
 mem_stacks_B=0
@@ -10136,7 +10085,7 @@ n10: 246869239 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
 #-----------
 snapshot=36
 #-----------
-time=3793693374
+time=3790560974
 mem_heap_B=256593559
 mem_heap_extra_B=971713
 mem_stacks_B=0
@@ -10448,7 +10397,7 @@ n10: 256593559 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
 #-----------
 snapshot=37
 #-----------
-time=3898703269
+time=3895570869
 mem_heap_B=266317879
 mem_heap_extra_B=972057
 mem_stacks_B=0
@@ -10774,7 +10723,7 @@ n10: 266317879 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
 #-----------
 snapshot=38
 #-----------
-time=4008541886
+time=4005409486
 mem_heap_B=276133471
 mem_heap_extra_B=974497
 mem_stacks_B=0
@@ -11116,7 +11065,7 @@ n10: 276133471 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
 #-----------
 snapshot=39
 #-----------
-time=4113548834
+time=4110416434
 mem_heap_B=285857791
 mem_heap_extra_B=974841
 mem_stacks_B=0
@@ -11474,7 +11423,7 @@ n10: 285857791 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
 #-----------
 snapshot=40
 #-----------
-time=4218565064
+time=4215432664
 mem_heap_B=295582111
 mem_heap_extra_B=975185
 mem_stacks_B=0
@@ -11848,7 +11797,7 @@ n10: 295582111 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
 #-----------
 snapshot=41
 #-----------
-time=4323575125
+time=4320442725
 mem_heap_B=305306431
 mem_heap_extra_B=975529
 mem_stacks_B=0
@@ -12238,7 +12187,7 @@ n10: 305306431 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
 #-----------
 snapshot=42
 #-----------
-time=4436982056
+time=4433849656
 mem_heap_B=315115546
 mem_heap_extra_B=971974
 mem_stacks_B=0
@@ -12640,7 +12589,7 @@ n10: 315115546 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
 #-----------
 snapshot=43
 #-----------
-time=4541988876
+time=4538856476
 mem_heap_B=324839866
 mem_heap_extra_B=972318
 mem_stacks_B=0
@@ -13054,7 +13003,7 @@ n10: 324839866 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
 #-----------
 snapshot=44
 #-----------
-time=4647000083
+time=4643867683
 mem_heap_B=334564186
 mem_heap_extra_B=972662
 mem_stacks_B=0
@@ -13480,7 +13429,7 @@ n10: 334564186 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
 #-----------
 snapshot=45
 #-----------
-time=4752010384
+time=4748877984
 mem_heap_B=344288506
 mem_heap_extra_B=973006
 mem_stacks_B=0
@@ -13918,7 +13867,7 @@ n10: 344288506 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
 #-----------
 snapshot=46
 #-----------
-time=4861849026
+time=4858716626
 mem_heap_B=354104098
 mem_heap_extra_B=975430
 mem_stacks_B=0
@@ -14368,7 +14317,7 @@ n10: 354104098 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
 #-----------
 snapshot=47
 #-----------
-time=4966855969
+time=4963723569
 mem_heap_B=363828418
 mem_heap_extra_B=975774
 mem_stacks_B=0
@@ -14830,7 +14779,7 @@ n10: 363828418 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
 #-----------
 snapshot=48
 #-----------
-time=5071872286
+time=5068739886
 mem_heap_B=373552738
 mem_heap_extra_B=976118
 mem_stacks_B=0
@@ -15304,7 +15253,7 @@ n10: 373552738 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
 #-----------
 snapshot=49
 #-----------
-time=5078439513
+time=5075307113
 mem_heap_B=375951802
 mem_heap_extra_B=976462
 mem_stacks_B=0
@@ -15312,7 +15261,7 @@ heap_tree=empty
 #-----------
 snapshot=50
 #-----------
-time=5176882705
+time=5173750305
 mem_heap_B=383277058
 mem_heap_extra_B=976462
 mem_stacks_B=0
@@ -15798,15 +15747,15 @@ n10: 383277058 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
 #-----------
 snapshot=51
 #-----------
-time=5250067066
-mem_heap_B=383074530
-mem_heap_extra_B=968982
+time=5242124300
+mem_heap_B=383135330
+mem_heap_extra_B=968998
 mem_stacks_B=0
 heap_tree=empty
 #-----------
 snapshot=52
 #-----------
-time=5319053013
+time=5310029285
 mem_heap_B=383052734
 mem_heap_extra_B=969154
 mem_stacks_B=0
@@ -15814,55 +15763,55 @@ heap_tree=empty
 #-----------
 snapshot=53
 #-----------
-time=5387991520
-mem_heap_B=383052702
-mem_heap_extra_B=969154
-mem_stacks_B=0
-heap_tree=empty
-#-----------
-snapshot=54
-#-----------
-time=5456927888
+time=5377857144
 mem_heap_B=383052686
 mem_heap_extra_B=969146
 mem_stacks_B=0
 heap_tree=empty
 #-----------
+snapshot=54
+#-----------
+time=5445774906
+mem_heap_B=383052734
+mem_heap_extra_B=969154
+mem_stacks_B=0
+heap_tree=empty
+#-----------
 snapshot=55
 #-----------
-time=5525837627
-mem_heap_B=383052734
+time=5513600853
+mem_heap_B=383052702
 mem_heap_extra_B=969218
 mem_stacks_B=0
 heap_tree=empty
 #-----------
 snapshot=56
 #-----------
-time=5594832513
-mem_heap_B=383052734
+time=5581407476
+mem_heap_B=383052702
 mem_heap_extra_B=969218
 mem_stacks_B=0
 heap_tree=empty
 #-----------
 snapshot=57
 #-----------
-time=5663738467
-mem_heap_B=383052702
+time=5649308313
+mem_heap_B=383052734
 mem_heap_extra_B=969218
 mem_stacks_B=0
 heap_tree=empty
 #-----------
 snapshot=58
 #-----------
-time=5732647295
-mem_heap_B=383052686
-mem_heap_extra_B=969210
+time=5717133595
+mem_heap_B=383052734
+mem_heap_extra_B=969218
 mem_stacks_B=0
 heap_tree=empty
 #-----------
 snapshot=59
 #-----------
-time=5801563251
+time=5784941907
 mem_heap_B=383052686
 mem_heap_extra_B=969210
 mem_stacks_B=0
@@ -15870,12 +15819,12 @@ heap_tree=empty
 #-----------
 snapshot=60
 #-----------
-time=5870467497
-mem_heap_B=383052734
+time=5852776925
+mem_heap_B=383052702
 mem_heap_extra_B=969218
 mem_stacks_B=0
 heap_tree=detailed
-n10: 383052734 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+n10: 383052702 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
  n1: 77721856 0x693F5E8: nusquids::BiCubicInterpolator::BiCubicInterpolator(nusquids::marray<double, 2u, std::allocator<double> >, nusquids::marray<double, 1u, std::allocator<double> >, nusquids::marray<double, 1u, std::allocator<double> >) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
   n4: 77721856 0x69431B4: nusquids::NeutrinoDISCrossSectionsFromTables::readFlavorHDF5(long, nusquids::marray<double, 1u, std::allocator<double> > const&, nusquids::marray<double, 1u, std::allocator<double> > const&)::{lambda(nusquids::BiCubicInterpolator&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)#2}::operator()(nusquids::BiCubicInterpolator&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) const (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
    n2: 19430464 0x69459AA: nusquids::NeutrinoDISCrossSectionsFromTables::readFlavorHDF5(long, nusquids::marray<double, 1u, std::allocator<double> > const&, nusquids::marray<double, 1u, std::allocator<double> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
@@ -16220,7 +16169,7 @@ n10: 383052734 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
        n1: 4857616 0x692C2DD: nusquids::nuSQUIDS::InitializeInteractions() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
         n1: 4857616 0x692C86C: nusquids::nuSQUIDS::EvolveState() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
          n0: 4857616 in 2 places, all below massif's threshold (1.00%)
- n0: 23428819 in 4279 places, all below massif's threshold (1.00%)
+ n0: 23428787 in 4279 places, all below massif's threshold (1.00%)
  n1: 15090080 0x9621C4B: clang::ASTReader::ReadASTBlock(clang::serialization::ModuleFile&, unsigned int) (in /opt/root/v6-26-10/lib/libCling.so)
   n1: 15090080 0x962CF68: clang::ASTReader::ReadAST(llvm::StringRef, clang::serialization::ModuleKind, clang::SourceLocation, unsigned int, llvm::SmallVectorImpl<clang::ASTReader::ImportedSubmodule>*) (in /opt/root/v6-26-10/lib/libCling.so)
    n2: 15090080 0x930156A: clang::CompilerInstance::loadModule(clang::SourceLocation, llvm::ArrayRef<std::pair<clang::IdentifierInfo*, clang::SourceLocation> >, clang::Module::NameVisibilityKind, bool) (in /opt/root/v6-26-10/lib/libCling.so)
@@ -16356,7 +16305,7 @@ n10: 383052734 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
 #-----------
 snapshot=61
 #-----------
-time=5939470768
+time=5920638172
 mem_heap_B=383052734
 mem_heap_extra_B=969218
 mem_stacks_B=0
@@ -16364,24 +16313,24 @@ heap_tree=empty
 #-----------
 snapshot=62
 #-----------
-time=6008379627
-mem_heap_B=383625026
-mem_heap_extra_B=995742
+time=5988443794
+mem_heap_B=383539862
+mem_heap_extra_B=990642
 mem_stacks_B=0
 heap_tree=empty
 #-----------
 snapshot=63
 #-----------
-time=6077289907
-mem_heap_B=384617863
-mem_heap_extra_B=1010769
+time=6056252073
+mem_heap_B=384320529
+mem_heap_extra_B=1006647
 mem_stacks_B=0
 heap_tree=empty
 #-----------
 snapshot=64
 #-----------
-time=6146193888
-mem_heap_B=384672392
-mem_heap_extra_B=1013064
+time=6124063425
+mem_heap_B=384673938
+mem_heap_extra_B=1013030
 mem_stacks_B=0
 heap_tree=empty
