@@ -52,9 +52,10 @@ int main(int argc, char **argv) {
       Oscillator->SetEnergyArrayInCalcer(EnergyArray);
 	
       //Check if we also need to set the CosineZ binning
-      if (!Oscillator->CosineZIgnored()) {
+      if (!Oscillator->ReturnCosineZIgnored()) {
 	Oscillator->SetCosineZArrayInCalcer(CosineZArray);
       }
+
     }
 
     //Overwrite the oscillation parameters in the Oscillator config from the config passed through the arguments

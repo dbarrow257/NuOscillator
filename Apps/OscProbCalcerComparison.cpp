@@ -19,12 +19,23 @@ using std::chrono::duration;
 using std::chrono::milliseconds;
 
 int main(int argc, char **argv) {
-  if (argc != 2) {
-    std::cerr << argv[0] << " OscillationParameterConfig.yaml" << std::endl;
+
+  if (argc < 2) {
+    std::cerr << argv[0] << " OscillationParameterConfig.yaml [OscillationConfig.yaml ...]" << std::endl;
     throw std::runtime_error("Invalid setup");
   }
   std::string OscillationParameterConfigName = argv[1];
   std::unordered_map<std::string, FLOAT_T> OscillationParameters_Global = ReturnOscParamsFromConfig(YAML::LoadFile(OscillationParameterConfigName));
+
+  //Get the standard set of config names or use what is provided from the arguments
+  std::vector<std::string> ConfigNames;
+  if (argc == 1) {
+    ConfigNames = ReturnKnownConfigs();
+  } else {
+    for (int i=1;i<argc;i++) {
+      ConfigNames.push_back(argv[i]);
+    }
+  }
   
   std::string FileExt = ".png";
   
@@ -43,16 +54,11 @@ int main(int argc, char **argv) {
   std::cout << "Starting setup in executable" << std::endl;
 
   std::vector<OscillatorBase*> Oscillators;
+  std::vector< std::unordered_map<std::string, FLOAT_T> > OscillationParameters_Oscillators(ConfigNames.size());
+  
   OscillatorFactory* OscFactory = new OscillatorFactory();
   OscillatorBase* Oscillator;
 
-  //Get the standard set of config names
-  std::vector<std::string> ConfigNames = ReturnKnownConfigs();
-
-  std::vector< std::unordered_map<std::string, FLOAT_T> > OscillationParameters_Oscillators(ConfigNames.size());  
-
-  std::cout << "========================================================" << std::endl;
-  std::cout << "Setting up Oscillators" << std::endl;  
  
   for (size_t iConfig=0;iConfig<ConfigNames.size();iConfig++) {
     std::cout << "========================================================" << std::endl;
@@ -67,7 +73,7 @@ int main(int argc, char **argv) {
       Oscillator->SetEnergyArrayInCalcer(EnergyArray);
       
       //Check if we also need to set the CosineZ binning
-      if (!Oscillator->CosineZIgnored()) {
+      if (!Oscillator->ReturnCosineZIgnored()) {
         Oscillator->SetCosineZArrayInCalcer(CosineZArray);
       }
     }

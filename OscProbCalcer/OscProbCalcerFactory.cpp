@@ -20,12 +20,20 @@
 #include "OscProbCalcer/OscProbCalcer_NuFASTLinear.h"
 #endif
 
+#if UseNuFASTEarth==1
+#include "OscProbCalcer/OscProbCalcer_NuFASTEarth.h"
+#endif
+
 #if UseNuSQUIDSLinear==1
 #include "OscProbCalcer/OscProbCalcer_NuSQUIDSLinear.h"
 #endif
 
 #if UseOscProb==1
 #include "OscProbCalcer/OscProbCalcer_OscProb.h"
+#endif
+
+#if UseOscLibLinear==1
+#include "OscProbCalcer/OscProbCalcer_OscLibLinear.h"
 #endif
 
 #if UseGLoBESLinear==1
@@ -111,6 +119,17 @@ OscProbCalcerBase* OscProbCalcerFactory::CreateOscProbCalcer(YAML::Node OscProbC
 #endif
   }
 
+  else if (OscProbCalcerImplementationToCreate == "NuFASTEarth") {
+#if UseNuFASTEarth==1
+    OscProbCalcerNuFASTEarth* NuFASTEarth = new OscProbCalcerNuFASTEarth(OscProbCalcerConfig);
+    Calcer = (OscProbCalcerBase*)NuFASTEarth;
+    if (Verbose >= NuOscillator::INFO) {std::cout << "Initalised OscProbCalcer Implementation:" << Calcer->ReturnImplementationName() << " in OscProbCalcerFactory object" << std::endl;}
+#else
+    std::cerr << "OscProbCalcerFactory was requsted to create " << OscProbCalcerImplementationToCreate << " OscProbCalcer but Use" << OscProbCalcerImplementationToCreate << " is undefined. Indicates problem in setup" << std::endl;
+    throw std::runtime_error("Invalid setup");
+#endif
+  }
+
   else if (OscProbCalcerImplementationToCreate == "NuSQUIDSLinear") {
 #if UseNuSQUIDSLinear==1
     OscProbCalcerNuSQUIDSLinear* NuSQUIDSLinear = new OscProbCalcerNuSQUIDSLinear(OscProbCalcerConfig);
@@ -122,7 +141,6 @@ OscProbCalcerBase* OscProbCalcerFactory::CreateOscProbCalcer(YAML::Node OscProbC
 #endif
   }
 
-    
   else if (OscProbCalcerImplementationToCreate == "OscProb") {
 #if UseOscProb==1
     OscProbCalcerOscProb* OscProb = new OscProbCalcerOscProb(OscProbCalcerConfig);
@@ -133,7 +151,17 @@ OscProbCalcerBase* OscProbCalcerFactory::CreateOscProbCalcer(YAML::Node OscProbC
     throw std::runtime_error("Invalid setup");
 #endif
   }
-  
+
+  else if (OscProbCalcerImplementationToCreate == "OscLibLinear") {
+#if UseOscLibLinear==1
+    OscProbCalcerOscLibLinear* OscLib = new OscProbCalcerOscLibLinear(OscProbCalcerConfig);
+    Calcer = (OscProbCalcerBase*)OscLib;
+    if (Verbose >= NuOscillator::INFO) {std::cout << "Initalised OscProbCalcer Implementation:" << Calcer->ReturnImplementationName() << " in OscProbCalcerFactory object" << std::endl;}
+#else
+    std::cerr << "OscProbCalcerFactory was requsted to create " << OscProbCalcerImplementationToCreate << " OscProbCalcer but Use" << OscProbCalcerImplementationToCreate << " is undefined. Indicates problem in setup" << std::endl;
+    throw std::runtime_error("Invalid setup");
+#endif
+  }  
 
   else if (OscProbCalcerImplementationToCreate == "GLoBESLinear") {
     #if UseGLoBESLinear==1
