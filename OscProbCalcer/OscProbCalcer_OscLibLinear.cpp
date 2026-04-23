@@ -1,8 +1,14 @@
 #include "OscProbCalcer_OscLibLinear.h"
 
 OscProbCalcerOscLibLinear::OscProbCalcerOscLibLinear(YAML::Node Config_) : OscProbCalcerBase(Config_) {
-  fNOscParams = kNOscParams;
+  //=======
+  //Grab information from the config   
 
+  //=======
+  
+  std::vector<std::string> OscParNames = {"sin2_th12","sin2_th23","sin2_th13","dm2_12","dm2_23","delta_cp","path_length","matter_density"};
+  SetExpectedParameterNames(OscParNames);
+  
   fNNeutrinoTypes = 2;
   InitialiseNeutrinoTypesArray(fNNeutrinoTypes);
   fNeutrinoTypes[0] = Nu;
@@ -20,23 +26,22 @@ void OscProbCalcerOscLibLinear::SetupPropagator() {
   OscLib = new osc::_OscCalcPMNS<FLOAT_T>();
 }
 
-void OscProbCalcerOscLibLinear::CalculateProbabilities(const std::vector<FLOAT_T>& OscParams) {
-
+void OscProbCalcerOscLibLinear::CalculateProbabilities() {
   for (int iOscPar=0;iOscPar<=kTH13;iOscPar++) {
-    if (OscParams[iOscPar] < 0) {
-      std::cerr << "Invalid oscillation parameter (Can not sqrt this value)!:" << OscParams[iOscPar] << std::endl;
+    if (GetOscillationParameter(iOscPar) < 0) {
+      std::cerr << "Invalid oscillation parameter (Can not sqrt this value)!:" << GetOscillationParameter(iOscPar) << std::endl;
       throw std::runtime_error("Invalid setup");
     }
   }
 
-  const FLOAT_T theta12 = asin(sqrt(OscParams[kTH12]));
-  const FLOAT_T theta23 = asin(sqrt(OscParams[kTH23]));
-  const FLOAT_T theta13 = asin(sqrt(OscParams[kTH13]));
-  const FLOAT_T Dmsq21 = OscParams[kDM12];
-  const FLOAT_T Dmsq32 = OscParams[kDM23];
-  const FLOAT_T delta = OscParams[kDCP];
-  const FLOAT_T L = OscParams[kPATHL];
-  const FLOAT_T rho = OscParams[kDENS];
+  const FLOAT_T theta12 = asin(sqrt(GetOscillationParameter(kTH12)));
+  const FLOAT_T theta23 = asin(sqrt(GetOscillationParameter(kTH23)));
+  const FLOAT_T theta13 = asin(sqrt(GetOscillationParameter(kTH13)));
+  const FLOAT_T Dmsq21 = GetOscillationParameter(kDM12);
+  const FLOAT_T Dmsq32 = GetOscillationParameter(kDM23);
+  const FLOAT_T delta = GetOscillationParameter(kDCP);
+  const FLOAT_T L = GetOscillationParameter(kPATHL);
+  const FLOAT_T rho = GetOscillationParameter(kDENS);
   
   OscLib->SetL(L);
   OscLib->SetRho(rho);

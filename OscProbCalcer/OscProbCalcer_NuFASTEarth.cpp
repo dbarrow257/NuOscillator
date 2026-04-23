@@ -3,7 +3,7 @@
 #include "Matrix.h"
 
 OscProbCalcerNuFASTEarth::OscProbCalcerNuFASTEarth(YAML::Node Config_) : OscProbCalcerBase(Config_)
-{
+{ 
   //=======
   //Grab information from the config
 
@@ -21,9 +21,10 @@ OscProbCalcerNuFASTEarth::OscProbCalcerNuFASTEarth(YAML::Node Config_) : OscProb
     NUniformLayers = Config_["OscProbCalcerSetup"]["NUniformLayers"].as<int>();
   }
   //=======
-  
-  fNOscParams = kNOscParams;
 
+  std::vector<std::string> OscParNames = {"sin2_th12","sin2_th23","sin2_th13","dm2_12","dm2_23","delta_cp","production_height"};
+  SetExpectedParameterNames(OscParNames);
+  
   fNNeutrinoTypes = 2;
   InitialiseNeutrinoTypesArray(fNNeutrinoTypes);
   fNeutrinoTypes[0] = Nu;
@@ -60,18 +61,17 @@ void OscProbCalcerNuFASTEarth::SetupPropagator() {
   ProbEngine->Set_Eigenvalue_Precision(EigenValuePrecision);
 }
 
-void OscProbCalcerNuFASTEarth::CalculateProbabilities(const std::vector<FLOAT_T>& OscParams) {
- 
-  const double s12sq = OscParams[kTH12];
-  const double s13sq = OscParams[kTH13];
-  const double s23sq = OscParams[kTH23];
-  const double delta = OscParams[kDCP];
-  const double Dmsq21 = OscParams[kDM12];
+void OscProbCalcerNuFASTEarth::CalculateProbabilities() {
+   const double s12sq = GetOscillationParameter(kTH12);
+  const double s13sq = GetOscillationParameter(kTH13);
+  const double s23sq = GetOscillationParameter(kTH23);
+  const double delta = GetOscillationParameter(kDCP);
+  const double Dmsq21 = GetOscillationParameter(kDM12);
 
-  //Need to convert OscParams[kDM23] to kDM31
-  const double Dmsq31 = OscParams[kDM23]+OscParams[kDM12]; // eV^2
+  //Need to convert kDM23 to kDM31
+  const double Dmsq31 = GetOscillationParameter(kDM23)+GetOscillationParameter(kDM12); // eV^2
 
-  const double ProductionHeight = OscParams[kPROD]; //km
+  const double ProductionHeight = GetOscillationParameter(kPROD); //km
 
   for (int iNuType=0;iNuType<fNNeutrinoTypes;iNuType++) {
 
