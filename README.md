@@ -15,7 +15,7 @@ The framework has been adapted to integrate seamlessly with oscillation fitters 
 ```bash
 mkdir build;
 cd build;
-cmake ../ -DUseGPU=0 -DUseMultithreading=1 -DUseDoubles=0 -DUseCUDAProb3=0 -DUseCUDAProb3Linear=1 -DUseProb3ppLinear=1 -DUseNuFASTLinear=1 -DUseProbGPULinear=0
+cmake ../ -DUseGPU=0 -DUseMultithreading=1 -DUseDoubles=0 -DUseCUDAProb3=1 -DUseCUDAProb3Linear=1 -DUseProb3ppLinear=1 -DUseProbGPULinear=1 -DUseNuFASTLinear=1 -DUseNuFASTEarth=1 -DUseNuSQUIDSLinear=1 -DUseOscProb=1 -DUseGLoBESLinear=1 -DUseCHICLinear=1
 make -jN [Where N is number of threads]
 make install
 ```
@@ -28,7 +28,7 @@ source Linux/bin/setup.NuOscillator.sh
 then you can check if everything runs correctly by
 ```bash
 cd ../
-./build/Linux/bin/DragRace 1000 NuOscillatorConfigs/Binned_NuFASTLinear.yaml
+./build/Linux/bin/DragRace 1000 NuOscillatorConfigs/ExampleOscillationParameters.yaml NuOscillatorConfigs/Binned_NuFASTLinear.yaml
 ```
 
 ## How to Integrate in Framework
@@ -107,6 +107,15 @@ It is good practice to sort energy values as NuOscillator expect them in ascendi
 ```cpp
 std::vector<double> EnergyArray = {0, 0.6, 1, 10};
 std::sort(EnergyArray.begin(),EnergyArray.end());
+```
+
+Then register the oscillation parameter values to be used. A useful function to read this from a yaml file is provided here: https://github.com/dbarrow257/NuOscillator/blob/15110f220c5e96cd2401b8e4dfae7266bf0e39f1/Constants/OscillatorConstants.h#L353
+
+Then you need to define the parameter value (for each parameter) via:
+```
+for (auto Parameter : OscillationParameters) {
+  Oscillator->DefineParameter(Parameter.Name, &Parameter.Value);
+}
 ```
 
 Lastly pass energy vector and finish setup
