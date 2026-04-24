@@ -1,4 +1,4 @@
-# NuOscillator
+# NuOscillator <img src="Docs/NuOscillatorLogo.png" alt="NuOsc" align="center" width="100"/>
 NuOscillator is a wrapper around oscillation calculators,
 enabling the computation of oscillation probabilities for various configurations,
 including beam oscillations, atmospheric oscillations, and sterile neutrinos with NSI effects.
