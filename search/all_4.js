@@ -1,14 +1,12 @@
 var searchData=
 [
-  ['earthdensity_0',['EarthDensity',['../classOscProbCalcerNuFASTEarth.html#a8f1b975620291381432f0ce8fd58b0a6',1,'OscProbCalcerNuFASTEarth']]],
-  ['earthdensityfile_1',['EarthDensityFile',['../classOscProbCalcerCUDAProb3.html#ae4dbd21cea1138a27254b1321ea0ce6b',1,'OscProbCalcerCUDAProb3']]],
-  ['earthmodel_2',['EarthModel',['../classOscProbCalcerNuFASTEarth.html#a5c2a52e9a3a8dba8d0ef819568906409',1,'OscProbCalcerNuFASTEarth']]],
-  ['eigenvalueprecision_3',['EigenValuePrecision',['../classOscProbCalcerNuFASTEarth.html#ac2f284459f079bd7995875b54556bf79',1,'OscProbCalcerNuFASTEarth']]],
-  ['energy_4',['Energy',['../structNuOscillator_1_1OscillationProbability.html#afe67e8c0d6fca60ab1d0fde386996cbc',1,'NuOscillator::OscillationProbability']]],
-  ['energyaxisbincenters_5',['EnergyAxisBinCenters',['../classOscillatorBinned.html#ae92aceeec9c7e0d588ea58a2a458f128',1,'OscillatorBinned']]],
-  ['energyaxisbinedges_6',['EnergyAxisBinEdges',['../classOscillatorBinned.html#a210cb8d3efc6c0af55a8b25b76041576',1,'OscillatorBinned']]],
-  ['energyaxishistname_7',['EnergyAxisHistName',['../classOscillatorBinned.html#adb510cfba161f90db5b1c9fa1b6d0f09',1,'OscillatorBinned']]],
-  ['engines_8',['Implemented Engines',['../index.html#autotoc_md3',1,'']]],
-  ['evalpointssetinconstructor_9',['EvalPointsSetInConstructor',['../classOscillatorBase.html#aa043632bc554bce3f19e74318af66e03',1,'OscillatorBase']]],
-  ['extensions_10',['Intended extensions',['../index.html#autotoc_md10',1,'']]]
+  ['decoherence_5fmodel_0',['decoherence_model',['../classOscProbCalcerNuSQUIDSLinear.html#a58d664f2d7fd0a5c2532274445f7d816',1,'OscProbCalcerNuSQUIDSLinear']]],
+  ['defineparameter_1',['defineparameter',['../classOscProbCalcerBase.html#aebf0c44ee2d634e278f4bf319fc1c3d0',1,'OscProbCalcerBase::DefineParameter()'],['../classOscillatorBase.html#a144eed745c7f85fde740c3060329b814',1,'OscillatorBase::DefineParameter()']]],
+  ['defineweightarraysize_2',['defineweightarraysize',['../classOscProbCalcerOscLibLinear.html#a5838faac3fc7a83b7e678872425f01c9',1,'OscProbCalcerOscLibLinear::DefineWeightArraySize()'],['../classOscProbCalcerBase.html#a8a7642af6db76c5c09b7a324ae456927',1,'OscProbCalcerBase::DefineWeightArraySize()'],['../classOscProbCalcerProbGPULinear.html#a56499add318b8ebe2574de447036d3d6',1,'OscProbCalcerProbGPULinear::DefineWeightArraySize()'],['../classOscProbCalcerProb3ppLinear.html#af7cb10a29709a6f0223e08ef80b86711',1,'OscProbCalcerProb3ppLinear::DefineWeightArraySize()'],['../classOscProbCalcerOscProb.html#a173120af1e6de40f5ff545e494aee24b',1,'OscProbCalcerOscProb::DefineWeightArraySize()'],['../classOscProbCalcerNuSQUIDSLinear.html#a47c0ec39937b9531b1aac22448ea919d',1,'OscProbCalcerNuSQUIDSLinear::DefineWeightArraySize()'],['../classOscProbCalcerNuFASTLinear.html#a214847bcdf5f39d4be56682e88f5ffec',1,'OscProbCalcerNuFASTLinear::DefineWeightArraySize()'],['../classOscProbCalcerNuFASTEarth.html#a90e5c6dbcad304393812d6e1dc40bd6b',1,'OscProbCalcerNuFASTEarth::DefineWeightArraySize()'],['../classOscProbCalcerGLoBESLinear.html#aa97d38d622da871cd259a4a7676afee0',1,'OscProbCalcerGLoBESLinear::DefineWeightArraySize()'],['../classOscProbCalcerCUDAProb3Linear.html#a11cff51aca28179eae44f2850fa7888e',1,'OscProbCalcerCUDAProb3Linear::DefineWeightArraySize()'],['../classOscProbCalcerCUDAProb3.html#a55e8adc8f659a96b3d9f2a2dd8191c2e',1,'OscProbCalcerCUDAProb3::DefineWeightArraySize()'],['../classOscProbCalcerCHICLinear.html#a71b56fe6bc94faba5055b5bda35242bc',1,'OscProbCalcerCHICLinear::DefineWeightArraySize()']]],
+  ['detectedflavour_3',['DetectedFlavour',['../structNuOscillator_1_1OscillationChannel.html#a26d9e007e52c1e812115e5e2e3407c17',1,'NuOscillator::OscillationChannel']]],
+  ['detectordepth_4',['DetectorDepth',['../classOscProbCalcerNuFASTEarth.html#a8ac102901231192fbb09b34f945f03b8',1,'OscProbCalcerNuFASTEarth']]],
+  ['docs_20nuoscillatorlogo_20png_20alt_20nuosc_20align_20center_20width_20100_5',['NuOscillator &lt;img src=&quot;Docs/NuOscillatorLogo.png&quot; alt=&quot;NuOsc&quot; align=&quot;center&quot; width=&quot;100&quot;/&gt;',['../index.html',1,'']]],
+  ['doubled_5fangle_6',['doubled_angle',['../classOscProbCalcerProb3ppLinear.html#ab33100f0088f332e00e040fc9d5ed03a',1,'OscProbCalcerProb3ppLinear::doubled_angle'],['../classOscProbCalcerProbGPULinear.html#a88066578434efb5c07b349f9e034ba35',1,'OscProbCalcerProbGPULinear::doubled_angle']]],
+  ['dragrace_2ecpp_7',['DragRace.cpp',['../DragRace_8cpp.html',1,'']]],
+  ['dummyval_8',['DUMMYVAL',['../OscillatorConstants_8h.html#ae3a7da283c400b8c7e8fb8f27042d7dc',1,'OscillatorConstants.h']]]
 ];

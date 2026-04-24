@@ -1,8 +1,9 @@
 var searchData=
 [
-  ['hasoscillationchannel_0',['HasOscillationChannel',['../classOscProbCalcerBase.html#a9ff3cb411979b937b1effeb5a8f0fcc5',1,'OscProbCalcerBase']]],
-  ['hasoscprobcalcergotoscillationchannel_1',['HasOscProbCalcerGotOscillationChannel',['../classOscillatorBase.html#ad9d9bb09fe6ac1559a1c3804a86ea23e',1,'OscillatorBase']]],
-  ['how_20to_20integrate_20in_20framework_2',['How to Integrate in Framework',['../index.html#autotoc_md2',1,'']]],
-  ['how_20to_20start_3',['How to start',['../index.html#autotoc_md1',1,'']]],
-  ['how_20to_20use_20in_20fitting_20framework_4',['How to Use in Fitting Framework',['../index.html#autotoc_md6',1,'']]]
+  ['generatedflavour_0',['GeneratedFlavour',['../structNuOscillator_1_1OscillationChannel.html#ad65a083cbc15165f06b3fbe731ef0cf7',1,'NuOscillator::OscillationChannel']]],
+  ['getncosinez_1',['GetNCosineZ',['../classOscProbCalcerOscProb.html#a7945032f928654d60664082e5a43267f',1,'OscProbCalcerOscProb']]],
+  ['getoscillationparameter_2',['GetOscillationParameter',['../classOscProbCalcerBase.html#af73b9106b66ad6c6ce4bcc85ad481f64',1,'OscProbCalcerBase']]],
+  ['getpmnsobj_3',['GetPMNSObj',['../classOscProbCalcerOscProb.html#a2a78439b78c0db06d0e61dd48d68f13f',1,'OscProbCalcerOscProb']]],
+  ['getprob_4',['GetProb',['../OscProbCalcer__ProbGPULinear_8cpp.html#a5dc0981070b21b7efb798f8440bf7201',1,'OscProbCalcer_ProbGPULinear.cpp']]],
+  ['gpu_5',['gpu',['../index.html#autotoc_md9',1,'CPU vs GPU'],['../index.html#autotoc_md4',1,'GPU']]]
 ];

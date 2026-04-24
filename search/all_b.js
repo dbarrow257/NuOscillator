@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['main_0',['main',['../Analysis_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627',1,'main(int argc, char **argv):&#160;Analysis.cpp'],['../CompareOscillationProbabilities_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627',1,'main(int argc, char **argv):&#160;CompareOscillationProbabilities.cpp'],['../DragRace_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627',1,'main(int argc, char **argv):&#160;DragRace.cpp'],['../LegacyModeExample_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627',1,'main(int argc, char **argv):&#160;LegacyModeExample.cpp'],['../MakeExampleBinning_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627',1,'main(int argc, char **argv):&#160;MakeExampleBinning.cpp'],['../OscProbCalcerComparison_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627',1,'main(int argc, char **argv):&#160;OscProbCalcerComparison.cpp'],['../SingleOscillator_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627',1,'main(int argc, char **argv):&#160;SingleOscillator.cpp'],['../SingleOscProbCalcer_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627',1,'main(int argc, char **argv):&#160;SingleOscProbCalcer.cpp']]],
-  ['makeexamplebinning_2ecpp_1',['MakeExampleBinning.cpp',['../MakeExampleBinning_8cpp.html',1,'']]]
+  ['legacymodeexample_2ecpp_0',['LegacyModeExample.cpp',['../LegacyModeExample_8cpp.html',1,'']]],
+  ['linspace_1',['linspace',['../OscillatorConstants_8h.html#a3f9fd74d5e542b1a64ec24220603109a',1,'OscillatorConstants.h']]],
+  ['logspace_2',['logspace',['../OscillatorConstants_8h.html#a800433b0eb23081fbee6677e2a636f67',1,'OscillatorConstants.h']]]
 ];
