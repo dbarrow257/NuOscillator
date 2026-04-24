@@ -11,8 +11,8 @@ OscProbCalcerProbGPULinear::OscProbCalcerProbGPULinear(YAML::Node Config_) : Osc
   //Grab information from the config
 
   //=======
-
-  fNOscParams = kNOscParams;
+  std::vector<std::string> OscParNames = {"sin2_th12","sin2_th23","sin2_th13","dm2_12","dm2_23","delta_cp","path_length","matter_density"};
+  SetExpectedParameterNames(OscParNames);
 
   fNNeutrinoTypes = 2;
   InitialiseNeutrinoTypesArray(fNNeutrinoTypes);
@@ -34,8 +34,8 @@ void OscProbCalcerProbGPULinear::SetupPropagator() {
   // This implementation doesn't really need to do anything in the setup due to probGPU's horrific implementation
 }
 
-void OscProbCalcerProbGPULinear::CalculateProbabilities(const std::vector<FLOAT_T>& OscParams) {
-  setMNS(OscParams[kTH12], OscParams[kTH13], OscParams[kTH23], OscParams[kDM12], OscParams[kDM23], OscParams[kDCP], doubled_angle);
+void OscProbCalcerProbGPULinear::CalculateProbabilities() {
+  setMNS(GetOscillationParameter(kTH12), GetOscillationParameter(kTH13), GetOscillationParameter(kTH23), GetOscillationParameter(kDM12), GetOscillationParameter(kDM23), GetOscillationParameter(kDCP), doubled_angle);
 
   // ProbGPULinear calculates oscillation probabilities for each NeutrinoType, so need to copy them from the calculator into fWeightArray
   int CopyArrSize = fNEnergyPoints;
@@ -43,7 +43,7 @@ void OscProbCalcerProbGPULinear::CalculateProbabilities(const std::vector<FLOAT_
 
   for (int iNuType=0;iNuType<fNNeutrinoTypes;iNuType++) {
     for (int iOscChannel=0;iOscChannel<fNOscillationChannels;iOscChannel++) {
-      GetProb(fNeutrinoTypes[iNuType]*fOscillationChannels[iOscChannel].GeneratedFlavour, fNeutrinoTypes[iNuType]*fOscillationChannels[iOscChannel].DetectedFlavour, OscParams[kPATHL], OscParams[kDENS], fEnergyArray.data(), fNEnergyPoints, CopyArr);
+      GetProb(fNeutrinoTypes[iNuType]*fOscillationChannels[iOscChannel].GeneratedFlavour, fNeutrinoTypes[iNuType]*fOscillationChannels[iOscChannel].DetectedFlavour, GetOscillationParameter(kPATHL), GetOscillationParameter(kDENS), fEnergyArray.data(), fNEnergyPoints, CopyArr);
       
       // Mapping which links the oscillation channel, neutrino type and energy index to the fWeightArray index
       int IndexToFill = iNuType*fNOscillationChannels*CopyArrSize + iOscChannel*CopyArrSize;

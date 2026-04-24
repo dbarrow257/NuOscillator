@@ -47,10 +47,8 @@ class OscProbCalcerCHICLinear : public OscProbCalcerBase {
    *
    * Calculator oscillation probabilities in CHIC. This function both calculates and stores
    * the oscillation probabilities in #fWeightArray.
-   *
-   * @param OscParams The parameter set to calculate oscillation probabilities at
    */
-  void CalculateProbabilities(const std::vector<FLOAT_T>& OscParams) final;
+  void CalculateProbabilities() final;
 
   /**
    * @brief Return implementation specific index in the weight array for a specific combination of neutrino oscillation channel, energy and cosine zenith

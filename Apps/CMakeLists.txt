@@ -8,6 +8,7 @@ foreach(app
 	OscProbCalcerComparison
 	CompareOscillationProbabilities
 	MakeExampleBinning
+	LegacyModeExample
       )
 
         add_executable(${app} ${app}.cpp)

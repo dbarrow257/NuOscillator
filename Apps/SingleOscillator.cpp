@@ -26,21 +26,14 @@ int main(int argc, char **argv) {
   gStyle->SetOptStat(0);
   
   bool PrintWeights = true;
-
+  std::unordered_map<std::string, FLOAT_T> OscillationParameters = ReturnOscParamsFromConfig(YAML::LoadFile(ConfigName));
+ 
   //Don't plot by default
   bool Plot = false;
   
   std::vector<FLOAT_T> EnergyArray = logspace(0.1,100.,1e3);
   std::vector<FLOAT_T> CosineZArray = linspace(-1.0,1.0,15);
 
-  std::vector<FLOAT_T> OscParams_Basic = ReturnOscParams_Basic();
-  std::vector<FLOAT_T> OscParams_Atm = ReturnOscParams_Atm();
-  std::vector<FLOAT_T> OscParams_Beam_woYe = ReturnOscParams_Beam_woYe();
-  std::vector<FLOAT_T> OscParams_Beam_wYe = ReturnOscParams_Beam_wYe();
-  std::vector<FLOAT_T> OscParams_Beam_wYe_wDeco = ReturnOscParams_Beam_wYe_wDeco();
-  std::vector<FLOAT_T> OscParams_Beam_wYe_wLIV = ReturnOscParams_Beam_wYe_wLIV();
-  std::vector<FLOAT_T> OscParams_Beam_wYe_wNSI = ReturnOscParams_Beam_wYe_wNSI();
-  
   std::cout << "========================================================" << std::endl;
   std::cout << "Starting setup in executable" << std::endl;
 
@@ -67,33 +60,17 @@ int main(int argc, char **argv) {
   std::cout << "========================================================" << std::endl;
   std::cout << "Setting up Oscillators" << std::endl;
 
+  for (auto Parameter : OscillationParameters) {
+    Oscillator->DefineParameter(Parameter.first,&OscillationParameters[Parameter.first]);
+  }
+  
   Oscillator->Setup();
   
   std::cout << "Finished setup in executable" << std::endl;
   std::cout << "========================================================" << std::endl;
   std::cout << "Starting reweight in executable" << std::endl;
   
-  // These don't have to be explicilty beam or atmospheric specific, all they have to be is equal to the number of oscillation parameters expected by the implementation
-  // If you have some NSO calculater, then it will work providing the length of the vector of oscillation parameters is equal to the number of expected oscillation parameters
-  if (Oscillator->ReturnNOscParams() == (int)OscParams_Basic.size()) {
-    Oscillator->CalculateProbabilities(OscParams_Basic);
-  } else if (Oscillator->ReturnNOscParams() == (int)OscParams_Atm.size()) {
-    Oscillator->CalculateProbabilities(OscParams_Atm);
-  } else if (Oscillator->ReturnNOscParams() == (int)OscParams_Beam_woYe.size()) {
-    Oscillator->CalculateProbabilities(OscParams_Beam_woYe);
-  } else if (Oscillator->ReturnNOscParams() == (int)OscParams_Beam_wYe.size()) {
-    Oscillator->CalculateProbabilities(OscParams_Beam_wYe);
-  } else if (Oscillator->ReturnNOscParams() == (int)OscParams_Beam_wYe_wDeco.size()) {
-    Oscillator->CalculateProbabilities(OscParams_Beam_wYe_wDeco);
-  } else if (Oscillator->ReturnNOscParams() == (int)OscParams_Beam_wYe_wLIV.size()) {
-    Oscillator->CalculateProbabilities(OscParams_Beam_wYe_wLIV);
-  } else if (Oscillator->ReturnNOscParams() == (int)OscParams_Beam_wYe_wNSI.size()) {
-    Oscillator->CalculateProbabilities(OscParams_Beam_wYe_wNSI);
-  } else {
-    std::cerr << "Did not find viable oscillation parameters to hand to the oscillation probability calculater" << std::endl;
-    std::cerr << "Oscillator->ReturnNOscParams():" << Oscillator->ReturnNOscParams() << std::endl;
-    throw std::runtime_error("Invalid setup");
-  }
+  Oscillator->CalculateProbabilities();
   
   if (PrintWeights) {
     Oscillator->PrintWeights();

@@ -15,6 +15,7 @@ using namespace cudaprob3;
 
 OscProbCalcerCUDAProb3::OscProbCalcerCUDAProb3(YAML::Node Config_) : OscProbCalcerBase(Config_)
 {
+  std::vector<std::string> OscParNames = {"sin2_th12","sin2_th23","sin2_th13","dm2_12","dm2_23","delta_cp", "production_height"};
   //=======
   //Grab information from the config
   EarthDensityFile = Config_["OscProbCalcerSetup"]["EarthModelFileName"].as<std::string>();
@@ -32,8 +33,6 @@ OscProbCalcerCUDAProb3::OscProbCalcerCUDAProb3(YAML::Node Config_) : OscProbCalc
     ProductionHeightsHistFlavourSuffixes[4] = Config_["OscProbCalcerSetup"]["ProductionHeightsHistFlavourSuffixes"]["Numubar"].as<std::string>();
     ProductionHeightsHistFlavourSuffixes[5] = Config_["OscProbCalcerSetup"]["ProductionHeightsHistFlavourSuffixes"]["Nutaubar"].as<std::string>();
   }
-
-  fNOscParams = kNOscParams;
 	
   if(!Config_["OscProbCalcerSetup"]["UseEarthModelSystematics"]){
     UseEarthModelSystematics = false;
@@ -44,10 +43,21 @@ OscProbCalcerCUDAProb3::OscProbCalcerCUDAProb3(YAML::Node Config_) : OscProbCalc
   if(UseEarthModelSystematics){
     if (fVerbose >= NuOscillator::INFO){std::cout<<"Using Earth Model systematics"<<std::endl;}
     nLayers = Config_["OscProbCalcerSetup"]["Layers"].as<int>();
-    fNOscParams +=  3*nLayers;
+
+    for (int iLayer=0;iLayer<nLayers;iLayer++) {
+      OscParNames.push_back(Form("r_%i",iLayer));
+    }
+    for (int iLayer=0;iLayer<nLayers;iLayer++) {
+      OscParNames.push_back(Form("w_%i",iLayer));
+    }
+    for (int iLayer=0;iLayer<nLayers;iLayer++) {
+      OscParNames.push_back(Form("y_%i",iLayer));
+    }
+    
   }
   //=======
-
+  SetExpectedParameterNames(OscParNames);
+  
   CopyArr = nullptr;
   fNNeutrinoTypes = 2;
   InitialiseNeutrinoTypesArray(fNNeutrinoTypes);
@@ -113,22 +123,22 @@ void OscProbCalcerCUDAProb3::SetupPropagator() {
   CopyArr = new FLOAT_T[CopyArrSize];
 }
  
-void OscProbCalcerCUDAProb3::CalculateProbabilities(const std::vector<FLOAT_T>& OscParams) {
+void OscProbCalcerCUDAProb3::CalculateProbabilities() {
   // Oscpars, as given from MaCh3, expresses the mixing angles in sin^2(theta). This propagator expects them in theta
   for (int iOscPar=0;iOscPar<=kTH13;iOscPar++) {
-    if (OscParams[iOscPar] < 0) {
-      std::cerr << "Invalid oscillation parameter (Can not sqrt this value)!:" << OscParams[iOscPar] << std::endl;
+    if (GetOscillationParameter(iOscPar) < 0) {
+      std::cerr << "Invalid oscillation parameter (Can not sqrt this value)!:" << GetOscillationParameter(iOscPar) << std::endl;
       throw std::runtime_error("Invalid setup");
     }
   }
 
-  const FLOAT_T theta12 = asin(sqrt(OscParams[kTH12]));
-  const FLOAT_T theta23 = asin(sqrt(OscParams[kTH23]));
-  const FLOAT_T theta13 = asin(sqrt(OscParams[kTH13]));
-  const FLOAT_T dm12sq  = OscParams[kDM12];
-  const FLOAT_T dm23sq  = OscParams[kDM23];
-  const FLOAT_T dcp     = OscParams[kDCP];
-  const FLOAT_T prodH   = OscParams[kPRODH];
+  const FLOAT_T theta12 = asin(sqrt(GetOscillationParameter(kTH12)));
+  const FLOAT_T theta23 = asin(sqrt(GetOscillationParameter(kTH23)));
+  const FLOAT_T theta13 = asin(sqrt(GetOscillationParameter(kTH13)));
+  const FLOAT_T dm12sq  = GetOscillationParameter(kDM12);
+  const FLOAT_T dm23sq  = GetOscillationParameter(kDM23);
+  const FLOAT_T dcp     = GetOscillationParameter(kDCP);
+  const FLOAT_T prodH   = GetOscillationParameter(kPRODH);
 
   propagator->setNeutrinoMasses(dm12sq, dm23sq);
   
@@ -137,7 +147,7 @@ void OscProbCalcerCUDAProb3::CalculateProbabilities(const std::vector<FLOAT_T>& 
   }
 
   if(UseEarthModelSystematics){
-    ApplyEarthModelSystematics(OscParams);
+    ApplyEarthModelSystematics();
   }
 
   for (int iNuType=0;iNuType<fNNeutrinoTypes;iNuType++) {
@@ -291,7 +301,7 @@ void OscProbCalcerCUDAProb3::SetProductionHeightsAveraging(){
   if (fVerbose >= NuOscillator::INFO){std::cout<<"Completed SetProductionHeightsAveraging()"<<std::endl;}
 }
 
-void OscProbCalcerCUDAProb3::ApplyEarthModelSystematics(const std::vector<FLOAT_T>& OscParams){
+void OscProbCalcerCUDAProb3::ApplyEarthModelSystematics(){
   int n_layers = propagator->getNlayerBoundaries()-1;
   if(n_layers!=nLayers){
       std::cerr<<"Number of layers set in config differs from the one in "<<EarthDensityFile<<std::endl;
@@ -309,11 +319,11 @@ void OscProbCalcerCUDAProb3::ApplyEarthModelSystematics(const std::vector<FLOAT_
     
   // EarthYps has opposite ordering of other two
   // And inner most entries are set to being the same
-  EarthYps[nLayers] = OscParams[kLayerYps];
+  EarthYps[nLayers] = GetOscillationParameter(kLayerYps);
   for(int iLayer = 0; iLayer<nLayers; iLayer++){
-    EarthBoundaries[iLayer] = OscParams[kLayerBoundaries+iLayer];
-    EarthWeights[iLayer] = OscParams[kLayerWeights+iLayer];
-    EarthYps[nLayers-iLayer-1] = OscParams[kLayerYps+iLayer];
+    EarthBoundaries[iLayer] = GetOscillationParameter(kLayerBoundaries+iLayer);
+    EarthWeights[iLayer] = GetOscillationParameter(kLayerWeights+iLayer);
+    EarthYps[nLayers-iLayer-1] = GetOscillationParameter(kLayerYps+iLayer);
   }
     
   // Check if the model is a set of polynomials

@@ -66,13 +66,12 @@ OscProbCalcerNuSQUIDSLinear::OscProbCalcerNuSQUIDSLinear(YAML::Node Config_) : O
     nsi_mutau_coupling = Config_["OscProbCalcerSetup"]["NSIMuTauCoupling"].as<FLOAT_T>();
   }
   //=======
-
+  SetOscParams(fOscModel);
+  
   fNNeutrinoTypes = 2;
   InitialiseNeutrinoTypesArray(fNNeutrinoTypes);
   fNeutrinoTypes[0] = Nu;
   fNeutrinoTypes[1] = Nubar;
-
-  fNOscParams = GetNOscParams(fOscModel);
 
   // This implementation only considers linear propagation, thus no requirement to set cosineZ array
   IgnoreCosineZBinning(true);
@@ -151,26 +150,26 @@ void OscProbCalcerNuSQUIDSLinear::SetupPropagator() {
   
 }
 
-void OscProbCalcerNuSQUIDSLinear::CalculateProbabilities(const std::vector<FLOAT_T>& OscParams) {
+void OscProbCalcerNuSQUIDSLinear::CalculateProbabilities() {
 
   // Set mixing angles and masses for neutrinos
-  nus_base->Set_MixingAngle(0,1,asin(sqrt(OscParams[kTH12]))); // \theta_12
-  nus_base->Set_MixingAngle(0,2,asin(sqrt(OscParams[kTH13]))); // \theta_13
-  nus_base->Set_MixingAngle(1,2,asin(sqrt(OscParams[kTH23]))); // \theta_23
-  nus_base->Set_SquareMassDifference(1,OscParams[kDM12]); // \Delta m_12
-  nus_base->Set_SquareMassDifference(2,OscParams[kDM12] + OscParams[kDM23]); // \Delta m_13
-  nus_base->Set_CPPhase(0,2,OscParams[kDCP]);
+  nus_base->Set_MixingAngle(0,1,asin(sqrt(GetOscillationParameter(kTH12)))); // \theta_12
+  nus_base->Set_MixingAngle(0,2,asin(sqrt(GetOscillationParameter(kTH13)))); // \theta_13
+  nus_base->Set_MixingAngle(1,2,asin(sqrt(GetOscillationParameter(kTH23)))); // \theta_23
+  nus_base->Set_SquareMassDifference(1,GetOscillationParameter(kDM12)); // \Delta m_12
+  nus_base->Set_SquareMassDifference(2,GetOscillationParameter(kDM12) + GetOscillationParameter(kDM23)); // \Delta m_13
+  nus_base->Set_CPPhase(0,2,GetOscillationParameter(kDCP));
 
   // Set mixing angles and masses for anti-neutrinos
-  nubars_base->Set_MixingAngle(0,1,asin(sqrt(OscParams[kTH12]))); // \theta_12
-  nubars_base->Set_MixingAngle(0,2,asin(sqrt(OscParams[kTH13]))); // \theta_13
-  nubars_base->Set_MixingAngle(1,2,asin(sqrt(OscParams[kTH23]))); // \theta_23
-  nubars_base->Set_SquareMassDifference(1,OscParams[kDM12]); // \Delta m_12
-  nubars_base->Set_SquareMassDifference(2,OscParams[kDM12] + OscParams[kDM23]); // \Delta m_13
-  nubars_base->Set_CPPhase(0,2,OscParams[kDCP]);
+  nubars_base->Set_MixingAngle(0,1,asin(sqrt(GetOscillationParameter(kTH12)))); // \theta_12
+  nubars_base->Set_MixingAngle(0,2,asin(sqrt(GetOscillationParameter(kTH13)))); // \theta_13
+  nubars_base->Set_MixingAngle(1,2,asin(sqrt(GetOscillationParameter(kTH23)))); // \theta_23
+  nubars_base->Set_SquareMassDifference(1,GetOscillationParameter(kDM12)); // \Delta m_12
+  nubars_base->Set_SquareMassDifference(2,GetOscillationParameter(kDM12) + GetOscillationParameter(kDM23)); // \Delta m_13
+  nubars_base->Set_CPPhase(0,2,GetOscillationParameter(kDCP));
 
-  const double layer_2 = OscParams[kPATHL]*units.km;
-  std::shared_ptr<nusquids::ConstantDensity> constdens_env1 = std::make_shared<nusquids::ConstantDensity>(OscParams[kDENS],OscParams[kELECDENS]); // density [gr/cm^3[, ye [dimensionless]
+  const double layer_2 = GetOscillationParameter(kPATHL)*units.km;
+  std::shared_ptr<nusquids::ConstantDensity> constdens_env1 = std::make_shared<nusquids::ConstantDensity>(GetOscillationParameter(kDENS),GetOscillationParameter(kELECDENS)); // density [gr/cm^3[, ye [dimensionless]
   std::shared_ptr<nusquids::ConstantDensity::Track> track_env1 = std::make_shared<nusquids::ConstantDensity::Track>(layer_2);
 
   // Set energy density for neutrinos
@@ -193,32 +192,32 @@ void OscProbCalcerNuSQUIDSLinear::CalculateProbabilities(const std::vector<FLOAT
     auto* nubars_decoh = static_cast<nusquids::nuSQUIDSDecoh*>(nubars_base);
 
     //Set the decoherence model and parameters for neutrinos
-    nus_decoh->Set_DecoherenceGammaMatrix(nusquids_decoherence_model, OscParams[kEnergyStrength]*units.eV);
-    nus_decoh->Set_DecoherenceGammaEnergyDependence(OscParams[kEnergyDep]);
-    nus_decoh->Set_DecoherenceGammaEnergyScale(OscParams[kEnergyScale]*units.GeV);
+    nus_decoh->Set_DecoherenceGammaMatrix(nusquids_decoherence_model, GetOscillationParameter(kEnergyStrength)*units.eV);
+    nus_decoh->Set_DecoherenceGammaEnergyDependence(GetOscillationParameter(kEnergyDep));
+    nus_decoh->Set_DecoherenceGammaEnergyScale(GetOscillationParameter(kEnergyScale)*units.GeV);
     
     //Set the decoherence model and parameters for anti-neutrinos
-    nubars_decoh->Set_DecoherenceGammaMatrix(nusquids_decoherence_model, OscParams[kEnergyStrength]*units.eV);
-    nubars_decoh->Set_DecoherenceGammaEnergyDependence(OscParams[kEnergyDep]);
-    nubars_decoh->Set_DecoherenceGammaEnergyScale(OscParams[kEnergyScale]*units.GeV);
+    nubars_decoh->Set_DecoherenceGammaMatrix(nusquids_decoherence_model, GetOscillationParameter(kEnergyStrength)*units.eV);
+    nubars_decoh->Set_DecoherenceGammaEnergyDependence(GetOscillationParameter(kEnergyDep));
+    nubars_decoh->Set_DecoherenceGammaEnergyScale(GetOscillationParameter(kEnergyScale)*units.GeV);
     break;
   }
   case kLIV: {
-    gsl_complex c_EMu{OscParams[kEMuReal]*units.GeV, OscParams[kEMuImg]*units.GeV};
-    gsl_complex c_MuTau{OscParams[kMuTauReal]*units.GeV, OscParams[kMuTauImg]*units.GeV};
+    gsl_complex c_EMu{GetOscillationParameter(kEMuReal)*units.GeV, GetOscillationParameter(kEMuImg)*units.GeV};
+    gsl_complex c_MuTau{GetOscillationParameter(kMuTauReal)*units.GeV, GetOscillationParameter(kMuTauImg)*units.GeV};
     LVParameters LIVPars{c_EMu,c_MuTau};
     auto* nus_LIV = static_cast<nusquids::nuSQUIDSLV*>(nus_base);
     auto* nubars_LIV = static_cast<nusquids::nuSQUIDSLV*>(nubars_base);
-
+    
     nus_LIV->Set_LV_OpMatrix(LIVPars);
-    nus_LIV->Set_LV_EnergyPower(OscParams[kEnergyPower]);
+    nus_LIV->Set_LV_EnergyPower(GetOscillationParameter(kEnergyPower));
     
     nubars_LIV->Set_LV_OpMatrix(LIVPars);
-    nubars_LIV->Set_LV_EnergyPower(OscParams[kEnergyPower]);
+    nubars_LIV->Set_LV_EnergyPower(GetOscillationParameter(kEnergyPower));
     break;
   }
   }
-
+  
   // Index counter to have a handle on where neutrino oscillation probs are stored in array fWeightArray
   int index_counter = 0;
 
@@ -290,6 +289,7 @@ void OscProbCalcerNuSQUIDSLinear::CalculateProbabilities(const std::vector<FLOAT
       }
     }
   }
+  
 }
 
 int OscProbCalcerNuSQUIDSLinear::PMNS_StrToInt(const std::string& OscModel) {
@@ -311,22 +311,27 @@ int OscProbCalcerNuSQUIDSLinear::PMNS_StrToInt(const std::string& OscModel) {
   return -1;
 }
 
-int OscProbCalcerNuSQUIDSLinear::GetNOscParams(int OscModel) {
+void OscProbCalcerNuSQUIDSLinear::SetOscParams(int OscModel) {
+  std::vector<std::string> OscParNames;
+  
   switch (OscModel) {
   case kSM:
-    return kNOscParams_PMNS;
+  case kNSI:    
+    OscParNames = {"sin2_th12","sin2_th23","sin2_th13","dm2_12","dm2_23","delta_cp","path_length","matter_density","electron_density"};
+    SetExpectedParameterNames(OscParNames);
+    break;
   case kDecoherence:
-    return kNOscParams_Decoh;
+    OscParNames = {"sin2_th12","sin2_th23","sin2_th13","dm2_12","dm2_23","delta_cp","path_length","matter_density","electron_density","energy_strength","energy_dependence","energy_scale"};
+    SetExpectedParameterNames(OscParNames);
+    break;
   case kLIV:
-    return kNOscParams_LIV;
-  case kNSI:
-    return kNOscParams_PMNS;
+    OscParNames = {"sin2_th12","sin2_th23","sin2_th13","dm2_12","dm2_23","delta_cp","path_length","matter_density","electron_density","EMuReal","EMuImg","MuTauReal","MuTauImg","enegry_power"};    
+    SetExpectedParameterNames(OscParNames);
+    break;
   default:
     std::cerr << "Unknown OscModel:" << OscModel << std::endl;
     throw std::runtime_error("Invalid OscModel");
   }
-
-  return -1;
 }
 
 int OscProbCalcerNuSQUIDSLinear::ReturnWeightArrayIndex(int NuTypeIndex, int OscChanIndex, int EnergyIndex, int CosineZIndex) {

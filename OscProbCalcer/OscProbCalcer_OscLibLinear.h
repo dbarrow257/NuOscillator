@@ -46,10 +46,8 @@ class OscProbCalcerOscLibLinear : public OscProbCalcerBase {
    * @brief Calculate some oscillation probabilities for a particular oscillation parameter set
    *
    * Calls particular version of CalcProbPMNS depending on PMNS type
-   *
-   * @param OscParams The parameter set to calculate oscillation probabilities at
    */
-  void CalculateProbabilities(const std::vector<FLOAT_T>& OscParams) final;
+  void CalculateProbabilities() final;
 
   /**
    * @brief Return implementation specific index in the weight array for a specific combination of neutrino oscillation channel, energy and cosine zenith

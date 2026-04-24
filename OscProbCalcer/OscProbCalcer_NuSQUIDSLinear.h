@@ -53,10 +53,8 @@ class OscProbCalcerNuSQUIDSLinear : public OscProbCalcerBase {
    *
    * Calculator oscillation probabilities in NuSQUIDS. This function both calculates and stores
    * the oscillation probabilities in #fWeightArray.
-   *
-   * @param OscParams The parameter set to calculate oscillation probabilities at
    */
-  void CalculateProbabilities(const std::vector<FLOAT_T>& OscParams) final;
+  void CalculateProbabilities() final;
 
   /**
    * @brief Return implementation specific index in the weight array for a specific combination of neutrino oscillation channel, energy and cosine zenith
@@ -113,10 +111,8 @@ class OscProbCalcerNuSQUIDSLinear : public OscProbCalcerBase {
    * @brief Return number of parameters needed for a particular type of PMNS matrix
    * 
    * @param OscType int value corresponding to type of PMNS matrix
-   *
-   * @return number of parameters needed for the type of PMNS matrix
    */
-  int GetNOscParams(int OscType);
+  void SetOscParams(int OscType);
  
   /**
    * @brief Set enums corresponding to BSM model 
