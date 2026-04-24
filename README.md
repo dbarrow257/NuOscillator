@@ -109,7 +109,7 @@ std::vector<double> EnergyArray = {0, 0.6, 1, 10};
 std::sort(EnergyArray.begin(),EnergyArray.end());
 ```
 
-Then register the oscillation parameter values to be used. A useful function to read this from a yaml file is provided here: https://github.com/dbarrow257/NuOscillator/blob/15110f220c5e96cd2401b8e4dfae7266bf0e39f1/Constants/OscillatorConstants.h#L353
+Then register the oscillation parameter values to be used. A useful function to read this from a yaml file is provided [here](https://github.com/dbarrow257/NuOscillator/blob/15110f220c5e96cd2401b8e4dfae7266bf0e39f1/Constants/OscillatorConstants.h#L353)
 
 Then you need to define the parameter value (for each parameter) via:
 ```
