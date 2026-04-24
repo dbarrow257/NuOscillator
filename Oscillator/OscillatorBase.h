@@ -47,7 +47,7 @@ class OscillatorBase {
 
   void CalculateProbabilities();
 
-  void DefineParameter(std::string ParName_, FLOAT_T* ParValue_) {
+  void DefineParameter(const std::string& ParName_, FLOAT_T* ParValue_) {
     if (!fOscProbCalcerSet) {
       std::cerr << "DefineParameter function called before OscProbCalcer set!" << std::endl;
       throw std::runtime_error("DefineParameter function called before OscProbCalcer set");

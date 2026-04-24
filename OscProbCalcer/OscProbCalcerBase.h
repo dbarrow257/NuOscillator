@@ -68,7 +68,7 @@ class OscProbCalcerBase {
    * @param ParName Parameter name that will be checked against expected parameters
    * @param ParValue Pointer to value of parameter
    */
-  void DefineParameter(std::string ParName, FLOAT_T* ParValue);
+  void DefineParameter(const std::string& ParName, FLOAT_T* ParValue);
   
   /**
    * @brief Legacy implementation function of Reweight()
@@ -347,11 +347,26 @@ class OscProbCalcerBase {
    *
    * @param ExpectedOscParNames_ List of parameter names
    */
-  void SetExpectedParameterNames(std::vector<std::string> ExpectedOscParNames_) {
+  void SetExpectedParameterNames(const std::vector<std::string>& ExpectedOscParNames_) {
     fExpectedOscillationParameterNames = ExpectedOscParNames_;
     fNOscParams = fExpectedOscillationParameterNames.size();
     fOscParams = std::vector<FLOAT_T*>(fNOscParams,new FLOAT_T(0));
     fOscillationParametersSetCheck = std::vector<bool>(fNOscParams,false);
+  }
+
+  /**
+   * @brief Print the expected parameter names
+   */
+  void PrintExpectedParameterNames() {
+    if (fNOscParams == 0) {
+      std::cerr << "No oscillation parameter names to print" << std::endl;
+      return;
+    }
+
+    std::cout << "Expected Parameters:" << std::endl;
+    for (size_t iPar=0;iPar<fNOscParams;iPar++) {
+      std::cout << "\t" << iPar << " : " << fExpectedOscillationParameterNames[iPar] << std::endl;
+    }
   }
 
   /**

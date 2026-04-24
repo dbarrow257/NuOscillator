@@ -384,7 +384,7 @@ void OscProbCalcerBase::CheckOscillationParametersDefined() {
   }
 }
 
-void OscProbCalcerBase::DefineParameter(std::string ParName_, FLOAT_T* ParValue_) {
+void OscProbCalcerBase::DefineParameter(const std::string& ParName_, FLOAT_T* ParValue_) {
   if (fUseLegacyMode) {
     std::cerr << "Defining a parameter while running in LegacyMode - Configuration error!" << std::endl;
     throw std::runtime_error("Legacy Mode Configuration Error");
@@ -407,6 +407,7 @@ void OscProbCalcerBase::DefineParameter(std::string ParName_, FLOAT_T* ParValue_
   }
 
   // If you hit this point - then the provided oscillation parameter name is not defined in the engine/model configuration and thus is not valid
+  PrintExpectedParameterNames();
   throw std::runtime_error("Invalid oscillation parameter: "+ParName_);
 }
 
