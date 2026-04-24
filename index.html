@@ -79,12 +79,12 @@ $(function() {
 How to start</h1>
 <div class="fragment"><div class="line">mkdir build;</div>
 <div class="line">cd build;</div>
-<div class="line">cmake ../ -DUseGPU=0 -DUseMultithreading=1 -DUseDoubles=0 -DUseCUDAProb3=0 -DUseCUDAProb3Linear=1 -DUseProb3ppLinear=1 -DUseNuFASTLinear=1 -DUseProbGPULinear=0</div>
+<div class="line">cmake ../ -DUseGPU=0 -DUseMultithreading=1 -DUseDoubles=0 -DUseCUDAProb3=1 -DUseCUDAProb3Linear=1 -DUseProb3ppLinear=1 -DUseProbGPULinear=1 -DUseNuFASTLinear=1 -DUseNuFASTEarth=1 -DUseNuSQUIDSLinear=1 -DUseOscProb=1 -DUseGLoBESLinear=1 -DUseCHICLinear=1</div>
 <div class="line">make -jN [Where N is number of threads]</div>
 <div class="line">make install</div>
 </div><!-- fragment --><p>don't forget about </p><div class="fragment"><div class="line">source Linux/bin/setup.NuOscillator.sh</div>
 </div><!-- fragment --><p>then you can check if everything runs correctly by </p><div class="fragment"><div class="line">cd ../</div>
-<div class="line">./build/Linux/bin/DragRace 1000 NuOscillatorConfigs/Binned_NuFASTLinear.yaml</div>
+<div class="line">./build/Linux/bin/DragRace 1000 NuOscillatorConfigs/ExampleOscillationParameters.yaml NuOscillatorConfigs/Binned_NuFASTLinear.yaml</div>
 </div><!-- fragment --><h1><a class="anchor" id="autotoc_md2"></a>
 How to Integrate in Framework</h1>
 <p>Recommended way is to use CPM within you CmakeList.txt </p><div class="fragment"><div class="line">CPMAddPackage(</div>
@@ -152,6 +152,10 @@ How to Use in Fitting Framework</h1>
 <div class="line">NuOscProbCalcers = OscillFactory-&gt;CreateOscillator(NuOscillatorConfigFile);</div>
 </div><!-- fragment --><p>Now you need specify energy bins for which oscillation are going to be calculated. Energy must be in GeV! It is good practice to sort energy values as <a class="el" href="namespaceNuOscillator.html">NuOscillator</a> expect them in ascending order. </p><div class="fragment"><div class="line">std::vector&lt;double&gt; EnergyArray = {0, 0.6, 1, 10};</div>
 <div class="line">std::sort(EnergyArray.begin(),EnergyArray.end());</div>
+</div><!-- fragment --><p>Then register the oscillation parameter values to be used. A useful function to read this from a yaml file is provided <a href="https://github.com/dbarrow257/NuOscillator/blob/15110f220c5e96cd2401b8e4dfae7266bf0e39f1/Constants/OscillatorConstants.h#L353">here</a></p>
+<p>Then you need to define the parameter value (for each parameter) via: </p><div class="fragment"><div class="line"><span class="keywordflow">for</span> (<span class="keyword">auto</span> Parameter : OscillationParameters) {</div>
+<div class="line">  Oscillator-&gt;DefineParameter(Parameter.Name, &amp;Parameter.Value);</div>
+<div class="line">}</div>
 </div><!-- fragment --><p>Lastly pass energy vector and finish setup </p><div class="fragment"><div class="line"><span class="keywordflow">if</span> (!NuOscProbCalcers-&gt;EvalPointsSetInConstructor()) {</div>
 <div class="line">  NuOscProbCalcers-&gt;SetEnergyArrayInCalcer(EnergyArray);</div>
 <div class="line">}</div>

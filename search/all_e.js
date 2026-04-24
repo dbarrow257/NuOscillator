@@ -4,12 +4,13 @@ var searchData=
   ['pmnsmatrix_1',['PMNSMatrix',['../classOscProbCalcerOscProb.html#a62fca4b88373b2123e942914e5c4d623',1,'OscProbCalcerOscProb']]],
   ['postcalculateprobabilities_2',['postcalculateprobabilities',['../classOscillatorBase.html#a8770c4e4d3634598c8ee935a38ec7a45',1,'OscillatorBase::PostCalculateProbabilities()'],['../classOscillatorSubSampling.html#ab84dae45cea94dddfc015d0ec1623053',1,'OscillatorSubSampling::PostCalculateProbabilities()']]],
   ['precisionlimit_3',['PrecisionLimit',['../classOscProbCalcerBase.html#ad8011dc225caeb64d40bf2cb7df3af1e',1,'OscProbCalcerBase']]],
-  ['printknownoscillationchannels_4',['PrintKnownOscillationChannels',['../classOscProbCalcerBase.html#a0607bb55dd7abfb62666de7a3132b313',1,'OscProbCalcerBase']]],
-  ['printoscparamscurr_5',['PrintOscParamsCurr',['../classOscProbCalcerBase.html#aab97cd00c6a957f779ab48ca20ebf20a',1,'OscProbCalcerBase']]],
-  ['printweights_6',['printweights',['../classOscProbCalcerBase.html#a7a1502b29dfe0ea8e0e48725a4520abc',1,'OscProbCalcerBase::PrintWeights()'],['../classOscillatorBase.html#a8694c5f8be7e667eaaf6e30901dae167',1,'OscillatorBase::PrintWeights()']]],
-  ['probability_7',['Probability',['../structNuOscillator_1_1OscillationProbability.html#ae654427199fa3e6ba115b6a9d7ce2f1a',1,'NuOscillator::OscillationProbability']]],
-  ['probengine_8',['ProbEngine',['../classOscProbCalcerNuFASTEarth.html#a889ca5241566e92c39c0359415d4476b',1,'OscProbCalcerNuFASTEarth']]],
-  ['productionheightsfile_9',['ProductionHeightsFile',['../classOscProbCalcerCUDAProb3.html#a29c48ed9e4e369be18b52b89faa19c86',1,'OscProbCalcerCUDAProb3']]],
-  ['productionheightshistflavoursuffixes_10',['ProductionHeightsHistFlavourSuffixes',['../classOscProbCalcerCUDAProb3.html#a735ffa6816b8d5c9a929c70964851323',1,'OscProbCalcerCUDAProb3']]],
-  ['propagator_11',['propagator',['../classOscProbCalcerCUDAProb3Linear.html#adbb5e160739c7e39cf226f295f1aa564',1,'OscProbCalcerCUDAProb3Linear::propagator'],['../classcudaprob3_1_1Propagator.html',1,'cudaprob3::Propagator&lt; T &gt;'],['../classOscProbCalcerCUDAProb3.html#ac1f8de8d9c1ccd3895555d1fad6b5bad',1,'OscProbCalcerCUDAProb3::propagator'],['../classcudaprob3linear_1_1Propagator.html',1,'cudaprob3linear::Propagator&lt; T &gt;']]]
+  ['printexpectedparameternames_4',['PrintExpectedParameterNames',['../classOscProbCalcerBase.html#aaffa78c49f73253b6dc11f839ba2a3c8',1,'OscProbCalcerBase']]],
+  ['printknownoscillationchannels_5',['PrintKnownOscillationChannels',['../classOscProbCalcerBase.html#a0607bb55dd7abfb62666de7a3132b313',1,'OscProbCalcerBase']]],
+  ['printoscparamscurr_6',['PrintOscParamsCurr',['../classOscProbCalcerBase.html#aab97cd00c6a957f779ab48ca20ebf20a',1,'OscProbCalcerBase']]],
+  ['printweights_7',['printweights',['../classOscProbCalcerBase.html#a7a1502b29dfe0ea8e0e48725a4520abc',1,'OscProbCalcerBase::PrintWeights()'],['../classOscillatorBase.html#a8694c5f8be7e667eaaf6e30901dae167',1,'OscillatorBase::PrintWeights()']]],
+  ['probability_8',['Probability',['../structNuOscillator_1_1OscillationProbability.html#ae654427199fa3e6ba115b6a9d7ce2f1a',1,'NuOscillator::OscillationProbability']]],
+  ['probengine_9',['ProbEngine',['../classOscProbCalcerNuFASTEarth.html#a889ca5241566e92c39c0359415d4476b',1,'OscProbCalcerNuFASTEarth']]],
+  ['productionheightsfile_10',['ProductionHeightsFile',['../classOscProbCalcerCUDAProb3.html#a29c48ed9e4e369be18b52b89faa19c86',1,'OscProbCalcerCUDAProb3']]],
+  ['productionheightshistflavoursuffixes_11',['ProductionHeightsHistFlavourSuffixes',['../classOscProbCalcerCUDAProb3.html#a735ffa6816b8d5c9a929c70964851323',1,'OscProbCalcerCUDAProb3']]],
+  ['propagator_12',['propagator',['../classcudaprob3_1_1Propagator.html',1,'cudaprob3::Propagator&lt; T &gt;'],['../classOscProbCalcerCUDAProb3Linear.html#adbb5e160739c7e39cf226f295f1aa564',1,'OscProbCalcerCUDAProb3Linear::propagator'],['../classOscProbCalcerCUDAProb3.html#ac1f8de8d9c1ccd3895555d1fad6b5bad',1,'OscProbCalcerCUDAProb3::propagator'],['../classcudaprob3linear_1_1Propagator.html',1,'cudaprob3linear::Propagator&lt; T &gt;']]]
 ];

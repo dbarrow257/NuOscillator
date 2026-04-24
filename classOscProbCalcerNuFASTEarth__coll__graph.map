@@ -1,16 +1,22 @@
 <map id="OscProbCalcerNuFASTEarth" name="OscProbCalcerNuFASTEarth">
-<area shape="rect" id="Node000001" title="Oscillation calculation engine for linear propagation in NuFAST." alt="" coords="710,227,900,252"/>
-<area shape="rect" id="Node000002" href="$classOscProbCalcerBase.html" title="Oscillation calculation engine (CUDAProb3, ProbGPU, Prob3++, etc.) implementation agnostic base class..." alt="" coords="521,153,661,179"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="646,182,766,223,764,229,644,187"/>
-<area shape="rect" id="Node000003" title=" " alt="" coords="202,5,319,31"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="335,16,416,27,459,39,499,57,527,78,552,104,584,151,580,154,548,108,524,82,496,62,457,44,415,32,334,21"/>
-<area shape="rect" id="Node000004" title=" " alt="" coords="178,55,342,96"/>
-<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="358,75,428,84,498,102,542,125,576,151,573,155,539,130,496,107,427,89,358,80"/>
-<area shape="rect" id="Node000005" title=" " alt="" coords="180,153,341,179"/>
-<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="357,164,521,164,521,169,357,169"/>
-<area shape="rect" id="Node000006" title=" " alt="" coords="222,223,299,248"/>
-<area shape="poly" id="edge7_Node000001_Node000006" title=" " alt="" coords="314,233,710,236,709,241,314,239"/>
-<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="313,222,497,184,529,177,530,182,498,189,314,227"/>
-<area shape="rect" id="Node000007" title=" " alt="" coords="5,215,129,256"/>
-<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="144,233,221,233,221,238,144,238"/>
+<area shape="rect" id="Node000001" title="Oscillation calculation engine for linear propagation in NuFAST." alt="" coords="760,404,950,430"/>
+<area shape="rect" id="Node000002" href="$classOscProbCalcerBase.html" title="Oscillation calculation engine (CUDAProb3, ProbGPU, Prob3++, etc.) implementation agnostic base class..." alt="" coords="571,247,711,272"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="674,280,837,401,834,405,671,284"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="202,83,319,108"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="334,94,455,102,510,110,549,124,582,151,607,185,626,218,637,245,632,247,621,221,603,188,578,155,546,128,509,116,455,107,334,99"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="178,132,342,173"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="358,142,452,148,501,157,548,173,575,188,598,207,632,244,628,248,595,211,572,192,546,178,500,162,451,153,358,148"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="180,213,341,239"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="356,232,367,233,571,251,571,256,366,238,356,237"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="222,400,299,426"/>
+<area shape="poly" id="edge10_Node000001_Node000006" title=" " alt="" coords="315,411,366,411,759,414,759,419,366,417,315,416"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="314,413,366,412,426,405,488,391,546,367,574,346,598,320,630,271,635,274,603,323,578,350,549,371,489,396,427,410,366,417,315,418"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="5,392,129,433"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="144,410,221,410,221,415,144,415"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="193,263,328,304"/>
+<area shape="poly" id="edge7_Node000002_Node000008" title=" " alt="" coords="343,285,441,285,547,278,591,270,592,275,548,284,441,291,343,290"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="181,331,340,356"/>
+<area shape="poly" id="edge8_Node000002_Node000009" title=" " alt="" coords="355,347,449,343,499,335,546,322,591,298,624,270,628,275,594,302,548,326,500,340,450,348,356,352"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="197,33,324,59"/>
+<area shape="poly" id="edge9_Node000002_Node000010" title=" " alt="" coords="339,33,389,32,444,37,499,51,549,76,570,94,588,115,615,164,631,210,640,245,635,247,626,212,610,166,583,118,566,98,546,80,497,56,443,42,389,37,339,38"/>
 </map>

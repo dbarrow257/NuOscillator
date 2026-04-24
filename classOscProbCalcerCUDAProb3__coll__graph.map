@@ -1,21 +1,26 @@
 <map id="OscProbCalcerCUDAProb3" name="OscProbCalcerCUDAProb3">
-<area shape="rect" id="Node000001" title="Oscillation calculation engine for linear and atmospheric propagation in CUDAProb3." alt="" coords="928,253,1108,279"/>
-<area shape="rect" id="Node000002" href="$classOscProbCalcerBase.html" title="Oscillation calculation engine (CUDAProb3, ProbGPU, Prob3++, etc.) implementation agnostic base class..." alt="" coords="542,164,682,190"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="690,191,956,250,955,255,688,196"/>
-<area shape="rect" id="Node000003" title=" " alt="" coords="202,5,319,31"/>
-<area shape="poly" id="edge7_Node000001_Node000003" title=" " alt="" coords="335,10,414,11,498,22,577,44,655,72,730,104,801,138,921,203,998,251,995,255,918,208,798,142,728,109,653,77,575,49,497,27,413,17,335,16"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="334,31,498,69,531,91,561,116,602,162,598,165,557,120,528,95,496,74,333,36"/>
-<area shape="rect" id="Node000004" title=" " alt="" coords="178,66,342,107"/>
-<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="358,87,428,96,498,113,551,136,593,161,590,166,548,141,496,118,427,101,357,93"/>
-<area shape="rect" id="Node000005" title=" " alt="" coords="180,164,341,190"/>
-<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="356,174,542,174,542,180,356,180"/>
-<area shape="rect" id="Node000006" title=" " alt="" coords="222,233,299,259"/>
-<area shape="poly" id="edge9_Node000001_Node000006" title=" " alt="" coords="315,245,927,261,927,266,315,250"/>
-<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="314,233,543,188,544,193,315,238"/>
-<area shape="rect" id="Node000007" title=" " alt="" coords="5,226,129,267"/>
-<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="144,244,221,244,221,249,144,249"/>
-<area shape="rect" id="Node000008" title=" " alt="" coords="521,314,703,355"/>
-<area shape="poly" id="edge8_Node000001_Node000008" title=" " alt="" coords="718,324,809,313,903,297,977,277,978,282,904,302,809,318,719,329"/>
-<area shape="rect" id="Node000009" title=" " alt="" coords="532,380,692,406"/>
-<area shape="poly" id="edge10_Node000001_Node000009" title=" " alt="" coords="707,393,804,385,854,374,903,358,934,341,962,319,1003,278,1007,281,966,323,937,345,905,363,856,379,805,390,708,398"/>
+<area shape="rect" id="Node000001" title="Oscillation calculation engine for linear and atmospheric propagation in CUDAProb3." alt="" coords="865,260,1045,285"/>
+<area shape="rect" id="Node000002" href="$classOscProbCalcerBase.html" title="Oscillation calculation engine (CUDAProb3, ProbGPU, Prob3++, etc.) implementation agnostic base class..." alt="" coords="592,260,732,285"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="747,270,864,270,864,275,747,275"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="202,12,319,37"/>
+<area shape="poly" id="edge10_Node000001_Node000003" title=" " alt="" coords="334,12,423,7,531,11,589,18,646,31,702,48,754,73,818,118,874,170,918,221,946,258,942,261,914,224,870,174,815,122,751,77,700,53,645,36,588,24,531,16,423,13,334,18"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="335,34,456,62,511,79,549,97,590,136,622,181,644,225,658,258,653,260,640,227,617,184,586,139,546,101,509,83,455,67,333,40"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="178,369,342,410"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="358,385,451,373,500,363,546,348,575,334,602,317,645,284,648,288,605,321,578,338,548,352,501,368,452,379,358,390"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="180,204,341,229"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="356,227,548,254,592,260,591,265,547,259,356,232"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="222,444,299,469"/>
+<area shape="poly" id="edge12_Node000001_Node000006" title=" " alt="" coords="314,458,423,461,485,457,547,447,605,432,663,412,774,366,867,319,930,283,933,288,869,324,776,371,665,417,607,437,548,452,486,462,423,466,314,464"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="314,449,443,432,504,419,546,404,582,377,612,343,651,284,656,287,616,347,586,380,549,408,505,424,444,437,315,454"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="5,436,129,477"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="144,454,221,454,221,459,144,459"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="193,253,328,294"/>
+<area shape="poly" id="edge7_Node000002_Node000008" title=" " alt="" coords="343,271,592,270,592,275,343,276"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="181,98,340,124"/>
+<area shape="poly" id="edge13_Node000001_Node000009" title=" " alt="" coords="355,96,449,92,499,95,548,102,606,116,664,134,775,178,868,222,932,257,929,261,865,227,773,183,663,139,605,121,547,107,498,100,448,98,355,101"/>
+<area shape="poly" id="edge8_Node000002_Node000009" title=" " alt="" coords="335,125,367,132,418,138,460,140,500,146,549,165,582,186,611,211,653,257,649,261,608,215,579,190,546,169,499,151,459,146,418,144,366,137,334,130"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="197,320,324,345"/>
+<area shape="poly" id="edge9_Node000002_Node000010" title=" " alt="" coords="339,328,439,322,547,306,626,283,627,288,548,312,439,327,339,333"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="571,516,753,557"/>
+<area shape="poly" id="edge11_Node000001_Node000011" title=" " alt="" coords="768,530,805,519,839,500,865,476,886,448,919,386,939,327,949,285,954,286,944,329,924,388,891,451,869,480,842,504,807,524,769,535"/>
 </map>
