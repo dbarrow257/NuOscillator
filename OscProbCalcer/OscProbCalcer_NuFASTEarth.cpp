@@ -62,7 +62,7 @@ void OscProbCalcerNuFASTEarth::SetupPropagator() {
 }
 
 void OscProbCalcerNuFASTEarth::CalculateProbabilities() {
-   const double s12sq = GetOscillationParameter(kTH12);
+  const double s12sq = GetOscillationParameter(kTH12);
   const double s13sq = GetOscillationParameter(kTH13);
   const double s23sq = GetOscillationParameter(kTH23);
   const double delta = GetOscillationParameter(kDCP);
