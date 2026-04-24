@@ -16,8 +16,8 @@ OscProbCalcerCUDAProb3Linear::OscProbCalcerCUDAProb3Linear(YAML::Node Config_) :
   //Grab information from the config
 
   //=======
-
-  fNOscParams = kNOscParams;
+  std::vector<std::string> OscParNames = {"sin2_th12","sin2_th23","sin2_th13","dm2_12","dm2_23","delta_cp","path_length","matter_density"};
+  SetExpectedParameterNames(OscParNames);
 
   fNNeutrinoTypes = 2;
   InitialiseNeutrinoTypesArray(fNNeutrinoTypes);
@@ -75,23 +75,23 @@ void OscProbCalcerCUDAProb3Linear::SetupPropagator() {
   if (fVerbose >= NuOscillator::INFO) {std::cout << "Setup CUDAProb3Linear oscillation probability calculater" << std::endl;}
 }
  
-void OscProbCalcerCUDAProb3Linear::CalculateProbabilities(const std::vector<FLOAT_T>& OscParams) {
+void OscProbCalcerCUDAProb3Linear::CalculateProbabilities() {
   // Oscpars, as given from MaCh3, expresses the mixing angles in sin^2(theta). This propagator expects them in theta
   for (int iOscPar=0;iOscPar<=kTH13;iOscPar++) {
-    if (OscParams[iOscPar] < 0) {
-      std::cerr << "Invalid oscillation parameter (Can not sqrt this value)!:" << OscParams[iOscPar] << std::endl;
+    if (GetOscillationParameter(iOscPar) < 0) {
+      std::cerr << "Invalid oscillation parameter (Can not sqrt this value)!:" << GetOscillationParameter(iOscPar) << std::endl;
       throw std::runtime_error("Invalid setup");
     }
   }
 
-  FLOAT_T theta12 = asin(sqrt(OscParams[kTH12]));
-  FLOAT_T theta23 = asin(sqrt(OscParams[kTH23]));
-  FLOAT_T theta13 = asin(sqrt(OscParams[kTH13]));
-  FLOAT_T dm12sq  = OscParams[kDM12];
-  FLOAT_T dm23sq  = OscParams[kDM23];
-  FLOAT_T dcp     = OscParams[kDCP];
-  FLOAT_T PathL   = OscParams[kPATHL];
-  FLOAT_T Density = OscParams[kDENS];
+  FLOAT_T theta12 = asin(sqrt(GetOscillationParameter(kTH12)));
+  FLOAT_T theta23 = asin(sqrt(GetOscillationParameter(kTH23)));
+  FLOAT_T theta13 = asin(sqrt(GetOscillationParameter(kTH13)));
+  FLOAT_T dm12sq  = GetOscillationParameter(kDM12);
+  FLOAT_T dm23sq  = GetOscillationParameter(kDM23);
+  FLOAT_T dcp     = GetOscillationParameter(kDCP);
+  FLOAT_T PathL   = GetOscillationParameter(kPATHL);
+  FLOAT_T Density = GetOscillationParameter(kDENS);
 
   propagator->setNeutrinoMasses(dm12sq, dm23sq);
   propagator->setDensity(Density);

@@ -8,7 +8,8 @@ OscProbCalcerCHICLinear::OscProbCalcerCHICLinear(YAML::Node Config_) : OscProbCa
   //=======
   //Grab information from the config
   //=======
-  fNOscParams = kNOscParams;
+  std::vector<std::string> OscParNames = {"sin2_th12","sin2_th23","sin2_th13","dm2_12","dm2_23","delta_cp","path_length","matter_density"};
+  SetExpectedParameterNames(OscParNames);
 
   fNNeutrinoTypes = 2;
   InitialiseNeutrinoTypesArray(fNNeutrinoTypes);
@@ -29,11 +30,11 @@ void OscProbCalcerCHICLinear::SetupPropagator() {
   chic_nubar = std::make_unique<CHIC>("antineutrino");
 }
 
-void OscProbCalcerCHICLinear::CalculateProbabilities(const std::vector<FLOAT_T>& OscParams) {
+void OscProbCalcerCHICLinear::CalculateProbabilities() {
   // Oscpars, as given from MaCh3, expresses the mixing angles in sin^2(theta). This propagator expects them in theta
   for (int iOscPar = 0;iOscPar <= kTH13; iOscPar++) {
-    if (OscParams[iOscPar] < 0) {
-      std::cerr << "Invalid oscillation parameter (Can not sqrt this value)!:" << OscParams[iOscPar] << std::endl;
+    if (GetOscillationParameter(iOscPar) < 0) {
+      std::cerr << "Invalid oscillation parameter (Can not sqrt this value)!:" << GetOscillationParameter(iOscPar) << std::endl;
       throw std::runtime_error("Invalid setup");
     }
   }
@@ -44,17 +45,17 @@ void OscProbCalcerCHICLinear::CalculateProbabilities(const std::vector<FLOAT_T>&
     // ------------------------------- //
     // Set the experimental parameters //
     // ------------------------------- //
-    const double Baseline = OscParams[kPATHL]; // km
-    const double rho = OscParams[kDENS]; // g/cc
+    const double Baseline = GetOscillationParameter(kPATHL); // km
+    const double rho = GetOscillationParameter(kDENS); // g/cc
 
     // CHIC expects angles, not sin^2
-    chic_propagator->update_th12(std::asin(std::sqrt(OscParams[kTH12])));
-    chic_propagator->update_th13(std::asin(std::sqrt(OscParams[kTH13])));
-    chic_propagator->update_th23(std::asin(std::sqrt(OscParams[kTH23])));
+    chic_propagator->update_th12(std::asin(std::sqrt(GetOscillationParameter(kTH12))));
+    chic_propagator->update_th13(std::asin(std::sqrt(GetOscillationParameter(kTH13))));
+    chic_propagator->update_th23(std::asin(std::sqrt(GetOscillationParameter(kTH23))));
 
-    chic_propagator->update_dcp(OscParams[kDCP]);
-    chic_propagator->update_dm221(OscParams[kDM12]);
-    chic_propagator->update_dm231(OscParams[kDM23] + OscParams[kDM12]);
+    chic_propagator->update_dcp(GetOscillationParameter(kDCP));
+    chic_propagator->update_dm221(GetOscillationParameter(kDM12));
+    chic_propagator->update_dm231(GetOscillationParameter(kDM23) + GetOscillationParameter(kDM12));
     chic_propagator->update_density(rho);
 
     // KS: Do not multithread, compute_oscillations is mutable as it stores neutrino energy

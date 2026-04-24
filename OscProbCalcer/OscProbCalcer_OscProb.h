@@ -49,29 +49,25 @@ class OscProbCalcerOscProb : public OscProbCalcerBase {
    * @brief Calculate some oscillation probabilities for a particular oscillation parameter set
    *
    * Calls particular version of CalcProbPMNS depending on PMNS type
-   *
-   * @param OscParams The parameter set to calculate oscillation probabilities at
    */
-  void CalculateProbabilities(const std::vector<FLOAT_T>& OscParams) final;
+  void CalculateProbabilities() final;
 
   /**
    * @brief Calculate some oscillation probabilities for a particular oscillation parameter set
    *
    * Calculator oscillation probabilities with any PMNS object. This function both calculates and stores
    * the oscillation probabilities in #fWeightArray.
-   *
    */
-  void CalcProbPMNS(const std::vector<FLOAT_T>& OscParams);
+  void CalcProbPMNS();
 
   /**
    * @brief Set the neutrino path for a given cosine value
    *
    * Uses PremModel unless Linear OscMode, in which case a fixed baseline is used
    *
-   * @param OscParams The parameter which may contain the baseline values
    * @param iCosineZ the index of the zenith bin (0 for Linear)
    */
-  void SetPath(const std::vector<FLOAT_T>& OscParams, int iCosineZ);
+  void SetPath(int iCosineZ);
 
   /**
    * @brief Return implementation specific index in the weight array for a specific combination of neutrino oscillation channel, energy and cosine zenith
@@ -110,10 +106,8 @@ class OscProbCalcerOscProb : public OscProbCalcerBase {
 
   /**
    * @brief Return number of parameters needed for a particular type of PMNS matrix
-   *
-   * @return number of parameters needed for the type of PMNS matrix
    */
-  int GetNOscParams();
+  void SetOscParams();
 
   /**
    * @brief Return a new instance of the appropriate PMNS object given OscType
@@ -125,11 +119,9 @@ class OscProbCalcerOscProb : public OscProbCalcerBase {
   /**
    * @brief Set parameters for PMNS_Base
    *
-   * @param OscParams  The parameter set to calculate oscillation probabilities at
-   *
    * @return Sets relevant parameters for PMNS object
    */
-  void SetPMNSParams(const std::vector<FLOAT_T>& OscParams);
+  void SetPMNSParams();
 
   /**
    * @brief Auxilliary function to handle ignored cosineZ cases

@@ -39,11 +39,29 @@ class OscillatorBase {
   /**
    * @brief Calculate the oscillation probabilities for the providied oscillation probabilities.
    *
-   * For each instance of OscProbCalcerBase::OscProbCalcerBase in #fOscProbCalcers, calculate the oscillation probabilites for the provided oscillation parameters.
-   *
    * @param OscParams Vector of oscillation parameters to calculate probabities at.
    */
   void CalculateProbabilities(const std::vector<FLOAT_T>& OscParams);
+
+  /**
+   * @brief Calculate the oscillation probabilities for the providied oscillation probabilities.
+   */
+  void CalculateProbabilities();
+
+  /**
+   * @brief Define the oscillation parameters with a given name and pointer to a value
+   *
+   * @param ParName_ Oscillation parameter name
+   * @param ParValue_ Point to oscillation parameter value
+   */
+  void DefineParameter(const std::string& ParName_, FLOAT_T* ParValue_) {
+    if (!fOscProbCalcerSet) {
+      std::cerr << "DefineParameter function called before OscProbCalcer set!" << std::endl;
+      throw std::runtime_error("DefineParameter function called before OscProbCalcer set");
+    }
+    
+    fOscProbCalcer->DefineParameter(ParName_,ParValue_);
+  }
 
   /**
    * @brief Return number of expected oscillation parameters for a particular OscProbCalcerBase::OscProbCalcerBase() instance in #fOscProbCalcers.
