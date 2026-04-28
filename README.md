@@ -147,7 +147,3 @@ NuOscProbCalcers->Setup();
 **Binned**
 
 ![Timing Distribution ATM](https://github.com/dbarrow257/NuOscillator/raw/gh-plots/TimingDistributionBinned_GPUvsCPU.png)
-
-## Intended extensions
-
-- Better handling of oscillation parameter pass through
