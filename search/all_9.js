@@ -12,6 +12,5 @@ var searchData=
   ['initialiseoscprobcalcer_9',['InitialiseOscProbCalcer',['../classOscillatorBase.html#af4703b50260a25117367b02896a96dc1',1,'OscillatorBase']]],
   ['integrate_20in_20framework_10',['How to Integrate in Framework',['../index.html#autotoc_md2',1,'']]],
   ['integration_5fstep_11',['integration_step',['../classOscProbCalcerNuSQUIDSLinear.html#a178f4868a72e3b05f56c1039a1f9e659',1,'OscProbCalcerNuSQUIDSLinear']]],
-  ['intended_20extensions_12',['Intended extensions',['../index.html#autotoc_md10',1,'']]],
-  ['intialiseweightarray_13',['IntialiseWeightArray',['../classOscProbCalcerBase.html#aad90504e576a3e96c48b6520ac6f895e',1,'OscProbCalcerBase']]]
+  ['intialiseweightarray_12',['IntialiseWeightArray',['../classOscProbCalcerBase.html#aad90504e576a3e96c48b6520ac6f895e',1,'OscProbCalcerBase']]]
 ];
