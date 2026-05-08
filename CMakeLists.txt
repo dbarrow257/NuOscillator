@@ -180,15 +180,9 @@ endif()
 ########################################################
 # Load all dependencies
 include(${CMAKE_CURRENT_LIST_DIR}/cmake/Modules/NuOscillatorDependencies.cmake)
-include(${CMAKE_CURRENT_LIST_DIR}/cmake/Modules/CUDAProb3.cmake)
-include(${CMAKE_CURRENT_LIST_DIR}/cmake/Modules/ProbGPU.cmake)
-include(${CMAKE_CURRENT_LIST_DIR}/cmake/Modules/Prob3pp.cmake)
-include(${CMAKE_CURRENT_LIST_DIR}/cmake/Modules/NuFast.cmake)
-include(${CMAKE_CURRENT_LIST_DIR}/cmake/Modules/OscProb.cmake)
-include(${CMAKE_CURRENT_LIST_DIR}/cmake/Modules/OscLib.cmake)
-include(${CMAKE_CURRENT_LIST_DIR}/cmake/Modules/NuSQUIDS.cmake)
-include(${CMAKE_CURRENT_LIST_DIR}/cmake/Modules/GLoBES.cmake)
-include(${CMAKE_CURRENT_LIST_DIR}/cmake/Modules/CHIC.cmake)
+foreach(engine IN LISTS ALL_Engines)
+  include(${CMAKE_CURRENT_LIST_DIR}/cmake/Modules/${engine}.cmake)
+endforeach()
 ########################################################
 #Subdirectories to add
 
