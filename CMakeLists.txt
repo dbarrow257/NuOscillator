@@ -179,7 +179,7 @@ else()
 endif()
 ########################################################
 # Load all dependencies
-include(${CMAKE_CURRENT_LIST_DIR}/cmake/Modules/NuOscillatorDependanceis.cmake)
+include(${CMAKE_CURRENT_LIST_DIR}/cmake/Modules/NuOscillatorDependencies.cmake)
 include(${CMAKE_CURRENT_LIST_DIR}/cmake/Modules/CUDAProb3.cmake)
 include(${CMAKE_CURRENT_LIST_DIR}/cmake/Modules/ProbGPU.cmake)
 include(${CMAKE_CURRENT_LIST_DIR}/cmake/Modules/Prob3pp.cmake)
