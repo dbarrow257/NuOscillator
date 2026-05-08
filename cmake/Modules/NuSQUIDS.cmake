@@ -85,3 +85,21 @@ if(${UseNuSQUIDSLinear} EQUAL 1)
   set_target_properties(NUSQUIDS::NUSQUIDS PROPERTIES IMPORTED_LOCATION ${NUSQUIDS_LIB_DIR}/libnuSQuIDS.so)
   target_compile_definitions(NuOscillatorCompilerOptions INTERFACE UseNuSQUIDSLinear=1)
 endif()
+
+if(HDF5_LIB_DIR)
+  file(RELATIVE_PATH HDF5_REL_LIB_PATH
+       "${CMAKE_INSTALL_PREFIX}"
+       "${HDF5_LIB_DIR}")
+endif()
+
+if(SQUIDS_LIB_DIR)
+  file(RELATIVE_PATH SQUIDS_REL_LIB_PATH
+       "${CMAKE_INSTALL_PREFIX}"
+       "${SQUIDS_LIB_DIR}")
+endif()
+
+if(NUSQUIDS_LIB_DIR)
+  file(RELATIVE_PATH NUSQUIDS_REL_LIB_PATH
+       "${CMAKE_INSTALL_PREFIX}"
+       "${NUSQUIDS_LIB_DIR}")
+endif()

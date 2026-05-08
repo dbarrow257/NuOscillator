@@ -61,3 +61,9 @@ if(${UseOscLibLinear} EQUAL 1)
   )
   target_compile_definitions(NuOscillatorCompilerOptions INTERFACE UseOscLibLinear=1)
 endif()
+
+if(OSCLIB_LIB_DIR)
+    file(RELATIVE_PATH OSCLIB_REL_LIB_PATH
+       "${CMAKE_INSTALL_PREFIX}"
+       "${OSCLIB_LIB_DIR}")
+endif()

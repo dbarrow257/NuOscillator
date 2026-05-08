@@ -60,3 +60,12 @@ if(${UseCUDAProb3Linear} EQUAL 1)
   endif()
   target_compile_definitions(NuOscillatorCompilerOptions INTERFACE UseCUDAProb3Linear=1)
 endif()
+
+
+# KS: This extract relative path to CudaProb and others. This allow in setup to use ${NUOSCILLATOR_ROOT}/RELATIVE_PART
+# this way even if we move directory we can still use NuOscillator
+if(CUDAProb3_SOURCE_DIR)
+  file(RELATIVE_PATH CUDAProb3_RELATIVE_PATH
+       "${CMAKE_INSTALL_PREFIX}"
+       "${CUDAProb3_SOURCE_DIR}")
+endif()

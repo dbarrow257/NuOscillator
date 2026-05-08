@@ -57,3 +57,15 @@ if(${UseGLoBESLinear} EQUAL 1)
   add_dependencies(SNU::SNU GLOBES::GLOBES)
   target_compile_definitions(NuOscillatorCompilerOptions INTERFACE UseGLoBESLinear=1)
 endif()
+
+if(GLOBES_LIB_DIR)
+  file(RELATIVE_PATH GLOBES_REL_LIB_PATH
+       "${CMAKE_INSTALL_PREFIX}"
+       "${GLOBES_LIB_DIR}")
+endif()
+
+if(SNU_LIB_DIR)
+  file(RELATIVE_PATH SNU_REL_LIB_PATH
+       "${CMAKE_INSTALL_PREFIX}"
+       "${SNU_LIB_DIR}")
+endif()

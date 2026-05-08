@@ -34,3 +34,9 @@ if(${UseOscProb} EQUAL 1)
   target_include_directories(OSCPROB INTERFACE ${OscProb_SOURCE_DIR})
   target_compile_definitions(NuOscillatorCompilerOptions INTERFACE UseOscProb=1)
 endif()
+
+if(OSCPROB_LIB_DIR)
+  file(RELATIVE_PATH OSCPROB_REL_LIB_PATH
+       "${CMAKE_INSTALL_PREFIX}"
+       "${OSCPROB_LIB_DIR}")
+endif()

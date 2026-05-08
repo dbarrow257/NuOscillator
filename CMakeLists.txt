@@ -185,6 +185,7 @@ include(${CMAKE_CURRENT_LIST_DIR}/cmake/Modules/ProbGPU.cmake)
 include(${CMAKE_CURRENT_LIST_DIR}/cmake/Modules/Prob3pp.cmake)
 include(${CMAKE_CURRENT_LIST_DIR}/cmake/Modules/NuFast.cmake)
 include(${CMAKE_CURRENT_LIST_DIR}/cmake/Modules/OscProb.cmake)
+include(${CMAKE_CURRENT_LIST_DIR}/cmake/Modules/OscLib.cmake)
 include(${CMAKE_CURRENT_LIST_DIR}/cmake/Modules/NuSQUIDS.cmake)
 include(${CMAKE_CURRENT_LIST_DIR}/cmake/Modules/GLoBES.cmake)
 include(${CMAKE_CURRENT_LIST_DIR}/cmake/Modules/CHIC.cmake)
@@ -196,59 +197,6 @@ add_subdirectory(Oscillator)
 add_subdirectory(Apps)
 
 #================================================================================================
-
-set(LIBDEST ${CMAKE_INSTALL_PREFIX}/lib)
-
-# KS: This extract relative path to CudaProb and others. This allow in setup to use ${NUOSCILLATOR_ROOT}/RELATIVE_PART
-# this way even if we move directory we can still use NuOscillator
-if(CUDAProb3_SOURCE_DIR)
-  file(RELATIVE_PATH CUDAProb3_RELATIVE_PATH
-       "${CMAKE_INSTALL_PREFIX}"
-       "${CUDAProb3_SOURCE_DIR}")
-endif()
-
-if(HDF5_LIB_DIR)
-  file(RELATIVE_PATH HDF5_REL_LIB_PATH
-       "${CMAKE_INSTALL_PREFIX}"
-       "${HDF5_LIB_DIR}")
-endif()
-
-if(SQUIDS_LIB_DIR)
-  file(RELATIVE_PATH SQUIDS_REL_LIB_PATH
-       "${CMAKE_INSTALL_PREFIX}"
-       "${SQUIDS_LIB_DIR}")
-endif()
-
-if(NUSQUIDS_LIB_DIR)
-  file(RELATIVE_PATH NUSQUIDS_REL_LIB_PATH
-       "${CMAKE_INSTALL_PREFIX}"
-       "${NUSQUIDS_LIB_DIR}")
-endif()
-
-if(OSCPROB_LIB_DIR)
-  file(RELATIVE_PATH OSCPROB_REL_LIB_PATH
-       "${CMAKE_INSTALL_PREFIX}"
-       "${OSCPROB_LIB_DIR}")
-endif()
-
-if(OSCLIB_LIB_DIR)
-    file(RELATIVE_PATH OSCLIB_REL_LIB_PATH
-       "${CMAKE_INSTALL_PREFIX}"
-       "${OSCLIB_LIB_DIR}")
-endif()
-
-if(GLOBES_LIB_DIR)
-  file(RELATIVE_PATH GLOBES_REL_LIB_PATH
-       "${CMAKE_INSTALL_PREFIX}"
-       "${GLOBES_LIB_DIR}")
-endif()
-
-if(SNU_LIB_DIR)
-  file(RELATIVE_PATH SNU_REL_LIB_PATH
-       "${CMAKE_INSTALL_PREFIX}"
-       "${SNU_LIB_DIR}")
-endif()
-
 configure_file(cmake/Templates/setup.NuOscillator.sh.in "${PROJECT_BINARY_DIR}/setup.NuOscillator.sh" @ONLY)
 install(FILES "${PROJECT_BINARY_DIR}/setup.NuOscillator.sh" DESTINATION ${CMAKE_INSTALL_PREFIX}/bin)
 
