@@ -20,7 +20,7 @@ heap_tree=empty
 #-----------
 snapshot=2
 #-----------
-time=201255655
+time=201251604
 mem_heap_B=7509411
 mem_heap_extra_B=304221
 mem_stacks_B=0
@@ -28,7 +28,7 @@ heap_tree=empty
 #-----------
 snapshot=3
 #-----------
-time=304609469
+time=304603935
 mem_heap_B=26301515
 mem_heap_extra_B=406661
 mem_stacks_B=0
@@ -36,23 +36,31 @@ heap_tree=empty
 #-----------
 snapshot=4
 #-----------
-time=452458300
-mem_heap_B=58164004
-mem_heap_extra_B=537516
+time=380356233
+mem_heap_B=37398769
+mem_heap_extra_B=476495
 mem_stacks_B=0
 heap_tree=empty
 #-----------
 snapshot=5
 #-----------
-time=540609987
-mem_heap_B=61535238
-mem_heap_extra_B=577314
+time=452452766
+mem_heap_B=58164004
+mem_heap_extra_B=537516
 mem_stacks_B=0
 heap_tree=empty
 #-----------
 snapshot=6
 #-----------
-time=647657631
+time=540604453
+mem_heap_B=61535238
+mem_heap_extra_B=577314
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=7
+#-----------
+time=647644288
 mem_heap_B=66086803
 mem_heap_extra_B=767549
 mem_stacks_B=0
@@ -360,9 +368,9 @@ n11: 66086803 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
        n0: 0 in 1 place, below massif's threshold (1.00%)
     n0: 0 in 1 place, below massif's threshold (1.00%)
 #-----------
-snapshot=7
+snapshot=8
 #-----------
-time=706338906
+time=706325563
 mem_heap_B=67381296
 mem_heap_extra_B=827936
 mem_stacks_B=0
@@ -672,9 +680,9 @@ n12: 67381296 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
        n0: 0 in 1 place, below massif's threshold (1.00%)
     n0: 0 in 1 place, below massif's threshold (1.00%)
 #-----------
-snapshot=8
+snapshot=9
 #-----------
-time=796929622
+time=796916286
 mem_heap_B=68507823
 mem_heap_extra_B=907529
 mem_stacks_B=0
@@ -984,9 +992,9 @@ n12: 68507823 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
        n0: 0 in 1 place, below massif's threshold (1.00%)
     n0: 0 in 1 place, below massif's threshold (1.00%)
 #-----------
-snapshot=9
+snapshot=10
 #-----------
-time=877319282
+time=881408178
 mem_heap_B=73189283
 mem_heap_extra_B=969701
 mem_stacks_B=0
@@ -1303,15 +1311,15 @@ n13: 73189283 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
        n0: 781312 in 5 places, all below massif's threshold (1.00%)
     n0: 30208 in 1 place, below massif's threshold (1.00%)
 #-----------
-snapshot=10
+snapshot=11
 #-----------
-time=982860988
-mem_heap_B=82917779
-mem_heap_extra_B=970189
+time=986807170
+mem_heap_B=80512283
+mem_heap_extra_B=969637
 mem_stacks_B=0
 heap_tree=detailed
-n15: 82917779 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
- n0: 15472624 in 4223 places, all below massif's threshold (1.00%)
+n15: 80512283 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n0: 15500112 in 4223 places, all below massif's threshold (1.00%)
  n1: 15090080 0x9638C4B: clang::ASTReader::ReadASTBlock(clang::serialization::ModuleFile&, unsigned int) (in /opt/root/v6-26-10/lib/libCling.so)
   n1: 15090080 0x9643F68: clang::ASTReader::ReadAST(llvm::StringRef, clang::serialization::ModuleKind, clang::SourceLocation, unsigned int, llvm::SmallVectorImpl<clang::ASTReader::ImportedSubmodule>*) (in /opt/root/v6-26-10/lib/libCling.so)
    n2: 15090080 0x931856A: clang::CompilerInstance::loadModule(clang::SourceLocation, llvm::ArrayRef<std::pair<clang::IdentifierInfo*, clang::SourceLocation> >, clang::Module::NameVisibilityKind, bool) (in /opt/root/v6-26-10/lib/libCling.so)
@@ -1480,28 +1488,6 @@ n15: 82917779 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
       n0: 91642 in 9 places, all below massif's threshold (1.00%)
    n0: 15090 in 2 places, all below massif's threshold (1.00%)
   n0: 190763 in 2 places, all below massif's threshold (1.00%)
- n1: 4857616 0x6967E26: void nusquids::readArrayH5<double, 2u, std::allocator<double> >(long, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, nusquids::marray<double, 2u, std::allocator<double> >&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
-  n2: 4857616 0x695A0F9: nusquids::NeutrinoDISCrossSectionsFromTables::readFlavorHDF5(long, nusquids::marray<double, 1u, std::allocator<double> > const&, nusquids::marray<double, 1u, std::allocator<double> > const&)::{lambda(nusquids::BiCubicInterpolator&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)#2}::operator()(nusquids::BiCubicInterpolator&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) const (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
-   n1: 2428808 0x695C9AA: nusquids::NeutrinoDISCrossSectionsFromTables::readFlavorHDF5(long, nusquids::marray<double, 1u, std::allocator<double> > const&, nusquids::marray<double, 1u, std::allocator<double> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
-    n1: 2428808 0x6965945: nusquids::NeutrinoDISCrossSectionsFromTables::ReadHDF(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
-     n1: 2428808 0x6965F1F: nusquids::NeutrinoDISCrossSectionsFromTables::NeutrinoDISCrossSectionsFromTables(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
-      n1: 2428808 0x6966161: nusquids::loadDefaultCrossSections() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
-       n1: 2428808 0x69432DD: nusquids::nuSQUIDS::InitializeInteractions() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
-        n1: 2428808 0x694386C: nusquids::nuSQUIDS::EvolveState() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
-         n1: 2428808 0x4B932B2: OscProbCalcerNuSQUIDSLinear::CalculateProbabilities() (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
-          n1: 2428808 0x4B60A4F: OscProbCalcerBase::Reweight() (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
-           n1: 2428808 0x487E040: OscillatorBase::CalculateProbabilities() (in /opt/NuOscillator/build/Linux/lib/libOscillator.so)
-            n0: 2428808 0x417CA1: main (in /opt/NuOscillator/build/Linux/bin/DragRace)
-   n1: 2428808 0x695CA0D: nusquids::NeutrinoDISCrossSectionsFromTables::readFlavorHDF5(long, nusquids::marray<double, 1u, std::allocator<double> > const&, nusquids::marray<double, 1u, std::allocator<double> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
-    n1: 2428808 0x6965945: nusquids::NeutrinoDISCrossSectionsFromTables::ReadHDF(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
-     n1: 2428808 0x6965F1F: nusquids::NeutrinoDISCrossSectionsFromTables::NeutrinoDISCrossSectionsFromTables(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
-      n1: 2428808 0x6966161: nusquids::loadDefaultCrossSections() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
-       n1: 2428808 0x69432DD: nusquids::nuSQUIDS::InitializeInteractions() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
-        n1: 2428808 0x694386C: nusquids::nuSQUIDS::EvolveState() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
-         n1: 2428808 0x4B932B2: OscProbCalcerNuSQUIDSLinear::CalculateProbabilities() (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
-          n1: 2428808 0x4B60A4F: OscProbCalcerBase::Reweight() (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
-           n1: 2428808 0x487E040: OscillatorBase::CalculateProbabilities() (in /opt/NuOscillator/build/Linux/lib/libOscillator.so)
-            n0: 2428808 0x417CA1: main (in /opt/NuOscillator/build/Linux/bin/DragRace)
  n1: 4768440 0xB532CFF: clang::ModuleMap::findOrCreateModule(llvm::StringRef, clang::Module*, bool, bool) (in /opt/root/v6-26-10/lib/libCling.so)
   n2: 4768440 0xB53C193: clang::ModuleMapParser::parseModuleDecl() (in /opt/root/v6-26-10/lib/libCling.so)
    n2: 4578840 0xB53BC17: clang::ModuleMapParser::parseModuleDecl() (in /opt/root/v6-26-10/lib/libCling.so)
@@ -1571,8 +1557,20 @@ n15: 82917779 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
           n1: 2428808 0x4B60A4F: OscProbCalcerBase::Reweight() (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
            n1: 2428808 0x487E040: OscillatorBase::CalculateProbabilities() (in /opt/NuOscillator/build/Linux/lib/libOscillator.so)
             n0: 2428808 0x417CA1: main (in /opt/NuOscillator/build/Linux/bin/DragRace)
- n3: 1940312 0x65C933C: ??? (in /usr/lib64/libhdf5.so.200.1.0)
-  n2: 1077096 0x65C9A50: H5FL_blk_malloc (in /usr/lib64/libhdf5.so.200.1.0)
+ n1: 2428808 0x6967E26: void nusquids::readArrayH5<double, 2u, std::allocator<double> >(long, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, nusquids::marray<double, 2u, std::allocator<double> >&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
+  n1: 2428808 0x695A0F9: nusquids::NeutrinoDISCrossSectionsFromTables::readFlavorHDF5(long, nusquids::marray<double, 1u, std::allocator<double> > const&, nusquids::marray<double, 1u, std::allocator<double> > const&)::{lambda(nusquids::BiCubicInterpolator&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)#2}::operator()(nusquids::BiCubicInterpolator&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) const (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
+   n1: 2428808 0x695C9AA: nusquids::NeutrinoDISCrossSectionsFromTables::readFlavorHDF5(long, nusquids::marray<double, 1u, std::allocator<double> > const&, nusquids::marray<double, 1u, std::allocator<double> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
+    n1: 2428808 0x6965945: nusquids::NeutrinoDISCrossSectionsFromTables::ReadHDF(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
+     n1: 2428808 0x6965F1F: nusquids::NeutrinoDISCrossSectionsFromTables::NeutrinoDISCrossSectionsFromTables(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
+      n1: 2428808 0x6966161: nusquids::loadDefaultCrossSections() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
+       n1: 2428808 0x69432DD: nusquids::nuSQUIDS::InitializeInteractions() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
+        n1: 2428808 0x694386C: nusquids::nuSQUIDS::EvolveState() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
+         n1: 2428808 0x4B932B2: OscProbCalcerNuSQUIDSLinear::CalculateProbabilities() (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
+          n1: 2428808 0x4B60A4F: OscProbCalcerBase::Reweight() (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
+           n1: 2428808 0x487E040: OscillatorBase::CalculateProbabilities() (in /opt/NuOscillator/build/Linux/lib/libOscillator.so)
+            n0: 2428808 0x417CA1: main (in /opt/NuOscillator/build/Linux/bin/DragRace)
+ n3: 1936136 0x65C933C: ??? (in /usr/lib64/libhdf5.so.200.1.0)
+  n2: 1076336 0x65C9A50: H5FL_blk_malloc (in /usr/lib64/libhdf5.so.200.1.0)
    n2: 1051452 0x65C9BA4: H5FL_blk_calloc (in /usr/lib64/libhdf5.so.200.1.0)
     n1: 1048584 0x656EA4B: ??? (in /usr/lib64/libhdf5.so.200.1.0)
      n1: 1048584 0x656F47C: H5D__read (in /usr/lib64/libhdf5.so.200.1.0)
@@ -1591,13 +1589,17 @@ n15: 82917779 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
                   n1: 1048584 0x487E040: OscillatorBase::CalculateProbabilities() (in /opt/NuOscillator/build/Linux/lib/libOscillator.so)
                    n0: 1048584 0x417CA1: main (in /opt/NuOscillator/build/Linux/bin/DragRace)
     n0: 2868 in 2 places, all below massif's threshold (1.00%)
-   n0: 25644 in 14 places, all below massif's threshold (1.00%)
-  n1: 859888 0x65C9494: H5FL_reg_malloc (in /usr/lib64/libhdf5.so.200.1.0)
-   n0: 859888 in 23 places, all below massif's threshold (1.00%)
-  n0: 3328 in 2 places, all below massif's threshold (1.00%)
+   n0: 24884 in 14 places, all below massif's threshold (1.00%)
+  n1: 856528 0x65C9494: H5FL_reg_malloc (in /usr/lib64/libhdf5.so.200.1.0)
+   n0: 856528 in 23 places, all below massif's threshold (1.00%)
+  n0: 3272 in 2 places, all below massif's threshold (1.00%)
  n2: 1733184 0xB13D92F: llvm::BitstreamCursor::ReadAbbrevRecord() (in /opt/root/v6-26-10/lib/libCling.so)
-  n1: 869312 0x95EE831: clang::ASTReader::ReadBlockAbbrevs(llvm::BitstreamCursor&, unsigned int) (in /opt/root/v6-26-10/lib/libCling.so)
-   n0: 869312 in 2 places, all below massif's threshold (1.00%)
+  n2: 869312 0x95EE831: clang::ASTReader::ReadBlockAbbrevs(llvm::BitstreamCursor&, unsigned int) (in /opt/root/v6-26-10/lib/libCling.so)
+   n1: 818176 0x9634BC9: clang::ASTReader::ReadASTBlock(clang::serialization::ModuleFile&, unsigned int) (in /opt/root/v6-26-10/lib/libCling.so)
+    n1: 818176 0x9643F68: clang::ASTReader::ReadAST(llvm::StringRef, clang::serialization::ModuleKind, clang::SourceLocation, unsigned int, llvm::SmallVectorImpl<clang::ASTReader::ImportedSubmodule>*) (in /opt/root/v6-26-10/lib/libCling.so)
+     n1: 818176 0x931856A: clang::CompilerInstance::loadModule(clang::SourceLocation, llvm::ArrayRef<std::pair<clang::IdentifierInfo*, clang::SourceLocation> >, clang::Module::NameVisibilityKind, bool) (in /opt/root/v6-26-10/lib/libCling.so)
+      n0: 818176 in 2 places, all below massif's threshold (1.00%)
+   n0: 51136 in 1 place, below massif's threshold (1.00%)
   n0: 863872 in 5 places, all below massif's threshold (1.00%)
  n1: 1134592 0xB2F0D29: clang::Decl::operator new(unsigned long, clang::ASTContext const&, unsigned int, unsigned long) (in /opt/root/v6-26-10/lib/libCling.so)
   n0: 1134592 in 17 places, all below massif's threshold (1.00%)
@@ -1633,15 +1635,15 @@ n15: 82917779 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
  n1: 839032 0x5DC3DB9: TStorage::ObjectAlloc(unsigned long) (in /opt/root/v6-26-10/lib/libCore.so)
   n0: 839032 in 298 places, all below massif's threshold (1.00%)
 #-----------
-snapshot=11
+snapshot=12
 #-----------
-time=1089067644
-mem_heap_B=92646371
-mem_heap_extra_B=970757
+time=1091814765
+mem_heap_B=90240779
+mem_heap_extra_B=970173
 mem_stacks_B=0
 heap_tree=detailed
-n13: 92646371 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
- n0: 17238248 in 4225 places, all below massif's threshold (1.00%)
+n14: 90240779 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n0: 16348232 in 4224 places, all below massif's threshold (1.00%)
  n1: 15090080 0x9638C4B: clang::ASTReader::ReadASTBlock(clang::serialization::ModuleFile&, unsigned int) (in /opt/root/v6-26-10/lib/libCling.so)
   n1: 15090080 0x9643F68: clang::ASTReader::ReadAST(llvm::StringRef, clang::serialization::ModuleKind, clang::SourceLocation, unsigned int, llvm::SmallVectorImpl<clang::ASTReader::ImportedSubmodule>*) (in /opt/root/v6-26-10/lib/libCling.so)
    n2: 15090080 0x931856A: clang::CompilerInstance::loadModule(clang::SourceLocation, llvm::ArrayRef<std::pair<clang::IdentifierInfo*, clang::SourceLocation> >, clang::Module::NameVisibilityKind, bool) (in /opt/root/v6-26-10/lib/libCling.so)
@@ -1732,38 +1734,6 @@ n13: 92646371 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
          n0: 0 in 1 place, below massif's threshold (1.00%)
       n0: 0 in 1 place, below massif's threshold (1.00%)
   n0: 440944 in 109 places, all below massif's threshold (1.00%)
- n1: 7286424 0x6967E26: void nusquids::readArrayH5<double, 2u, std::allocator<double> >(long, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, nusquids::marray<double, 2u, std::allocator<double> >&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
-  n3: 7286424 0x695A0F9: nusquids::NeutrinoDISCrossSectionsFromTables::readFlavorHDF5(long, nusquids::marray<double, 1u, std::allocator<double> > const&, nusquids::marray<double, 1u, std::allocator<double> > const&)::{lambda(nusquids::BiCubicInterpolator&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)#2}::operator()(nusquids::BiCubicInterpolator&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) const (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
-   n1: 2428808 0x695C9AA: nusquids::NeutrinoDISCrossSectionsFromTables::readFlavorHDF5(long, nusquids::marray<double, 1u, std::allocator<double> > const&, nusquids::marray<double, 1u, std::allocator<double> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
-    n1: 2428808 0x6965945: nusquids::NeutrinoDISCrossSectionsFromTables::ReadHDF(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
-     n1: 2428808 0x6965F1F: nusquids::NeutrinoDISCrossSectionsFromTables::NeutrinoDISCrossSectionsFromTables(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
-      n1: 2428808 0x6966161: nusquids::loadDefaultCrossSections() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
-       n1: 2428808 0x69432DD: nusquids::nuSQUIDS::InitializeInteractions() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
-        n1: 2428808 0x694386C: nusquids::nuSQUIDS::EvolveState() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
-         n1: 2428808 0x4B932B2: OscProbCalcerNuSQUIDSLinear::CalculateProbabilities() (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
-          n1: 2428808 0x4B60A4F: OscProbCalcerBase::Reweight() (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
-           n1: 2428808 0x487E040: OscillatorBase::CalculateProbabilities() (in /opt/NuOscillator/build/Linux/lib/libOscillator.so)
-            n0: 2428808 0x417CA1: main (in /opt/NuOscillator/build/Linux/bin/DragRace)
-   n1: 2428808 0x695CA0D: nusquids::NeutrinoDISCrossSectionsFromTables::readFlavorHDF5(long, nusquids::marray<double, 1u, std::allocator<double> > const&, nusquids::marray<double, 1u, std::allocator<double> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
-    n1: 2428808 0x6965945: nusquids::NeutrinoDISCrossSectionsFromTables::ReadHDF(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
-     n1: 2428808 0x6965F1F: nusquids::NeutrinoDISCrossSectionsFromTables::NeutrinoDISCrossSectionsFromTables(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
-      n1: 2428808 0x6966161: nusquids::loadDefaultCrossSections() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
-       n1: 2428808 0x69432DD: nusquids::nuSQUIDS::InitializeInteractions() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
-        n1: 2428808 0x694386C: nusquids::nuSQUIDS::EvolveState() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
-         n1: 2428808 0x4B932B2: OscProbCalcerNuSQUIDSLinear::CalculateProbabilities() (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
-          n1: 2428808 0x4B60A4F: OscProbCalcerBase::Reweight() (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
-           n1: 2428808 0x487E040: OscillatorBase::CalculateProbabilities() (in /opt/NuOscillator/build/Linux/lib/libOscillator.so)
-            n0: 2428808 0x417CA1: main (in /opt/NuOscillator/build/Linux/bin/DragRace)
-   n1: 2428808 0x695CA76: nusquids::NeutrinoDISCrossSectionsFromTables::readFlavorHDF5(long, nusquids::marray<double, 1u, std::allocator<double> > const&, nusquids::marray<double, 1u, std::allocator<double> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
-    n1: 2428808 0x6965945: nusquids::NeutrinoDISCrossSectionsFromTables::ReadHDF(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
-     n1: 2428808 0x6965F1F: nusquids::NeutrinoDISCrossSectionsFromTables::NeutrinoDISCrossSectionsFromTables(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
-      n1: 2428808 0x6966161: nusquids::loadDefaultCrossSections() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
-       n1: 2428808 0x69432DD: nusquids::nuSQUIDS::InitializeInteractions() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
-        n1: 2428808 0x694386C: nusquids::nuSQUIDS::EvolveState() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
-         n1: 2428808 0x4B932B2: OscProbCalcerNuSQUIDSLinear::CalculateProbabilities() (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
-          n1: 2428808 0x4B60A4F: OscProbCalcerBase::Reweight() (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
-           n1: 2428808 0x487E040: OscillatorBase::CalculateProbabilities() (in /opt/NuOscillator/build/Linux/lib/libOscillator.so)
-            n0: 2428808 0x417CA1: main (in /opt/NuOscillator/build/Linux/bin/DragRace)
  n2: 6416891 0xB8EFE91: llvm::WritableMemoryBuffer::getNewUninitMemBuffer(unsigned long, llvm::Twine const&) (in /opt/root/v6-26-10/lib/libCling.so)
   n2: 6226128 0xB8F0111: llvm::MemoryBuffer::getMemBufferCopy(llvm::StringRef, llvm::Twine const&) (in /opt/root/v6-26-10/lib/libCling.so)
    n2: 6211038 0x95F2A90: clang::ASTReader::ReadSLocEntry(int)::{lambda(llvm::BitstreamCursor&, llvm::StringRef)#1}::operator()(llvm::BitstreamCursor&, llvm::StringRef) const (in /opt/root/v6-26-10/lib/libCling.so)
@@ -1774,14 +1744,39 @@ n13: 92646371 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
         n1: 1561044 0x960D4C9: clang::ASTReader::ReadPragmaDiagnosticMappings(clang::DiagnosticsEngine&) (in /opt/root/v6-26-10/lib/libCling.so)
          n1: 1561044 0x9634258: clang::ASTReader::InitializeContext() (in /opt/root/v6-26-10/lib/libCling.so)
           n1: 1561044 0x96449C6: clang::ASTReader::ReadAST(llvm::StringRef, clang::serialization::ModuleKind, clang::SourceLocation, unsigned int, llvm::SmallVectorImpl<clang::ASTReader::ImportedSubmodule>*) (in /opt/root/v6-26-10/lib/libCling.so)
-           n1: 1561044 0x931856A: clang::CompilerInstance::loadModule(clang::SourceLocation, llvm::ArrayRef<std::pair<clang::IdentifierInfo*, clang::SourceLocation> >, clang::Module::NameVisibilityKind, bool) (in /opt/root/v6-26-10/lib/libCling.so)
-            n0: 1561044 in 2 places, all below massif's threshold (1.00%)
+           n2: 1561044 0x931856A: clang::CompilerInstance::loadModule(clang::SourceLocation, llvm::ArrayRef<std::pair<clang::IdentifierInfo*, clang::SourceLocation> >, clang::Module::NameVisibilityKind, bool) (in /opt/root/v6-26-10/lib/libCling.so)
+            n1: 918680 0xB549B15: clang::Preprocessor::HandleHeaderIncludeOrImport(clang::SourceLocation, clang::Token&, clang::Token&, clang::SourceLocation, clang::DirectoryLookup const*, clang::FileEntry const*) (in /opt/root/v6-26-10/lib/libCling.so)
+             n1: 918680 0xB54AEBF: clang::Preprocessor::HandleIncludeDirective(clang::SourceLocation, clang::Token&, clang::DirectoryLookup const*, clang::FileEntry const*) (in /opt/root/v6-26-10/lib/libCling.so)
+              n1: 918680 0xB54DE64: clang::Preprocessor::HandleDirective(clang::Token&) (in /opt/root/v6-26-10/lib/libCling.so)
+               n1: 918680 0xB519397: clang::Lexer::LexTokenInternal(clang::Token&, bool) (in /opt/root/v6-26-10/lib/libCling.so)
+                n1: 918680 0xB58163E: clang::Preprocessor::Lex(clang::Token&) (in /opt/root/v6-26-10/lib/libCling.so)
+                 n1: 918680 0x95C89EE: clang::Parser::ParseTopLevelDecl(clang::OpaquePtr<clang::DeclGroupRef>&, bool) (in /opt/root/v6-26-10/lib/libCling.so)
+                  n1: 918680 0x8E9D577: cling::IncrementalParser::ParseInternal(llvm::StringRef) (in /opt/root/v6-26-10/lib/libCling.so)
+                   n1: 918680 0x8E9DC89: cling::IncrementalParser::Initialize(llvm::SmallVectorImpl<llvm::PointerIntPair<cling::Transaction*, 2u, cling::IncrementalParser::EParseResult, llvm::PointerLikeTypeTraits<cling::Transaction*>, llvm::PointerIntPairInfo<cling::Transaction*, 2u, llvm::PointerLikeTypeTraits<cling::Transaction*> > > >&, bool) (in /opt/root/v6-26-10/lib/libCling.so)
+                    n1: 918680 0x8E1E39A: cling::Interpreter::Interpreter(int, char const* const*, char const*, std::vector<std::shared_ptr<clang::ModuleFileExtension>, std::allocator<std::shared_ptr<clang::ModuleFileExtension> > > const&, bool, cling::Interpreter const*) (in /opt/root/v6-26-10/lib/libCling.so)
+                     n1: 918680 0x8D72D59: TCling::TCling(char const*, char const*, char const* const*) (in /opt/root/v6-26-10/lib/libCling.so)
+                      n1: 918680 0x8D74D70: CreateInterpreter (in /opt/root/v6-26-10/lib/libCling.so)
+                       n1: 918680 0x5D6CE49: TROOT::InitInterpreter() (in /opt/root/v6-26-10/lib/libCore.so)
+                        n1: 918680 0x5D6D2FE: ROOT::Internal::GetROOT2() (in /opt/root/v6-26-10/lib/libCore.so)
+                         n1: 918680 0x5EBF718: TUnixSystem::SetDisplay() (in /opt/root/v6-26-10/lib/libCore.so)
+                          n1: 918680 0x78FA664: TGClient::TGClient(char const*) (in /opt/root/v6-26-10/lib/libGui.so)
+                           n1: 918680 0x78D27D0: _GLOBAL__sub_I_TGClient.cxx (in /opt/root/v6-26-10/lib/libGui.so)
+                            n1: 918680 0x400A1AD: call_init (dl-init.c:70)
+                             n1: 918680 0x400A1AD: call_init (dl-init.c:26)
+                              n1: 918680 0x400A29B: _dl_init (dl-init.c:117)
+                               n0: 918680 0x4020BD9: ??? (in /usr/lib64/ld-linux-x86-64.so.2)
+            n0: 642364 in 1 place, below massif's threshold (1.00%)
         n0: 352174 in 3 places, all below massif's threshold (1.00%)
        n0: 716700 in 2 places, all below massif's threshold (1.00%)
       n1: 1650402 0xB5C6AD8: clang::SourceManager::isOffsetInFileID(clang::FileID, unsigned int) const (in /opt/root/v6-26-10/lib/libCling.so)
        n2: 1650402 0xB5C6E28: clang::SourceManager::getFileIDLoaded(unsigned int) const [clone .part.0] (in /opt/root/v6-26-10/lib/libCling.so)
-        n1: 1104315 0xB5C7C30: clang::SourceManager::getFileIDSlow(unsigned int) const (in /opt/root/v6-26-10/lib/libCling.so)
-         n0: 1104315 in 3 places, all below massif's threshold (1.00%)
+        n2: 1104315 0xB5C7C30: clang::SourceManager::getFileIDSlow(unsigned int) const (in /opt/root/v6-26-10/lib/libCling.so)
+         n1: 927282 0x960D4C9: clang::ASTReader::ReadPragmaDiagnosticMappings(clang::DiagnosticsEngine&) (in /opt/root/v6-26-10/lib/libCling.so)
+          n1: 927282 0x9634258: clang::ASTReader::InitializeContext() (in /opt/root/v6-26-10/lib/libCling.so)
+           n1: 927282 0x96449C6: clang::ASTReader::ReadAST(llvm::StringRef, clang::serialization::ModuleKind, clang::SourceLocation, unsigned int, llvm::SmallVectorImpl<clang::ASTReader::ImportedSubmodule>*) (in /opt/root/v6-26-10/lib/libCling.so)
+            n1: 927282 0x931856A: clang::CompilerInstance::loadModule(clang::SourceLocation, llvm::ArrayRef<std::pair<clang::IdentifierInfo*, clang::SourceLocation> >, clang::Module::NameVisibilityKind, bool) (in /opt/root/v6-26-10/lib/libCling.so)
+             n0: 927282 in 2 places, all below massif's threshold (1.00%)
+         n0: 177033 in 2 places, all below massif's threshold (1.00%)
         n0: 546087 in 2 places, all below massif's threshold (1.00%)
       n0: 550432 in 8 places, all below massif's threshold (1.00%)
     n1: 1380286 0x9603F9C: clang::ASTReader::ReadSLocEntry(int) [clone .part.0] (in /opt/root/v6-26-10/lib/libCling.so)
@@ -1883,6 +1878,28 @@ n13: 92646371 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
           n1: 2428808 0x4B60A4F: OscProbCalcerBase::Reweight() (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
            n1: 2428808 0x487E040: OscillatorBase::CalculateProbabilities() (in /opt/NuOscillator/build/Linux/lib/libOscillator.so)
             n0: 2428808 0x417CA1: main (in /opt/NuOscillator/build/Linux/bin/DragRace)
+ n1: 4857616 0x6967E26: void nusquids::readArrayH5<double, 2u, std::allocator<double> >(long, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, nusquids::marray<double, 2u, std::allocator<double> >&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
+  n2: 4857616 0x695A0F9: nusquids::NeutrinoDISCrossSectionsFromTables::readFlavorHDF5(long, nusquids::marray<double, 1u, std::allocator<double> > const&, nusquids::marray<double, 1u, std::allocator<double> > const&)::{lambda(nusquids::BiCubicInterpolator&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)#2}::operator()(nusquids::BiCubicInterpolator&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) const (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
+   n1: 2428808 0x695C9AA: nusquids::NeutrinoDISCrossSectionsFromTables::readFlavorHDF5(long, nusquids::marray<double, 1u, std::allocator<double> > const&, nusquids::marray<double, 1u, std::allocator<double> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
+    n1: 2428808 0x6965945: nusquids::NeutrinoDISCrossSectionsFromTables::ReadHDF(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
+     n1: 2428808 0x6965F1F: nusquids::NeutrinoDISCrossSectionsFromTables::NeutrinoDISCrossSectionsFromTables(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
+      n1: 2428808 0x6966161: nusquids::loadDefaultCrossSections() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
+       n1: 2428808 0x69432DD: nusquids::nuSQUIDS::InitializeInteractions() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
+        n1: 2428808 0x694386C: nusquids::nuSQUIDS::EvolveState() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
+         n1: 2428808 0x4B932B2: OscProbCalcerNuSQUIDSLinear::CalculateProbabilities() (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
+          n1: 2428808 0x4B60A4F: OscProbCalcerBase::Reweight() (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
+           n1: 2428808 0x487E040: OscillatorBase::CalculateProbabilities() (in /opt/NuOscillator/build/Linux/lib/libOscillator.so)
+            n0: 2428808 0x417CA1: main (in /opt/NuOscillator/build/Linux/bin/DragRace)
+   n1: 2428808 0x695CA0D: nusquids::NeutrinoDISCrossSectionsFromTables::readFlavorHDF5(long, nusquids::marray<double, 1u, std::allocator<double> > const&, nusquids::marray<double, 1u, std::allocator<double> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
+    n1: 2428808 0x6965945: nusquids::NeutrinoDISCrossSectionsFromTables::ReadHDF(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
+     n1: 2428808 0x6965F1F: nusquids::NeutrinoDISCrossSectionsFromTables::NeutrinoDISCrossSectionsFromTables(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
+      n1: 2428808 0x6966161: nusquids::loadDefaultCrossSections() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
+       n1: 2428808 0x69432DD: nusquids::nuSQUIDS::InitializeInteractions() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
+        n1: 2428808 0x694386C: nusquids::nuSQUIDS::EvolveState() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
+         n1: 2428808 0x4B932B2: OscProbCalcerNuSQUIDSLinear::CalculateProbabilities() (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
+          n1: 2428808 0x4B60A4F: OscProbCalcerBase::Reweight() (in /opt/NuOscillator/build/Linux/lib/libOscProbCalcer.so)
+           n1: 2428808 0x487E040: OscillatorBase::CalculateProbabilities() (in /opt/NuOscillator/build/Linux/lib/libOscillator.so)
+            n0: 2428808 0x417CA1: main (in /opt/NuOscillator/build/Linux/bin/DragRace)
  n1: 4768440 0xB532CFF: clang::ModuleMap::findOrCreateModule(llvm::StringRef, clang::Module*, bool, bool) (in /opt/root/v6-26-10/lib/libCling.so)
   n2: 4768440 0xB53C193: clang::ModuleMapParser::parseModuleDecl() (in /opt/root/v6-26-10/lib/libCling.so)
    n2: 4578840 0xB53BC17: clang::ModuleMapParser::parseModuleDecl() (in /opt/root/v6-26-10/lib/libCling.so)
@@ -1916,8 +1933,8 @@ n13: 92646371 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
                                n0: 4546608 0x1FFF000499: ???
     n0: 32232 in 1 place, below massif's threshold (1.00%)
    n0: 189600 in 1 place, below massif's threshold (1.00%)
- n2: 1944584 0x65C933C: ??? (in /usr/lib64/libhdf5.so.200.1.0)
-  n2: 1077920 0x65C9A50: H5FL_blk_malloc (in /usr/lib64/libhdf5.so.200.1.0)
+ n2: 1940312 0x65C933C: ??? (in /usr/lib64/libhdf5.so.200.1.0)
+  n2: 1077096 0x65C9A50: H5FL_blk_malloc (in /usr/lib64/libhdf5.so.200.1.0)
    n2: 1051452 0x65C9BA4: H5FL_blk_calloc (in /usr/lib64/libhdf5.so.200.1.0)
     n1: 1048584 0x656EA4B: ??? (in /usr/lib64/libhdf5.so.200.1.0)
      n1: 1048584 0x656F47C: H5D__read (in /usr/lib64/libhdf5.so.200.1.0)
@@ -1936,16 +1953,45 @@ n13: 92646371 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
                   n1: 1048584 0x487E040: OscillatorBase::CalculateProbabilities() (in /opt/NuOscillator/build/Linux/lib/libOscillator.so)
                    n0: 1048584 0x417CA1: main (in /opt/NuOscillator/build/Linux/bin/DragRace)
     n0: 2868 in 2 places, all below massif's threshold (1.00%)
-   n0: 26468 in 14 places, all below massif's threshold (1.00%)
-  n0: 866664 in 3 places, all below massif's threshold (1.00%)
+   n0: 25644 in 14 places, all below massif's threshold (1.00%)
+  n0: 863216 in 3 places, all below massif's threshold (1.00%)
  n1: 1733184 0xB13D92F: llvm::BitstreamCursor::ReadAbbrevRecord() (in /opt/root/v6-26-10/lib/libCling.so)
   n0: 1733184 in 6 places, all below massif's threshold (1.00%)
  n1: 1134592 0xB2F0D29: clang::Decl::operator new(unsigned long, clang::ASTContext const&, unsigned int, unsigned long) (in /opt/root/v6-26-10/lib/libCling.so)
   n0: 1134592 in 17 places, all below massif's threshold (1.00%)
+ n1: 917504 0x9601F81: llvm::DenseMap<unsigned int, llvm::SmallVector<std::pair<clang::serialization::ModuleFile*, unsigned long>, 2u>, llvm::DenseMapInfo<unsigned int>, llvm::detail::DenseMapPair<unsigned int, llvm::SmallVector<std::pair<clang::serialization::ModuleFile*, unsigned long>, 2u> > >::grow(unsigned int) (in /opt/root/v6-26-10/lib/libCling.so)
+  n1: 917504 0x9638065: clang::ASTReader::ReadASTBlock(clang::serialization::ModuleFile&, unsigned int) (in /opt/root/v6-26-10/lib/libCling.so)
+   n1: 917504 0x9643F68: clang::ASTReader::ReadAST(llvm::StringRef, clang::serialization::ModuleKind, clang::SourceLocation, unsigned int, llvm::SmallVectorImpl<clang::ASTReader::ImportedSubmodule>*) (in /opt/root/v6-26-10/lib/libCling.so)
+    n2: 917504 0x931856A: clang::CompilerInstance::loadModule(clang::SourceLocation, llvm::ArrayRef<std::pair<clang::IdentifierInfo*, clang::SourceLocation> >, clang::Module::NameVisibilityKind, bool) (in /opt/root/v6-26-10/lib/libCling.so)
+     n1: 917504 0x9B09615: clang::Sema::ActOnModuleImport(clang::SourceLocation, clang::SourceLocation, clang::SourceLocation, llvm::ArrayRef<std::pair<clang::IdentifierInfo*, clang::SourceLocation> >) (in /opt/root/v6-26-10/lib/libCling.so)
+      n1: 917504 0x8E188D1: cling::Interpreter::loadModule(clang::Module*, bool) (in /opt/root/v6-26-10/lib/libCling.so)
+       n1: 917504 0x8D45ED6: LoadModule(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, cling::Interpreter&) (in /opt/root/v6-26-10/lib/libCling.so)
+        n1: 917504 0x8D70E97: RegisterCxxModules(cling::Interpreter&) (in /opt/root/v6-26-10/lib/libCling.so)
+         n1: 917504 0x8D72E48: TCling::TCling(char const*, char const*, char const* const*) (in /opt/root/v6-26-10/lib/libCling.so)
+          n1: 917504 0x8D74D70: CreateInterpreter (in /opt/root/v6-26-10/lib/libCling.so)
+           n1: 917504 0x5D6CE49: TROOT::InitInterpreter() (in /opt/root/v6-26-10/lib/libCore.so)
+            n1: 917504 0x5D6D2FE: ROOT::Internal::GetROOT2() (in /opt/root/v6-26-10/lib/libCore.so)
+             n1: 917504 0x5EBF718: TUnixSystem::SetDisplay() (in /opt/root/v6-26-10/lib/libCore.so)
+              n1: 917504 0x78FA664: TGClient::TGClient(char const*) (in /opt/root/v6-26-10/lib/libGui.so)
+               n1: 917504 0x78D27D0: _GLOBAL__sub_I_TGClient.cxx (in /opt/root/v6-26-10/lib/libGui.so)
+                n1: 917504 0x400A1AD: call_init (dl-init.c:70)
+                 n1: 917504 0x400A1AD: call_init (dl-init.c:26)
+                  n1: 917504 0x400A29B: _dl_init (dl-init.c:117)
+                   n1: 917504 0x4020BD9: ??? (in /usr/lib64/ld-linux-x86-64.so.2)
+                    n1: 917504 0x7: ???
+                     n1: 917504 0x1FFF0003A2: ???
+                      n1: 917504 0x1FFF0003BC: ???
+                       n1: 917504 0x1FFF0003BE: ???
+                        n1: 917504 0x1FFF0003E8: ???
+                         n1: 917504 0x1FFF000410: ???
+                          n1: 917504 0x1FFF00043D: ???
+                           n1: 917504 0x1FFF00046B: ???
+                            n0: 917504 0x1FFF000499: ???
+     n0: 0 in 1 place, below massif's threshold (1.00%)
 #-----------
-snapshot=12
+snapshot=13
 #-----------
-time=1193971698
+time=1196826823
 mem_heap_B=99969371
 mem_heap_extra_B=970741
 mem_stacks_B=0
@@ -2283,9 +2329,9 @@ n13: 99969371 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
  n1: 1134592 0xB2F0D29: clang::Decl::operator new(unsigned long, clang::ASTContext const&, unsigned int, unsigned long) (in /opt/root/v6-26-10/lib/libCling.so)
   n0: 1134592 in 17 places, all below massif's threshold (1.00%)
 #-----------
-snapshot=13
+snapshot=14
 #-----------
-time=1299117666
+time=1301837495
 mem_heap_B=109697867
 mem_heap_extra_B=971277
 mem_stacks_B=0
@@ -2620,9 +2666,9 @@ n13: 109697867 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
  n1: 1134592 0xB2F0D29: clang::Decl::operator new(unsigned long, clang::ASTContext const&, unsigned int, unsigned long) (in /opt/root/v6-26-10/lib/libCling.so)
   n0: 1134592 in 17 places, all below massif's threshold (1.00%)
 #-----------
-snapshot=14
+snapshot=15
 #-----------
-time=1409161454
+time=1411695251
 mem_heap_B=119537845
 mem_heap_extra_B=975107
 mem_stacks_B=0
@@ -2991,9 +3037,9 @@ n12: 119537845 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
  n1: 1733184 0xB13D92F: llvm::BitstreamCursor::ReadAbbrevRecord() (in /opt/root/v6-26-10/lib/libCling.so)
   n0: 1733184 in 6 places, all below massif's threshold (1.00%)
 #-----------
-snapshot=15
+snapshot=16
 #-----------
-time=1514288365
+time=1516702973
 mem_heap_B=129266341
 mem_heap_extra_B=975643
 mem_stacks_B=0
@@ -3391,9 +3437,9 @@ n12: 129266341 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
  n1: 1733184 0xB13D92F: llvm::BitstreamCursor::ReadAbbrevRecord() (in /opt/root/v6-26-10/lib/libCling.so)
   n0: 1733184 in 6 places, all below massif's threshold (1.00%)
 #-----------
-snapshot=16
+snapshot=17
 #-----------
-time=1619305621
+time=1621720229
 mem_heap_B=138994939
 mem_heap_extra_B=976213
 mem_stacks_B=0
@@ -3825,9 +3871,9 @@ n12: 138994939 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
  n1: 1733184 0xB13D92F: llvm::BitstreamCursor::ReadAbbrevRecord() (in /opt/root/v6-26-10/lib/libCling.so)
   n0: 1733184 in 6 places, all below massif's threshold (1.00%)
 #-----------
-snapshot=17
+snapshot=18
 #-----------
-time=1724316461
+time=1726731069
 mem_heap_B=148723435
 mem_heap_extra_B=976781
 mem_stacks_B=0
@@ -4295,9 +4341,9 @@ n12: 148723435 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
  n1: 1733184 0xB13D92F: llvm::BitstreamCursor::ReadAbbrevRecord() (in /opt/root/v6-26-10/lib/libCling.so)
   n0: 1733184 in 6 places, all below massif's threshold (1.00%)
 #-----------
-snapshot=18
+snapshot=19
 #-----------
-time=1837743676
+time=1840158284
 mem_heap_B=158532550
 mem_heap_extra_B=973290
 mem_stacks_B=0
@@ -4788,9 +4834,9 @@ n12: 158532550 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
  n1: 1733184 0xB13D92F: llvm::BitstreamCursor::ReadAbbrevRecord() (in /opt/root/v6-26-10/lib/libCling.so)
   n0: 1733184 in 6 places, all below massif's threshold (1.00%)
 #-----------
-snapshot=19
+snapshot=20
 #-----------
-time=1942750441
+time=1945165049
 mem_heap_B=168256870
 mem_heap_extra_B=973634
 mem_stacks_B=0
@@ -5306,9 +5352,9 @@ n12: 168256870 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
  n1: 1733184 0xB13D92F: llvm::BitstreamCursor::ReadAbbrevRecord() (in /opt/root/v6-26-10/lib/libCling.so)
   n0: 1733184 in 6 places, all below massif's threshold (1.00%)
 #-----------
-snapshot=20
+snapshot=21
 #-----------
-time=2047761559
+time=2050176167
 mem_heap_B=177981190
 mem_heap_extra_B=973978
 mem_stacks_B=0
@@ -5850,9 +5896,9 @@ n11: 177981190 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
  n1: 1985776 0x65C933C: ??? (in /usr/lib64/libhdf5.so.200.1.0)
   n0: 1985776 in 4 places, all below massif's threshold (1.00%)
 #-----------
-snapshot=21
+snapshot=22
 #-----------
-time=2152771799
+time=2155186407
 mem_heap_B=187705510
 mem_heap_extra_B=974322
 mem_stacks_B=0
@@ -6422,9 +6468,9 @@ n11: 187705510 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
  n1: 1985776 0x65C933C: ??? (in /usr/lib64/libhdf5.so.200.1.0)
   n0: 1985776 in 4 places, all below massif's threshold (1.00%)
 #-----------
-snapshot=22
+snapshot=23
 #-----------
-time=2262610517
+time=2265025125
 mem_heap_B=197521102
 mem_heap_extra_B=976762
 mem_stacks_B=0
@@ -7020,9 +7066,9 @@ n11: 197521102 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
  n1: 1985776 0x65C933C: ??? (in /usr/lib64/libhdf5.so.200.1.0)
   n0: 1985776 in 4 places, all below massif's threshold (1.00%)
 #-----------
-snapshot=23
+snapshot=24
 #-----------
-time=2367617425
+time=2370032033
 mem_heap_B=207245422
 mem_heap_extra_B=977106
 mem_stacks_B=0
@@ -7644,9 +7690,9 @@ n10: 207245422 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
     n0: 32232 in 1 place, below massif's threshold (1.00%)
    n0: 189600 in 1 place, below massif's threshold (1.00%)
 #-----------
-snapshot=24
+snapshot=25
 #-----------
-time=2472633700
+time=2475048308
 mem_heap_B=216969742
 mem_heap_extra_B=977450
 mem_stacks_B=0
@@ -8296,9 +8342,9 @@ n10: 216969742 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
     n0: 32232 in 1 place, below massif's threshold (1.00%)
    n0: 189600 in 1 place, below massif's threshold (1.00%)
 #-----------
-snapshot=25
+snapshot=26
 #-----------
-time=2577644097
+time=2580058705
 mem_heap_B=226694062
 mem_heap_extra_B=977794
 mem_stacks_B=0
@@ -8976,49 +9022,41 @@ n10: 226694062 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
     n0: 32232 in 1 place, below massif's threshold (1.00%)
    n0: 189600 in 1 place, below massif's threshold (1.00%)
 #-----------
-snapshot=26
+snapshot=27
 #-----------
-time=2714997651
+time=2712225518
 mem_heap_B=226469738
 mem_heap_extra_B=970518
 mem_stacks_B=0
 heap_tree=empty
 #-----------
-snapshot=27
+snapshot=28
 #-----------
-time=2776814299
+time=2840899560
 mem_heap_B=226469706
 mem_heap_extra_B=970502
 mem_stacks_B=0
 heap_tree=empty
 #-----------
-snapshot=28
-#-----------
-time=2903145020
-mem_heap_B=226469962
-mem_heap_extra_B=970558
-mem_stacks_B=0
-heap_tree=empty
-#-----------
 snapshot=29
 #-----------
-time=3029591539
-mem_heap_B=226469930
+time=2926293404
+mem_heap_B=226469962
 mem_heap_extra_B=970558
 mem_stacks_B=0
 heap_tree=empty
 #-----------
 snapshot=30
 #-----------
-time=3101714311
-mem_heap_B=226469962
+time=3047427584
+mem_heap_B=226469930
 mem_heap_extra_B=970558
 mem_stacks_B=0
 heap_tree=empty
 #-----------
 snapshot=31
 #-----------
-time=3231160947
+time=3163668550
 mem_heap_B=226469962
 mem_heap_extra_B=970558
 mem_stacks_B=0
@@ -9026,15 +9064,23 @@ heap_tree=empty
 #-----------
 snapshot=32
 #-----------
-time=3378499608
-mem_heap_B=229663347
-mem_heap_extra_B=974645
+time=3266896466
+mem_heap_B=226469930
+mem_heap_extra_B=970558
 mem_stacks_B=0
 heap_tree=empty
 #-----------
 snapshot=33
 #-----------
-time=3476940653
+time=3380914216
+mem_heap_B=229663347
+mem_heap_extra_B=974645
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=34
+#-----------
+time=3479355261
 mem_heap_B=236988603
 mem_heap_extra_B=974629
 mem_stacks_B=0
@@ -9728,9 +9774,9 @@ n10: 236988603 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
     n0: 32232 in 1 place, below massif's threshold (1.00%)
    n0: 189600 in 1 place, below massif's threshold (1.00%)
 #-----------
-snapshot=34
+snapshot=35
 #-----------
-time=3581947429
+time=3584362037
 mem_heap_B=246712923
 mem_heap_extra_B=974973
 mem_stacks_B=0
@@ -10024,9 +10070,9 @@ n10: 246712923 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
     n0: 32232 in 1 place, below massif's threshold (1.00%)
    n0: 189600 in 1 place, below massif's threshold (1.00%)
 #-----------
-snapshot=35
+snapshot=36
 #-----------
-time=3686958501
+time=3689373109
 mem_heap_B=256437243
 mem_heap_extra_B=975317
 mem_stacks_B=0
@@ -10336,9 +10382,9 @@ n10: 256437243 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
     n0: 32232 in 1 place, below massif's threshold (1.00%)
    n0: 189600 in 1 place, below massif's threshold (1.00%)
 #-----------
-snapshot=36
+snapshot=37
 #-----------
-time=3791968358
+time=3794382966
 mem_heap_B=266161563
 mem_heap_extra_B=975661
 mem_stacks_B=0
@@ -10662,9 +10708,9 @@ n10: 266161563 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
     n0: 32232 in 1 place, below massif's threshold (1.00%)
    n0: 189600 in 1 place, below massif's threshold (1.00%)
 #-----------
-snapshot=37
+snapshot=38
 #-----------
-time=3901806985
+time=3904221593
 mem_heap_B=275977155
 mem_heap_extra_B=978101
 mem_stacks_B=0
@@ -11004,9 +11050,9 @@ n10: 275977155 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
     n0: 32232 in 1 place, below massif's threshold (1.00%)
    n0: 189600 in 1 place, below massif's threshold (1.00%)
 #-----------
-snapshot=38
+snapshot=39
 #-----------
-time=4006813888
+time=4009228496
 mem_heap_B=285701475
 mem_heap_extra_B=978445
 mem_stacks_B=0
@@ -11362,9 +11408,9 @@ n10: 285701475 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
     n0: 32232 in 1 place, below massif's threshold (1.00%)
    n0: 189600 in 1 place, below massif's threshold (1.00%)
 #-----------
-snapshot=39
+snapshot=40
 #-----------
-time=4111830069
+time=4114244677
 mem_heap_B=295425795
 mem_heap_extra_B=978789
 mem_stacks_B=0
@@ -11736,9 +11782,9 @@ n10: 295425795 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
     n0: 32232 in 1 place, below massif's threshold (1.00%)
    n0: 189600 in 1 place, below massif's threshold (1.00%)
 #-----------
-snapshot=40
+snapshot=41
 #-----------
-time=4216840083
+time=4219254691
 mem_heap_B=305150115
 mem_heap_extra_B=979133
 mem_stacks_B=0
@@ -12126,9 +12172,9 @@ n10: 305150115 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
     n0: 32232 in 1 place, below massif's threshold (1.00%)
    n0: 189600 in 1 place, below massif's threshold (1.00%)
 #-----------
-snapshot=41
+snapshot=42
 #-----------
-time=4330247336
+time=4332661944
 mem_heap_B=314959230
 mem_heap_extra_B=975626
 mem_stacks_B=0
@@ -12528,9 +12574,9 @@ n10: 314959230 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
     n0: 32232 in 1 place, below massif's threshold (1.00%)
    n0: 189600 in 1 place, below massif's threshold (1.00%)
 #-----------
-snapshot=42
+snapshot=43
 #-----------
-time=4435254099
+time=4437668707
 mem_heap_B=324683550
 mem_heap_extra_B=975970
 mem_stacks_B=0
@@ -12942,9 +12988,9 @@ n10: 324683550 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
     n0: 32232 in 1 place, below massif's threshold (1.00%)
    n0: 189600 in 1 place, below massif's threshold (1.00%)
 #-----------
-snapshot=43
+snapshot=44
 #-----------
-time=4540265231
+time=4542679839
 mem_heap_B=334407870
 mem_heap_extra_B=976314
 mem_stacks_B=0
@@ -13368,9 +13414,9 @@ n10: 334407870 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
     n0: 32232 in 1 place, below massif's threshold (1.00%)
    n0: 189600 in 1 place, below massif's threshold (1.00%)
 #-----------
-snapshot=44
+snapshot=45
 #-----------
-time=4645275469
+time=4647690077
 mem_heap_B=344132190
 mem_heap_extra_B=976658
 mem_stacks_B=0
@@ -13806,9 +13852,9 @@ n10: 344132190 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
     n0: 32232 in 1 place, below massif's threshold (1.00%)
    n0: 189600 in 1 place, below massif's threshold (1.00%)
 #-----------
-snapshot=45
+snapshot=46
 #-----------
-time=4755114199
+time=4757528807
 mem_heap_B=353947782
 mem_heap_extra_B=979082
 mem_stacks_B=0
@@ -14256,9 +14302,9 @@ n10: 353947782 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
     n0: 32232 in 1 place, below massif's threshold (1.00%)
    n0: 189600 in 1 place, below massif's threshold (1.00%)
 #-----------
-snapshot=46
+snapshot=47
 #-----------
-time=4860121109
+time=4862535717
 mem_heap_B=363672102
 mem_heap_extra_B=979426
 mem_stacks_B=0
@@ -14718,9 +14764,9 @@ n10: 363672102 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
     n0: 32232 in 1 place, below massif's threshold (1.00%)
    n0: 189600 in 1 place, below massif's threshold (1.00%)
 #-----------
-snapshot=47
+snapshot=48
 #-----------
-time=4965137378
+time=4967551986
 mem_heap_B=373396422
 mem_heap_extra_B=979770
 mem_stacks_B=0
@@ -15192,9 +15238,17 @@ n10: 373396422 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
     n0: 32232 in 1 place, below massif's threshold (1.00%)
    n0: 189600 in 1 place, below massif's threshold (1.00%)
 #-----------
-snapshot=48
+snapshot=49
 #-----------
-time=5070147773
+time=4974119189
+mem_heap_B=375795486
+mem_heap_extra_B=980146
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=50
+#-----------
+time=5072562381
 mem_heap_B=383120742
 mem_heap_extra_B=980114
 mem_stacks_B=0
@@ -15678,33 +15732,17 @@ n10: 383120742 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
     n0: 32232 in 1 place, below massif's threshold (1.00%)
    n0: 189600 in 1 place, below massif's threshold (1.00%)
 #-----------
-snapshot=49
-#-----------
-time=5081360680
-mem_heap_B=382979014
-mem_heap_extra_B=972634
-mem_stacks_B=0
-heap_tree=empty
-#-----------
-snapshot=50
-#-----------
-time=5143332179
-mem_heap_B=382918214
-mem_heap_extra_B=972618
-mem_stacks_B=0
-heap_tree=empty
-#-----------
 snapshot=51
 #-----------
-time=5202023187
-mem_heap_B=382896386
-mem_heap_extra_B=972806
+time=5131252033
+mem_heap_B=382978214
+mem_heap_extra_B=972626
 mem_stacks_B=0
 heap_tree=empty
 #-----------
 snapshot=52
 #-----------
-time=5260822533
+time=5189964774
 mem_heap_B=382896418
 mem_heap_extra_B=972822
 mem_stacks_B=0
@@ -15712,7 +15750,7 @@ heap_tree=empty
 #-----------
 snapshot=53
 #-----------
-time=5319515729
+time=5248672027
 mem_heap_B=382896370
 mem_heap_extra_B=972798
 mem_stacks_B=0
@@ -15720,36 +15758,60 @@ heap_tree=empty
 #-----------
 snapshot=54
 #-----------
-time=5378200319
-mem_heap_B=382896386
-mem_heap_extra_B=972806
+time=5307458123
+mem_heap_B=382896418
+mem_heap_extra_B=972822
 mem_stacks_B=0
 heap_tree=empty
 #-----------
 snapshot=55
 #-----------
-time=5437023997
-mem_heap_B=382896418
-mem_heap_extra_B=972886
+time=5366141709
+mem_heap_B=382896386
+mem_heap_extra_B=972806
 mem_stacks_B=0
 heap_tree=empty
 #-----------
 snapshot=56
 #-----------
-time=5495772421
-mem_heap_B=382896418
-mem_heap_extra_B=972886
+time=5424833367
+mem_heap_B=382896370
+mem_heap_extra_B=972862
 mem_stacks_B=0
 heap_tree=empty
 #-----------
 snapshot=57
 #-----------
-time=5554509110
-mem_heap_B=382896386
-mem_heap_extra_B=972870
+time=5483595127
+mem_heap_B=382896418
+mem_heap_extra_B=972886
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=58
+#-----------
+time=5542395635
+mem_heap_B=382896418
+mem_heap_extra_B=972886
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=59
+#-----------
+time=5601223687
+mem_heap_B=382896418
+mem_heap_extra_B=972886
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=60
+#-----------
+time=5659914567
+mem_heap_B=382896370
+mem_heap_extra_B=972878
 mem_stacks_B=0
 heap_tree=detailed
-n10: 382896386 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+n10: 382896370 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
  n1: 77721856 0x69565E8: nusquids::BiCubicInterpolator::BiCubicInterpolator(nusquids::marray<double, 2u, std::allocator<double> >, nusquids::marray<double, 1u, std::allocator<double> >, nusquids::marray<double, 1u, std::allocator<double> >) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
   n4: 77721856 0x695A1B4: nusquids::NeutrinoDISCrossSectionsFromTables::readFlavorHDF5(long, nusquids::marray<double, 1u, std::allocator<double> > const&, nusquids::marray<double, 1u, std::allocator<double> > const&)::{lambda(nusquids::BiCubicInterpolator&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)#2}::operator()(nusquids::BiCubicInterpolator&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) const (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
    n2: 19430464 0x695C9AA: nusquids::NeutrinoDISCrossSectionsFromTables::readFlavorHDF5(long, nusquids::marray<double, 1u, std::allocator<double> > const&, nusquids::marray<double, 1u, std::allocator<double> > const&) (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
@@ -16094,7 +16156,7 @@ n10: 382896386 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
        n1: 4857616 0x69432DD: nusquids::nuSQUIDS::InitializeInteractions() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
         n1: 4857616 0x694386C: nusquids::nuSQUIDS::EvolveState() (in /opt/NuOscillator/build/NUSQUIDS-prefix/lib/libnuSQuIDS.so.1.13.3)
          n0: 4857616 in 2 places, all below massif's threshold (1.00%)
- n0: 23272471 in 4282 places, all below massif's threshold (1.00%)
+ n0: 23272455 in 4282 places, all below massif's threshold (1.00%)
  n1: 15090080 0x9638C4B: clang::ASTReader::ReadASTBlock(clang::serialization::ModuleFile&, unsigned int) (in /opt/root/v6-26-10/lib/libCling.so)
   n1: 15090080 0x9643F68: clang::ASTReader::ReadAST(llvm::StringRef, clang::serialization::ModuleKind, clang::SourceLocation, unsigned int, llvm::SmallVectorImpl<clang::ASTReader::ImportedSubmodule>*) (in /opt/root/v6-26-10/lib/libCling.so)
    n2: 15090080 0x931856A: clang::CompilerInstance::loadModule(clang::SourceLocation, llvm::ArrayRef<std::pair<clang::IdentifierInfo*, clang::SourceLocation> >, clang::Module::NameVisibilityKind, bool) (in /opt/root/v6-26-10/lib/libCling.so)
@@ -16228,66 +16290,58 @@ n10: 382896386 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
     n0: 32232 in 1 place, below massif's threshold (1.00%)
    n0: 189600 in 1 place, below massif's threshold (1.00%)
 #-----------
-snapshot=58
-#-----------
-time=5613281039
-mem_heap_B=382896418
-mem_heap_extra_B=972886
-mem_stacks_B=0
-heap_tree=empty
-#-----------
-snapshot=59
-#-----------
-time=5672105221
-mem_heap_B=382896418
-mem_heap_extra_B=972886
-mem_stacks_B=0
-heap_tree=empty
-#-----------
-snapshot=60
-#-----------
-time=5730815679
-mem_heap_B=382896386
-mem_heap_extra_B=972886
-mem_stacks_B=0
-heap_tree=empty
-#-----------
 snapshot=61
 #-----------
-time=5789617294
-mem_heap_B=382896418
+time=5718646341
+mem_heap_B=382896386
 mem_heap_extra_B=972886
 mem_stacks_B=0
 heap_tree=empty
 #-----------
 snapshot=62
 #-----------
-time=5848305075
-mem_heap_B=382896386
+time=5777333439
+mem_heap_B=382896418
 mem_heap_extra_B=972886
 mem_stacks_B=0
 heap_tree=empty
 #-----------
 snapshot=63
 #-----------
-time=5907040116
-mem_heap_B=383259367
-mem_heap_extra_B=990553
+time=5836153742
+mem_heap_B=382896418
+mem_heap_extra_B=972886
 mem_stacks_B=0
 heap_tree=empty
 #-----------
 snapshot=64
 #-----------
-time=5965725550
-mem_heap_B=384448554
-mem_heap_extra_B=1014278
+time=5894836592
+mem_heap_B=383486668
+mem_heap_extra_B=998676
 mem_stacks_B=0
 heap_tree=empty
 #-----------
 snapshot=65
 #-----------
-time=6024407379
-mem_heap_B=384512630
-mem_heap_extra_B=1017354
+time=5953518869
+mem_heap_B=384146355
+mem_heap_extra_B=1010237
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=66
+#-----------
+time=6012204846
+mem_heap_B=384513651
+mem_heap_extra_B=1017229
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=67
+#-----------
+time=6070886170
+mem_heap_B=68288747
+mem_heap_extra_B=762453
 mem_stacks_B=0
 heap_tree=empty
