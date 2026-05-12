@@ -9,6 +9,7 @@
 #include "inc/PMNS_NUNM.h"
 #include "inc/PMNS_SNSI.h"
 #include "inc/PMNS_LIV.h"
+#include "inc/PMNS_OQS.h"
 
 OscProbCalcerOscProb::OscProbCalcerOscProb(YAML::Node Config_) : OscProbCalcerBase(Config_), fPMNSObj(nullptr) {
   //=======
@@ -109,6 +110,7 @@ OscProb::PMNS_Base* OscProbCalcerOscProb::GetPMNSObj() {
  if(fOscType==kIter)         return new OscProb::PMNS_Iter();
  if(fOscType==kNUNM)         return new OscProb::PMNS_NUNM();
  if(fOscType==kLIV)          return new OscProb::PMNS_LIV();
+ if(fOscType==kOQS)          return new OscProb::PMNS_OQS();
 
  return new OscProb::PMNS_Fast();
 }
@@ -306,6 +308,55 @@ void OscProbCalcerOscProb::SetPMNSParams() {
     LIV->SetcT(2, 2, 8, GetOscillationParameter(kcT_tautau_8), 0.);
   }
 
+  // Set OQS parameters
+  if(OscProb::PMNS_OQS* OQS = dynamic_cast<OscProb::PMNS_OQS*>(fPMNSObj)) {
+    // Decoherence magnitudes (a_i), i = 1..8
+    OQS->SetDecoElement(1, GetOscillationParameter(kA1));
+    OQS->SetDecoElement(2, GetOscillationParameter(kA2));
+    OQS->SetDecoElement(3, GetOscillationParameter(kA3));
+    OQS->SetDecoElement(4, GetOscillationParameter(kA4));
+    OQS->SetDecoElement(5, GetOscillationParameter(kA5));
+    OQS->SetDecoElement(6, GetOscillationParameter(kA6));
+    OQS->SetDecoElement(7, GetOscillationParameter(kA7));
+    OQS->SetDecoElement(8, GetOscillationParameter(kA8));
+    // Angles theta_ij (i < j)
+    // i = 1
+    OQS->SetDecoAngle(1,2, std::acos(GetOscillationParameter(kTheta12)));
+    OQS->SetDecoAngle(1,3, std::acos(GetOscillationParameter(kTheta13)));
+    OQS->SetDecoAngle(1,4, std::acos(GetOscillationParameter(kTheta14)));
+    OQS->SetDecoAngle(1,5, std::acos(GetOscillationParameter(kTheta15)));
+    OQS->SetDecoAngle(1,6, std::acos(GetOscillationParameter(kTheta16)));
+    OQS->SetDecoAngle(1,7, std::acos(GetOscillationParameter(kTheta17)));
+    OQS->SetDecoAngle(1,8, std::acos(GetOscillationParameter(kTheta18)));
+    // i = 2
+    OQS->SetDecoAngle(2,3, std::acos(GetOscillationParameter(kTheta23)));
+    OQS->SetDecoAngle(2,4, std::acos(GetOscillationParameter(kTheta24)));
+    OQS->SetDecoAngle(2,5, std::acos(GetOscillationParameter(kTheta25)));
+    OQS->SetDecoAngle(2,6, std::acos(GetOscillationParameter(kTheta26)));
+    OQS->SetDecoAngle(2,7, std::acos(GetOscillationParameter(kTheta27)));
+    OQS->SetDecoAngle(2,8, std::acos(GetOscillationParameter(kTheta28)));
+    // i = 3
+    OQS->SetDecoAngle(3,4, std::acos(GetOscillationParameter(kTheta34)));
+    OQS->SetDecoAngle(3,5, std::acos(GetOscillationParameter(kTheta35)));
+    OQS->SetDecoAngle(3,6, std::acos(GetOscillationParameter(kTheta36)));
+    OQS->SetDecoAngle(3,7, std::acos(GetOscillationParameter(kTheta37)));
+    OQS->SetDecoAngle(3,8, std::acos(GetOscillationParameter(kTheta38)));
+    // i = 4
+    OQS->SetDecoAngle(4,5, std::acos(GetOscillationParameter(kTheta45)));
+    OQS->SetDecoAngle(4,6, std::acos(GetOscillationParameter(kTheta46)));
+    OQS->SetDecoAngle(4,7, std::acos(GetOscillationParameter(kTheta47)));
+    OQS->SetDecoAngle(4,8, std::acos(GetOscillationParameter(kTheta48)));
+    // i = 5
+    OQS->SetDecoAngle(5,6, std::acos(GetOscillationParameter(kTheta56)));
+    OQS->SetDecoAngle(5,7, std::acos(GetOscillationParameter(kTheta57)));
+    OQS->SetDecoAngle(5,8, std::acos(GetOscillationParameter(kTheta58)));
+    // i = 6
+    OQS->SetDecoAngle(6,7, std::acos(GetOscillationParameter(kTheta67)));
+    OQS->SetDecoAngle(6,8, std::acos(GetOscillationParameter(kTheta68)));
+    // i = 7
+    OQS->SetDecoAngle(7,8, std::acos(GetOscillationParameter(kTheta78)));
+    OQS->SetPower(GetOscillationParameter(kPower_OQS));
+  }
 }
 
 int OscProbCalcerOscProb::PMNS_StrToInt(const std::string& PMNSType) {
@@ -320,6 +371,7 @@ int OscProbCalcerOscProb::PMNS_StrToInt(const std::string& PMNSType) {
   if (PMNSType == "NUNM" || PMNSType == "nunm")          return kNUNM;
   if (PMNSType == "SNSI" || PMNSType == "snsi")          return kSNSI;
   if (PMNSType == "Iter" || PMNSType == "iter")          return kIter;
+  if (PMNSType == "OQS" || PMNSType == "oqs")            return kOQS;
 
   std::cerr << "Invalid PMNS matrix type provided:" << PMNSType << std::endl;
   throw std::runtime_error("Invalid setup");
@@ -348,7 +400,7 @@ void OscProbCalcerOscProb::SetOscParams() {
     OscParNames = {"sin2_th12","sin2_th23","sin2_th13","dm2_12","dm2_23","delta_cp","alpha_2","alpha_3"};    
     break;
   case kDeco:
-    OscParNames = {"sin2_th12","sin2_th23","sin2_th13","dm2_12","dm2_23","delta_cp","gamma_21","gamma_31","decoherence_angle","decoherence_index"};    
+    OscParNames = {"sin2_th12","sin2_th23","sin2_th13","dm2_12","dm2_23","delta_cp","gamma_21","gamma_31","decoherence_angle","decoherence_index"};
     break;
   case kNSI:
     OscParNames = {"sin2_th12","sin2_th23","sin2_th13","dm2_12","dm2_23","delta_cp","eps_ee", "eps_emu", "eps_etau", "eps_mumu", "eps_mutau", "eps_tautau", "delta_emu", "delta_etau", "delta_mutau", "elec_coup", "up_coup", "down_coup"};    
@@ -364,6 +416,20 @@ void OscProbCalcerOscProb::SetOscParams() {
     break;
   case kSNSI:
     OscParNames = {"sin2_th12","sin2_th23","sin2_th13","dm2_12","dm2_23","delta_cp","delta_cp","eps_ee", "eps_emu", "eps_etau", "eps_mumu", "eps_mutau", "eps_tautau", "delta_emu", "delta_etau", "delta_mutau", "elec_coup", "up_coup", "down_coup","light_mass"};    
+    break;
+  case kOQS:
+    OscParNames = {"sin2_th12","sin2_th23","sin2_th13","dm2_12","dm2_23","delta_cp",
+                   // Decoherence magnitudes
+                   "a_1","a_2","a_3","a_4","a_5","a_6","a_7","a_8",
+                   // cosine angles between decoherence vectors
+                   "costheta_12","costheta_13","costheta_14","costheta_15","costheta_16","costheta_17","costheta_18",
+                   "costheta_23","costheta_24","costheta_25","costheta_26","costheta_27","costheta_28",
+                   "costheta_34","costheta_35","costheta_36","costheta_37","costheta_38",
+                   "costheta_45","costheta_46","costheta_47","costheta_48",
+                   "costheta_56","costheta_57","costheta_58",
+                   "costheta_67","costheta_68",
+                   "costheta_78",
+                   "decoherence_index"};
     break;
   default:
     std::cerr << "Invalid Oscillation Model type provided:" << fOscType << std::endl;

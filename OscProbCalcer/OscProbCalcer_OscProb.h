@@ -236,6 +236,27 @@ class OscProbCalcerOscProb : public OscProbCalcerBase {
                      kNOscParams_LIV};
 
   /**
+  * @brief Definition of extra oscillation parameters for PMNS_OQS class (Open Quantum System decoherence model)
+  * kA_i     Magnitude of decoherence vector component a_i in the Gell-Mann basis, with i = 1,...,8. These correspond to
+  * kTheta_ij Cosine of the angle between decoherence vectors a_i and a_j,
+  * kPower_OQS power index of decoherence energy dependence
+  */
+  enum OscParams_OQS {
+    // Decoherence magnitudes (Gell-Mann basis)
+    kA1 = kNOscParams, kA2, kA3, kA4, kA5, kA6, kA7, kA8,
+    // Angles
+    kTheta12, kTheta13, kTheta14, kTheta15, kTheta16, kTheta17, kTheta18,
+    kTheta23, kTheta24, kTheta25, kTheta26, kTheta27, kTheta28,
+    kTheta34, kTheta35, kTheta36, kTheta37, kTheta38,
+    kTheta45, kTheta46, kTheta47, kTheta48,
+    kTheta56, kTheta57, kTheta58,
+    kTheta67, kTheta68,
+    kTheta78,
+    kPower_OQS,
+    kNOscParams_OQS
+  };
+
+  /**
    * @brief Define the neutrino and antineutrino values expected by this implementation
    */
   enum NuType{Nu=1,Nubar=-1};
@@ -245,7 +266,7 @@ class OscProbCalcerOscProb : public OscProbCalcerBase {
    * LIV and SNSI still to be implemented at some point
    */
   enum PMNSMatrix{kFast, kPMNSSterile1, kPMNSSterile2, kPMNSSterile3,
-                  kDecay, kDeco, kNSI, kSNSI, kIter, kNUNM, kLIV};
+                  kDecay, kDeco, kNSI, kSNSI, kIter, kNUNM, kLIV, kOQS};
 
   /**
    * @brief Define the type for the PMNS matrix
