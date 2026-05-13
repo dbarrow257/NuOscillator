@@ -415,7 +415,7 @@ void OscProbCalcerOscProb::SetOscParams() {
     OscParNames = {"sin2_th12","sin2_th23","sin2_th13","dm2_12","dm2_23","delta_cp","aT_ee_3", "aT_emu_3", "aT_etau_3", "aT_mumu_3", "aT_mutau_3", "aT_tautau_3", "Delta_emu_3", "Delta_etau_3", "Delta_mutau_3","cT_ee_4", "cT_emu_4", "cT_etau_4", "cT_mumu_4", "cT_mutau_4","cT_tautau_4", "Delta_emu_4", "Delta_etau_4", "Delta_mutau_4","aT_ee_5", "aT_emu_5", "aT_etau_5", "aT_mumu_5", "aT_mutau_5","aT_tautau_5", "Delta_emu_5", "Delta_etau_5", "Delta_mutau_5","cT_ee_6", "cT_emu_6", "cT_etau_6", "cT_mumu_6", "cT_mutau_6","cT_tautau_6", "Delta_emu_6", "Delta_etau_6", "Delta_mutau_6","aT_ee_7", "aT_emu_7", "aT_etau_7", "aT_mumu_7", "aT_mutau_7","aT_tautau_7", "Delta_emu_7", "Delta_etau_7", "Delta_mutau_7","cT_ee_8", "cT_emu_8", "cT_etau_8", "cT_mumu_8", "cT_mutau_8","cT_tautau_8", "Delta_emu_8", "Delta_etau_8", "Delta_mutau_8"};    
     break;
   case kSNSI:
-    OscParNames = {"sin2_th12","sin2_th23","sin2_th13","dm2_12","dm2_23","delta_cp","delta_cp","eps_ee", "eps_emu", "eps_etau", "eps_mumu", "eps_mutau", "eps_tautau", "delta_emu", "delta_etau", "delta_mutau", "elec_coup", "up_coup", "down_coup","light_mass"};    
+    OscParNames = {"sin2_th12","sin2_th23","sin2_th13","dm2_12","dm2_23","delta_cp","eps_ee", "eps_emu", "eps_etau", "eps_mumu", "eps_mutau", "eps_tautau", "delta_emu", "delta_etau", "delta_mutau", "elec_coup", "up_coup", "down_coup","light_mass"};    
     break;
   case kOQS:
     OscParNames = {"sin2_th12","sin2_th23","sin2_th13","dm2_12","dm2_23","delta_cp",
