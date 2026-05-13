@@ -9,9 +9,10 @@ var searchData=
   ['oscparams_5fliv_6',['oscparams_liv',['../classOscProbCalcerNuSQUIDSLinear.html#ac0e820c4725052143a0dbb2056dd6774',1,'OscProbCalcerNuSQUIDSLinear::OscParams_LIV'],['../classOscProbCalcerOscProb.html#a40339f2713e5dd0e635fc511da6b8f00',1,'OscProbCalcerOscProb::OscParams_LIV']]],
   ['oscparams_5fnsi_7',['OscParams_NSI',['../classOscProbCalcerOscProb.html#a0aaf27fac6252d17cf989964af0526c4',1,'OscProbCalcerOscProb']]],
   ['oscparams_5fnunm_8',['OscParams_NUNM',['../classOscProbCalcerOscProb.html#a4bb4e4a1e916943e9f8b48a8f3c61190',1,'OscProbCalcerOscProb']]],
-  ['oscparams_5fpmns_9',['OscParams_PMNS',['../classOscProbCalcerNuSQUIDSLinear.html#a103eae09b0696f37f3247ea04c3dc087',1,'OscProbCalcerNuSQUIDSLinear']]],
-  ['oscparams_5fsnsi_10',['OscParams_SNSI',['../classOscProbCalcerOscProb.html#a5a43c0273d6af70b9165e6da5317679d',1,'OscProbCalcerOscProb']]],
-  ['oscparams_5fsterile1_11',['OscParams_Sterile1',['../classOscProbCalcerOscProb.html#a4942ec2165fe1b917a0806944617e206',1,'OscProbCalcerOscProb']]],
-  ['oscparams_5fsterile2_12',['OscParams_Sterile2',['../classOscProbCalcerOscProb.html#a6eac86816e45382d033a8e7ad1a3ad21',1,'OscProbCalcerOscProb']]],
-  ['oscparams_5fsterile3_13',['OscParams_Sterile3',['../classOscProbCalcerOscProb.html#a0efa9a175085445785b034d063a5b20e',1,'OscProbCalcerOscProb']]]
+  ['oscparams_5foqs_9',['OscParams_OQS',['../classOscProbCalcerOscProb.html#a0f41ba0c011946da5ca1594354a78234',1,'OscProbCalcerOscProb']]],
+  ['oscparams_5fpmns_10',['OscParams_PMNS',['../classOscProbCalcerNuSQUIDSLinear.html#a103eae09b0696f37f3247ea04c3dc087',1,'OscProbCalcerNuSQUIDSLinear']]],
+  ['oscparams_5fsnsi_11',['OscParams_SNSI',['../classOscProbCalcerOscProb.html#a5a43c0273d6af70b9165e6da5317679d',1,'OscProbCalcerOscProb']]],
+  ['oscparams_5fsterile1_12',['OscParams_Sterile1',['../classOscProbCalcerOscProb.html#a4942ec2165fe1b917a0806944617e206',1,'OscProbCalcerOscProb']]],
+  ['oscparams_5fsterile2_13',['OscParams_Sterile2',['../classOscProbCalcerOscProb.html#a6eac86816e45382d033a8e7ad1a3ad21',1,'OscProbCalcerOscProb']]],
+  ['oscparams_5fsterile3_14',['OscParams_Sterile3',['../classOscProbCalcerOscProb.html#a0efa9a175085445785b034d063a5b20e',1,'OscProbCalcerOscProb']]]
 ];
