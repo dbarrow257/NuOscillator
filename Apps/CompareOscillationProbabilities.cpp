@@ -23,13 +23,12 @@ int main(int argc, char **argv) {
     std::cerr << argv[0] << " OscillationParameters.yaml [OscProbCalcer.yaml ...]" << std::endl;
     throw std::runtime_error("Invalid setup");
   }
-  
   std::string FileExt = ".png";
   
   //============================================================================================================
   std::vector<FLOAT_T> EnergyArray = logspace(0.1,10.,1e3);
   std::vector<FLOAT_T> CosineZArray = linspace(-1.0,1.0,1);
-  
+
   std::cout << "========================================================" << std::endl;
   std::cout << "Starting setup in executable" << std::endl;
 
@@ -38,7 +37,7 @@ int main(int argc, char **argv) {
   OscillatorBase* Oscillator;
 
   std::string OscProbCalcerConfigname = argv[1];
-  std::unordered_map<std::string, FLOAT_T> OscillationParameters = ReturnOscParamsFromConfig(YAML::LoadFile(OscProbCalcerConfigname));
+  std::unordered_map<std::string, FLOAT_T> OscillationParameters_Global = ReturnOscParamsFromConfig(YAML::LoadFile(OscProbCalcerConfigname));
   
   //Get the standard set of config names or use what is provided from the arguments
   std::vector<std::string> ConfigNames;
@@ -49,7 +48,7 @@ int main(int argc, char **argv) {
       ConfigNames.push_back(argv[i]);
     }
   }
-
+  std::vector< std::unordered_map<std::string, FLOAT_T> > OscillationParameters_Oscillators(ConfigNames.size());
   std::cout << "========================================================" << std::endl;
   std::cout << "Setting up Oscillators" << std::endl;
   
@@ -69,6 +68,19 @@ int main(int argc, char **argv) {
       if (!Oscillator->ReturnCosineZIgnored()) {
         Oscillator->SetCosineZArrayInCalcer(CosineZArray);
       }
+    }
+
+    //Overwrite the oscillation parameters in the Oscillator config from the config passed through the arguments
+    OscillationParameters_Oscillators[iConfig] = ReturnOscParamsFromConfig(YAML::LoadFile(ConfigNames[iConfig]));
+    for (auto Parameter : OscillationParameters_Global) {
+      if (OscillationParameters_Oscillators[iConfig].count(Parameter.first)) {
+        OscillationParameters_Oscillators[iConfig][Parameter.first] = Parameter.second;
+      }
+    }
+
+    //Set the oscillation parameters in the Oscillator
+    for (auto Parameter : OscillationParameters_Oscillators[iConfig]) {
+      Oscillator->DefineParameter(Parameter.first, &OscillationParameters_Oscillators[iConfig][Parameter.first]);
     }
 
     //Setup
