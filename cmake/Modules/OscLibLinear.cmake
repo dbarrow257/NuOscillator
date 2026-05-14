@@ -43,10 +43,10 @@ if(${UseOscLibLinear} EQUAL 1)
     PUBLIC_HEADER "${OSCLIB_HEADERS}"
     EXPORT_NAME OscLib
   )
-  target_include_directories(OscLibLinear PRIVATE ${Eigen_SOURCE_DIR})
   target_link_libraries(OscLibLinear PRIVATE ROOT::Core GSL::gsl)
   # Properly scoped include dirs
   target_include_directories(OscLibLinear PUBLIC
+      $<BUILD_INTERFACE:${Eigen_SOURCE_DIR}>
       $<BUILD_INTERFACE:${OscLib_SOURCE_DIR}>
       $<INSTALL_INTERFACE:include>
   )
