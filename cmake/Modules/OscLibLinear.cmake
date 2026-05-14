@@ -21,10 +21,6 @@ if(${UseOscLibLinear} EQUAL 1)
     URL https://gitlab.com/libeigen/eigen/-/archive/${Eigen_BRANCH}/eigen-${Eigen_BRANCH}.tar.gz
     DOWNLOAD_ONLY YES
   )
-  if(Eigen_ADDED)
-    add_library(Eigen INTERFACE IMPORTED)
-    target_include_directories(Eigen INTERFACE ${Eigen_SOURCE_DIR})
-  endif()
 
   CPMAddPackage(
     NAME OscLib
@@ -47,8 +43,8 @@ if(${UseOscLibLinear} EQUAL 1)
     PUBLIC_HEADER "${OSCLIB_HEADERS}"
     EXPORT_NAME OscLib
   )
-
-  target_link_libraries(OscLibLinear PRIVATE ROOT::Core Eigen GSL::gsl)
+  target_include_directories(OscLibLinear PRIVATE ${Eigen_SOURCE_DIR})
+  target_link_libraries(OscLibLinear PRIVATE ROOT::Core GSL::gsl)
   # Properly scoped include dirs
   target_include_directories(OscLibLinear PUBLIC
       $<BUILD_INTERFACE:${OscLib_SOURCE_DIR}>

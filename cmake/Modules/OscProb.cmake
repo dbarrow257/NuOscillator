@@ -22,16 +22,12 @@ if(${UseOscProb} EQUAL 1)
     set(CMAKE_CXX_STANDARD 17)
   endif()
 
-  if(Eigen_ADDED)
-    add_library(Eigen INTERFACE IMPORTED)
-    target_include_directories(Eigen INTERFACE ${Eigen_SOURCE_DIR})
-  endif()
-
   execute_process(COMMAND make WORKING_DIRECTORY ${OscProb_SOURCE_DIR})
   set(OSCPROB_LIB_DIR ${OscProb_SOURCE_DIR}/lib)
 
   add_library(OSCPROB INTERFACE IMPORTED)
   target_include_directories(OSCPROB INTERFACE ${OscProb_SOURCE_DIR})
+  target_include_directories(OSCPROB INTERFACE ${Eigen_SOURCE_DIR})
   target_compile_definitions(NuOscillatorCompilerOptions INTERFACE UseOscProb=1)
 endif()
 
