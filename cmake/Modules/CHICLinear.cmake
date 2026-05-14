@@ -31,13 +31,12 @@ if(${UseCHICLinear} EQUAL 1)
     ${CHIC_SOURCE_DIR}/src/CHIC.cpp
     ${CHIC_HEADERS}
   )
-
   target_include_directories(CHIC
   PUBLIC
+    $<BUILD_INTERFACE:${Eigen_SOURCE_DIR}>
     $<BUILD_INTERFACE:${CHIC_SOURCE_DIR}/src>
     $<INSTALL_INTERFACE:include/CHIC>
   )
-  target_include_directories(CHIC PRIVATE ${Eigen_SOURCE_DIR})
   target_compile_options(CHIC PRIVATE -fPIC)
   target_link_libraries(CHIC PRIVATE NuOscillatorCompilerOptions)
 
