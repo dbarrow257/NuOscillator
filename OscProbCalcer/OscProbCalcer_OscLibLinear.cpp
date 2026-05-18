@@ -7,6 +7,7 @@ OscProbCalcerOscLibLinear::OscProbCalcerOscLibLinear(YAML::Node Config_) : OscPr
     throw std::runtime_error("YAML node not found");
   }
   std::string PMNSType = Config_["OscProbCalcerSetup"]["PMNSType"].as<std::string>();
+  fImplementationName += "-" + PMNSType;
   fOscType = PMNS_StrToInt(PMNSType);
   SetOscParams();
   
@@ -25,7 +26,7 @@ OscProbCalcerOscLibLinear::~OscProbCalcerOscLibLinear() {
 
 void OscProbCalcerOscLibLinear::SetupPropagator() {
   if(fOscType == kPMNS) OscLib = new osc::_OscCalcPMNS<FLOAT_T>();
-  if(fOscType == kNSI) OscLib = new osc::OscCalcPMNS_NSI();;
+  if(fOscType == kNSI) OscLib = new osc::OscCalcPMNS_NSI();
 }
 
 int OscProbCalcerOscLibLinear::PMNS_StrToInt(const std::string& PMNSType) {
