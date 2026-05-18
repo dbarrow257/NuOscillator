@@ -20,6 +20,7 @@ Binned:
 
 OscProbCalcerSetup:
   ImplementationName: "OscLibLinear"
+  PMNSType: "PMNS" # PMNS, NSI
   OscChannelMapping:
     - Entry: "Electron:Electron"
     - Entry: "Electron:Muon"
