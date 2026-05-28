@@ -62,10 +62,10 @@ CPMAddPackage(
 Following neutrino oscillation calculators are available:
 |Oscillator        | Hardware   | Source     | Model      | Reference  |
 |------------------|------------|------------|------------|------------|
-| CUDAProb3Linear  | CPU/GPU    | Beam       | PMNS       |
+| CUDAProb3Linear  | CPU/GPU    | Beam       | PMNS       |            |
 | CUDAProb3        | CPU/GPU    | Atm        | PMNS       | [Ref](https://doi.org/10.1016/j.cpc.2018.07.022)        |
 | ProbGPULinear    | GPU        | Beam       | PMNS       | [Ref](http://dx.doi.org/10.3204/DESY-PROC-2014-05/23)   |
-| Prob3++Linear    | CPU        | Beam       | PMNS       |
+| Prob3++Linear    | CPU        | Beam       | PMNS       |            |
 | NuFastLinear     | CPU        | Beam       | PMNS       | [Ref](https://doi.org/10.48550/arXiv.2405.02400)        |
 | NuFastEarth      | CPU        | ATM        | PMNS       | [Ref](https://arxiv.org/abs/2511.04735)                 |
 | OscProb | CPU | Beam/Atm | <details><summary>PMNS + extensions</summary>NSI, SNSI, Sterile, Decay, Deco, NUNM, LIV, OPS</details> | [Ref](https://doi.org/10.5281/zenodo.6347002) |
