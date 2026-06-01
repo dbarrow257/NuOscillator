@@ -47,7 +47,7 @@ int OscProbCalcerOscLibLinear::PMNS_StrToInt(const std::string& PMNSType) {
 
 int OscProbCalcerOscLibLinear::GetFlavour(int OscChannel, int neutrinoType) const {
   int GenFlav = -1;
-  switch (generatedFlavour) {
+  switch (OscChannel) {
     case 1:
       GenFlav = 12;
       break;
