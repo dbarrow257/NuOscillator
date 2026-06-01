@@ -30,7 +30,7 @@ void OscProbCalcerOscLibLinear::SetupPropagator() {
   } else if(fOscType == kNSI) {
     OscLib = new osc::OscCalcPMNS_NSI();
   } else {
-    std::cerr << "Invalid PMNS matrix type provided:" << PMNSType << std::endl;
+    std::cerr << "Invalid PMNS matrix type provided: " << fOscType << std::endl;
     throw std::runtime_error("Invalid setup");
   }
 }
