@@ -128,7 +128,8 @@ if(${UseMultithreading} EQUAL 1)
 endif()
 
 if(NOT DEFINED NuOscillator_Compiler_Flags)
-  set(NuOscillator_Compiler_Flags "")
+  # By default use optimisation
+  set(NuOscillator_Compiler_Flags "-O3;-g;")
 endif()
 
 separate_arguments(NuOscillator_Compiler_Flags)
@@ -245,5 +246,6 @@ install(FILES
   ${CMAKE_BINARY_DIR}/NuOscillatorConfig.cmake
   ${CMAKE_BINARY_DIR}/NuOscillatorConfigVersion.cmake
   DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/cmake/NuOscillator)
+install(DIRECTORY cmake DESTINATION ${CMAKE_BINARY_DIR})
 
 include(nuoscillator-config)
