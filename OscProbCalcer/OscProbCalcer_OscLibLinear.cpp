@@ -25,8 +25,14 @@ OscProbCalcerOscLibLinear::~OscProbCalcerOscLibLinear() {
 }
 
 void OscProbCalcerOscLibLinear::SetupPropagator() {
-  if(fOscType == kPMNS) OscLib = new osc::_OscCalcPMNS<FLOAT_T>();
-  if(fOscType == kNSI) OscLib = new osc::OscCalcPMNS_NSI();
+  if(fOscType == kPMNS) {
+    OscLib = new osc::_OscCalcPMNS<FLOAT_T>();
+  } else if(fOscType == kNSI) {
+    OscLib = new osc::OscCalcPMNS_NSI();
+  } else {
+    std::cerr << "Invalid PMNS matrix type provided:" << PMNSType << std::endl;
+    throw std::runtime_error("Invalid setup");
+  }
 }
 
 int OscProbCalcerOscLibLinear::PMNS_StrToInt(const std::string& PMNSType) {
@@ -39,7 +45,7 @@ int OscProbCalcerOscLibLinear::PMNS_StrToInt(const std::string& PMNSType) {
   return -1;
 }
 
-int GetGeneratedFlavour(int generatedFlavour, int neutrinoType) {
+int OscProbCalcerOscLibLinear::GetFlavour(int OscChannel, int neutrinoType) const {
   int GenFlav = -1;
   switch (generatedFlavour) {
     case 1:
@@ -103,8 +109,8 @@ void OscProbCalcerOscLibLinear::CalculateProbabilities() {
 
       for (int iOscProb=0;iOscProb<fNEnergyPoints;iOscProb++) {
         FLOAT_T Energy = fEnergyArray[iOscProb];
-        int GenFlav = GetGeneratedFlavour(fOscillationChannels[iOscChannel].GeneratedFlavour, fNeutrinoTypes[iNuType]);
-        int DetFlav = GetGeneratedFlavour(fOscillationChannels[iOscChannel].DetectedFlavour, fNeutrinoTypes[iNuType]);
+        int GenFlav = GetFlavour(fOscillationChannels[iOscChannel].GeneratedFlavour, fNeutrinoTypes[iNuType]);
+        int DetFlav = GetFlavour(fOscillationChannels[iOscChannel].DetectedFlavour, fNeutrinoTypes[iNuType]);
 
         fWeightArray[IndexToFill+iOscProb] = OscLib->P(GenFlav,DetFlav,Energy);
       }

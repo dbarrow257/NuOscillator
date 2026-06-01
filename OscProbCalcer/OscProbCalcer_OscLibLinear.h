@@ -82,6 +82,12 @@ class OscProbCalcerOscLibLinear : public OscProbCalcerBase {
    */
   int PMNS_StrToInt(const std::string& PMNSType);
 
+
+  /**
+   * @brief Get neutrino flavour based on channel
+   */
+  int GetFlavour(int OscChannel, int neutrinoType) const;
+
   /**
    * @brief Set number of parameters needed for a particular type of PMNS matrix
    */

@@ -72,7 +72,7 @@ Following neutrino oscillation calculators are available:
 | NuSQUIDSLinear   | CPU        | Beam       | <details><summary>PMNS + extensions</summary>Non-Standard Interactions (NSI), Decoherence, Lorentz Invariance Violation (LIV)</details>           | [Ref](https://doi.org/10.1016/j.cpc.2022.108346)        |
 | GLoBESLinear     | CPU        | Beam       | PMNS       | [Ref](https://doi.org/10.1016/j.cpc.2005.01.003)        |
 | CHICLinear       | CPU        | Beam       | PMNS       | [Ref](https://arxiv.org/pdf/2512.16427)                 |
-| OscLib           | CPU        | Beam       | PMNS       | [Ref](https://github.com/cafana/OscLib)                 |
+| OscLib           | CPU        | Beam       | <details><summary>PMNS + extensions</summary>Non-Standard Interactions (NSI))</details>       | [Ref](https://github.com/cafana/OscLib)                 |
 
 ## GPU
 Some engines requires gpu like `ProbGPULinear` other can use both CPU and GPU. To use GPU functionality remember about
