@@ -60,19 +60,19 @@ CPMAddPackage(
 `UseCUDAProb3` etc. refers to implemented engines. Engines are loaded via yaml config files. In principle you can compile all of them and select one you want to use via config.
 
 Following neutrino oscillation calculators are available:
-|Oscillator        | Hardware   | Source     | Reference  |
-|------------------|------------|------------|------------|
-| CUDAProb3Linear  | CPU/GPU    | Beam       |            |
-| CUDAProb3        | CPU/GPU    | Atm        | [Ref](https://doi.org/10.1016/j.cpc.2018.07.022)        |
-| ProbGPULinear    | GPU        | Beam       | [Ref](http://dx.doi.org/10.3204/DESY-PROC-2014-05/23)   |
-| Prob3++Linear    | CPU        | Beam       |            |
-| NuFastLinear     | CPU        | Beam       | [Ref](https://doi.org/10.48550/arXiv.2405.02400)        |
-| NuFastEarth      | CPU        | ATM        | [Ref](https://arxiv.org/abs/2511.04735)                 |
-| OscProb          | CPU        | Beam/Atm   | [Ref](https://doi.org/10.5281/zenodo.6347002)           |
-| NuSQUIDSLinear   | CPU        | Beam       | [Ref](https://doi.org/10.1016/j.cpc.2022.108346)        |
-| GLoBESLinear     | CPU        | Beam       | [Ref](https://doi.org/10.1016/j.cpc.2005.01.003)        |
-| CHICLinear       | CPU        | Beam       | [Ref](https://arxiv.org/pdf/2512.16427)                 |
-| OscLib           | CPU        | Beam       | [Ref](https://github.com/cafana/OscLib)                 |
+|Oscillator        | Hardware   | Source     | Model      | Reference  |
+|------------------|------------|------------|------------|------------|
+| CUDAProb3Linear  | CPU/GPU    | Beam       | PMNS       |            |
+| CUDAProb3        | CPU/GPU    | Atm        | PMNS       | [Ref](https://doi.org/10.1016/j.cpc.2018.07.022)        |
+| ProbGPULinear    | GPU        | Beam       | PMNS       | [Ref](http://dx.doi.org/10.3204/DESY-PROC-2014-05/23)   |
+| Prob3++Linear    | CPU        | Beam       | PMNS       |            |
+| NuFastLinear     | CPU        | Beam       | PMNS       | [Ref](https://doi.org/10.48550/arXiv.2405.02400)        |
+| NuFastEarth      | CPU        | ATM        | PMNS       | [Ref](https://arxiv.org/abs/2511.04735)                 |
+| OscProb | CPU | Beam/Atm | <details><summary>PMNS + extensions</summary>Non-Standard Interactions (NSI), Scalar NSI (SNSI), Sterile Neutrinos (+1, +2, +3), Neutrino Decay, Decoherence, Non-Unitarity (NUNM), Lorentz Invariance Violation (LIV), Open Quantum Systems (OPS)</details> | [Ref](https://doi.org/10.5281/zenodo.6347002) |
+| NuSQUIDSLinear   | CPU        | Beam       | <details><summary>PMNS + extensions</summary>Non-Standard Interactions (NSI), Decoherence, Lorentz Invariance Violation (LIV)</details>           | [Ref](https://doi.org/10.1016/j.cpc.2022.108346)        |
+| GLoBESLinear     | CPU        | Beam       | PMNS       | [Ref](https://doi.org/10.1016/j.cpc.2005.01.003)        |
+| CHICLinear       | CPU        | Beam       | PMNS       | [Ref](https://arxiv.org/pdf/2512.16427)                 |
+| OscLib           | CPU        | Beam       | PMNS       | [Ref](https://github.com/cafana/OscLib)                 |
 
 ## GPU
 Some engines requires gpu like `ProbGPULinear` other can use both CPU and GPU. To use GPU functionality remember about
