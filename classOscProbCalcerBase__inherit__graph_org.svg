@@ -146,7 +146,7 @@
 <!-- Node9 -->
 <g id="Node000009" class="node">
 <title>Node9</title>
-<g id="a_Node000009"><a xlink:href="classOscProbCalcerOscLibLinear.html" target="_top" xlink:title="Oscillation calculation engine for linear propagation in NuFAST.">
+<g id="a_Node000009"><a xlink:href="classOscProbCalcerOscLibLinear.html" target="_top" xlink:title="Oscillation calculation engine for linear propagation in OscLibLinear.">
 <polygon fill="white" stroke="#666666" points="291.88,-130.25 151.38,-130.25 151.38,-111 291.88,-111 291.88,-130.25"/>
 <text text-anchor="middle" x="221.62" y="-116.75" font-family="Helvetica,sans-Serif" font-size="10.00">OscProbCalcerOscLibLinear</text>
 </a>

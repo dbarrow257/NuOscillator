@@ -9,7 +9,7 @@ var searchData=
   ['setenergyarrayincalcer_6',['SetEnergyArrayInCalcer',['../classOscillatorBase.html#a67c37df54e5780c1601eb848ffb2f71e',1,'OscillatorBase']]],
   ['setexpectedparameternames_7',['SetExpectedParameterNames',['../classOscProbCalcerBase.html#a7e4b9490c63fedef0609a47f3952033f',1,'OscProbCalcerBase']]],
   ['setmns_8',['setMNS',['../OscProbCalcer__ProbGPULinear_8cpp.html#adfb77cef0edf48718ff0f1c325a0766a',1,'OscProbCalcer_ProbGPULinear.cpp']]],
-  ['setoscparams_9',['setoscparams',['../classOscProbCalcerNuSQUIDSLinear.html#ad891b7510d31e3e1478f7302ac47a425',1,'OscProbCalcerNuSQUIDSLinear::SetOscParams()'],['../classOscProbCalcerOscProb.html#a985ddb7d2c53f64b811ea96d9481c0a5',1,'OscProbCalcerOscProb::SetOscParams()']]],
+  ['setoscparams_9',['setoscparams',['../classOscProbCalcerNuSQUIDSLinear.html#ad891b7510d31e3e1478f7302ac47a425',1,'OscProbCalcerNuSQUIDSLinear::SetOscParams()'],['../classOscProbCalcerOscLibLinear.html#a74cf9aa4e8f271648d1aa43eeadf0c2c',1,'OscProbCalcerOscLibLinear::SetOscParams()'],['../classOscProbCalcerOscProb.html#a985ddb7d2c53f64b811ea96d9481c0a5',1,'OscProbCalcerOscProb::SetOscParams()']]],
   ['setpath_10',['SetPath',['../classOscProbCalcerOscProb.html#a8f24c809be733a4577488d0baea497af',1,'OscProbCalcerOscProb']]],
   ['setpmnsparams_11',['SetPMNSParams',['../classOscProbCalcerOscProb.html#a2cb94524375864b41e6b9c198336ecf2',1,'OscProbCalcerOscProb']]],
   ['setproductionheightsaveraging_12',['SetProductionHeightsAveraging',['../classOscProbCalcerCUDAProb3.html#ac483654ad5257595eefcbb7290288da1',1,'OscProbCalcerCUDAProb3']]],

@@ -79,7 +79,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>Oscillation calculation engine for linear propagation in NuFAST.  
+<p>Oscillation calculation engine for linear propagation in OscLibLinear.  
  <a href="classOscProbCalcerOscLibLinear.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="OscProbCalcer__OscLibLinear_8h_source.html">OscProbCalcer_OscLibLinear.h</a>&gt;</code></p>
@@ -110,13 +110,35 @@ Public Types</h2></td></tr>
 &#160;&#160;<a class="el" href="classOscProbCalcerOscLibLinear.html#ad7dc24fa42bc7de59279143858c955f2a2dedef0746f30371c723bb32334001f8">kNOscParams</a>
 <br />
  }</td></tr>
-<tr class="memdesc:ad7dc24fa42bc7de59279143858c955f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Definition of oscillation parameters which are expected in this ProbGPU implementation.  <a href="classOscProbCalcerOscLibLinear.html#ad7dc24fa42bc7de59279143858c955f2">More...</a><br /></td></tr>
+<tr class="memdesc:ad7dc24fa42bc7de59279143858c955f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Definition of oscillation parameters which are expected in this OscLibLinear implementation.  <a href="classOscProbCalcerOscLibLinear.html#ad7dc24fa42bc7de59279143858c955f2">More...</a><br /></td></tr>
 <tr class="separator:ad7dc24fa42bc7de59279143858c955f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af38d421c05ca04174577e990a4b4e314" id="r_af38d421c05ca04174577e990a4b4e314"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerOscLibLinear.html#af38d421c05ca04174577e990a4b4e314">OscParams_NSI</a> { <br />
+&#160;&#160;<a class="el" href="classOscProbCalcerOscLibLinear.html#af38d421c05ca04174577e990a4b4e314ac5dec25e36e2182a5dcb3ef91795eb6b">kEps_ee</a> = kNOscParams
+, <a class="el" href="classOscProbCalcerOscLibLinear.html#af38d421c05ca04174577e990a4b4e314aaa9cd1fefb46a572ba198e40f43a1849">kEps_emu</a>
+, <a class="el" href="classOscProbCalcerOscLibLinear.html#af38d421c05ca04174577e990a4b4e314a50fd95667dac3df49d9c48f2ef3d2469">kEps_etau</a>
+, <a class="el" href="classOscProbCalcerOscLibLinear.html#af38d421c05ca04174577e990a4b4e314a6511f10ba329a2389f55b54f101e399e">kEps_mumu</a>
+, <br />
+&#160;&#160;<a class="el" href="classOscProbCalcerOscLibLinear.html#af38d421c05ca04174577e990a4b4e314a3c5090f00f193b07db9313a12f268342">kEps_mutau</a>
+, <a class="el" href="classOscProbCalcerOscLibLinear.html#af38d421c05ca04174577e990a4b4e314a351dfa4cee82c4461a74bab9f793488b">kEps_tautau</a>
+, <a class="el" href="classOscProbCalcerOscLibLinear.html#af38d421c05ca04174577e990a4b4e314a52c04610d3c79996d8348d4d3f195a47">kDelta_emu</a>
+, <a class="el" href="classOscProbCalcerOscLibLinear.html#af38d421c05ca04174577e990a4b4e314ac6912d49d4986d29d1317aed356ce2b0">kDelta_etau</a>
+, <br />
+&#160;&#160;<a class="el" href="classOscProbCalcerOscLibLinear.html#af38d421c05ca04174577e990a4b4e314a9ddb6e096f3912033c25722419e6876b">kDelta_mutau</a>
+, <a class="el" href="classOscProbCalcerOscLibLinear.html#af38d421c05ca04174577e990a4b4e314ac17ca56877bf157f688a6758a5dbf98c">kNOscParams_NSI</a>
+<br />
+ }</td></tr>
+<tr class="memdesc:af38d421c05ca04174577e990a4b4e314"><td class="mdescLeft">&#160;</td><td class="mdescRight">Definition of extra oscillation parameters for PMNS_NSI class kEps quantity representing the intensity of NSI wrt standard matter effects between the different flavours kDelta complex phases between the different flavours (non diagonal elements.  <a href="classOscProbCalcerOscLibLinear.html#af38d421c05ca04174577e990a4b4e314">More...</a><br /></td></tr>
+<tr class="separator:af38d421c05ca04174577e990a4b4e314"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a310aa97bc4fcabae028a98fb9a9f02b7" id="r_a310aa97bc4fcabae028a98fb9a9f02b7"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerOscLibLinear.html#a310aa97bc4fcabae028a98fb9a9f02b7">NuType</a> { <a class="el" href="classOscProbCalcerOscLibLinear.html#a310aa97bc4fcabae028a98fb9a9f02b7aceca89c96a1651eda543e28a3e8d38ce">Nubar</a> =-1
 , <a class="el" href="classOscProbCalcerOscLibLinear.html#a310aa97bc4fcabae028a98fb9a9f02b7aa2d21b417696aa995898ee503917d241">Nu</a> =1
  }</td></tr>
 <tr class="memdesc:a310aa97bc4fcabae028a98fb9a9f02b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Define the neutrino and antineutrino values expected by this implementation.  <a href="classOscProbCalcerOscLibLinear.html#a310aa97bc4fcabae028a98fb9a9f02b7">More...</a><br /></td></tr>
 <tr class="separator:a310aa97bc4fcabae028a98fb9a9f02b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6d5018ef5ca517b12b68b854f8fa2baa" id="r_a6d5018ef5ca517b12b68b854f8fa2baa"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerOscLibLinear.html#a6d5018ef5ca517b12b68b854f8fa2baa">PMNSMatrix</a> { <a class="el" href="classOscProbCalcerOscLibLinear.html#a6d5018ef5ca517b12b68b854f8fa2baaab5329f7ffd175746461811049edf64d3">kPMNS</a>
+, <a class="el" href="classOscProbCalcerOscLibLinear.html#a6d5018ef5ca517b12b68b854f8fa2baaaaf91e1ccdae718ffa1bb243f3a9d3084">kNSI</a>
+ }</td></tr>
+<tr class="memdesc:a6d5018ef5ca517b12b68b854f8fa2baa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Different types of PMNS matrices currently supported within the analysis.  <a href="classOscProbCalcerOscLibLinear.html#a6d5018ef5ca517b12b68b854f8fa2baa">More...</a><br /></td></tr>
+<tr class="separator:a6d5018ef5ca517b12b68b854f8fa2baa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -141,6 +163,15 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a5838faac3fc7a83b7e678872425f01c9" id="r_a5838faac3fc7a83b7e678872425f01c9"><td class="memItemLeft" align="right" valign="top">long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerOscLibLinear.html#a5838faac3fc7a83b7e678872425f01c9">DefineWeightArraySize</a> () final</td></tr>
 <tr class="memdesc:a5838faac3fc7a83b7e678872425f01c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Define the size of fWeightArray.  <br /></td></tr>
 <tr class="separator:a5838faac3fc7a83b7e678872425f01c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:accdc3960c6841e7d16983dd34c1eaaa8" id="r_accdc3960c6841e7d16983dd34c1eaaa8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerOscLibLinear.html#accdc3960c6841e7d16983dd34c1eaaa8">PMNS_StrToInt</a> (const std::string &amp;PMNSType)</td></tr>
+<tr class="memdesc:accdc3960c6841e7d16983dd34c1eaaa8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the PMNS Matrix type corresponding to a particular string.  <br /></td></tr>
+<tr class="separator:accdc3960c6841e7d16983dd34c1eaaa8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a30670f28d887fbabbd89b44704ecd7af" id="r_a30670f28d887fbabbd89b44704ecd7af"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerOscLibLinear.html#a30670f28d887fbabbd89b44704ecd7af">GetFlavour</a> (int OscChannel, int neutrinoType) const</td></tr>
+<tr class="memdesc:a30670f28d887fbabbd89b44704ecd7af"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get neutrino flavour based on channel.  <br /></td></tr>
+<tr class="separator:a30670f28d887fbabbd89b44704ecd7af"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a74cf9aa4e8f271648d1aa43eeadf0c2c" id="r_a74cf9aa4e8f271648d1aa43eeadf0c2c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerOscLibLinear.html#a74cf9aa4e8f271648d1aa43eeadf0c2c">SetOscParams</a> ()</td></tr>
+<tr class="memdesc:a74cf9aa4e8f271648d1aa43eeadf0c2c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set number of parameters needed for a particular type of PMNS matrix.  <br /></td></tr>
+<tr class="separator:a74cf9aa4e8f271648d1aa43eeadf0c2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classOscProbCalcerBase"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classOscProbCalcerBase')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classOscProbCalcerBase.html">OscProbCalcerBase</a></td></tr>
 <tr class="memitem:ae5485ac57513ab579873f3495522fa31 inherit pub_methods_classOscProbCalcerBase" id="r_ae5485ac57513ab579873f3495522fa31"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerBase.html#ae5485ac57513ab579873f3495522fa31">~OscProbCalcerBase</a> ()</td></tr>
 <tr class="memdesc:ae5485ac57513ab579873f3495522fa31 inherit pub_methods_classOscProbCalcerBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor.  <br /></td></tr>
@@ -232,9 +263,12 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:aa468a8b833d6f3031c82cbf15df18b36" id="r_aa468a8b833d6f3031c82cbf15df18b36"><td class="memItemLeft" align="right" valign="top">osc::_OscCalcPMNS&lt; <a class="el" href="OscillatorConstants_8h.html#acb53b45d3e1b677a15c2ef27b266b1ca">FLOAT_T</a> &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerOscLibLinear.html#aa468a8b833d6f3031c82cbf15df18b36">OscLib</a></td></tr>
-<tr class="memdesc:aa468a8b833d6f3031c82cbf15df18b36"><td class="mdescLeft">&#160;</td><td class="mdescRight">OscLib object used to calculate the oscillation probabiltiies.  <br /></td></tr>
-<tr class="separator:aa468a8b833d6f3031c82cbf15df18b36"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae5c1eb13838d8707692f75d6ef8796f4" id="r_ae5c1eb13838d8707692f75d6ef8796f4"><td class="memItemLeft" align="right" valign="top">osc::_IOscCalcAdjustable&lt; <a class="el" href="OscillatorConstants_8h.html#acb53b45d3e1b677a15c2ef27b266b1ca">FLOAT_T</a> &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerOscLibLinear.html#ae5c1eb13838d8707692f75d6ef8796f4">OscLib</a></td></tr>
+<tr class="memdesc:ae5c1eb13838d8707692f75d6ef8796f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">OscLib object used to calculate the oscillation probabilities.  <br /></td></tr>
+<tr class="separator:ae5c1eb13838d8707692f75d6ef8796f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0842087ef6ad8547fa8933b76ef361ad" id="r_a0842087ef6ad8547fa8933b76ef361ad"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOscProbCalcerOscLibLinear.html#a0842087ef6ad8547fa8933b76ef361ad">fOscType</a></td></tr>
+<tr class="memdesc:a0842087ef6ad8547fa8933b76ef361ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Define the type for the PMNS matrix.  <br /></td></tr>
+<tr class="separator:a0842087ef6ad8547fa8933b76ef361ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
@@ -338,7 +372,7 @@ Additional Inherited Members</h2></td></tr>
 <tr class="separator:a30be1c6a99db86418aee3d6cd32009c0 inherit pro_attribs_classOscProbCalcerBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Oscillation calculation engine for linear propagation in NuFAST. </p>
+<div class="textblock"><p>Oscillation calculation engine for linear propagation in OscLibLinear. </p>
 </div><h2 class="groupheader">Member Enumeration Documentation</h2>
 <a id="a310aa97bc4fcabae028a98fb9a9f02b7" name="a310aa97bc4fcabae028a98fb9a9f02b7"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a310aa97bc4fcabae028a98fb9a9f02b7">&#9670;&#160;</a></span>NuType</h2>
@@ -372,7 +406,7 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition of oscillation parameters which are expected in this ProbGPU implementation. </p>
+<p>Definition of oscillation parameters which are expected in this OscLibLinear implementation. </p>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ad7dc24fa42bc7de59279143858c955f2a45454e20f939a0f9f33fdb80c3f96993" name="ad7dc24fa42bc7de59279143858c955f2a45454e20f939a0f9f33fdb80c3f96993"></a>kTH12&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="ad7dc24fa42bc7de59279143858c955f2ab44e737838217065bc971a397324f776" name="ad7dc24fa42bc7de59279143858c955f2ab44e737838217065bc971a397324f776"></a>kTH23&#160;</td><td class="fielddoc"></td></tr>
@@ -383,6 +417,54 @@ Additional Inherited Members</h2></td></tr>
 <tr><td class="fieldname"><a id="ad7dc24fa42bc7de59279143858c955f2ab76f8c2781ec48292d9889fb69b07d2b" name="ad7dc24fa42bc7de59279143858c955f2ab76f8c2781ec48292d9889fb69b07d2b"></a>kPATHL&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="ad7dc24fa42bc7de59279143858c955f2a9f9647ea0f9992cca43fb03d83601d9a" name="ad7dc24fa42bc7de59279143858c955f2a9f9647ea0f9992cca43fb03d83601d9a"></a>kDENS&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="ad7dc24fa42bc7de59279143858c955f2a2dedef0746f30371c723bb32334001f8" name="ad7dc24fa42bc7de59279143858c955f2a2dedef0746f30371c723bb32334001f8"></a>kNOscParams&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+</div>
+</div>
+<a id="af38d421c05ca04174577e990a4b4e314" name="af38d421c05ca04174577e990a4b4e314"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af38d421c05ca04174577e990a4b4e314">&#9670;&#160;</a></span>OscParams_NSI</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="classOscProbCalcerOscLibLinear.html#af38d421c05ca04174577e990a4b4e314">OscProbCalcerOscLibLinear::OscParams_NSI</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition of extra oscillation parameters for PMNS_NSI class kEps quantity representing the intensity of NSI wrt standard matter effects between the different flavours kDelta complex phases between the different flavours (non diagonal elements. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="af38d421c05ca04174577e990a4b4e314ac5dec25e36e2182a5dcb3ef91795eb6b" name="af38d421c05ca04174577e990a4b4e314ac5dec25e36e2182a5dcb3ef91795eb6b"></a>kEps_ee&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="af38d421c05ca04174577e990a4b4e314aaa9cd1fefb46a572ba198e40f43a1849" name="af38d421c05ca04174577e990a4b4e314aaa9cd1fefb46a572ba198e40f43a1849"></a>kEps_emu&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="af38d421c05ca04174577e990a4b4e314a50fd95667dac3df49d9c48f2ef3d2469" name="af38d421c05ca04174577e990a4b4e314a50fd95667dac3df49d9c48f2ef3d2469"></a>kEps_etau&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="af38d421c05ca04174577e990a4b4e314a6511f10ba329a2389f55b54f101e399e" name="af38d421c05ca04174577e990a4b4e314a6511f10ba329a2389f55b54f101e399e"></a>kEps_mumu&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="af38d421c05ca04174577e990a4b4e314a3c5090f00f193b07db9313a12f268342" name="af38d421c05ca04174577e990a4b4e314a3c5090f00f193b07db9313a12f268342"></a>kEps_mutau&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="af38d421c05ca04174577e990a4b4e314a351dfa4cee82c4461a74bab9f793488b" name="af38d421c05ca04174577e990a4b4e314a351dfa4cee82c4461a74bab9f793488b"></a>kEps_tautau&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="af38d421c05ca04174577e990a4b4e314a52c04610d3c79996d8348d4d3f195a47" name="af38d421c05ca04174577e990a4b4e314a52c04610d3c79996d8348d4d3f195a47"></a>kDelta_emu&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="af38d421c05ca04174577e990a4b4e314ac6912d49d4986d29d1317aed356ce2b0" name="af38d421c05ca04174577e990a4b4e314ac6912d49d4986d29d1317aed356ce2b0"></a>kDelta_etau&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="af38d421c05ca04174577e990a4b4e314a9ddb6e096f3912033c25722419e6876b" name="af38d421c05ca04174577e990a4b4e314a9ddb6e096f3912033c25722419e6876b"></a>kDelta_mutau&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="af38d421c05ca04174577e990a4b4e314ac17ca56877bf157f688a6758a5dbf98c" name="af38d421c05ca04174577e990a4b4e314ac17ca56877bf157f688a6758a5dbf98c"></a>kNOscParams_NSI&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+</div>
+</div>
+<a id="a6d5018ef5ca517b12b68b854f8fa2baa" name="a6d5018ef5ca517b12b68b854f8fa2baa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6d5018ef5ca517b12b68b854f8fa2baa">&#9670;&#160;</a></span>PMNSMatrix</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="classOscProbCalcerOscLibLinear.html#a6d5018ef5ca517b12b68b854f8fa2baa">OscProbCalcerOscLibLinear::PMNSMatrix</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Different types of PMNS matrices currently supported within the analysis. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a6d5018ef5ca517b12b68b854f8fa2baaab5329f7ffd175746461811049edf64d3" name="a6d5018ef5ca517b12b68b854f8fa2baaab5329f7ffd175746461811049edf64d3"></a>kPMNS&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a6d5018ef5ca517b12b68b854f8fa2baaaaf91e1ccdae718ffa1bb243f3a9d3084" name="a6d5018ef5ca517b12b68b854f8fa2baaaaf91e1ccdae718ffa1bb243f3a9d3084"></a>kNSI&#160;</td><td class="fielddoc"></td></tr>
 </table>
 
 </div>
@@ -407,7 +489,7 @@ Additional Inherited Members</h2></td></tr>
 <p>Default constructor. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">Config_</td><td>YAML::Node to setup the <a class="el" href="classOscProbCalcerOscLibLinear.html" title="Oscillation calculation engine for linear propagation in NuFAST.">OscProbCalcerOscLibLinear()</a> instance </td></tr>
+    <tr><td class="paramname">Config_</td><td>YAML::Node to setup the <a class="el" href="classOscProbCalcerOscLibLinear.html" title="Oscillation calculation engine for linear propagation in OscLibLinear.">OscProbCalcerOscLibLinear()</a> instance </td></tr>
   </table>
   </dd>
 </dl>
@@ -530,10 +612,67 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Define the size of fWeightArray. </p>
-<p>This is implementation specific because because NuFAST is setup to calculate all oscillation channels together, whilst others calculate only a single oscillation channel.</p>
+<p>This is implementation specific because because OscLibLinear is setup to calculate all oscillation channels together, whilst others calculate only a single oscillation channel.</p>
 <dl class="section return"><dt>Returns</dt><dd>Length that <a class="el" href="classOscProbCalcerBase.html#a89ca55fe94b0f4b7710ca61d97bacdba" title="Vector which stores the oscillation probabilities.">fWeightArray</a> should be initialised to </dd></dl>
 
 <p>Implements <a class="el" href="classOscProbCalcerBase.html#a8a7642af6db76c5c09b7a324ae456927">OscProbCalcerBase</a>.</p>
+
+</div>
+</div>
+<a id="a30670f28d887fbabbd89b44704ecd7af" name="a30670f28d887fbabbd89b44704ecd7af"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a30670f28d887fbabbd89b44704ecd7af">&#9670;&#160;</a></span>GetFlavour()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int OscProbCalcerOscLibLinear::GetFlavour </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>OscChannel</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>neutrinoType</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get neutrino flavour based on channel. </p>
+
+</div>
+</div>
+<a id="accdc3960c6841e7d16983dd34c1eaaa8" name="accdc3960c6841e7d16983dd34c1eaaa8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#accdc3960c6841e7d16983dd34c1eaaa8">&#9670;&#160;</a></span>PMNS_StrToInt()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int OscProbCalcerOscLibLinear::PMNS_StrToInt </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>PMNSType</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Return the PMNS Matrix type corresponding to a particular string. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">PMNSType</td><td>String to convert to enum value</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Enum value describing the PMNS Matrix to use </dd></dl>
 
 </div>
 </div>
@@ -586,7 +725,7 @@ Additional Inherited Members</h2></td></tr>
 <p>Return implementation specific index in the weight array for a specific combination of neutrino oscillation channel, energy and cosine zenith. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">NuTypeIndex</td><td>The index in <a class="el" href="classOscProbCalcerBase.html#addb978a4699373acea20bf908405c8af" title="The mapping of neutrino types to uniquely defined integers (i.e. index)">fNeutrinoTypes</a> (neutrino/antinuetrino) to return the pointer for </td></tr>
+    <tr><td class="paramname">NuTypeIndex</td><td>The index in <a class="el" href="classOscProbCalcerBase.html#addb978a4699373acea20bf908405c8af" title="The mapping of neutrino types to uniquely defined integers (i.e. index)">fNeutrinoTypes</a> (neutrino/antineutrino) to return the pointer for </td></tr>
     <tr><td class="paramname">OscChanIndex</td><td>The index in <a class="el" href="classOscProbCalcerBase.html#a9d3596ff47e31e6fe6855d092588c38a" title="The mapping of oscillation channels which have been requested from the YAML config.">fOscillationChannels</a> to return the pointer for </td></tr>
     <tr><td class="paramname">EnergyIndex</td><td>The index in <a class="el" href="classOscProbCalcerBase.html#a79551cba7b9cf9b05fd595449b98c6b1" title="The vector of Energy values being evaluated by the oscillation probability engine.">fEnergyArray</a> to return the pointer for </td></tr>
     <tr><td class="paramname">CosineZIndex</td><td>The index in <a class="el" href="classOscProbCalcerBase.html#af7c32cdec95ac8ae9dc27b057c27ace8" title="The vector of CosineZ values being evaluated by the oscillation probability engine.">fCosineZArray</a> to return the pointer for</td></tr>
@@ -596,6 +735,25 @@ Additional Inherited Members</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>Index in <a class="el" href="classOscProbCalcerBase.html#a89ca55fe94b0f4b7710ca61d97bacdba" title="Vector which stores the oscillation probabilities.">fWeightArray</a> which corresponds to the given inputs </dd></dl>
 
 <p>Implements <a class="el" href="classOscProbCalcerBase.html#a217356f0172fd07981ee3899708e9daf">OscProbCalcerBase</a>.</p>
+
+</div>
+</div>
+<a id="a74cf9aa4e8f271648d1aa43eeadf0c2c" name="a74cf9aa4e8f271648d1aa43eeadf0c2c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a74cf9aa4e8f271648d1aa43eeadf0c2c">&#9670;&#160;</a></span>SetOscParams()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void OscProbCalcerOscLibLinear::SetOscParams </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set number of parameters needed for a particular type of PMNS matrix. </p>
 
 </div>
 </div>
@@ -629,19 +787,35 @@ Additional Inherited Members</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a id="aa468a8b833d6f3031c82cbf15df18b36" name="aa468a8b833d6f3031c82cbf15df18b36"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa468a8b833d6f3031c82cbf15df18b36">&#9670;&#160;</a></span>OscLib</h2>
+<a id="a0842087ef6ad8547fa8933b76ef361ad" name="a0842087ef6ad8547fa8933b76ef361ad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0842087ef6ad8547fa8933b76ef361ad">&#9670;&#160;</a></span>fOscType</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">osc::_OscCalcPMNS&lt;<a class="el" href="OscillatorConstants_8h.html#acb53b45d3e1b677a15c2ef27b266b1ca">FLOAT_T</a>&gt;* OscProbCalcerOscLibLinear::OscLib</td>
+          <td class="memname">int OscProbCalcerOscLibLinear::fOscType</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>OscLib object used to calculate the oscillation probabiltiies. </p>
+<p>Define the type for the PMNS matrix. </p>
+
+</div>
+</div>
+<a id="ae5c1eb13838d8707692f75d6ef8796f4" name="ae5c1eb13838d8707692f75d6ef8796f4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae5c1eb13838d8707692f75d6ef8796f4">&#9670;&#160;</a></span>OscLib</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">osc::_IOscCalcAdjustable&lt;<a class="el" href="OscillatorConstants_8h.html#acb53b45d3e1b677a15c2ef27b266b1ca">FLOAT_T</a>&gt;* OscProbCalcerOscLibLinear::OscLib</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>OscLib object used to calculate the oscillation probabilities. </p>
 
 </div>
 </div>

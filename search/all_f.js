@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['pmns_5fstrtoint_0',['pmns_strtoint',['../classOscProbCalcerNuSQUIDSLinear.html#ac1de623199f0fb90078155867d8ee564',1,'OscProbCalcerNuSQUIDSLinear::PMNS_StrToInt()'],['../classOscProbCalcerOscProb.html#ad0f6e738e79e8042e5dc6127378de21e',1,'OscProbCalcerOscProb::PMNS_StrToInt(const std::string &amp;PMNSType)']]],
-  ['pmnsmatrix_1',['PMNSMatrix',['../classOscProbCalcerOscProb.html#a62fca4b88373b2123e942914e5c4d623',1,'OscProbCalcerOscProb']]],
+  ['pmns_5fstrtoint_0',['pmns_strtoint',['../classOscProbCalcerNuSQUIDSLinear.html#ac1de623199f0fb90078155867d8ee564',1,'OscProbCalcerNuSQUIDSLinear::PMNS_StrToInt()'],['../classOscProbCalcerOscLibLinear.html#accdc3960c6841e7d16983dd34c1eaaa8',1,'OscProbCalcerOscLibLinear::PMNS_StrToInt()'],['../classOscProbCalcerOscProb.html#ad0f6e738e79e8042e5dc6127378de21e',1,'OscProbCalcerOscProb::PMNS_StrToInt()']]],
+  ['pmnsmatrix_1',['pmnsmatrix',['../classOscProbCalcerOscLibLinear.html#a6d5018ef5ca517b12b68b854f8fa2baa',1,'OscProbCalcerOscLibLinear::PMNSMatrix'],['../classOscProbCalcerOscProb.html#a62fca4b88373b2123e942914e5c4d623',1,'OscProbCalcerOscProb::PMNSMatrix']]],
   ['png_20alt_20nuosc_20align_20center_20width_20100_2',['NuOscillator &lt;img src=&quot;Docs/NuOscillatorLogo.png&quot; alt=&quot;NuOsc&quot; align=&quot;center&quot; width=&quot;100&quot;/&gt;',['../index.html',1,'']]],
   ['postcalculateprobabilities_3',['postcalculateprobabilities',['../classOscillatorBase.html#a8770c4e4d3634598c8ee935a38ec7a45',1,'OscillatorBase::PostCalculateProbabilities()'],['../classOscillatorSubSampling.html#ab84dae45cea94dddfc015d0ec1623053',1,'OscillatorSubSampling::PostCalculateProbabilities()']]],
   ['precisionlimit_4',['PrecisionLimit',['../classOscProbCalcerBase.html#ad8011dc225caeb64d40bf2cb7df3af1e',1,'OscProbCalcerBase']]],
