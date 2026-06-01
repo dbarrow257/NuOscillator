@@ -128,7 +128,8 @@ if(${UseMultithreading} EQUAL 1)
 endif()
 
 if(NOT DEFINED NuOscillator_Compiler_Flags)
-  set(NuOscillator_Compiler_Flags "")
+  # By default use optimisation
+  set(NuOscillator_Compiler_Flags "-O3;-g;")
 endif()
 
 separate_arguments(NuOscillator_Compiler_Flags)

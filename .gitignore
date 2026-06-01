@@ -3,10 +3,7 @@
 */*.exe
 */*~
 
-
-CUDAProb3/
-Prob3plusplus/
-ProbGPU/
-
 *.pdf
+/*.png
 build/
+Docs/html

@@ -1,5 +1,5 @@
 if(NOT DEFINED OscLib_BRANCH)
-  set(OscLib_BRANCH "v1.2.0")
+  set(OscLib_BRANCH "v1.2.1")
 endif()
 
 if(${UseOscLibLinear} EQUAL 1)
