@@ -1,5 +1,5 @@
 if(NOT DEFINED CHICLinear_BRANCH)
-  set(CHICLinear_BRANCH "v1.1.0")
+  set(CHICLinear_BRANCH "v2.0.0")
 endif()
 
 if(${UseCHICLinear} EQUAL 1)
