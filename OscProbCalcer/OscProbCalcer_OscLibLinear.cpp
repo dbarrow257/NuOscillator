@@ -2,12 +2,14 @@
 
 OscProbCalcerOscLibLinear::OscProbCalcerOscLibLinear(YAML::Node Config_) : OscProbCalcerBase(Config_) {
   //=======
-  //Grab information from the config   
-
-  //=======
-  
-  std::vector<std::string> OscParNames = {"sin2_th12","sin2_th23","sin2_th13","dm2_12","dm2_23","delta_cp","path_length","matter_density"};
-  SetExpectedParameterNames(OscParNames);
+  if (!Config_["OscProbCalcerSetup"]["PMNSType"]) {
+    std::cerr << "Expected to find a 'PMNSType' Node within the 'OscProbCalcerSetup' Node" << std::endl;
+    throw std::runtime_error("YAML node not found");
+  }
+  std::string PMNSType = Config_["OscProbCalcerSetup"]["PMNSType"].as<std::string>();
+  fImplementationName += "-" + PMNSType;
+  fOscType = PMNS_StrToInt(PMNSType);
+  SetOscParams();
   
   fNNeutrinoTypes = 2;
   InitialiseNeutrinoTypesArray(fNNeutrinoTypes);
@@ -23,7 +25,43 @@ OscProbCalcerOscLibLinear::~OscProbCalcerOscLibLinear() {
 }
 
 void OscProbCalcerOscLibLinear::SetupPropagator() {
-  OscLib = new osc::_OscCalcPMNS<FLOAT_T>();
+  if(fOscType == kPMNS) {
+    OscLib = new osc::_OscCalcPMNS<FLOAT_T>();
+  } else if(fOscType == kNSI) {
+    OscLib = new osc::OscCalcPMNS_NSI();
+  } else {
+    std::cerr << "Invalid PMNS matrix type provided: " << fOscType << std::endl;
+    throw std::runtime_error("Invalid setup");
+  }
+}
+
+int OscProbCalcerOscLibLinear::PMNS_StrToInt(const std::string& PMNSType) {
+  if (PMNSType == "PMNS" || PMNSType == "pmns")          return kPMNS;
+  if (PMNSType == "NSI" || PMNSType == "nsi")            return kNSI;
+
+  std::cerr << "Invalid PMNS matrix type provided:" << PMNSType << std::endl;
+  throw std::runtime_error("Invalid setup");
+
+  return -1;
+}
+
+int OscProbCalcerOscLibLinear::GetFlavour(int OscChannel, int neutrinoType) const {
+  int GenFlav = -1;
+  switch (OscChannel) {
+    case 1:
+      GenFlav = 12;
+      break;
+    case 2:
+      GenFlav = 14;
+      break;
+    case 3:
+      GenFlav = 16;
+      break;
+    default:
+      std::cerr << "Invalid flav" << std::endl;
+      throw std::invalid_argument("Invalid generated flavour");
+  }
+  return GenFlav * neutrinoType;
 }
 
 void OscProbCalcerOscLibLinear::CalculateProbabilities() {
@@ -34,9 +72,9 @@ void OscProbCalcerOscLibLinear::CalculateProbabilities() {
     }
   }
 
-  const FLOAT_T theta12 = asin(sqrt(GetOscillationParameter(kTH12)));
-  const FLOAT_T theta23 = asin(sqrt(GetOscillationParameter(kTH23)));
-  const FLOAT_T theta13 = asin(sqrt(GetOscillationParameter(kTH13)));
+  const FLOAT_T theta12 = std::asin(std::sqrt(GetOscillationParameter(kTH12)));
+  const FLOAT_T theta23 = std::asin(std::sqrt(GetOscillationParameter(kTH23)));
+  const FLOAT_T theta13 = std::asin(std::sqrt(GetOscillationParameter(kTH13)));
   const FLOAT_T Dmsq21 = GetOscillationParameter(kDM12);
   const FLOAT_T Dmsq32 = GetOscillationParameter(kDM23);
   const FLOAT_T delta = GetOscillationParameter(kDCP);
@@ -52,49 +90,29 @@ void OscProbCalcerOscLibLinear::CalculateProbabilities() {
   OscLib->SetTh23(theta23);
   OscLib->SetdCP(delta);
   
+  if(fOscType == kNSI) {
+    auto OscLib_NSI = static_cast<osc::OscCalcPMNS_NSI*>(OscLib);
+    OscLib_NSI->SetEps_ee(GetOscillationParameter(kEps_ee));
+    OscLib_NSI->SetEps_emu(GetOscillationParameter(kEps_emu));
+    OscLib_NSI->SetEps_etau(GetOscillationParameter(kEps_etau));
+    OscLib_NSI->SetEps_mumu(GetOscillationParameter(kEps_mumu));
+    OscLib_NSI->SetEps_mutau(GetOscillationParameter(kEps_mutau));
+    OscLib_NSI->SetEps_tautau(GetOscillationParameter(kEps_tautau));
+    OscLib_NSI->SetDelta_emu(GetOscillationParameter(kDelta_emu));
+    OscLib_NSI->SetDelta_etau(GetOscillationParameter(kDelta_etau));
+    OscLib_NSI->SetDelta_mutau(GetOscillationParameter(kDelta_mutau));
+  }
   for (int iNuType=0;iNuType<fNNeutrinoTypes;iNuType++) {
     for (int iOscChannel=0;iOscChannel<fNOscillationChannels;iOscChannel++) {
       
       int IndexToFill = iNuType*fNOscillationChannels*fNEnergyPoints + iOscChannel*fNEnergyPoints;
 
       for (int iOscProb=0;iOscProb<fNEnergyPoints;iOscProb++) {
-	FLOAT_T Energy = fEnergyArray[iOscProb];
+        FLOAT_T Energy = fEnergyArray[iOscProb];
+        int GenFlav = GetFlavour(fOscillationChannels[iOscChannel].GeneratedFlavour, fNeutrinoTypes[iNuType]);
+        int DetFlav = GetFlavour(fOscillationChannels[iOscChannel].DetectedFlavour, fNeutrinoTypes[iNuType]);
 
-	int GenFlav = -1;
-	switch(fOscillationChannels[iOscChannel].GeneratedFlavour) {
-	case 1:
-	  GenFlav = 12;
-	  break;
-	case 2:
-	  GenFlav = 14;
-	  break;
-	case 3:
-	  GenFlav = 16;
-	  break;
-	default:
-	  std::cerr << "Invalid flav" << std::endl;
-	  throw;
-	}
-	GenFlav *= fNeutrinoTypes[iNuType];
-
-	int DetFlav = -1;
-	switch(fOscillationChannels[iOscChannel].DetectedFlavour) {
-	case 1:
-	  DetFlav = 12;
-	  break;
-	case 2:
-	  DetFlav = 14;
-	  break;
-	case 3:
-	  DetFlav = 16;
-	  break;
-	default:
-	  std::cerr << "Invalid flav" << std::endl;
-	  throw;
-	}
-	DetFlav *= fNeutrinoTypes[iNuType];
-
-	fWeightArray[IndexToFill+iOscProb] = OscLib->P(GenFlav,DetFlav,Energy);
+        fWeightArray[IndexToFill+iOscProb] = OscLib->P(GenFlav,DetFlav,Energy);
       }
     }
   }
@@ -108,4 +126,24 @@ int OscProbCalcerOscLibLinear::ReturnWeightArrayIndex(int NuTypeIndex, int OscCh
 long OscProbCalcerOscLibLinear::DefineWeightArraySize() {
   long nCalculationPoints = static_cast<long>(fNEnergyPoints) * fNOscillationChannels * fNNeutrinoTypes;
   return nCalculationPoints;
+}
+
+
+void OscProbCalcerOscLibLinear::SetOscParams() {
+  std::vector<std::string> OscParNames;
+
+  switch (fOscType) {
+    case kPMNS:
+      OscParNames = {"sin2_th12","sin2_th23","sin2_th13","dm2_12","dm2_23","delta_cp","path_length","matter_density"};
+      break;
+    case kNSI:
+      OscParNames = {"sin2_th12","sin2_th23","sin2_th13","dm2_12","dm2_23","delta_cp","path_length","matter_density",
+                     "eps_ee", "eps_emu", "eps_etau", "eps_mumu", "eps_mutau", "eps_tautau", "delta_emu", "delta_etau", "delta_mutau"};
+      break;
+    default:
+      std::cerr << "Invalid Oscillation Model type provided:" << fOscType << std::endl;
+      throw std::runtime_error("Invalid Oscillation Model");
+  }
+
+  SetExpectedParameterNames(OscParNames);
 }
