@@ -56,7 +56,7 @@ jobs:
         git checkout ${{ github.head_ref }}
         mkdir build
         cd build
-        cmake ../ -DUseGPU=0 -DUseMultithreading=1 -DUseDoubles=1 ${{ matrix.cmake_options }}
+        cmake ../ -DUseGPU=0 -DUseMultithreading=1 -DUseDoubles=1 -DNuOscillator_Compiler_Flags="-O3;-g;" ${{ matrix.cmake_options }}
 
     - name: Build NuOscillator
       run: |
