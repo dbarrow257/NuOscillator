@@ -246,5 +246,6 @@ install(FILES
   ${CMAKE_BINARY_DIR}/NuOscillatorConfig.cmake
   ${CMAKE_BINARY_DIR}/NuOscillatorConfigVersion.cmake
   DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/cmake/NuOscillator)
+install(DIRECTORY cmake DESTINATION ${CMAKE_BINARY_DIR})
 
 include(nuoscillator-config)

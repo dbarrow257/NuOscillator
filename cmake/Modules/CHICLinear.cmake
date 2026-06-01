@@ -15,12 +15,6 @@ if(${UseCHICLinear} EQUAL 1)
     DOWNLOAD_ONLY YES
   )
 
-  if(Eigen_ADDED)
-    add_library(Eigen INTERFACE IMPORTED)
-    target_include_directories(Eigen INTERFACE ${Eigen_SOURCE_DIR})
-  endif()
-
-
   CPMAddPackage(
     NAME CHIC
     GIT_REPOSITORY https://github.com/pabloferm/CHIC.git
@@ -37,13 +31,12 @@ if(${UseCHICLinear} EQUAL 1)
     ${CHIC_SOURCE_DIR}/src/CHIC.cpp
     ${CHIC_HEADERS}
   )
-
   target_include_directories(CHIC
   PUBLIC
+    $<BUILD_INTERFACE:${Eigen_SOURCE_DIR}>
     $<BUILD_INTERFACE:${CHIC_SOURCE_DIR}/src>
     $<INSTALL_INTERFACE:include/CHIC>
   )
-  target_link_libraries(CHIC PUBLIC Eigen)
   target_compile_options(CHIC PRIVATE -fPIC)
   target_link_libraries(CHIC PRIVATE NuOscillatorCompilerOptions)
 
