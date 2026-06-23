@@ -1,23 +1,23 @@
 <map id="OscProbCalcerCHICLinear" name="OscProbCalcerCHICLinear">
-<area shape="rect" id="Node000001" title="Oscillation calculation engine for linear propagation in CHIC." alt="" coords="842,234,1019,260"/>
-<area shape="rect" id="Node000002" href="$classOscProbCalcerBase.html" title="Oscillation calculation engine (CUDAProb3, ProbGPU, Prob3++, etc.) implementation agnostic base class..." alt="" coords="581,209,721,235"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="736,227,841,236,841,242,736,232"/>
-<area shape="rect" id="Node000003" title=" " alt="" coords="202,16,319,41"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="334,18,385,17,440,22,497,35,549,59,569,75,587,93,616,135,636,176,648,208,643,209,631,178,612,138,583,97,566,79,546,64,495,40,439,28,384,23,334,23"/>
-<area shape="rect" id="Node000004" title=" " alt="" coords="178,65,342,106"/>
-<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="358,78,404,80,453,86,502,97,549,115,580,135,607,160,643,207,639,210,603,164,576,140,546,120,500,102,452,91,403,85,357,83"/>
-<area shape="rect" id="Node000005" title=" " alt="" coords="180,156,341,181"/>
-<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="356,177,548,203,581,208,581,213,547,208,356,183"/>
-<area shape="rect" id="Node000006" title=" " alt="" coords="222,205,299,231"/>
-<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="315,217,366,218,581,219,581,225,366,223,315,222"/>
-<area shape="rect" id="Node000007" title=" " alt="" coords="5,197,129,238"/>
-<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="144,215,221,215,221,220,144,220"/>
-<area shape="rect" id="Node000008" title=" " alt="" coords="193,255,328,295"/>
-<area shape="poly" id="edge7_Node000002_Node000008" title=" " alt="" coords="343,265,441,255,547,241,590,233,591,238,548,246,442,260,344,271"/>
-<area shape="rect" id="Node000009" title=" " alt="" coords="181,320,340,345"/>
-<area shape="poly" id="edge8_Node000002_Node000009" title=" " alt="" coords="355,342,403,342,453,336,502,323,546,299,555,287,557,274,560,260,569,245,588,233,591,237,573,249,565,262,563,275,560,290,549,303,504,328,454,341,403,347,355,347"/>
-<area shape="rect" id="Node000010" title=" " alt="" coords="197,381,324,407"/>
-<area shape="poly" id="edge9_Node000002_Node000010" title=" " alt="" coords="323,408,376,416,436,418,466,414,494,407,521,395,546,378,557,363,562,348,559,316,555,281,558,263,569,245,585,233,588,237,573,249,563,265,560,281,564,315,567,349,562,366,549,382,524,399,496,412,467,419,436,423,376,422,322,413"/>
-<area shape="rect" id="Node000011" title=" " alt="" coords="571,260,731,285"/>
-<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="746,270,755,270,786,272,817,270,882,258,883,263,818,276,786,277,755,276,746,276"/>
+<area shape="rect" id="Node000001" title="Oscillation calculation engine for linear propagation in CHIC." alt="" coords="842,236,1019,261"/>
+<area shape="rect" id="Node000002" href="$classOscProbCalcerBase.html" title="Oscillation calculation engine (CUDAProb3, ProbGPU, Prob3++, etc.) implementation agnostic base class..." alt="" coords="581,210,721,236"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="736,228,841,238,841,243,736,233"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="202,17,319,43"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="334,19,385,18,440,23,497,36,549,59,569,75,587,94,616,136,636,177,648,209,643,211,632,179,612,139,583,97,566,79,546,64,495,41,440,28,384,23,334,24"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="178,67,342,107"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="358,79,404,81,453,86,502,98,549,115,580,136,607,161,644,208,639,212,603,165,577,140,546,120,500,103,452,92,403,86,357,84"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="180,157,341,183"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="356,179,548,204,581,209,581,215,547,210,356,184"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="222,206,299,232"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="315,218,366,219,581,221,581,226,366,225,315,224"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="5,199,129,239"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="144,216,221,216,221,222,144,222"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="192,256,328,297"/>
+<area shape="poly" id="edge7_Node000002_Node000008" title=" " alt="" coords="343,266,547,241,585,234,586,239,548,246,344,271"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="180,321,340,347"/>
+<area shape="poly" id="edge8_Node000002_Node000009" title=" " alt="" coords="355,343,402,342,453,336,502,323,546,299,555,288,557,275,560,261,569,247,588,234,591,239,573,250,565,263,563,276,560,290,549,303,504,328,454,342,403,348,355,348"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="196,382,324,408"/>
+<area shape="poly" id="edge9_Node000002_Node000010" title=" " alt="" coords="323,409,376,418,436,419,466,415,494,408,521,396,546,379,557,365,562,350,559,317,555,283,558,264,569,247,585,234,588,239,573,250,563,266,560,283,564,317,567,350,562,367,549,383,524,401,496,413,467,421,436,424,376,423,322,414"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="571,261,731,287"/>
+<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="746,274,817,270,878,259,879,265,818,276,746,280"/>
 </map>

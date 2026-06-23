@@ -1,24 +1,24 @@
 <map id="OscillatorUnbinned" name="OscillatorUnbinned">
-<area shape="rect" id="Node000001" title="Unbinned Oscillation calculation implementation class." alt="" coords="1009,399,1141,424"/>
-<area shape="rect" id="Node000002" href="$classOscillatorBase.html" title="Oscillation calculation (binned, unbinned, etc.) implementation agnostic base class." alt="" coords="854,399,960,424"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="976,409,1009,409,1009,414,976,414"/>
-<area shape="rect" id="Node000003" href="$classOscProbCalcerBase.html" title="Oscillation calculation engine (CUDAProb3, ProbGPU, Prob3++, etc.) implementation agnostic base class..." alt="" coords="571,247,711,272"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="680,278,884,396,881,400,678,283"/>
-<area shape="rect" id="Node000004" title=" " alt="" coords="202,83,319,108"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="334,94,455,102,510,110,549,124,582,151,607,185,626,218,637,245,632,247,621,221,603,188,578,155,546,128,509,116,455,107,334,99"/>
-<area shape="rect" id="Node000005" title=" " alt="" coords="178,132,342,173"/>
-<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="358,142,452,148,501,157,548,173,575,188,598,207,632,244,628,248,595,211,572,192,546,178,500,162,451,153,358,148"/>
-<area shape="rect" id="Node000006" title=" " alt="" coords="180,213,341,239"/>
-<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="356,232,367,233,571,251,571,256,366,238,356,237"/>
-<area shape="rect" id="Node000007" title=" " alt="" coords="222,400,299,426"/>
-<area shape="poly" id="edge11_Node000002_Node000007" title=" " alt="" coords="315,411,366,411,853,409,853,415,366,417,315,416"/>
-<area shape="poly" id="edge6_Node000003_Node000007" title=" " alt="" coords="314,413,366,412,426,405,488,391,546,367,574,346,598,320,630,271,635,274,603,323,578,350,549,371,489,396,427,410,366,417,315,418"/>
-<area shape="rect" id="Node000008" title=" " alt="" coords="5,392,129,433"/>
-<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="144,410,221,410,221,415,144,415"/>
-<area shape="rect" id="Node000009" title=" " alt="" coords="193,263,328,304"/>
-<area shape="poly" id="edge8_Node000003_Node000009" title=" " alt="" coords="343,285,441,285,547,278,591,270,592,275,548,284,441,291,343,290"/>
-<area shape="rect" id="Node000010" title=" " alt="" coords="181,331,340,356"/>
-<area shape="poly" id="edge9_Node000003_Node000010" title=" " alt="" coords="355,347,449,343,499,335,546,322,591,298,624,270,628,275,594,302,548,326,500,340,450,348,356,352"/>
-<area shape="rect" id="Node000011" title=" " alt="" coords="197,33,324,59"/>
-<area shape="poly" id="edge10_Node000003_Node000011" title=" " alt="" coords="339,33,389,32,444,37,499,51,549,76,570,94,588,115,615,164,631,210,640,245,635,247,626,212,610,166,583,118,566,98,546,80,497,56,443,42,389,37,339,38"/>
+<area shape="rect" id="Node000001" title="Unbinned Oscillation calculation implementation class." alt="" coords="1009,400,1141,426"/>
+<area shape="rect" id="Node000002" href="$classOscillatorBase.html" title="Oscillation calculation (binned, unbinned, etc.) implementation agnostic base class." alt="" coords="854,400,960,426"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="976,410,1009,410,1009,415,976,415"/>
+<area shape="rect" id="Node000003" href="$classOscProbCalcerBase.html" title="Oscillation calculation engine (CUDAProb3, ProbGPU, Prob3++, etc.) implementation agnostic base class..." alt="" coords="571,248,711,274"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="680,280,884,397,881,402,678,284"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="202,84,319,110"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="334,95,455,102,510,111,549,124,582,151,608,186,626,220,637,246,633,249,621,222,603,189,578,155,546,128,509,116,455,107,334,100"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="178,134,342,174"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="358,144,452,149,501,158,548,174,575,190,598,209,632,246,628,249,595,213,572,194,546,179,500,164,451,154,358,149"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="180,215,341,240"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="356,233,367,234,571,252,571,257,366,239,356,238"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="222,401,299,427"/>
+<area shape="poly" id="edge11_Node000002_Node000007" title=" " alt="" coords="315,412,366,413,853,411,853,416,366,418,315,418"/>
+<area shape="poly" id="edge6_Node000003_Node000007" title=" " alt="" coords="315,414,366,414,426,408,488,394,546,369,575,348,599,321,631,273,635,275,603,325,578,352,549,374,489,399,427,413,366,419,315,420"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="5,394,129,434"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="144,411,221,411,221,417,144,417"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="192,264,328,305"/>
+<area shape="poly" id="edge8_Node000003_Node000009" title=" " alt="" coords="343,286,441,287,547,280,591,272,592,277,548,285,441,292,343,292"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="180,332,340,358"/>
+<area shape="poly" id="edge9_Node000003_Node000010" title=" " alt="" coords="355,348,449,344,499,336,546,323,591,299,624,272,628,276,594,304,548,328,500,341,450,349,356,354"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="196,35,324,60"/>
+<area shape="poly" id="edge10_Node000003_Node000011" title=" " alt="" coords="339,34,389,33,444,37,499,51,549,76,570,94,588,116,615,164,631,211,640,247,635,248,626,213,610,166,584,119,566,98,546,80,497,56,443,43,389,38,339,39"/>
 </map>

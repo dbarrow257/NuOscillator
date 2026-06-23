@@ -1,6 +1,6 @@
 <map id="Oscillator/OscillatorBase.cpp" name="Oscillator/OscillatorBase.cpp">
 <area shape="rect" id="Node000001" title=" " alt="" coords="356,5,545,31"/>
-<area shape="rect" id="Node000002" href="$OscillatorBase_8h.html" title=" " alt="" coords="151,87,326,112"/>
+<area shape="rect" id="Node000002" href="$OscillatorBase_8h.html" title=" " alt="" coords="151,86,326,112"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="419,34,286,83,284,78,417,29"/>
 <area shape="rect" id="Node000010" title=" " alt="" coords="554,330,625,356"/>
 <area shape="poly" id="edge18_Node000001_Node000010" title=" " alt="" coords="496,29,534,48,552,61,566,77,582,107,593,139,603,205,603,267,597,315,592,315,597,267,598,206,588,140,577,109,562,81,548,65,531,52,494,34"/>
@@ -11,7 +11,7 @@
 <area shape="rect" id="Node000004" href="$OscillatorConstants_8h.html" title=" " alt="" coords="177,256,385,282"/>
 <area shape="poly" id="edge14_Node000002_Node000004" title=" " alt="" coords="244,112,277,241,272,242,239,113"/>
 <area shape="rect" id="Node000006" title=" " alt="" coords="5,330,120,356"/>
-<area shape="poly" id="edge15_Node000002_Node000006" title=" " alt="" coords="232,114,126,258,82,319,78,316,122,255,227,111"/>
+<area shape="poly" id="edge15_Node000002_Node000006" title=" " alt="" coords="232,114,125,258,81,319,77,316,120,255,227,111"/>
 <area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="380,211,315,250,312,246,377,206"/>
 <area shape="poly" id="edge13_Node000003_Node000006" title=" " alt="" coords="310,209,238,229,166,259,122,289,86,321,82,317,118,284,164,254,236,224,309,204"/>
 <area shape="rect" id="Node000009" title=" " alt="" coords="476,330,529,356"/>

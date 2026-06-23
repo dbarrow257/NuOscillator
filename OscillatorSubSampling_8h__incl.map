@@ -1,27 +1,27 @@
 <map id="Oscillator/OscillatorSubSampling.h" name="Oscillator/OscillatorSubSampling.h">
 <area shape="rect" id="Node000001" title=" " alt="" coords="205,5,363,46"/>
 <area shape="rect" id="Node000002" href="$OscillatorBase_8h.html" title=" " alt="" coords="226,94,342,120"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="287,46,287,78,281,78,281,46"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="286,46,286,78,281,78,281,46"/>
 <area shape="rect" id="Node000003" href="$OscProbCalcerBase_8h.html" title=" " alt="" coords="322,168,523,208"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="306,118,376,158,374,162,304,122"/>
 <area shape="rect" id="Node000004" href="$OscillatorConstants_8h.html" title=" " alt="" coords="249,256,457,282"/>
-<area shape="poly" id="edge14_Node000002_Node000004" title=" " alt="" coords="288,119,295,159,312,207,335,243,330,246,307,209,290,161,283,120"/>
+<area shape="poly" id="edge14_Node000002_Node000004" title=" " alt="" coords="288,119,296,159,313,207,335,243,331,246,308,209,291,161,283,120"/>
 <area shape="rect" id="Node000006" title=" " alt="" coords="5,330,120,356"/>
 <area shape="poly" id="edge15_Node000002_Node000006" title=" " alt="" coords="274,122,86,320,83,317,271,118"/>
 <area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="407,211,376,246,372,243,403,207"/>
 <area shape="poly" id="edge13_Node000003_Node000006" title=" " alt="" coords="364,211,238,259,100,325,97,320,236,254,363,206"/>
-<area shape="rect" id="Node000009" title=" " alt="" coords="571,330,624,356"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="570,330,624,356"/>
 <area shape="poly" id="edge12_Node000003_Node000009" title=" " alt="" coords="447,207,574,318,570,322,443,211"/>
-<area shape="rect" id="Node000011" title=" " alt="" coords="489,330,546,356"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="488,330,546,356"/>
 <area shape="poly" id="edge11_Node000003_Node000011" title=" " alt="" coords="439,207,471,255,506,315,502,318,467,258,435,210"/>
 <area shape="rect" id="Node000005" title=" " alt="" coords="239,330,299,356"/>
 <area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="341,285,297,322,293,318,337,281"/>
 <area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="304,285,127,328,126,323,303,280"/>
 <area shape="rect" id="Node000007" title=" " alt="" coords="323,330,383,356"/>
-<area shape="poly" id="edge6_Node000004_Node000007" title=" " alt="" coords="356,282,356,314,351,314,351,282"/>
+<area shape="poly" id="edge6_Node000004_Node000007" title=" " alt="" coords="356,282,356,314,350,314,350,282"/>
 <area shape="rect" id="Node000008" title=" " alt="" coords="408,330,464,356"/>
 <area shape="poly" id="edge7_Node000004_Node000008" title=" " alt="" coords="369,281,412,318,409,322,365,285"/>
-<area shape="poly" id="edge8_Node000004_Node000009" title=" " alt="" coords="395,280,556,327,554,332,394,285"/>
+<area shape="poly" id="edge8_Node000004_Node000009" title=" " alt="" coords="396,280,556,327,555,332,395,285"/>
 <area shape="rect" id="Node000010" title=" " alt="" coords="144,330,216,356"/>
 <area shape="poly" id="edge9_Node000004_Node000010" title=" " alt="" coords="325,285,224,326,222,321,323,280"/>
 <area shape="poly" id="edge10_Node000004_Node000011" title=" " alt="" coords="382,280,477,321,474,326,380,285"/>

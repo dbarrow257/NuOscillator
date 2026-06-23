@@ -11,7 +11,7 @@ var searchData=
   ['nneutrinotypes_8',['nNeutrinoTypes',['../classOscillatorSubSampling.html#a3a9b4a96d6808c5d0427962d3d4549b5',1,'OscillatorSubSampling']]],
   ['noscillationchannels_9',['nOscillationChannels',['../classOscillatorSubSampling.html#acbf0bdc797c415e720148ba5326d29e1',1,'OscillatorSubSampling']]],
   ['nsi_5fmutau_5fcoupling_10',['nsi_mutau_coupling',['../classOscProbCalcerNuSQUIDSLinear.html#a698da43315112802f1f1d849931c9599',1,'OscProbCalcerNuSQUIDSLinear']]],
-  ['nthreads_11',['nthreads',['../classOscProbCalcerCUDAProb3.html#ac66ebf86f6b7f3dbf6ce9fbb8f913a50',1,'OscProbCalcerCUDAProb3::nThreads'],['../classOscProbCalcerCUDAProb3Linear.html#abfe04012e7e77b25f0e842e1366659bf',1,'OscProbCalcerCUDAProb3Linear::nThreads']]],
+  ['nthreads_11',['nThreads',['../classOscProbCalcerCUDAProb3.html#ac66ebf86f6b7f3dbf6ce9fbb8f913a50',1,'OscProbCalcerCUDAProb3::nThreads'],['../classOscProbCalcerCUDAProb3Linear.html#abfe04012e7e77b25f0e842e1366659bf',1,'OscProbCalcerCUDAProb3Linear::nThreads']]],
   ['nubars_5fbase_12',['nubars_base',['../classOscProbCalcerNuSQUIDSLinear.html#af80f340a05e690267881ddbbbe72bc4e',1,'OscProbCalcerNuSQUIDSLinear']]],
   ['nuniformlayers_13',['NUniformLayers',['../classOscProbCalcerNuFASTEarth.html#a5dba90209fd6765f4c09201e204299d1',1,'OscProbCalcerNuFASTEarth']]],
   ['nus_5fbase_14',['nus_base',['../classOscProbCalcerNuSQUIDSLinear.html#a7cdf404e679a9bac9755b2d0662309d9',1,'OscProbCalcerNuSQUIDSLinear']]],

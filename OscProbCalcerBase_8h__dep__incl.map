@@ -1,92 +1,92 @@
 <map id="OscProbCalcer/OscProbCalcerBase.h" name="OscProbCalcer/OscProbCalcerBase.h">
-<area shape="rect" id="Node000001" title=" " alt="" coords="2185,5,2386,46"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="2184,5,2385,46"/>
 <area shape="rect" id="Node000002" href="$SingleOscProbCalcer_8cpp.html" title=" " alt="" coords="5,190,209,216"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="2170,31,1748,38,1187,52,665,71,475,83,364,97,294,117,228,143,129,192,127,187,226,138,293,112,362,91,475,78,665,66,1186,46,1748,33,2170,26"/>
-<area shape="rect" id="Node000003" href="$OscProbCalcerBase_8cpp.html" title=" " alt="" coords="1284,94,1485,135"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="2170,36,1865,59,1681,76,1497,97,1486,98,1485,93,1496,91,1680,71,1864,54,2169,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="2168,31,1747,38,1186,52,665,71,475,83,364,97,294,117,228,143,129,192,127,187,226,138,293,112,362,91,475,78,664,66,1186,46,1747,33,2168,26"/>
+<area shape="rect" id="Node000003" href="$OscProbCalcerBase_8cpp.html" title=" " alt="" coords="1282,94,1484,135"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="2169,37,1864,59,1680,76,1497,97,1485,98,1484,93,1496,91,1680,71,1864,54,2168,31"/>
 <area shape="rect" id="Node000004" href="$OscProbCalcerFactory_8h.html" title=" " alt="" coords="376,94,577,135"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="2170,35,577,111,577,106,2170,30"/>
-<area shape="rect" id="Node000007" href="$OscProbCalcer__CHICLinear_8h.html" title=" " alt="" coords="1509,94,1710,135"/>
-<area shape="poly" id="edge7_Node000001_Node000007" title=" " alt="" coords="2170,42,1961,65,1722,97,1711,98,1711,93,1721,91,1960,60,2169,36"/>
-<area shape="rect" id="Node000009" href="$OscProbCalcer__CUDAProb3_8h.html" title=" " alt="" coords="1734,94,1936,135"/>
-<area shape="poly" id="edge9_Node000001_Node000009" title=" " alt="" coords="2170,52,1937,96,1936,91,2169,46"/>
-<area shape="rect" id="Node000011" href="$OscProbCalcer__CUDAProb3Linear_8h.html" title=" " alt="" coords="1960,94,2161,135"/>
-<area shape="poly" id="edge11_Node000001_Node000011" title=" " alt="" coords="2221,54,2113,96,2111,91,2219,49"/>
-<area shape="rect" id="Node000013" href="$OscProbCalcer__GLoBESLinear_8h.html" title=" " alt="" coords="2185,94,2386,135"/>
-<area shape="poly" id="edge13_Node000001_Node000013" title=" " alt="" coords="2288,62,2288,94,2283,94,2283,62"/>
-<area shape="rect" id="Node000015" href="$OscProbCalcer__NuFASTEarth_8h.html" title=" " alt="" coords="2410,94,2612,135"/>
-<area shape="poly" id="edge15_Node000001_Node000015" title=" " alt="" coords="2352,49,2461,91,2459,96,2350,54"/>
-<area shape="rect" id="Node000017" href="$OscProbCalcer__NuFASTLinear_8h.html" title=" " alt="" coords="2636,94,2837,135"/>
-<area shape="poly" id="edge17_Node000001_Node000017" title=" " alt="" coords="2402,46,2636,91,2635,96,2401,52"/>
-<area shape="rect" id="Node000019" href="$OscProbCalcer__NuSQUIDSLinear_8h.html" title=" " alt="" coords="2861,94,3062,135"/>
-<area shape="poly" id="edge19_Node000001_Node000019" title=" " alt="" coords="2402,37,2610,60,2849,91,2861,93,2860,98,2848,97,2610,66,2402,42"/>
-<area shape="rect" id="Node000021" href="$OscProbCalcer__OscLibLinear_8h.html" title=" " alt="" coords="3086,94,3288,135"/>
-<area shape="poly" id="edge21_Node000001_Node000021" title=" " alt="" coords="2402,31,2706,54,2890,71,3074,91,3086,93,3085,98,3073,97,2890,76,2706,59,2401,37"/>
-<area shape="rect" id="Node000023" href="$OscProbCalcer__OscProb_8h.html" title=" " alt="" coords="3312,94,3513,135"/>
-<area shape="poly" id="edge23_Node000001_Node000023" title=" " alt="" coords="2402,28,2800,48,3049,67,3299,91,3311,93,3311,98,3299,97,3048,72,2799,54,2401,34"/>
-<area shape="rect" id="Node000025" href="$OscProbCalcer__Prob3ppLinear_8h.html" title=" " alt="" coords="3537,94,3738,135"/>
-<area shape="poly" id="edge25_Node000001_Node000025" title=" " alt="" coords="2402,26,2612,32,2891,43,3206,63,3525,91,3537,93,3536,98,3524,97,3206,68,2891,49,2612,37,2401,32"/>
-<area shape="rect" id="Node000027" href="$OscProbCalcer__ProbGPULinear_8h.html" title=" " alt="" coords="3762,94,3964,135"/>
-<area shape="poly" id="edge27_Node000001_Node000027" title=" " alt="" coords="2402,25,2647,29,2982,39,3364,59,3560,73,3751,91,3762,93,3761,98,3751,97,3559,78,3364,64,2982,44,2647,34,2402,30"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="2168,35,577,111,577,106,2168,30"/>
+<area shape="rect" id="Node000007" href="$OscProbCalcer__CHICLinear_8h.html" title=" " alt="" coords="1508,94,1709,135"/>
+<area shape="poly" id="edge7_Node000001_Node000007" title=" " alt="" coords="2168,42,1960,66,1722,97,1710,98,1709,93,1721,91,1960,60,2168,37"/>
+<area shape="rect" id="Node000009" href="$OscProbCalcer__CUDAProb3_8h.html" title=" " alt="" coords="1733,94,1934,135"/>
+<area shape="poly" id="edge9_Node000001_Node000009" title=" " alt="" coords="2169,52,1935,96,1934,91,2168,46"/>
+<area shape="rect" id="Node000011" href="$OscProbCalcer__CUDAProb3Linear_8h.html" title=" " alt="" coords="1958,94,2160,135"/>
+<area shape="poly" id="edge11_Node000001_Node000011" title=" " alt="" coords="2220,54,2111,96,2109,91,2218,49"/>
+<area shape="rect" id="Node000013" href="$OscProbCalcer__GLoBESLinear_8h.html" title=" " alt="" coords="2184,94,2385,135"/>
+<area shape="poly" id="edge13_Node000001_Node000013" title=" " alt="" coords="2287,62,2287,94,2282,94,2282,62"/>
+<area shape="rect" id="Node000015" href="$OscProbCalcer__NuFASTEarth_8h.html" title=" " alt="" coords="2409,94,2610,135"/>
+<area shape="poly" id="edge15_Node000001_Node000015" title=" " alt="" coords="2351,49,2459,91,2457,96,2349,54"/>
+<area shape="rect" id="Node000017" href="$OscProbCalcer__NuFASTLinear_8h.html" title=" " alt="" coords="2634,94,2836,135"/>
+<area shape="poly" id="edge17_Node000001_Node000017" title=" " alt="" coords="2401,46,2634,91,2633,96,2400,52"/>
+<area shape="rect" id="Node000019" href="$OscProbCalcer__NuSQUIDSLinear_8h.html" title=" " alt="" coords="2860,94,3061,135"/>
+<area shape="poly" id="edge19_Node000001_Node000019" title=" " alt="" coords="2401,36,2610,60,2849,91,2859,93,2859,98,2848,97,2609,65,2400,42"/>
+<area shape="rect" id="Node000021" href="$OscProbCalcer__OscLibLinear_8h.html" title=" " alt="" coords="3085,94,3286,135"/>
+<area shape="poly" id="edge21_Node000001_Node000021" title=" " alt="" coords="2401,31,2706,54,2890,71,3074,91,3085,93,3084,98,3073,97,2889,76,2705,59,2400,36"/>
+<area shape="rect" id="Node000023" href="$OscProbCalcer__OscProb_8h.html" title=" " alt="" coords="3310,94,3512,135"/>
+<area shape="poly" id="edge23_Node000001_Node000023" title=" " alt="" coords="2400,28,2799,48,3049,66,3299,91,3310,93,3309,98,3299,97,3048,72,2799,53,2400,33"/>
+<area shape="rect" id="Node000025" href="$OscProbCalcer__Prob3ppLinear_8h.html" title=" " alt="" coords="3536,94,3737,135"/>
+<area shape="poly" id="edge25_Node000001_Node000025" title=" " alt="" coords="2400,26,2611,32,2890,43,3206,62,3525,91,3535,93,3535,98,3524,97,3206,68,2890,49,2611,37,2400,32"/>
+<area shape="rect" id="Node000027" href="$OscProbCalcer__ProbGPULinear_8h.html" title=" " alt="" coords="3761,94,3962,135"/>
+<area shape="poly" id="edge27_Node000001_Node000027" title=" " alt="" coords="2401,25,2646,29,2981,39,3363,59,3559,73,3750,91,3761,93,3760,98,3749,97,3558,78,3363,64,2981,44,2646,34,2401,30"/>
 <area shape="rect" id="Node000029" href="$OscillatorBase_8h.html" title=" " alt="" coords="975,102,1151,127"/>
-<area shape="poly" id="edge29_Node000001_Node000029" title=" " alt="" coords="2170,36,1772,61,1271,97,1151,107,1151,102,1271,91,1771,56,2169,31"/>
+<area shape="poly" id="edge29_Node000001_Node000029" title=" " alt="" coords="2169,36,1771,61,1271,97,1151,107,1151,102,1271,91,1771,56,2168,31"/>
 <area shape="poly" id="edge4_Node000004_Node000002" title=" " alt="" coords="378,141,160,192,158,187,377,136"/>
 <area shape="rect" id="Node000005" href="$OscProbCalcerFactory_8cpp.html" title=" " alt="" coords="233,183,434,223"/>
 <area shape="poly" id="edge5_Node000004_Node000005" title=" " alt="" coords="433,145,367,185,365,180,430,141"/>
 <area shape="rect" id="Node000006" href="$OscillatorBase_8cpp.html" title=" " alt="" coords="459,190,648,216"/>
 <area shape="poly" id="edge6_Node000004_Node000006" title=" " alt="" coords="506,144,545,188,541,192,502,148"/>
-<area shape="rect" id="Node000008" href="$OscProbCalcer__CHICLinear_8cpp.html" title=" " alt="" coords="1509,183,1710,223"/>
-<area shape="poly" id="edge8_Node000007_Node000008" title=" " alt="" coords="1612,150,1612,182,1607,182,1607,150"/>
-<area shape="rect" id="Node000010" href="$OscProbCalcer__CUDAProb3_8cpp.html" title=" " alt="" coords="1734,183,1936,223"/>
-<area shape="poly" id="edge10_Node000009_Node000010" title=" " alt="" coords="1838,150,1838,182,1832,182,1832,150"/>
-<area shape="rect" id="Node000012" href="$OscProbCalcer__CUDAProb3Linear_8cpp.html" title=" " alt="" coords="1960,183,2161,223"/>
-<area shape="poly" id="edge12_Node000011_Node000012" title=" " alt="" coords="2063,150,2063,182,2058,182,2058,150"/>
-<area shape="rect" id="Node000014" href="$OscProbCalcer__GLoBESLinear_8cpp.html" title=" " alt="" coords="2185,183,2386,223"/>
-<area shape="poly" id="edge14_Node000013_Node000014" title=" " alt="" coords="2288,150,2288,182,2283,182,2283,150"/>
-<area shape="rect" id="Node000016" href="$OscProbCalcer__NuFASTEarth_8cpp.html" title=" " alt="" coords="2410,183,2612,223"/>
-<area shape="poly" id="edge16_Node000015_Node000016" title=" " alt="" coords="2514,150,2514,182,2508,182,2508,150"/>
-<area shape="rect" id="Node000018" href="$OscProbCalcer__NuFASTLinear_8cpp.html" title=" " alt="" coords="2636,183,2837,223"/>
-<area shape="poly" id="edge18_Node000017_Node000018" title=" " alt="" coords="2739,150,2739,182,2734,182,2734,150"/>
-<area shape="rect" id="Node000020" href="$OscProbCalcer__NuSQUIDSLinear_8cpp.html" title=" " alt="" coords="2861,183,3062,223"/>
-<area shape="poly" id="edge20_Node000019_Node000020" title=" " alt="" coords="2964,150,2964,182,2959,182,2959,150"/>
-<area shape="rect" id="Node000022" href="$OscProbCalcer__OscLibLinear_8cpp.html" title=" " alt="" coords="3086,183,3288,223"/>
-<area shape="poly" id="edge22_Node000021_Node000022" title=" " alt="" coords="3190,150,3190,182,3184,182,3184,150"/>
-<area shape="rect" id="Node000024" href="$OscProbCalcer__OscProb_8cpp.html" title=" " alt="" coords="3312,183,3513,223"/>
-<area shape="poly" id="edge24_Node000023_Node000024" title=" " alt="" coords="3415,150,3415,182,3410,182,3410,150"/>
-<area shape="rect" id="Node000026" href="$OscProbCalcer__Prob3ppLinear_8cpp.html" title=" " alt="" coords="3537,183,3738,223"/>
-<area shape="poly" id="edge26_Node000025_Node000026" title=" " alt="" coords="3640,150,3640,182,3635,182,3635,150"/>
-<area shape="rect" id="Node000028" href="$OscProbCalcer__ProbGPULinear_8cpp.html" title=" " alt="" coords="3762,183,3964,223"/>
-<area shape="poly" id="edge28_Node000027_Node000028" title=" " alt="" coords="3866,150,3866,182,3860,182,3860,150"/>
+<area shape="rect" id="Node000008" href="$OscProbCalcer__CHICLinear_8cpp.html" title=" " alt="" coords="1508,183,1709,223"/>
+<area shape="poly" id="edge8_Node000007_Node000008" title=" " alt="" coords="1611,150,1611,182,1606,182,1606,150"/>
+<area shape="rect" id="Node000010" href="$OscProbCalcer__CUDAProb3_8cpp.html" title=" " alt="" coords="1733,183,1934,223"/>
+<area shape="poly" id="edge10_Node000009_Node000010" title=" " alt="" coords="1836,150,1836,182,1831,182,1831,150"/>
+<area shape="rect" id="Node000012" href="$OscProbCalcer__CUDAProb3Linear_8cpp.html" title=" " alt="" coords="1958,183,2160,223"/>
+<area shape="poly" id="edge12_Node000011_Node000012" title=" " alt="" coords="2062,150,2062,182,2056,182,2056,150"/>
+<area shape="rect" id="Node000014" href="$OscProbCalcer__GLoBESLinear_8cpp.html" title=" " alt="" coords="2184,183,2385,223"/>
+<area shape="poly" id="edge14_Node000013_Node000014" title=" " alt="" coords="2287,150,2287,182,2282,182,2282,150"/>
+<area shape="rect" id="Node000016" href="$OscProbCalcer__NuFASTEarth_8cpp.html" title=" " alt="" coords="2409,183,2610,223"/>
+<area shape="poly" id="edge16_Node000015_Node000016" title=" " alt="" coords="2512,150,2512,182,2507,182,2507,150"/>
+<area shape="rect" id="Node000018" href="$OscProbCalcer__NuFASTLinear_8cpp.html" title=" " alt="" coords="2634,183,2836,223"/>
+<area shape="poly" id="edge18_Node000017_Node000018" title=" " alt="" coords="2738,150,2738,182,2732,182,2732,150"/>
+<area shape="rect" id="Node000020" href="$OscProbCalcer__NuSQUIDSLinear_8cpp.html" title=" " alt="" coords="2860,183,3061,223"/>
+<area shape="poly" id="edge20_Node000019_Node000020" title=" " alt="" coords="2963,150,2963,182,2958,182,2958,150"/>
+<area shape="rect" id="Node000022" href="$OscProbCalcer__OscLibLinear_8cpp.html" title=" " alt="" coords="3085,183,3286,223"/>
+<area shape="poly" id="edge22_Node000021_Node000022" title=" " alt="" coords="3188,150,3188,182,3183,182,3183,150"/>
+<area shape="rect" id="Node000024" href="$OscProbCalcer__OscProb_8cpp.html" title=" " alt="" coords="3310,183,3512,223"/>
+<area shape="poly" id="edge24_Node000023_Node000024" title=" " alt="" coords="3414,150,3414,182,3408,182,3408,150"/>
+<area shape="rect" id="Node000026" href="$OscProbCalcer__Prob3ppLinear_8cpp.html" title=" " alt="" coords="3536,183,3737,223"/>
+<area shape="poly" id="edge26_Node000025_Node000026" title=" " alt="" coords="3639,150,3639,182,3634,182,3634,150"/>
+<area shape="rect" id="Node000028" href="$OscProbCalcer__ProbGPULinear_8cpp.html" title=" " alt="" coords="3761,183,3962,223"/>
+<area shape="poly" id="edge28_Node000027_Node000028" title=" " alt="" coords="3864,150,3864,182,3859,182,3859,150"/>
 <area shape="poly" id="edge30_Node000029_Node000006" title=" " alt="" coords="974,133,661,185,621,192,620,187,660,180,973,128"/>
 <area shape="rect" id="Node000030" href="$OscillatorBinned_8h.html" title=" " alt="" coords="1080,190,1265,216"/>
 <area shape="poly" id="edge31_Node000029_Node000030" title=" " alt="" coords="1092,135,1159,187,1155,192,1089,139"/>
-<area shape="rect" id="Node000033" href="$OscillatorFactory_8h.html" title=" " alt="" coords="1297,190,1485,216"/>
-<area shape="poly" id="edge34_Node000029_Node000033" title=" " alt="" coords="1125,129,1346,187,1344,192,1123,134"/>
+<area shape="rect" id="Node000033" href="$OscillatorFactory_8h.html" title=" " alt="" coords="1296,190,1484,216"/>
+<area shape="poly" id="edge34_Node000029_Node000033" title=" " alt="" coords="1124,129,1344,187,1343,192,1123,134"/>
 <area shape="rect" id="Node000040" href="$OscillatorSubSampling_8h.html" title=" " alt="" coords="672,183,830,223"/>
 <area shape="poly" id="edge42_Node000029_Node000040" title=" " alt="" coords="1005,134,823,185,821,180,1004,129"/>
 <area shape="rect" id="Node000042" href="$OscillatorUnbinned_8h.html" title=" " alt="" coords="855,190,1055,216"/>
 <area shape="poly" id="edge45_Node000029_Node000042" title=" " alt="" coords="1038,139,972,192,969,187,1034,135"/>
-<area shape="rect" id="Node000031" href="$OscillatorBinned_8cpp.html" title=" " alt="" coords="1066,279,1265,305"/>
-<area shape="poly" id="edge32_Node000030_Node000031" title=" " alt="" coords="1173,231,1169,279,1164,278,1168,231"/>
-<area shape="rect" id="Node000032" href="$OscillatorFactory_8cpp.html" title=" " alt="" coords="839,279,1042,305"/>
-<area shape="poly" id="edge33_Node000030_Node000032" title=" " alt="" coords="1127,224,974,281,972,276,1125,219"/>
-<area shape="poly" id="edge41_Node000033_Node000032" title=" " alt="" coords="1313,222,1004,281,1003,276,1312,217"/>
-<area shape="rect" id="Node000034" href="$Analysis_8cpp.html" title=" " alt="" coords="1972,279,2101,305"/>
-<area shape="poly" id="edge35_Node000033_Node000034" title=" " alt="" coords="1469,216,1497,221,1627,235,1729,242,1831,250,1961,269,1993,276,1992,281,1960,274,1830,255,1729,247,1626,241,1496,226,1468,222"/>
-<area shape="rect" id="Node000035" href="$CompareOscillationProbabilities_8cpp.html" title=" " alt="" coords="2125,279,2388,305"/>
-<area shape="poly" id="edge36_Node000033_Node000035" title=" " alt="" coords="1467,216,1497,221,1669,239,1804,247,1939,254,2113,269,2170,276,2170,281,2112,274,1939,259,1804,252,1669,244,1496,226,1467,222"/>
-<area shape="rect" id="Node000036" href="$DragRace_8cpp.html" title=" " alt="" coords="2412,279,2549,305"/>
-<area shape="poly" id="edge37_Node000033_Node000036" title=" " alt="" coords="1466,216,1497,221,1634,234,1750,240,1949,241,2147,243,2264,252,2401,269,2436,276,2435,281,2400,274,2263,257,2147,249,1949,246,1750,245,1633,239,1496,226,1465,222"/>
-<area shape="rect" id="Node000037" href="$LegacyModeExample_8cpp.html" title=" " alt="" coords="1290,279,1492,305"/>
-<area shape="poly" id="edge38_Node000033_Node000037" title=" " alt="" coords="1394,232,1394,278,1388,278,1388,232"/>
-<area shape="rect" id="Node000038" href="$OscProbCalcerComparison_8cpp.html" title=" " alt="" coords="1517,279,1753,305"/>
-<area shape="poly" id="edge39_Node000033_Node000038" title=" " alt="" coords="1440,219,1602,276,1600,281,1439,224"/>
-<area shape="rect" id="Node000039" href="$SingleOscillator_8cpp.html" title=" " alt="" coords="1778,279,1948,305"/>
-<area shape="poly" id="edge40_Node000033_Node000039" title=" " alt="" coords="1473,216,1497,221,1766,269,1802,276,1801,281,1765,274,1496,226,1472,222"/>
-<area shape="poly" id="edge43_Node000040_Node000032" title=" " alt="" coords="809,228,915,276,913,281,806,232"/>
-<area shape="rect" id="Node000041" href="$OscillatorSubSampling_8cpp.html" title=" " alt="" coords="419,271,577,312"/>
-<area shape="poly" id="edge44_Node000040_Node000041" title=" " alt="" coords="680,231,556,273,555,268,679,226"/>
-<area shape="poly" id="edge46_Node000042_Node000032" title=" " alt="" coords="953,232,945,279,940,278,948,231"/>
-<area shape="rect" id="Node000043" href="$OscillatorUnbinned_8cpp.html" title=" " alt="" coords="601,279,816,305"/>
-<area shape="poly" id="edge47_Node000042_Node000043" title=" " alt="" coords="907,224,744,281,742,276,905,219"/>
+<area shape="rect" id="Node000031" href="$OscillatorBinned_8cpp.html" title=" " alt="" coords="1065,279,1264,304"/>
+<area shape="poly" id="edge32_Node000030_Node000031" title=" " alt="" coords="1172,231,1168,279,1163,278,1167,231"/>
+<area shape="rect" id="Node000032" href="$OscillatorFactory_8cpp.html" title=" " alt="" coords="838,279,1040,304"/>
+<area shape="poly" id="edge33_Node000030_Node000032" title=" " alt="" coords="1126,224,973,281,971,276,1125,219"/>
+<area shape="poly" id="edge41_Node000033_Node000032" title=" " alt="" coords="1312,222,1003,281,1002,276,1311,217"/>
+<area shape="rect" id="Node000034" href="$Analysis_8cpp.html" title=" " alt="" coords="1971,279,2099,304"/>
+<area shape="poly" id="edge35_Node000033_Node000034" title=" " alt="" coords="1468,216,1497,221,1627,235,1728,242,1830,250,1959,269,1992,276,1990,281,1959,274,1829,255,1728,247,1626,241,1496,226,1468,222"/>
+<area shape="rect" id="Node000035" href="$CompareOscillationProbabilities_8cpp.html" title=" " alt="" coords="2123,279,2387,304"/>
+<area shape="poly" id="edge36_Node000033_Node000035" title=" " alt="" coords="1467,216,1497,221,1669,239,1804,247,1938,254,2111,269,2169,276,2168,281,2111,274,1938,259,1803,252,1668,244,1496,226,1466,222"/>
+<area shape="rect" id="Node000036" href="$DragRace_8cpp.html" title=" " alt="" coords="2411,279,2547,304"/>
+<area shape="poly" id="edge37_Node000033_Node000036" title=" " alt="" coords="1466,216,1497,221,1634,234,1750,240,1948,240,2146,243,2263,252,2399,269,2435,276,2434,281,2399,274,2262,257,2146,249,1948,246,1750,245,1633,239,1496,226,1465,222"/>
+<area shape="rect" id="Node000037" href="$LegacyModeExample_8cpp.html" title=" " alt="" coords="1288,279,1491,304"/>
+<area shape="poly" id="edge38_Node000033_Node000037" title=" " alt="" coords="1392,232,1392,278,1387,278,1387,232"/>
+<area shape="rect" id="Node000038" href="$OscProbCalcerComparison_8cpp.html" title=" " alt="" coords="1516,279,1752,304"/>
+<area shape="poly" id="edge39_Node000033_Node000038" title=" " alt="" coords="1439,219,1600,276,1599,281,1437,224"/>
+<area shape="rect" id="Node000039" href="$SingleOscillator_8cpp.html" title=" " alt="" coords="1776,279,1947,304"/>
+<area shape="poly" id="edge40_Node000033_Node000039" title=" " alt="" coords="1472,216,1765,269,1801,276,1800,281,1764,274,1472,222"/>
+<area shape="poly" id="edge43_Node000040_Node000032" title=" " alt="" coords="809,228,914,276,912,281,806,233"/>
+<area shape="rect" id="Node000041" href="$OscillatorSubSampling_8cpp.html" title=" " alt="" coords="417,271,576,312"/>
+<area shape="poly" id="edge44_Node000040_Node000041" title=" " alt="" coords="680,231,555,273,553,268,678,226"/>
+<area shape="poly" id="edge46_Node000042_Node000032" title=" " alt="" coords="953,232,944,279,939,278,947,231"/>
+<area shape="rect" id="Node000043" href="$OscillatorUnbinned_8cpp.html" title=" " alt="" coords="600,279,814,304"/>
+<area shape="poly" id="edge47_Node000042_Node000043" title=" " alt="" coords="907,224,743,281,741,276,905,219"/>
 </map>
