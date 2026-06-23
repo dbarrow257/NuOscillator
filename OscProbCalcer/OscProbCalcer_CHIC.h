@@ -86,6 +86,12 @@ class OscProbCalcerCHIC : public OscProbCalcerBase {
    */
   int GetNCosineZ();
 
+  /**
+   * @brief CHIC doesn't have cool inheritance so we need to use template to avoid copy pasting
+   */
+  template <typename Propagator>
+  void SetPMNSParameters(Propagator* p);
+
   // ========================================================================================================================================================================
   // Functions which help setup implementation specific code
 

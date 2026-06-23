@@ -60,6 +60,20 @@ void OscProbCalcerCHIC::SetupPropagator() {
   }
 }
 
+
+template <typename Propagator>
+void OscProbCalcerCHIC::SetPMNSParameters(Propagator* p) {
+  // CHIC expects angles, not sin^2
+  p->update_th12(std::asin(std::sqrt(GetOscillationParameter(kTH12))));
+  p->update_th13(std::asin(std::sqrt(GetOscillationParameter(kTH13))));
+  p->update_th23(std::asin(std::sqrt(GetOscillationParameter(kTH23))));
+
+  p->update_dcp(GetOscillationParameter(kDCP));
+  p->update_dm221(GetOscillationParameter(kDM12));
+  p->update_dm231(GetOscillationParameter(kDM23) + GetOscillationParameter(kDM12));
+}
+
+
 void OscProbCalcerCHIC::CalculateProbabilitiesBeam() {
   for (int iNuType = 0; iNuType < fNNeutrinoTypes; ++iNuType) {
     // KS: CHIC sets Nu and NuBar based on constructor those we switch between both
@@ -69,16 +83,9 @@ void OscProbCalcerCHIC::CalculateProbabilitiesBeam() {
     // ------------------------------- //
     const double Baseline = GetOscillationParameter(ReturnNOscParams() - 2); // km
     const double rho = GetOscillationParameter(ReturnNOscParams() - 1); // g/cc
-
-    // CHIC expects angles, not sin^2
-    chic_propagator->update_th12(std::asin(std::sqrt(GetOscillationParameter(kTH12))));
-    chic_propagator->update_th13(std::asin(std::sqrt(GetOscillationParameter(kTH13))));
-    chic_propagator->update_th23(std::asin(std::sqrt(GetOscillationParameter(kTH23))));
-
-    chic_propagator->update_dcp(GetOscillationParameter(kDCP));
-    chic_propagator->update_dm221(GetOscillationParameter(kDM12));
-    chic_propagator->update_dm231(GetOscillationParameter(kDM23) + GetOscillationParameter(kDM12));
     chic_propagator->update_density(rho);
+
+    SetPMNSParameters(chic_propagator);
 
     // KS: Do not multithread, compute_oscillations is mutable as it stores neutrino energy
     // multithreading would break physics
@@ -104,14 +111,7 @@ void OscProbCalcerCHIC::CalculateProbabilitiesAtm() {
   for (int iNuType = 0; iNuType < fNNeutrinoTypes; ++iNuType) {
     // KS: CHIC sets Nu and NuBar based on constructor those we switch between both
     CHICEARTH* chic_propagator = (fNeutrinoTypes[iNuType] == Nu) ? chicearth_nu.get() : chicearth_nubar.get();
-    // CHIC expects angles, not sin^2
-    chic_propagator->update_th12(std::asin(std::sqrt(GetOscillationParameter(kTH12))));
-    chic_propagator->update_th13(std::asin(std::sqrt(GetOscillationParameter(kTH13))));
-    chic_propagator->update_th23(std::asin(std::sqrt(GetOscillationParameter(kTH23))));
-
-    chic_propagator->update_dcp(GetOscillationParameter(kDCP));
-    chic_propagator->update_dm221(GetOscillationParameter(kDM12));
-    chic_propagator->update_dm231(GetOscillationParameter(kDM23) + GetOscillationParameter(kDM12));
+    SetPMNSParameters(chic_propagator);
 
     for (int iCosineZ = 0; iCosineZ < fNCosineZPoints; iCosineZ++) {
       for (int iEnergy = 0; iEnergy < fNEnergyPoints; iEnergy++) {
