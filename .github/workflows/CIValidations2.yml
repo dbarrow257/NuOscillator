@@ -111,6 +111,12 @@ jobs:
             argument: NuOscillatorConfigs/OscProbCalcerConfigs/CHICLinear.yaml
             new_output: CHICLinear_New.txt
             old_output: CHICLinear_Stored.txt
+          - name: OscProbCalcer CHIC Comparison
+            cmake_options: -DUseCHIC=1
+            exec: SingleOscProbCalcer
+            argument: NuOscillatorConfigs/OscProbCalcerConfigs/CHIC.yaml
+            new_output: CHIC_New.txt
+            old_output: CHIC_Stored.txt
 
     container:
       image: ghcr.io/mach3-software/mach3:alma9v1.4.1
