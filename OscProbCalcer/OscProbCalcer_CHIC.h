@@ -1,38 +1,38 @@
-#ifndef __OSCILLATOR_CHICLINEAR_H__
-#define __OSCILLATOR_CHICLINEAR_H__
+#ifndef __OSCILLATOR_CHIC_H__
+#define __OSCILLATOR_CHIC_H__
 
 #include "OscProbCalcerBase.h"
 
-
 class CHIC;
+class CHICEARTH;
 /**
  * @file OscProbCalcer_CHICLinear.h
  *
- * @class OscProbCalcerCHICLinear
+ * @class OscProbCalcerCHIC
  *
  * @brief Oscillation calculation engine for linear propagation in CHIC.
  */
-class OscProbCalcerCHICLinear : public OscProbCalcerBase {
+class OscProbCalcerCHIC : public OscProbCalcerBase {
  public:
 
   /**
    * @brief Default constructor
    *
-   * @param Config_ YAML::Node to setup the OscProbCalcerCHICLinear() instance
+   * @param Config_ YAML::Node to setup the OscProbCalcerCHIC() instance
    */
-  OscProbCalcerCHICLinear(YAML::Node Config_);
+  OscProbCalcerCHIC(YAML::Node Config_);
 
   /**
    * @brief Constructor which takes a file path, creates a YAML::Node and calls the default constructor
    *
    * @param ConfigName_ File path to config
    */
-  OscProbCalcerCHICLinear(std::string ConfigName_) : OscProbCalcerCHICLinear(YAML::LoadFile(ConfigName_)) {}
+  OscProbCalcerCHIC(std::string ConfigName_) : OscProbCalcerCHIC(YAML::LoadFile(ConfigName_)) {}
   
   /**
    * @brief Destructor
    */
-  virtual ~OscProbCalcerCHICLinear();
+  virtual ~OscProbCalcerCHIC();
 
   // ========================================================================================================================================================================
   // Functions which need implementation specific code
@@ -49,6 +49,16 @@ class OscProbCalcerCHICLinear : public OscProbCalcerBase {
    * the oscillation probabilities in #fWeightArray.
    */
   void CalculateProbabilities() final;
+
+  /**
+   * @brief Calculate oscillation probabilities using Beam
+   * */
+  void CalculateProbabilitiesBeam();
+
+  /**
+   * @brief Calculate oscillation probabilities using ATM
+   * */
+  void CalculateProbabilitiesAtm();
 
   /**
    * @brief Return implementation specific index in the weight array for a specific combination of neutrino oscillation channel, energy and cosine zenith
@@ -71,6 +81,11 @@ class OscProbCalcerCHICLinear : public OscProbCalcerBase {
    */
   long DefineWeightArraySize() final;
 
+  /**
+   * @brief Auxiliary function to handle ignored cosineZ cases
+   */
+  int GetNCosineZ();
+
   // ========================================================================================================================================================================
   // Functions which help setup implementation specific code
 
@@ -78,18 +93,45 @@ class OscProbCalcerCHICLinear : public OscProbCalcerBase {
   // Variables which are needed for implementation specific code
 
   /**
-   * @brief Definition of oscillation parameters which are expected in this ProbGPU implementation
+   * @brief Definition of oscillation parameters which are expected in this CHIC implementation
    */
-  enum OscParams{kTH12, kTH23, kTH13, kDM12, kDM23, kDCP, kPATHL, kDENS, kNOscParams};
+  enum OscParams{kTH12, kTH23, kTH13, kDM12, kDM23, kDCP, kNOscParams};
   
   /**
    * @brief Define the neutrino and antineutrino values expected by this implementation
    */
   enum NuType{Nu=1,Nubar=-1};
 
-  // CHIC
+  /**
+   * @brief CHIC propagator for neutrinos
+   */
   std::unique_ptr<CHIC> chic_nu;
+
+  /**
+   * @brief CHIC propagator for antineutrinos
+   */
   std::unique_ptr<CHIC> chic_nubar;
+
+  /**
+   * @brief CHICEARTH propagator for neutrinos (atmospheric)
+   */
+  std::unique_ptr<CHICEARTH> chicearth_nu;
+
+  /**
+   * @brief CHICEARTH propagator for antineutrinos (atmospheric)
+   */
+  std::unique_ptr<CHICEARTH> chicearth_nubar;
+
+
+  /**
+   * @brief Name of earth model implemented in CHIC
+   */
+  std::string fPremName;
+
+  /**
+   * @brief Double storing the detector depth in km
+   */
+  double fDetDepth;
 };
 
 #endif

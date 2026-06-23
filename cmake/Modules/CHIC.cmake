@@ -24,11 +24,14 @@ if(${UseCHIC} EQUAL 1)
 
   set(CHIC_HEADERS
     ${CHIC_SOURCE_DIR}/src/CHIC.h
+    ${CHIC_SOURCE_DIR}/src/CHIC_EARTH.h
     ${CHIC_SOURCE_DIR}/src/opt_constants.h
+    ${CHIC_SOURCE_DIR}/src/earth.h
   )
 
   add_library(CHIC STATIC
     ${CHIC_SOURCE_DIR}/src/CHIC.cpp
+    ${CHIC_SOURCE_DIR}/src/CHIC_EARTH.cpp
     ${CHIC_HEADERS}
   )
   target_include_directories(CHIC
