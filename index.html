@@ -168,15 +168,18 @@ PMNS + extensions</summary>
 </details>
 </td><td class="markdownTableBodyNone"><a href="https://github.com/cafana/OscLib">Ref</a>   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md4"></a>
+<h2><a class="anchor" id="autotoc_md4"></a>
+Engine Requirements</h2>
+<p>Requirements for <a class="el" href="namespaceNuOscillator.html">NuOscillator</a> strongly depends on a chosen configuration, for example some engines require minimal of C++17. In addition, some engines require an external library like Eigen. <a class="el" href="namespaceNuOscillator.html">NuOscillator</a> should handle it all internally, if not, should provide useful error.</p>
+<h1><a class="anchor" id="autotoc_md5"></a>
 GPU</h1>
 <p>Some engines requires gpu like <code>ProbGPULinear</code> other can use both CPU and GPU. To use GPU functionality remember about </p><div class="fragment"><div class="line">cmake ../ -DUseGPU=1</div>
 </div><!-- fragment --><p> You can also pass CUDA architectures via cmake to ensure consistent architectures in multiple packages: </p><div class="fragment"><div class="line">cmake ../ -DCMAKE_CUDA_ARCHITECTURES=&quot;all&quot;</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md5"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md6"></a>
 Compiler Flags</h1>
 <p><a class="el" href="namespaceNuOscillator.html">NuOscillator</a> natively doesn't include many c++ compiler flags (this include optimalisation flags). Since package is intended to be used withing other (fitting) frameworks we allow to pass compiler flags via cmake. </p><div class="fragment"><div class="line">cmake ../ -DNuOscillator_Compiler_Flags=&quot;-O3;-g;-Wextra;-Wall&quot;</div>
 </div><!-- fragment --><p> This give full freedom to users in how to configure <a class="el" href="namespaceNuOscillator.html">NuOscillator</a>.</p>
-<h1><a class="anchor" id="autotoc_md6"></a>
+<h1><a class="anchor" id="autotoc_md7"></a>
 How to Use in Fitting Framework</h1>
 <p>First initialise factory to produce engine defined by config. See exmaples of configs <a href="https://github.com/dbarrow257/NuOscillator/tree/main/NuOscillatorConfigs">here</a> </p><div class="fragment"><div class="line"><span class="keyword">auto</span> OscillFactory = std::make_unique&lt;OscillatorFactory&gt;();</div>
 <div class="line"> </div>
@@ -192,9 +195,9 @@ How to Use in Fitting Framework</h1>
 <div class="line">  NuOscProbCalcers-&gt;SetEnergyArrayInCalcer(EnergyArray);</div>
 <div class="line">}</div>
 <div class="line">NuOscProbCalcers-&gt;Setup();</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md7"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md8"></a>
 Benchmark</h1>
-<h2><a class="anchor" id="autotoc_md8"></a>
+<h2><a class="anchor" id="autotoc_md9"></a>
 CPU only</h2>
 <p><b>Beam</b></p>
 <p><img src="https://github.com/dbarrow257/NuOscillator/raw/gh-plots/TimingDistributionBeam.png" alt="Timing Distribution Beam" class="inline"/></p>
@@ -202,7 +205,7 @@ CPU only</h2>
 <p><img src="https://github.com/dbarrow257/NuOscillator/raw/gh-plots/TimingDistributionATM.png" alt="Timing Distribution ATM" class="inline"/></p>
 <p><b>Atmospheric Subsampling</b></p>
 <p><img src="https://github.com/dbarrow257/NuOscillator/raw/gh-plots/TimingDistributionATM_SubSampling.png" alt="Timing Distribution ATM" class="inline"/></p>
-<h2><a class="anchor" id="autotoc_md9"></a>
+<h2><a class="anchor" id="autotoc_md10"></a>
 CPU vs GPU</h2>
 <p><b>Unbinned</b> <img src="https://github.com/dbarrow257/NuOscillator/raw/gh-plots/TimingDistributionUnBinned_GPUvsCPU.png" alt="Timing Distribution ATM" class="inline"/></p>
 <p><b>Binned</b></p>

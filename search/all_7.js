@@ -6,5 +6,5 @@ var searchData=
   ['getoscillationparameter_3',['GetOscillationParameter',['../classOscProbCalcerBase.html#af73b9106b66ad6c6ce4bcc85ad481f64',1,'OscProbCalcerBase']]],
   ['getpmnsobj_4',['GetPMNSObj',['../classOscProbCalcerOscProb.html#a2a78439b78c0db06d0e61dd48d68f13f',1,'OscProbCalcerOscProb']]],
   ['getprob_5',['GetProb',['../OscProbCalcer__ProbGPULinear_8cpp.html#a5dc0981070b21b7efb798f8440bf7201',1,'OscProbCalcer_ProbGPULinear.cpp']]],
-  ['gpu_6',['GPU',['../index.html#autotoc_md9',1,'CPU vs GPU'],['../index.html#autotoc_md4',1,'GPU']]]
+  ['gpu_6',['GPU',['../index.html#autotoc_md10',1,'CPU vs GPU'],['../index.html#autotoc_md5',1,'GPU']]]
 ];

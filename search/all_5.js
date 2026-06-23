@@ -8,6 +8,7 @@ var searchData=
   ['energyaxisbincenters_5',['EnergyAxisBinCenters',['../classOscillatorBinned.html#ae92aceeec9c7e0d588ea58a2a458f128',1,'OscillatorBinned']]],
   ['energyaxisbinedges_6',['EnergyAxisBinEdges',['../classOscillatorBinned.html#a210cb8d3efc6c0af55a8b25b76041576',1,'OscillatorBinned']]],
   ['energyaxishistname_7',['EnergyAxisHistName',['../classOscillatorBinned.html#adb510cfba161f90db5b1c9fa1b6d0f09',1,'OscillatorBinned']]],
-  ['engines_8',['Implemented Engines',['../index.html#autotoc_md3',1,'']]],
-  ['evalpointssetinconstructor_9',['EvalPointsSetInConstructor',['../classOscillatorBase.html#aa043632bc554bce3f19e74318af66e03',1,'OscillatorBase']]]
+  ['engine_20requirements_8',['Engine Requirements',['../index.html#autotoc_md4',1,'']]],
+  ['engines_9',['Implemented Engines',['../index.html#autotoc_md3',1,'']]],
+  ['evalpointssetinconstructor_10',['EvalPointsSetInConstructor',['../classOscillatorBase.html#aa043632bc554bce3f19e74318af66e03',1,'OscillatorBase']]]
 ];
