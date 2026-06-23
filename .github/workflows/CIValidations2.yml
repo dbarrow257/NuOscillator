@@ -122,7 +122,7 @@ jobs:
       image: ghcr.io/mach3-software/mach3:alma9v1.4.1
 
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0  # v7.0.0
 
     - name: Get hdf5
       run: dnf install -y hdf5 hdf5-devel
@@ -149,7 +149,7 @@ jobs:
         build/Linux/bin//${{ matrix.exec }} ${{ matrix.argument }} | tee ${{ matrix.new_output }}
 
     - name: Check that the files are the exact same
-      uses: LouisBrunner/diff-action@v2.0.0
+      uses: LouisBrunner/diff-action@ab382b451dbb2333cbb4db158d211d07fb5c82c6 # v3.0.0
       with:
         old: /opt/NuOscillator/.github/TestOutputs/${{ matrix.old_output }}
         new: /opt/NuOscillator/${{ matrix.new_output }}

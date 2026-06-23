@@ -74,6 +74,9 @@ Following neutrino oscillation calculators are available:
 | CHIC             | CPU        | Beam/Atm   | PMNS       | [Ref](https://arxiv.org/pdf/2512.16427)                 |
 | OscLib           | CPU        | Beam       | <details><summary>PMNS + extensions</summary>Non-Standard Interactions (NSI))</details>       | [Ref](https://github.com/cafana/OscLib)                 |
 
+### Engine Requirements
+Requirements for NuOscillator strongly depends on a chosen configuration, for example some engines require minimal of C++17. In addition, some engines require an external library like Eigen. NuOscillator should handle it all internally, if not, should provide useful error.
+
 ## GPU
 Some engines requires gpu like `ProbGPULinear` other can use both CPU and GPU. To use GPU functionality remember about
 ```bash
@@ -90,7 +93,6 @@ NuOscillator natively doesn't include many c++ compiler flags (this include opti
 cmake ../ -DNuOscillator_Compiler_Flags="-O3;-g;-Wextra;-Wall"
 ```
 This give full freedom to users in how to configure NuOscillator.
-
 
 ## How to Use in Fitting Framework
 First initialise factory to produce engine defined by config. See exmaples of configs [here](https://github.com/dbarrow257/NuOscillator/tree/main/NuOscillatorConfigs)
