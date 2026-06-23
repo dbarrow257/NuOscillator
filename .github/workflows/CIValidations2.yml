@@ -106,7 +106,7 @@ jobs:
             new_output: GLoBESLinear_BinnedOscillator_New.txt
             old_output: GLoBESLinear_BinnedOscillator_Stored.txt
           - name: OscProbCalcer CHICLinear Comparison
-            cmake_options: -DUseCHICLinear=1
+            cmake_options: -DUseCHIC=1
             exec: SingleOscProbCalcer
             argument: NuOscillatorConfigs/OscProbCalcerConfigs/CHICLinear.yaml
             new_output: CHICLinear_New.txt
