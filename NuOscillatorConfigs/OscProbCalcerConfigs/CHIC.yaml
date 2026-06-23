@@ -12,7 +12,7 @@ General:
     matter_density: 2.6
 
 OscProbCalcerSetup:
-  ImplementationName: "CHICLinear"
+  ImplementationName: "CHIC"
   OscChannelMapping:
     - Entry: "Electron:Electron"
     - Entry: "Electron:Muon"
