@@ -60,6 +60,7 @@ CPMAddPackage(
 `UseCUDAProb3` etc. refers to implemented engines. Engines are loaded via yaml config files. In principle you can compile all of them and select one you want to use via config.
 
 Following neutrino oscillation calculators are available:
+
 | Oscillator       | Hardware   | Source     | Model      | Reference  |
 |------------------|------------|------------|------------|------------|
 | CUDAProb3Linear  | CPU/GPU    | Beam       | PMNS       |            |
