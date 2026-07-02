@@ -108,8 +108,8 @@ inline std::vector<std::string> ReturnKnownConfigs() {
   ConfigNames.push_back("./NuOscillatorConfigs/Binned_GLoBESLinear.yaml");
 #endif
 
-#if UseCHICLinear == 1
-  ConfigNames.push_back("./NuOscillatorConfigs/Binned_CHICLinear.yaml");
+#if UseCHIC == 1
+  ConfigNames.push_back("./NuOscillatorConfigs/Binned_CHIC.yaml");
 #endif
 
   if(ConfigNames.empty()){

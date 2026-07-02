@@ -1,5 +1,6 @@
 General:
   Verbosity: "NONE"
+  CosineZIgnored: true
 
   OscillationParameters:
     sin2_th12: 3.07e-1
@@ -12,7 +13,7 @@ General:
     matter_density: 2.6
 
 OscProbCalcerSetup:
-  ImplementationName: "CHICLinear"
+  ImplementationName: "CHIC"
   OscChannelMapping:
     - Entry: "Electron:Electron"
     - Entry: "Electron:Muon"
