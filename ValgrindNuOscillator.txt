@@ -7,7 +7,7 @@
 ==2305== 
 ==2305== HEAP SUMMARY:
 ==2305==     in use at exit: 41,871,683 bytes in 30,574 blocks
-==2305==   total heap usage: 314,971 allocs, 284,397 frees, 528,198,682 bytes allocated
+==2305==   total heap usage: 314,971 allocs, 284,397 frees, 528,198,684 bytes allocated
 ==2305== 
 ==2305== 2 bytes in 1 blocks are still reachable in loss record 1 of 8,161
 ==2305==    at 0x4846743: operator new[](unsigned long) (vg_replace_malloc.c:730)
