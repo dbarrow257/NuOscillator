@@ -1,5 +1,5 @@
 if(NOT DEFINED OscProb_BRANCH)
-  set(OscProb_BRANCH "v2.3.0")
+  set(OscProb_BRANCH "v2.4.0")
 endif()
 
 if(${UseOscProb} EQUAL 1)
