@@ -10,6 +10,7 @@
 #include "inc/PMNS_SNSI.h"
 #include "inc/PMNS_LIV.h"
 #include "inc/PMNS_OQS.h"
+#include "inc/PMNS_SiderealLIV.h"
 
 OscProbCalcerOscProb::OscProbCalcerOscProb(YAML::Node Config_) : OscProbCalcerBase(Config_), fPMNSObj(nullptr) {
   //=======
@@ -111,6 +112,7 @@ OscProb::PMNS_Base* OscProbCalcerOscProb::GetPMNSObj() {
  if(fOscType==kNUNM)         return new OscProb::PMNS_NUNM();
  if(fOscType==kLIV)          return new OscProb::PMNS_LIV();
  if(fOscType==kOQS)          return new OscProb::PMNS_OQS();
+ if(fOscType==kSiderealLIV)  return new OscProb::PMNS_SiderealLIV();
 
  return new OscProb::PMNS_Fast();
 }
@@ -308,6 +310,85 @@ void OscProbCalcerOscProb::SetPMNSParams() {
     LIV->SetcT(2, 2, 8, GetOscillationParameter(kcT_tautau_8), 0.);
   }
 
+  // Set SiderealLIV parameters
+  if(OscProb::PMNS_SiderealLIV* SiderealLIV = dynamic_cast<OscProb::PMNS_SiderealLIV*>(fPMNSObj)) {
+    // A coefficients
+    SiderealLIV->SetA(0,0,0,GetOscillationParameter(aT_ee_X));
+    SiderealLIV->SetA(0,0,1,GetOscillationParameter(aT_ee_Y));
+    SiderealLIV->SetA(0,0,2,GetOscillationParameter(aT_ee_Z));
+
+    SiderealLIV->SetA(0,1,0,GetOscillationParameter(aT_emu_X));
+    SiderealLIV->SetA(0,1,1,GetOscillationParameter(aT_emu_Y));
+    SiderealLIV->SetA(0,1,2,GetOscillationParameter(aT_emu_Z));
+
+    SiderealLIV->SetA(0,2,0,GetOscillationParameter(aT_etau_X));
+    SiderealLIV->SetA(0,2,1,GetOscillationParameter(aT_etau_Y));
+    SiderealLIV->SetA(0,2,2,GetOscillationParameter(aT_etau_Z));
+
+    SiderealLIV->SetA(1,1,0,GetOscillationParameter(aT_mumu_X));
+    SiderealLIV->SetA(1,1,1,GetOscillationParameter(aT_mumu_Y));
+    SiderealLIV->SetA(1,1,2,GetOscillationParameter(aT_mumu_Z));
+
+    SiderealLIV->SetA(1,2,0,GetOscillationParameter(aT_mutau_X));
+    SiderealLIV->SetA(1,2,1,GetOscillationParameter(aT_mutau_Y));
+    SiderealLIV->SetA(1,2,2,GetOscillationParameter(aT_mutau_Z));
+
+    SiderealLIV->SetA(2,2,0,GetOscillationParameter(aT_tautau_X));
+    SiderealLIV->SetA(2,2,1,GetOscillationParameter(aT_tautau_Y));
+    SiderealLIV->SetA(2,2,2,GetOscillationParameter(aT_tautau_Z));
+
+    // C coefficients
+    SiderealLIV->SetC(0,0,0,0,GetOscillationParameter(cT_ee_XX));
+    SiderealLIV->SetC(0,0,0,1,GetOscillationParameter(cT_ee_XY));
+    SiderealLIV->SetC(0,0,0,2,GetOscillationParameter(cT_ee_XZ));
+    SiderealLIV->SetC(0,0,1,1,GetOscillationParameter(cT_ee_YY));
+    SiderealLIV->SetC(0,0,1,2,GetOscillationParameter(cT_ee_YZ));
+    SiderealLIV->SetC(0,0,2,2,GetOscillationParameter(cT_ee_ZZ));
+
+    SiderealLIV->SetC(0,1,0,0,GetOscillationParameter(cT_emu_XX));
+    SiderealLIV->SetC(0,1,0,1,GetOscillationParameter(cT_emu_XY));
+    SiderealLIV->SetC(0,1,0,2,GetOscillationParameter(cT_emu_XZ));
+    SiderealLIV->SetC(0,1,1,1,GetOscillationParameter(cT_emu_YY));
+    SiderealLIV->SetC(0,1,1,2,GetOscillationParameter(cT_emu_YZ));
+    SiderealLIV->SetC(0,1,2,2,GetOscillationParameter(cT_emu_ZZ));
+
+    SiderealLIV->SetC(0,2,0,0,GetOscillationParameter(cT_etau_XX));
+    SiderealLIV->SetC(0,2,0,1,GetOscillationParameter(cT_etau_XY));
+    SiderealLIV->SetC(0,2,0,2,GetOscillationParameter(cT_etau_XZ));
+    SiderealLIV->SetC(0,2,1,1,GetOscillationParameter(cT_etau_YY));
+    SiderealLIV->SetC(0,2,1,2,GetOscillationParameter(cT_etau_YZ));
+    SiderealLIV->SetC(0,2,2,2,GetOscillationParameter(cT_etau_ZZ));
+
+    SiderealLIV->SetC(1,1,0,0,GetOscillationParameter(cT_mumu_XX));
+    SiderealLIV->SetC(1,1,0,1,GetOscillationParameter(cT_mumu_XY));
+    SiderealLIV->SetC(1,1,0,2,GetOscillationParameter(cT_mumu_XZ));
+    SiderealLIV->SetC(1,1,1,1,GetOscillationParameter(cT_mumu_YY));
+    SiderealLIV->SetC(1,1,1,2,GetOscillationParameter(cT_mumu_YZ));
+    SiderealLIV->SetC(1,1,2,2,GetOscillationParameter(cT_mumu_ZZ));
+
+    SiderealLIV->SetC(1,2,0,0,GetOscillationParameter(cT_mutau_XX));
+    SiderealLIV->SetC(1,2,0,1,GetOscillationParameter(cT_mutau_XY));
+    SiderealLIV->SetC(1,2,0,2,GetOscillationParameter(cT_mutau_XZ));
+    SiderealLIV->SetC(1,2,1,1,GetOscillationParameter(cT_mutau_YY));
+    SiderealLIV->SetC(1,2,1,2,GetOscillationParameter(cT_mutau_YZ));
+    SiderealLIV->SetC(1,2,2,2,GetOscillationParameter(cT_mutau_ZZ));
+
+    SiderealLIV->SetC(2,2,0,0,GetOscillationParameter(cT_tautau_XX));
+    SiderealLIV->SetC(2,2,0,1,GetOscillationParameter(cT_tautau_XY));
+    SiderealLIV->SetC(2,2,0,2,GetOscillationParameter(cT_tautau_XZ));
+    SiderealLIV->SetC(2,2,1,1,GetOscillationParameter(cT_tautau_YY));
+    SiderealLIV->SetC(2,2,1,2,GetOscillationParameter(cT_tautau_YZ));
+    SiderealLIV->SetC(2,2,2,2,GetOscillationParameter(cT_tautau_ZZ));
+
+    // now params related to sidereal
+    SiderealLIV->SetColatitude(GetOscillationParameter(kLatitude),
+                               GetOscillationParameter(kLongitude),
+                               GetOscillationParameter(kAltitude));
+    SiderealLIV->SetNeutrinoDirection(GetOscillationParameter(kZenith),
+                                      GetOscillationParameter(kAzimuth));
+    SiderealLIV->SetTimeHours(GetOscillationParameter(kSiderealTime));
+  }
+
   // Set OQS parameters
   if(OscProb::PMNS_OQS* OQS = dynamic_cast<OscProb::PMNS_OQS*>(fPMNSObj)) {
     // Decoherence magnitudes (a_i), i = 1..8
@@ -360,18 +441,19 @@ void OscProbCalcerOscProb::SetPMNSParams() {
 }
 
 int OscProbCalcerOscProb::PMNS_StrToInt(const std::string& PMNSType) {
-  if (PMNSType == "Fast" || PMNSType == "fast")          return kFast;
-  if (PMNSType == "Sterile+1" || PMNSType == "Sterile1") return kPMNSSterile1;
-  if (PMNSType == "Sterile+2" || PMNSType == "Sterile2") return kPMNSSterile2;
-  if (PMNSType == "Sterile+3" || PMNSType == "Sterile3") return kPMNSSterile3;
-  if (PMNSType == "Decay" || PMNSType == "decay")        return kDecay;
-  if (PMNSType == "Deco" || PMNSType == "deco")          return kDeco;
-  if (PMNSType == "NSI" || PMNSType == "nsi")            return kNSI;
-  if (PMNSType == "LIV" || PMNSType == "liv")            return kLIV;
-  if (PMNSType == "NUNM" || PMNSType == "nunm")          return kNUNM;
-  if (PMNSType == "SNSI" || PMNSType == "snsi")          return kSNSI;
-  if (PMNSType == "Iter" || PMNSType == "iter")          return kIter;
-  if (PMNSType == "OQS" || PMNSType == "oqs")            return kOQS;
+  if (PMNSType == "Fast" || PMNSType == "fast")                return kFast;
+  if (PMNSType == "Sterile+1" || PMNSType == "Sterile1")       return kPMNSSterile1;
+  if (PMNSType == "Sterile+2" || PMNSType == "Sterile2")       return kPMNSSterile2;
+  if (PMNSType == "Sterile+3" || PMNSType == "Sterile3")       return kPMNSSterile3;
+  if (PMNSType == "Decay" || PMNSType == "decay")              return kDecay;
+  if (PMNSType == "Deco" || PMNSType == "deco")                return kDeco;
+  if (PMNSType == "NSI" || PMNSType == "nsi")                  return kNSI;
+  if (PMNSType == "LIV" || PMNSType == "liv")                  return kLIV;
+  if (PMNSType == "NUNM" || PMNSType == "nunm")                return kNUNM;
+  if (PMNSType == "SNSI" || PMNSType == "snsi")                return kSNSI;
+  if (PMNSType == "Iter" || PMNSType == "iter")                return kIter;
+  if (PMNSType == "OQS" || PMNSType == "oqs")                  return kOQS;
+  if (PMNSType == "SiderealLIV" || PMNSType == "siderealliv")  return kSiderealLIV;
 
   std::cerr << "Invalid PMNS matrix type provided:" << PMNSType << std::endl;
   throw std::runtime_error("Invalid setup");
@@ -411,8 +493,32 @@ void OscProbCalcerOscProb::SetOscParams() {
   case kNUNM:
     OscParNames = {"sin2_th12","sin2_th23","sin2_th13","dm2_12","dm2_23","delta_cp","alpha11","alpha21","alpha31","alpha22","alpha32","alpha33","phi21","phi31","phi32","frac_vnc"};
     break;
+    break;
   case kLIV:
-    OscParNames = {"sin2_th12","sin2_th23","sin2_th13","dm2_12","dm2_23","delta_cp","aT_ee_3", "aT_emu_3", "aT_etau_3", "aT_mumu_3", "aT_mutau_3", "aT_tautau_3", "Delta_emu_3", "Delta_etau_3", "Delta_mutau_3","cT_ee_4", "cT_emu_4", "cT_etau_4", "cT_mumu_4", "cT_mutau_4","cT_tautau_4", "Delta_emu_4", "Delta_etau_4", "Delta_mutau_4","aT_ee_5", "aT_emu_5", "aT_etau_5", "aT_mumu_5", "aT_mutau_5","aT_tautau_5", "Delta_emu_5", "Delta_etau_5", "Delta_mutau_5","cT_ee_6", "cT_emu_6", "cT_etau_6", "cT_mumu_6", "cT_mutau_6","cT_tautau_6", "Delta_emu_6", "Delta_etau_6", "Delta_mutau_6","aT_ee_7", "aT_emu_7", "aT_etau_7", "aT_mumu_7", "aT_mutau_7","aT_tautau_7", "Delta_emu_7", "Delta_etau_7", "Delta_mutau_7","cT_ee_8", "cT_emu_8", "cT_etau_8", "cT_mumu_8", "cT_mutau_8","cT_tautau_8", "Delta_emu_8", "Delta_etau_8", "Delta_mutau_8"};    
+    OscParNames = {"sin2_th12","sin2_th23","sin2_th13","dm2_12","dm2_23","delta_cp","aT_ee_3", "aT_emu_3", "aT_etau_3", "aT_mumu_3", "aT_mutau_3", "aT_tautau_3", "Delta_emu_3", "Delta_etau_3", "Delta_mutau_3","cT_ee_4", "cT_emu_4", "cT_etau_4", "cT_mumu_4", "cT_mutau_4","cT_tautau_4", "Delta_emu_4", "Delta_etau_4", "Delta_mutau_4","aT_ee_5", "aT_emu_5", "aT_etau_5", "aT_mumu_5", "aT_mutau_5","aT_tautau_5", "Delta_emu_5", "Delta_etau_5", "Delta_mutau_5","cT_ee_6", "cT_emu_6", "cT_etau_6", "cT_mumu_6", "cT_mutau_6","cT_tautau_6", "Delta_emu_6", "Delta_etau_6", "Delta_mutau_6","aT_ee_7", "aT_emu_7", "aT_etau_7", "aT_mumu_7", "aT_mutau_7","aT_tautau_7", "Delta_emu_7", "Delta_etau_7", "Delta_mutau_7","cT_ee_8", "cT_emu_8", "cT_etau_8", "cT_mumu_8", "cT_mutau_8","cT_tautau_8", "Delta_emu_8", "Delta_etau_8", "Delta_mutau_8"};
+    break;
+  case kSiderealLIV:
+    OscParNames = {
+      "sin2_th12", "sin2_th23", "sin2_th13", "dm2_12", "dm2_23", "delta_cp",
+
+      // A coefficients
+      "aT_ee_X", "aT_ee_Y", "aT_ee_Z",
+      "aT_emu_X", "aT_emu_Y", "aT_emu_Z",
+      "aT_etau_X", "aT_etau_Y", "aT_etau_Z",
+      "aT_mumu_X", "aT_mumu_Y", "aT_mumu_Z",
+      "aT_mutau_X", "aT_mutau_Y", "aT_mutau_Z",
+      "aT_tautau_X", "aT_tautau_Y", "aT_tautau_Z",
+
+      // C coefficients
+      "cT_ee_XX", "cT_ee_XY", "cT_ee_XZ", "cT_ee_YY", "cT_ee_YZ", "cT_ee_ZZ",
+      "cT_emu_XX", "cT_emu_XY", "cT_emu_XZ", "cT_emu_YY", "cT_emu_YZ", "cT_emu_ZZ",
+      "cT_etau_XX", "cT_etau_XY", "cT_etau_XZ", "cT_etau_YY", "cT_etau_YZ", "cT_etau_ZZ",
+      "cT_mumu_XX", "cT_mumu_XY", "cT_mumu_XZ", "cT_mumu_YY", "cT_mumu_YZ", "cT_mumu_ZZ",
+      "cT_mutau_XX", "cT_mutau_XY", "cT_mutau_XZ", "cT_mutau_YY", "cT_mutau_YZ", "cT_mutau_ZZ",
+      "cT_tautau_XX", "cT_tautau_XY", "cT_tautau_XZ", "cT_tautau_YY", "cT_tautau_YZ", "cT_tautau_ZZ",
+      // Detector / sidereal parameters
+      "Latitude", "Longitude", "Altitude", "Zenith", "Azimuth", "Sidereal_time"
+    };
     break;
   case kSNSI:
     OscParNames = {"sin2_th12","sin2_th23","sin2_th13","dm2_12","dm2_23","delta_cp","eps_ee", "eps_emu", "eps_etau", "eps_mumu", "eps_mutau", "eps_tautau", "delta_emu", "delta_etau", "delta_mutau", "elec_coup", "up_coup", "down_coup","light_mass"};    

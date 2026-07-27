@@ -29,7 +29,7 @@ int main(int argc, char **argv) {
   std::unordered_map<std::string, FLOAT_T> OscillationParameters = ReturnOscParamsFromConfig(YAML::LoadFile(ConfigName));
  
   //Don't plot by default
-  bool Plot = false;
+  bool Plot = true;
   
   std::vector<FLOAT_T> EnergyArray = logspace(0.1,100.,1e3);
   std::vector<FLOAT_T> CosineZArray = linspace(-1.0,1.0,15);
