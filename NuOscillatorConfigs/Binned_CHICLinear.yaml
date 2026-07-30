@@ -19,7 +19,7 @@ Binned:
   CosineZAxisHistName: "CosineZAxisBinning"
 
 OscProbCalcerSetup:
-  ImplementationName: "CHICLinear"
+  ImplementationName: "CHIC"
   OscChannelMapping:
     - Entry: "Electron:Electron"
     - Entry: "Electron:Muon"

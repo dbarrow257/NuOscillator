@@ -1,8 +1,8 @@
-if(NOT DEFINED CHICLinear_BRANCH)
-  set(CHICLinear_BRANCH "v2.0.0")
+if(NOT DEFINED CHIC_BRANCH)
+  set(CHIC_BRANCH "v2.0.0")
 endif()
 
-if(${UseCHICLinear} EQUAL 1)
+if(${UseCHIC} EQUAL 1)
   if(CMAKE_CXX_STANDARD LESS 17)
     cmessage(WARNING "CHIC requires at least C++17 — changing from ${CMAKE_CXX_STANDARD} to 17")
     set(CMAKE_CXX_STANDARD 17)
@@ -18,17 +18,20 @@ if(${UseCHICLinear} EQUAL 1)
   CPMAddPackage(
     NAME CHIC
     GIT_REPOSITORY https://github.com/pabloferm/CHIC.git
-    GIT_TAG ${CHICLinear_BRANCH}
+    GIT_TAG ${CHIC_BRANCH}
     DOWNLOAD_ONLY YES
   )
 
   set(CHIC_HEADERS
     ${CHIC_SOURCE_DIR}/src/CHIC.h
+    ${CHIC_SOURCE_DIR}/src/CHIC_EARTH.h
     ${CHIC_SOURCE_DIR}/src/opt_constants.h
+    ${CHIC_SOURCE_DIR}/src/earth.h
   )
 
   add_library(CHIC STATIC
     ${CHIC_SOURCE_DIR}/src/CHIC.cpp
+    ${CHIC_SOURCE_DIR}/src/CHIC_EARTH.cpp
     ${CHIC_HEADERS}
   )
   target_include_directories(CHIC
@@ -46,5 +49,5 @@ if(${UseCHICLinear} EQUAL 1)
     ARCHIVE DESTINATION lib
   )
 
-  target_compile_definitions(NuOscillatorCompilerOptions INTERFACE UseCHICLinear=1)
+  target_compile_definitions(NuOscillatorCompilerOptions INTERFACE UseCHIC=1)
 endif()
