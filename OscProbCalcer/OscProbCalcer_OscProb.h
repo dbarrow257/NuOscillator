@@ -235,6 +235,54 @@ class OscProbCalcerOscProb : public OscProbCalcerBase {
                      kcT_tautau_8, kDelta_emu_8, kDelta_etau_8, kDelta_mutau_8,
                      kNOscParams_LIV};
 
+
+  /**
+  * @brief Extra oscillation parameters for PMNS_SiderealLIV class.
+  *
+  * The sidereal LIV coefficients are defined in the Sun-centered
+  * celestial frame. A-type coefficients have one spatial index:
+  *
+  *   A^{X,Y,Z}_{alpha beta}
+  *
+  * C-type coefficients have two spatial indices:
+  *
+  *   C^{XY}_{alpha beta}
+  *
+  * Flavour indices:
+  *   e    = 0
+  *   mu   = 1
+  *   tau  = 2
+  *
+  * Additional parameters define detector location, neutrino direction,
+  * and sidereal time.
+  */
+  enum OscParams_SiderealLIV {
+    // A coefficients: X,Y,Z components
+    aT_ee_X = kNOscParams, aT_ee_Y, aT_ee_Z,
+    aT_emu_X, aT_emu_Y, aT_emu_Z,
+    aT_etau_X, aT_etau_Y, aT_etau_Z,
+
+    aT_mumu_X, aT_mumu_Y, aT_mumu_Z,
+    aT_mutau_X, aT_mutau_Y, aT_mutau_Z,
+    aT_tautau_X, aT_tautau_Y, aT_tautau_Z,
+
+
+    // C coefficients: symmetric spatial tensor XX,XY,XZ,YY,YZ,ZZ
+    cT_ee_XX, cT_ee_XY, cT_ee_XZ, cT_ee_YY, cT_ee_YZ, cT_ee_ZZ,
+    cT_emu_XX, cT_emu_XY, cT_emu_XZ, cT_emu_YY, cT_emu_YZ, cT_emu_ZZ,
+    cT_etau_XX, cT_etau_XY, cT_etau_XZ, cT_etau_YY, cT_etau_YZ, cT_etau_ZZ,
+    cT_mumu_XX, cT_mumu_XY, cT_mumu_XZ, cT_mumu_YY, cT_mumu_YZ, cT_mumu_ZZ,
+    cT_mutau_XX, cT_mutau_XY, cT_mutau_XZ, cT_mutau_YY, cT_mutau_YZ, cT_mutau_ZZ,
+    cT_tautau_XX, cT_tautau_XY, cT_tautau_XZ, cT_tautau_YY, cT_tautau_YZ, cT_tautau_ZZ,
+
+
+    // Detector / sidereal parameters
+    kLatitude, kLongitude, kAltitude,
+    kZenith, kAzimuth,
+    kSiderealTime,
+    kOscParams_SiderealLIV
+  };
+
   /**
   * @brief Definition of extra oscillation parameters for PMNS_OQS class (Open Quantum System decoherence model)
   * kA_i     Magnitude of decoherence vector component a_i in the Gell-Mann basis, with i = 1,...,8. These correspond to
@@ -266,7 +314,7 @@ class OscProbCalcerOscProb : public OscProbCalcerBase {
    * LIV and SNSI still to be implemented at some point
    */
   enum PMNSMatrix{kFast, kPMNSSterile1, kPMNSSterile2, kPMNSSterile3,
-                  kDecay, kDeco, kNSI, kSNSI, kIter, kNUNM, kLIV, kOQS};
+                  kDecay, kDeco, kNSI, kSNSI, kIter, kNUNM, kLIV, kOQS, kSiderealLIV};
 
   /**
    * @brief Define the type for the PMNS matrix
