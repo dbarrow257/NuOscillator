@@ -102,10 +102,10 @@ if(${UseGLoBESLinear} EQUAL 1)
   add_dependencies(OscProbCalcer snu_project globes_project)
 endif()
 
-if(${UseCHICLinear} EQUAL 1)
-  target_sources(OscProbCalcer PRIVATE OscProbCalcer_CHICLinear.cpp)
+if(${UseCHIC} EQUAL 1)
+  target_sources(OscProbCalcer PRIVATE OscProbCalcer_CHIC.cpp)
   target_link_libraries(OscProbCalcer CHIC::CHIC)
-  list(APPEND HEADERS OscProbCalcer_CHICLinear.h)
+  list(APPEND HEADERS OscProbCalcer_CHIC.h)
 endif()
 
 if (${UseGPU} EQUAL 1)
