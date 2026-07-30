@@ -15,7 +15,7 @@ The framework has been adapted to integrate seamlessly with oscillation fitters 
 ```bash
 mkdir build;
 cd build;
-cmake ../ -DUseGPU=0 -DUseMultithreading=1 -DUseDoubles=0 -DUseCUDAProb3=1 -DUseCUDAProb3Linear=1 -DUseProb3ppLinear=1 -DUseProbGPULinear=1 -DUseNuFASTLinear=1 -DUseNuFASTEarth=1 -DUseNuSQUIDSLinear=1 -DUseOscProb=1 -DUseGLoBESLinear=1 -DUseCHICLinear=1
+cmake ../ -DUseGPU=0 -DUseMultithreading=1 -DUseDoubles=0 -DUseCUDAProb3=1 -DUseCUDAProb3Linear=1 -DUseProb3ppLinear=1 -DUseProbGPULinear=1 -DUseNuFASTLinear=1 -DUseNuFASTEarth=1 -DUseNuSQUIDSLinear=1 -DUseOscProb=1 -DUseGLoBESLinear=1 -DUseCHIC=1
 make -jN [Where N is number of threads]
 make install
 ```
@@ -52,7 +52,7 @@ CPMAddPackage(
     "UseNuSQUIDSLinear 0"
     "UseOscProb  1"
     "UseGLoBESLinear 0"
-    "UseCHICLinear 0"
+    "UseCHIC 0"
 )
 ```
 
@@ -60,7 +60,8 @@ CPMAddPackage(
 `UseCUDAProb3` etc. refers to implemented engines. Engines are loaded via yaml config files. In principle you can compile all of them and select one you want to use via config.
 
 Following neutrino oscillation calculators are available:
-|Oscillator        | Hardware   | Source     | Model      | Reference  |
+
+| Oscillator       | Hardware   | Source     | Model      | Reference  |
 |------------------|------------|------------|------------|------------|
 | CUDAProb3Linear  | CPU/GPU    | Beam       | PMNS       |            |
 | CUDAProb3        | CPU/GPU    | Atm        | PMNS       | [Ref](https://doi.org/10.1016/j.cpc.2018.07.022)        |
@@ -71,7 +72,7 @@ Following neutrino oscillation calculators are available:
 | OscProb | CPU | Beam/Atm | <details><summary>PMNS + extensions</summary>Non-Standard Interactions (NSI), Scalar NSI (SNSI), Sterile Neutrinos (+1, +2, +3), Neutrino Decay, Decoherence, Non-Unitarity (NUNM), Lorentz Invariance Violation (LIV), Open Quantum Systems (OPS)</details> | [Ref](https://doi.org/10.5281/zenodo.6347002) |
 | NuSQUIDSLinear   | CPU        | Beam       | <details><summary>PMNS + extensions</summary>Non-Standard Interactions (NSI), Decoherence, Lorentz Invariance Violation (LIV)</details>           | [Ref](https://doi.org/10.1016/j.cpc.2022.108346)        |
 | GLoBESLinear     | CPU        | Beam       | PMNS       | [Ref](https://doi.org/10.1016/j.cpc.2005.01.003)        |
-| CHICLinear       | CPU        | Beam       | PMNS       | [Ref](https://arxiv.org/pdf/2512.16427)                 |
+| CHIC             | CPU        | Beam/Atm   | PMNS       | [Ref](https://arxiv.org/pdf/2512.16427)                 |
 | OscLib           | CPU        | Beam       | <details><summary>PMNS + extensions</summary>Non-Standard Interactions (NSI))</details>       | [Ref](https://github.com/cafana/OscLib)                 |
 
 ### Engine Requirements

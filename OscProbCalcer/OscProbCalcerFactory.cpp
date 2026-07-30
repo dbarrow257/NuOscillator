@@ -40,8 +40,8 @@
 #include "OscProbCalcer/OscProbCalcer_GLoBESLinear.h"
 #endif
 
-#if UseCHICLinear==1
-#include "OscProbCalcer/OscProbCalcer_CHICLinear.h"
+#if UseCHIC==1
+#include "OscProbCalcer/OscProbCalcer_CHIC.h"
 #endif
 
 #include <iostream>
@@ -174,9 +174,9 @@ OscProbCalcerBase* OscProbCalcerFactory::CreateOscProbCalcer(YAML::Node OscProbC
     #endif
   }
 
-  else if (OscProbCalcerImplementationToCreate == "CHICLinear") {
-    #if UseCHICLinear==1
-    OscProbCalcerCHICLinear* CHIC = new OscProbCalcerCHICLinear(OscProbCalcerConfig);
+  else if (OscProbCalcerImplementationToCreate == "CHIC") {
+    #if UseCHIC==1
+    OscProbCalcerCHIC* CHIC = new OscProbCalcerCHIC(OscProbCalcerConfig);
     Calcer = (OscProbCalcerBase*)CHIC;
     if (Verbose >= NuOscillator::INFO) {std::cout << "Initalised OscProbCalcer Implementation:" << Calcer->ReturnImplementationName() << " in OscProbCalcerFactory object" << std::endl;}
     #else
