@@ -8,7 +8,7 @@ var searchData=
   ['oscillatorsubsampling_5',['OscillatorSubSampling',['../classOscillatorSubSampling.html',1,'']]],
   ['oscillatorunbinned_6',['OscillatorUnbinned',['../classOscillatorUnbinned.html',1,'']]],
   ['oscprobcalcerbase_7',['OscProbCalcerBase',['../classOscProbCalcerBase.html',1,'']]],
-  ['oscprobcalcerchiclinear_8',['OscProbCalcerCHICLinear',['../classOscProbCalcerCHICLinear.html',1,'']]],
+  ['oscprobcalcerchic_8',['OscProbCalcerCHIC',['../classOscProbCalcerCHIC.html',1,'']]],
   ['oscprobcalcercudaprob3_9',['OscProbCalcerCUDAProb3',['../classOscProbCalcerCUDAProb3.html',1,'']]],
   ['oscprobcalcercudaprob3linear_10',['OscProbCalcerCUDAProb3Linear',['../classOscProbCalcerCUDAProb3Linear.html',1,'']]],
   ['oscprobcalcerfactory_11',['OscProbCalcerFactory',['../classOscProbCalcerFactory.html',1,'']]],

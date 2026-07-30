@@ -31,9 +31,9 @@
 <!-- Node2 -->
 <g id="Node000002" class="node">
 <title>Node2</title>
-<g id="a_Node000002"><a xlink:href="classOscProbCalcerCHICLinear.html" target="_top" xlink:title="Oscillation calculation engine for linear propagation in CHIC.">
-<polygon fill="white" stroke="#666666" points="288.12,-389.25 155.12,-389.25 155.12,-370 288.12,-370 288.12,-389.25"/>
-<text text-anchor="middle" x="221.62" y="-375.75" font-family="Helvetica,sans-Serif" font-size="10.00">OscProbCalcerCHICLinear</text>
+<g id="a_Node000002"><a xlink:href="classOscProbCalcerCHIC.html" target="_top" xlink:title="Oscillation calculation engine for linear propagation in CHIC.">
+<polygon fill="white" stroke="#666666" points="274.62,-389.25 168.62,-389.25 168.62,-370 274.62,-370 274.62,-389.25"/>
+<text text-anchor="middle" x="221.62" y="-375.75" font-family="Helvetica,sans-Serif" font-size="10.00">OscProbCalcerCHIC</text>
 </a>
 </g>
 </g>
@@ -41,7 +41,7 @@
 <g id="edge1_Node000001_Node000002" class="edge">
 <title>Node1&#45;&gt;Node2</title>
 <g id="a_edge1_Node000001_Node000002"><a xlink:title=" ">
-<path fill="none" stroke="#63b8ff" d="M58.01,-215.36C67.35,-251.08 91.54,-324.01 140.5,-361.62 144.91,-365.01 149.83,-367.79 155.02,-370.05"/>
+<path fill="none" stroke="#63b8ff" d="M58.01,-215.36C67.35,-251.08 91.54,-324.01 140.5,-361.62 148.53,-367.79 158.26,-371.92 168.15,-374.67"/>
 <polygon fill="#63b8ff" stroke="#63b8ff" points="61.47,-214.74 55.68,-205.86 54.67,-216.41 61.47,-214.74"/>
 </a>
 </g>

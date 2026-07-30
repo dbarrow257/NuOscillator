@@ -1,7 +1,7 @@
 <map id="OscProbCalcerBase" name="OscProbCalcerBase">
 <area shape="rect" id="Node000001" title="Oscillation calculation engine (CUDAProb3, ProbGPU, Prob3++, etc.) implementation agnostic base class..." alt="" coords="5,252,145,278"/>
-<area shape="rect" id="Node000002" href="$classOscProbCalcerCHICLinear.html" title="Oscillation calculation engine for linear propagation in CHIC." alt="" coords="212,5,390,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="80,236,93,193,115,139,148,86,168,61,191,40,211,29,213,33,194,44,172,65,152,89,120,142,98,195,85,238"/>
+<area shape="rect" id="Node000002" href="$classOscProbCalcerCHIC.html" title="Oscillation calculation engine for linear propagation in CHIC." alt="" coords="230,5,372,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="80,236,93,193,115,139,148,86,168,61,191,40,209,29,229,22,230,27,211,34,194,44,172,65,152,89,120,142,98,195,85,238"/>
 <area shape="rect" id="Node000003" href="$classOscProbCalcerCUDAProb3.html" title="Oscillation calculation engine for linear and atmospheric propagation in CUDAProb3." alt="" coords="211,55,391,80"/>
 <area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="85,236,101,202,124,162,154,123,191,89,211,79,214,83,194,94,158,126,128,165,105,205,89,238"/>
 <area shape="rect" id="Node000004" href="$classOscProbCalcerCUDAProb3Linear.html" title="Oscillation calculation engine for linear propagation in CUDAProb3." alt="" coords="193,104,409,130"/>

@@ -6,7 +6,7 @@ var searchData=
   ['_7eoscillatorsubsampling_3',['~OscillatorSubSampling',['../classOscillatorSubSampling.html#a39df0c091f822560e4f0221ca6eb1335',1,'OscillatorSubSampling']]],
   ['_7eoscillatorunbinned_4',['~OscillatorUnbinned',['../classOscillatorUnbinned.html#a61df6a2ca1fc1c3abdc4585c4a34cfab',1,'OscillatorUnbinned']]],
   ['_7eoscprobcalcerbase_5',['~OscProbCalcerBase',['../classOscProbCalcerBase.html#ae5485ac57513ab579873f3495522fa31',1,'OscProbCalcerBase']]],
-  ['_7eoscprobcalcerchiclinear_6',['~OscProbCalcerCHICLinear',['../classOscProbCalcerCHICLinear.html#a900b8ac92b44e77e40b058c78463022a',1,'OscProbCalcerCHICLinear']]],
+  ['_7eoscprobcalcerchic_6',['~OscProbCalcerCHIC',['../classOscProbCalcerCHIC.html#a53cd54f7f8e2f22fa980d6bcfb462123',1,'OscProbCalcerCHIC']]],
   ['_7eoscprobcalcercudaprob3_7',['~OscProbCalcerCUDAProb3',['../classOscProbCalcerCUDAProb3.html#ac2652e6124af3a84aa25cc702d067ff7',1,'OscProbCalcerCUDAProb3']]],
   ['_7eoscprobcalcercudaprob3linear_8',['~OscProbCalcerCUDAProb3Linear',['../classOscProbCalcerCUDAProb3Linear.html#a15d25d9eec6af5159a9eb1ca5128a6bc',1,'OscProbCalcerCUDAProb3Linear']]],
   ['_7eoscprobcalcerfactory_9',['~OscProbCalcerFactory',['../classOscProbCalcerFactory.html#a335ea83ccd010753af34f452cdf35579',1,'OscProbCalcerFactory']]],

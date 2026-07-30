@@ -267,10 +267,10 @@
 <!-- Node15 -->
 <g id="Node000015" class="node">
 <title>Node15</title>
-<g id="a_Node000015"><a xlink:href="OscProbCalcer__CHICLinear_8h.html" target="_top" xlink:title=" ">
+<g id="a_Node000015"><a xlink:href="OscProbCalcer__CHIC_8h.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="1949.62,-163.5 1798.62,-163.5 1798.62,-133 1949.62,-133 1949.62,-163.5"/>
 <text text-anchor="start" x="1806.62" y="-150" font-family="Helvetica,sans-Serif" font-size="10.00">OscProbCalcer/OscProbCalcer</text>
-<text text-anchor="middle" x="1874.12" y="-138.75" font-family="Helvetica,sans-Serif" font-size="10.00">_CHICLinear.h</text>
+<text text-anchor="middle" x="1874.12" y="-138.75" font-family="Helvetica,sans-Serif" font-size="10.00">_CHIC.h</text>
 </a>
 </g>
 </g>
@@ -521,10 +521,10 @@
 <!-- Node16 -->
 <g id="Node000016" class="node">
 <title>Node16</title>
-<g id="a_Node000016"><a xlink:href="OscProbCalcer__CHICLinear_8cpp.html" target="_top" xlink:title=" ">
+<g id="a_Node000016"><a xlink:href="OscProbCalcer__CHIC_8cpp.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="1949.62,-97 1798.62,-97 1798.62,-66.5 1949.62,-66.5 1949.62,-97"/>
 <text text-anchor="start" x="1806.62" y="-83.5" font-family="Helvetica,sans-Serif" font-size="10.00">OscProbCalcer/OscProbCalcer</text>
-<text text-anchor="middle" x="1874.12" y="-72.25" font-family="Helvetica,sans-Serif" font-size="10.00">_CHICLinear.cpp</text>
+<text text-anchor="middle" x="1874.12" y="-72.25" font-family="Helvetica,sans-Serif" font-size="10.00">_CHIC.cpp</text>
 </a>
 </g>
 </g>

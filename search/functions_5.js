@@ -1,7 +1,7 @@
 var searchData=
 [
   ['getflavour_0',['GetFlavour',['../classOscProbCalcerOscLibLinear.html#a30670f28d887fbabbd89b44704ecd7af',1,'OscProbCalcerOscLibLinear']]],
-  ['getncosinez_1',['GetNCosineZ',['../classOscProbCalcerOscProb.html#a7945032f928654d60664082e5a43267f',1,'OscProbCalcerOscProb']]],
+  ['getncosinez_1',['GetNCosineZ',['../classOscProbCalcerCHIC.html#a02c3d049c9f77b077d3c9f74223408dc',1,'OscProbCalcerCHIC::GetNCosineZ()'],['../classOscProbCalcerOscProb.html#a7945032f928654d60664082e5a43267f',1,'OscProbCalcerOscProb::GetNCosineZ()']]],
   ['getoscillationparameter_2',['GetOscillationParameter',['../classOscProbCalcerBase.html#af73b9106b66ad6c6ce4bcc85ad481f64',1,'OscProbCalcerBase']]],
   ['getpmnsobj_3',['GetPMNSObj',['../classOscProbCalcerOscProb.html#a2a78439b78c0db06d0e61dd48d68f13f',1,'OscProbCalcerOscProb']]],
   ['getprob_4',['GetProb',['../OscProbCalcer__ProbGPULinear_8cpp.html#a5dc0981070b21b7efb798f8440bf7201',1,'OscProbCalcer_ProbGPULinear.cpp']]]

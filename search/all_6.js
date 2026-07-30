@@ -4,7 +4,7 @@ var searchData=
   ['fcosinezarray_1',['fCosineZArray',['../classOscProbCalcerBase.html#af7c32cdec95ac8ae9dc27b057c27ace8',1,'OscProbCalcerBase']]],
   ['fcosinezarrayset_2',['fCosineZArraySet',['../classOscProbCalcerBase.html#afd9fe2aa6d97a77da7dea42ed2134763',1,'OscProbCalcerBase']]],
   ['fcosinezignored_3',['fCosineZIgnored',['../classOscProbCalcerBase.html#a74c8b6fbb5f76a4aafa96d399e1cc253',1,'OscProbCalcerBase::fCosineZIgnored'],['../classOscillatorBase.html#a49382f9a473e2b3b99851e770caec47c',1,'OscillatorBase::fCosineZIgnored']]],
-  ['fdetdepth_4',['fDetDepth',['../classOscProbCalcerOscProb.html#ae4fc4394bef8e13bac6183535cadd18f',1,'OscProbCalcerOscProb']]],
+  ['fdetdepth_4',['fDetDepth',['../classOscProbCalcerCHIC.html#a8be3389b09999fdeb1d46fb5c8682810',1,'OscProbCalcerCHIC::fDetDepth'],['../classOscProbCalcerOscProb.html#ae4fc4394bef8e13bac6183535cadd18f',1,'OscProbCalcerOscProb::fDetDepth']]],
   ['fenergyarray_5',['fEnergyArray',['../classOscProbCalcerBase.html#a79551cba7b9cf9b05fd595449b98c6b1',1,'OscProbCalcerBase']]],
   ['fenergyarrayset_6',['fEnergyArraySet',['../classOscProbCalcerBase.html#af1bbed7bc7d4e24cc7e64c5d2c93adde',1,'OscProbCalcerBase']]],
   ['fevalpointssetinconstructor_7',['fEvalPointsSetInConstructor',['../classOscillatorBase.html#afbd04ac7317e7a936e0c648205f996e4',1,'OscillatorBase']]],
@@ -43,11 +43,12 @@ var searchData=
   ['fpmnsobj_40',['fPMNSObj',['../classOscProbCalcerOscProb.html#a048964b5bc7d669c22be316194935796',1,'OscProbCalcerOscProb']]],
   ['fpremfile_41',['fPremFile',['../classOscProbCalcerOscProb.html#a8c9ea2e5f0407678111ecbe44f46dd34',1,'OscProbCalcerOscProb']]],
   ['fpremmodel_42',['fPremModel',['../classOscProbCalcerOscProb.html#ab1d11ed0c79ffabcfdef3cbbd688bfe4',1,'OscProbCalcerOscProb']]],
-  ['fpropagatorset_43',['fPropagatorSet',['../classOscProbCalcerBase.html#a4258db5c5c9fcd503c294a3ab996203f',1,'OscProbCalcerBase']]],
-  ['framework_44',['Framework',['../index.html#autotoc_md2',1,'How to Integrate in Framework'],['../index.html#autotoc_md7',1,'How to Use in Fitting Framework']]],
-  ['fuselegacymode_45',['fUseLegacyMode',['../classOscProbCalcerBase.html#ad93f114140cefa6353dc4a8bfcca2adc',1,'OscProbCalcerBase']]],
-  ['fuselegacymode_5foscparsset_46',['fUseLegacyMode_OscParsSet',['../classOscProbCalcerBase.html#a87d296a7983f57ad3f0f959d7c6b15f8',1,'OscProbCalcerBase']]],
-  ['fverbose_47',['fVerbose',['../classOscProbCalcerBase.html#afd90d7924214b849c24a6040e0d25042',1,'OscProbCalcerBase::fVerbose'],['../classOscillatorBase.html#aefea428bfddb9afd64b289d7e21d7892',1,'OscillatorBase::fVerbose']]],
-  ['fweightarray_48',['fWeightArray',['../classOscProbCalcerBase.html#a89ca55fe94b0f4b7710ca61d97bacdba',1,'OscProbCalcerBase']]],
-  ['fweightarrayinit_49',['fWeightArrayInit',['../classOscProbCalcerBase.html#a3798ecd36b75b027f2c36ff1ebc5414a',1,'OscProbCalcerBase']]]
+  ['fpremname_43',['fPremName',['../classOscProbCalcerCHIC.html#aff8453aac1d0b1640a386fcabe6c45a3',1,'OscProbCalcerCHIC']]],
+  ['fpropagatorset_44',['fPropagatorSet',['../classOscProbCalcerBase.html#a4258db5c5c9fcd503c294a3ab996203f',1,'OscProbCalcerBase']]],
+  ['framework_45',['Framework',['../index.html#autotoc_md2',1,'How to Integrate in Framework'],['../index.html#autotoc_md7',1,'How to Use in Fitting Framework']]],
+  ['fuselegacymode_46',['fUseLegacyMode',['../classOscProbCalcerBase.html#ad93f114140cefa6353dc4a8bfcca2adc',1,'OscProbCalcerBase']]],
+  ['fuselegacymode_5foscparsset_47',['fUseLegacyMode_OscParsSet',['../classOscProbCalcerBase.html#a87d296a7983f57ad3f0f959d7c6b15f8',1,'OscProbCalcerBase']]],
+  ['fverbose_48',['fVerbose',['../classOscProbCalcerBase.html#afd90d7924214b849c24a6040e0d25042',1,'OscProbCalcerBase::fVerbose'],['../classOscillatorBase.html#aefea428bfddb9afd64b289d7e21d7892',1,'OscillatorBase::fVerbose']]],
+  ['fweightarray_49',['fWeightArray',['../classOscProbCalcerBase.html#a89ca55fe94b0f4b7710ca61d97bacdba',1,'OscProbCalcerBase']]],
+  ['fweightarrayinit_50',['fWeightArrayInit',['../classOscProbCalcerBase.html#a3798ecd36b75b027f2c36ff1ebc5414a',1,'OscProbCalcerBase']]]
 ];
