@@ -88,7 +88,9 @@ var menudata={children:[
 {text:"o",url:"functions_enum.html#index_o"},
 {text:"p",url:"functions_enum.html#index_p"}]},
 {text:"Enumerator",url:"functions_eval.html",children:[
-{text:"k",url:"functions_eval.html#index_k"},
+{text:"a",url:"functions_eval.html#index_a"},
+{text:"c",url:"functions_eval_c.html#index_c"},
+{text:"k",url:"functions_eval_k.html#index_k"},
 {text:"n",url:"functions_eval_n.html#index_n"}]}]}]},
 {text:"Files",url:"files.html",children:[
 {text:"File List",url:"files.html"},
