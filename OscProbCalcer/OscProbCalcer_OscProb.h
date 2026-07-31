@@ -124,7 +124,44 @@ class OscProbCalcerOscProb : public OscProbCalcerBase {
   void SetPMNSParams();
 
   /**
-   * @brief Auxilliary function to handle ignored cosineZ cases
+   * @brief Set parameters for PMNS_Sterile
+   */
+  void SetSterileParams();
+  /**
+   * @brief Set parameters for PMNS_Decay
+   */
+  void SetDecayParams();
+  /**
+   * @brief Set parameters for PMNS_Deco
+   */
+  void SetDecoParams();
+  /**
+   * @brief Set parameters for PMNS_NSI and/or PMNS_SNSI
+   */
+  void SetNSIParams();
+  /**
+   * @brief Set parameters for PMNS_Iter
+   */
+  void SetIterParams();
+  /**
+   * @brief Set parameters for PMNS_NUNM
+   */
+  void SetNUNMParams();
+  /**
+   * @brief Set parameters for PMNS_LIV
+   */
+  void SetLIVParams();
+  /**
+   * @brief Set parameters for PMNS_SiderealLIV
+   */
+  void SetSiderealLIVParams();
+  /**
+   * @brief Set parameters for PMNS_OQS
+   */
+  void SetOQSParams();
+
+  /**
+   * @brief Auxiliary function to handle ignored cosineZ cases
    */
   int GetNCosineZ();
 
