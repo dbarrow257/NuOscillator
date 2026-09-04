@@ -1,5 +1,5 @@
 if(NOT DEFINED CUDAProb3_BRANCH)
-  set(CUDAProb3_BRANCH "v1.2.1")
+  set(CUDAProb3_BRANCH "v1.2.2")
 endif()
 
 if(${UseCUDAProb3} EQUAL 1)
