@@ -17,6 +17,8 @@ OscProbCalcerProb3ppLinear::OscProbCalcerProb3ppLinear(YAML::Node Config_) : Osc
     fPremFile = Config_["OscProbCalcerSetup"]["PREMFile"].as<std::string>();
   }
 
+  if (fCosineZIgnored) fImplementationName += "Linear";
+
   //=======
   std::vector<std::string> OscParNames = {"sin2_th12","sin2_th23","sin2_th13","dm2_12","dm2_23","delta_cp"};
   if (fCosineZIgnored){
