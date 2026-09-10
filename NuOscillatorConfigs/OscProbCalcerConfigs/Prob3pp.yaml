@@ -1,5 +1,6 @@
 General:
   Verbosity: "NONE"
+  CosineZIgnored: false
 
   OscillationParameters:
     sin2_th12: 3.07e-1
@@ -12,6 +13,7 @@ General:
     
 OscProbCalcerSetup:
   ImplementationName: "Prob3pp"
+  PREMFile: "./Inputs/OscProb_prem_4+1layers.txt"
   OscChannelMapping:
     - Entry: "Electron:Electron"
     - Entry: "Electron:Muon"
