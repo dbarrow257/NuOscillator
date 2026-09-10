@@ -51,6 +51,16 @@ class OscProbCalcerProb3ppLinear : public OscProbCalcerBase {
   void CalculateProbabilities() final;
 
   /**
+   * @brief Calculate oscillation probabilities using Beam
+   * */
+  void CalculateProbabilitiesBeam();
+
+  /**
+   * @brief Calculate oscillation probabilities using ATM
+   * */
+  void CalculateProbabilitiesAtm();
+
+  /**
    * @brief Return implementation specific index in the weight array for a specific combination of neutrino oscillation channel, energy and cosine zenith
    * 
    * @param NuTypeIndex The index in #fNeutrinoTypes (neutrino/antinuetrino) to return the pointer for 
@@ -80,7 +90,12 @@ class OscProbCalcerProb3ppLinear : public OscProbCalcerBase {
   /**
    * @brief Definition of oscillation parameters which are expected in this ProbGPU implementation
    */
-  enum OscParams{kTH12, kTH23, kTH13, kDM12, kDM23, kDCP, kPATHL, kDENS, kNOscParams};
+  enum OscParams{kTH12, kTH23, kTH13, kDM12, kDM23, kDCP, kNOscParams};
+
+  /**
+   * @brief Auxiliary function to handle ignored cosineZ cases
+   */
+  int GetNCosineZ();
 
   /**
    * @brief Define the neutrino and antineutrino values expected by this implementation
@@ -91,6 +106,11 @@ class OscProbCalcerProb3ppLinear : public OscProbCalcerBase {
    * @brief Boolean declaring what values are being passed for the values of theta_13 (sin^2(theta) or sin^2(2*theta))
    */
   bool doubled_angle;
+
+  /**
+   * @brief String storing the path of the density table file used to setup the Earth model
+   */
+  std::string fPremFile;
 
   /**
    * @brief BargerPropagator used within the Prob3pp calculation framework
