@@ -1,8 +1,8 @@
-#include "OscProbCalcer_Prob3ppLinear.h"
+#include "OscProbCalcer_Prob3pp.h"
 
 #include <iostream>
 
-OscProbCalcerProb3ppLinear::OscProbCalcerProb3ppLinear(YAML::Node Config_) : OscProbCalcerBase(Config_)
+OscProbCalcerProb3pp::OscProbCalcerProb3pp(YAML::Node Config_) : OscProbCalcerBase(Config_)
 {
   //=======
   //Grab information from the config
@@ -40,11 +40,11 @@ OscProbCalcerProb3ppLinear::OscProbCalcerProb3ppLinear(YAML::Node Config_) : Osc
   bNu = nullptr;
 }
 
-OscProbCalcerProb3ppLinear::~OscProbCalcerProb3ppLinear() {
+OscProbCalcerProb3pp::~OscProbCalcerProb3pp() {
   if(bNu != nullptr) delete bNu;
 }
 
-void OscProbCalcerProb3ppLinear::SetupPropagator() {
+void OscProbCalcerProb3pp::SetupPropagator() {
   if (fCosineZIgnored){
     bNu = new BargerPropagator();
   } else {
@@ -55,7 +55,7 @@ void OscProbCalcerProb3ppLinear::SetupPropagator() {
   bNu->SetWarningSuppression(true);
 }
 
-void OscProbCalcerProb3ppLinear::CalculateProbabilities() {
+void OscProbCalcerProb3pp::CalculateProbabilities() {
   if (fCosineZIgnored) {
     CalculateProbabilitiesBeam();
   } else {
@@ -63,7 +63,7 @@ void OscProbCalcerProb3ppLinear::CalculateProbabilities() {
   }
 }
 
-void OscProbCalcerProb3ppLinear::CalculateProbabilitiesBeam() {
+void OscProbCalcerProb3pp::CalculateProbabilitiesBeam() {
   const double Baseline = GetOscillationParameter(ReturnNOscParams() - 2); // km
   const double rho = GetOscillationParameter(ReturnNOscParams() - 1); // g/cc
 
@@ -83,7 +83,7 @@ void OscProbCalcerProb3ppLinear::CalculateProbabilitiesBeam() {
   }
 }
 
-void OscProbCalcerProb3ppLinear::CalculateProbabilitiesAtm() {
+void OscProbCalcerProb3pp::CalculateProbabilitiesAtm() {
   const double productionHeight = GetOscillationParameter(ReturnNOscParams() - 1);
   for (int iNuType = 0; iNuType < fNNeutrinoTypes; ++iNuType)
   {
@@ -113,16 +113,16 @@ void OscProbCalcerProb3ppLinear::CalculateProbabilitiesAtm() {
   }
 }
 
-int OscProbCalcerProb3ppLinear::GetNCosineZ() {
+int OscProbCalcerProb3pp::GetNCosineZ() {
   return fCosineZIgnored ? 1 : fNCosineZPoints;
 }
 
-int OscProbCalcerProb3ppLinear::ReturnWeightArrayIndex(int NuTypeIndex, int OscChanIndex, int EnergyIndex, int CosineZIndex) {
+int OscProbCalcerProb3pp::ReturnWeightArrayIndex(int NuTypeIndex, int OscChanIndex, int EnergyIndex, int CosineZIndex) {
   int IndexToReturn = ((NuTypeIndex *  fNOscillationChannels + OscChanIndex) * GetNCosineZ() + std::max(CosineZIndex,0)) * fNEnergyPoints + EnergyIndex;
   return IndexToReturn;
 }
 
-long OscProbCalcerProb3ppLinear::DefineWeightArraySize() {
+long OscProbCalcerProb3pp::DefineWeightArraySize() {
   long nCalculationPoints = static_cast<long>(fNEnergyPoints) * GetNCosineZ() * fNOscillationChannels * fNNeutrinoTypes;
   return nCalculationPoints;
 }
