@@ -1,5 +1,6 @@
 General:
   Verbosity: "NONE"
+  CosineZIgnored: true
 
   OscillationParameters:
     sin2_th12: 3.07e-1
