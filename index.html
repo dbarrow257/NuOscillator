@@ -96,7 +96,7 @@ $(function(){ initResizable(false); });
 How to start</h1>
 <div class="fragment"><div class="line">mkdir build;</div>
 <div class="line">cd build;</div>
-<div class="line">cmake ../ -DUseGPU=0 -DUseMultithreading=1 -DUseDoubles=0 -DUseCUDAProb3=1 -DUseCUDAProb3Linear=1 -DUseProb3ppLinear=1 -DUseProbGPULinear=1 -DUseNuFASTLinear=1 -DUseNuFASTEarth=1 -DUseNuSQUIDSLinear=1 -DUseOscProb=1 -DUseGLoBESLinear=1 -DUseCHIC=1</div>
+<div class="line">cmake ../ -DUseGPU=0 -DUseMultithreading=1 -DUseDoubles=0 -DUseCUDAProb3=1 -DUseCUDAProb3Linear=1 -DUseProb3pp=1 -DUseProbGPULinear=1 -DUseNuFASTLinear=1 -DUseNuFASTEarth=1 -DUseNuSQUIDSLinear=1 -DUseOscProb=1 -DUseGLoBESLinear=1 -DUseCHIC=1</div>
 <div class="line">make -jN [Where N is number of threads]</div>
 <div class="line">make install</div>
 </div><!-- fragment --><p>don't forget about </p><div class="fragment"><div class="line">source Linux/bin/setup.NuOscillator.sh</div>
@@ -117,7 +117,7 @@ How to Integrate in Framework</h1>
 <div class="line">    &quot;UseCUDAProb3Linear 0&quot;</div>
 <div class="line">    &quot;UseCUDAProb3 0&quot;</div>
 <div class="line">    &quot;UseProbGPULinear 0&quot;</div>
-<div class="line">    &quot;UseProb3ppLinear 0&quot;</div>
+<div class="line">    &quot;UseProb3pp 0&quot;</div>
 <div class="line">    &quot;UseNuFASTLinear  1&quot;</div>
 <div class="line">    &quot;UseNuSQUIDSLinear 0&quot;</div>
 <div class="line">    &quot;UseOscProb  1&quot;</div>
@@ -138,7 +138,7 @@ Implemented Engines</h1>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone">ProbGPULinear   </td><td class="markdownTableBodyNone">GPU   </td><td class="markdownTableBodyNone">Beam   </td><td class="markdownTableBodyNone">PMNS   </td><td class="markdownTableBodyNone"><a href="http://dx.doi.org/10.3204/DESY-PROC-2014-05/23">Ref</a>    </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone">Prob3++Linear   </td><td class="markdownTableBodyNone">CPU   </td><td class="markdownTableBodyNone">Beam   </td><td class="markdownTableBodyNone">PMNS   </td><td class="markdownTableBodyNone"></td></tr>
+<td class="markdownTableBodyNone">Prob3++   </td><td class="markdownTableBodyNone">CPU   </td><td class="markdownTableBodyNone">Beam/Atm   </td><td class="markdownTableBodyNone">PMNS   </td><td class="markdownTableBodyNone"></td></tr>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone">NuFastLinear   </td><td class="markdownTableBodyNone">CPU   </td><td class="markdownTableBodyNone">Beam   </td><td class="markdownTableBodyNone">PMNS   </td><td class="markdownTableBodyNone"><a href="https://doi.org/10.48550/arXiv.2405.02400">Ref</a>    </td></tr>
 <tr class="markdownTableRowEven">

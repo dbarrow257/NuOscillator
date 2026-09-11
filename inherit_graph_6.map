@@ -18,8 +18,8 @@
 <area shape="poly" id="edge11_Node000000_Node000008" title=" " alt="" coords="107,285,147,312,194,337,225,348,223,353,192,342,144,317,104,290"/>
 <area shape="rect" id="Node000009" href="$classOscProbCalcerOscProb.html" title="Oscillation calculation engine for propagation in OscProb." alt="" coords="221,400,381,426"/>
 <area shape="poly" id="edge12_Node000000_Node000009" title=" " alt="" coords="95,289,137,339,164,365,194,387,222,398,219,403,191,391,160,369,133,343,91,292"/>
-<area shape="rect" id="Node000010" href="$classOscProbCalcerProb3ppLinear.html" title="Oscillation calculation engine for linear propagation in Prob3pp." alt="" coords="204,449,398,475"/>
-<area shape="poly" id="edge13_Node000000_Node000010" title=" " alt="" coords="89,291,105,325,128,365,158,404,194,436,214,446,211,451,191,440,154,407,124,368,101,328,85,293"/>
+<area shape="rect" id="Node000010" href="$classOscProbCalcerProb3pp.html" title="Oscillation calculation engine for linear propagation in Prob3pp." alt="" coords="222,449,380,475"/>
+<area shape="poly" id="edge13_Node000000_Node000010" title=" " alt="" coords="89,291,105,325,128,365,158,404,194,436,223,450,221,455,191,440,154,407,124,368,101,328,85,293"/>
 <area shape="rect" id="Node000011" href="$classOscProbCalcerProbGPULinear.html" title="Oscillation calculation engine for linear propagation in ProbGPU." alt="" coords="200,499,402,524"/>
 <area shape="poly" id="edge14_Node000000_Node000011" title=" " alt="" coords="85,292,98,335,120,388,152,441,172,465,194,485,212,496,209,500,191,490,168,469,148,444,115,390,93,337,80,293"/>
 </map>

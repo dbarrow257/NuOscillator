@@ -18,6 +18,6 @@ var searchData=
   ['oscprobcalcernusquidslinear_15',['OscProbCalcerNuSQUIDSLinear',['../classOscProbCalcerNuSQUIDSLinear.html',1,'']]],
   ['oscprobcalceroscliblinear_16',['OscProbCalcerOscLibLinear',['../classOscProbCalcerOscLibLinear.html',1,'']]],
   ['oscprobcalceroscprob_17',['OscProbCalcerOscProb',['../classOscProbCalcerOscProb.html',1,'']]],
-  ['oscprobcalcerprob3pplinear_18',['OscProbCalcerProb3ppLinear',['../classOscProbCalcerProb3ppLinear.html',1,'']]],
+  ['oscprobcalcerprob3pp_18',['OscProbCalcerProb3pp',['../classOscProbCalcerProb3pp.html',1,'']]],
   ['oscprobcalcerprobgpulinear_19',['OscProbCalcerProbGPULinear',['../classOscProbCalcerProbGPULinear.html',1,'']]]
 ];

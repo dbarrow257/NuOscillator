@@ -37,7 +37,7 @@ var searchData=
   ['foscprobcalcerset_34',['fOscProbCalcerSet',['../classOscillatorBase.html#af47a1f1b03c183022c741fbf8549d406',1,'OscillatorBase']]],
   ['fosctype_35',['fOscType',['../classOscProbCalcerOscLibLinear.html#a0842087ef6ad8547fa8933b76ef361ad',1,'OscProbCalcerOscLibLinear::fOscType'],['../classOscProbCalcerOscProb.html#a96189e894b4b0928f6744dfe8163c35b',1,'OscProbCalcerOscProb::fOscType']]],
   ['fpmnsobj_36',['fPMNSObj',['../classOscProbCalcerOscProb.html#a048964b5bc7d669c22be316194935796',1,'OscProbCalcerOscProb']]],
-  ['fpremfile_37',['fPremFile',['../classOscProbCalcerOscProb.html#a8c9ea2e5f0407678111ecbe44f46dd34',1,'OscProbCalcerOscProb']]],
+  ['fpremfile_37',['fPremFile',['../classOscProbCalcerOscProb.html#a8c9ea2e5f0407678111ecbe44f46dd34',1,'OscProbCalcerOscProb::fPremFile'],['../classOscProbCalcerProb3pp.html#a68aee964cf40601d7892299e41175a83',1,'OscProbCalcerProb3pp::fPremFile']]],
   ['fpremmodel_38',['fPremModel',['../classOscProbCalcerOscProb.html#ab1d11ed0c79ffabcfdef3cbbd688bfe4',1,'OscProbCalcerOscProb']]],
   ['fpremname_39',['fPremName',['../classOscProbCalcerCHIC.html#aff8453aac1d0b1640a386fcabe6c45a3',1,'OscProbCalcerCHIC']]],
   ['fpropagatorset_40',['fPropagatorSet',['../classOscProbCalcerBase.html#a4258db5c5c9fcd503c294a3ab996203f',1,'OscProbCalcerBase']]],
