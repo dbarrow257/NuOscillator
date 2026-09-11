@@ -46,10 +46,10 @@ if(${UseProbGPULinear} EQUAL 1)
   list(APPEND HEADERS OscProbCalcer_ProbGPULinear.h)
 endif()
 
-if(${UseProb3ppLinear} EQUAL 1)
+if(${UseProb3pp} EQUAL 1)
   target_link_libraries(OscProbCalcer Prob3plusplus)
-  target_sources(OscProbCalcer PRIVATE OscProbCalcer_Prob3ppLinear.cpp)
-  list(APPEND HEADERS OscProbCalcer_Prob3ppLinear.h)
+  target_sources(OscProbCalcer PRIVATE OscProbCalcer_Prob3pp.cpp)
+  list(APPEND HEADERS OscProbCalcer_Prob3pp.h)
 endif()
 
 if(${UseNuFASTLinear} EQUAL 1)

@@ -1,7 +1,7 @@
 General:
   Verbosity: "NONE"
-  CosineZIgnored: true
-  CalculationType: "Binned"
+  CosineZIgnored: false
+  CalculationType: "Unbinned"
 
   OscillationParameters:
     sin2_th12: 3.07e-1
@@ -10,16 +10,11 @@ General:
     dm2_12: 7.53e-5
     dm2_23: 2.509e-3
     delta_cp: -1.601
-    path_length: 250.0
-    matter_density: 2.6
-
-Binned:
-  FileName: "./Inputs/ExampleAtmosphericBinning.root"
-  EnergyAxisHistName: "EnergyAxisBinning"
-  CosineZAxisHistName: "CosineZAxisBinning"
+    production_height: 25.0
 
 OscProbCalcerSetup:
   ImplementationName: "Prob3pp"
+  PREMFile: "./Inputs/OscProb_prem_4+1layers.txt"
   OscChannelMapping:
     - Entry: "Electron:Electron"
     - Entry: "Electron:Muon"

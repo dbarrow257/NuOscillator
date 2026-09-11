@@ -8,8 +8,8 @@
 #include "OscProbCalcer/OscProbCalcer_CUDAProb3Linear.h"
 #endif
 
-#if UseProb3ppLinear==1
-#include "OscProbCalcer/OscProbCalcer_Prob3ppLinear.h"
+#if UseProb3pp==1
+#include "OscProbCalcer/OscProbCalcer_Prob3pp.h"
 #endif
 
 #if UseProbGPULinear==1
@@ -86,10 +86,10 @@ OscProbCalcerBase* OscProbCalcerFactory::CreateOscProbCalcer(YAML::Node OscProbC
 #endif
   }
   
-  else if (OscProbCalcerImplementationToCreate == "Prob3ppLinear") {
-#if UseProb3ppLinear==1
-    OscProbCalcerProb3ppLinear* Prob3ppLinear = new OscProbCalcerProb3ppLinear(OscProbCalcerConfig);
-    Calcer = (OscProbCalcerBase*)Prob3ppLinear;
+  else if (OscProbCalcerImplementationToCreate == "Prob3pp") {
+#if UseProb3pp==1
+    OscProbCalcerProb3pp* Prob3pp = new OscProbCalcerProb3pp(OscProbCalcerConfig);
+    Calcer = (OscProbCalcerBase*)Prob3pp;
     if (Verbose >= NuOscillator::INFO) {std::cout << "Initalised OscProbCalcer Implementation:" << Calcer->ReturnImplementationName() << " in OscProbCalcerFactory object" << std::endl;}
 #else
     std::cerr << "OscProbCalcerFactory was requsted to create " << OscProbCalcerImplementationToCreate << " OscProbCalcer but Use" << OscProbCalcerImplementationToCreate << " is undefined. Indicates problem in setup" << std::endl;

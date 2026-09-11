@@ -1,38 +1,38 @@
-#ifndef __OSCILLATOR_PROB3PPLINEAR_H__
-#define __OSCILLATOR_PROB3PPLINEAR_H__
+#ifndef __OSCILLATOR_PROB3PP_H__
+#define __OSCILLATOR_PROB3PP_H__
 
 #include "OscProbCalcerBase.h"
 
 #include "BargerPropagator.h"
 
 /**
- * @file OscProbCalcer_Prob3ppLinear.h
+ * @file OscProbCalcer_Prob3pp.h
  *
- * @class OscProbCalcerProb3ppLinear
+ * @class OscProbCalcerProb3pp
  *
  * @brief Oscillation calculation engine for linear propagation in Prob3pp.
  */
-class OscProbCalcerProb3ppLinear : public OscProbCalcerBase {
+class OscProbCalcerProb3pp : public OscProbCalcerBase {
  public:
 
   /**
    * @brief Default constructor
    *
-   * @param Config_ YAML::Node to setup the OscProbCalcerProb3ppLinear() instance
+   * @param Config_ YAML::Node to setup the OscProbCalcerProb3pp() instance
    */
-  OscProbCalcerProb3ppLinear(YAML::Node Config_);
+  OscProbCalcerProb3pp(YAML::Node Config_);
 
   /**
    * @brief Constructor which takes a file path, creates a YAML::Node and then calls default constructor
    *
    * @param ConfigName_ Path to config file
    */
-  OscProbCalcerProb3ppLinear(std::string ConfigName_) : OscProbCalcerProb3ppLinear(YAML::LoadFile(ConfigName_)) {}
+  OscProbCalcerProb3pp(std::string ConfigName_) : OscProbCalcerProb3pp(YAML::LoadFile(ConfigName_)) {}
 
   /**
    * @brief Destructor
    */
-  virtual ~OscProbCalcerProb3ppLinear();
+  virtual ~OscProbCalcerProb3pp();
 
   // ========================================================================================================================================================================
   // Functions which need implementation specific code
@@ -49,6 +49,16 @@ class OscProbCalcerProb3ppLinear : public OscProbCalcerBase {
    * the oscillation probabilities in #fWeightArray.
    */
   void CalculateProbabilities() final;
+
+  /**
+   * @brief Calculate oscillation probabilities using Beam
+   * */
+  void CalculateProbabilitiesBeam();
+
+  /**
+   * @brief Calculate oscillation probabilities using ATM
+   * */
+  void CalculateProbabilitiesAtm();
 
   /**
    * @brief Return implementation specific index in the weight array for a specific combination of neutrino oscillation channel, energy and cosine zenith
@@ -80,7 +90,12 @@ class OscProbCalcerProb3ppLinear : public OscProbCalcerBase {
   /**
    * @brief Definition of oscillation parameters which are expected in this ProbGPU implementation
    */
-  enum OscParams{kTH12, kTH23, kTH13, kDM12, kDM23, kDCP, kPATHL, kDENS, kNOscParams};
+  enum OscParams{kTH12, kTH23, kTH13, kDM12, kDM23, kDCP, kNOscParams};
+
+  /**
+   * @brief Auxiliary function to handle ignored cosineZ cases
+   */
+  int GetNCosineZ();
 
   /**
    * @brief Define the neutrino and antineutrino values expected by this implementation
@@ -91,6 +106,11 @@ class OscProbCalcerProb3ppLinear : public OscProbCalcerBase {
    * @brief Boolean declaring what values are being passed for the values of theta_13 (sin^2(theta) or sin^2(2*theta))
    */
   bool doubled_angle;
+
+  /**
+   * @brief String storing the path of the density table file used to setup the Earth model
+   */
+  std::string fPremFile;
 
   /**
    * @brief BargerPropagator used within the Prob3pp calculation framework

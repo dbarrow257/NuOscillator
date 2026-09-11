@@ -15,7 +15,7 @@ The framework has been adapted to integrate seamlessly with oscillation fitters 
 ```bash
 mkdir build;
 cd build;
-cmake ../ -DUseGPU=0 -DUseMultithreading=1 -DUseDoubles=0 -DUseCUDAProb3=1 -DUseCUDAProb3Linear=1 -DUseProb3ppLinear=1 -DUseProbGPULinear=1 -DUseNuFASTLinear=1 -DUseNuFASTEarth=1 -DUseNuSQUIDSLinear=1 -DUseOscProb=1 -DUseGLoBESLinear=1 -DUseCHIC=1
+cmake ../ -DUseGPU=0 -DUseMultithreading=1 -DUseDoubles=0 -DUseCUDAProb3=1 -DUseCUDAProb3Linear=1 -DUseProb3pp=1 -DUseProbGPULinear=1 -DUseNuFASTLinear=1 -DUseNuFASTEarth=1 -DUseNuSQUIDSLinear=1 -DUseOscProb=1 -DUseGLoBESLinear=1 -DUseCHIC=1
 make -jN [Where N is number of threads]
 make install
 ```
@@ -47,7 +47,7 @@ CPMAddPackage(
     "UseCUDAProb3Linear 0"
     "UseCUDAProb3 0"
     "UseProbGPULinear 0"
-    "UseProb3ppLinear 0"
+    "UseProb3pp 0"
     "UseNuFASTLinear  1"
     "UseNuSQUIDSLinear 0"
     "UseOscProb  1"
@@ -66,7 +66,7 @@ Following neutrino oscillation calculators are available:
 | CUDAProb3Linear  | CPU/GPU    | Beam       | PMNS       |            |
 | CUDAProb3        | CPU/GPU    | Atm        | PMNS       | [Ref](https://doi.org/10.1016/j.cpc.2018.07.022)        |
 | ProbGPULinear    | GPU        | Beam       | PMNS       | [Ref](http://dx.doi.org/10.3204/DESY-PROC-2014-05/23)   |
-| Prob3++Linear    | CPU        | Beam       | PMNS       |            |
+| Prob3++          | CPU        | Beam/Atm   | PMNS       |            |
 | NuFastLinear     | CPU        | Beam       | PMNS       | [Ref](https://doi.org/10.48550/arXiv.2405.02400)        |
 | NuFastEarth      | CPU        | ATM        | PMNS       | [Ref](https://arxiv.org/abs/2511.04735)                 |
 | OscProb | CPU | Beam/Atm | <details><summary>PMNS + extensions</summary>Non-Standard Interactions (NSI), Scalar NSI (SNSI), Sterile Neutrinos (+1, +2, +3), Neutrino Decay, Decoherence, Non-Unitarity (NUNM), Lorentz Invariance Violation (LIV), Sidereal LIV, Open Quantum Systems (OPS)</details> | [Ref](https://doi.org/10.5281/zenodo.6347002) |
