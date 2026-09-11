@@ -1,12 +1,12 @@
-if(NOT DEFINED Prob3ppLinear_BRANCH)
-  set(Prob3ppLinear_BRANCH "v3r20")
+if(NOT DEFINED Prob3pp_BRANCH)
+  set(Prob3pp_BRANCH "v3r20")
 endif()
 
-if(${UseProb3ppLinear} EQUAL 1)
+if(${UseProb3pp} EQUAL 1)
   CPMAddPackage(
     NAME Prob3plusplus
     GITHUB_REPOSITORY rogerwendell/Prob3plusplus
-    GIT_TAG ${Prob3ppLinear_BRANCH}
+    GIT_TAG ${Prob3pp_BRANCH}
   )
 
   if(NOT TARGET Prob3plusplus)
@@ -15,7 +15,7 @@ if(${UseProb3ppLinear} EQUAL 1)
 
   # KS: Add additional compilation flags to be used for Prob3++
   target_compile_options(Prob3plusplus PRIVATE ${NuOscillator_Compiler_Flags})
-  target_compile_definitions(NuOscillatorCompilerOptions INTERFACE UseProb3ppLinear=1)
+  target_compile_definitions(NuOscillatorCompilerOptions INTERFACE UseProb3pp=1)
 
   install(TARGETS Prob3plusplus
     EXPORT NuOscillator-targets

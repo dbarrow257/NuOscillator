@@ -40,11 +40,17 @@ jobs:
             new_output: OscProbLinear_New.txt
             old_output: OscProbLinear_Stored.txt
           - name: OscProbCalcer Prob3ppLinear Comparison
-            cmake_options: -DUseProb3ppLinear=1
+            cmake_options: -DUseProb3pp=1
             exec: SingleOscProbCalcer
             argument: NuOscillatorConfigs/OscProbCalcerConfigs/Prob3ppLinear.yaml
             new_output: Prob3ppLinear_New.txt
             old_output: Prob3ppLinear_Stored.txt
+          - name: OscProbCalcer Prob3pp Comparison
+            cmake_options: -DUseProb3pp=1
+            exec: SingleOscProbCalcer
+            argument: NuOscillatorConfigs/OscProbCalcerConfigs/Prob3pp.yaml
+            new_output: Prob3pp_New.txt
+            old_output: Prob3pp_Stored.txt
           - name: OscProbCalcer CUDAProb3Linear Comparison
             cmake_options: -DUseCUDAProb3Linear=1
             exec: SingleOscProbCalcer

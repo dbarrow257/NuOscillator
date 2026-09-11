@@ -44,7 +44,7 @@ DefineEnabledRequiredSwitch(UseDoubles 1)
 LIST(APPEND ALL_Engines
   CUDAProb3
   CUDAProb3Linear
-  Prob3ppLinear
+  Prob3pp
   ProbGPULinear
   NuFASTLinear
   NuFASTEarth

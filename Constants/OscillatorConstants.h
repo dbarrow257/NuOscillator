@@ -84,8 +84,8 @@ inline std::vector<std::string> ReturnKnownConfigs() {
   ConfigNames.push_back("./NuOscillatorConfigs/Binned_ProbGPULinear.yaml");
 #endif
 
-#if UseProb3ppLinear == 1
-  ConfigNames.push_back("./NuOscillatorConfigs/Binned_Prob3ppLinear.yaml");
+#if UseProb3pp == 1
+  ConfigNames.push_back("./NuOscillatorConfigs/Binned_Prob3pp.yaml");
 #endif
 
 #if UseNuFASTLinear == 1
