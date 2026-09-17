@@ -1,0 +1,33 @@
+---
+# Squash some branches
+name: Squash CI
+
+# The events that trigger the workflow
+on:
+  schedule:
+    - cron: '0 12 1 * *'  # Runs at 12:00 GMT (UTC) on the 1st day of every month
+
+permissions:
+  contents: write
+  packages: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false  # KS: Prevents cancellation of remaining jobs if one fails
+      matrix:
+        include:
+          - branch_name: gh-pages
+          - branch_name: gh-benchmarks
+
+    name: Squash CI ${{ matrix.branch_name }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
+
+      - name: Squash commits
+        uses: mach3-software/MaCh3/.github/actions/squash@v2.6.1
+        with:
+          branch: ${{ matrix.branch_name }}
