@@ -85,7 +85,7 @@ class OscProbCalcerNuSQUIDSLinear : public OscProbCalcerBase {
   /**
    * @brief Extract oscillation probabilities form NuSQUIDS object
    */
-  void CalcualteNuSQUIDS(nusquids::nuSQUIDS* base, const nusquids::marray<double,2>& inistate, int& index_counter);
+  void CalcualteNuSQUIDS(nusquids::nuSQUIDS* base, nusquids::marray<double,2>& inistate, int& index_counter);
 
   // ========================================================================================================================================================================
   // Functions which help setup implementation specific code

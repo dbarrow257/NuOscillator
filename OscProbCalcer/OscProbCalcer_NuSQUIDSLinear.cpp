@@ -191,7 +191,7 @@ void OscProbCalcerNuSQUIDSLinear::SetOscParams(nusquids::nuSQUIDS* base) {
   }
 }
 
-void OscProbCalcerNuSQUIDSLinear::CalcualteNuSQUIDS(nusquids::nuSQUIDS* base, const nusquids::marray<double,2>& inistate, int& index_counter) {
+void OscProbCalcerNuSQUIDSLinear::CalcualteNuSQUIDS(nusquids::nuSQUIDS* base, nusquids::marray<double,2>& inistate, int& index_counter) {
   // Loop over all neutrino flavors, set the initial state, propagate the neutrinos and store osc probs in fWeightarray in
   // order nu_e->nu_e,nu_e->nu_mu, nu_e->nu_tau,
   //       nu_mu->nu_e, nu_mu->nu_mu, nu_mu->nu_tau,
