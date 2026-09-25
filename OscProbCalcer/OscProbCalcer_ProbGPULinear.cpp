@@ -39,7 +39,7 @@ void OscProbCalcerProbGPULinear::CalculateProbabilities() {
 
   // ProbGPULinear calculates oscillation probabilities for each NeutrinoType, so need to copy them from the calculator into fWeightArray
   int CopyArrSize = fNEnergyPoints;
-  FLOAT_T* CopyArr = new FLOAT_T[CopyArrSize];
+  double* CopyArr = new double[CopyArrSize];
 
   for (int iNuType=0;iNuType<fNNeutrinoTypes;iNuType++) {
     for (int iOscChannel=0;iOscChannel<fNOscillationChannels;iOscChannel++) {
@@ -48,7 +48,7 @@ void OscProbCalcerProbGPULinear::CalculateProbabilities() {
       // Mapping which links the oscillation channel, neutrino type and energy index to the fWeightArray index
       int IndexToFill = iNuType*fNOscillationChannels*CopyArrSize + iOscChannel*CopyArrSize;
       for (int iOscProb=0;iOscProb<CopyArrSize;iOscProb++) {
-        fWeightArray[IndexToFill+iOscProb] = CopyArr[iOscProb];
+        fWeightArray[IndexToFill+iOscProb] = static_cast<FLOAT_T>(CopyArr[iOscProb])
       }
     }
   }
