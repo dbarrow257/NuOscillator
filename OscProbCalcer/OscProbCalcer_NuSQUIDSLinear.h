@@ -77,6 +77,16 @@ class OscProbCalcerNuSQUIDSLinear : public OscProbCalcerBase {
    */
   long DefineWeightArraySize() final;
 
+  /**
+   * @brief Set values of Osc parameters into NuSQUIDS object
+   */
+  void SetOscParams(nusquids::nuSQUIDS* base);
+
+  /**
+   * @brief Extract oscillation probabilities form NuSQUIDS object
+   */
+  void CalcualteNuSQUIDS(nusquids::nuSQUIDS* base, const nusquids::marray<double,2>& inistate, int& index_counter);
+
   // ========================================================================================================================================================================
   // Functions which help setup implementation specific code
 

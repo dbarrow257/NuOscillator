@@ -147,80 +147,51 @@ void OscProbCalcerNuSQUIDSLinear::SetupPropagator() {
     }
     break;
   }
-  
 }
 
-void OscProbCalcerNuSQUIDSLinear::CalculateProbabilities() {
-
+void OscProbCalcerNuSQUIDSLinear::SetOscParams(nusquids::nuSQUIDS* base) {
   // Set mixing angles and masses for neutrinos
-  nus_base->Set_MixingAngle(0,1,asin(sqrt(GetOscillationParameter(kTH12)))); // \theta_12
-  nus_base->Set_MixingAngle(0,2,asin(sqrt(GetOscillationParameter(kTH13)))); // \theta_13
-  nus_base->Set_MixingAngle(1,2,asin(sqrt(GetOscillationParameter(kTH23)))); // \theta_23
-  nus_base->Set_SquareMassDifference(1,GetOscillationParameter(kDM12)); // \Delta m_12
-  nus_base->Set_SquareMassDifference(2,GetOscillationParameter(kDM12) + GetOscillationParameter(kDM23)); // \Delta m_13
-  nus_base->Set_CPPhase(0,2,GetOscillationParameter(kDCP));
-
-  // Set mixing angles and masses for anti-neutrinos
-  nubars_base->Set_MixingAngle(0,1,asin(sqrt(GetOscillationParameter(kTH12)))); // \theta_12
-  nubars_base->Set_MixingAngle(0,2,asin(sqrt(GetOscillationParameter(kTH13)))); // \theta_13
-  nubars_base->Set_MixingAngle(1,2,asin(sqrt(GetOscillationParameter(kTH23)))); // \theta_23
-  nubars_base->Set_SquareMassDifference(1,GetOscillationParameter(kDM12)); // \Delta m_12
-  nubars_base->Set_SquareMassDifference(2,GetOscillationParameter(kDM12) + GetOscillationParameter(kDM23)); // \Delta m_13
-  nubars_base->Set_CPPhase(0,2,GetOscillationParameter(kDCP));
+  base->Set_MixingAngle(0,1,asin(sqrt(GetOscillationParameter(kTH12)))); // \theta_12
+  base->Set_MixingAngle(0,2,asin(sqrt(GetOscillationParameter(kTH13)))); // \theta_13
+  base->Set_MixingAngle(1,2,asin(sqrt(GetOscillationParameter(kTH23)))); // \theta_23
+  base->Set_SquareMassDifference(1,GetOscillationParameter(kDM12)); // \Delta m_12
+  base->Set_SquareMassDifference(2,GetOscillationParameter(kDM12) + GetOscillationParameter(kDM23)); // \Delta m_13
+  base->Set_CPPhase(0,2,GetOscillationParameter(kDCP));
 
   const double layer_2 = GetOscillationParameter(kPATHL)*units.km;
-  std::shared_ptr<nusquids::ConstantDensity> constdens_env1 = std::make_shared<nusquids::ConstantDensity>(GetOscillationParameter(kDENS),GetOscillationParameter(kELECDENS)); // density [gr/cm^3[, ye [dimensionless]
-  std::shared_ptr<nusquids::ConstantDensity::Track> track_env1 = std::make_shared<nusquids::ConstantDensity::Track>(layer_2);
+  // density [gr/cm^3[, ye [dimensionless]
+  auto constdens_env1 = std::make_shared<nusquids::ConstantDensity>(GetOscillationParameter(kDENS),GetOscillationParameter(kELECDENS));
+  auto track_env1 = std::make_shared<nusquids::ConstantDensity::Track>(layer_2);
 
   // Set energy density for neutrinos
-  nus_base->Set_Body(constdens_env1);
-  nus_base->Set_Track(track_env1);
+  base->Set_Body(constdens_env1);
+  base->Set_Track(track_env1);
 
-  // Set energy density for anti-neutrinos
-  nubars_base->Set_Body(constdens_env1);
-  nubars_base->Set_Track(track_env1);
 
-  // Construct the initial state
-  // E_range is an array that contains all the energies.
-  nusquids::marray<double,1> E_range = nus_base->GetERange();
-  // Array that contains the initial state of the system, fist component is energy and second every one of the flavors
-  nusquids::marray<double,2> inistate{E_range.size(),static_cast<size_t>(nNeutrinoFlavours)};
-  
   switch (fOscModel) {
-  case kDecoherence: {
-    auto* nus_decoh = static_cast<nusquids::nuSQUIDSDecoh*>(nus_base);
-    auto* nubars_decoh = static_cast<nusquids::nuSQUIDSDecoh*>(nubars_base);
+    case kDecoherence: {
+      auto* decoh = static_cast<nusquids::nuSQUIDSDecoh*>(base);
 
-    //Set the decoherence model and parameters for neutrinos
-    nus_decoh->Set_DecoherenceGammaMatrix(nusquids_decoherence_model, GetOscillationParameter(kEnergyStrength)*units.eV);
-    nus_decoh->Set_DecoherenceGammaEnergyDependence(GetOscillationParameter(kEnergyDep));
-    nus_decoh->Set_DecoherenceGammaEnergyScale(GetOscillationParameter(kEnergyScale)*units.GeV);
-    
-    //Set the decoherence model and parameters for anti-neutrinos
-    nubars_decoh->Set_DecoherenceGammaMatrix(nusquids_decoherence_model, GetOscillationParameter(kEnergyStrength)*units.eV);
-    nubars_decoh->Set_DecoherenceGammaEnergyDependence(GetOscillationParameter(kEnergyDep));
-    nubars_decoh->Set_DecoherenceGammaEnergyScale(GetOscillationParameter(kEnergyScale)*units.GeV);
-    break;
-  }
-  case kLIV: {
-    gsl_complex c_EMu{GetOscillationParameter(kEMuReal)*units.GeV, GetOscillationParameter(kEMuImg)*units.GeV};
-    gsl_complex c_MuTau{GetOscillationParameter(kMuTauReal)*units.GeV, GetOscillationParameter(kMuTauImg)*units.GeV};
-    LVParameters LIVPars{c_EMu,c_MuTau};
-    auto* nus_LIV = static_cast<nusquids::nuSQUIDSLV*>(nus_base);
-    auto* nubars_LIV = static_cast<nusquids::nuSQUIDSLV*>(nubars_base);
-    
-    nus_LIV->Set_LV_OpMatrix(LIVPars);
-    nus_LIV->Set_LV_EnergyPower(GetOscillationParameter(kEnergyPower));
-    
-    nubars_LIV->Set_LV_OpMatrix(LIVPars);
-    nubars_LIV->Set_LV_EnergyPower(GetOscillationParameter(kEnergyPower));
-    break;
-  }
-  }
-  
-  // Index counter to have a handle on where neutrino oscillation probs are stored in array fWeightArray
-  int index_counter = 0;
+      //Set the decoherence model and parameters for neutrinos
+      decoh->Set_DecoherenceGammaMatrix(nusquids_decoherence_model, GetOscillationParameter(kEnergyStrength)*units.eV);
+      decoh->Set_DecoherenceGammaEnergyDependence(GetOscillationParameter(kEnergyDep));
+      decoh->Set_DecoherenceGammaEnergyScale(GetOscillationParameter(kEnergyScale)*units.GeV);
+      break;
+    }
+    case kLIV: {
+      gsl_complex c_EMu{GetOscillationParameter(kEMuReal)*units.GeV, GetOscillationParameter(kEMuImg)*units.GeV};
+      gsl_complex c_MuTau{GetOscillationParameter(kMuTauReal)*units.GeV, GetOscillationParameter(kMuTauImg)*units.GeV};
+      LVParameters LIVPars{c_EMu,c_MuTau};
+      auto* LIV = static_cast<nusquids::nuSQUIDSLV*>(base);
 
+      LIV->Set_LV_OpMatrix(LIVPars);
+      LIV->Set_LV_EnergyPower(GetOscillationParameter(kEnergyPower));
+      break;
+    }
+  }
+}
+
+void OscProbCalcerNuSQUIDSLinear::CalcualteNuSQUIDS(nusquids::nuSQUIDS* base, const nusquids::marray<double,2>& inistate, int& index_counter) {
   // Loop over all neutrino flavors, set the initial state, propagate the neutrinos and store osc probs in fWeightarray in
   // order nu_e->nu_e,nu_e->nu_mu, nu_e->nu_tau,
   //       nu_mu->nu_e, nu_mu->nu_mu, nu_mu->nu_tau,
@@ -234,62 +205,45 @@ void OscProbCalcerNuSQUIDSLinear::CalculateProbabilities() {
     }
 
     switch (fOscModel) {
-    case kLIV:
-      //Set the initial state in nuSQuIDS object
-      static_cast<nusquids::nuSQUIDSLV*>(nus_base)->Set_initial_state(inistate,nusquids::flavor);
-      break;
-    default:
-      //Set the initial state in nuSQuIDS object
-      nus_base->Set_initial_state(inistate,nusquids::flavor);
+      case kLIV:
+        //Set the initial state in nuSQuIDS object
+        static_cast<nusquids::nuSQUIDSLV*>(base)->Set_initial_state(inistate,nusquids::flavor);
+        break;
+      default:
+        //Set the initial state in nuSQuIDS object
+        base->Set_initial_state(inistate,nusquids::flavor);
     }
-    
+
     //Propagate the neutrinos in the earth for the path defined in path
-    nus_base->EvolveState();
-    
-    // Number of energies we want the result, notice that this can be larger than the number of the internal grid of 
+    base->EvolveState();
+
+    // Number of energies we want the result, notice that this can be larger than the number of the internal grid of
     //the nuSQuIDS object, a linear interpolation between the quantum density matrices in the interaction picture is used
     //and vacuum oscillations are solved analytically for the given energy.
     for(int fl=0; fl<nNeutrinoFlavours; fl++){
       for(int i = 0; i < fNEnergyPoints; i++) {
-        fWeightArray[index_counter] = nus_base->EvalFlavor(fl, fEnergyArray[i]*units.GeV);
+        fWeightArray[index_counter] = base->EvalFlavor(fl, fEnergyArray[i]*units.GeV);
         index_counter++;
       }
     }
   }
+}
 
-  // Now the same for anti-neutrinos:
-  for(int nu_flavor = 0; nu_flavor < nNeutrinoFlavours; nu_flavor++){
+void OscProbCalcerNuSQUIDSLinear::CalculateProbabilities() {
+  SetOscParams(nus_base);
+  SetOscParams(nubars_base);
 
-    // Set initial state for the electron neutrinos (k==0), muon neutrinos (k==1) and tau neutrinos (k==2), other flavors to 0.0
-    for ( int i = 0 ; i < inistate.extent(0); i++){
-      for ( int k = 0; k < inistate.extent(1); k ++){
-        inistate[i][k] = (k == nu_flavor) ? 1.0 : 0.0;
-      }
-    }
-
-    switch (fOscModel) {
-    case kLIV:
-      //Set the initial state in nuSQuIDS object
-      static_cast<nusquids::nuSQUIDSLV*>(nubars_base)->Set_initial_state(inistate,nusquids::flavor);
-      break;
-    default:
-      //Set the initial state in nuSQuIDS object
-      nubars_base->Set_initial_state(inistate,nusquids::flavor);
-    }
-    //Propagate the neutrinos in the earth for the path defined in path
-    nubars_base->EvolveState();
-    
-    // Number of energies we want the result, notice that this can be larger than the number of the internal grid of 
-    //the nuSQuIDS object, a linear interpolation between the quantum density matrices in the interaction picture is used
-    //and vacuum oscillations are solved analytically for the given energy.
-    for(int fl=0; fl < nNeutrinoFlavours; fl++){
-      for(int i = 0; i < fNEnergyPoints; i++) {
-        fWeightArray[index_counter] = nubars_base->EvalFlavor(fl, fEnergyArray[i]*units.GeV);
-        index_counter++;
-      }
-    }
-  }
+  // Construct the initial state
+  // E_range is an array that contains all the energies.
+  nusquids::marray<double,1> E_range = nus_base->GetERange();
+  // Array that contains the initial state of the system, fist component is energy and second every one of the flavors
+  nusquids::marray<double,2> inistate{E_range.size(),static_cast<size_t>(nNeutrinoFlavours)};
   
+  // Index counter to have a handle on where neutrino oscillation probs are stored in array fWeightArray
+  int index_counter = 0;
+
+  CalcualteNuSQUIDS(nus_base, inistate, index_counter);
+  CalcualteNuSQUIDS(nubars_base, inistate, index_counter);
 }
 
 int OscProbCalcerNuSQUIDSLinear::PMNS_StrToInt(const std::string& OscModel) {
