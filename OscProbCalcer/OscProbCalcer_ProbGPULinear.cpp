@@ -48,7 +48,7 @@ void OscProbCalcerProbGPULinear::CalculateProbabilities() {
       // Mapping which links the oscillation channel, neutrino type and energy index to the fWeightArray index
       int IndexToFill = iNuType*fNOscillationChannels*CopyArrSize + iOscChannel*CopyArrSize;
       for (int iOscProb=0;iOscProb<CopyArrSize;iOscProb++) {
-        fWeightArray[IndexToFill+iOscProb] = static_cast<FLOAT_T>(CopyArr[iOscProb])
+        fWeightArray[IndexToFill+iOscProb] = static_cast<FLOAT_T>(CopyArr[iOscProb]);
       }
     }
   }
