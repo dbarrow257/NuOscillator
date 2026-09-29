@@ -34,6 +34,10 @@ jobs:
             file: Docs/DockerFiles/Rocky9/Dockerfile
             tag: rocky9latest
             cmakeoptions: -DUseGPU=1 -DUseMultithreading=1 -DUseDoubles=1 -DUseCUDAProb3=1 -DUseCUDAProb3Linear=1 -DUseProb3pp=1 -DUseNuFASTLinear=1 -DUseNuFASTLinear=1 -DUseProbGPULinear=1 -DUseOscProb=1 -DUseNuSQUIDSLinear=1 -DUseGLoBESLinear=0 -DUseCHIC=1 -DUseOscLibLinear=1
+          - os: Rocky9 CUDA float
+            file: Docs/DockerFiles/Rocky9/Dockerfile
+            tag: rocky9latest
+            cmakeoptions: -DUseGPU=1 -DUseDoubles=0 -DUseMultithreading=1 -DUseDoubles=1 -DUseCUDAProb3=1 -DUseCUDAProb3Linear=1 -DUseProb3pp=1 -DUseNuFASTLinear=1 -DUseNuFASTLinear=1 -DUseProbGPULinear=1 -DUseOscProb=1 -DUseNuSQUIDSLinear=1 -DUseGLoBESLinear=0 -DUseCHIC=1 -DUseOscLibLinear=1
           - os: Fedora32
             file: Docs/DockerFiles/Fedora32/Dockerfile
             tag: fedora32latest
