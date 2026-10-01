@@ -30,7 +30,7 @@ OscProbCalcerNuFASTEarth::OscProbCalcerNuFASTEarth(YAML::Node Config_) : OscProb
   fNeutrinoTypes[0] = Nu;
   fNeutrinoTypes[1] = Nubar;
   
-  // This implementation only considers atmopsheric propagation, thus no requirement to set cosineZ array
+  // This implementation only considers atmospheric propagation, thus no requirement to set cosineZ array
   IgnoreCosineZBinning(false);
 }
 
