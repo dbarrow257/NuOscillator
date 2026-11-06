@@ -1,5 +1,5 @@
 if(NOT DEFINED nuTens_BRANCH)
-  set(nuTens_BRANCH "v0.9.0")
+  set(nuTens_BRANCH "v0.7.0")
 endif()
 
 if(${UseNuTens} EQUAL 1)
