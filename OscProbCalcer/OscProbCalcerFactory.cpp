@@ -156,28 +156,26 @@ OscProbCalcerBase* OscProbCalcerFactory::CreateOscProbCalcer(YAML::Node OscProbC
 #endif
   }
 
-<<<<<<< HEAD
   else if (OscProbCalcerImplementationToCreate == "OscLibLinear") {
 #if UseOscLibLinear==1
     OscProbCalcerOscLibLinear* OscLib = new OscProbCalcerOscLibLinear(OscProbCalcerConfig);
     Calcer = (OscProbCalcerBase*)OscLib;
-=======
   else if (OscProbCalcerImplementationToCreate == "nuTens") {
+#else
+    std::cerr << "OscProbCalcerFactory was requsted to create " << OscProbCalcerImplementationToCreate << " OscProbCalcer but Use" << OscProbCalcerImplementationToCreate << " is undefined. Indicates problem in setup" << std::endl;
+    throw std::runtime_error("Invalid setup");
+#endif
+
+  else if (OscProbCalcerImplementationToCreate == "NuTensLinear") {
 #if UseNuTens==1
     OscProbCalcernuTens* nuTens = new OscProbCalcernuTens(OscProbCalcerConfig);
     Calcer = (OscProbCalcerBase*)nuTens;
->>>>>>> d0e17ac (add OscProbCalcer class for nuTens engine, and cmake code to enable it)
     if (Verbose >= NuOscillator::INFO) {std::cout << "Initalised OscProbCalcer Implementation:" << Calcer->ReturnImplementationName() << " in OscProbCalcerFactory object" << std::endl;}
 #else
     std::cerr << "OscProbCalcerFactory was requsted to create " << OscProbCalcerImplementationToCreate << " OscProbCalcer but Use" << OscProbCalcerImplementationToCreate << " is undefined. Indicates problem in setup" << std::endl;
     throw std::runtime_error("Invalid setup");
 #endif
-<<<<<<< HEAD
   }  
-=======
-  }
-  
->>>>>>> d0e17ac (add OscProbCalcer class for nuTens engine, and cmake code to enable it)
 
   else if (OscProbCalcerImplementationToCreate == "GLoBESLinear") {
     #if UseGLoBESLinear==1

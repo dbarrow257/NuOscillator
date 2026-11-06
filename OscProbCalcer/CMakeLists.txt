@@ -62,6 +62,7 @@ if(${UseNuFASTEarth} EQUAL 1)
   target_sources(OscProbCalcer PRIVATE OscProbCalcer_NuFASTEarth.cpp)
   target_link_libraries(OscProbCalcer nufast_earth)
   list(APPEND HEADERS OscProbCalcer_NuFASTEarth.h)
+endif()
 
 if(${UseNuTens} EQUAL 1)
   target_link_libraries(OscProbCalcer nuTens)

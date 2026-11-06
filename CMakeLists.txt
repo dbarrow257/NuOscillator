@@ -165,21 +165,6 @@ if(${UseGPU} EQUAL 1)
   cmessage(STATUS "Set CUDA ARCHITECTURES options: ${CMAKE_CUDA_ARCHITECTURES_STRING}")
 endif()
 
-
-if(${UseNuTens} EQUAL 1)
-  message(INFO "Adding nutens")
-  CPMAddPackage(
-    NAME nuTens
-    GITHUB_REPOSITORY "ewanwm/nuTens"
-    GIT_TAG ${nuTens_BRANCH}
-    DOWNLOAD_ONLY
-    OPTIONS
-    "NT_PROFILING OFF"
-  )
-
-  target_compile_definitions(NuOscillatorCompilerOptions INTERFACE UseNuTens=1)
-endif()
-
 if(${UseGPU} EQUAL 1)
   target_compile_definitions(NuOscillatorCompilerOptions INTERFACE UseGPU=1)
 else()
