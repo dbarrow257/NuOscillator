@@ -71,10 +71,6 @@ if(ALL_OSCILLATORS_DISABLED)
   set(UseNuFASTLinear 1)
 endif()
 
-if(NOT DEFINED nuTens_BRANCH)
-  set(nuTens_BRANCH "v0.4.1")
-endif()
-
 ########################################################
 set(NuOscillator_Engines_Enabled "")
 cmessage(STATUS "NuOscillator Features: ")
