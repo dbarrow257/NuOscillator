@@ -8,11 +8,11 @@ void OscProbCalcernuTens::SetEnergyArray(std::vector<FLOAT_T> EnergyArray) {
 
     OscProbCalcerBase::SetEnergyArray(EnergyArray);
 
-    energiesTensor = Tensor::zeros({(long int)EnergyArray.size(), 1}, dtypes::kFloat, dtypes::kCPU, false);
+    energiesTensor = Tensor::zeros({(long int)EnergyArray.size()}, dtypes::kFloat, dtypes::kCPU, false);
 
     for (int i = 0; i < EnergyArray.size(); i++) {
 
-        energiesTensor.setValue({i, 0}, EnergyArray[i] * units::GeV);
+        energiesTensor.setValue({i}, EnergyArray[i] * units::GeV);
 
     }
 
