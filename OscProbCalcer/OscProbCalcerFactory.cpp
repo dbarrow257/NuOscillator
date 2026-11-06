@@ -160,13 +160,13 @@ OscProbCalcerBase* OscProbCalcerFactory::CreateOscProbCalcer(YAML::Node OscProbC
 #if UseOscLibLinear==1
     OscProbCalcerOscLibLinear* OscLib = new OscProbCalcerOscLibLinear(OscProbCalcerConfig);
     Calcer = (OscProbCalcerBase*)OscLib;
-  else if (OscProbCalcerImplementationToCreate == "nuTens") {
 #else
     std::cerr << "OscProbCalcerFactory was requsted to create " << OscProbCalcerImplementationToCreate << " OscProbCalcer but Use" << OscProbCalcerImplementationToCreate << " is undefined. Indicates problem in setup" << std::endl;
     throw std::runtime_error("Invalid setup");
 #endif
+  }
 
-  else if (OscProbCalcerImplementationToCreate == "NuTensLinear") {
+  else if (OscProbCalcerImplementationToCreate == "nuTens") {
 #if UseNuTens==1
     OscProbCalcernuTens* nuTens = new OscProbCalcernuTens(OscProbCalcerConfig);
     Calcer = (OscProbCalcerBase*)nuTens;
