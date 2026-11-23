@@ -161,6 +161,12 @@ class OscProbCalcerCUDAProb3 : public OscProbCalcerBase {
    * @brief Size of the array to be copied.
    */
   int CopyArrSize;
+
+  /**
+   * @brief Pointer to the array used for copying oscillation probabilities.
+   */
+  FLOAT_T* CopyArr;
+
 };
 
 #endif

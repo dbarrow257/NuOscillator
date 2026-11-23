@@ -58,6 +58,7 @@ OscProbCalcerCUDAProb3::OscProbCalcerCUDAProb3(YAML::Node Config_) : OscProbCalc
   //=======
   SetExpectedParameterNames(OscParNames);
   
+  CopyArr = nullptr;
   fNNeutrinoTypes = 2;
   InitialiseNeutrinoTypesArray(fNNeutrinoTypes);
   fNeutrinoTypes[0] = Nu;
@@ -85,6 +86,7 @@ OscProbCalcerCUDAProb3::OscProbCalcerCUDAProb3(YAML::Node Config_) : OscProbCalc
 }
 
 OscProbCalcerCUDAProb3::~OscProbCalcerCUDAProb3() {
+  if(CopyArr != nullptr) delete[] CopyArr;
 }
 
 void OscProbCalcerCUDAProb3::SetupPropagator() {
@@ -115,6 +117,10 @@ void OscProbCalcerCUDAProb3::SetupPropagator() {
   }
 
   if (fVerbose >= NuOscillator::INFO) {std::cout << "Setup CUDAProb3 oscillation probability calculator" << std::endl;}
+
+  // CUDAProb3 calculates oscillation probabilites for each NeutrinoType, so need to copy them from the calculator into fWeightArray
+  CopyArrSize = fNEnergyPoints * fNCosineZPoints;
+  CopyArr = new FLOAT_T[CopyArrSize];
 }
  
 void OscProbCalcerCUDAProb3::CalculateProbabilities() {
@@ -160,9 +166,13 @@ void OscProbCalcerCUDAProb3::CalculateProbabilities() {
     propagator->calculateProbabilities(NuType);
 
     for (int iOscChannel=0;iOscChannel<fNOscillationChannels;iOscChannel++) {
+      propagator->getProbabilityArr(CopyArr,static_cast<cudaprob3::ProbType>(OscChannels[iOscChannel]));
+      
       // Mapping which links the oscillation channel, neutrino type and energy/cosineZ index to the fWeightArray index
       int IndexToFill = iNuType*fNOscillationChannels*CopyArrSize + iOscChannel*CopyArrSize;
-      propagator->getProbabilityArr(&fWeightArray[IndexToFill], static_cast<cudaprob3::ProbType>(OscChannels[iOscChannel]));
+      for (int iOscProb=0;iOscProb<CopyArrSize;iOscProb++) {
+        fWeightArray[IndexToFill+iOscProb] = CopyArr[iOscProb];
+      }
     }
   }
 }
