@@ -193,7 +193,7 @@ void OscProbCalcerCUDAProb3::SetProductionHeightsAveraging(){
   TFile* File = new TFile(ProductionHeightsFile.c_str());
   if (!File || File->IsZombie()) {
     std::cerr << "Could not open: " << ProductionHeightsFile << std::endl;
-    throw;
+    throw std::runtime_error("Fatal error in " + std::string(__func__));
   }
 
   // Read TH2Ds
@@ -223,7 +223,7 @@ void OscProbCalcerCUDAProb3::SetProductionHeightsAveraging(){
         std::cerr << HistName << " not found in File:" << ProductionHeightsFile << std::endl;
         File->ls();
         std::cerr << __LINE__ << " : " << __FILE__ << std::endl;
-        throw;
+        throw std::runtime_error("Fatal error in " + std::string(__func__));
       }
 
       vecHist[iNuType][iNuFlav] = Hist;
@@ -232,14 +232,14 @@ void OscProbCalcerCUDAProb3::SetProductionHeightsAveraging(){
         std::cerr << HistName << " has different number of X bins:" << vecHist[iNuType][iNuFlav]->GetNbinsX() << std::endl;
         std::cerr << "Expected:" << fNEnergyPoints << std::endl;
         std::cerr << __LINE__ << " : " << __FILE__ << std::endl;
-        throw;
+        throw std::runtime_error("Fatal error in " + std::string(__func__));
       }
 
       if(vecHist[iNuType][iNuFlav]->GetNbinsY() != fNCosineZPoints){
         std::cerr << HistName << " has different number of Y bins:" << vecHist[iNuType][iNuFlav]->GetNbinsY() << std::endl;
         std::cerr << "Expected:" << fNCosineZPoints << std::endl;
         std::cerr << __LINE__ << " : " << __FILE__ << std::endl;
-        throw;
+        throw std::runtime_error("Fatal error in " + std::string(__func__));
       }
     }
   }
@@ -278,7 +278,7 @@ void OscProbCalcerCUDAProb3::SetProductionHeightsAveraging(){
               std::cout << "iProductionHeight:" << iProductionHeight << " | dP_dh:" << vecHist[iNuType][iNuFlav]->GetBinContent(ibin_E+1,ibin_Z+1,iProductionHeight+1) << std::endl;
             }
             std::cerr << __LINE__ << " : " << __FILE__ << std::endl;
-            throw;
+            throw std::runtime_error("Fatal error in " + std::string(__func__));
           }
         }
       }

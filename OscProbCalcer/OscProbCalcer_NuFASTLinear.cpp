@@ -84,9 +84,9 @@ void OscProbCalcerNuFASTLinear::CalculateProbabilities() {
 
       Probability_Matter_LBL(s12sq, s13sq, s23sq, delta, Dmsq21, Dmsq31, L, E, rho, Ye, N_Newton, &probs_returned);
 
-#if UseMultithreading == 1
-#pragma omp simd
-#endif
+      #if UseMultithreading == 1
+      #pragma omp simd
+      #endif
       for (int iOscChannel=0;iOscChannel<fNOscillationChannels;iOscChannel++) {
         // Mapping which links the oscillation channel, neutrino type and energy index to the fWeightArray index
         const int IndexToFill = iNuType*fNOscillationChannels*fNEnergyPoints + iOscChannel*fNEnergyPoints;

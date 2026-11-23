@@ -137,7 +137,7 @@ OscProbCalcerBase* OscProbCalcerFactory::CreateOscProbCalcer(YAML::Node OscProbC
     if (Verbose >= NuOscillator::INFO) {std::cout << "Initalised OscProbCalcer Implementation:" << Calcer->ReturnImplementationName() << " in OscProbCalcerFactory object" << std::endl;}
 #else
     std::cerr << "OscProbCalcerFactory was requsted to create " << OscProbCalcerImplementationToCreate << " OscProbCalcer but Use" << OscProbCalcerImplementationToCreate << " is undefined. Indicates problem in setup" << std::endl;
-    throw;
+    throw std::runtime_error("Fatal error in " + std::string(__func__));
 #endif
   }
 

@@ -93,7 +93,7 @@ int main(int argc, char **argv) {
   
   if (Oscillators.size() == 0) {
     std::cerr << "Expected at least one Oscillator object to compare" << std::endl;
-    throw;
+    throw std::runtime_error("Fatal error in " + std::string(__func__));
   }
 
   std::cout << "Finished setup in executable" << std::endl;
@@ -107,7 +107,7 @@ int main(int argc, char **argv) {
     for (size_t iNT=0;iNT<NeutrinoTypes.size();iNT++) {
       if (NeutrinoTypes[iNT] != (Oscillators[0]->ReturnNeutrinoTypes())[iNT]) {
 	std::cerr << "Neutrino types are wrong!" << std::endl;
-	throw;
+	throw std::runtime_error("Fatal error in " + std::string(__func__));
       }
     }
     
@@ -115,11 +115,11 @@ int main(int argc, char **argv) {
     for (size_t iOscChan=0;iOscChan<OscChannels.size();iOscChan++) {
       if (OscChannels[iOscChan].GeneratedFlavour != (Oscillators[0]->ReturnOscChannels())[iOscChan].GeneratedFlavour) {
 	std::cerr << "Oscillation channels are wrong!" << std::endl;
-	throw;
+	throw std::runtime_error("Fatal error in " + std::string(__func__));
       }
       if (OscChannels[iOscChan].DetectedFlavour != (Oscillators[0]->ReturnOscChannels())[iOscChan].DetectedFlavour) {
 	std::cerr << "Oscillation channels are wrong!" << std::endl;
-	throw;
+	throw std::runtime_error("Fatal error in " + std::string(__func__));
       }
     }
 
@@ -127,20 +127,20 @@ int main(int argc, char **argv) {
     for (size_t iEnergy=0;iEnergy<EnergyArray.size();iEnergy++) {
       if (EnergyArray[iEnergy] != (Oscillators[0]->ReturnEnergyArray())[iEnergy]) {
 	std::cerr << "Energy are wrong!" << std::endl;
-	throw;
+	throw std::runtime_error("Fatal error in " + std::string(__func__));
       }
     }
     
     if (Oscillators[iOsc]->ReturnCosineZIgnored() != Oscillators[0]->ReturnCosineZIgnored()) {
       std::cerr << "CosineZIgnore wrong!" << std::endl;
-      throw;
+      throw std::runtime_error("Fatal error in " + std::string(__func__));
     }
 
     std::vector<FLOAT_T> CosineZArray = Oscillators[iOsc]->ReturnCosineZArray();
     for	(size_t iCosineZ=0;iCosineZ<CosineZArray.size();iCosineZ++) {
       if (CosineZArray[iCosineZ] != (Oscillators[0]->ReturnCosineZArray())[iCosineZ]) {
         std::cerr << "CosineZ are wrong!" << std::endl;
-        throw;
+        throw std::runtime_error("Fatal error in " + std::string(__func__));
       }
     }
   }
