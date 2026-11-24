@@ -71,6 +71,8 @@ jobs:
             old_output: NuSQUIDSLinear_UnbinnedOscillator_NSI_Stored.txt
           - name: SingleOscProbCalcer nuOscillationLinear
             cmake_options: -DUsenuOscillationLinear=1
+            exec: SingleOscillator
+            argument: NuOscillatorConfigs/Unbinned_nuOscillationLinear.yaml
             new_output: nuOscillationLinear_UnbinnedOscillator_New.txt
             old_output: nuOscillationLinear_UnbinnedOscillator_Stored.txt
           - name: OscProbCalcer CUDAProb3 Comparison
