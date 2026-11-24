@@ -36,7 +36,7 @@ jobs:
           - name: DragRace_Linear_Unbinned
             cmake_options: -DUseCUDAProb3Linear=1 -DUseNuFASTLinear=1 -DUseProb3pp=1 -DUseOscProb=1 -DUseNuSQUIDSLinear=1 -DUseGLoBESLinear=1 -DUseCHIC=1 -DUseOscLibLinear=1 -DUsenuOscillationLinear=1
             exec: DragRace
-            argument: 10 NuOscillatorConfigs/ExampleOscillationParameters.yaml NuOscillatorConfigs/Unbinned_CUDAProb3Linear.yaml NuOscillatorConfigs/Unbinned_NuFASTLinear.yaml NuOscillatorConfigs/Unbinned_Prob3ppLinear.yaml NuOscillatorConfigs/Unbinned_OscProbLinear.yaml NuOscillatorConfigs/Unbinned_NuSQUIDSLinear.yaml NuOscillatorConfigs/Unbinned_GLoBESLinear.yaml NuOscillatorConfigs/Unbinned_CHICLinear.yaml NuOscillatorConfigs/Unbinned_OscLibLinear.yaml NuOscillatorConfigs/Unbinned_Unbinned_nuOscillationLinear.yaml
+            argument: 10 NuOscillatorConfigs/ExampleOscillationParameters.yaml NuOscillatorConfigs/Unbinned_CUDAProb3Linear.yaml NuOscillatorConfigs/Unbinned_NuFASTLinear.yaml NuOscillatorConfigs/Unbinned_Prob3ppLinear.yaml NuOscillatorConfigs/Unbinned_OscProbLinear.yaml NuOscillatorConfigs/Unbinned_NuSQUIDSLinear.yaml NuOscillatorConfigs/Unbinned_GLoBESLinear.yaml NuOscillatorConfigs/Unbinned_CHICLinear.yaml NuOscillatorConfigs/Unbinned_OscLibLinear.yaml NuOscillatorConfigs/Unbinned_nuOscillationLinear.yaml
     container:
       image: ghcr.io/mach3-software/mach3:alma9v1.4.1
 
