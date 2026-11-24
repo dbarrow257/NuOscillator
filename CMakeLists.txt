@@ -53,6 +53,7 @@ LIST(APPEND ALL_Engines
   OscLibLinear
   GLoBESLinear
   CHIC
+  nuOscillationLinear
 )
 # KS: Tells whether all oscillators were disabled
 set(ALL_OSCILLATORS_DISABLED TRUE)

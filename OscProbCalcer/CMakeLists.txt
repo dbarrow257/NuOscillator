@@ -108,6 +108,12 @@ if(${UseCHIC} EQUAL 1)
   list(APPEND HEADERS OscProbCalcer_CHIC.h)
 endif()
 
+if(${UsenuOscillationLinear} EQUAL 1)
+  target_sources(OscProbCalcer PRIVATE OscProbCalcer_nuOscillationLinear.cpp)
+  target_link_libraries(OscProbCalcer vOscillation)
+  list(APPEND HEADERS OscProbCalcer_nuOscillationLinear.h)
+endif()
+
 if (${UseGPU} EQUAL 1)
   set_target_properties(OscProbCalcer PROPERTIES
     CUDA_SEPARABLE_COMPILATION ON
