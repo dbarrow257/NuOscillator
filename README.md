@@ -74,6 +74,7 @@ Following neutrino oscillation calculators are available:
 | GLoBESLinear     | CPU        | Beam       | PMNS       | [Ref](https://doi.org/10.1016/j.cpc.2005.01.003)        |
 | CHIC             | CPU        | Beam/Atm   | PMNS       | [Ref](https://arxiv.org/pdf/2512.16427)                 |
 | OscLib           | CPU        | Beam       | <details><summary>PMNS + extensions</summary>Non-Standard Interactions (NSI))</details>       | [Ref](https://github.com/cafana/OscLib)                 |
+| nuOscillationLinear             | CPU        | Beam   | PMNS       | [Ref](https://arxiv.org/html/2401.13215v2)                 |
 
 ### Engine Requirements
 Requirements for NuOscillator strongly depends on a chosen configuration, for example some engines require minimal of C++17. In addition, some engines require an external library like Eigen. NuOscillator should handle it all internally, if not, should provide useful error.
