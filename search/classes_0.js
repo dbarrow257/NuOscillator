@@ -15,9 +15,10 @@ var searchData=
   ['oscprobcalcerglobeslinear_12',['OscProbCalcerGLoBESLinear',['../classOscProbCalcerGLoBESLinear.html',1,'']]],
   ['oscprobcalcernufastearth_13',['OscProbCalcerNuFASTEarth',['../classOscProbCalcerNuFASTEarth.html',1,'']]],
   ['oscprobcalcernufastlinear_14',['OscProbCalcerNuFASTLinear',['../classOscProbCalcerNuFASTLinear.html',1,'']]],
-  ['oscprobcalcernusquidslinear_15',['OscProbCalcerNuSQUIDSLinear',['../classOscProbCalcerNuSQUIDSLinear.html',1,'']]],
-  ['oscprobcalceroscliblinear_16',['OscProbCalcerOscLibLinear',['../classOscProbCalcerOscLibLinear.html',1,'']]],
-  ['oscprobcalceroscprob_17',['OscProbCalcerOscProb',['../classOscProbCalcerOscProb.html',1,'']]],
-  ['oscprobcalcerprob3pp_18',['OscProbCalcerProb3pp',['../classOscProbCalcerProb3pp.html',1,'']]],
-  ['oscprobcalcerprobgpulinear_19',['OscProbCalcerProbGPULinear',['../classOscProbCalcerProbGPULinear.html',1,'']]]
+  ['oscprobcalcernuoscillationlinear_15',['OscProbCalcernuOscillationLinear',['../classOscProbCalcernuOscillationLinear.html',1,'']]],
+  ['oscprobcalcernusquidslinear_16',['OscProbCalcerNuSQUIDSLinear',['../classOscProbCalcerNuSQUIDSLinear.html',1,'']]],
+  ['oscprobcalceroscliblinear_17',['OscProbCalcerOscLibLinear',['../classOscProbCalcerOscLibLinear.html',1,'']]],
+  ['oscprobcalceroscprob_18',['OscProbCalcerOscProb',['../classOscProbCalcerOscProb.html',1,'']]],
+  ['oscprobcalcerprob3pp_19',['OscProbCalcerProb3pp',['../classOscProbCalcerProb3pp.html',1,'']]],
+  ['oscprobcalcerprobgpulinear_20',['OscProbCalcerProbGPULinear',['../classOscProbCalcerProbGPULinear.html',1,'']]]
 ];
