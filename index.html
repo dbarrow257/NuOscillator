@@ -130,46 +130,46 @@ Implemented Engines</h1>
 <p>Following neutrino oscillation calculators are available:</p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
-<th class="markdownTableHeadNone">Oscillator   </th><th class="markdownTableHeadNone">Hardware   </th><th class="markdownTableHeadNone">Source   </th><th class="markdownTableHeadNone">Model   </th><th class="markdownTableHeadNone">Reference    </th></tr>
+<th class="markdownTableHeadNone">Oscillator   </th><th class="markdownTableHeadNone">Hardware   </th><th class="markdownTableHeadNone">Source   </th><th class="markdownTableHeadNone">Model   </th><th class="markdownTableHeadNone">Note   </th><th class="markdownTableHeadNone">Reference    </th></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone">CUDAProb3Linear   </td><td class="markdownTableBodyNone">CPU/GPU   </td><td class="markdownTableBodyNone">Beam   </td><td class="markdownTableBodyNone">PMNS   </td><td class="markdownTableBodyNone"></td></tr>
+<td class="markdownTableBodyNone">CUDAProb3Linear   </td><td class="markdownTableBodyNone">CPU/GPU   </td><td class="markdownTableBodyNone">Beam   </td><td class="markdownTableBodyNone">PMNS   </td><td class="markdownTableBodyNone">Good balance of speed and applicability across the parameter space.   </td><td class="markdownTableBodyNone"></td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone">CUDAProb3   </td><td class="markdownTableBodyNone">CPU/GPU   </td><td class="markdownTableBodyNone">Atm   </td><td class="markdownTableBodyNone">PMNS   </td><td class="markdownTableBodyNone"><a href="https://doi.org/10.1016/j.cpc.2018.07.022">Ref</a>    </td></tr>
+<td class="markdownTableBodyNone">CUDAProb3   </td><td class="markdownTableBodyNone">CPU/GPU   </td><td class="markdownTableBodyNone">Atm   </td><td class="markdownTableBodyNone">PMNS   </td><td class="markdownTableBodyNone">Fast atmospheric oscillation calculations with several options for adjusting the Earth model.   </td><td class="markdownTableBodyNone"><a href="https://doi.org/10.1016/j.cpc.2018.07.022">Ref</a>    </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone">ProbGPULinear   </td><td class="markdownTableBodyNone">GPU   </td><td class="markdownTableBodyNone">Beam   </td><td class="markdownTableBodyNone">PMNS   </td><td class="markdownTableBodyNone"><a href="http://dx.doi.org/10.3204/DESY-PROC-2014-05/23">Ref</a>    </td></tr>
+<td class="markdownTableBodyNone">ProbGPULinear   </td><td class="markdownTableBodyNone">GPU   </td><td class="markdownTableBodyNone">Beam   </td><td class="markdownTableBodyNone">PMNS   </td><td class="markdownTableBodyNone">GPU implementation of the Prob3++ approach.   </td><td class="markdownTableBodyNone"><a href="http://dx.doi.org/10.3204/DESY-PROC-2014-05/23">Ref</a>    </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone">Prob3++   </td><td class="markdownTableBodyNone">CPU   </td><td class="markdownTableBodyNone">Beam/Atm   </td><td class="markdownTableBodyNone">PMNS   </td><td class="markdownTableBodyNone"></td></tr>
+<td class="markdownTableBodyNone">Prob3++   </td><td class="markdownTableBodyNone">CPU   </td><td class="markdownTableBodyNone">Beam/Atm   </td><td class="markdownTableBodyNone">PMNS   </td><td class="markdownTableBodyNone">General-purpose three-flavour oscillation calculator.   </td><td class="markdownTableBodyNone"></td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone">NuFastLinear   </td><td class="markdownTableBodyNone">CPU   </td><td class="markdownTableBodyNone">Beam   </td><td class="markdownTableBodyNone">PMNS   </td><td class="markdownTableBodyNone"><a href="https://doi.org/10.48550/arXiv.2405.02400">Ref</a>    </td></tr>
+<td class="markdownTableBodyNone">NuFastLinear   </td><td class="markdownTableBodyNone">CPU   </td><td class="markdownTableBodyNone">Beam   </td><td class="markdownTableBodyNone">PMNS   </td><td class="markdownTableBodyNone">Very fast beam probability calculations, optimised for parameter ranges relevant to current and future experiments.   </td><td class="markdownTableBodyNone"><a href="https://doi.org/10.48550/arXiv.2405.02400">Ref</a>    </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone">NuFastEarth   </td><td class="markdownTableBodyNone">CPU   </td><td class="markdownTableBodyNone">ATM   </td><td class="markdownTableBodyNone">PMNS   </td><td class="markdownTableBodyNone"><a href="https://arxiv.org/abs/2511.04735">Ref</a>    </td></tr>
+<td class="markdownTableBodyNone">NuFastEarth   </td><td class="markdownTableBodyNone">CPU   </td><td class="markdownTableBodyNone">Atm   </td><td class="markdownTableBodyNone">PMNS   </td><td class="markdownTableBodyNone">Very fast atmospheric oscillation calculations through the Earth.   </td><td class="markdownTableBodyNone"><a href="https://arxiv.org/abs/2511.04735">Ref</a>    </td></tr>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone">OscProb   </td><td class="markdownTableBodyNone">CPU   </td><td class="markdownTableBodyNone">Beam/Atm   </td><td class="markdownTableBodyNone"><details >
 <summary >
 PMNS + extensions</summary>
-<p>Non-Standard Interactions (NSI), Scalar NSI (SNSI), Sterile Neutrinos (+1, +2, +3), Neutrino Decay, Decoherence, Non-Unitarity (NUNM), Lorentz Invariance Violation (LIV), Sidereal LIV, Open Quantum Systems (OPS)</p>
+<p>Non-Standard Interactions (NSI), Scalar NSI (SNSI), Sterile Neutrinos (+1, +2, +3), Neutrino Decay, Decoherence, Non-Unitarity (NUNM), Lorentz Invariance Violation (LIV), Sidereal LIV, Open Quantum Systems (OPS).</p>
 </details>
-</td><td class="markdownTableBodyNone"><a href="https://doi.org/10.5281/zenodo.6347002">Ref</a>    </td></tr>
+</td><td class="markdownTableBodyNone">Broad support for extensions of the standard three-flavour oscillation framework.   </td><td class="markdownTableBodyNone"><a href="https://doi.org/10.5281/zenodo.6347002">Ref</a>    </td></tr>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">NuSQUIDSLinear   </td><td class="markdownTableBodyNone">CPU   </td><td class="markdownTableBodyNone">Beam   </td><td class="markdownTableBodyNone"><details >
 <summary >
 PMNS + extensions</summary>
-<p>Non-Standard Interactions (NSI), Decoherence, Lorentz Invariance Violation (LIV)</p>
+<p>Non-Standard Interactions (NSI), Decoherence, Lorentz Invariance Violation (LIV).</p>
 </details>
-</td><td class="markdownTableBodyNone"><a href="https://doi.org/10.1016/j.cpc.2022.108346">Ref</a>    </td></tr>
+</td><td class="markdownTableBodyNone">Propagates neutrino ensembles using quantum kinetic equations.   </td><td class="markdownTableBodyNone"><a href="https://doi.org/10.1016/j.cpc.2022.108346">Ref</a>    </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone">GLoBESLinear   </td><td class="markdownTableBodyNone">CPU   </td><td class="markdownTableBodyNone">Beam   </td><td class="markdownTableBodyNone">PMNS   </td><td class="markdownTableBodyNone"><a href="https://doi.org/10.1016/j.cpc.2005.01.003">Ref</a>    </td></tr>
+<td class="markdownTableBodyNone">GLoBESLinear   </td><td class="markdownTableBodyNone">CPU   </td><td class="markdownTableBodyNone">Beam   </td><td class="markdownTableBodyNone">PMNS   </td><td class="markdownTableBodyNone">Widely used in neutrino phenomenology, easy to implement extensions.   </td><td class="markdownTableBodyNone"><a href="https://doi.org/10.1016/j.cpc.2005.01.003">Ref</a>    </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone">CHIC   </td><td class="markdownTableBodyNone">CPU   </td><td class="markdownTableBodyNone">Beam/Atm   </td><td class="markdownTableBodyNone">PMNS   </td><td class="markdownTableBodyNone"><a href="https://arxiv.org/pdf/2512.16427">Ref</a>    </td></tr>
+<td class="markdownTableBodyNone">CHIC   </td><td class="markdownTableBodyNone">CPU   </td><td class="markdownTableBodyNone">Beam/Atm   </td><td class="markdownTableBodyNone">PMNS   </td><td class="markdownTableBodyNone">Fast analytical probability calculations with analytical derivatives   </td><td class="markdownTableBodyNone"><a href="https://arxiv.org/abs/2512.16427">Ref</a>    </td></tr>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone">OscLib   </td><td class="markdownTableBodyNone">CPU   </td><td class="markdownTableBodyNone">Beam   </td><td class="markdownTableBodyNone"><details >
 <summary >
 PMNS + extensions</summary>
-<p>Non-Standard Interactions (NSI))</p>
+<p>Non-Standard Interactions (NSI).</p>
 </details>
-</td><td class="markdownTableBodyNone"><a href="https://github.com/cafana/OscLib">Ref</a>    </td></tr>
+</td><td class="markdownTableBodyNone">Similar to OscProb, but with fewer available extensions.   </td><td class="markdownTableBodyNone"><a href="https://github.com/cafana/OscLib">Ref</a>    </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone">nuOscillationLinear   </td><td class="markdownTableBodyNone">CPU   </td><td class="markdownTableBodyNone">Beam   </td><td class="markdownTableBodyNone">PMNS   </td><td class="markdownTableBodyNone"><a href="https://arxiv.org/html/2401.13215v2">Ref</a>   </td></tr>
+<td class="markdownTableBodyNone">nuOscillationLinear   </td><td class="markdownTableBodyNone">CPU   </td><td class="markdownTableBodyNone">Beam   </td><td class="markdownTableBodyNone">PMNS   </td><td class="markdownTableBodyNone">Designed for short-baseline reactor neutrino applications, Earth matter effects are not included.   </td><td class="markdownTableBodyNone"><a href="https://arxiv.org/html/2401.13215v2">Ref</a>   </td></tr>
 </table>
 <h2><a class="anchor" id="autotoc_md4"></a>
 Engine Requirements</h2>
