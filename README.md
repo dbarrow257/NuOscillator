@@ -61,20 +61,20 @@ CPMAddPackage(
 
 Following neutrino oscillation calculators are available:
 
-| Oscillator       | Hardware   | Source     | Model      | Reference  |
-|------------------|------------|------------|------------|------------|
-| CUDAProb3Linear  | CPU/GPU    | Beam       | PMNS       |            |
-| CUDAProb3        | CPU/GPU    | Atm        | PMNS       | [Ref](https://doi.org/10.1016/j.cpc.2018.07.022)        |
-| ProbGPULinear    | GPU        | Beam       | PMNS       | [Ref](http://dx.doi.org/10.3204/DESY-PROC-2014-05/23)   |
-| Prob3++          | CPU        | Beam/Atm   | PMNS       |            |
-| NuFastLinear     | CPU        | Beam       | PMNS       | [Ref](https://doi.org/10.48550/arXiv.2405.02400)        |
-| NuFastEarth      | CPU        | ATM        | PMNS       | [Ref](https://arxiv.org/abs/2511.04735)                 |
-| OscProb | CPU | Beam/Atm | <details><summary>PMNS + extensions</summary>Non-Standard Interactions (NSI), Scalar NSI (SNSI), Sterile Neutrinos (+1, +2, +3), Neutrino Decay, Decoherence, Non-Unitarity (NUNM), Lorentz Invariance Violation (LIV), Sidereal LIV, Open Quantum Systems (OPS)</details> | [Ref](https://doi.org/10.5281/zenodo.6347002) |
-| NuSQUIDSLinear   | CPU        | Beam       | <details><summary>PMNS + extensions</summary>Non-Standard Interactions (NSI), Decoherence, Lorentz Invariance Violation (LIV)</details>           | [Ref](https://doi.org/10.1016/j.cpc.2022.108346)        |
-| GLoBESLinear     | CPU        | Beam       | PMNS       | [Ref](https://doi.org/10.1016/j.cpc.2005.01.003)        |
-| CHIC             | CPU        | Beam/Atm   | PMNS       | [Ref](https://arxiv.org/pdf/2512.16427)                 |
-| OscLib           | CPU        | Beam       | <details><summary>PMNS + extensions</summary>Non-Standard Interactions (NSI))</details>       | [Ref](https://github.com/cafana/OscLib)                 |
-| nuOscillationLinear             | CPU        | Beam   | PMNS       | [Ref](https://arxiv.org/html/2401.13215v2)                 |
+| Oscillator          | Hardware   | Source      | Model      | Note                                                                                         | Reference |
+|---------------------|------------|-------------|------------|----------------------------------------------------------------------------------------------|-----------|
+| CUDAProb3Linear     | CPU/GPU    | Beam        | PMNS       | Good balance of speed and applicability across the parameter space.                         |           |
+| CUDAProb3           | CPU/GPU    | Atm         | PMNS       | Fast atmospheric oscillation calculations with several options for adjusting the Earth model. | [Ref](https://doi.org/10.1016/j.cpc.2018.07.022) |
+| ProbGPULinear       | GPU        | Beam        | PMNS       | GPU implementation of the Prob3++ approach.                                                  | [Ref](http://dx.doi.org/10.3204/DESY-PROC-2014-05/23) |
+| Prob3++             | CPU        | Beam/Atm    | PMNS       | General-purpose three-flavour oscillation calculator.                                        |           |
+| NuFastLinear        | CPU        | Beam        | PMNS       | Very fast beam probability calculations, optimised for parameter ranges relevant to current and future experiments. | [Ref](https://doi.org/10.48550/arXiv.2405.02400) |
+| NuFastEarth         | CPU        | Atm         | PMNS       | Very fast atmospheric oscillation calculations through the Earth.                            | [Ref](https://arxiv.org/abs/2511.04735) |
+| OscProb             | CPU        | Beam/Atm    | <details><summary>PMNS + extensions</summary>Non-Standard Interactions (NSI), Scalar NSI (SNSI), Sterile Neutrinos (+1, +2, +3), Neutrino Decay, Decoherence, Non-Unitarity (NUNM), Lorentz Invariance Violation (LIV), Sidereal LIV, Open Quantum Systems (OPS).</details> | Broad support for extensions of the standard three-flavour oscillation framework. | [Ref](https://doi.org/10.5281/zenodo.6347002) |
+| NuSQUIDSLinear      | CPU        | Beam        | <details><summary>PMNS + extensions</summary>Non-Standard Interactions (NSI), Decoherence, Lorentz Invariance Violation (LIV).</details> | Propagates neutrino ensembles using quantum kinetic equations. | [Ref](https://doi.org/10.1016/j.cpc.2022.108346) |
+| GLoBESLinear        | CPU        | Beam        | PMNS       | Widely used in neutrino phenomenology, easy to implement extensions. | [Ref](https://doi.org/10.1016/j.cpc.2005.01.003) |
+| CHIC                | CPU        | Beam/Atm    | PMNS       | Fast analytical probability calculations with analytical derivatives | [Ref](https://arxiv.org/abs/2512.16427) |
+| OscLib              | CPU        | Beam        | <details><summary>PMNS + extensions</summary>Non-Standard Interactions (NSI).</details> | Similar to OscProb, but with fewer available extensions. | [Ref](https://github.com/cafana/OscLib) |
+| nuOscillationLinear | CPU        | Beam        | PMNS       | Designed for short-baseline reactor neutrino applications, Earth matter effects are not included. | [Ref](https://arxiv.org/html/2401.13215v2) |
 
 ### Engine Requirements
 Requirements for NuOscillator strongly depends on a chosen configuration, for example some engines require minimal of C++17. In addition, some engines require an external library like Eigen. NuOscillator should handle it all internally, if not, should provide useful error.
