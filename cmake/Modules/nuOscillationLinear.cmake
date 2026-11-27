@@ -1,5 +1,5 @@
 if(NOT DEFINED nuOscillationLinear_BRANCH)
-  set(nuOscillationLinear_BRANCH "d64f6c71bb498f078e35ba6571a0ba57965fc503")
+  set(nuOscillationLinear_BRANCH "54f55c10f2e4c03d6589b7bede4afe62e7523583")
 endif()
 
 if(${UsenuOscillationLinear} EQUAL 1)
@@ -14,10 +14,6 @@ if(${UsenuOscillationLinear} EQUAL 1)
   set(NUOSCILLATION_HEADER "${vOscillation_SOURCE_DIR}/header/vOscillation.hh")
   set(NUOSCILLATION_SOURCE "${vOscillation_SOURCE_DIR}/src/vOscillation.cc")
 
-  execute_process(COMMAND sed -i "s/void LoadStdData(bool IO = false) {};/void LoadStdData(bool IO = false);/"
-                                 "${NUOSCILLATION_HEADER}" RESULT_VARIABLE PATCH_RESULT)
-  execute_process(COMMAND sed -i "s/void vOscillation::LoadStdData(bool IO = false)/void vOscillation::LoadStdData(bool IO)/"
-                                 "${NUOSCILLATION_SOURCE}" RESULT_VARIABLE PATCH_SOURCE)
   add_library(vOscillation
     ${NUOSCILLATION_SOURCE}
     ${NUOSCILLATION_HEADERS}
